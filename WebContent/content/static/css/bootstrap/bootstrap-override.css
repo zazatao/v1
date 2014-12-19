@@ -1,0 +1,10 @@
+
+
+.container.container-override {
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.panel-group .panel + .panel {
+    margin-top: 0px;
+}
