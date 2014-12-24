@@ -8,7 +8,6 @@ import javax.persistence.*;
 import com.yc.entity.UnKnownCommodity;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorValue("user")
 public class User {
 
@@ -67,5 +66,5 @@ public class User {
 	public void setOperators(List<UnKnownCommodity> operators) {
 		this.operators = operators;
 	}
- 
+
 }

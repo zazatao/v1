@@ -4,6 +4,7 @@ package com.yc.dao.orm.commons;
 import org.springframework.context.annotation.*;
 
 import com.yc.entity.*;
+
 import com.yc.entity.user.User;
 
 @Configuration
@@ -23,4 +24,5 @@ public class GenericDaoConfig {
     public GenericDao<ImagePath> getImagePathDao() {
         return new GenericDaoSupport<ImagePath>(ImagePath.class);
     }
+
 }

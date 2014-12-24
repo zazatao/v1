@@ -121,6 +121,7 @@
 		</div>
 	</div>
 	<script type="text/javascript">
+
 		function cancel() {
 			window.location.href = "../index.jsp?backurl="
 					+ window.location.href;
