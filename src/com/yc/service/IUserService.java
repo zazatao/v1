@@ -1,21 +1,10 @@
 
 package com.yc.service;
 
-import java.util.List;
-
-import com.yc.entity.user.Role;
 import com.yc.entity.user.User;
 
-public interface IUserService {
-    User getUser(String name);
+public interface IUserService extends IGenericService<User> {
 
-    boolean update(User user);
-
-    boolean regist(User user);
-
-    List getAll(Role patient);
-
-    User getUserByID(int parseInt);
-
+	User getUser(String name);
    
 }

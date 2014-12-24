@@ -1,5 +1,5 @@
 
-package com.yc.controller;
+package com.yc.controller.overall;
 
 import java.io.IOException;
 
@@ -11,18 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-//首页
+//总览
 @Controller
-@RequestMapping("/")
-public class IndexController {
+@RequestMapping("/overall")
+public class OverallIndexController {
 
     @RequestMapping(value = "index", method = RequestMethod.GET)
     public ModelAndView index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         return new ModelAndView("index", null);
     }
-    
-    @RequestMapping(value = "homePage", method = RequestMethod.GET)
-    public ModelAndView homePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        return new ModelAndView("homePage", null);
-    }
+
 }

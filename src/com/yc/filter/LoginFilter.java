@@ -18,10 +18,6 @@ public class LoginFilter implements Filter {
             return false;
         }
 
-        if (uri.contains("weixin/index")) {
-            return false;
-        }
-
         if (uri.contains("static")) {
             return false;
         }

@@ -1,7 +1,11 @@
 
 package com.yc.entity.user;
 
+import java.util.List;
+
 import javax.persistence.*;
+
+import com.yc.entity.UnKnownCommodity;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -20,21 +24,9 @@ public class User {
 
     @Column(length = 32)
     private String userName;
-
-    @Column
-    private Integer synced = 0;
-
-    @Column
-    @Enumerated(EnumType.STRING)
-    private Role role;
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
+    
+    @OneToMany(mappedBy = "operator")
+    private List<UnKnownCommodity> operators ;
 
     public Integer getId() {
         return id;
@@ -68,12 +60,12 @@ public class User {
         this.password = password;
     }
 
-    public Integer getSynced() {
-        return synced;
-    }
+	public List<UnKnownCommodity> getOperators() {
+		return operators;
+	}
 
-    public void setSynced(Integer synced) {
-        this.synced = synced;
-    }
-
+	public void setOperators(List<UnKnownCommodity> operators) {
+		this.operators = operators;
+	}
+ 
 }

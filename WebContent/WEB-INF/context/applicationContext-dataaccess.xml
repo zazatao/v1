@@ -46,7 +46,6 @@
 		<property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect" />
 	</bean>
 
-
 	<tx:annotation-driven />
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
