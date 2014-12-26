@@ -62,8 +62,8 @@
 						data-toggle="dropdown">仓库 <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="./warehouse/receiving">收货</a></li>
-							<li><a href="./warehouse/warehousing">验货入库</a></li>
-							<li><a href="#">回收站</a></li>
+							<li><a href="./warehouse/inspection">验货入库</a></li>
+							<li><a href="./warehouse/reclaimStation">回收站</a></li>
 							<li><a href="#">在途订单</a></li>
 							<li><a href="#">称量</a></li>
 							<li><a href="#">发送包裹</a></li>

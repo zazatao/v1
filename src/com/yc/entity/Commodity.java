@@ -52,7 +52,7 @@ public class Commodity {
 	private User purchase;//采购员
 	@Column
 	@Enumerated(EnumType.STRING)
-	private CommodityStatus status;// 状态
+	private OrderStatus status;// 状态
 	@ManyToOne
 	@JoinColumn(name = "storeRoom_id")
 	private StoreRoom storeRoom;
@@ -150,11 +150,11 @@ public class Commodity {
 		this.comment = comment;
 	}
 
-	public CommodityStatus getStatus() {
+	public OrderStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(CommodityStatus status) {
+	public void setStatus(OrderStatus status) {
 		this.status = status;
 	}
 

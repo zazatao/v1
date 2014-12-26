@@ -21,9 +21,9 @@ public class StoreRoom {
 	@Column
 	private String packageNum;
 	@Column
-	private Boolean isInCell;//单元格已经用了
+	private String cellDate;//入单元格时间
 	@Column
-	private Boolean isInStoreRoom;
+	private String inStoreRoomDate;//入库房时间
 	@OneToMany(mappedBy = "storeRoom")
 	private List<Commodity> commodities;
 
@@ -51,20 +51,20 @@ public class StoreRoom {
 		this.packageNum = packageNum;
 	}
 
-	public Boolean getIsInCell() {
-		return isInCell;
+	public String getCellDate() {
+		return cellDate;
 	}
 
-	public void setIsInCell(Boolean isInCell) {
-		this.isInCell = isInCell;
+	public void setCellDate(String cellDate) {
+		this.cellDate = cellDate;
 	}
 
-	public Boolean getIsInStoreRoom() {
-		return isInStoreRoom;
+	public String getInStoreRoomDate() {
+		return inStoreRoomDate;
 	}
 
-	public void setIsInStoreRoom(Boolean isInStoreRoom) {
-		this.isInStoreRoom = isInStoreRoom;
+	public void setInStoreRoomDate(String inStoreRoomDate) {
+		this.inStoreRoomDate = inStoreRoomDate;
 	}
 
 	public List<Commodity> getCommodities() {

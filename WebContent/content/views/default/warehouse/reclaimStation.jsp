@@ -70,7 +70,7 @@ th {
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="../warehouse/receiving">收货</a></li>
 						<li><a href="../warehouse/warehousing">验货入库</a></li>
-						<li><a href="#">回收站</a></li>
+						<li><a href="../warehouse/reclaimStation">回收站</a></li>
 						<li><a href="#">在途订单</a></li>
 						<li><a href="#">称量</a></li>
 						<li><a href="#">发送包裹</a></li>
@@ -137,6 +137,17 @@ th {
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="span12">
+				<ul class="breadcrumb">
+					<li><a href="#" style="font-size: 18px;">仓库</a></li>
+					<span class="divider"><font style="font-size: 18px;">/</font></span>
+					<li><font style="font-size: 18px;">回收站</font>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span12">
 				<button class="btn btn-mini btn-success" type="button">编辑</button>
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				<button class="btn btn-mini btn-success" type="button">内部聊天</button>
@@ -175,7 +186,7 @@ th {
 													<th>价格</th>
 													<th>金额</th>
 													<th>重量</th>
-													<th>在格子</th>
+													<th>进入格子</th>
 													<th>进入仓库</th>
 													<th>状态</th>
 												</tr>
@@ -194,11 +205,8 @@ th {
 														<td>${value.price }</td>
 														<td>${value.money }</td>
 														<td>${value.weight }</td>
-														<td><c:if test="${value.storeRoom.isInCell=='true' }">已用</c:if>
-														</td>
-														<td><c:if
-																test="${value.storeRoom.isInStoreRoom=='true' }">已入库</c:if>
-														</td>
+														<td>${value.cellDate }</td>
+														<td>${value.inStoreRoomDate }</td>
 														<td><c:choose>
 																<c:when test="${value.status =='unchanged'}">没有变化</c:when>
 																<c:when test="${value.status =='toWarehouse'}">送往库房</c:when>
@@ -242,7 +250,6 @@ th {
 	</div>
 
 	<script type="text/javascript">
-		
 		function reloadData() {
 			setTimeout(function() {
 				window.location.reload();

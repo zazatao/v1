@@ -157,7 +157,6 @@ public class GenericDaoSupport<T> implements GenericDao<T> {
 
             }
         }
-        System.out.println("sql jiangbo :" + stringBuffer.toString());
         query = em.createQuery(stringBuffer.toString());
 
         return query.getResultList();

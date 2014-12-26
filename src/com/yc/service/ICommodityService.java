@@ -6,6 +6,6 @@ import com.yc.entity.Commodity;
 
 public interface ICommodityService extends IGenericService<Commodity> {
 
-	List<Commodity> getAllByRoom(Integer cellID);
+	List<Commodity> getAllByRoomForHave(Integer cellID, boolean b);
 
 }

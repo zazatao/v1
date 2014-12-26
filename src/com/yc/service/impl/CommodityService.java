@@ -20,10 +20,14 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 	}
 
 	@Override
-	public List<Commodity> getAllByRoom(Integer cellID) {
-		String hql = " from Commodity c where c.status not in ('refuse','lose') and c.storeRoom.cellID = "+cellID;
-		return commodityDao.find(hql, null, null);
+	public List<Commodity> getAllByRoomForHave(Integer cellID, boolean b) {
+		StringBuffer hql = new StringBuffer(" from Commodity c where c.storeRoom.cellID = "+cellID);
+		if (b) {
+			hql.append(" and c.status in ('marriage','lose','refuse','inWarehouse','senToWarehouse')");
+		}else{
+			hql.append(" and c.status in ('cancel','delete')");
+		}
+		return commodityDao.find(hql.toString(), null, null);
 	}
-
 
 }
