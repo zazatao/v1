@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -19,8 +20,20 @@ public class ImagePath {
 	@ManyToOne
 	private UnKnownCommodity unKnownComm;
 	
+	@ManyToOne
+	@JoinColumn(name = "from_commodity")
+	private Commodity commodity;
+	
 	@Column
 	private String path;
+
+	public Commodity getCommodity() {
+		return commodity;
+	}
+
+	public void setCommodity(Commodity commodity) {
+		this.commodity = commodity;
+	}
 
 	public Integer getImageId() {
 		return imageId;

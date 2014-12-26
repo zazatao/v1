@@ -1,5 +1,7 @@
 package com.yc.service;
 
+import java.util.List;
+
 public interface IGenericService<T> {
 
     T save(T t);
@@ -9,4 +11,6 @@ public interface IGenericService<T> {
     Boolean delete(Integer id);
 
     T findById(Object id);
+    
+    List<T> getAll();
 }

@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,9 +24,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yc.entity.Commodity;
+import com.yc.entity.CommodityStatus;
 import com.yc.entity.ImagePath;
+import com.yc.entity.OrderForm;
+import com.yc.entity.StoreRoom;
 import com.yc.entity.UnKnownCommodity;
 import com.yc.entity.user.User;
+import com.yc.service.ICommodityService;
+import com.yc.service.IOrderFormService;
+import com.yc.service.IStoreRoomService;
 import com.yc.service.IUnKnownCommodityService;
 import com.yc.service.impl.ImagePathService;
 
@@ -38,6 +47,15 @@ public class WarehouseIndexController {
 	IUnKnownCommodityService unKnownCommService;
 
 	@Autowired
+	ICommodityService commodityService;
+
+	@Autowired
+	IOrderFormService orderFormService;
+
+	@Autowired
+	IStoreRoomService storeRoomService;
+
+	@Autowired
 	ImagePathService imagePathService;
 
 	@RequestMapping(value = "receiving", method = RequestMethod.GET)
@@ -47,7 +65,7 @@ public class WarehouseIndexController {
 
 	@RequestMapping(value = "jobAction", method = RequestMethod.GET)
 	public ModelAndView jobAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (request.getParameter("isTrue")!=null && request.getParameter("isTrue").equals("true")) {
+		if (request.getParameter("isTrue") != null && request.getParameter("isTrue").equals("true")) {
 			request.getSession().removeAttribute("code");
 		}
 		ModelMap map = new ModelMap();
@@ -120,9 +138,43 @@ public class WarehouseIndexController {
 		}
 		return "redirect:/warehouse/jobAction";
 	}
-	
-	@RequestMapping(value = "warehousing", method = RequestMethod.POST)
-	public String warehousing( HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return null;
+
+	@RequestMapping(value = "warehousing", method = RequestMethod.GET)
+	public ModelAndView warehousing(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		List<StoreRoom> rooms = storeRoomService.getCellForTrue();
+		Map<String, List<Commodity>> map = new HashMap<String, List<Commodity>>();
+		for (StoreRoom storeRoom : rooms) {
+			List<Commodity> list = commodityService.getAllByRoom(storeRoom.getCellID());
+			if (list.size()>0) {
+				map.put(storeRoom.getCellStr(), list);
+			}
+		}
+		ModelMap mode = new ModelMap();
+		mode.put("commodity", map);
+		return new ModelAndView("warehouse/warehousing", mode);
+	}
+
+	@RequestMapping(value = "enterStoreRoom", method = RequestMethod.POST)
+	public ModelAndView enterStoreRoom(Commodity commodity, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String orderNum = request.getParameter("orderNum");
+		OrderForm orderForm = orderFormService.findById(Integer.parseInt(orderNum));
+		String msg = "";
+		ModelMap map = new ModelMap();
+		if (orderForm != null) {
+			for (Commodity commod : orderForm.getCommodities()) {
+				if (commod.getTransNumForTaobao().equals(commodity.getTransNumForTaobao()) && commod.getTpek().equals(commodity.getTpek()) && commod.getCommItem().equals(commodity.getCommItem())) {
+					commod.setStatus(CommodityStatus.unchanged);
+					commod.setStoreOperator((User)request.getSession().getAttribute("loginUser"));
+					Commodity comm = commodityService.update(commod);
+					StoreRoom room = comm.getStoreRoom();
+					room.setIsInCell(true);
+					storeRoomService.update(room);
+					msg = "找到货物，并已入库！！";
+					break;
+				}
+			}
+		}
+		map.put("msg", msg);
+		return new ModelAndView("warehouse/jobAction",map);
 	}
 }

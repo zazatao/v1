@@ -36,6 +36,9 @@
 			<div class="container-fluid">
 				<div class="row-fluid">
 					<div class="span12">
+						<c:if test="${msg!='' }">
+							<font color="blue" size="3px;">${msg }</font>
+						</c:if>
 						<div class="tabbable" id="tabs-323194">
 							<ul class="nav nav-tabs">
 								<li class="active"><a href="#panel-707179"
@@ -46,7 +49,7 @@
 								<div class="tab-pane active" id="panel-707179">
 									<div class="col-md-12 column">
 									<br>
-										<form action="saveCommodity" method="POST">
+										<form action="enterStoreRoom" method="POST">
 											<div class="form-group">
 												<label for="inputEmail3" class="col-sm-2 control-label">tpek</label>
 												<div class="col-sm-10">
@@ -56,13 +59,13 @@
 											<div class="form-group">
 												<label for="inputEmail3" class="col-sm-2 control-label">订单号</label>
 												<div class="col-sm-10">
-													<input type="text" name="orderNumber" class="form-control"><br>
+													<input type="text" name="orderNum" class="form-control"><br>
 												</div>
 											</div>
 											<div class="form-group">
-												<label for="inputEmail3" class="col-sm-2 control-label">交易号</label>
+												<label for="inputEmail3" class="col-sm-2 control-label">淘宝网上的交易号</label>
 												<div class="col-sm-10">
-													<input type="text" name="transactionsNum"
+													<input type="text" name="transNumForTaobao"
 														class="form-control"><br>
 												</div>
 											</div>
@@ -74,8 +77,8 @@
 												</div>
 											</div>
 											<div class="form-group">
-												
-												<label for="inputEmail3" class="col-sm-12 control-label">&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" />自动打印条码</label>
+												<label for="inputEmail3" class="col-sm-12 control-label">&nbsp;&nbsp;&nbsp;&nbsp;<input
+													type="checkbox" checked="checked" />自动打印条码</label>
 											</div>
 											<br><br><br><br>
 											<div class="form-group">

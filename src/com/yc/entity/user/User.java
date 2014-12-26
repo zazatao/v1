@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.yc.entity.Commodity;
+import com.yc.entity.OrderForm;
 import com.yc.entity.UnKnownCommodity;
 
 @Entity
@@ -25,9 +27,34 @@ public class User {
     private String userName;
     
     @OneToMany(mappedBy = "operator")
-    private List<UnKnownCommodity> operators ;
+    private List<UnKnownCommodity> unCommOperators ;
+    
+    @OneToMany(mappedBy = "storeOperator")
+    private List<Commodity> commOperators ;
+    
+    @OneToMany(mappedBy = "purchase")
+    private List<Commodity> purchases ;
+    
+    @OneToMany(mappedBy = "orderUser")
+    private List<OrderForm> orderForms;
 
-    public Integer getId() {
+    public List<Commodity> getPurchases() {
+		return purchases;
+	}
+
+	public void setPurchases(List<Commodity> purchases) {
+		this.purchases = purchases;
+	}
+
+	public List<OrderForm> getOrderForms() {
+		return orderForms;
+	}
+
+	public void setOrderForms(List<OrderForm> orderForms) {
+		this.orderForms = orderForms;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -59,12 +86,20 @@ public class User {
         this.password = password;
     }
 
-	public List<UnKnownCommodity> getOperators() {
-		return operators;
+	public List<UnKnownCommodity> getUnCommOperators() {
+		return unCommOperators;
 	}
 
-	public void setOperators(List<UnKnownCommodity> operators) {
-		this.operators = operators;
+	public void setUnCommOperators(List<UnKnownCommodity> unCommOperators) {
+		this.unCommOperators = unCommOperators;
+	}
+
+	public List<Commodity> getCommOperators() {
+		return commOperators;
+	}
+
+	public void setCommOperators(List<Commodity> commOperators) {
+		this.commOperators = commOperators;
 	}
 
 }
