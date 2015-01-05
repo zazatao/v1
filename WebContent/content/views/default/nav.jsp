@@ -28,16 +28,16 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">仓库 <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="../warehouse/receiving">收货</a></li>
-						<li><a href="../warehouse/inspection">验货入库</a></li>
-						<li><a href="../warehouse/reclaimStation">回收站</a></li>
-						<li><a href="../warehouse/orderOfWay">在途订单</a></li>
-						<li><a href="../warehouse/weighing">称量</a></li>
-						<li><a href="../warehouse/sendTheParcel">发送包裹</a></li>
-						<li><a href="../warehouse/freight">运费</a></li>
-						<li><a href="../warehouse/batchShipments">成批发货</a></li>
-						<li><a href="../warehouse/cargoGroup">货物组</a></li>
-						<li><a href="#">统计发货人情况</a></li>
+						<li><a href="./warehouse/receiving">收货</a></li>
+						<li><a href="./warehouse/inspection">验货入库</a></li>
+						<li><a href="./warehouse/reclaimStation">回收站</a></li>
+						<li><a href="./warehouse/orderOfWay">在途订单</a></li>
+						<li><a href="./warehouse/weighing">称量</a></li>
+						<li><a href="./warehouse/sendTheParcel">发送包裹</a></li>
+						<li><a href="./warehouse/freight">运费</a></li>
+						<li><a href="./warehouse/batchShipments">成批发货</a></li>
+						<li><a href="./warehouse/cargoGroup">货物组</a></li>
+						<li><a href="./warehouse/statistical">统计发货人情况</a></li>
 					</ul></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">转发 <span class="caret"></span></a>

@@ -39,99 +39,7 @@ th {
 <body>
 
 	<!-- Static navbar -->
-	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<div class="container-fluid">
-		<div id="navbar" class="navbar-collapse collapse">
-			<ul class="nav navbar-nav">
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">总览<span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li class="divider"></li>
-						<li class="dropdown-header">Nav header</li>
-						<li><a href="#">Separated link</a></li>
-						<li><a href="#">One more separated link</a></li>
-					</ul></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">订单处理 <span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li class="divider"></li>
-						<li class="dropdown-header">Nav header</li>
-						<li><a href="#">Separated link</a></li>
-						<li><a href="#">One more separated link</a></li>
-					</ul></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">仓库 <span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="../warehouse/receiving">收货</a></li>
-						<li><a href="../warehouse/warehousing">验货入库</a></li>
-						<li><a href="../warehouse/reclaimStation">回收站</a></li>
-						<li><a href="#">在途订单</a></li>
-						<li><a href="#">称量</a></li>
-						<li><a href="#">发送包裹</a></li>
-						<li><a href="#">运费</a></li>
-						<li><a href="#">成批发货</a></li>
-						<li><a href="#">统计库房工作人员情况</a></li>
-					</ul></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">转发 <span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li class="divider"></li>
-						<li class="dropdown-header">Nav header</li>
-						<li><a href="#">Separated link</a></li>
-						<li><a href="#">One more separated link</a></li>
-					</ul></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">商店 <span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li class="divider"></li>
-						<li class="dropdown-header">Nav header</li>
-						<li><a href="#">Separated link</a></li>
-						<li><a href="#">One more separated link</a></li>
-					</ul></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">管理 <span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li class="divider"></li>
-						<li class="dropdown-header">Nav header</li>
-						<li><a href="#">Separated link</a></li>
-						<li><a href="#">One more separated link</a></li>
-					</ul></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">统计 <span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li class="divider"></li>
-						<li class="dropdown-header">Nav header</li>
-						<li><a href="#">Separated link</a></li>
-						<li><a href="#">One more separated link</a></li>
-					</ul></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><%=((User) request.getSession().getAttribute("loginUser"))
-					.getUserName()%></a></li>
-				<li><a href="../user/logout">退出</a></li>
-			</ul>
-		</div>
-		<!--/.nav-collapse -->
-	</div>
-	<!--/.container-fluid --> </nav>
+	<jsp:include page="../common/navbar.jsp"></jsp:include>
 	<br>
 	<br>
 	<div class="container-fluid">
@@ -142,15 +50,6 @@ th {
 					<span class="divider"><font style="font-size: 18px;">/</font></span>
 					<li><font style="font-size: 18px;">回收站</font>
 				</ul>
-			</div>
-		</div>
-	</div>
-	<div class="container-fluid">
-		<div class="row-fluid">
-			<div class="span12">
-				<button class="btn btn-mini btn-success" type="button">编辑</button>
-				&nbsp;&nbsp;&nbsp;&nbsp;
-				<button class="btn btn-mini btn-success" type="button">内部聊天</button>
 			</div>
 		</div>
 	</div>
@@ -177,17 +76,16 @@ th {
 											<thead>
 												<tr>
 													<th>格子</th>
-													<th>包</th>
+													<th>包裹</th>
 													<th>订单</th>
-													<th>货号</th>
+													<th>货号（淘宝ID）</th>
 													<th>买方</th>
 													<th>追踪</th>
 													<th>数量</th>
 													<th>价格</th>
 													<th>金额</th>
 													<th>重量</th>
-													<th>进入格子</th>
-													<th>进入仓库</th>
+													<th>改变日期</th>
 													<th>状态</th>
 												</tr>
 											</thead>
@@ -205,15 +103,11 @@ th {
 														<td>${value.price }</td>
 														<td>${value.money }</td>
 														<td>${value.weight }</td>
-														<td>${value.cellDate }</td>
-														<td>${value.inStoreRoomDate }</td>
+														<td>${value.storeRoom.cellDate }</td>
 														<td><c:choose>
 																<c:when test="${value.status =='unchanged'}">没有变化</c:when>
-																<c:when test="${value.status =='toWarehouse'}">送往库房</c:when>
-																<c:when test="${value.status =='refuse'}">拒绝入库</c:when>
-																<c:when test="${value.status =='lose'}">丢失</c:when>
-																<c:when test="${value.status =='inWarehouse'}">在库房中</c:when>
-																<c:when test="${value.status =='transaction'}">交易中</c:when>
+																<c:when test="${value.status =='cancel'}">取消交易</c:when>
+																<c:when test="${value.status =='delete'}">删除</c:when>
 															</c:choose></td>
 													</tr>
 													<tr>

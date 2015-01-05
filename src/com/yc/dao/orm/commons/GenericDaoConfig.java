@@ -3,7 +3,7 @@ package com.yc.dao.orm.commons;
 import org.springframework.context.annotation.*;
 
 import com.yc.entity.*;
-
+import com.yc.entity.Package;
 import com.yc.entity.user.User;
 
 @Configuration
@@ -38,5 +38,14 @@ public class GenericDaoConfig {
 	public GenericDao<StoreRoom> getStoreRoomDao() {
 		return new GenericDaoSupport<StoreRoom>(StoreRoom.class);
 	}
-
+	
+	@Bean
+	public GenericDao<Package> getPackageDao() {
+		return new GenericDaoSupport<Package>(Package.class);
+	}
+	
+	@Bean
+	public GenericDao<CargoGroup> getCargoGroupDao() {
+		return new GenericDaoSupport<CargoGroup>(CargoGroup.class);
+	}
 }

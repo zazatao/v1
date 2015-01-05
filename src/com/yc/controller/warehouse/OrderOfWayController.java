@@ -1,8 +1,6 @@
 package com.yc.controller.warehouse;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,12 +20,12 @@ import com.yc.service.IOrderFormService;
 import com.yc.service.IStoreRoomService;
 import com.yc.service.impl.ImagePathService;
 
-//仓库验货
+//仓库在途订单
 @Controller
 @RequestMapping("/warehouse")
-public class InspectionController {
+public class OrderOfWayController {
 	
-	private static final Logger LOG = Logger.getLogger(InspectionController.class);
+	private static final Logger LOG = Logger.getLogger(OrderOfWayController.class);
 
 	@Autowired
 	ICommodityService commodityService;
@@ -41,19 +39,16 @@ public class InspectionController {
 	@Autowired
 	ImagePathService imagePathService;
 	
-	@RequestMapping(value = "inspection", method = RequestMethod.GET)
-	public ModelAndView inspection(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		List<StoreRoom> rooms = storeRoomService.getCellForTrue();
-		Map<String, List<Commodity>> map = new HashMap<String, List<Commodity>>();
+	@RequestMapping(value = "orderOfWay", method = RequestMethod.GET)
+	public ModelAndView orderOfWay(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		List<StoreRoom> rooms = storeRoomService.getCellForFalse();
+		ModelMap mode = new ModelMap();
 		for (StoreRoom storeRoom : rooms) {
-			List<Commodity> list = commodityService.getAllByRoomForHave(storeRoom.getCellID(),true);
+			List<Commodity> list = commodityService.getCommodityByRoom(storeRoom);
 			if (list.size()>0) {
-				map.put(storeRoom.getCellStr(), list);
+				mode.put("commodity", list);
 			}
 		}
-		ModelMap mode = new ModelMap();
-		mode.put("commodity", map);
-		return new ModelAndView("warehouse/inspection", mode);
+		return new ModelAndView("warehouse/orderOfWay", mode);
 	}
-
 }

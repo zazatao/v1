@@ -8,4 +8,6 @@ public interface IStoreRoomService extends IGenericService<StoreRoom>{
 
 	List<StoreRoom> getCellForTrue();
 
+	List<StoreRoom> getCellForFalse();
+
 }
