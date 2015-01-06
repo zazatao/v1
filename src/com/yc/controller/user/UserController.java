@@ -35,7 +35,6 @@ public class UserController {
             request.getSession().setAttribute("message", "nouser");
             return "redirect:/";
         } else {
-        	
         	 if(user.getPassword().equals(pwd.trim())){
         		 session.setAttribute("loginUser", user);
         		  return "redirect:/homePage";
