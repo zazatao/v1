@@ -28,6 +28,7 @@
 <script type="text/javascript"
 	src="./content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
 </head>
+<<<<<<< HEAD
 
 <body>
 
@@ -121,3 +122,10 @@
 					<li><a href="user/logout">退出</a></li>
 				</ul>
 				<jsp:include page="../default/common/footer.jsp"></jsp:include>
+=======
+<body>
+	<!-- Static navbar -->
+	<jsp:include page="./nav.jsp"></jsp:include>
+</body>
+</html>
+>>>>>>> branch 'master' of https://github.com/zazatao/v1.git

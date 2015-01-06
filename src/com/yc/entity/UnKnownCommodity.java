@@ -9,10 +9,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import com.yc.entity.user.User;
 
 @Entity
 @DiscriminatorValue("unknowncommodity")
+@JsonIgnoreProperties(value={"operator"})
 public class UnKnownCommodity {
 
 	@Id

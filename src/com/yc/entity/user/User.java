@@ -5,12 +5,15 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import com.yc.entity.Commodity;
 import com.yc.entity.OrderForm;
 import com.yc.entity.UnKnownCommodity;
 
 @Entity
 @DiscriminatorValue("user")
+@JsonIgnoreProperties(value={"unCommOperators","commOperators","purchases","orderForms"})
 public class User {
 
     @Id

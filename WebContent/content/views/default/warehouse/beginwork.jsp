@@ -33,6 +33,7 @@
 <body>
 
 	<!-- Static navbar -->
+<<<<<<< HEAD
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container-fluid">
 		<div id="navbar" class="navbar-collapse collapse">
@@ -126,6 +127,9 @@
 		<!--/.nav-collapse -->
 	</div>
 	<!--/.container-fluid --> </nav>
+=======
+	<jsp:include page="../common/navbar.jsp"></jsp:include>
+>>>>>>> branch 'master' of https://github.com/zazatao/v1.git
 	<br>
 	<br>
 	<div class="container-fluid">

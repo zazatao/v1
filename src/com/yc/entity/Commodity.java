@@ -14,10 +14,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import com.yc.entity.user.User;
 
 @Entity
 @DiscriminatorValue("commodity")
+@JsonIgnoreProperties(value = { "storeOperator", "purchase", "storeRoom", "orderNumber", "imagePaths" })
 public class Commodity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,17 +42,19 @@ public class Commodity {
 	@Column
 	private Float weight;// 重量
 	@Column
-	private Float price;//价格
+	private String nameOfGoods;// 货品名称
+	@Column
+	private Float price;// 价格
 	@Column
 	private Float money;// 金额
 	@Column
 	private String comment;// 评论
 	@ManyToOne
 	@JoinColumn(name = "store_user")
-	private User storeOperator;//库房操作员
+	private User storeOperator;// 库房操作员
 	@ManyToOne
 	@JoinColumn(name = "purchase_user")
-	private User purchase;//采购员
+	private User purchase;// 采购员
 	@Column
 	@Enumerated(EnumType.STRING)
 	private OrderStatus status;// 状态
@@ -61,6 +66,14 @@ public class Commodity {
 	private OrderForm orderNumber;
 	@OneToMany(mappedBy = "commodity")
 	private List<ImagePath> imagePaths;
+
+	public String getNameOfGoods() {
+		return nameOfGoods;
+	}
+
+	public void setNameOfGoods(String nameOfGoods) {
+		this.nameOfGoods = nameOfGoods;
+	}
 
 	public User getStoreOperator() {
 		return storeOperator;

@@ -1,5 +1,7 @@
 package com.yc.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +18,16 @@ public class OrderFormService extends GenericService<OrderForm> implements IOrde
 	@Override
 	GenericDao<OrderForm> getDao() {
 		return orderFormDao;
+	}
+
+	@Override
+	public List<OrderForm> findByPackAgeID(Integer id) {
+		return orderFormDao.getBy("packAge.packageID", id);
+	}
+
+	@Override
+	public List<OrderForm> findByUserName(String parameter) {
+		return orderFormDao.getBy("orderUser.userName", parameter);
 	}
 
 }

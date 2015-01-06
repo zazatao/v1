@@ -27,6 +27,16 @@ public class StoreRoom {
 	@OneToMany(mappedBy = "storeRoom")
 	private List<Commodity> commodities;
 
+	private Boolean isInCell; //单元格已经被用了
+	
+	public Boolean getIsInCell() {
+		return isInCell;
+	}
+
+	public void setIsInCell(Boolean isInCell) {
+		this.isInCell = isInCell;
+	}
+
 	public Integer getCellID() {
 		return cellID;
 	}

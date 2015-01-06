@@ -143,7 +143,6 @@ public class GenericDaoSupport<T> implements GenericDao<T> {
         Query query = null;
         String propertyName = "";
         Object value = null;
-        System.out.println("propertyNames.size()===="+propertyNames.size());
         for (int i = 0; i < propertyNames.size(); i++) {
             propertyName = propertyNames.get(i);
             value = values.get(i);
@@ -190,6 +189,7 @@ public class GenericDaoSupport<T> implements GenericDao<T> {
         int parameterIndex = 1;
         if (params != null && params.length > 0) {
             for (Object obj : params) {
+            	System.out.println("obj====="+obj);
                 query.setParameter(parameterIndex++, obj);
             }
         }
