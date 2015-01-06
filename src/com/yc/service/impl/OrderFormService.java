@@ -25,4 +25,9 @@ public class OrderFormService extends GenericService<OrderForm> implements IOrde
 		return orderFormDao.getBy("packAge.packageID", id);
 	}
 
+	@Override
+	public List<OrderForm> findByUserName(String parameter) {
+		return orderFormDao.getBy("orderUser.userName", parameter);
+	}
+
 }

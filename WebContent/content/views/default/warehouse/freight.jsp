@@ -29,6 +29,15 @@
 
 <script type="text/javascript"
 	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
+	
+<link href="../content/static/css/datetime/jquery-clockpicker.min.css"
+	rel="stylesheet">
+<link href="../content/static/css/datetime/jquery.datetimepicker.css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="../content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
+<script type="text/javascript"
+	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
 </head>
 
 <body>
@@ -58,19 +67,18 @@
 					<div class="container-fluid">
 						<div class="row-fluid">
 							<div class="span12">
-								<form class="form-horizontal" action="./addHospital"
+								<form class="form-horizontal" action=""
 									method="POST">
 									<div class="form-group">
 										<label for="inputEmail3" class="col-sm-2 control-label">追踪号</label>
 										<div class="col-sm-3">
 											<input type="text" name="packAgeTpek" class="form-control"
-												id="packAgeTpek" >
+												id="packAgeTpek">
 										</div>
 										<label for="inputEmail3" class="col-sm-2 control-label">运费</label>
 										<div class="col-sm-3">
 											<input type="text" name="transportFee" class="form-control"
-												id="transportFee"> <span
-												class="badge navbar-right"><font
+												id="transportFee"> <span class="badge navbar-right"><font
 												style="font-size: 15px;">-</font></span>&nbsp;&nbsp;<span
 												class="badge navbar-right"><font
 												style="font-size: 16px;">+</font></span>
@@ -87,6 +95,34 @@
 						</div>
 					</div>
 				</div>
+				<br>
+				<form class="form-horizontal" action="./searchFreight?page=freight"
+					method="POST">
+					<div class="form-group">
+						<div class="col-sm-1">
+							<input type="text" name="packageCode" placeholder="包裹编号"
+								class="form-control" id="packageCode" onblur="checkvalue(this)">
+						</div>
+						<div class="col-sm-1">
+							<input type="text" name="userName" placeholder="收货人姓名"
+								class="form-control" id="userName">
+						</div>
+						<div class="col-sm-2">
+							<select class="form-control" name="formDelivery"
+								id="formDelivery">
+								<option value="">-------------运输方式-------------
+								<option value="EMS">EMS
+							</select>
+						</div>
+						<div class="col-sm-1">
+							<input type="text" name="sendDate" placeholder="发货日期"
+								class="form-control" id="sendDate" onclick="dateInfoxxx('sendDate')">
+						</div>
+						<div class="col-sm-1">
+							<input type="submit" value="搜索" class="btn btn-default">
+						</div>
+					</div>
+				</form>
 				<div class="panel-heading">
 					<h3 class="panel-title">包裹运费</h3>
 				</div>
@@ -113,7 +149,8 @@
 										<tr class="success">
 									</c:otherwise>
 								</c:choose>
-								<td><a href="#" onclick="haveTpek('${orders.packAgeTpek }','${orders.transportFee }');">${orders.packageCode }</a></td>
+								<td><a href="#"
+									onclick="haveTpek('${orders.packAgeTpek }','${orders.transportFee }');">${orders.packageCode }</a></td>
 								<td>${orders.orderForms[0].orderUser.loginName }</td>
 								<td>${orders.orderForms[0].orderUser.userName }</td>
 								<td>${orders.orderForms[0].commodities[0].tpek }</td>
@@ -127,13 +164,23 @@
 						</p>
 					</div>
 				</div>
+
 			</div>
 		</div>
 	</div>
 	<script type="text/javascript">
-		function haveTpek(tpek,fee){
+		function haveTpek(tpek, fee) {
 			$('#transportFee').val(fee);
 			$('#packAgeTpek').val(tpek);
+		}
+		function dateInfoxxx(obj) {
+			var date = obj;
+			$('#' + date).datetimepicker({
+				lang : 'ch',
+				timepicker : false,
+				format : 'Y-m-d',
+				formatDate : 'Y-m-d',
+			});
 		}
 		function reloadData() {
 			setTimeout(function() {

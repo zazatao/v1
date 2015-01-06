@@ -27,6 +27,7 @@ public class SendTheParcel {
 	
 	@RequestMapping(value = "sendTheParcel", method = RequestMethod.GET)
 	public ModelAndView sendTheParcel(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.getSession().removeAttribute("packageMap");
 		List<Package> list = packageService.getAll();
 		ModelMap map = new ModelMap();
 		map.put("list", list);

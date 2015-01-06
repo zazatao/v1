@@ -28,11 +28,17 @@
 <script type="text/javascript" src="./content/static/js/lib/scripts.js"></script>
 
 <script type="text/javascript"
-	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
+	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>	
+<link href="../content/static/css/datetime/jquery-clockpicker.min.css"
+	rel="stylesheet">
+<link href="../content/static/css/datetime/jquery.datetimepicker.css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="../content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
+<script type="text/javascript"
+	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
 </head>
-
 <body>
-
 	<!-- Static navbar -->
 	<jsp:include page="../common/navbar.jsp"></jsp:include>
 	<br>
@@ -50,6 +56,33 @@
 	</div>
 	<div class="container-fluid">
 		<div class="row-fluid">
+		<form class="form-horizontal" action="./searchFreight?page=batchShipments"
+					method="POST">
+					<div class="form-group">
+						<div class="col-sm-1">
+							<input type="text" name="packageCode" placeholder="包裹编号"
+								class="form-control" id="packageCode" onblur="checkvalue(this)">
+						</div>
+						<div class="col-sm-1">
+							<input type="text" name="userName" placeholder="收货人姓名"
+								class="form-control" id="userName">
+						</div>
+						<div class="col-sm-2">
+							<select class="form-control" name="formDelivery"
+								id="formDelivery">
+								<option value="">-------------运输方式-------------
+								<option value="EMS">EMS
+							</select>
+						</div>
+						<div class="col-sm-1">
+							<input type="text" name="sendDate" placeholder="发货日期"
+								class="form-control" id="sendDate" onclick="dateInfoxxx('sendDate')">
+						</div>
+						<div class="col-sm-1">
+							<input type="submit" value="搜索" class="btn btn-default">
+						</div>
+					</div>
+				</form>
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">包裹</h3>
@@ -61,7 +94,7 @@
 							<tr class="">
 								<th>包裹号</th>
 								<th>追踪号</th>
-								<th>发货</th>
+								<th>邮戳</th>
 								<th>运输方式</th>
 								<th>用户的格子</th>
 								<th>毛重</th>
@@ -140,6 +173,15 @@
 	<script type="text/javascript">
 		function haveOrder(packageID) {
 			location.href ='./getOrderByPackAgeID?id='+packageID;
+		}
+		function dateInfoxxx(obj) {
+			var date = obj;
+			$('#' + date).datetimepicker({
+				lang : 'ch',
+				timepicker : false,
+				format : 'Y-m-d',
+				formatDate : 'Y-m-d',
+			});
 		}
 		function reloadData() {
 			setTimeout(function() {

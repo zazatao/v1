@@ -30,6 +30,15 @@
 
 <script type="text/javascript"
 	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
+
+<link href="../content/static/css/datetime/jquery-clockpicker.min.css"
+	rel="stylesheet">
+<link href="../content/static/css/datetime/jquery.datetimepicker.css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="../content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
+<script type="text/javascript"
+	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
 </head>
 <style type="text/css">
 th {
@@ -56,6 +65,62 @@ th {
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="span12">
+				<form class="form-horizontal" action="./searchOrderOfWay"
+					method="POST">
+					<div class="form-group">
+						<div class="col-sm-1">
+							<input type="text" name="orderFormID" placeholder="订单"
+								class="form-control" id="orderFormID" onblur="checkvalue(this)">
+						</div>
+						<div class="col-sm-1">
+							<input type="text" name="transNumForTaobao"
+								placeholder="货号（淘宝ID）" class="form-control"
+								id="transNumForTaobao" onblur="checkvalue(this)">
+						</div>
+						<div class="col-sm-1">
+							<input type="text" name="userName" placeholder="买方"
+								class="form-control" id="userName">
+						</div>
+						<div class="col-sm-1">
+							<input type="text" name="tpek" placeholder="追踪"
+								class="form-control" id="tpek">
+						</div>
+						<div class="col-sm-1">
+							<input type="text" name="changeStatusDate" placeholder="改变日期"
+								class="form-control" id="changeStatusDate"
+								onclick="dateInfoxxx('changeStatusDate')">
+						</div>
+						<div class="col-sm-1">
+							<select class="form-control" name="formStatus" id="formStatus"
+								placeholder="状态">
+								<option value="">-----状态-----
+								<option value="unchanged">没有变化
+								<option value="refuse">拒绝接受货物
+								<option value="lack">缺乏
+								<option value="inWarehouse">在仓库
+								<option value="inAuctionlose">下拍
+								<option value="cancel">取消
+								<option value="delivery">交付
+								<option value="support">支持
+								<option value="sendOut">派送
+								<option value="buyerNotPay">买方没有支付
+								<option value="inCell">在格子
+								<option value="lose">丢失
+								<option value="manualProcessing">手工加工
+								<option value="inForwarding">在转发
+								<option value="senToWarehouse">送货到仓库
+								<option value="packing">打包
+								<option value="paid">已付
+								<option value="apiProcessing">API处理
+								<option value="delete">删除
+								<option value="waitingForTracking">等待的追踪
+							</select>
+						</div>
+						<div class="col-sm-1">
+							<input type="submit" value="搜索" class="btn btn-default">
+						</div>
+					</div>
+				</form>
 				<div class="container-fluid">
 					<div class="row-fluid">
 						<div class="span12">
@@ -63,7 +128,7 @@ th {
 								<thead>
 									<tr>
 										<th>订单</th>
-										<th>货号</th>
+										<th>货号（淘宝ID）</th>
 										<th>买方</th>
 										<th>追踪</th>
 										<th>数量</th>
@@ -85,7 +150,7 @@ th {
 											</c:otherwise>
 										</c:choose>
 										<td>${value.orderNumber.orderFormID }</td>
-										<td>${value.commItem }</td>
+										<td>${value.transNumForTaobao }</td>
 										<td>${value.orderNumber.orderUser.userName }</td>
 										<td>${value.tpek }</td>
 										<td>${value.quantity }</td>
@@ -128,6 +193,21 @@ th {
 	</div>
 
 	<script type="text/javascript">
+		function dateInfoxxx(obj) {
+			var date = obj;
+			$('#' + date).datetimepicker({
+				lang : 'ch',
+				timepicker : false,
+				format : 'Y-m-d',
+				formatDate : 'Y-m-d',
+			});
+		}
+		function checkvalue(obj) {
+			if (!/^[+|-]?\d+\.?\d*$/.test(obj.value) && obj.value != '') {
+				alert('你输入的不是数字，或关闭输入法后再输入');
+				obj.select();
+			}
+		}
 		function reloadData() {
 			setTimeout(function() {
 				window.location.reload();

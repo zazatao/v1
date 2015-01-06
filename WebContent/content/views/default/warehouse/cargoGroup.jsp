@@ -29,6 +29,14 @@
 
 <script type="text/javascript"
 	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
+<link href="../content/static/css/datetime/jquery-clockpicker.min.css"
+	rel="stylesheet">
+<link href="../content/static/css/datetime/jquery.datetimepicker.css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="../content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
+<script type="text/javascript"
+	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
 </head>
 
 <body>
@@ -50,27 +58,83 @@
 	</div>
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<div class="col-md-4 column">
+			<div class="col-md-12 column">
 				<div class="form-group">
-					<div class="col-sm-5">
+					<div class="col-sm-2">
 						<select class="form-control" id="transit">
-							<option value="">选择中转地
+							<option value="">-----------选择中转地-----------
 							<option value="beijing">北京
-						</select>
-						<input type="hidden" name="transit" id="transitInput" value="">
-					</div>
-					<div class="col-sm-5">
-						<select class="form-control" id="delivery">
-							<option value="">选择运输方式
-							<option value="EMS">EMS
-						</select>
-						<input type="hidden" name="delivery" id="deliveryInput" value="">
+						</select> <input type="hidden" name="transit" id="transitInput" value="">
 					</div>
 					<div class="col-sm-2">
-						<button class="btn btn-default" onclick="formSubmit();">确定</button>
+						<select class="form-control" id="delivery">
+							<option value="">-----------选择运输方式-----------
+							<option value="EMS">EMS
+						</select> <input type="hidden" name="delivery" id="deliveryInput" value="">
+					</div>
+					<div class="col-sm-2">
+						<button class="btn btn-default" onclick="formSubmit();">查询&nbsp;&&nbsp;添加</button>
 					</div>
 				</div>
-				<br>
+				<div class="form-group">
+					<label class="col-sm-12 control-label">&nbsp;</label>
+				</div>
+			</div>
+			<div class="col-md-5 column">
+				<form class="form-horizontal" action="./searchCargoGroup"  method="POST">
+					<div class="form-group">
+						<div class="col-sm-2">
+							<input type="text" name="cargoGroupID" placeholder="包裹编号"
+								class="form-control" id="cargoGroupID" onblur="checkvalue(this)">
+						</div>
+						<div class="col-sm-2">
+							<input type="text" name="sendDate" placeholder="发货日期"
+								class="form-control" id="sendDate"
+								onclick="dateInfoxxx('sendDate');">
+						</div>
+						<div class="col-sm-2">
+							<select class="form-control" id="formTransit" name="formTransit">
+								<option value="">中转地
+								<option value="beijing">北京
+							</select>
+						</div>
+						<div class="col-sm-2">
+							<select class="form-control" id="formDelivery"
+								name="formDelivery">
+								<option value="">运输
+								<option value="EMS">EMS
+							</select>
+						</div>
+						<div class="col-sm-2">
+							<select class="form-control" name="formStatus" id="formStatus">
+								<option value="">状态
+								<option value="unchanged">没有变化
+								<option value="refuse">拒绝接受货物
+								<option value="lack">缺乏
+								<option value="inWarehouse">在仓库
+								<option value="inAuctionlose">下拍
+								<option value="cancel">取消
+								<option value="delivery">交付
+								<option value="support">支持
+								<option value="sendOut">派送
+								<option value="buyerNotPay">买方没有支付
+								<option value="inCell">在格子
+								<option value="lose">丢失
+								<option value="manualProcessing">手工加工
+								<option value="inForwarding">在转发
+								<option value="senToWarehouse">送货到仓库
+								<option value="packing">打包
+								<option value="paid">已付
+								<option value="apiProcessing">API处理
+								<option value="delete">删除
+								<option value="waitingForTracking">等待的追踪
+							</select>
+						</div>
+						<div class="col-sm-2">
+							<input type="submit" value="搜索" class="btn btn-default">
+						</div>
+					</div>
+				</form>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">包裹</h3>
@@ -99,7 +163,7 @@
 								</c:choose>
 								<td><a href="#"
 									onclick="packNum(${cargoGroup.cargoGroupID },${cargoGroup.totalWeight});">${cargoGroup.cargoGroupID }</a></td>
-								<td>${pack.orderForms[0].orderUser.userName}</td>
+								<td>${cargoGroup.cargoGroupID}</td>
 								<td>${cargoGroup.totalWeight}</td>
 								<td></td>
 								<td><c:if test="${cargoGroup.transit=='beijing' }">北京</c:if></td>
@@ -112,8 +176,15 @@
 						</p>
 					</div>
 				</div>
+
 			</div>
 			<script type="text/javascript">
+				function checkvalue(obj) {
+					if (!/^[+|-]?\d+\.?\d*$/.test(obj.value) && obj.value != '') {
+						alert('你输入的不是数字，或关闭输入法后再输入');
+						obj.select();
+					}
+				}
 				function packNum(num,totalWeight){
 						location.href ='./getPackAge?weight='+totalWeight+'&id='+num;
 				}
@@ -135,7 +206,7 @@
 					}
 				}
 			</script>
-			<div class="col-md-8 column" style="height: 100%">
+			<div class="col-md-7 column" style="height: 100%">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">货物组</h3>
@@ -149,7 +220,8 @@
 										<div class="form-group">
 											<label for="inputEmail3" class="col-sm-2 control-label">总重量</label>
 											<div class="col-sm-3">
-												<label name="tpek" class="control-label" id="weight" value="">${weight }</label>
+												<label name="tpek" class="control-label" id="weight"
+													value="">${weight }</label>
 											</div>
 											<label for="inputEmail3" class="col-sm-2 control-label">包裹</label>
 											<div class="col-sm-3">
@@ -170,7 +242,7 @@
 										</div>
 										<hr>
 										<div class="form-group">
-											<label for="inputEmail3" class="col-sm-9 control-label">&nbsp;</label>
+											<label for="inputEmail3" class="col-sm-8 control-label">&nbsp;</label>
 											<div class="col-sm-1">
 												<button type="button" class="btn btn-default">打印发票</button>
 											</div>
@@ -210,7 +282,8 @@
 												<tr class="success">
 											</c:otherwise>
 										</c:choose>
-										<td><a href="#" onclick="packOrder(${id},${pack.packageID});">${pack.packageCode }</a></td>
+										<td><a href="#"
+											onclick="packOrder(${id},${pack.packageID});">${pack.packageCode }</a></td>
 										<td>${pack.totalWeight}</td>
 										<td>${fn:length(pack.orderForms)}</td>
 										<td>${pack.delivery }</td>
@@ -268,9 +341,19 @@
 					</div>
 				</div>
 			</div>
+
 		</div>
 	</div>
 	<script type="text/javascript">
+	function dateInfoxxx(obj) {
+		var date = obj;
+		$('#' + date).datetimepicker({
+			lang : 'ch',
+			timepicker : false,
+			format : 'Y-m-d',
+			formatDate : 'Y-m-d',
+		});
+	}
 		// Popup window code
 		function reloadData() {
 			setTimeout(function() {

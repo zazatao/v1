@@ -1,6 +1,7 @@
 package com.yc.controller.warehouse;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -36,19 +37,40 @@ public class BatchShipmentsController {
 
 	@RequestMapping(value = "batchShipments", method = RequestMethod.GET)
 	public ModelAndView batchShipments(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().removeAttribute("packageMap");
 		List<Package> list = packageService.getAll();
 		ModelMap map = new ModelMap();
 		map.put("list", list);
 		return new ModelAndView("warehouse/batchShipments", map);
 	}
 
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "getOrderByPackAgeID", method = RequestMethod.GET)
 	public ModelAndView getOrderByPackAgeID(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Package> list = packageService.getAll();
+		Map<String, Object> map = (Map<String, Object>)request.getSession().getAttribute("packageMap");
+		List<Package> list =null;
+		if (map!=null) {
+			list = packageService.getPackAgeByParameters(map);
+			if (map.get("userName")!=null) {
+				List<Package> packages = new ArrayList<Package>();
+				if (list.size()>0) {
+					for (Package package1 : list) {
+						for (OrderForm order : package1.getOrderForms()) {
+							if (order.getOrderUser().getUserName().contains(map.get("userName").toString())) {
+								packages.add(package1);
+							}
+						}
+					}
+					list = packages;
+				}
+			}
+		}else{
+			list = packageService.getAll();
+		}
 		List<OrderForm> orders =  orderFormService.findByPackAgeID(id);
-		ModelMap map = new ModelMap();
-		map.put("list", list);
-		map.put("orders", orders);
-		return new ModelAndView("warehouse/batchShipments", map);
+		ModelMap mode = new ModelMap();
+		mode.put("list", list);
+		mode.put("orders", orders);
+		return new ModelAndView("warehouse/batchShipments", mode);
 	}
 }

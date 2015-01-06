@@ -50,6 +50,28 @@
 	</div>
 	<div class="container-fluid">
 		<div class="row-fluid">
+			<form class="form-horizontal" action="./searchWeighing"
+				method="POST">
+				<div class="form-group">
+					<div class="col-sm-1">
+						<input type="text" name="packageCode" placeholder="包裹编号"
+							class="form-control" id="packageCode" onblur="checkvalue(this)">
+					</div>
+					<div class="col-sm-2">
+						<select class="form-control" name="formDelivery" id="formDelivery">
+							<option value="">-------------交货方式-------------
+							<option value="EMS">EMS
+						</select>
+					</div>
+					<div class="col-sm-1">
+						<input type="text" name="userName" placeholder="买方"
+							class="form-control" id="userName">
+					</div>
+					<div class="col-sm-1">
+						<input type="submit" value="搜索" class="btn btn-default">
+					</div>
+				</div>
+			</form>
 			<div class="col-md-4 column">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -74,7 +96,7 @@
 									</c:otherwise>
 								</c:choose>
 								<td><a href="#" onclick="packNum(${pack.packageID});">${pack.packageCode }</a></td>
-								<td>${pack.orderForms[0].delivery }</td>
+								<td>${pack.delivery }</td>
 								<td>${pack.orderForms[0].orderUser.userName}</td>
 								<td>${pack.totalWeight}</td>
 								</tr>
@@ -122,13 +144,9 @@
 												<select class="form-control">
 													<option value="600x500x400">600&nbsp;x&nbsp;500&nbsp;x&nbsp;400
 
+
 													
 													<option value="530x290x370">530&nbsp;x&nbsp;290&nbsp;x&nbsp;370
-
-
-
-
-
 
 
 
@@ -139,18 +157,8 @@
 
 
 
-
-
-
-
-
 													
 													<option value="430x210x270">430&nbsp;x&nbsp;210&nbsp;x&nbsp;270
-
-
-
-
-
 
 
 
@@ -162,12 +170,9 @@
 
 
 
-
-
-
-
 													
 													<option value="290x170x190">290&nbsp;x&nbsp;170&nbsp;x&nbsp;190
+
 
 
 
@@ -188,8 +193,10 @@
 
 
 
+
 													
 													<option value="230x130x160">230&nbsp;x&nbsp;130&nbsp;x&nbsp;160
+
 
 
 
@@ -210,8 +217,10 @@
 
 
 
+
 													
 													<option value="195x105x135">195&nbsp;x&nbsp;105&nbsp;x1&nbsp;35
+
 
 
 
@@ -330,7 +339,7 @@
 													<h3 class="panel-title">
 														<span class="badge navbar-right">订单号：<input
 															type="text">
-															<button onclick="">取消订单</button>
+															<button onclick="">查询</button>
 														</span>
 													</h3>
 												</div>
@@ -389,6 +398,12 @@
 	</div>
 	</ul>
 	<script type="text/javascript">
+	function checkvalue(obj) {
+		if (!/^[+|-]?\d+\.?\d*$/.test(obj.value) && obj.value != '') {
+			alert('你输入的不是数字，或关闭输入法后再输入');
+			obj.select();
+		}
+	}
 		// Popup window code
 		function reloadData() {
 			setTimeout(function() {

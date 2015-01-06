@@ -8,4 +8,6 @@ public interface IOrderFormService extends IGenericService<OrderForm>{
 
 	List<OrderForm> findByPackAgeID(Integer id);
 
+	List<OrderForm> findByUserName(String parameter);
+
 }

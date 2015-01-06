@@ -189,6 +189,7 @@ public class GenericDaoSupport<T> implements GenericDao<T> {
         int parameterIndex = 1;
         if (params != null && params.length > 0) {
             for (Object obj : params) {
+            	System.out.println("obj====="+obj);
                 query.setParameter(parameterIndex++, obj);
             }
         }
