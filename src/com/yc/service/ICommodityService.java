@@ -1,6 +1,7 @@
 package com.yc.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.yc.entity.Commodity;
 import com.yc.entity.StoreRoom;
@@ -12,5 +13,9 @@ public interface ICommodityService extends IGenericService<Commodity> {
 	List<Commodity> getCommodityByRoom(StoreRoom storeRoom);
 
 	List<Commodity> getAllByStatus();
+
+	List<Commodity> getAllByParameters(Map<String, Object> map, boolean b);
+
+	List<Commodity> getAllByParametersForOrder(Map<String, Object> map);
 
 }

@@ -50,6 +50,28 @@
 	</div>
 	<div class="container-fluid">
 		<div class="row-fluid">
+			<form class="form-horizontal"
+				action="./searchWeighing?page=sendTheParcel" method="POST">
+				<div class="form-group">
+					<div class="col-sm-1">
+						<input type="text" name="packageCode" placeholder="包裹编号"
+							class="form-control" id="packageCode" onblur="checkvalue(this)">
+					</div>
+					<div class="col-sm-2">
+						<select class="form-control" name="formDelivery" id="formDelivery">
+							<option value="">-------------交货方式-------------
+							<option value="EMS">EMS
+						</select>
+					</div>
+					<div class="col-sm-1">
+						<input type="text" name="userName" placeholder="买方"
+							class="form-control" id="userName">
+					</div>
+					<div class="col-sm-1">
+						<input type="submit" value="搜索" class="btn btn-default">
+					</div>
+				</div>
+			</form>
 			<div class="col-md-4 column">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -181,9 +203,16 @@
 					</div>
 				</div>
 			</div>
+
 		</div>
 	</div>
 	<script type="text/javascript">
+	function checkvalue(obj) {
+		if (!/^[+|-]?\d+\.?\d*$/.test(obj.value) && obj.value != '') {
+			alert('你输入的不是数字，或关闭输入法后再输入');
+			obj.select();
+		}
+	}
 		// Popup window code
 		function reloadData() {
 			setTimeout(function() {

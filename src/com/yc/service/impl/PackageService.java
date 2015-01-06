@@ -2,6 +2,7 @@ package com.yc.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -35,5 +36,18 @@ public class PackageService extends GenericService<Package> implements IPackageS
 		values.add(transit);
 		values.add(delivery);
 		return packAgeDao.getBy(names, values);
+	}
+
+	@Override
+	public List<Package> getPackAgeByParameters(Map<String, Object> map) {
+		StringBuffer hql = new StringBuffer(" from Package p where (? is null or p.packageCode = ?) and (? is null or p.delivery = ?) and (? is null or p.sendDate = ?)");
+		Object[] paramete =  new Object[6];
+		paramete[0] = map.get("packageCode");
+		paramete[1] = map.get("packageCode");
+		paramete[2] = map.get("formDelivery");
+		paramete[3] = map.get("formDelivery");
+		paramete[4] = map.get("sendDate");
+		paramete[5] = map.get("sendDate");
+		return packAgeDao.find(hql.toString(), paramete, -1,-1);
 	}
 }
