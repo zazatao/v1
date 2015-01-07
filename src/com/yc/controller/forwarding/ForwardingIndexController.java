@@ -16,9 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/forwarding")
 public class ForwardingIndexController {
 	
-    @RequestMapping(value = "index", method = RequestMethod.GET)
+    @RequestMapping(value = "sendAndReceive", method = RequestMethod.GET)
     public ModelAndView index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        return new ModelAndView("index", null);
+        return new ModelAndView("forwarding/sendAndReceive", null);
     }
 
 }

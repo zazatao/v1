@@ -40,9 +40,9 @@
 						<li><a href="./warehouse/statistical">统计发货人情况</a></li>
 					</ul></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">转发 <span class="caret"></span></a>
+					data-toggle="dropdown">中转<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">接收/发送</a></li>
+						<li><a href="./forwarding/sendAndReceive">接收/发送</a></li>
 						<li><a href="#">中转</a></li>
 						<li><a href="#">问题</a></li>
 						<li><a href="#">计算统计</a></li>
