@@ -43,8 +43,8 @@
 					data-toggle="dropdown">中转 <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="../forwarding/sendAndReceive">接收/发送</a></li>
-						<li><a href="#">中转</a></li>
-						<li><a href="#">问题</a></li>
+						<li><a href="../forwarding/transit">中转</a></li>
+						<li><a href="../forwarding/question">问题</a></li>
 						<li><a href="#">计算统计</a></li>
 						<li><a href="#">运期</a></li>
 					</ul></li>

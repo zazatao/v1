@@ -20,5 +20,14 @@ public class ForwardingIndexController {
     public ModelAndView index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         return new ModelAndView("forwarding/sendAndReceive", null);
     }
+    
+    @RequestMapping(value = "transit", method = RequestMethod.GET)
+    public ModelAndView transit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        return new ModelAndView("forwarding/transit", null);
+    }
 
+    @RequestMapping(value = "question", method = RequestMethod.GET)
+    public ModelAndView question(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        return new ModelAndView("forwarding/question", null);
+    }
 }

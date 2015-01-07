@@ -178,10 +178,6 @@
 
 
 
-
-
-
-
 													
 													<option value="260x150x180">260&nbsp;x&nbsp;150&nbsp;x&nbsp;180
 
@@ -221,15 +217,7 @@
 													
 													<option value="195x105x135">195&nbsp;x&nbsp;105&nbsp;x1&nbsp;35
 
-
-
-
-
-
-
-
-
-
+ 
 													
 													<option value="other">其它
 												</select>
