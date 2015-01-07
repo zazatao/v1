@@ -84,7 +84,9 @@ public class CargoGroupController {
 		Double totalWeight = 0.0;
 		if (packAges.size()>0) {
 			for (Package packAge : packAges) {
-				totalWeight = totalWeight +packAge.getTotalWeight();
+				if (packAge.getTotalWeight() != null) {
+					totalWeight = totalWeight +packAge.getTotalWeight();
+				}
 			}
 		}
 		cargoGroup.setTotalWeight(totalWeight);

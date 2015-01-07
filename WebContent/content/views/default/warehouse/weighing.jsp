@@ -50,7 +50,7 @@
 	</div>
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<form class="form-horizontal" action="./searchWeighing"
+			<form class="form-horizontal" action="./searchWeighing?page=weighing"
 				method="POST">
 				<div class="form-group">
 					<div class="col-sm-1">

@@ -78,7 +78,7 @@ public class OrderOfWayController {
 		if (request.getParameter("tpek").equals("")) {
 			map.put("tpek", null);
 		}else{
-			map.put("tpek", Integer.parseInt(request.getParameter("tpek")));
+			map.put("tpek", request.getParameter("tpek"));
 		}
 		if (request.getParameter("changeStatusDate").equals("")) {
 			map.put("changeStatusDate", null);

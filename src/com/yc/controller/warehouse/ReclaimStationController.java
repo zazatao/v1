@@ -69,7 +69,7 @@ public class ReclaimStationController {
 		if (request.getParameter("orderFormID").equals("")) {
 			map.put("orderFormID", null);
 		}else{
-			map.put("orderFormID", request.getParameter("orderFormID"));
+			map.put("orderFormID", Integer.parseInt(request.getParameter("orderFormID")));
 		}
 		if (request.getParameter("userName").equals("")) {
 			map.put("userName", null);

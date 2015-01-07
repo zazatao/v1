@@ -76,12 +76,12 @@
 						<button class="btn btn-default" onclick="formSubmit();">查询&nbsp;&&nbsp;添加</button>
 					</div>
 				</div>
-				<div class="form-group">
-					<label class="col-sm-12 control-label">&nbsp;</label>
-				</div>
 			</div>
+			<br>
+			<hr>
 			<div class="col-md-5 column">
-				<form class="form-horizontal" action="./searchCargoGroup"  method="POST">
+				<form class="form-horizontal" action="./searchCargoGroup"
+					method="POST">
 					<div class="form-group">
 						<div class="col-sm-2">
 							<input type="text" name="cargoGroupID" placeholder="包裹编号"

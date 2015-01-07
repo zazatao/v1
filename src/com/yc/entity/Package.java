@@ -77,6 +77,22 @@ public class Package {
 		this.transit = transit;
 	}
 
+	public Delivery getDelivery() {
+		return delivery;
+	}
+
+	public void setDelivery(Delivery delivery) {
+		this.delivery = delivery;
+	}
+
+	public CargoGroup getCargoGroup() {
+		return cargoGroup;
+	}
+
+	public void setCargoGroup(CargoGroup cargoGroup) {
+		this.cargoGroup = cargoGroup;
+	}
+
 	public OrderStatus getStatus() {
 		return status;
 	}
@@ -155,14 +171,6 @@ public class Package {
 
 	public void setPackageID(Integer packageID) {
 		this.packageID = packageID;
-	}
-
-	public Delivery getDelivery() {
-		return delivery;
-	}
-
-	public void setDelivery(Delivery delivery) {
-		this.delivery = delivery;
 	}
 
 	public List<OrderForm> getOrderForms() {
