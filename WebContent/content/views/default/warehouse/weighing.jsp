@@ -30,14 +30,10 @@
 <script type="text/javascript"
 	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
 </head>
-
 <body>
-
 	<!-- Static navbar -->
 	<jsp:include page="../common/navbar.jsp"></jsp:include>
-	<br>
-	<br>
-	<div class="container-fluid">
+	<div class="container-fluid" style="padding:0;margin-top:32px;">
 		<div class="row-fluid">
 			<div class="span12">
 				<ul class="breadcrumb">

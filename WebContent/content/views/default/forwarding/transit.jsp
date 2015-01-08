@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>接收/发送</title>
+<title>中转</title>
   
 <link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
 <link href="../content/static/css/bootstrap/bootstrap.min.css"
@@ -49,7 +49,7 @@
 				<ul class="breadcrumb">
 					<li><a href="#" style="font-size: 18px;">中转</a></li>
 					<span class="divider"><font style="font-size: 18px;">/</font></span>
-					<li><font style="font-size: 18px;">接收&发送</font>
+					<li><font style="font-size: 18px;">中转</font>
 				</ul>
 			</div>
 		</div>
