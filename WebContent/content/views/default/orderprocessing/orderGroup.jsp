@@ -55,28 +55,33 @@
 	</div>
 	<div class="container-fluid">
 		<div class="row-fluid">
-		<form class="form-horizontal" action="./searchFreight?page=batchShipments"
+		<form class="form-horizontal" action="./searchOrderProcess"
 					method="POST">
 					<div class="form-group">
 						<div class="col-sm-1">
-							<input type="text" name="packageCode" placeholder="包裹编号"
-								class="form-control" id="packageCode" onblur="checkvalue(this)">
+							<input type="text" name="orderGroupID" placeholder="订单编号"
+								class="form-control" id="orderGroupID" onblur="checkvalue(this)">
 						</div>
 						<div class="col-sm-1">
-							<input type="text" name="userName" placeholder="收货人姓名"
-								class="form-control" id="userName">
+							<input type="text" name="taskNumber" placeholder="任务号"
+								class="form-control" id="taskNumber">
 						</div>
-						<div class="col-sm-2">
-							<select class="form-control" name="formDelivery"
-								id="formDelivery">
-								<option value="">-------------运输方式-------------
-								<option value="EMS">EMS
+						<div class="col-sm-1">
+							<select class="form-control" name="orderStatus" placeholder="订单状态"
+								id="orderStatus">
+								<option value="">订单状态
+								<option value="initializa">初始化
+								<option value="waitAcceptance">等待验收
+								<option value="waitPayment">等待支付
+								<option value="waitDelivery"> 等待发货
+								<option value="transitGoods">在途货物
+								<option value="consigneeSigning">收货人签单
+								<option value="completionTransaction">完成交易
+								<option value="closeTransaction">关闭交易
+								<option value="autoCloseTransaction">自动关闭交易
 							</select>
 						</div>
-						<div class="col-sm-1">
-							<input type="text" name="sendDate" placeholder="发货日期"
-								class="form-control" id="sendDate" onclick="dateInfoxxx('sendDate')">
-						</div>
+						
 						<div class="col-sm-1">
 							<input type="submit" value="搜索" class="btn btn-default">
 						</div>
@@ -113,7 +118,7 @@
 								<td>${orderGroups.taskNumber }</td>
 								<td>${orderGroups.alipayPay }</td>
 								<td>${orderGroups.sumOfMoney }</td>
-								<td><c:if test="${orderGroups.status == 'sendOut' }">派送</c:if> <%-- 									<c:if test="${orders.inForwarding == 'inForwarding' }">在转发</c:if> --%>
+								<td><c:if test="${orderGroups.status == 'initializa' }">初始化</c:if> <%-- 									<c:if test="${orders.inForwarding == 'inForwarding' }">在转发</c:if> --%>
 									<%-- 									<c:if test="${orders.senToWarehouse == 'senToWarehouse' }">送货到仓库</c:if> --%>
 									<%-- 									<c:if test="${orders.packing == 'packing' }"> 打包</c:if> --%>
 								</td>

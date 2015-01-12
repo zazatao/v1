@@ -22,7 +22,6 @@ public class ForwardingController {
 	
     @RequestMapping(value = "sendAndReceive", method = RequestMethod.GET)
     public ModelAndView sendAndReceive(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	
         return new ModelAndView("forwarding/sendAndReceive", null);
     }
     
