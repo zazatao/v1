@@ -35,4 +35,9 @@ public class OrderFormService extends GenericService<OrderForm> implements IOrde
 		return orderFormDao.getBy("orderUser.id", id);
 	}
 
+	@Override
+	public List<OrderForm> getOrderByOrderGroup(Integer id) {
+		return orderFormDao.getBy("orderGroup.orderGroupID", id);
+	}
+
 }

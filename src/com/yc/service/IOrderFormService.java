@@ -13,4 +13,6 @@ public interface IOrderFormService extends IGenericService<OrderForm>{
 
 	List<OrderForm> findByUserID(Integer id);
 
+	List<OrderForm> getOrderByOrderGroup(Integer id);
+
 }

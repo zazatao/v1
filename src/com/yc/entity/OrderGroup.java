@@ -12,8 +12,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 @Entity
 @DiscriminatorValue("ordergroup")
+@JsonIgnoreProperties(value={"orderForms"})
 public class OrderGroup {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

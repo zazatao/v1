@@ -129,7 +129,7 @@
 				<div class="list-group-item">
 					<div class="list-group-item">
 						<p class="list-group-item-text">
-						<table class="table table-striped">
+						<table class="table table-striped" id="tableOrders">
 							<tr class="">
 								<th>订单号</th>
 								<th>格子</th>
@@ -168,7 +168,23 @@
 	</div>
 	<script type="text/javascript">
 		function haveOrder(packageID) {
-			location.href ='./getOrderByPackAgeID?id='+packageID;
+			alert(packageID);
+			jQuery
+			.ajax({
+				type : 'GET',
+				contentType : 'application/json',
+				url : './getOrderByOrderGroup?id='+packageID,
+				dataType : 'json',
+				success : function(data) {
+						if (data && data.success == "true") {
+							alert('${data.orders }');
+							<c:forEach items="${data.orders }" var="order" varStatus="loop">
+							var trHTML = "<c:choose> <c:when test='${loop.index%2==0 }'> <tr> </c:when> <c:otherwise> <tr class='success'> </c:otherwise> </c:choose><td>${order.orderFormID }</td><td>${order.commodities[0].storeRoom.cellStr }</td><td>${order.commodities[0].transNumForTaobao }</td><td>${order.commodities[0].tpek }</td><td>${fn:length(order.commodities) }</td><td>${order.commodities[0].weight }</td><td>${order.commodities[0].nameOfGoods }</td><td>${order.commodities[0].status}</td></tr>";
+							$('#tableOrders').append(trHTML);
+							</c:forEach>
+						}
+					}
+				});
 		}
 		function dateInfoxxx(obj) {
 			var date = obj;
