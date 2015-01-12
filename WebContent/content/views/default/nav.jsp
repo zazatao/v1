@@ -21,7 +21,7 @@
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="#">正在处理</a></li>
 						<li><a href="./orderprocessing/orderGroup">订单组</a></li>
-						<li><a href="#">处理</a></li>
+						<li><a href="./orderprocessing/dispose">处理</a></li>
 						<li><a href="#">统计</a></li>
 						<li><a href="#">操作员订单完成统计</a></li>
 					</ul></li>

@@ -56,6 +56,10 @@ public class Commodity {
 	@JoinColumn(name = "purchase_user")
 	private User purchase;// 采购员
 	@Column
+	private String seller;//卖家
+	@Column
+	private String sellerDate;//卖家付款日期
+	@Column
 	@Enumerated(EnumType.STRING)
 	private OrderStatus status;// 状态
 	@ManyToOne
@@ -66,6 +70,22 @@ public class Commodity {
 	private OrderForm orderNumber;
 	@OneToMany(mappedBy = "commodity")
 	private List<ImagePath> imagePaths;
+
+	public String getSellerDate() {
+		return sellerDate;
+	}
+
+	public void setSellerDate(String sellerDate) {
+		this.sellerDate = sellerDate;
+	}
+
+	public String getSeller() {
+		return seller;
+	}
+
+	public void setSeller(String seller) {
+		this.seller = seller;
+	}
 
 	public String getNameOfGoods() {
 		return nameOfGoods;
