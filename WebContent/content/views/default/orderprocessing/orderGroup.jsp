@@ -1,3 +1,4 @@
+<%@page import="com.yc.entity.OrderForm"%>
 <%@page import="com.yc.entity.user.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -116,7 +117,7 @@
 									<%-- 									<c:if test="${orders.senToWarehouse == 'senToWarehouse' }">送货到仓库</c:if> --%>
 									<%-- 									<c:if test="${orders.packing == 'packing' }"> 打包</c:if> --%>
 								</td>
-								<td>${orders.pay }</td>
+								<td>${orderGroups.pay }</td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -168,23 +169,7 @@
 	</div>
 	<script type="text/javascript">
 		function haveOrder(packageID) {
-			alert(packageID);
-			jQuery
-			.ajax({
-				type : 'GET',
-				contentType : 'application/json',
-				url : './getOrderByOrderGroup?id='+packageID,
-				dataType : 'json',
-				success : function(data) {
-						if (data && data.success == "true") {
-							alert('${data.orders }');
-							<c:forEach items="${data.orders }" var="order" varStatus="loop">
-							var trHTML = "<c:choose> <c:when test='${loop.index%2==0 }'> <tr> </c:when> <c:otherwise> <tr class='success'> </c:otherwise> </c:choose><td>${order.orderFormID }</td><td>${order.commodities[0].storeRoom.cellStr }</td><td>${order.commodities[0].transNumForTaobao }</td><td>${order.commodities[0].tpek }</td><td>${fn:length(order.commodities) }</td><td>${order.commodities[0].weight }</td><td>${order.commodities[0].nameOfGoods }</td><td>${order.commodities[0].status}</td></tr>";
-							$('#tableOrders').append(trHTML);
-							</c:forEach>
-						}
-					}
-				});
+			location.href = './getOrderByOrderGroup?id='+packageID
 		}
 		function dateInfoxxx(obj) {
 			var date = obj;
