@@ -4,6 +4,7 @@ package com.yc.controller.orderprocess;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,13 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.yc.entity.CargoGroup;
-import com.yc.entity.Delivery;
 import com.yc.entity.OrderForm;
 import com.yc.entity.OrderGroup;
 import com.yc.entity.OrderGroupStatus;
-import com.yc.entity.OrderStatus;
-import com.yc.entity.Transit;
 import com.yc.service.IOrderFormService;
 import com.yc.service.IOrderGroupService;
 
