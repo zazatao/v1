@@ -24,6 +24,7 @@ import com.yc.entity.CargoGroup;
 import com.yc.entity.Delivery;
 import com.yc.entity.OrderForm;
 import com.yc.entity.OrderGroup;
+import com.yc.entity.OrderGroupStatus;
 import com.yc.entity.OrderStatus;
 import com.yc.entity.Transit;
 import com.yc.service.IOrderFormService;
@@ -73,7 +74,7 @@ public class OrderProcessController {
 		if (request.getParameter("orderStatus").trim().equals("")) {
 			map.put("orderStatus", null);
 		} else {
-			map.put("orderStatus", OrderStatus.valueOf(request.getParameter("orderStatus")));
+			map.put("orderStatus", OrderGroupStatus.valueOf(request.getParameter("orderStatus")));
 		}
 		if (request.getParameter("taskNumber").trim().equals("")) {
 			map.put("taskNumber", null);
