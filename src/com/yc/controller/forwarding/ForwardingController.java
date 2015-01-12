@@ -21,8 +21,7 @@ public class ForwardingController {
 	private static final Logger LOG = Logger.getLogger(ForwardingController.class);
 	
     @RequestMapping(value = "sendAndReceive", method = RequestMethod.GET)
-    public ModelAndView index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	
+    public ModelAndView sendAndReceive(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         return new ModelAndView("forwarding/sendAndReceive", null);
     }
     

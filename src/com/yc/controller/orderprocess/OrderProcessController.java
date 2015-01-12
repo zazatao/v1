@@ -46,14 +46,14 @@ public class OrderProcessController {
         return new ModelAndView("orderprocessing/orderGroup", mode);
     }
     
-	@RequestMapping(value = "getOrderByOrderGroup", method = RequestMethod.GET)
-	@ResponseBody
-	public Map<String, Object> getOrderByOrderGroup(@RequestParam(value = "id", required = true) Integer id ) throws ServletException, IOException {
-		List<OrderForm> orders = orderFormService.getOrderByOrderGroup(id);
-		ModelMap map = new ModelMap();
-		map.put("orders", orders);
-		map.put("success", "true");
-		return  map;
+    @RequestMapping(value = "getOrderByOrderGroup", method = RequestMethod.GET)
+    public ModelAndView getOrderByOrderGroup(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	List<OrderGroup> list = orderGroupService.getAll();
+    	List<OrderForm> orders = orderFormService.getOrderByOrderGroup(id);
+    	ModelMap mode = new ModelMap();
+    	mode.put("list", list);
+    	mode.put("orders", orders);
+    	return new ModelAndView("orderprocessing/orderGroup", mode);
     }
 
 }
