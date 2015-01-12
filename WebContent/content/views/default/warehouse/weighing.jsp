@@ -33,7 +33,7 @@
 <body>
 	<!-- Static navbar -->
 	<jsp:include page="../common/navbar.jsp"></jsp:include>
-	<div class="container-fluid" style="padding:0;margin-top:32px;">
+	<div class="container-fluid" style="padding: 0; margin-top: 32px;">
 		<div class="row-fluid">
 			<div class="span12">
 				<ul class="breadcrumb">
@@ -46,28 +46,31 @@
 	</div>
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<form class="form-horizontal" action="./searchWeighing?page=weighing"
-				method="POST">
-				<div class="form-group">
-					<div class="col-sm-1">
-						<input type="text" name="packageCode" placeholder="包裹编号"
-							class="form-control" id="packageCode" onblur="checkvalue(this)">
+			<div class="col-md-12 column">
+				<form class="form-horizontal"
+					action="./searchWeighing?page=weighing" method="POST">
+					<div class="form-group">
+						<div class="col-sm-1">
+							<input type="text" name="packageCode" placeholder="包裹编号"
+								class="form-control" id="packageCode" onblur="checkvalue(this)">
+						</div>
+						<div class="col-sm-2">
+							<select class="form-control" name="formDelivery"
+								id="formDelivery">
+								<option value="">-------------交货方式-------------
+								<option value="EMS">EMS
+							</select>
+						</div>
+						<div class="col-sm-1">
+							<input type="text" name="userName" placeholder="买方"
+								class="form-control" id="userName">
+						</div>
+						<div class="col-sm-1">
+							<input type="submit" value="搜索" class="btn btn-default">
+						</div>
 					</div>
-					<div class="col-sm-2">
-						<select class="form-control" name="formDelivery" id="formDelivery">
-							<option value="">-------------交货方式-------------
-							<option value="EMS">EMS
-						</select>
-					</div>
-					<div class="col-sm-1">
-						<input type="text" name="userName" placeholder="买方"
-							class="form-control" id="userName">
-					</div>
-					<div class="col-sm-1">
-						<input type="submit" value="搜索" class="btn btn-default">
-					</div>
-				</div>
-			</form>
+				</form>
+			</div>
 			<div class="col-md-4 column">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -141,8 +144,10 @@
 													<option value="600x500x400">600&nbsp;x&nbsp;500&nbsp;x&nbsp;400
 
 
+
 													
 													<option value="530x290x370">530&nbsp;x&nbsp;290&nbsp;x&nbsp;370
+
 
 
 
@@ -153,14 +158,17 @@
 
 
 
+
 													
 													<option value="430x210x270">430&nbsp;x&nbsp;210&nbsp;x&nbsp;270
 
 
 
 
+
 													
 													<option value="350x190x230">350&nbsp;x&nbsp;190&nbsp;x&nbsp;230
+
 
 
 
@@ -174,8 +182,10 @@
 
 
 
+
 													
 													<option value="260x150x180">260&nbsp;x&nbsp;150&nbsp;x&nbsp;180
+
 
 
 
@@ -198,8 +208,10 @@
 
 
 
+
 													
 													<option value="210x110x140">210&nbsp;x&nbsp;110&nbsp;x&nbsp;140
+
 
 
 
@@ -213,7 +225,8 @@
 													
 													<option value="195x105x135">195&nbsp;x&nbsp;105&nbsp;x1&nbsp;35
 
- 
+
+
 													
 													<option value="other">其它
 												</select>

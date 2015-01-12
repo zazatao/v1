@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>XX问题</title>
+<title>运期晚点</title>
 
 <link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
 <link href="../content/static/css/bootstrap/bootstrap.min.css"
@@ -55,17 +55,27 @@
 	</div>
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<div class="col-md-4 column">
-				<form class="form-horizontal" action="./searchQuestion"
+			<div class="col-md-12 column">
+				<form class="form-horizontal" action="./searchTransportLate"
 					method="POST">
 					<div class="form-group">
-						<div class="col-sm-4">
-							<input type="text" name="loginName" class="form-control"
-								id="loginName" value="" placeholder="用户">
+						<div class="col-sm-2">
+							<input type="text" name="cargoGroupID" class="form-control"
+								id="cargoGroupID" onblur="checkvalue(this)" value=""
+								placeholder="货物组号">
 						</div>
-						<div class="col-sm-4">
-							<input type="text" name="userName" class="form-control"
-								id="userName" value="" placeholder="姓名">
+						<div class="col-sm-2">
+						<select class="form-control" id="transit"  name="transit">
+							<option value="">-----------选择中转地-----------
+							<option value="beijing">北京
+						</select>
+						</div>
+						<div class="col-sm-2">
+							<select class="form-control" name="delivery"
+								id="delivery">
+								<option value="">-------------运输方式-------------
+								<option value="EMS">EMS
+							</select>
 						</div>
 						<div class="col-sm-2">
 							<button type="submit" class="btn btn-default">查询</button>
@@ -78,14 +88,17 @@
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<th>用户</th>
-									<th>名字</th>
-									<th>E-mail</th>
-									<th>???</th>
+									<th>货物组号</th>
+									<th>中转步骤</th>
+									<th>运输方式</th>
+									<th>发货日期</th>
+									<th>收货日期</th>
+									<th>延迟天数</th>
+									<th>赔付</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="user" items="${list }" varStatus="loop">
+								<c:forEach var="cargoGroup" items="${list }" varStatus="loop">
 									<c:choose>
 										<c:when test="${loop.index%2==0 }">
 											<tr>
@@ -94,10 +107,13 @@
 											<tr class="success">
 										</c:otherwise>
 									</c:choose>
-									<td><a href="./getOrders?id=${id }">${user.loginName}</a></td>
-									<td>${user.userName }</td>
-									<td>${user.email }</td>
-									<td></td>
+									<td>${cargoGroup.cargoGroupID}</td>
+									<td>${cargoGroup.transit }</td>
+									<td>${cargoGroup.delivery }</td>
+									<td>${cargoGroup.sendDate }</td>
+									<td>${cargoGroup.receiveDate }</td>
+									<td>${cargoGroup.lateDays }</td>
+									<td>${cargoGroup.compensation }</td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -105,46 +121,15 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-8 column" style="height: 100%">
-				<div class="panel panel-default">
-					<div class="list-group-item">
-						<div class="container-fluid">
-							<div class="row-fluid">
-								<div class="span12">
-									<table class="table table-striped">
-										<thead>
-											<tr class="info">
-												<th>订单号</th>
-												<th>货物详情编号</th>
-												<th>数量</th>
-												<th>结算重量</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach var="order" items="${orders }" varStatus="loop">
-												<c:choose>
-													<c:when test="${loop.index%2==0 }">
-														<tr>
-													</c:when>
-													<c:otherwise>
-														<tr class="success">
-													</c:otherwise>
-												</c:choose>
-												<td>${order.orderFormID}</td>
-												<td>${order.commodities[0].commItem }</td>
-												<td>${fn:length(order.commodities) }</td>
-												<td>${order.commodities[0].weight}</td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		function checkvalue(obj) {
+			if (!/^[+|-]?\d+\.?\d*$/.test(obj.value) && obj.value != '') {
+				alert('你输入的不是数字，或关闭输入法后再输入');
+				obj.select();
+			}
+		}
+	</script>
 </body>
 </html>

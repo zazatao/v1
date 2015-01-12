@@ -11,4 +11,6 @@ public interface IOrderFormService extends IGenericService<OrderForm>{
 
 	List<OrderForm> findByUserName(String parameter);
 
+	List<OrderForm> findByUserID(Integer id);
+
 }

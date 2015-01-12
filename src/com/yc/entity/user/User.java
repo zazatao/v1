@@ -29,6 +29,9 @@ public class User {
     @Column(length = 32)
     private String userName;
     
+    @Column
+    private String email;
+    
     @OneToMany(mappedBy = "operator")
     private List<UnKnownCommodity> unCommOperators ;
     
@@ -41,7 +44,15 @@ public class User {
     @OneToMany(mappedBy = "orderUser")
     private List<OrderForm> orderForms;
 
-    public List<Commodity> getPurchases() {
+    public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public List<Commodity> getPurchases() {
 		return purchases;
 	}
 

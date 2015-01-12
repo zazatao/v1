@@ -19,7 +19,7 @@ public class GenericDaoConfig {
 	public GenericDao<UnKnownCommodity> getUnKnownCommodityDao() {
 		return new GenericDaoSupport<UnKnownCommodity>(UnKnownCommodity.class);
 	}
-	
+
 	@Bean
 	public GenericDao<Commodity> getCommodityDao() {
 		return new GenericDaoSupport<Commodity>(Commodity.class);
@@ -39,14 +39,20 @@ public class GenericDaoConfig {
 	public GenericDao<StoreRoom> getStoreRoomDao() {
 		return new GenericDaoSupport<StoreRoom>(StoreRoom.class);
 	}
-	
+
 	@Bean
 	public GenericDao<Package> getPackageDao() {
 		return new GenericDaoSupport<Package>(Package.class);
 	}
-	
+
 	@Bean
 	public GenericDao<CargoGroup> getCargoGroupDao() {
 		return new GenericDaoSupport<CargoGroup>(CargoGroup.class);
 	}
+
+	@Bean
+	public GenericDao<OrderGroup> getOrderGroupDao() {
+		return new GenericDaoSupport<OrderGroup>(OrderGroup.class);
+	}
+
 }

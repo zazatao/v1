@@ -40,6 +40,39 @@ public class CargoGroup {
 	@Column
 	private String sendDate;//发货日期
 
+	@Column
+	private String receiveDate;//收货日期
+	
+	@Column
+	private String lateDays;//晚点天数
+	
+	@Column
+	private Float compensation;//赔付金额
+	
+	public Float getCompensation() {
+		return compensation;
+	}
+
+	public void setCompensation(Float compensation) {
+		this.compensation = compensation;
+	}
+
+	public String getLateDays() {
+		return lateDays;
+	}
+
+	public void setLateDays(String lateDays) {
+		this.lateDays = lateDays;
+	}
+
+	public String getReceiveDate() {
+		return receiveDate;
+	}
+
+	public void setReceiveDate(String receiveDate) {
+		this.receiveDate = receiveDate;
+	}
+
 	public Integer getCargoGroupID() {
 		return cargoGroupID;
 	}

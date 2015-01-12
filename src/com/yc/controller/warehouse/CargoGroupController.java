@@ -1,12 +1,10 @@
 package com.yc.controller.warehouse;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.net.ssl.SSLEngineResult.Status;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,6 +31,7 @@ import com.yc.service.IPackageService;
 @RequestMapping("/warehouse")
 public class CargoGroupController {
 	
+	@SuppressWarnings("unused")
 	private static final Logger LOG = Logger.getLogger(CargoGroupController.class);
 
 	@Autowired

@@ -32,7 +32,7 @@ public class OrderForm {
 	private List<Commodity> commodities;
 
 	@ManyToOne
-	@JoinColumn(name = "from_user")
+	@JoinColumn(name = "user_id")
 	private User orderUser;
 	
 	@Embedded
@@ -46,11 +46,23 @@ public class OrderForm {
 	private String changeStatusDate;
 	
 	@ManyToOne
-	@JoinColumn(name = "from_package")
+	@JoinColumn(name = "package_id")
 	private Package packAge;
 	
 	@Column
 	private String orderDate;
+	
+	@ManyToOne
+	@JoinColumn(name = "orderGroup_id")
+	private OrderGroup orderGroup;
+	
+	public OrderGroup getOrderGroup() {
+		return orderGroup;
+	}
+
+	public void setOrderGroup(OrderGroup orderGroup) {
+		this.orderGroup = orderGroup;
+	}
 
 	public String getOrderDate() {
 		return orderDate;

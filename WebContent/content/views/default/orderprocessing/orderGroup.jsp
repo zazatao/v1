@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>运费</title>
+<title>订单组</title>
 <link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
 <link href="../content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
@@ -28,8 +28,7 @@
 <script type="text/javascript" src="./content/static/js/lib/scripts.js"></script>
 
 <script type="text/javascript"
-	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
-	
+	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>	
 <link href="../content/static/css/datetime/jquery-clockpicker.min.css"
 	rel="stylesheet">
 <link href="../content/static/css/datetime/jquery.datetimepicker.css"
@@ -39,62 +38,23 @@
 <script type="text/javascript"
 	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
 </head>
-
 <body>
-
 	<!-- Static navbar -->
 	<jsp:include page="../common/navbar.jsp"></jsp:include>
 	<div class="container-fluid"  style="padding:0;margin-top:32px;">
 		<div class="row-fluid">
 			<div class="span12">
 				<ul class="breadcrumb">
-					<li><a href="#" style="font-size: 18px;">仓库</a></li>
+					<li><a href="#" style="font-size: 18px;">订单处理</a></li>
 					<span class="divider"><font style="font-size: 18px;">/</font></span>
-					<li><font style="font-size: 18px;">运费</font>
+					<li><font style="font-size: 18px;">订单组</font>
 				</ul>
 			</div>
 		</div>
 	</div>
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">包裹运费</h3>
-				</div>
-				<div class="list-group-item">
-					<div class="container-fluid">
-						<div class="row-fluid">
-							<div class="span12">
-								<form class="form-horizontal" action=""
-									method="POST">
-									<div class="form-group">
-										<label for="inputEmail3" class="col-sm-2 control-label">追踪号</label>
-										<div class="col-sm-3">
-											<input type="text" name="packAgeTpek" class="form-control"
-												id="packAgeTpek">
-										</div>
-										<label for="inputEmail3" class="col-sm-2 control-label">运费</label>
-										<div class="col-sm-3">
-											<input type="text" name="transportFee" class="form-control"
-												id="transportFee"> <span class="badge navbar-right"><font
-												style="font-size: 15px;">-</font></span>&nbsp;&nbsp;<span
-												class="badge navbar-right"><font
-												style="font-size: 16px;">+</font></span>
-										</div>
-									</div>
-									<hr>
-									<div class="form-group">
-										<div class="col-sm-11" style="text-align: right;">
-											<button type="button" class="btn btn-default">发送包裹</button>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-				<br>
-				<form class="form-horizontal" action="./searchFreight?page=freight"
+		<form class="form-horizontal" action="./searchFreight?page=batchShipments"
 					method="POST">
 					<div class="form-group">
 						<div class="col-sm-1">
@@ -121,24 +81,24 @@
 						</div>
 					</div>
 				</form>
+			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">包裹运费</h3>
+					<h3 class="panel-title">订单组</h3>
 				</div>
 				<div class="list-group-item">
 					<div class="list-group-item">
 						<p class="list-group-item-text">
 						<table class="table table-striped">
 							<tr class="">
-								<th>包裹号</th>
-								<th>买家</th>
-								<th>收货人姓名</th>
-								<th>追踪号</th>
-								<th>总重量</th>
-								<th>运输方式</th>
-								<th>追踪日期</th>
-								<th>发货日期</th>
+								<th>编号</th>
+								<th>销售</th>
+								<th>任务号</th>
+								<th>支付宝交易</th>
+								<th>金额</th>
+								<th>状态</th>
+								<th>支付(付款)</th>
 							</tr>
-							<c:forEach var="orders" items="${list }" varStatus="loop">
+							<c:forEach var="orderGroups" items="${list }" varStatus="loop">
 								<c:choose>
 									<c:when test="${loop.index%2==0 }">
 										<tr>
@@ -147,35 +107,68 @@
 										<tr class="success">
 									</c:otherwise>
 								</c:choose>
-								<td><a href="#"
-									onclick="haveTpek('${orders.packAgeTpek }','${orders.transportFee }');">${orders.packageCode }</a></td>
-								<td>${orders.orderForms[0].orderUser.loginName }</td>
-								<td>${orders.orderForms[0].orderUser.userName }</td>
-								<td>${orders.orderForms[0].commodities[0].tpek }</td>
-								<td>${orders.orderForms[0].commodities[0].weight }</td>
-								<td>${orders.orderForms[0].delivery }</td>
-								<td>${orders.tpekDate }</td>
-								<td>${orders.sendDate }</td>
+								<td><a href="#" onclick="haveOrder(${orderGroups.orderGroupID });">${orderGroups.orderGroupID }</a></td>
+								<td>${orderGroups.sale }</td>
+								<td>${orderGroups.taskNumber }</td>
+								<td>${orderGroups.alipayPay }</td>
+								<td>${orderGroups.sumOfMoney }</td>
+								<td><c:if test="${orderGroups.status == 'sendOut' }">派送</c:if> <%-- 									<c:if test="${orders.inForwarding == 'inForwarding' }">在转发</c:if> --%>
+									<%-- 									<c:if test="${orders.senToWarehouse == 'senToWarehouse' }">送货到仓库</c:if> --%>
+									<%-- 									<c:if test="${orders.packing == 'packing' }"> 打包</c:if> --%>
+								</td>
+								<td>${orders.pay }</td>
 								</tr>
 							</c:forEach>
 						</table>
 						</p>
 					</div>
 				</div>
-
+				<div class="panel-heading">
+					<h3 class="panel-title">订单</h3>
+				</div>
+				<div class="list-group-item">
+					<div class="list-group-item">
+						<p class="list-group-item-text">
+						<table class="table table-striped">
+							<tr class="">
+								<th>订单号</th>
+								<th>格子</th>
+								<th>淘宝ID</th>
+								<th>卖家追踪号</th>
+								<th>数量</th>
+								<th>重量</th>
+								<th>产品名称</th>
+								<th>状态</th>
+							</tr>
+							<c:forEach var="order" items="${orders }" varStatus="loop">
+								<c:choose>
+									<c:when test="${loop.index%2==0 }">
+										<tr>
+									</c:when>
+									<c:otherwise>
+										<tr class="success">
+									</c:otherwise>
+								</c:choose>
+								<td>${order.orderFormID }</td>
+								<td>${order.commodities[0].storeRoom.cellStr }</td>
+								<td>${order.commodities[0].transNumForTaobao }</td>
+								<td>${order.commodities[0].tpek }</td>
+								<td>${fn:length(order.commodities) }</td>
+								<td>${order.commodities[0].weight }</td>
+								<td>${order.commodities[0].nameOfGoods }</td>
+								<td>${order.commodities[0].status}</td>
+								</tr>
+							</c:forEach>
+						</table>
+						</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 	<script type="text/javascript">
-		function haveTpek(tpek, fee) {
-			$('#transportFee').val(fee);
-			$('#packAgeTpek').val(tpek);
-		}
-		function checkvalue(obj) {
-			if (!/^[+|-]?\d+\.?\d*$/.test(obj.value) && obj.value != '') {
-				alert('你输入的不是数字，或关闭输入法后再输入');
-				obj.select();
-			}
+		function haveOrder(packageID) {
+			location.href ='./getOrderByPackAgeID?id='+packageID;
 		}
 		function dateInfoxxx(obj) {
 			var date = obj;

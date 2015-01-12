@@ -47,7 +47,6 @@ public class OrderOfWayController {
 		List<StoreRoom> rooms = storeRoomService.getCellForFalse();
 		ModelMap mode = new ModelMap();
 		for (StoreRoom storeRoom : rooms) {
-			System.out.println("storeRoom.getCellID()=="+storeRoom.getCellID());
 			List<Commodity> list = commodityService.getCommodityByRoom(storeRoom);
 			if (list.size()>0) {
 				mode.put("commodity", list);
