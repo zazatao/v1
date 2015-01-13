@@ -20,4 +20,6 @@ public interface ICommodityService extends IGenericService<Commodity> {
 
 	List<Commodity> getAllByParametersForOrder(Map<String, Object> map);
 
+	List<Commodity> getAllByParameters(Map<String, Object> map);
+
 }

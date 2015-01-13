@@ -1,6 +1,7 @@
 package com.yc.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -40,4 +41,19 @@ public class OrderFormService extends GenericService<OrderForm> implements IOrde
 		return orderFormDao.getBy("orderGroup.orderGroupID", id);
 	}
 
+	@Override
+	public List<OrderForm> getOrderFormByParameters(Map<String, Object> map) {
+		StringBuffer hql = new StringBuffer(" from OrderForm o where (? is null or o.packAge.packageCode = ?) and "
+				+ " (? is null or o.orderUser.userName like ?) and (? is null or o.orderDate = ?) and  (? is null or o.paymentDate = ?) ");
+		Object[] paramete = new Object[8];
+		paramete[0] = map.get("packageCode"); 
+		paramete[1] = map.get("packageCode"); 
+		paramete[2] = map.get("userName"); 
+		paramete[3] = "%"+map.get("userName")+"%"; 
+		paramete[4] = map.get("orderDate"); 
+		paramete[5] = map.get("orderDate"); 
+		paramete[6] = map.get("paymentDate"); 
+		paramete[7] = map.get("paymentDate"); 
+		return orderFormDao.find(hql.toString(), paramete, -1, -1);
+	}
 }

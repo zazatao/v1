@@ -104,5 +104,31 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 		return commodityDao.find(hql.toString(), paramete, -1, -1);
 	}
 
+	@Override
+	public List<Commodity> getAllByParameters(Map<String, Object> map) {
+		StringBuffer hql = new StringBuffer(" from Commodity c where (? is null or c.transNumForTaobao = ?) "
+				+ " and (? is null or c.purchase.userName like ?) and (? is null or c.tpek = ?) and (? is null or c.status = ?) "
+				+ " and  (? is null or c.orderNumber.packAge.packageCode = ?) and  (? is null or c.orderNumber.orderUser.userName like ?) "
+				+ " and (? is null or c.orderNumber.orderDate = ?) and  (? is null or c.orderNumber.paymentDate = ?) "); 
+		Object[] paramete =  new Object[16];
+		paramete[0] = map.get("transNumForTaobao");
+		paramete[1] = map.get("transNumForTaobao");
+		paramete[2] = map.get("operatorPurchase");
+		paramete[3] = "%"+ map.get("operatorPurchase")+"%";
+		paramete[4] = map.get("tpek");
+		paramete[5] = map.get("tpek");
+		paramete[6] = map.get("formStatus");
+		paramete[7] = map.get("formStatus");
+		paramete[8] = map.get("packageCode"); 
+		paramete[9] = map.get("packageCode"); 
+		paramete[10] = map.get("userName"); 
+		paramete[11] = "%"+map.get("userName")+"%"; 
+		paramete[12] = map.get("orderDate"); 
+		paramete[13] = map.get("orderDate"); 
+		paramete[14] = map.get("paymentDate"); 
+		paramete[15] = map.get("paymentDate"); 
+		return commodityDao.find(hql.toString(), paramete, -1, -1);
+	}
+
 
 }
