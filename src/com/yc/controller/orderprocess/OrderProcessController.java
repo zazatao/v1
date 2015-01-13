@@ -65,6 +65,7 @@ public class OrderProcessController {
 		}else{
 			map.put("orderGroupID", Integer.parseInt(request.getParameter("orderGroupID")));
 		}
+		
 		if (request.getParameter("orderStatus").trim().equals("")) {
 			map.put("orderStatus", null);
 		} else {
