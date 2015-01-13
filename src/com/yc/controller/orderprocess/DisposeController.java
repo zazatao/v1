@@ -68,9 +68,6 @@ public class DisposeController {
 			map.put("disposeStatus", DisposeStatus.valueOf(request.getParameter("disposeStatus")));
 		}
 		List<Commodity> list = commodityService.getDisposeByParameters(map);
-		for (Commodity commodity : list) {
-			System.out.println("commodity.getDisposeStatus()========="+commodity.getDisposeStatus());
-		}
 		ModelMap mode = new ModelMap();
 		mode.put("list", list);
 		return new ModelAndView("orderprocessing/dispose", mode);
@@ -78,7 +75,6 @@ public class DisposeController {
 	
 	@RequestMapping(value = "orderItem", method = RequestMethod.GET)
 	public ModelAndView orderItem( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("++++++++++++++++++++++++++++++++++++++++++++");
 		return new ModelAndView("orderprocessing/dispose");
 	}
 	

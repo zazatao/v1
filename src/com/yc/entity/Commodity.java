@@ -48,6 +48,8 @@ public class Commodity {
 	@Column
 	private Float money;// 金额
 	@Column
+	private String currency;//币种
+	@Column
 	private String comment;// 评论
 	@ManyToOne
 	@JoinColumn(name = "store_user")
@@ -73,6 +75,14 @@ public class Commodity {
 	private OrderForm orderNumber;
 	@OneToMany(mappedBy = "commodity")
 	private List<ImagePath> imagePaths;
+
+	public String getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
 
 	public String getSellerDate() {
 		return sellerDate;

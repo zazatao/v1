@@ -25,4 +25,7 @@ public interface ICommodityService extends IGenericService<Commodity> {
 	List<Commodity> getDisposeByParameters(Map<String, Object> map);
 	
 	//订单详情显示
+
+	List<Commodity> getAllByParameters(Map<String, Object> map);
+
 }

@@ -51,7 +51,7 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">商店 <span class="caret"></span></a>
 					<ul class="dropdown-menu menu-top" role="menu">
-						<li><a href="#">订单</a></li>
+						<li><a href="../shop/shopOrder">订单</a></li>
 						<li><a href="#">包裹</a></li>
 						<li class="dropdown-submenu"><a href="#">财务</a>
 							<ul class="dropdown-menu">
@@ -205,7 +205,7 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#"><%=((User) request.getSession().getAttribute("loginUser")).getUserName()%></a></li>
-				<li><a href="./user/logout">退出</a></li>
+				<li><a href="../user/logout">退出</a></li>
 			</ul>
 		</div>
 		<!--/.nav-collapse -->

@@ -43,19 +43,30 @@ public class OrderForm {
 	private Delivery delivery;
 	 
 	@Column
-	private String changeStatusDate;
+	private String changeStatusDate;//状态改变日期
 	
 	@ManyToOne
 	@JoinColumn(name = "package_id")
 	private Package packAge;
 	
 	@Column
-	private String orderDate;
+	private String orderDate;//下单日期
 	
 	@ManyToOne
 	@JoinColumn(name = "orderGroup_id")
 	private OrderGroup orderGroup;
 	
+	@Column
+	private String paymentDate;//付款日期
+	
+	public String getPaymentDate() {
+		return paymentDate;
+	}
+
+	public void setPaymentDate(String paymentDate) {
+		this.paymentDate = paymentDate;
+	}
+
 	public OrderGroup getOrderGroup() {
 		return orderGroup;
 	}

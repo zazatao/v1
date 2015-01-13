@@ -26,4 +26,14 @@ public class ImagePathService extends GenericService<ImagePath> implements IImag
 		return imagePathDao.find(hql, null, null);
 	}
 
+	@Override
+	public boolean deleteByComm(Integer id) {
+		boolean isok = false;
+		List<ImagePath> list =  imagePathDao.getBy("commodity.commodityID", id);
+		for (ImagePath imagePath : list) {
+			isok = imagePathDao.deleteById(imagePath.getImageId());
+		}
+		return isok ;
+	}
+
 }
