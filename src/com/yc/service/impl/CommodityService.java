@@ -104,5 +104,20 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 		return commodityDao.find(hql.toString(), paramete, -1, -1);
 	}
 
+	@Override
+	public List<Commodity> getDisposeByParameters(Map<String, Object> map) {
+		StringBuffer hql = new StringBuffer(" from Commodity c where (? is null or c.transNumForTaobao = ?) and (? is null or c.seller = ?) and (? is null or c.sellerDate = ?) and (? is null or c.disposeStatus = ?)");
+		Object[] paramete = new Object[8];
+		paramete[0] = map.get("transNumForTaobao");
+		paramete[1] = map.get("transNumForTaobao");
+		paramete[2] = map.get("seller");
+		paramete[3] = map.get("seller");
+		paramete[4] = map.get("sellerDate");
+		paramete[5] = map.get("sellerDate");
+		paramete[6] = map.get("disposeStatus");
+		paramete[7] = map.get("disposeStatus");
+		return commodityDao.find(hql.toString(), paramete, -1,-1);
+	}
+
 
 }

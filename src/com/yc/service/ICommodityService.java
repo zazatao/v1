@@ -2,6 +2,7 @@ package com.yc.service;
 
 import java.util.List;
 
+import com.yc.entity.CargoGroup;
 import com.yc.entity.Commodity;
 
 import java.util.Map;
@@ -19,5 +20,9 @@ public interface ICommodityService extends IGenericService<Commodity> {
 	List<Commodity> getAllByParameters(Map<String, Object> map, boolean b);
 
 	List<Commodity> getAllByParametersForOrder(Map<String, Object> map);
-
+	
+	//订单处理
+	List<Commodity> getDisposeByParameters(Map<String, Object> map);
+	
+	//订单详情显示
 }

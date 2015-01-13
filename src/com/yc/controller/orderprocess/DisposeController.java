@@ -1,7 +1,9 @@
 package com.yc.controller.orderprocess;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yc.entity.CargoGroup;
 import com.yc.entity.Commodity;
+import com.yc.entity.Delivery;
+import com.yc.entity.DisposeStatus;
+import com.yc.entity.OrderStatus;
+import com.yc.entity.Transit;
 import com.yc.service.ICommodityService;
 
 //订单处理  处理
@@ -36,4 +43,43 @@ public class DisposeController {
 		map.put("list", list);
 		return new ModelAndView("orderprocessing/dispose",map);
 	}
+	
+	@RequestMapping(value = "searchWeighing", method = RequestMethod.POST)
+	public ModelAndView searchWeighing( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (request.getParameter("transNumForTaobao").trim().equals("")) {
+			map.put("transNumForTaobao", null);
+		}else{
+			map.put("transNumForTaobao", Integer.parseInt(request.getParameter("transNumForTaobao")));
+		}
+		if (request.getParameter("seller").trim().equals("")) {
+			map.put("seller", null);
+		} else {
+			map.put("seller", request.getParameter("seller"));
+		}
+		if (request.getParameter("sellerDate").trim().equals("")) {
+			map.put("sellerDate", null);
+		} else {
+			map.put("sellerDate", request.getParameter("sellerDate"));
+		}
+		if (request.getParameter("disposeStatus").trim().equals("")) {
+			map.put("disposeStatus", null);
+		} else {
+			map.put("disposeStatus", DisposeStatus.valueOf(request.getParameter("disposeStatus")));
+		}
+		List<Commodity> list = commodityService.getDisposeByParameters(map);
+		for (Commodity commodity : list) {
+			System.out.println("commodity.getDisposeStatus()========="+commodity.getDisposeStatus());
+		}
+		ModelMap mode = new ModelMap();
+		mode.put("list", list);
+		return new ModelAndView("orderprocessing/dispose", mode);
+	}
+	
+	@RequestMapping(value = "orderItem", method = RequestMethod.GET)
+	public ModelAndView orderItem( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("++++++++++++++++++++++++++++++++++++++++++++");
+		return new ModelAndView("orderprocessing/dispose");
+	}
+	
 }

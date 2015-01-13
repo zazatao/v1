@@ -56,45 +56,30 @@
 		<div class="row-fluid">
 			<div class="col-md-12 column">
 				<form class="form-horizontal"
-					action="./searchWeighing?page=weighing" method="POST">
+					action="./searchWeighing" method="POST">
 					<div class="form-group">
 						<div class="col-sm-1">
-							<input type="text" name="packageCode" placeholder="淘宝ID"
-								class="form-control" id="packageCode" onblur="checkvalue(this)">
+							<input type="text" name="transNumForTaobao" placeholder="淘宝ID"
+								class="form-control" id="transNumForTaobao" onblur="checkvalue(this)">
 						</div>
 						<div class="col-sm-1">
-							<input type="text" name="packageCode" placeholder="卖家"
-								class="form-control" id="packageCode">
+							<input type="text" name="seller" placeholder="卖家"
+								class="form-control" id="seller">
 						</div>
 						<div class="col-sm-1">
-							<input type="text" name="cellDate" placeholder="卖家付款"
-								class="form-control" id="cellDate"
-								onclick="dateInfoxxx('cellDate')">
+							<input type="text" name="sellerDate" placeholder="卖家付款"
+								class="form-control" id="sellerDate"
+								onclick="dateInfoxxx('sellerDate')">
 						</div>
 						<div class="col-sm-1">
-							<select class="form-control" name="formStatus" id="formStatus"
+							<select class="form-control" name="disposeStatus" id="disposeStatus"
 								placeholder="状态">
 								<option value="">-----状态-----
-								<option value="unchanged">没有变化
-								<option value="refuse">拒绝接受货物
-								<option value="lack">缺乏
-								<option value="inWarehouse">在仓库
-								<option value="inAuctionlose">下拍
-								<option value="cancel">取消
-								<option value="delivery">交付
-								<option value="support">支持
-								<option value="sendOut">派送
-								<option value="buyerNotPay">买方没有支付
-								<option value="inCell">在格子
-								<option value="lose">丢失
-								<option value="manualProcessing">手工加工
-								<option value="inForwarding">在转发
-								<option value="senToWarehouse">送货到仓库
-								<option value="packing">打包
-								<option value="paid">已付
-								<option value="apiProcessing">API处理
-								<option value="delete">删除
-								<option value="waitingForTracking">等待的追踪
+								<option value="process">正在处理
+								<option value="shortage">商品现货不足
+								<option value="commodityAds">产品广告
+								<option value="waiting">等候
+								<option value="manualProcessing">手动处理
 							</select>
 						</div>
 						<div class="col-sm-1">
@@ -106,7 +91,7 @@
 			<div class="col-md-4 column">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">包裹</h3>
+						<h3 class="panel-title">订单</h3>
 					</div>
 					<div class="list-group-item">
 						<p class="list-group-item-text">
@@ -127,12 +112,17 @@
 										<tr class="success">
 									</c:otherwise>
 								</c:choose>
-								<td><a href="#"
-									onclick="packNum(${commodity.commodityID});">${commodity.commodityID }</a></td>
+								<td><a href="./orderItem" onclick="packNum(${commodity.commodityID});">${commodity.commodityID }</a></td>
 								<td>${commodity.transNumForTaobao }</td>
 								<td>${commodity.seller}</td>
 								<td>${commodity.sellerDate}</td>
-								<td>${commodity.status}</td>
+								<td>
+									<c:if test="${commodity.disposeStatus == 'process' }">正在处理</c:if>
+									<c:if test="${commodity.disposeStatus == 'shortage' }">商品现货不足</c:if>
+									<c:if test="${commodity.disposeStatus == 'commodityAds' }">产品广告</c:if>
+									<c:if test="${commodity.disposeStatus == 'waiting' }">等候</c:if>
+									<c:if test="${commodity.disposeStatus == 'manualProcessing' }">手动处理</c:if>
+								</td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -150,12 +140,17 @@
 					formatDate : 'Y-m-d',
 				});
 			}
-				function packNum(num){
-						location.href ='./getOrder?page=weighing&id='+num;
-				}
+			function packNum(num){
+					location.href ='./getOrder?page=weighing&id='+num;
+			}
 			</script>
+			
+			<!-- rightmain -->
 			<div class="col-md-8 column" style="height: 100%">
+				<!-- 
 				<div class="panel panel-default">
+				 -->
+				 <div class="container row">
 					<div class="panel-heading">
 						<h3 class="panel-title">订单/卖家</h3>
 					</div>
@@ -163,26 +158,31 @@
 						<div class="container-fluid">
 							<div class="row-fluid">
 								<div class="span12">
-									<div class="list-group-item">
+									<div class="list-group-item" style="400px">
 										<p class="list-group-item-text">
 										<form class="form-horizontal" action="" method="POST">
-											<table class="table table-striped">
-												<tr>
-													<td scope="col">订单ID</td>
-													<td colspan="2" scope="col"><label>1212</label></td>
-													<td scope="col">卖家付款</td>
-													<td colspan="2" scope="col"><label>是的</label></td>
-													<td scope="col">卖家</td>
-													<td colspan="2" scope="col"><label>萨顶顶</label></td>
-													<td rowspan="6" scope="col"><img alt="" src="">
+											<!-- 
+											<table class="table table-hover table-bordered">
+												<tr class="col-lg-6">
+													<td>
+														淘宝ID
+														<label>1212</label>
+													</td>
+													<td class="col-lg-6">
+														卖家付款
+														<label>是的</label>
+													</td>
+													<td class="col-lg-6">
+														卖家
+														<label>萨顶</label>
 													</td>
 												</tr>
 												<tr>
 													<td>产品名称</td>
-													<td colspan="3"><label>良心的枕头套子</label></td>
+													<td><label>良心的枕头套子</label></td>
 													<td>&nbsp;</td>
 													<td>付款</td>
-													<td colspan="3">155.2</td>
+													<td>155.2</td>
 												</tr>
 												<tr>
 													<td colspan="9">选项</td>
@@ -218,7 +218,105 @@
 													<td colspan="9">&nbsp;</td>
 													<td><input type="text" placeholder="交易码"></td>
 												</tr>
+												<tr>
+													<td rowspan="4" colspan="2" style="">
+														<img src="../content/static/img/favicon.jpeg" alt="Responsive image" class="img-thumbnail img-responsive">
+													</td>
+												</tr>
+												
 											</table>
+											 -->
+											 
+											<!-- 表格 -->
+											<table class="table table-hover table-striped">
+													<tr>
+														<th>
+															淘宝ID:
+															<label>1212</label>
+														</th>
+														<th>
+															卖家付款:
+															<label>1212</label>
+														</th>
+														<th>
+															卖家:
+															<label>1212</label>
+														</th>
+														<th></th>
+													</tr>
+													<tr>
+														<th>
+															产品名称:
+															<label>1212</label>
+														</th>
+														<th>
+															付款:
+															<label>1212</label>
+														</th>
+														<th></th>
+														<th></th>
+													</tr>
+													<tr>
+														<th>
+															选项:
+														</th>
+														<th></th>
+														<th></th>
+														<th></th>
+													</tr>
+													<tr>
+														<th>
+															数量:
+															<label>1212</label>
+														</th>
+														<th>
+															金额:
+															<label>1212</label>
+														</th>
+														<th>
+															价格:
+															<label>1212</label>
+														</th>
+														<th>
+															付款:
+															<label>1212</label>
+														</th>
+													</tr>
+													<tr>
+														<th>
+															改变状态:
+															<input type="radio" name="dispose"value="">手动处理 
+															<input type="radio" name="dispose"value="">处理中
+															<input type="radio" name="dispose"value="">剩余商品
+														</th>
+														<th>
+															剩余商品:
+															<input type="text" value="">
+														</th>
+														<th></th>
+														<th></th>
+													</tr>
+													<tr>
+														<th>
+															追踪号:
+															<input type="text" value="">
+														</th>
+														<th>
+															&nbsp&nbsp&nbsp交易码:
+															<input type="text" value="">
+														</th>
+														<th>
+															<button type="button" class="btn btn-primary">处理</button>
+														</th>
+														<th></th>
+													</tr>
+											</table>
+											<!-- /表格 -->
+											
+											<div>
+												<img src="../content/static/img/favicon.jpeg" alt="Responsive image" class="img-thumbnail img-responsive">
+											</div>
+											
 											</p>
 										</form>
 									</div>
@@ -233,8 +331,8 @@
 									<div class="tabbable" id="tabs-294834">
 										<ul class="nav nav-tabs">
 											<li class="active"><a href="#panel-700079"
-												data-toggle="tab">操作</a></li>
-											<li><a href="#panel-520562" data-toggle="tab">订单</a></li>
+												data-toggle="tab">与买家联系</a></li>
+											<li><a href="#panel-520562" data-toggle="tab">内部</a></li>
 										</ul>
 										<div class="tab-content">
 											<div class="tab-pane active" id="panel-700079">
@@ -345,6 +443,7 @@
 					</div>
 				</div>
 			</div>
+			<!-- /rightmain -->
 		</div>
 	</div>
 	</ul>

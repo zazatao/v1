@@ -62,6 +62,9 @@ public class Commodity {
 	@Column
 	@Enumerated(EnumType.STRING)
 	private OrderStatus status;// 状态
+	@Column
+	@Enumerated(EnumType.STRING)
+	private DisposeStatus disposeStatus;// 订单处理状态
 	@ManyToOne
 	@JoinColumn(name = "storeRoom_id")
 	private StoreRoom storeRoom;
@@ -239,4 +242,13 @@ public class Commodity {
 		this.tpek = tpek;
 	}
 
+	public DisposeStatus getDisposeStatus() {
+		return disposeStatus;
+	}
+
+	public void setDisposeStatus(DisposeStatus disposeStatus) {
+		this.disposeStatus = disposeStatus;
+	}
+
+	
 }
