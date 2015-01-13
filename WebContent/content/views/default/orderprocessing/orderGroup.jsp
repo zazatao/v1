@@ -118,7 +118,7 @@
 								<td>${orderGroups.taskNumber }</td>
 								<td>${orderGroups.alipayPay }</td>
 								<td>${orderGroups.sumOfMoney }</td>
-								<td><c:if test="${orderGroups.status == 'initializa' }">初始化</c:if> <%-- 									<c:if test="${orders.inForwarding == 'inForwarding' }">在转发</c:if> --%>
+								<td><c:if test="${orderGroups.groupStatus == 'initializa' }">初始化</c:if> <%-- 									<c:if test="${orders.inForwarding == 'inForwarding' }">在转发</c:if> --%>
 									<%-- 									<c:if test="${orders.senToWarehouse == 'senToWarehouse' }">送货到仓库</c:if> --%>
 									<%-- 									<c:if test="${orders.packing == 'packing' }"> 打包</c:if> --%>
 								</td>

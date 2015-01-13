@@ -23,7 +23,7 @@ public class OrderGroupService extends GenericService<OrderGroup> implements IOr
 
 	@Override
 	public List<OrderGroup> getOrderGroupByParameters(Map<String, Object> map) {
-		StringBuffer hql = new StringBuffer(" from OrderGroup o where (? is null or o.orderGroupID = ?) and (? is null or o.taskNumber = ?) and (? is null or o.status = ?)");
+		StringBuffer hql = new StringBuffer(" from OrderGroup o where (? is null or o.orderGroupID = ?) and (? is null or o.taskNumber = ?) and (? is null or o.groupStatus = ?)");
 		Object[] paramete = new Object[6];
 		paramete[0] = map.get("orderGroupID");
 		paramete[1] = map.get("orderGroupID");

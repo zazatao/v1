@@ -163,9 +163,65 @@
 						<div class="container-fluid">
 							<div class="row-fluid">
 								<div class="span12">
-									<form class="form-horizontal" action="" method="POST">
-										
-									</form>
+									<div class="list-group-item">
+										<p class="list-group-item-text">
+										<form class="form-horizontal" action="" method="POST">
+											<table class="table table-striped">
+												<tr>
+													<td scope="col">订单ID</td>
+													<td colspan="2" scope="col"><label>1212</label></td>
+													<td scope="col">卖家付款</td>
+													<td colspan="2" scope="col"><label>是的</label></td>
+													<td scope="col">卖家</td>
+													<td colspan="2" scope="col"><label>萨顶顶</label></td>
+													<td rowspan="6" scope="col"><img alt="" src="">
+													</td>
+												</tr>
+												<tr>
+													<td>产品名称</td>
+													<td colspan="3"><label>良心的枕头套子</label></td>
+													<td>&nbsp;</td>
+													<td>付款</td>
+													<td colspan="3">155.2</td>
+												</tr>
+												<tr>
+													<td colspan="9">选项</td>
+												</tr>
+												<tr>
+													<td>数量</td>
+													<td width="8">2</td>
+													<td width="16">价格</td>
+													<td>￥16</td>
+													<td>金额</td>
+													<td>￥666</td>
+													<td>付款</td>
+													<td colspan="2">是的</td>
+												</tr>
+												<tr>
+													<td>改变状态</td>
+													<td colspan="2"><input type="radio" name="dispose"
+														value="">手动处理 <input type="radio" name="dispose"
+														value="">处理中</td>
+													<td>&nbsp;</td>
+													<td>剩余商品</td>
+													<td colspan="4"><input type="text" value=""></td>
+												</tr>
+												<tr>
+													<td>&nbsp;</td>
+													<td colspan="3"><input type="text" name=""
+														placeholder="追踪号" value=""></td>
+													<td>&nbsp;</td>
+													<td colspan="3"><button name="" type="button">处理</button></td>
+													<td width="50">&nbsp;</td>
+												</tr>
+												<tr>
+													<td colspan="9">&nbsp;</td>
+													<td><input type="text" placeholder="交易码"></td>
+												</tr>
+											</table>
+											</p>
+										</form>
+									</div>
 								</div>
 							</div>
 						</div>
