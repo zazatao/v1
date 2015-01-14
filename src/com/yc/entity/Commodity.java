@@ -62,6 +62,8 @@ public class Commodity {
 	@Column
 	private String sellerDate;//卖家付款日期
 	@Column
+	private String tradingCode;//交易码
+	@Column
 	@Enumerated(EnumType.STRING)
 	private OrderStatus status;// 状态
 	@Column
@@ -260,5 +262,14 @@ public class Commodity {
 		this.disposeStatus = disposeStatus;
 	}
 
+	public String getTradingCode() {
+		return tradingCode;
+	}
+
+	public void setTradingCode(String tradingCode) {
+		this.tradingCode = tradingCode;
+	}
+
+	
 	
 }

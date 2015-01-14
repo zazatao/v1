@@ -237,7 +237,7 @@
 														</th>
 														<th>
 															&nbsp&nbsp&nbsp交易码:
-															<input type="text" value="">
+															<input type="text" value="${dispose.tradingCode}">
 														</th>
 														<th>
 															<button type="button" class="btn btn-primary">处理</button>

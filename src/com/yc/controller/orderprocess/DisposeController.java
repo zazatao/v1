@@ -37,11 +37,6 @@ public class DisposeController {
 		List<Commodity> list = commodityService.getAll();
 		ModelMap map = new ModelMap();
 		map.put("list", list);
-//		for (Commodity commodity : list) {
-//			System.out.println("commodity.getNameOfGoods()++++++++++++++++" + commodity.getNameOfGoods());
-//			System.out.println("commodity.getTransNumForTaobao()++++++++++++++++" + commodity.getTransNumForTaobao());
-//			System.out.println("commodity.getMoney()++++++++++++++++" + commodity.getMoney());
-//		}
 		return new ModelAndView("orderprocessing/dispose",map);
 	}
 	
@@ -71,9 +66,6 @@ public class DisposeController {
 		List<Commodity> list = commodityService.getDisposeByParameters(map);
 		ModelMap mode = new ModelMap();
 		mode.put("list", list);
-		for (Commodity commodity : list) {
-			System.out.println("commodity++++++++++++++++" + commodity.getNameOfGoods());
-		}
 		return new ModelAndView("orderprocessing/dispose", mode);
 	}
 	
@@ -84,7 +76,6 @@ public class DisposeController {
 		map.put("list", list);
 		Commodity comm =  commodityService.findById(id);
 		map.put("dispose", comm);
-    	
     	return new ModelAndView("orderprocessing/dispose",map);
 	}
 	

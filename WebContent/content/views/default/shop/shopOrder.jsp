@@ -192,7 +192,7 @@ th {
 							</tr>
 							<tr>
 								<td colspan="16">重量：&nbsp;${commodity.weight }</td>
-							</tr>
+							</tr>	
 							<tr>
 								<td colspan="16">评论：&nbsp;${commodity.comment  }</td>
 							</tr>

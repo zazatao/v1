@@ -60,14 +60,14 @@ th {
 			<label for="inputEmail3" class="col-sm-2 control-label"><a
 				class="frred">*</a><font style="font-size: 18px;">编号</font></label>
 			<div class="col-sm-8">
-				<input type="text" name="lac" class="form-control" id="inputEmail3" readonly="readonly">
+				<input type="text" name="lac" class="form-control" id="inputEmail3" value="${commodity.commodityID }" readonly="readonly">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="inputEmail3" class="col-sm-2 control-label"><a
 				class="frred">*</a><font style="font-size: 18px;">货号</font></label>
 			<div class="col-sm-8">
-				<input type="text" name="lac" class="form-control" id="inputEmail3" readonly="readonly">
+				<input type="text" name="lac" class="form-control" id="inputEmail3" value="${commodity.commItem }" readonly="readonly">
 			</div>
 		</div>
 		<div class="form-group">
@@ -75,7 +75,7 @@ th {
 				class="frred">*</a><font style="font-size: 18px;">买方</font></label>
 			<div class="col-sm-8">
 				<select name="userName" class="form-control">
-					<option value="id">11111
+					<option value="id">${commodity.orderNumber.orderUser.userName }@
 				</select>
 			</div>
 		</div>
