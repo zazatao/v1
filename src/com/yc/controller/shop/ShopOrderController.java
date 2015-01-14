@@ -111,5 +111,12 @@ public class ShopOrderController {
 		}
     	return shopOrder(request, response);
     }
-
+    
+    @RequestMapping(value = "updateShopOrder", method = RequestMethod.GET)
+    public ModelAndView updateShopOrder(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	Commodity comm =  commodityService.findById(id);
+    	ModelMap mode = new ModelMap();
+    	mode.put("commodity", comm);
+    	return new ModelAndView("shop/updateShopOrder", mode);
+    }
 }

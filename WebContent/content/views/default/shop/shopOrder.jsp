@@ -173,7 +173,7 @@ th {
 								<td>${commodity.orderNumber.packAge.packageCode }</td>
 								<td>${commodity.purchase.accomplishNum }</td>
 								<td>${commodity.purchase.userName }</td>
-								<td><button class="btn btn-default" onclick="">修改</button>&nbsp;&nbsp;
+								<td><button class="btn btn-default" onclick="updateShopOrder(${commodity.commodityID});">修改</button>&nbsp;&nbsp;
 									<button class="btn btn-default" onclick="deleteShopOrder(${commodity.commodityID});">删除</button></td>
 							</tr>
 							<tr>
@@ -204,6 +204,9 @@ th {
 	</div>
 
 	<script type="text/javascript">
+		function updateShopOrder(num){
+			location.href =	'./updateShopOrder?id='+num;
+		}
 		function deleteShopOrder(num){
 			location.href =	'./deleteShopOrder?id='+num;
 		}
