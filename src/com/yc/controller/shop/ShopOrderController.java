@@ -2,7 +2,6 @@
 package com.yc.controller.shop;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,13 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Commodity;
-import com.yc.entity.Delivery;
 import com.yc.entity.ImagePath;
-import com.yc.entity.OrderForm;
 import com.yc.entity.OrderStatus;
 import com.yc.service.ICommodityService;
 import com.yc.service.IImagePathService;
-import com.yc.service.IOrderFormService;
 
 //商店订单
 @Controller
@@ -108,24 +104,17 @@ public class ShopOrderController {
     public ModelAndView deleteShopOrder(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	Commodity comm =  commodityService.findById(id);
     	List<ImagePath> comms = comm.getImagePaths();
-    	for (ImagePath imagePath : comms) {
-    		System.out.println("comm.getImagePaths()+++++++++:" + imagePath);
-		}
-    	System.out.println("comm.getImagePaths()-----------------:" + comm.getImagePaths());
     	if(comm.getImagePaths() == null) {
     		boolean isok = imagePathService.deleteByComm(id);
     		if (isok) {
     			commodityService.delete(id);
     		}
-    	}else {
-    		System.out.println("~~~~~~~~~~~~~~~~有图片不能删");
     	}
     	return shopOrder(request, response);
     }
     
     @RequestMapping(value = "updateShopOrder", method = RequestMethod.GET)
     public ModelAndView updateShopOrder(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	System.out.println("id+|+|+|+|+|+|+|+|+|+|" + id);
     	Commodity comm =  commodityService.findById(id);
     	ModelMap mode = new ModelMap();
     	mode.put("commodity", comm);
