@@ -41,6 +41,7 @@ public class DisposeController {
 		List<Commodity> list = commodityService.getAll();
 		ModelMap map = new ModelMap();
 		map.put("list", list);
+		request.setAttribute("lists", list);
 		return new ModelAndView("orderprocessing/dispose",map);
 	}
 	
@@ -75,6 +76,11 @@ public class DisposeController {
 	
 	@RequestMapping(value = "orderItem", method = RequestMethod.GET)
 	public ModelAndView orderItem( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<Commodity> list = commodityService.getAll();
+		ModelMap mode = new ModelMap();
+		mode.put("list", list);
+		request.setAttribute("lists", list);
 		return new ModelAndView("orderprocessing/dispose");
 	}
 	

@@ -229,10 +229,11 @@
 											 
 											<!-- 表格 -->
 											<table class="table table-hover table-striped">
+												
 													<tr>
 														<th>
 															淘宝ID:
-															<label>1212</label>
+															<label>12</label>
 														</th>
 														<th>
 															卖家付款:
@@ -244,10 +245,11 @@
 														</th>
 														<th></th>
 													</tr>
+													<c:forEach items="${list }" var="list">
 													<tr>
 														<th>
 															产品名称:
-															<label>1212</label>
+															<label>${list.nameOfGoods }</label>
 														</th>
 														<th>
 															付款:
@@ -255,6 +257,7 @@
 														</th>
 														<th></th>
 														<th></th>
+													</c:forEach>
 													</tr>
 													<tr>
 														<th>
