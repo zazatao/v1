@@ -32,7 +32,7 @@ public class Commodity {
 	@Column
 	private String barcodes;// 条形码
 	@Column
-	private String tpek;
+	private String tpek;	//追踪
 	@Column
 	private String color;// 颜色
 	@Column
@@ -72,7 +72,7 @@ public class Commodity {
 	private StoreRoom storeRoom;
 	@ManyToOne
 	@JoinColumn(name = "orderform_id")
-	private OrderForm orderNumber;
+	private OrderForm orderNumber;			
 	@OneToMany(mappedBy = "commodity")
 	private List<ImagePath> imagePaths;
 

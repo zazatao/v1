@@ -114,7 +114,9 @@ public class ShopOrderController {
     
     @RequestMapping(value = "updateShopOrder", method = RequestMethod.GET)
     public ModelAndView updateShopOrder(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	System.out.println("id+|+|+|+|+|+|+|+|+|+|" + id);
     	Commodity comm =  commodityService.findById(id);
+//    	Boolean comm =  commodityService.delete(id);
     	ModelMap mode = new ModelMap();
     	mode.put("commodity", comm);
     	return new ModelAndView("shop/updateShopOrder", mode);

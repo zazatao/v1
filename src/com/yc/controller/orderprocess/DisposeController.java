@@ -37,7 +37,11 @@ public class DisposeController {
 		List<Commodity> list = commodityService.getAll();
 		ModelMap map = new ModelMap();
 		map.put("list", list);
-		request.setAttribute("lists", list);
+//		for (Commodity commodity : list) {
+//			System.out.println("commodity.getNameOfGoods()++++++++++++++++" + commodity.getNameOfGoods());
+//			System.out.println("commodity.getTransNumForTaobao()++++++++++++++++" + commodity.getTransNumForTaobao());
+//			System.out.println("commodity.getMoney()++++++++++++++++" + commodity.getMoney());
+//		}
 		return new ModelAndView("orderprocessing/dispose",map);
 	}
 	
@@ -67,17 +71,21 @@ public class DisposeController {
 		List<Commodity> list = commodityService.getDisposeByParameters(map);
 		ModelMap mode = new ModelMap();
 		mode.put("list", list);
+		for (Commodity commodity : list) {
+			System.out.println("commodity++++++++++++++++" + commodity.getNameOfGoods());
+		}
 		return new ModelAndView("orderprocessing/dispose", mode);
 	}
 	
 	@RequestMapping(value = "orderItem", method = RequestMethod.GET)
-	public ModelAndView orderItem( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Map<String, Object> map = new HashMap<String, Object>();
+	public ModelAndView orderItem(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Commodity> list = commodityService.getAll();
-		ModelMap mode = new ModelMap();
-		mode.put("list", list);
-		request.setAttribute("lists", list);
-		return new ModelAndView("orderprocessing/dispose");
+		ModelMap map = new ModelMap();
+		map.put("list", list);
+		Commodity comm =  commodityService.findById(id);
+		map.put("dispose", comm);
+    	
+    	return new ModelAndView("orderprocessing/dispose",map);
 	}
 	
 }

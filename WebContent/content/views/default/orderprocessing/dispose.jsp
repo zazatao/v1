@@ -111,8 +111,8 @@
 									<c:otherwise>
 										<tr class="success">
 									</c:otherwise>
-								</c:choose>
-								<td><a href="./orderItem" onclick="packNum(${commodity.commodityID});">${commodity.commodityID }</a></td>
+								</c:choose>				  
+								<td><a href="./orderItem?id=${commodity.commodityID}" onclick="orderItem(${commodity.commodityID});">${commodity.commodityID }</a></td>
 								<td>${commodity.transNumForTaobao }</td>
 								<td>${commodity.seller}</td>
 								<td>${commodity.sellerDate}</td>
@@ -161,103 +161,34 @@
 									<div class="list-group-item" style="400px">
 										<p class="list-group-item-text">
 										<form class="form-horizontal" action="" method="POST">
-											<!-- 
-											<table class="table table-hover table-bordered">
-												<tr class="col-lg-6">
-													<td>
-														淘宝ID
-														<label>1212</label>
-													</td>
-													<td class="col-lg-6">
-														卖家付款
-														<label>是的</label>
-													</td>
-													<td class="col-lg-6">
-														卖家
-														<label>萨顶</label>
-													</td>
-												</tr>
-												<tr>
-													<td>产品名称</td>
-													<td><label>良心的枕头套子</label></td>
-													<td>&nbsp;</td>
-													<td>付款</td>
-													<td>155.2</td>
-												</tr>
-												<tr>
-													<td colspan="9">选项</td>
-												</tr>
-												<tr>
-													<td>数量</td>
-													<td width="8">2</td>
-													<td width="16">价格</td>
-													<td>￥16</td>
-													<td>金额</td>
-													<td>￥666</td>
-													<td>付款</td>
-													<td colspan="2">是的</td>
-												</tr>
-												<tr>
-													<td>改变状态</td>
-													<td colspan="2"><input type="radio" name="dispose"
-														value="">手动处理 <input type="radio" name="dispose"
-														value="">处理中</td>
-													<td>&nbsp;</td>
-													<td>剩余商品</td>
-													<td colspan="4"><input type="text" value=""></td>
-												</tr>
-												<tr>
-													<td>&nbsp;</td>
-													<td colspan="3"><input type="text" name=""
-														placeholder="追踪号" value=""></td>
-													<td>&nbsp;</td>
-													<td colspan="3"><button name="" type="button">处理</button></td>
-													<td width="50">&nbsp;</td>
-												</tr>
-												<tr>
-													<td colspan="9">&nbsp;</td>
-													<td><input type="text" placeholder="交易码"></td>
-												</tr>
-												<tr>
-													<td rowspan="4" colspan="2" style="">
-														<img src="../content/static/img/favicon.jpeg" alt="Responsive image" class="img-thumbnail img-responsive">
-													</td>
-												</tr>
-												
-											</table>
-											 -->
-											 
 											<!-- 表格 -->
 											<table class="table table-hover table-striped">
-												
 													<tr>
 														<th>
 															淘宝ID:
-															<label>12</label>
+															<label>${dispose.transNumForTaobao }</label>
 														</th>
 														<th>
 															卖家付款:
-															<label>1212</label>
+															<label>${dispose.sellerDate}</label>
 														</th>
 														<th>
 															卖家:
-															<label>1212</label>
+															<label>${dispose.seller }</label>
 														</th>
 														<th></th>
 													</tr>
-													<c:forEach items="${list }" var="list">
 													<tr>
 														<th>
 															产品名称:
-															<label>${list.nameOfGoods }</label>
+															${dispose.nameOfGoods }
 														</th>
 														<th>
 															付款:
-															<label>1212</label>
+															${dispose.money }
 														</th>
 														<th></th>
 														<th></th>
-													</c:forEach>
 													</tr>
 													<tr>
 														<th>
@@ -270,15 +201,15 @@
 													<tr>
 														<th>
 															数量:
-															<label>1212</label>
-														</th>
-														<th>
-															金额:
-															<label>1212</label>
+															<label>${dispose.quantity}</label>
 														</th>
 														<th>
 															价格:
-															<label>1212</label>
+															<label>${dispose.price}</label>
+														</th>
+														<th>
+															金额:
+															<label>${dispose.money}</label>
 														</th>
 														<th>
 															付款:
@@ -294,7 +225,7 @@
 														</th>
 														<th>
 															剩余商品:
-															<input type="text" value="">
+															<input type="text" value="${dispose.quantity}">
 														</th>
 														<th></th>
 														<th></th>
@@ -302,7 +233,7 @@
 													<tr>
 														<th>
 															追踪号:
-															<input type="text" value="">
+															<input type="text" value="${dispose.tpek}">
 														</th>
 														<th>
 															&nbsp&nbsp&nbsp交易码:
@@ -339,6 +270,7 @@
 										</ul>
 										<div class="tab-content">
 											<div class="tab-pane active" id="panel-700079">
+												<!-- 
 												<div class="panel-heading">
 													<h3 class="panel-title">
 														<span class="badge navbar-right">订单号：<input
@@ -347,11 +279,13 @@
 														</span>
 													</h3>
 												</div>
+												 -->
 												<br>
 												<div class="list-group-item">
 													<p class="list-group-item-text">
-													<table class="table table-striped">
+													<table class="table table-hover table-striped">
 														<tr class="">
+															<!-- 
 															<th>日期</th>
 															<th>订单号</th>
 															<th>数量</th>
@@ -359,6 +293,9 @@
 															<th>操作</th>
 															<th>快捷</th>
 															<th>实现</th>
+															 -->
+															<th>内容</th>
+															<th>日期</th>
 														</tr>
 														<c:forEach var="orderForm" items="${packs.orderForms }">
 															<c:set var="order" value="${orderForm }"></c:set>
@@ -387,6 +324,7 @@
 												</div>
 											</div>
 											<div class="tab-pane" id="panel-520562">
+												<!-- 
 												<div class="panel-heading">
 													<h3 class="panel-title">
 														<span class="badge navbar-right">订单号：<input
@@ -395,11 +333,13 @@
 														</span>
 													</h3>
 												</div>
+												 -->
 												<br>
 												<div class="list-group-item">
 													<p class="list-group-item-text">
-													<table class="table table-striped">
+													<table class="table table-hover table-striped">
 														<tr class="">
+															<!-- 
 															<th>订单号</th>
 															<th>格子</th>
 															<th>货号(淘宝ID)</th>
@@ -409,6 +349,9 @@
 															<th>名称</th>
 															<th>便利</th>
 															<th>状态</th>
+															 -->
+															<th>内容</th>
+															<th>日期</th>
 														</tr>
 														<c:forEach var="orderF" items="${packs.orderForms }">
 															<c:set var="orders" value="${orderF }"></c:set>
