@@ -2,7 +2,6 @@
 package com.yc.controller.shop;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,12 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Commodity;
-import com.yc.entity.Delivery;
-import com.yc.entity.OrderForm;
 import com.yc.entity.OrderStatus;
 import com.yc.service.ICommodityService;
 import com.yc.service.IImagePathService;
-import com.yc.service.IOrderFormService;
 
 //商店订单
 @Controller

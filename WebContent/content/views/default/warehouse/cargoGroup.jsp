@@ -135,7 +135,7 @@
 				</form>
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">包裹</h3>
+						<h3 class="panel-title">组货</h3>
 					</div>
 					<div class="list-group-item">
 						<p class="list-group-item-text">

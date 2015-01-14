@@ -38,6 +38,9 @@ public class CargoGroup {
 	private OrderStatus status;// 状态
 	
 	@Column
+	private String createDate;
+	
+	@Column
 	private String sendDate;//发货日期
 
 	@Column
@@ -49,6 +52,14 @@ public class CargoGroup {
 	@Column
 	private Float compensation;//赔付金额
 	
+	public String getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+
 	public Float getCompensation() {
 		return compensation;
 	}
