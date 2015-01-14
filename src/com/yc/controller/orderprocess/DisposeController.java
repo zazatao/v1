@@ -17,12 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.yc.entity.CargoGroup;
 import com.yc.entity.Commodity;
-import com.yc.entity.Delivery;
 import com.yc.entity.DisposeStatus;
-import com.yc.entity.OrderStatus;
-import com.yc.entity.Transit;
 import com.yc.service.ICommodityService;
 
 //订单处理  处理
