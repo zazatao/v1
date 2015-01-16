@@ -51,7 +51,7 @@ th {
 	<br>
 	<br>
 	<br>
-	<form class="form-horizontal" action="./addBaseStation" method="POST">
+	<form class="form-horizontal" action="./editShopOrder?id=${commodity.commodityID}" method="POST">
 		<div class="form-group" style="text-align: center;">
 			<label><font style="font-size: 40px;">订单修改</font> </label> <br>
 			<br>
@@ -67,16 +67,35 @@ th {
 			<label for="inputEmail3" class="col-sm-2 control-label"><a
 				class="frred">*</a><font style="font-size: 18px;">货号</font></label>
 			<div class="col-sm-8">
-				<input type="text" name="lac" class="form-control" id="inputEmail3" value="${commodity.commItem }" readonly="readonly">
+				<input type="text" name="commItem" class="form-control" id="inputEmail3" value="${commodity.commItem }" readonly="readonly">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="inputEmail3" class="col-sm-2 control-label"><a
 				class="frred">*</a><font style="font-size: 18px;">买方</font></label>
 			<div class="col-sm-8">
-				<select name="userName" class="form-control">
-					<option value="id">${commodity.orderNumber.orderUser.userName }@
-				</select>
+				<input type="text" name="commItem" class="form-control" id="inputEmail3" value="${commodity.storeOperator.userName }" readonly="readonly">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputEmail3" class="col-sm-2 control-label"><a
+				class="frred">*</a><font style="font-size: 18px;">电话</font></label>
+			<div class="col-sm-8">
+				<input type="text" name="phone" class="form-control" id="inputEmail3" value="${commodity.storeOperator.phone }">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputEmail3" class="col-sm-2 control-label">
+				<font style="font-size: 18px;">邮箱</font></label>
+			<div class="col-sm-8">
+				<input type="text" name="email" class="form-control" id="inputEmail3" value="${commodity.storeOperator.email }">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputEmail3" class="col-sm-2 control-label">
+				<font style="font-size: 18px;">邮箱</font></label>
+			<div class="col-sm-8">
+				<input type="text" name="status" class="form-control" id="inputEmail3" value="${commodity.status }">
 			</div>
 		</div>
 		<div class="form-group">
