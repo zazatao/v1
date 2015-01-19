@@ -156,17 +156,24 @@ th {
 		<div class="form-group">
 			<label class="col-md-3 control-label">状态</label>
 			<div class="col-md-6">
-			<select class="form-control input-sm" name="categ_id"
+			<select class="form-control input-sm" name="commodityID"
 				id="byStatus">
-				<option value="${commodity.status }" 
-					<c:if test="${commodity.status  ==  'delivery' }">
-						selected='selected'
+				<c:forEach items="${commodity }" var="comm">
+					<option value="${comm.commodityID }" 
+						<c:if test="${comm.status == 'delivery' }">
+							selected='selected' 
+						</c:if>
+					>
+					<c:if test="${comm.status == 'delivery' }">
+						舅舅家
 					</c:if>
-				>${commodity.status}
-				</option>
+					<c:if test="${comm.status == 'marriage' }">
+						舅舅家1
+					</c:if>
+					</option>
+				</c:forEach>
 			</select>	
-				<input type="text" class="form-control" name="status"
-					placeholder="手机号、座机号" value="${commodity.status}">
+				
 			</div>
 		</div>
 		<div class="form-group">
