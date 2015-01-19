@@ -156,8 +156,8 @@ public class ShopOrderController {
     	request.getSession().getAttribute("loginUser");
     	ModelMap mode = new ModelMap();
     	mode.put("user", request.getSession().getAttribute("loginUser"));
-    	mode.put("commodity", commodityService.getAllByStatus());
-    	System.out.println("commodityService.getAll()_+_+_+_+_+_+_+_+:" + commodityService.getAll());
+    	List<Commodity> c = commodityService.getAll();
+    	mode.put("commodity", commodityService.getAll());
     	return new ModelAndView("shop/addShopOrder",mode);
     }
     
@@ -183,8 +183,10 @@ public class ShopOrderController {
 		c.setMoney(money);
 		String currency = request.getParameter("currency");
 		c.setCurrency(currency);
-		String status = request.getParameter("status");
-		c.setStatus(OrderStatus.valueOf(status));
+		Integer commodityID = Integer.parseInt(request.getParameter("commodityID"));
+		Commodity comm =  commodityService.findById(commodityID); 
+		System.out.println("comm.getStatus()*()*()&&^&%^$^:" + comm.getStatus());
+		c.setStatus(comm.getStatus());
 //		userService.save(u);
 		personnelService.save(u);
 		c.setStoreOperator(u);
