@@ -35,9 +35,6 @@ public class User {
     @Column
     private String phone;
     
-    @Column
-    private Integer accomplishNum;
-    
     @OneToMany(mappedBy = "operator")
     private List<UnKnownCommodity> unCommOperators ;
     
@@ -49,14 +46,6 @@ public class User {
     
     @OneToMany(mappedBy = "orderUser")
     private List<OrderForm> orderForms;
-
-    public Integer getAccomplishNum() {
-		return accomplishNum;
-	}
-
-	public void setAccomplishNum(Integer accomplishNum) {
-		this.accomplishNum = accomplishNum;
-	}
 
 	public String getPhone() {
 		return phone;
