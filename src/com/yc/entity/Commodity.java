@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
 
 @Entity
@@ -53,10 +54,10 @@ public class Commodity {
 	private String comment;// 评论
 	@ManyToOne
 	@JoinColumn(name = "store_user")
-	private User storeOperator;// 库房操作员
+	private Personnel storeOperator;// 库房操作员
 	@ManyToOne
 	@JoinColumn(name = "purchase_user")
-	private User purchase;// 采购员
+	private Personnel purchase;// 采购员
 	@Column
 	private String seller;//卖家
 	@Column
@@ -110,19 +111,19 @@ public class Commodity {
 		this.nameOfGoods = nameOfGoods;
 	}
 
-	public User getStoreOperator() {
+	public Personnel getStoreOperator() {
 		return storeOperator;
 	}
 
-	public void setStoreOperator(User storeOperator) {
+	public void setStoreOperator(Personnel storeOperator) {
 		this.storeOperator = storeOperator;
 	}
 
-	public User getPurchase() {
+	public Personnel getPurchase() {
 		return purchase;
 	}
 
-	public void setPurchase(User purchase) {
+	public void setPurchase(Personnel purchase) {
 		this.purchase = purchase;
 	}
 
