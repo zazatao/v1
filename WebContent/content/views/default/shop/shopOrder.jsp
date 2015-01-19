@@ -52,12 +52,14 @@ th {
 		<div class="panel-heading">
 			<h3 class="panel-title">
 				<a href="./insertShopOrder" style="font-size: 18px;">商品</a> <span class="divider"><font
-					style="font-size: 18px;">/</font></span> <font style="font-size: 18px;">订单</font><a
-					href="#" style="font-size: 18px;"><span
-					class="badge navbar-right">添加&nbsp;+</span></a>
+					style="font-size: 18px;">/</font></span> <font style="font-size: 18px;">订单</font>
+					<a href="./toAddShopOrder" style="font-size: 18px;">
+					<span class="badge navbar-right">添加&nbsp;+</span></a>
 			</h3>
 		</div>
 	</div>
+	
+	
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="span12">
@@ -147,14 +149,14 @@ th {
 							<th></th>
 						</tr>
 					</thead>
-					<c:forEach var="commodity" items="${list }" varStatus="loop">
+					<c:forEach var="commodity" items="${list }" varStatus="vs">
 						<tbody>
 							<tr class="success">
 								<td align="center">${commodity.orderNumber.orderFormID }</td>
 								<td>${commodity.transNumForTaobao }</td>
-								<td>${commodity.orderNumber.orderUser.userName }</td>
-								<td>${commodity.orderNumber.orderUser.email }</td>
-								<td>${commodity.orderNumber.orderUser.phone }</td>
+								<td>${commodity.purchase.userName }</td>
+								<td>${commodity.storeOperator.email }</td>
+								<td>${commodity.storeOperator.phone }</td>
 								<td>${commodity.tpek }</td>
 								<td>${commodity.quantity }</td>
 								<td>${commodity.money }</td>
@@ -169,12 +171,15 @@ th {
 										<c:when test="${commodity.status =='lose'}">丢失</c:when>
 										<c:when test="${commodity.status =='inWarehouse'}">在库房中</c:when>
 										<c:when test="${commodity.status =='marriage'}">交易中</c:when>
-									</c:choose></td>
+										<c:when test="${commodity.status =='delivery'}">交易中2</c:when>
+									</c:choose>
+								</td>
 								<td>${commodity.orderNumber.packAge.packageCode }</td>
 								<td>${commodity.purchase.accomplishNum }</td>
-								<td>${commodity.purchase.userName }</td>
-								<td><button class="btn btn-default" onclick="updateShopOrder(${commodity.commodityID});">修改</button>&nbsp;&nbsp;
-									<button class="btn btn-default" onclick="deleteShopOrder(${commodity.commodityID});">删除</button></td>
+								<td>${commodity.storeOperator.userName }</td>
+								<td><button class="btn btn-default" data-toggle="modal" data-target="#detailModal" onclick="updateShopOrder(${commodity.commodityID});">修改</button>&nbsp;&nbsp;
+									<button class="btn btn-default" id="del" onclick="deleteShopOrder(${commodity.commodityID});">删除</button></td>
+									<button class="btn btn-default" onclick="#" id="del">删除</button>
 							</tr>
 							<tr>
 								<td rowspan="5" height="140px;" width="140px;"><c:if
@@ -202,6 +207,8 @@ th {
 			</div>
 		</div>
 	</div>
+
+	<jsp:include page="../common/delModelBox.jsp"></jsp:include>
 
 	<script type="text/javascript">
 		function updateShopOrder(num){
@@ -248,6 +255,19 @@ th {
 									+ top
 									+ ', left=' + left);
 		}
+		//删除模态框
+		$(document).ready(function() {
+			$("#del").click(function() { //给本页面的所有的“删除”超链接添加“点击事件”处理函数
+				var onclick = $(this).attr("onclick"); //获取当前点击的超链接的href值
+				alert(onclick);
+				$("#delModal").modal("show"); //显示模态框
+				//当点击“确认删除”按钮时，执行一次性事件处理函数
+				$("#doDel").one("click", function() {
+					location.assign(onclick); //加载指定链接值的目标资源
+				});
+				return false; //阻止元素本身的默认行为
+			});
+		});
 	</script>
 </body>
 </html>

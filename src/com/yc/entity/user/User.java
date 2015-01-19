@@ -35,28 +35,8 @@ public class User {
     @Column
     private String phone;
     
-    @Column
-    private Integer accomplishNum;
-    
-    @OneToMany(mappedBy = "operator")
-    private List<UnKnownCommodity> unCommOperators ;
-    
-    @OneToMany(mappedBy = "storeOperator")
-    private List<Commodity> commOperators ;
-    
-    @OneToMany(mappedBy = "purchase")
-    private List<Commodity> purchases ;
-    
     @OneToMany(mappedBy = "orderUser")
     private List<OrderForm> orderForms;
-
-    public Integer getAccomplishNum() {
-		return accomplishNum;
-	}
-
-	public void setAccomplishNum(Integer accomplishNum) {
-		this.accomplishNum = accomplishNum;
-	}
 
 	public String getPhone() {
 		return phone;
@@ -72,14 +52,6 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public List<Commodity> getPurchases() {
-		return purchases;
-	}
-
-	public void setPurchases(List<Commodity> purchases) {
-		this.purchases = purchases;
 	}
 
 	public List<OrderForm> getOrderForms() {
@@ -121,21 +93,4 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-	public List<UnKnownCommodity> getUnCommOperators() {
-		return unCommOperators;
-	}
-
-	public void setUnCommOperators(List<UnKnownCommodity> unCommOperators) {
-		this.unCommOperators = unCommOperators;
-	}
-
-	public List<Commodity> getCommOperators() {
-		return commOperators;
-	}
-
-	public void setCommOperators(List<Commodity> commOperators) {
-		this.commOperators = commOperators;
-	}
-
 }

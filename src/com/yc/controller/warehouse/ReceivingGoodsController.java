@@ -28,7 +28,7 @@ import com.yc.entity.ImagePath;
 import com.yc.entity.OrderForm;
 import com.yc.entity.StoreRoom;
 import com.yc.entity.UnKnownCommodity;
-import com.yc.entity.user.User;
+import com.yc.entity.user.Personnel;
 import com.yc.service.ICommodityService;
 import com.yc.service.IOrderFormService;
 import com.yc.service.IStoreRoomService;
@@ -40,6 +40,7 @@ import com.yc.service.impl.ImagePathService;
 @RequestMapping("/warehouse")
 public class ReceivingGoodsController {
 
+	@SuppressWarnings("unused")
 	private static final Logger LOG = Logger.getLogger(ReceivingGoodsController.class);
 	@Autowired
 	IUnKnownCommodityService unKnownCommService;
@@ -82,13 +83,13 @@ public class ReceivingGoodsController {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("code") != null) {
 			UnKnownCommodity unKnown = unKnownCommService.findById(Integer.parseInt(session.getAttribute("code").toString()));
-			unknownComm.setOperator((User) session.getAttribute("loginUser"));
+			unknownComm.setOperator((Personnel) session.getAttribute("loginUser"));
 			BeanUtils.copyProperties(unknownComm, unKnown);
 			unKnownCommService.update(unKnown);
 			session.removeAttribute("code");
 			return new ModelAndView("warehouse/receiving", null);
 		} else {
-			unknownComm.setOperator((User) session.getAttribute("loginUser"));
+			unknownComm.setOperator((Personnel) session.getAttribute("loginUser"));
 			unKnownCommService.save(unknownComm);
 			return new ModelAndView("warehouse/receiving", null);
 		}
@@ -147,7 +148,7 @@ public class ReceivingGoodsController {
 			for (Commodity commod : orderForm.getCommodities()) {
 				if (commod.getTransNumForTaobao().equals(commodity.getTransNumForTaobao()) && commod.getTpek().equals(commodity.getTpek()) && commod.getCommItem().equals(commodity.getCommItem())) {
 					commod.setStatus(OrderStatus.senToWarehouse);
-					commod.setStoreOperator((User)request.getSession().getAttribute("loginUser"));
+					commod.setStoreOperator((Personnel)request.getSession().getAttribute("loginUser"));
 					Commodity comm = commodityService.update(commod);
 					StoreRoom room = comm.getStoreRoom();
 					room.setInStoreRoomDate((new SimpleDateFormat("yyyy-MM-dd")).format(new Date()));

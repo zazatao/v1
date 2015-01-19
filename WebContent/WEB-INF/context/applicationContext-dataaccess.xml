@@ -24,8 +24,8 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url"
 			value="jdbc:mysql://localhost:3306/zazatao?autoReconnect=true&amp;characterEncoding=utf-8" />
-		<property name="username" value="root" />
-		<property name="password" value="1896" />
+		<property name="username" value="yc" />
+		<property name="password" value="123456" />
 		<property name="maxIdle" value="5" />
 		<property name="maxActive" value="20" />
 		<property name="minIdle" value="5" />
