@@ -93,7 +93,7 @@ th {
 		</div>
 		<div class="form-group">
 			<label for="inputEmail3" class="col-sm-2 control-label">
-				<font style="font-size: 18px;">邮箱</font></label>
+				<font style="font-size: 18px;">状态</font></label>
 			<div class="col-sm-8">
 				<input type="text" name="status" class="form-control" id="inputEmail3" value="${commodity.status }">
 			</div>

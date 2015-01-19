@@ -94,7 +94,7 @@ th {
 			<label class="col-md-3 control-label">买方</label>
 			<div class="col-md-6">
 				<input type="text" class="form-control" name=""
-					placeholder="手机号、座机号" value="${user.userName }" readonly="readonly">
+					placeholder="手机号、座机号" value="${user.userName }">
 			</div>
 		</div>
 		<div class="form-group">
@@ -156,8 +156,17 @@ th {
 		<div class="form-group">
 			<label class="col-md-3 control-label">状态</label>
 			<div class="col-md-6">
+			<select class="form-control input-sm" name="categ_id"
+				id="byStatus">
+				<option value="${commodity.status }" 
+					<c:if test="${commodity.status  ==  'delivery' }">
+						selected='selected'
+					</c:if>
+				>${commodity.status}
+				</option>
+			</select>	
 				<input type="text" class="form-control" name="status"
-					placeholder="手机号、座机号">
+					placeholder="手机号、座机号" value="${commodity.status}">
 			</div>
 		</div>
 		<div class="form-group">
