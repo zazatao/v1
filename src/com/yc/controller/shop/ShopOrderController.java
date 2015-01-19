@@ -21,8 +21,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.yc.entity.Commodity;
 import com.yc.entity.ImagePath;
 import com.yc.entity.OrderStatus;
+import com.yc.entity.user.User;
 import com.yc.service.ICommodityService;
 import com.yc.service.IImagePathService;
+import com.yc.service.IUserService;
+import com.yc.service.impl.UserService;
 
 //商店订单
 @Controller
@@ -38,9 +41,16 @@ public class ShopOrderController {
 	@Autowired
 	IImagePathService imagePathService;
 	
+	@Autowired
+	IUserService userService;
+	
     @RequestMapping(value = "shopOrder", method = RequestMethod.GET)
     public ModelAndView shopOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	List<Commodity> list = commodityService.getAll();
+//    	for (Commodity commodity : list) {
+//    		System.out.println("commodity.getStoreOperator().getEmail()==="+commodity.getStoreOperator().getEmail());;
+//    		System.out.println("commodity.getOrderNumber().getOrderUser().getEmail()==="+commodity.getOrderNumber().getOrderUser().getEmail());;
+//		}
     	ModelMap mode = new ModelMap();
     	mode.put("list", list);
         return new ModelAndView("shop/shopOrder", mode);
@@ -104,12 +114,10 @@ public class ShopOrderController {
     public ModelAndView deleteShopOrder(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	Commodity comm =  commodityService.findById(id);
     	List<ImagePath> comms = comm.getImagePaths();
-    	if(comm.getImagePaths() == null) {
-    		boolean isok = imagePathService.deleteByComm(id);
-    		if (isok) {
-    			commodityService.delete(id);
-    		}
-    	}
+		boolean isok = imagePathService.deleteByComm(id);
+		if (isok != true) {
+			commodityService.delete(id);
+		} 
     	return shopOrder(request, response);
     }
     
@@ -119,5 +127,58 @@ public class ShopOrderController {
     	ModelMap mode = new ModelMap();
     	mode.put("commodity", comm);
     	return new ModelAndView("shop/updateShopOrder", mode);
+    }
+    
+    @RequestMapping(value = "editShopOrder", method = RequestMethod.POST)
+    public String editShopOrder(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	Commodity comm =  commodityService.findById(id); 
+    	Integer transNumForTaobao=Integer.parseInt(request.getParameter("transNumForTaobao"));
+		comm.setTransNumForTaobao(transNumForTaobao);
+		User u =  userService.findById(comm.getStoreOperator().getId()); 
+		String phone = request.getParameter("phone");
+		u.setPhone(phone);
+		String email = request.getParameter("email");
+		u.setEmail(email);
+		u = userService.update(u);
+		comm.setStoreOperator(u);
+		comm  = commodityService.update(comm);
+    	return "redirect:/shop/shopOrder";
+    }
+    
+    @RequestMapping(value = "toAddShopOrder", method = RequestMethod.GET)
+    public ModelAndView toAddShopOrder(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	request.getSession().getAttribute("loginUser");
+    	ModelMap mode = new ModelMap();
+    	mode.put("user", request.getSession().getAttribute("loginUser"));
+    	return new ModelAndView("shop/addShopOrder",mode);
+    }
+    
+	@RequestMapping(value = "addShopOrder", method = RequestMethod.POST)
+    public ModelAndView addShopOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Commodity c = new Commodity();
+		User u = new User();
+		String commItem = request.getParameter("commItem");
+		c.setCommItem(commItem);
+		Integer transNumForTaobao = Integer.parseInt(request.getParameter("transNumForTaobao"));
+		c.setTransNumForTaobao(transNumForTaobao);
+		String userName = request.getParameter("userName");
+		u.setUserName(userName);
+		String email = request.getParameter("email");
+		u.setEmail(email);
+		String phone = request.getParameter("phone");
+		u.setPhone(phone);
+		String tpek = request.getParameter("tpek");
+		c.setTpek(tpek);
+		Integer quantity = Integer.parseInt(request.getParameter("quantity"));
+		c.setQuantity(quantity);
+		Float money = Float.parseFloat(request.getParameter("money"));
+		c.setMoney(money);
+		String currency = request.getParameter("currency");
+		c.setCurrency(currency);
+		String status = request.getParameter("status");
+		userService.save(u);
+		c.setStoreOperator(u);
+		commodityService.save(c);
+    	return shopOrder(request, response);
     }
 }
