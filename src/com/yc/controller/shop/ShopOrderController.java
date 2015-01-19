@@ -21,10 +21,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.yc.entity.Commodity;
 import com.yc.entity.ImagePath;
 import com.yc.entity.OrderStatus;
+import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
 import com.yc.service.ICommodityService;
 import com.yc.service.IImagePathService;
+import com.yc.service.IPersonnelService;
 import com.yc.service.IUserService;
+import com.yc.service.impl.PersonnelService;
 import com.yc.service.impl.UserService;
 
 //商店订单
@@ -43,6 +46,9 @@ public class ShopOrderController {
 	
 	@Autowired
 	IUserService userService;
+	
+	@Autowired
+	IPersonnelService personnelService;
 	
     @RequestMapping(value = "shopOrder", method = RequestMethod.GET)
     public ModelAndView shopOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -134,12 +140,12 @@ public class ShopOrderController {
     	Commodity comm =  commodityService.findById(id); 
     	Integer transNumForTaobao=Integer.parseInt(request.getParameter("transNumForTaobao"));
 		comm.setTransNumForTaobao(transNumForTaobao);
-		User u =  userService.findById(comm.getStoreOperator().getId()); 
+		Personnel u =  personnelService.findById(comm.getStoreOperator().getId()); 
 		String phone = request.getParameter("phone");
 		u.setPhone(phone);
 		String email = request.getParameter("email");
 		u.setEmail(email);
-		u = userService.update(u);
+		u = personnelService.update(u);
 		comm.setStoreOperator(u);
 		comm  = commodityService.update(comm);
     	return "redirect:/shop/shopOrder";
@@ -156,7 +162,7 @@ public class ShopOrderController {
 	@RequestMapping(value = "addShopOrder", method = RequestMethod.POST)
     public ModelAndView addShopOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Commodity c = new Commodity();
-		User u = new User();
+		Personnel u = new Personnel();
 		String commItem = request.getParameter("commItem");
 		c.setCommItem(commItem);
 		Integer transNumForTaobao = Integer.parseInt(request.getParameter("transNumForTaobao"));
@@ -176,7 +182,7 @@ public class ShopOrderController {
 		String currency = request.getParameter("currency");
 		c.setCurrency(currency);
 		String status = request.getParameter("status");
-		userService.save(u);
+		personnelService.save(u);
 		c.setStoreOperator(u);
 		commodityService.save(c);
     	return shopOrder(request, response);
