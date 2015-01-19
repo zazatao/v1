@@ -18,4 +18,9 @@ public class PersonnelService extends GenericService<Personnel> implements IPers
 		return personnelDao;
 	}
 
+	@Override
+	public Personnel getUser(String name) {
+		return personnelDao.getFirstRecord("loginName", name);
+	}
+
 }

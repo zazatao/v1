@@ -33,7 +33,7 @@
 								<font color="red">用户名或密码错误，请重新输入您的登陆信息</font>
 							</c:if>
 						</p>
-						<form class="form-horizontal" action="user/login" method="POST">
+						<form class="form-horizontal" action="personnel/login" method="POST">
 							<div class="form-group">
 								<label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
 								<div class="col-sm-10">
@@ -55,7 +55,7 @@
 						</form>
 						<script type="text/javascript">
 							function regist() {
-								window.location.href = "user/regist";
+								window.location.href = "personnel/regist";
 							}
 						</script>
 					</div>

@@ -63,7 +63,7 @@
 				<div class="row clearfix">
 					<div class="col-md-3 column"></div>
 					<div class="col-md-6 column">
-						<form class="form-horizontal" action="../user/regist"
+						<form class="form-horizontal" action="../personnel/regist"
 							method="POST">
 							<div class="form-group" style="text-align: center;">
 								<label><font style="font-size: 40px;">用户注册</font> </label> <br>
