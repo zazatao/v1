@@ -25,7 +25,6 @@ import com.yc.entity.user.User;
 import com.yc.service.ICommodityService;
 import com.yc.service.IImagePathService;
 import com.yc.service.IUserService;
-import com.yc.service.impl.UserService;
 
 //商店订单
 @Controller
@@ -150,6 +149,8 @@ public class ShopOrderController {
     	request.getSession().getAttribute("loginUser");
     	ModelMap mode = new ModelMap();
     	mode.put("user", request.getSession().getAttribute("loginUser"));
+    	mode.put("commodity", commodityService.getAllByStatus());
+    	System.out.println("commodityService.getAll()_+_+_+_+_+_+_+_+:" + commodityService.getAll());
     	return new ModelAndView("shop/addShopOrder",mode);
     }
     
@@ -176,6 +177,7 @@ public class ShopOrderController {
 		String currency = request.getParameter("currency");
 		c.setCurrency(currency);
 		String status = request.getParameter("status");
+		c.setStatus(OrderStatus.valueOf(status));
 		userService.save(u);
 		c.setStoreOperator(u);
 		commodityService.save(c);

@@ -42,7 +42,7 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 
 	@Override
 	public List<Commodity> getAllByStatus() {
-		String hql = " from Commodity c where c.status int ('packing')";
+		String hql = " from Commodity c where c.status in ('packing')";
 		return commodityDao.find(hql, null, null);
 	}
 
