@@ -20,15 +20,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Commodity;
 import com.yc.entity.ImagePath;
+import com.yc.entity.OrderForm;
 import com.yc.entity.OrderStatus;
 import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
 import com.yc.service.ICommodityService;
 import com.yc.service.IImagePathService;
+import com.yc.service.IOrderFormService;
 import com.yc.service.IPersonnelService;
 import com.yc.service.IUserService;
-import com.yc.service.impl.PersonnelService;
-import com.yc.service.impl.UserService;
 
 //鍟嗗簵璁㈠崟
 @Controller
@@ -50,13 +50,12 @@ public class ShopOrderController {
 	@Autowired
 	IPersonnelService personnelService;
 	
+	@Autowired
+	IOrderFormService orderFormService;
+	
     @RequestMapping(value = "shopOrder", method = RequestMethod.GET)
     public ModelAndView shopOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	List<Commodity> list = commodityService.getAll();
-//    	for (Commodity commodity : list) {
-//    		System.out.println("commodity.getStoreOperator().getEmail()==="+commodity.getStoreOperator().getEmail());;
-//    		System.out.println("commodity.getOrderNumber().getOrderUser().getEmail()==="+commodity.getOrderNumber().getOrderUser().getEmail());;
-//		}
     	ModelMap mode = new ModelMap();
     	mode.put("list", list);
         return new ModelAndView("shop/shopOrder", mode);
@@ -120,10 +119,14 @@ public class ShopOrderController {
     public ModelAndView deleteShopOrder(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	Commodity comm =  commodityService.findById(id);
     	List<ImagePath> comms = comm.getImagePaths();
-		boolean isok = imagePathService.deleteByComm(id);
-		if (isok != true) {
+    	if (comms.size()>0) {
+    		boolean isok = imagePathService.deleteByComm(id);
+    		if (isok != true) {
+    			commodityService.delete(id);
+    		}
+		}else{
 			commodityService.delete(id);
-		} 
+		}
     	return shopOrder(request, response);
     }
     
@@ -138,16 +141,20 @@ public class ShopOrderController {
     @RequestMapping(value = "editShopOrder", method = RequestMethod.POST)
     public String editShopOrder(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	Commodity comm =  commodityService.findById(id); 
-    	Integer transNumForTaobao=Integer.parseInt(request.getParameter("transNumForTaobao"));
-		comm.setTransNumForTaobao(transNumForTaobao);
-		Personnel u =  personnelService.findById(comm.getStoreOperator().getId()); 
+    	comm.setStatus(OrderStatus.valueOf(request.getParameter("formStatus")));
+    	OrderForm of = comm.getOrderNumber();
+		User u =  userService.findById(comm.getOrderNumber().getOrderUser().getId()); 
+		String user = request.getParameter("customer");
+		u.setUserName(user);
 		String phone = request.getParameter("phone");
 		u.setPhone(phone);
 		String email = request.getParameter("email");
 		u.setEmail(email);
-		u = personnelService.update(u);
-		comm.setStoreOperator(u);
-		comm  = commodityService.update(comm);
+		u = userService.update(u);
+		of.setOrderUser(u);
+		of = orderFormService.update(of);
+		comm.setOrderNumber(of);
+		commodityService.update(comm);
     	return "redirect:/shop/shopOrder";
     }
     
@@ -155,22 +162,25 @@ public class ShopOrderController {
     public ModelAndView toAddShopOrder(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	request.getSession().getAttribute("loginUser");
     	ModelMap mode = new ModelMap();
-    	mode.put("user", request.getSession().getAttribute("loginUser"));
-    	List<Commodity> c = commodityService.getAll();
-    	mode.put("commodity", commodityService.getAll());
+    	mode.put("personel", request.getSession().getAttribute("loginUser"));
     	return new ModelAndView("shop/addShopOrder",mode);
     }
     
 	@RequestMapping(value = "addShopOrder", method = RequestMethod.POST)
     public ModelAndView addShopOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Commodity c = new Commodity();
-		Personnel u = new Personnel();
+		OrderForm of = new OrderForm();
+		User u = new User();
+		Personnel person = new Personnel();
+		c.setStatus(OrderStatus.valueOf(request.getParameter("formStatus")));
 		String commItem = request.getParameter("commItem");
 		c.setCommItem(commItem);
 		Integer transNumForTaobao = Integer.parseInt(request.getParameter("transNumForTaobao"));
 		c.setTransNumForTaobao(transNumForTaobao);
-		String userName = request.getParameter("userName");
-		u.setUserName(userName);
+		String user = request.getParameter("user");
+		u.setUserName(user);
+		String personnel = request.getParameter("personnel");
+		person.setUserName(personnel);
 		String email = request.getParameter("email");
 		u.setEmail(email);
 		String phone = request.getParameter("phone");
@@ -183,13 +193,12 @@ public class ShopOrderController {
 		c.setMoney(money);
 		String currency = request.getParameter("currency");
 		c.setCurrency(currency);
-		Integer commodityID = Integer.parseInt(request.getParameter("commodityID"));
-		Commodity comm =  commodityService.findById(commodityID); 
-		System.out.println("comm.getStatus()*()*()&&^&%^$^:" + comm.getStatus());
-		c.setStatus(comm.getStatus());
-//		userService.save(u);
-		personnelService.save(u);
-		c.setStoreOperator(u);
+		userService.save(u);
+		orderFormService.save(of);
+		personnelService.save(person);
+		of.setOrderUser(u);
+		c.setOrderNumber(of);
+		c.setStoreOperator(person);
 		commodityService.save(c);
     	return shopOrder(request, response);
     }

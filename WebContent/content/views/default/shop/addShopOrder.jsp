@@ -60,117 +60,99 @@ th {
 	</div>
 	
 	<form action="./addShopOrder" method="POST" class="form-horizontal" role="from">
-		<!-- 
-		<div class="form-group">
-			<label class="col-md-3 control-label">登录名</label>
-			<div class="col-md-6">
-				<input type="text" name="manager.lname" placeholder="英文、数字组成。6-12位"
-					class="form-control" />
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-md-3 control-label">密码</label>
-			<div class="col-md-6">
-				<input type="password" class="form-control" name="manager.pwd"
-					placeholder="4-20位">
-			</div>
-		</div>
-		 -->
 		<div class="form-group">
 			<label class="col-md-3 control-label">货号(淘宝ID)</label>
 			<div class="col-md-6">
-				<input type="text" class="form-control" name="transNumForTaobao"
-					placeholder="手机号、座机号">
+				<input type="text" class="form-control" name="transNumForTaobao">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-md-3 control-label">货号</label>
 			<div class="col-md-6">
-				<input type="text" class="form-control" name="commItem"
-					placeholder="手机号、座机号">
+				<input type="text" class="form-control" name="commItem">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-md-3 control-label">买方</label>
 			<div class="col-md-6">
-				<input type="text" class="form-control" name=""
-					placeholder="手机号、座机号" value="${user.userName }">
+				<input type="text" class="form-control" name="user">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-md-3 control-label">E-mail</label>
 			<div class="col-md-6">
-				<input type="text" class="form-control" name="email"
-					placeholder="手机号、座机号">
+				<input type="text" class="form-control" name="email">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-md-3 control-label">电话</label>
 			<div class="col-md-6">
-				<input type="text" class="form-control" name="phone"
-					placeholder="手机号、座机号">
+				<input type="text" class="form-control" name="phone">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-md-3 control-label">追踪</label>
 			<div class="col-md-6">
-				<input type="text" class="form-control" name="tpek"
-					placeholder="手机号、座机号">
+				<input type="text" class="form-control" name="tpek">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-md-3 control-label">数量</label>
 			<div class="col-md-6">
-				<input type="text" class="form-control" name="quantity"
-					placeholder="手机号、座机号">
+				<input type="text" class="form-control" name="quantity">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-md-3 control-label">支付金额</label>
 			<div class="col-md-6">
-				<input type="text" class="form-control" name="money"
-					placeholder="手机号、座机号">
+				<input type="text" class="form-control" name="money">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-md-3 control-label">交易金额</label>
 			<div class="col-md-6">
-				<input type="text" class="form-control" name="money"
-					placeholder="手机号、座机号">
+				<input type="text" class="form-control" name="money">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-md-3 control-label">币种</label>
 			<div class="col-md-6">
-				<input type="text" class="form-control" name="currency"
-					placeholder="手机号、座机号">
+				<input type="text" class="form-control" name="currency">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-md-3 control-label">包裹</label>
 			<div class="col-md-6">
-				<input type="text" class="form-control" name="transNumForTaobao"
-					placeholder="手机号、座机号">
+				<input type="text" class="form-control" name="transNumForTaobao">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-md-3 control-label">状态</label>
 			<div class="col-md-6">
-			<select class="form-control input-sm" name="commodityID" id="byStatus">
-				<c:forEach items="${commodity }" var="comm">
-					<option value="${comm.commodityID }" 
-						<c:if test="${comm.status == 'delivery' }">
-							selected='selected' 
-						</c:if>
-					>
-					<c:if test="${comm.status == 'delivery' }">
-						舅舅家
-					</c:if>
-					<c:if test="${comm.status == 'marriage' }">
-						舅舅家1
-					</c:if>
-					</option>
-				</c:forEach>
+
+			<select class="form-control" name="formStatus" id="formStatus"
+				placeholder="状态">
+				<option value="">-----状态-----
+				<option value="unchanged" name = "unchanged">没有变化
+				<option value="refuse" name = "refuse">拒绝接受货物
+				<option value="lack" name = "lack">缺乏
+				<option value="inWarehouse" name = "inWarehouse">在仓库
+				<option value="inAuctionlose" name = "inAuctionlose">下拍
+				<option value="cancel" name = "cancel">取消
+				<option value="delivery" name = "delivery">交付
+				<option value="support" name = "support">支持
+				<option value="sendOut" name = "sendOut">派送
+				<option value="buyerNotPay" name = "buyerNotPay">买方没有支付
+				<option value="inCell" name = "inCell">在格子
+				<option value="lose" name = "lose">丢失
+				<option value="manualProcessing" name = "manualProcessing">手工加工
+				<option value="inForwarding" name = "inForwarding">在转发
+				<option value="senToWarehouse" name = "senToWarehouse">送货到仓库
+				<option value="packing" name = "packing">打包
+				<option value="paid" name = "paid">已付
+				<option value="apiProcessing" name = "apiProcessing">API处理
+				<option value="delete" name = "delete">删除
+				<option value="waitingForTracking" name = "waitingForTracking">等待的追踪
 			</select>	
 				
 			</div>
@@ -178,8 +160,8 @@ th {
 		<div class="form-group">
 			<label class="col-md-3 control-label">操作员</label>
 			<div class="col-md-6">
-				<input type="text" class="form-control" name="userName"
-					placeholder="手机号、座机号" value="${user.userName }" readonly="readonly">
+				<input type="text" class="form-control" name="personnel"
+					placeholder="手机号、座机号" value="${personel.userName }" readonly="readonly">
 			</div>
 		</div>
 		<div class="form-group">

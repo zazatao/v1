@@ -100,27 +100,27 @@ th {
 							<select class="form-control" name="formStatus" id="formStatus"
 								placeholder="状态">
 								<option value="">-----状态-----
-								<option value="unchanged">没有变化
-								<option value="refuse">拒绝接受货物
-								<option value="lack">缺乏
-								<option value="inWarehouse">在仓库
-								<option value="inAuctionlose">下拍
-								<option value="cancel">取消
-								<option value="delivery">交付
-								<option value="support">支持
-								<option value="sendOut">派送
-								<option value="buyerNotPay">买方没有支付
-								<option value="inCell">在格子
-								<option value="lose">丢失
-								<option value="manualProcessing">手工加工
-								<option value="inForwarding">在转发
-								<option value="senToWarehouse">送货到仓库
-								<option value="packing">打包
-								<option value="paid">已付
-								<option value="apiProcessing">API处理
-								<option value="delete">删除
-								<option value="waitingForTracking">等待的追踪
-							</select>
+								<option value="unchanged" name = "unchanged">没有变化
+								<option value="refuse" name = "refuse">拒绝接受货物
+								<option value="lack" name = "lack">缺乏
+								<option value="inWarehouse" name = "inWarehouse">在仓库
+								<option value="inAuctionlose" name = "inAuctionlose">下拍
+								<option value="cancel" name = "cancel">取消
+								<option value="delivery" name = "delivery">交付
+								<option value="support" name = "support">支持
+								<option value="sendOut" name = "sendOut">派送
+								<option value="buyerNotPay" name = "buyerNotPay">买方没有支付
+								<option value="inCell" name = "inCell">在格子
+								<option value="lose" name = "lose">丢失
+								<option value="manualProcessing" name = "manualProcessing">手工加工
+								<option value="inForwarding" name = "inForwarding">在转发
+								<option value="senToWarehouse" name = "senToWarehouse">送货到仓库
+								<option value="packing" name = "packing">打包
+								<option value="paid" name = "paid">已付
+								<option value="apiProcessing" name = "apiProcessing">API处理
+								<option value="delete" name = "delete">删除
+								<option value="waitingForTracking" name = "waitingForTracking">等待的追踪
+							</select>															
 						</div>
 						<div class="col-sm-1">
 							<input type="submit" value="搜索" class="btn btn-default">
@@ -154,9 +154,9 @@ th {
 							<tr class="success">
 								<td align="center">${commodity.orderNumber.orderFormID }</td>
 								<td>${commodity.transNumForTaobao }</td>
-								<td>${commodity.purchase.userName }</td>
-								<td>${commodity.storeOperator.email }</td>
-								<td>${commodity.storeOperator.phone }</td>
+								<td>${commodity.orderNumber.orderUser.userName }</td>
+								<td>${commodity.orderNumber.orderUser.email }</td>
+								<td>${commodity.orderNumber.orderUser.phone }</td>
 								<td>${commodity.tpek }</td>
 								<td>${commodity.quantity }</td>
 								<td>${commodity.money }</td>
@@ -166,12 +166,25 @@ th {
 								<td>${commodity.orderNumber.paymentDate }</td>
 								<td><c:choose>
 										<c:when test="${commodity.status =='unchanged'}">没有变化</c:when>
+										<c:when test="${commodity.status =='lack'}">缺乏</c:when>
+										<c:when test="${commodity.status =='inWarehouse'}">在仓库</c:when>
+										<c:when test="${commodity.status =='inAuctionlose'}">下拍</c:when>
+										<c:when test="${commodity.status =='cancel'}">取消</c:when>
+										<c:when test="${commodity.status =='delivery'}">交付</c:when>
+										<c:when test="${commodity.status =='support'}">支持</c:when>
+										<c:when test="${commodity.status =='sendOut'}">派送</c:when>
+										<c:when test="${commodity.status =='buyerNotPay'}">买方没有支付</c:when>
 										<c:when test="${commodity.status =='senToWarehouse'}">送往库房</c:when>
-										<c:when test="${commodity.status =='refuse'}">拒绝入库</c:when>
+										<c:when test="${commodity.status =='inCell'}">在格子</c:when>
 										<c:when test="${commodity.status =='lose'}">丢失</c:when>
-										<c:when test="${commodity.status =='inWarehouse'}">在库房中</c:when>
-										<c:when test="${commodity.status =='marriage'}">交易中</c:when>
-										<c:when test="${commodity.status =='delivery'}">交易中2</c:when>
+										<c:when test="${commodity.status =='manualProcessing'}">手工加工</c:when>
+										<c:when test="${commodity.status =='inForwarding'}">在转发</c:when>
+										<c:when test="${commodity.status =='senToWarehouse'}">送货到仓库</c:when>
+										<c:when test="${commodity.status =='packing'}">打包</c:when>
+										<c:when test="${commodity.status =='paid'}">已付</c:when>
+										<c:when test="${commodity.status =='apiProcessing'}">API处理</c:when>
+										<c:when test="${commodity.status =='delete'}">删除</c:when>
+										<c:when test="${commodity.status =='waitingForTracking'}">等待的追踪</c:when>
 									</c:choose>
 								</td>
 								<td>${commodity.orderNumber.packAge.packageCode }</td>
