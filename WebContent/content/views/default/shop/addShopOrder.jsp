@@ -156,8 +156,7 @@ th {
 		<div class="form-group">
 			<label class="col-md-3 control-label">状态</label>
 			<div class="col-md-6">
-			<select class="form-control input-sm" name="commodityID"
-				id="byStatus">
+			<select class="form-control input-sm" name="commodityID" id="byStatus">
 				<c:forEach items="${commodity }" var="comm">
 					<option value="${comm.commodityID }" 
 						<c:if test="${comm.status == 'delivery' }">
