@@ -60,7 +60,7 @@ th {
 			<label for="inputEmail3" class="col-sm-2 control-label"><a
 				class="frred">*</a><font style="font-size: 18px;">编号</font></label>
 			<div class="col-sm-8">
-				<input type="text" name="lac" class="form-control" id="inputEmail3" value="${commodity.commodityID }" readonly="readonly">
+				<input type="text" name="commodityID" class="form-control" id="inputEmail3" value="${commodity.commodityID }" readonly="readonly">
 			</div>
 		</div>
 		<div class="form-group">
@@ -74,28 +74,52 @@ th {
 			<label for="inputEmail3" class="col-sm-2 control-label"><a
 				class="frred">*</a><font style="font-size: 18px;">买方</font></label>
 			<div class="col-sm-8">
-				<input type="text" name="commItem" class="form-control" id="inputEmail3" value="${commodity.storeOperator.userName }" readonly="readonly">
+				<input type="text" name="customer" class="form-control" id="inputEmail3" value="${commodity.orderNumber.orderUser.userName }">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="inputEmail3" class="col-sm-2 control-label"><a
 				class="frred">*</a><font style="font-size: 18px;">电话</font></label>
 			<div class="col-sm-8">
-				<input type="text" name="phone" class="form-control" id="inputEmail3" value="${commodity.storeOperator.phone }">
+				<input type="text" name="phone" class="form-control" id="inputEmail3" value="${commodity.orderNumber.orderUser.phone }">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="inputEmail3" class="col-sm-2 control-label">
 				<font style="font-size: 18px;">邮箱</font></label>
 			<div class="col-sm-8">
-				<input type="text" name="email" class="form-control" id="inputEmail3" value="${commodity.storeOperator.email }">
+				<input type="text" name="email" class="form-control" id="inputEmail3" value="${commodity.orderNumber.orderUser.email }">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="inputEmail3" class="col-sm-2 control-label">
 				<font style="font-size: 18px;">状态</font></label>
 			<div class="col-sm-8">
-				<input type="text" name="status" class="form-control" id="inputEmail3" value="${commodity.status }">
+				<select class="form-control" name="formStatus" id="formStatus"
+					placeholder="状态">
+					<option value="">-----状态-----
+					<option value="unchanged" <c:if test="${commodity.status=='unchanged' }">selected</c:if>>没有变化
+					<option value="refuse" <c:if test="${commodity.status=='refuse' }">selected</c:if>>拒绝接受货物
+					<option value="lack" <c:if test="${commodity.status=='lack' }">selected</c:if>>缺乏
+					<option value="inWarehouse" <c:if test="${commodity.status=='inWarehouse' }">selected</c:if>>在仓库
+					<option value="inAuctionlose" <c:if test="${commodity.status=='inAuctionlose' }">selected</c:if>>下拍
+					<option value="cancel" <c:if test="${commodity.status=='cancel' }">selected</c:if>>取消
+					<option value="delivery" <c:if test="${commodity.status=='delivery' }">selected</c:if>>交付
+					<option value="support" <c:if test="${commodity.status=='support' }">selected</c:if>>支持
+					<option value="sendOut" <c:if test="${commodity.status=='sendOut' }">selected</c:if>>派送
+					<option value="buyerNotPay" <c:if test="${commodity.status=='buyerNotPay' }">selected</c:if>>买方没有支付
+					<option value="inCell" <c:if test="${commodity.status=='inCell' }">selected</c:if>>在格子
+					<option value="lose" <c:if test="${commodity.status=='lose' }">selected</c:if>>丢失
+					<option value="manualProcessing" <c:if test="${commodity.status=='manualProcessing' }">selected</c:if>>手工加工
+					<option value="inForwarding" <c:if test="${commodity.status=='inForwarding' }">selected</c:if>>在转发
+					<option value="senToWarehouse" <c:if test="${commodity.status=='senToWarehouse' }">selected</c:if>>送货到仓库
+					<option value="packing" <c:if test="${commodity.status=='packing' }">selected</c:if>>打包
+					<option value="paid" <c:if test="${commodity.status=='paid' }">selected</c:if>>已付
+					<option value="apiProcessing" <c:if test="${commodity.status=='apiProcessing' }">selected</c:if>>API处理
+					<option value="delete" <c:if test="${commodity.status=='delete' }">selected</c:if>>删除
+					<option value="waitingForTracking" <c:if test="${commodity.status=='waitingForTracking' }">selected</c:if>>等待的追踪
+				</select>
+			</div>
 			</div>
 		</div>
 		<div class="form-group">
