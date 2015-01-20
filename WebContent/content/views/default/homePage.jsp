@@ -23,10 +23,10 @@
 	src="./content/static/js/lib/jquery.min.js"></script>
 <script type="text/javascript"
 	src="./content/static/js/lib/bootstrap.min.js"></script>
-<script type="text/javascript" src="./content/static/js/lib/scripts.js"></script>
+<!-- <script type="text/javascript" src="./content/static/js/lib/scripts.js"></script> -->
 
-<script type="text/javascript"
-	src="./content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
+<!-- <script type="text/javascript" -->
+<!-- 	src="./content/static/js/echart/ie10-viewport-bug-workaround.js"></script> -->
 </head>
 <body>
 	<!-- Static navbar -->

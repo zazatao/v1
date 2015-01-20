@@ -30,7 +30,7 @@ import com.yc.service.IOrderFormService;
 import com.yc.service.IPersonnelService;
 import com.yc.service.IUserService;
 
-//商店订单
+//鍟嗗簵璁㈠崟
 @Controller
 @RequestMapping("/shop")
 public class ShopOrderController {
