@@ -119,10 +119,14 @@ public class ShopOrderController {
     public ModelAndView deleteShopOrder(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	Commodity comm =  commodityService.findById(id);
     	List<ImagePath> comms = comm.getImagePaths();
-		boolean isok = imagePathService.deleteByComm(id);
-		if (isok != true) {
+    	if (comms.size()>0) {
+    		boolean isok = imagePathService.deleteByComm(id);
+    		if (isok != true) {
+    			commodityService.delete(id);
+    		}
+		}else{
 			commodityService.delete(id);
-		} 
+		}
     	return shopOrder(request, response);
     }
     
@@ -189,10 +193,6 @@ public class ShopOrderController {
 		c.setMoney(money);
 		String currency = request.getParameter("currency");
 		c.setCurrency(currency);
-//		Integer commodityID = Integer.parseInt(request.getParameter("commodityID"));
-//		Commodity comm =  commodityService.findById(commodityID); 
-//		System.out.println("comm.getStatus()*()*()&&^&%^$^:" + comm.getStatus());
-//		c.setStatus(comm.getStatus());
 		userService.save(u);
 		orderFormService.save(of);
 		personnelService.save(person);
