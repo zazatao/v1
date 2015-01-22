@@ -52,7 +52,7 @@
 									<br>
 										<form action="enterStoreRoom" method="POST">
 											<div class="form-group">
-												<label for="inputEmail3" class="col-sm-2 control-label">tpek</label>
+												<label for="inputEmail3" class="col-sm-2 control-label">条形码</label>
 												<div class="col-sm-10">
 													<input type="text" name="tpek" class="form-control"><br>
 												</div>

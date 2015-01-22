@@ -118,13 +118,29 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 		paramete[7] = map.get("disposeStatus");
 		return commodityDao.find(hql.toString(), paramete, -1,-1);
 	}
-	
+
 	public List<Commodity> getAllByParameters(Map<String, Object> map) {
 		StringBuffer hql = new StringBuffer(" from Commodity c where (? is null or c.transNumForTaobao = ?) "
 				+ " and (? is null or c.purchase.userName like ?) and (? is null or c.tpek = ?) and (? is null or c.status = ?) "
-				+ " and  (? is null or c.orderNumber.packAge.packageCode = ?) and  (? is null or c.orderNumber.orderUser.userName like ?) "
-				+ " and (? is null or c.orderNumber.orderDate = ?) and  (? is null or c.orderNumber.paymentDate = ?) "); 
-		Object[] paramete =  new Object[16];
+				+ "  and  (? is null or c.orderNumber.orderUser.userName like ?) and (? is null or c.orderNumber.orderDate = ?) "
+				+ "  and  (? is null or c.orderNumber.paymentDate = ?) and  (? is null or c.orderNumber.orderFormID = ?)"
+				+ " and  (? is null or c.commItem = ?) "); 
+		Object[] paramete = null;
+		if (map.get("packageCode") == null) {
+			paramete =  new Object[18];
+			paramete = getParamete(paramete,map);
+			
+		}else {
+			hql.append(" and (? is null or c.orderNumber.packAge.packageCode = ?)");
+			paramete =  new Object[20];
+			paramete = getParamete(paramete,map);
+			paramete[18] = map.get("packageCode"); 
+			paramete[19] = map.get("packageCode"); 
+		}
+		return commodityDao.find(hql.toString(), paramete, -1, -1);
+	}
+
+	private Object[] getParamete(Object[] paramete, Map<String, Object> map) {
 		paramete[0] = map.get("transNumForTaobao");
 		paramete[1] = map.get("transNumForTaobao");
 		paramete[2] = map.get("operatorPurchase");
@@ -132,17 +148,17 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 		paramete[4] = map.get("tpek");
 		paramete[5] = map.get("tpek");
 		paramete[6] = map.get("formStatus");
-		paramete[7] = map.get("formStatus");
-		paramete[8] = map.get("packageCode"); 
-		paramete[9] = map.get("packageCode"); 
-		paramete[10] = map.get("userName"); 
-		paramete[11] = "%"+map.get("userName")+"%"; 
-		paramete[12] = map.get("orderDate"); 
-		paramete[13] = map.get("orderDate"); 
-		paramete[14] = map.get("paymentDate"); 
-		paramete[15] = map.get("paymentDate"); 
-		return commodityDao.find(hql.toString(), paramete, -1, -1);
+		paramete[7] = map.get("formStatus"); 
+		paramete[8] = map.get("userName"); 
+		paramete[9] = "%"+map.get("userName")+"%"; 
+		paramete[10] = map.get("orderDate"); 
+		paramete[11] = map.get("orderDate"); 
+		paramete[12] = map.get("paymentDate"); 
+		paramete[13] = map.get("paymentDate"); 
+		paramete[14] = map.get("orderNum"); 
+		paramete[15] = map.get("orderNum");  
+		paramete[16] = map.get("commItem"); 
+		paramete[17] = map.get("commItem");
+		return paramete;
 	}
-
-
 }

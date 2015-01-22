@@ -20,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.OrderForm;
 import com.yc.entity.OrderGroup;
-import com.yc.entity.OrderGroupStatus;
+import com.yc.entity.OrderStatus;
 import com.yc.service.IOrderFormService;
 import com.yc.service.IOrderGroupService;
 
@@ -69,7 +69,7 @@ public class OrderProcessController {
 		if (request.getParameter("orderStatus").trim().equals("")) {
 			map.put("orderStatus", null);
 		} else {
-			map.put("orderStatus", OrderGroupStatus.valueOf(request.getParameter("orderStatus")));
+			map.put("orderStatus", OrderStatus.valueOf(request.getParameter("orderStatus")));
 		}
 		if (request.getParameter("taskNumber").trim().equals("")) {
 			map.put("taskNumber", null);

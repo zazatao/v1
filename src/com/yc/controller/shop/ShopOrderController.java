@@ -23,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.yc.entity.Commodity;
 import com.yc.entity.ImagePath;
 import com.yc.entity.OrderForm;
-import com.yc.entity.OrderStatus;
+import com.yc.entity.CommoidityStatus;
 import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
 import com.yc.service.ICommodityService;
@@ -104,7 +104,7 @@ public class ShopOrderController {
 		if (request.getParameter("formStatus").trim().equals("")) {
 			map.put("formStatus", null);
 		}else{
-			map.put("formStatus", OrderStatus.valueOf(request.getParameter("formStatus")));
+			map.put("formStatus", CommoidityStatus.valueOf(request.getParameter("formStatus")));
 		}
 		List<Commodity> list = commodityService.getAllByParameters(map);
 		ModelMap mode = new ModelMap();
@@ -143,7 +143,7 @@ public class ShopOrderController {
     @RequestMapping(value = "editShopOrder", method = RequestMethod.POST)
     public String editShopOrder(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	Commodity comm =  commodityService.findById(id); 
-    	comm.setStatus(OrderStatus.valueOf(request.getParameter("formStatus")));
+    	comm.setStatus(CommoidityStatus.valueOf(request.getParameter("formStatus")));
     	OrderForm of = comm.getOrderNumber();
 		User u =  userService.findById(comm.getOrderNumber().getOrderUser().getId()); 
 		String user = request.getParameter("customer");
@@ -174,7 +174,7 @@ public class ShopOrderController {
 		OrderForm of = new OrderForm();
 		User u = new User();
 		Personnel person = new Personnel();
-		c.setStatus(OrderStatus.valueOf(request.getParameter("formStatus")));
+		c.setStatus(CommoidityStatus.valueOf(request.getParameter("formStatus")));
 		String commItem = request.getParameter("commItem");
 		c.setCommItem(commItem);
 		Integer transNumForTaobao = Integer.parseInt(request.getParameter("transNumForTaobao"));

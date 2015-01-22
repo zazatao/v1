@@ -69,10 +69,6 @@ public class Package {
 	@Enumerated(EnumType.STRING)
 	private Transit transit;//中转地
 	
-	@Column
-	@Enumerated(EnumType.STRING)
-	private OrderStatus status;// 状态
-	
 	@ManyToOne
 	@JoinColumn(name = "from_cargoGroup")
 	private CargoGroup cargoGroup;
@@ -103,14 +99,6 @@ public class Package {
 
 	public void setCargoGroup(CargoGroup cargoGroup) {
 		this.cargoGroup = cargoGroup;
-	}
-
-	public OrderStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(OrderStatus status) {
-		this.status = status;
 	}
 
 	public Float getTransportFee() {

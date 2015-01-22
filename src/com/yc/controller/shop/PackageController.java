@@ -21,9 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Commodity;
-import com.yc.entity.ImagePath;
 import com.yc.entity.OrderForm;
-import com.yc.entity.OrderStatus;
+import com.yc.entity.CommoidityStatus;
 import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
 import com.yc.entity.Package;
@@ -33,10 +32,6 @@ import com.yc.service.IOrderFormService;
 import com.yc.service.IPackageService;
 import com.yc.service.IPersonnelService;
 import com.yc.service.IUserService;
-import com.yc.service.impl.CommodityService;
-import com.yc.service.impl.ImagePathService;
-import com.yc.service.impl.OrderFormService;
-import com.yc.service.impl.UserService;
 
 //商店包裹
 @Controller
@@ -113,7 +108,7 @@ public class PackageController {
 		if (request.getParameter("formStatus").trim().equals("")) {
 			map.put("formStatus", null);
 		}else{
-			map.put("formStatus", OrderStatus.valueOf(request.getParameter("formStatus")));
+			map.put("formStatus", CommoidityStatus.valueOf(request.getParameter("formStatus")));
 		}
 		List<Package> list = packageService.getPackAgeByParameters(map);
 		ModelMap mode = new ModelMap();
