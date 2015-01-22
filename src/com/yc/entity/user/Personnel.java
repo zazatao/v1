@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import com.yc.entity.Commodity;
 import com.yc.entity.UnKnownCommodity;
 @Entity
-@DiscriminatorValue("personnel")
+@DiscriminatorValue("personnel")//工作人员
 public class Personnel {
 
 	@Id
