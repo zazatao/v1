@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>订单</title>
+<title>包裹</title>
 <link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
 <link href="../content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
@@ -51,9 +51,9 @@ th {
 	<div class="panel panel-default" style="padding: 0; margin-top: 32px;">
 		<div class="panel-heading">
 			<h3 class="panel-title">
-				<a href="./insertShopOrder" style="font-size: 18px;">商品</a> <span class="divider"><font
-					style="font-size: 18px;">/</font></span> <font style="font-size: 18px;">订单</font><a
-					href="#" style="font-size: 18px;"><span
+				<a href="./insertPackage" style="font-size: 18px;">商品</a> <span class="divider"><font
+					style="font-size: 18px;">/</font></span> <font style="font-size: 18px;">包裹</font><a
+					href="./toAddPackage" style="font-size: 18px;"><span
 					class="badge navbar-right">添加&nbsp;+</span></a>
 			</h3>
 		</div>
@@ -61,7 +61,7 @@ th {
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="span12">
-				<form class="form-horizontal" action="./searchShopOrder"
+				<form class="form-horizontal" action="./searchPackage"
 					method="POST">
 					<div class="form-group">
 						<div class="col-sm-1">
@@ -129,72 +129,51 @@ th {
 					<thead>
 						<tr>
 							<th>编号</th>
-							<th>货号(淘宝ID)</th>
-							<th>买方</th>
-							<th>E-mail</th>
-							<th>电话</th>
+							<th>组货</th>
 							<th>追踪</th>
-							<th>数量</th>
-							<th>支付金额</th>
-							<th>交易金额</th>
-							<th>币种</th>
 							<th>创建日期</th>
 							<th>付款日期</th>
+							<th>发货日期</th>
+							<th>地区</th>
+							<th>运输方式</th>
+							<th>实际用费(人民币)</th>
+							<th>订单成本</th>
 							<th>状态</th>
-							<th>包裹</th>
-							<th>完成订单个数</th>
 							<th>操作员</th>
 							<th></th>
 						</tr>
 					</thead>
-					<c:forEach var="commodity" items="${list }" varStatus="loop">
+					<c:forEach var="package" items="${list }" varStatus="loop">
 						<tbody>
 							<tr class="success">
-								<td align="center">${commodity.orderNumber.orderFormID }</td>
-								<td>${commodity.transNumForTaobao }</td>
-								<td>${commodity.orderNumber.orderUser.userName }</td>
-								<td>${commodity.orderNumber.orderUser.email }</td>
-								<td>${commodity.orderNumber.orderUser.phone }</td>
-								<td>${commodity.tpek }</td>
-								<td>${commodity.quantity }</td>
-								<td>${commodity.money }</td>
-								<td>${commodity.money }</td>
-								<td>${commodity.currency }</td>
-								<td>${commodity.orderNumber.orderDate }</td>
-								<td>${commodity.orderNumber.paymentDate }</td>
-								<td><c:choose>
+								<td align="center">${package.packageID }</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td align="center">
+									<c:choose>
+										<c:when test="${package.transport =='ems'}">EMS</c:when>
+										<c:when test="${package.transport =='sf'}">顺风</c:when>
+									</c:choose>
+								</td>
+								<td></td>
+								<td></td>
+								<td>
+									<c:choose>
 										<c:when test="${commodity.status =='unchanged'}">没有变化</c:when>
 										<c:when test="${commodity.status =='senToWarehouse'}">送往库房</c:when>
 										<c:when test="${commodity.status =='refuse'}">拒绝入库</c:when>
 										<c:when test="${commodity.status =='lose'}">丢失</c:when>
 										<c:when test="${commodity.status =='inWarehouse'}">在库房中</c:when>
 										<c:when test="${commodity.status =='marriage'}">交易中</c:when>
-									</c:choose></td>
-								<td>${commodity.orderNumber.packAge.packageCode }</td>
-								<td>${commodity.purchase.accomplishNum }</td>
-								<td>${commodity.purchase.userName }</td>
-								<td><button class="btn btn-default" onclick="updateShopOrder(${commodity.commodityID});">修改</button>&nbsp;&nbsp;
-									<button class="btn btn-default" onclick="deleteShopOrder(${commodity.commodityID});">删除</button></td>
-							</tr>
-							<tr>
-								<td rowspan="5" height="140px;" width="140px;"><c:if
-										test="${commodity.imagePaths[0].path !=null}">
-										<img height="140px;" width="140px;"
-											src="..${commodity.imagePaths[0].path}">
-									</c:if></td>
-								<td colspan="16">颜色：&nbsp;${commodity.color }&nbsp;&nbsp;&nbsp;&nbsp;尺码：&nbsp;${commodity.size }</td>
-							</tr>
-							<tr>
-								<td colspan="16">操作员：&nbsp;${commodity.storeOperator.userName }</td>
-							</tr>
-							<tr>
-								<td colspan="16">采购：&nbsp;${commodity.purchase.userName }</td>
-							</tr>
-							<tr>
-								<td colspan="16">重量：&nbsp;${commodity.weight }</td>
-							</tr>
-							<tr>
-								<td colspan="16">评论：&nbsp;${commodity.comment  }</td>
+									</c:choose>
+								</td>
+								<td>${package.storeOperator.userName}</td>
+								<td><button class="btn btn-default" onclick="updateShopOrder(${package.packageID});">修改</button>&nbsp;&nbsp;
+									<button class="btn btn-default" onclick="deleteShopOrder(${package.packageID});">删除</button></td>
 							</tr>
 						</tbody>
 					</c:forEach>

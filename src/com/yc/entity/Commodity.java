@@ -21,7 +21,7 @@ import com.yc.entity.user.User;
 
 @Entity
 @DiscriminatorValue("commodity")
-@JsonIgnoreProperties(value = { "storeOperator", "purchase", "storeRoom", "orderNumber", "imagePaths" })
+@JsonIgnoreProperties(value = { "storeOperator", "purchase", "storeRoom", "orderNumber", "imagePaths" ,})
 public class Commodity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -52,12 +52,7 @@ public class Commodity {
 	private String currency;//币种
 	@Column
 	private String comment;// 评论
-	@ManyToOne
-	@JoinColumn(name = "store_user")
-	private Personnel storeOperator;// 库房操作员
-	@ManyToOne
-	@JoinColumn(name = "purchase_user")
-	private Personnel purchase;// 采购员
+	
 	@Column
 	private String seller;//卖家
 	@Column
@@ -111,21 +106,6 @@ public class Commodity {
 		this.nameOfGoods = nameOfGoods;
 	}
 
-	public Personnel getStoreOperator() {
-		return storeOperator;
-	}
-
-	public void setStoreOperator(Personnel storeOperator) {
-		this.storeOperator = storeOperator;
-	}
-
-	public Personnel getPurchase() {
-		return purchase;
-	}
-
-	public void setPurchase(Personnel purchase) {
-		this.purchase = purchase;
-	}
 
 	public Float getPrice() {
 		return price;

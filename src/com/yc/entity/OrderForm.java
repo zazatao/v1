@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -59,6 +60,30 @@ public class OrderForm {
 	@Column
 	private String paymentDate;//付款日期
 	
+	@ManyToOne
+	@JoinColumn(name = "store_user")
+	private Personnel storeOperator;// 库房操作员
+	@ManyToOne
+	@JoinColumn(name = "purchase_user")
+	private Personnel purchase;// 采购员
+	
+	
+
+	public Personnel getStoreOperator() {
+		return storeOperator;
+	}
+
+	public void setStoreOperator(Personnel storeOperator) {
+		this.storeOperator = storeOperator;
+	}
+
+	public Personnel getPurchase() {
+		return purchase;
+	}
+
+	public void setPurchase(Personnel purchase) {
+		this.purchase = purchase;
+	}
 	public String getPaymentDate() {
 		return paymentDate;
 	}

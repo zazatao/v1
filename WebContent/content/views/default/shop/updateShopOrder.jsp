@@ -138,6 +138,9 @@ th {
 		function deleteShopOrder(num) {
 			location.href = './deleteShopOrder?id=' + num;
 		}
+		function cancel(num) {
+			location.href = './shopOrder?id=' + num;
+		}
 		function dateInfoxxx(obj) {
 			var date = obj;
 			$('#' + date).datetimepicker({

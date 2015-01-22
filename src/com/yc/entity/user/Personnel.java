@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.yc.entity.Commodity;
+import com.yc.entity.OrderForm;
 import com.yc.entity.UnKnownCommodity;
 @Entity
 @DiscriminatorValue("personnel")//工作人员
@@ -39,21 +40,13 @@ public class Personnel {
 	private Integer accomplishNum;
 	
 	@OneToMany(mappedBy = "storeOperator")
-    private List<Commodity> commOperators ;
+    private List<OrderForm> commOperators ;
 	
     @OneToMany(mappedBy = "operator")
     private List<UnKnownCommodity> unCommOperators ;
     
     @OneToMany(mappedBy = "purchase")
-    private List<Commodity> purchases ;
-
-	public List<Commodity> getCommOperators() {
-		return commOperators;
-	}
-
-	public void setCommOperators(List<Commodity> commOperators) {
-		this.commOperators = commOperators;
-	}
+    private List<OrderForm> purchases ;
 
 	public List<UnKnownCommodity> getUnCommOperators() {
 		return unCommOperators;
@@ -63,11 +56,19 @@ public class Personnel {
 		this.unCommOperators = unCommOperators;
 	}
 
-	public List<Commodity> getPurchases() {
+	public List<OrderForm> getCommOperators() {
+		return commOperators;
+	}
+
+	public void setCommOperators(List<OrderForm> commOperators) {
+		this.commOperators = commOperators;
+	}
+
+	public List<OrderForm> getPurchases() {
 		return purchases;
 	}
 
-	public void setPurchases(List<Commodity> purchases) {
+	public void setPurchases(List<OrderForm> purchases) {
 		this.purchases = purchases;
 	}
 

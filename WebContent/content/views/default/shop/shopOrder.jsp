@@ -192,7 +192,7 @@ th {
 								<td>${commodity.storeOperator.userName }</td>
 								<td><button class="btn btn-default" data-toggle="modal" data-target="#detailModal" onclick="updateShopOrder(${commodity.commodityID});">修改</button>&nbsp;&nbsp;
 									<button class="btn btn-default" id="del" onclick="deleteShopOrder(${commodity.commodityID});">删除</button></td>
-									<button class="btn btn-default" onclick="#" id="del">删除</button>
+<!-- 									<button class="btn btn-default" onclick="#" id="del">删除</button> -->
 							</tr>
 							<tr>
 								<td rowspan="5" height="140px;" width="140px;"><c:if

@@ -45,9 +45,7 @@ th {
 }
 </style>
 <body>
-
-	<!-- Static navbar -->
-	<jsp:include page="../common/navbar.jsp"></jsp:include>
+		<jsp:include page="../common/navbar.jsp"></jsp:include>
 	<div class="panel panel-default" style="padding: 0; margin-top: 32px;">
 		<div class="panel-heading">
 			<h3 class="panel-title">
@@ -59,108 +57,38 @@ th {
 		</div>
 	</div>
 	
-	<form action="./addShopOrder" method="POST" class="form-horizontal" role="from">
-		<div class="form-group">
-			<label class="col-md-3 control-label">货号(淘宝ID)</label>
-			<div class="col-md-6">
-				<input type="text" class="form-control" name="transNumForTaobao">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-md-3 control-label">货号</label>
-			<div class="col-md-6">
-				<input type="text" class="form-control" name="commItem">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-md-3 control-label">买方</label>
-			<div class="col-md-6">
-				<input type="text" class="form-control" name="user" value="${user.userName }" readonly="readonly">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-md-3 control-label">E-mail</label>
-			<div class="col-md-6">
-				<input type="text" class="form-control" name="email">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-md-3 control-label">电话</label>
-			<div class="col-md-6">
-				<input type="text" class="form-control" name="phone">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-md-3 control-label">追踪</label>
-			<div class="col-md-6">
-				<input type="text" class="form-control" name="tpek">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-md-3 control-label">数量</label>
-			<div class="col-md-6">
-				<input type="text" class="form-control" name="quantity">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-md-3 control-label">支付金额</label>
-			<div class="col-md-6">
-				<input type="text" class="form-control" name="money">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-md-3 control-label">交易金额</label>
-			<div class="col-md-6">
-				<input type="text" class="form-control" name="money">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-md-3 control-label">币种</label>
-			<div class="col-md-6">
-				<input type="text" class="form-control" name="currency">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-md-3 control-label">包裹</label>
-			<div class="col-md-6">
-				<input type="text" class="form-control" name="transNumForTaobao">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-md-3 control-label">状态</label>
-			<div class="col-md-6">
-
-			<select class="form-control" name="formStatus" id="formStatus"
-				placeholder="状态">
-				<option value="">-----状态-----
-				<option value="unchanged" name = "unchanged">没有变化
-				<option value="refuse" name = "refuse">拒绝接受货物
-				<option value="lack" name = "lack">缺乏
-				<option value="inWarehouse" name = "inWarehouse">在仓库
-				<option value="inAuctionlose" name = "inAuctionlose">下拍
-				<option value="cancel" name = "cancel">取消
-				<option value="delivery" name = "delivery">交付
-				<option value="support" name = "support">支持
-				<option value="sendOut" name = "sendOut">派送
-				<option value="buyerNotPay" name = "buyerNotPay">买方没有支付
-				<option value="inCell" name = "inCell">在格子
-				<option value="lose" name = "lose">丢失
-				<option value="manualProcessing" name = "manualProcessing">手工加工
-				<option value="inForwarding" name = "inForwarding">在转发
-				<option value="senToWarehouse" name = "senToWarehouse">送货到仓库
-				<option value="packing" name = "packing">打包
-				<option value="paid" name = "paid">已付
-				<option value="apiProcessing" name = "apiProcessing">API处理
-				<option value="delete" name = "delete">删除
-				<option value="waitingForTracking" name = "waitingForTracking">等待的追踪
-			</select>	
-			</div>
-		</div>
+	<form action="./addPackage" method="POST" class="form-horizontal" role="from">
 		<div class="form-group">
 			<label class="col-md-3 control-label">操作员</label>
 			<div class="col-md-6">
-				<input type="text" class="form-control" name="personnel"
-				 placeholder="手机号、座机号" value="${personel.userName }" readonly="readonly">
+				<input style="width: 400px;" type="text" class="form-control" name="personnel" value="${personel.userName }" readonly="readonly">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label">交通方式</label>
+			<div class="col-md-6">
+				<select style="width:400px;" name="traffic">
+					<option value="ky">空运</option>
+					<option value="ly">陆运</option>
+					<option value="sy">水运</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label">运输方式</label>
+			<div class="col-md-6">
+				<select style="width:400px;" name="transport">
+					<option value="ems">EMS</option>
+					<option value="yt">圆通</option>
+					<option value="sf">顺风</option>
+					<option value="yd">韵达</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label">订单编号</label>
+			<div class="col-md-6">
+				<textarea rows="2" cols="3"  style="width:400px;" class="form-control" name="orderFormID" ></textarea>
 			</div>
 		</div>
 		<div class="form-group">

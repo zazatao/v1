@@ -52,7 +52,7 @@
 					data-toggle="dropdown">商店 <span class="caret"></span></a>
 					<ul class="dropdown-menu menu-top" role="menu">
 						<li><a href="../shop/shopOrder">订单</a></li>
-						<li><a href="#">包裹</a></li>
+						<li><a href="../shop/package">包裹</a></li>
 						<li class="dropdown-submenu"><a href="#">财务</a>
 							<ul class="dropdown-menu">
 								<li><a href="#">操作</a></li>

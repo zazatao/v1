@@ -9,15 +9,17 @@ import javax.persistence.Id;
 
 
 @Entity
-@DiscriminatorValue("department")//职位
+@DiscriminatorValue("department")//部门
 public class Department {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;//部门ID
     
-    @Column (length=32)
+    @Column(length=32)
 	private String departmentname;//部门名称
+    
+    
 	public Integer getId() {
 		return id;
 	}

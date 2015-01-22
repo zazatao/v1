@@ -2,6 +2,8 @@
 package com.yc.controller.shop;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +32,7 @@ import com.yc.service.IOrderFormService;
 import com.yc.service.IPersonnelService;
 import com.yc.service.IUserService;
 
-//鍟嗗簵璁㈠崟
+//商店订单
 @Controller
 @RequestMapping("/shop")
 public class ShopOrderController {
@@ -116,7 +118,7 @@ public class ShopOrderController {
     }
     
     @RequestMapping(value = "deleteShopOrder", method = RequestMethod.GET)
-    public ModelAndView deleteShopOrder(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String deleteShopOrder(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	Commodity comm =  commodityService.findById(id);
     	List<ImagePath> comms = comm.getImagePaths();
     	if (comms.size()>0) {
@@ -127,7 +129,7 @@ public class ShopOrderController {
 		}else{
 			commodityService.delete(id);
 		}
-    	return shopOrder(request, response);
+    	return "redirect:/shop/shopOrder";
     }
     
     @RequestMapping(value = "updateShopOrder", method = RequestMethod.GET)
@@ -191,14 +193,16 @@ public class ShopOrderController {
 		c.setQuantity(quantity);
 		Float money = Float.parseFloat(request.getParameter("money"));
 		c.setMoney(money);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		of.setOrderDate(sdf.format(new Date()));
 		String currency = request.getParameter("currency");
 		c.setCurrency(currency);
+		of.setStoreOperator(person);
 		userService.save(u);
 		orderFormService.save(of);
 		personnelService.save(person);
 		of.setOrderUser(u);
 		c.setOrderNumber(of);
-		c.setStoreOperator(person);
 		commodityService.save(c);
     	return shopOrder(request, response);
     }
