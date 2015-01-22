@@ -20,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.yc.entity.CargoGroup;
 import com.yc.entity.Delivery;
 import com.yc.entity.OrderForm;
-import com.yc.entity.OrderStatus;
+import com.yc.entity.CommodityStatus;
 import com.yc.entity.Package;
 import com.yc.entity.Transit;
 import com.yc.service.ICargoGroupService;
@@ -114,7 +114,7 @@ public class CargoGroupController {
 		if (request.getParameter("formStatus").trim().equals("")) {
 			map.put("formStatus", null);
 		} else {
-			map.put("formStatus", OrderStatus.valueOf(request.getParameter("formStatus")));
+			map.put("formStatus", CommodityStatus.valueOf(request.getParameter("formStatus")));
 		}
 		if (request.getParameter("sendDate").trim().equals("")) {
 			map.put("sendDate", null);

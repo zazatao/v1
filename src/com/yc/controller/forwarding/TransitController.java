@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Delivery;
 import com.yc.entity.OrderForm;
-import com.yc.entity.OrderStatus;
+import com.yc.entity.CommodityStatus;
 import com.yc.entity.Package;
 import com.yc.service.IOrderFormService;
 import com.yc.service.IPackageService;
@@ -82,7 +82,7 @@ public class TransitController {
 		if (formStatus.trim().equals("")) {
 			map.put("formStatus", null);
 		}else{
-			map.put("formStatus", OrderStatus.valueOf(formStatus));
+			map.put("formStatus", CommodityStatus.valueOf(formStatus));
 		}
 		List<Package> list = packageService.getPackAgeByParameters(map);
 		request.getSession().setAttribute("packageMap", map);

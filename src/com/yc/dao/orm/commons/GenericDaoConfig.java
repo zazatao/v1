@@ -59,5 +59,9 @@ public class GenericDaoConfig {
 	public GenericDao<OrderGroup> getOrderGroupDao() {
 		return new GenericDaoSupport<OrderGroup>(OrderGroup.class);
 	}
-
+	@Bean
+	public GenericDao<Address> getAddressDao() {
+		return new GenericDaoSupport<Address>(Address.class);
+	}
+	
 }

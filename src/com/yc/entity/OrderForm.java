@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -14,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.yc.entity.user.User;
 
@@ -35,7 +35,8 @@ public class OrderForm {
 	@JoinColumn(name = "user_id")
 	private User orderUser;
 	
-	@Embedded
+	@OneToOne
+	@JoinColumn(name = "address_id")
 	private Address address;
 	
 	@Column

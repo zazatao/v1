@@ -17,7 +17,6 @@ import javax.persistence.OneToMany;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import com.yc.entity.user.Personnel;
-import com.yc.entity.user.User;
 
 @Entity
 @DiscriminatorValue("commodity")
@@ -31,9 +30,9 @@ public class Commodity {
 	@Column
 	private String commItem;// 货号
 	@Column
-	private String barcodes;// 条形码
+	private String barcodes;// 自己的条形码
 	@Column
-	private String tpek;	//追踪
+	private String tpek;	//卖家条形码
 	@Column
 	private String color;// 颜色
 	@Column
@@ -66,7 +65,7 @@ public class Commodity {
 	private String tradingCode;//交易码
 	@Column
 	@Enumerated(EnumType.STRING)
-	private OrderStatus status;// 状态
+	private CommodityStatus status;// 状态
 	@Column
 	@Enumerated(EnumType.STRING)
 	private DisposeStatus disposeStatus;// 订单处理状态
@@ -199,11 +198,11 @@ public class Commodity {
 		this.comment = comment;
 	}
 
-	public OrderStatus getStatus() {
+	public CommodityStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(OrderStatus status) {
+	public void setStatus(CommodityStatus status) {
 		this.status = status;
 	}
 

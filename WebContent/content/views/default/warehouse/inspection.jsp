@@ -25,6 +25,11 @@
 <script type="text/javascript"
 	src="../content/static/js/lib/jquery.min.js"></script>
 <script type="text/javascript"
+	src="../content/static/js/lib/strophe-custom-1.0.0.js"></script>
+<script type="text/javascript" src="../content/static/js/lib/json2.js"></script>
+<script type="text/javascript"
+	src="../content/static/js/lib/easemob.im-1.0.4.js"></script>
+<script type="text/javascript"
 	src="../content/static/js/lib/bootstrap.min.js"></script>
 <script type="text/javascript" src="./content/static/js/lib/scripts.js"></script>
 
@@ -38,6 +43,7 @@
 	src="../content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
 <script type="text/javascript"
 	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
+
 </head>
 <style type="text/css">
 th {
@@ -48,7 +54,7 @@ th {
 
 	<!-- Static navbar -->
 	<jsp:include page="../common/navbar.jsp"></jsp:include>
-	<div class="container-fluid"  style="padding:0;margin-top:32px;">
+	<div class="container-fluid" style="padding: 0; margin-top: 32px;">
 		<div class="row-fluid">
 			<div class="span12">
 				<ul class="breadcrumb">
@@ -106,7 +112,8 @@ th {
 								onclick="dateInfoxxx('inStoreRoomDate')">
 						</div>
 						<div class="col-sm-1">
-							<select class="form-control" name="formStatus" id="formStatus" placeholder="状态">
+							<select class="form-control" name="formStatus" id="formStatus"
+								placeholder="状态">
 								<option value="">-----状态-----
 								<option value="unchanged">没有变化
 								<option value="refuse">拒绝接受货物

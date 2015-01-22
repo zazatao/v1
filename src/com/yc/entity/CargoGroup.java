@@ -35,7 +35,7 @@ public class CargoGroup {
 	
 	@Column
 	@Enumerated(EnumType.STRING)
-	private OrderStatus status;// 状态
+	private CommodityStatus status;// 状态
 	
 	@Column
 	private String createDate;
@@ -124,11 +124,11 @@ public class CargoGroup {
 		this.delivery = delivery;
 	}
 
-	public OrderStatus getStatus() {
+	public CommodityStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(OrderStatus status) {
+	public void setStatus(CommodityStatus status) {
 		this.status = status;
 	}
 

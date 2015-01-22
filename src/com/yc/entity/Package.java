@@ -63,7 +63,7 @@ public class Package {
 	
 	@Column
 	@Enumerated(EnumType.STRING)
-	private OrderStatus status;// 状态
+	private CommodityStatus status;// 状态
 	
 	@ManyToOne
 	@JoinColumn(name = "from_cargoGroup")
@@ -93,11 +93,11 @@ public class Package {
 		this.cargoGroup = cargoGroup;
 	}
 
-	public OrderStatus getStatus() {
+	public CommodityStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(OrderStatus status) {
+	public void setStatus(CommodityStatus status) {
 		this.status = status;
 	}
 
