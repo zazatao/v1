@@ -69,6 +69,7 @@ public class GenericDaoConfig {
 	public GenericDao<Department> getDepartmentDao() {
 		return new GenericDaoSupport<Department>(Department.class);
 	}
+	@Bean
 	public GenericDao<Address> getAddressDao() {
 		return new GenericDaoSupport<Address>(Address.class);
 	}
