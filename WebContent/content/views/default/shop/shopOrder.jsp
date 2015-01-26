@@ -144,13 +144,13 @@ th {
 								<td align="center">${orderform.orderFormID }</td>
 								<td></td>
 								<td>${orderform.orderUser.userName }</td>
-								<td>${orderform.orderNumber.email }</td>
 								<td></td>
 								<td></td>
-								<td>${orderform.orderNumber.tpek }</td>
 								<td></td>
 								<td></td>
-								<td>${orderform.orderNumber.currency }</td>
+								<td></td>
+								<td></td>
+								<td></td>
 								<td>${orderform.orderDate }</td>
 								<td></td>
 								<td><c:choose>
