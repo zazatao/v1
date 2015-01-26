@@ -16,11 +16,9 @@ import javax.persistence.OneToMany;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-import com.yc.entity.user.Personnel;
-
 @Entity
 @DiscriminatorValue("commodity")
-@JsonIgnoreProperties(value = { "storeOperator", "purchase", "storeRoom", "orderNumber", "imagePaths" ,})
+@JsonIgnoreProperties(value = { "purchase", "storeRoom", "orderNumber", "imagePaths" ,})
 public class Commodity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -67,9 +65,11 @@ public class Commodity {
 	@ManyToOne
 	@JoinColumn(name = "storeRoom_id")
 	private StoreRoom storeRoom;
+	
 	@ManyToOne
 	@JoinColumn(name = "orderform_id")
 	private OrderForm orderNumber;			
+	
 	@OneToMany(mappedBy = "commodity")
 	private List<ImagePath> imagePaths;
 

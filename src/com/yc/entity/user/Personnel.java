@@ -37,7 +37,7 @@ public class Personnel {
 	private String phone;
 
 	@Column
-	private Integer accomplishNum;
+	private Integer accomplishNum;//完成订单数
 	
 	@OneToMany(mappedBy = "storeOperator")
     private List<OrderForm> commOperators ;

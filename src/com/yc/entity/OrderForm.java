@@ -22,7 +22,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @Entity
 @DiscriminatorValue("orderform")
-@JsonIgnoreProperties(value = { "orderUser", "commodities", "address","packAge" })
+@JsonIgnoreProperties(value = { "orderUser", "orderNumber", "address","packAge","imagePaths" ,"storeOperator","commodit", })
 public class OrderForm {
 
 	@Id
@@ -30,7 +30,7 @@ public class OrderForm {
 	private Integer orderFormID;
 
 	@OneToMany(mappedBy = "orderNumber")
-	private List<Commodity> commodities;
+	private List<Commodity> orderNumber;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
@@ -46,7 +46,7 @@ public class OrderForm {
 	
 	@Column
 	@Enumerated(EnumType.STRING)
-	private CommoidityStatus status;
+	private OrderStatus orderstatus;
 
 	@Column
 	private String changeStatusDate;// 状态改变日期
@@ -68,16 +68,21 @@ public class OrderForm {
 	@ManyToOne
 	@JoinColumn(name = "store_user")
 	private Personnel storeOperator;// 库房操作员
+	
 	@ManyToOne
 	@JoinColumn(name = "purchase_user")
 	private Personnel purchase;// 采购员
+	
+	@OneToMany(mappedBy = "orderform")
+	private List<ImagePath> imagePaths;
 
-	public CommoidityStatus getStatus() {
-		return status;
+
+	public OrderStatus getOrderstatus() {
+		return orderstatus;
 	}
 
-	public void setStatus(CommoidityStatus status) {
-		this.status = status;
+	public void setOrderstatus(OrderStatus orderstatus) {
+		this.orderstatus = orderstatus;
 	}
 
 	public Personnel getStoreOperator() {
@@ -160,12 +165,12 @@ public class OrderForm {
 		this.orderFormID = orderFormID;
 	}
 
-	public List<Commodity> getCommodities() {
-		return commodities;
+	public List<Commodity> getOrderNumber() {
+		return orderNumber;
 	}
 
-	public void setCommodities(List<Commodity> commodities) {
-		this.commodities = commodities;
+	public void setOrderNumber(List<Commodity> orderNumber) {
+		this.orderNumber = orderNumber;
 	}
 
 	public User getOrderUser() {
@@ -174,6 +179,14 @@ public class OrderForm {
 
 	public void setOrderUser(User orderUser) {
 		this.orderUser = orderUser;
+	}
+
+	public List<ImagePath> getImagePaths() {
+		return imagePaths;
+	}
+
+	public void setImagePaths(List<ImagePath> imagePaths) {
+		this.imagePaths = imagePaths;
 	}
 
 }
