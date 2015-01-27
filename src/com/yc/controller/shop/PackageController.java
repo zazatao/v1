@@ -75,36 +75,6 @@ public class PackageController {
 		}else{
 			map.put("packageCode", request.getParameter("packageCode"));
 		}
-		if (request.getParameter("transNumForTaobao").trim().equals("")) {
-			map.put("transNumForTaobao", null);
-		} else {
-			map.put("transNumForTaobao", Integer.parseInt(request.getParameter("transNumForTaobao")));
-		}
-		if (request.getParameter("userName").trim().equals("")) {
-			map.put("userName", null);
-		}else{
-			map.put("userName", request.getParameter("userName"));
-		}
-		if (request.getParameter("transport").trim().equals("")) {
-			map.put("transport", null);
-		}else{
-			map.put("transport", request.getParameter("transport"));
-		}
-		if (request.getParameter("orderDate").trim().equals("")) {
-			map.put("orderDate", null);
-		}else{
-			map.put("orderDate", request.getParameter("orderDate"));
-		}
-		if (request.getParameter("paymentDate").trim().equals("")) {
-			map.put("paymentDate", null);
-		}else{
-			map.put("paymentDate", request.getParameter("paymentDate"));
-		}
-		if (request.getParameter("tpek").trim().equals("")) {
-			map.put("tpek", null);
-		}else{
-			map.put("tpek", request.getParameter("tpek"));
-		}
 		if (request.getParameter("formStatus").trim().equals("")) {
 			map.put("formStatus", null);
 		}else{
