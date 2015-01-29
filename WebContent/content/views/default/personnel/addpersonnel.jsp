@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>订单</title>
+<title>员工</title>
 <link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
 <link href="../content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
@@ -48,87 +48,69 @@ th {
 
 	<!-- Static navbar -->
 	<jsp:include page="../common/navbar.jsp"></jsp:include>
-	<br>
-	<br>
-	<br>
-	<form class="form-horizontal" action="./editShopOrder?id=${orderform.orderFormID}" method="POST">
-		<div class="form-group" style="text-align: center;">
-			<label><font style="font-size: 40px;">订单修改</font> </label> <br>
-			<br>
+	<div class="panel panel-default" style="padding: 0; margin-top: 32px;">
+		<div class="panel-heading">
+			<h3 class="panel-title">
+				<a href="#" style="font-size: 18px;">员工注册</a> <span class="divider"><font
+					style="font-size: 18px;"></font></span>
+					<a href="#" style="font-size: 18px;" id="add">
+					<span class="badge navbar-right">添加&nbsp;+</span></a>
+			</h3>
 		</div>
+	</div>
+	
+	<form action="./addPersonnel" method="POST" class="form-horizontal" role="from">
 		<div class="form-group">
-			<label for="inputEmail3" class="col-sm-2 control-label"><a
-				class="frred">*</a><font style="font-size: 18px;">编号</font></label>
-			<div class="col-sm-8">
-				<input type="text" name="orderFormID" class="form-control" id="inputEmail3" value="${orderform.orderFormID}" readonly="readonly">
+			<label class="col-md-3 control-label">用户名</label>
+			<div class="col-md-6">
+				<input type="text" class="form-control" name="name" style="width:300px;height:30px;">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="inputEmail3" class="col-sm-2 control-label"><a
-				class="frred">*</a><font style="font-size: 18px;">货号</font></label>
-			<div class="col-sm-8">
-				<input type="text" name="commItem" class="form-control" id="inputEmail3" value="${commodity.commItem }" readonly="readonly">
+			<label class="col-md-3 control-label">密码</label>
+			<div class="col-md-6">
+				<input type="text" class="form-control" name="password" style="width:300px;height:30px;">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="inputEmail3" class="col-sm-2 control-label"><a
-				class="frred">*</a><font style="font-size: 18px;">买方</font></label>
-			<div class="col-sm-8">
-				<input type="text" name="customer" class="form-control" id="inputEmail3" value="${commodity.orderNumber.orderUser.userName }">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="inputEmail3" class="col-sm-2 control-label"><a
-				class="frred">*</a><font style="font-size: 18px;">电话</font></label>
-			<div class="col-sm-8">
-				<input type="text" name="phone" class="form-control" id="inputEmail3" value="${commodity.orderNumber.orderUser.phone }">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="inputEmail3" class="col-sm-2 control-label">
-				<font style="font-size: 18px;">邮箱</font></label>
-			<div class="col-sm-8">
-				<input type="text" name="email" class="form-control" id="inputEmail3" value="${commodity.orderNumber.orderUser.email }">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="inputEmail3" class="col-sm-2 control-label">
-				<font style="font-size: 18px;">状态</font></label>
-			<div class="col-sm-8">
-				<select class="form-control" name="orderstatus" id="orderstatus" value="${orderform.orderstatus}"
-					placeholder="状态">
-					<option value="">-----状态-----
-					<option value="waitAcceptance" name = "waitAcceptance">等待验收
-					<option value="waitPayment" name = "waitPayment">等待支付
-					<option value="inForwarding" name = "inForwarding">在线转发
-					<option value="waitDelivery" name = "waitDelivery">等待发货
-					<option value="transitGoods" name = "transitGoods">在途货物
-					<option value="consigneeSigning" name = "consigneeSigning">收货人签单
-					<option value="completionTransaction" name = "completionTransaction">完成交易
-					<option value="closeTransaction" name = "closeTransaction">关闭交易
-					<option value="autoCloseTransaction" name = "autoCloseTransaction">自动关闭交易
+			<label class="col-md-3 control-label">部门</label>
+			<div class="col-md-6">
+				<select name="orderUser" id="orderUser" style="width:300px;height:30px;">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
 				</select>
 			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label">职位</label>
+			<div class="col-md-6">
+				<select name="orderUser" id="orderUser" style="width:300px;height:30px;">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+				</select>
 			</div>
 		</div>
 		<div class="form-group">
-			<div class="col-sm-12" style="text-align: center;">
-				<button type="submit" class="btn btn-default">修改</button>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<button type="button" class="btn btn-default" onclick="cancel()">取消</button>
+			<div class="col-md-2 col-md-offset-3">
+				<button type="submit" class="form-control btn-primary" >提交</button>
+			</div>
+			<div class="col-md-2 col-md-offset-1">
+				<button type="reset" class="form-control btn-warning">重置</button>
 			</div>
 		</div>
 	</form>
+	
+
+	<jsp:include page="../common/delModelBox.jsp"></jsp:include>
 
 	<script type="text/javascript">
-		function updateShopOrder(num) {
-			location.href = './updateShopOrder?id=' + num;
+		function updateShopOrder(num){
+			location.href =	'./updateShopOrder?id='+num;
 		}
-		function deleteShopOrder(num) {
-			location.href = './deleteShopOrder?id=' + num;
-		}
-		function cancel(num) {
-			location.href = './shopOrder?id=' + num;
+		function deleteShopOrder(num){
+			location.href =	'./deleteShopOrder?id='+num;
 		}
 		function dateInfoxxx(obj) {
 			var date = obj;
@@ -168,6 +150,31 @@ th {
 									+ top
 									+ ', left=' + left);
 		}
+		//删除模态框
+		$(document).ready(function() {
+			$("#del").click(function() { //给本页面的所有的“删除”超链接添加“点击事件”处理函数
+				var onclick = $(this).attr("onclick"); //获取当前点击的超链接的href值
+				alert(onclick);
+				$("#delModal").modal("show"); //显示模态框
+				//当点击“确认删除”按钮时，执行一次性事件处理函数
+				$("#doDel").one("click", function() {
+					location.assign(onclick); //加载指定链接值的目标资源
+				});
+				return false; //阻止元素本身的默认行为
+			});
+		});
+		//添加模态框
+		$(document).ready(function() {
+			$("#add").click(function() { //给本页面的所有的“添加”超链接添加“点击事件”处理函数
+				var href = $(this).attr("href"); //获取当前点击的超链接的href值
+				$("#AddManagerModal").modal("show"); //显示模态框
+				//当点击“提交”按钮时，执行一次性事件处理函数
+				$("#doDel").one("click", function() {
+					location.assign(href); //加载指定链接值的目标资源
+				});
+				return false; //阻止元素本身的默认行为
+			});
+		});
 	</script>
 </body>
 </html>

@@ -75,10 +75,10 @@ public class PackageController {
 		}else{
 			map.put("packageCode", request.getParameter("packageCode"));
 		}
-		if (request.getParameter("formStatus").trim().equals("")) {
-			map.put("formStatus", null);
+		if (request.getParameter("orderstatus").trim().equals("")) {
+			map.put("orderstatus", null);
 		}else{
-			map.put("formStatus", CommoidityStatus.valueOf(request.getParameter("formStatus")));
+			map.put("orderstatus", CommoidityStatus.valueOf(request.getParameter("orderstatus")));
 		}
 		List<Package> list = packageService.getPackAgeByParameters(map);
 		ModelMap mode = new ModelMap();

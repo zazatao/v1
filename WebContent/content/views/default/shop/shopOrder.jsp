@@ -168,7 +168,7 @@ th {
 								<td>${orderform.packAge.packageCode }</td>
 								<td>${orderform.purchase.accomplishNum }</td>
 								<td>${orderform.storeOperator.userName }</td>
-								<td><button class="btn btn-default" data-toggle="modal" data-target="#detailModal" onclick="updateShopOrder(${commodity.commodityID});">修改</button>&nbsp;&nbsp;
+								<td><button class="btn btn-default" data-toggle="modal" data-target="#detailModal" onclick="updateShopOrder(${orderform.orderFormID});">修改</button>&nbsp;&nbsp;
 									<button class="btn btn-default" id="del" onclick="deleteShopOrder(${orderform.orderFormID});">删除</button></td>
 <!-- 									<button class="btn btn-default" onclick="#" id="del">删除</button> -->
 							</tr>
