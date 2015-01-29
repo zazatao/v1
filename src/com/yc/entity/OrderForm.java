@@ -15,8 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
+import com.yc.entity.user.Position;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
@@ -30,7 +30,7 @@ public class OrderForm {
 	private Integer orderFormID;
 
 	@OneToMany(mappedBy = "orderNumber")
-	private List<Commodity> orderNumber;
+	private List<Commodity> commodities;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
@@ -67,11 +67,11 @@ public class OrderForm {
 
 	@ManyToOne
 	@JoinColumn(name = "store_user")
-	private Personnel storeOperator;// 库房操作员
+	private User storeOperator;// 库房操作员
 	
 	@ManyToOne
 	@JoinColumn(name = "purchase_user")
-	private Personnel purchase;// 采购员
+	private User purchase;// 采购员
 	
 	@OneToMany(mappedBy = "orderform")
 	private List<ImagePath> imagePaths;
@@ -85,19 +85,19 @@ public class OrderForm {
 		this.orderstatus = orderstatus;
 	}
 
-	public Personnel getStoreOperator() {
+	public User getStoreOperator() {
 		return storeOperator;
 	}
 
-	public void setStoreOperator(Personnel storeOperator) {
+	public void setStoreOperator(User storeOperator) {
 		this.storeOperator = storeOperator;
 	}
 
-	public Personnel getPurchase() {
+	public User getPurchase() {
 		return purchase;
 	}
 
-	public void setPurchase(Personnel purchase) {
+	public void setPurchase(User purchase) {
 		this.purchase = purchase;
 	}
 
@@ -165,12 +165,16 @@ public class OrderForm {
 		this.orderFormID = orderFormID;
 	}
 
-	public List<Commodity> getOrderNumber() {
-		return orderNumber;
+	public List<Commodity> getCommodities() {
+		return commodities;
 	}
 
-	public void setOrderNumber(List<Commodity> orderNumber) {
-		this.orderNumber = orderNumber;
+	public void setCommodities(List<Commodity> commodities) {
+		this.commodities = commodities;
+	}
+
+	public List<ImagePath> getImagePaths() {
+		return imagePaths;
 	}
 
 	public User getOrderUser() {
@@ -179,10 +183,6 @@ public class OrderForm {
 
 	public void setOrderUser(User orderUser) {
 		this.orderUser = orderUser;
-	}
-
-	public List<ImagePath> getImagePaths() {
-		return imagePaths;
 	}
 
 	public void setImagePaths(List<ImagePath> imagePaths) {

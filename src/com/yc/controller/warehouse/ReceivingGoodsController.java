@@ -28,10 +28,10 @@ import com.yc.entity.Commodity;
 import com.yc.entity.CommoidityStatus;
 import com.yc.entity.ImagePath;
 import com.yc.entity.UnKnownCommodity;
-import com.yc.entity.user.Personnel;
+import com.yc.entity.user.User;
 import com.yc.service.ICommodityService;
 import com.yc.service.IOrderFormService;
-import com.yc.service.IPersonnelService;
+import com.yc.service.IUserService;
 import com.yc.service.IStoreRoomService;
 import com.yc.service.IUnKnownCommodityService;
 import com.yc.service.impl.ImagePathService;
@@ -59,7 +59,7 @@ public class ReceivingGoodsController {
 	ImagePathService imagePathService;
 	
 	@Autowired
-	IPersonnelService personnelService;
+	IUserService personnelService;
 
 	@RequestMapping(value = "receiving", method = RequestMethod.GET)
 	public ModelAndView receiving(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -88,7 +88,7 @@ public class ReceivingGoodsController {
 		if (session.getAttribute("code") != null) {
 			UnKnownCommodity unKnown = unKnownCommService.findById(Integer.parseInt(session.getAttribute("code").toString()));
 			if (unKnown !=null) {
-				unknownComm.setOperator((Personnel) session.getAttribute("loginUser"));
+				unknownComm.setOperator((User) session.getAttribute("loginUser"));
 				BeanUtils.copyProperties(unknownComm, unKnown);
 				unKnownCommService.update(unKnown);
 				session.removeAttribute("code");
@@ -96,7 +96,7 @@ public class ReceivingGoodsController {
 			return new ModelAndView("warehouse/jobAction", null);
 		} else {
 			if (unknownComm.getAmountNum() !=null && !unknownComm.getCategory().equals("") && !unknownComm.getComment().equals("")) {
-				unknownComm.setOperator((Personnel) session.getAttribute("loginUser"));
+				unknownComm.setOperator((User) session.getAttribute("loginUser"));
 				unKnownCommService.save(unknownComm);
 			}
 			return new ModelAndView("warehouse/jobAction", null);
@@ -171,7 +171,7 @@ public class ReceivingGoodsController {
 		}
 		map.put("formStatus", CommoidityStatus.valueOf("paid"));
 		List<Commodity> commods = commodityService.getAllByParameters(map);
-		Personnel personnel = (Personnel)request.getSession().getAttribute("loginUser");
+		User personnel = (User)request.getSession().getAttribute("loginUser");
 		Integer num = personnel.getAccomplishNum();
 		String msg ="";
 		ModelMap mode = new ModelMap();
@@ -208,11 +208,11 @@ public class ReceivingGoodsController {
 	public ModelAndView working(Integer commodityID , HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Commodity commod = commodityService.findById(commodityID);
 		String msg ="";
-		Personnel personnel = null;
+		User personnel = null;
 		ModelMap mode = null;
 		if (commod != null) {
 			commod.setStatus(CommoidityStatus.senToWarehouse);
-			personnel = (Personnel)request.getSession().getAttribute("loginUser");
+			personnel = (User)request.getSession().getAttribute("loginUser");
 			commod.getOrderNumber().setStoreOperator(personnel);
 			commod.setInStoreRoomDate((new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date()));
 			commodityService.update(commod);

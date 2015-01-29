@@ -20,13 +20,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.yc.controller.shop.PackageController;
 import com.yc.entity.Commodity;
 import com.yc.entity.OrderForm;
 import com.yc.entity.Package;
-import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
-import com.yc.service.IPersonnelService;
 import com.yc.service.IUserService;
 
 @Controller
@@ -37,17 +34,15 @@ public class PersonnelController {
 	private static final Logger LOG = Logger.getLogger(PersonnelController.class);
 
     @Autowired
-    IPersonnelService personnelService;
-    
-    @Autowired
-	IUserService userService;
+    IUserService personnelService;
+   
     
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String login(RedirectAttributes redirectAttributes, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         String pwd = request.getParameter("password");
         HttpSession session = request.getSession();
-        Personnel personnel = personnelService.getUser(name);
+        User personnel = personnelService.getUser(name);
         if (personnel == null) {
             request.getSession().setAttribute("message", "nouser");
             return "redirect:/";
@@ -68,7 +63,7 @@ public class PersonnelController {
     }
 
     @RequestMapping(value = "regist", method = RequestMethod.POST)
-    public String registing(Personnel personnel,HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String registing(User personnel,HttpServletRequest request, HttpServletResponse response) throws Exception {
     	personnelService.save(personnel);
         return "redirect:/";
     }
@@ -81,7 +76,7 @@ public class PersonnelController {
     
     @RequestMapping(value = "personnel", method = RequestMethod.GET)
     public ModelAndView packages(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Personnel> list = personnelService.getAll();
+		List<User> list = personnelService.getAll();
     	ModelMap mode = new ModelMap();
     	mode.put("list", list);
 		return new ModelAndView("personnel/personnel", mode);
@@ -98,8 +93,7 @@ public class PersonnelController {
     public ModelAndView addPackage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Commodity c = new Commodity();
 		OrderForm of = new OrderForm();
-		User u = new User();
-		Personnel person = new Personnel();
+		User person = new User();
 		Package pk= new Package();
 		String transport =request.getParameter("transport");
 		pk.setTransport(transport);
@@ -112,9 +106,8 @@ public class PersonnelController {
 		Integer orderformid = Integer.parseInt(request.getParameter("orderFormID"));
 		of.setOrderFormID(orderformid);
 		of.setStoreOperator(person);
-		userService.save(u);
-		personnelService.save(person);
-		of.setOrderUser(u);
+		User p = personnelService.save(person);
+		of.setOrderUser(p);
 		c.setOrderNumber(of);
     	return packages(request, response);
     }

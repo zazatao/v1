@@ -17,7 +17,7 @@ import javax.persistence.OneToOne;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-import com.yc.entity.user.Personnel;
+import com.yc.entity.user.User;
 
 @Entity
 @DiscriminatorValue("package")
@@ -75,7 +75,7 @@ public class Package {
 	
 	@ManyToOne
 	@JoinColumn(name= "store_name")
-	private Personnel storeOperator;
+	private User storeOperator;
 	
 	public Transit getTransit() {
 		return transit;
@@ -196,11 +196,11 @@ public class Package {
 		this.traffic = traffic;
 	}
 
-	public Personnel getStoreOperator() {
+	public User getStoreOperator() {
 		return storeOperator;
 	}
 
-	public void setStoreOperator(Personnel storeOperator) {
+	public void setStoreOperator(User storeOperator) {
 		this.storeOperator = storeOperator;
 	}
 	

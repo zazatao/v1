@@ -23,14 +23,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.yc.entity.Commodity;
 import com.yc.entity.OrderForm;
 import com.yc.entity.CommoidityStatus;
-import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
 import com.yc.entity.Package;
 import com.yc.service.ICommodityService;
 import com.yc.service.IImagePathService;
 import com.yc.service.IOrderFormService;
 import com.yc.service.IPackageService;
-import com.yc.service.IPersonnelService;
 import com.yc.service.IUserService;
 
 //商店包裹
@@ -46,10 +44,7 @@ public class PackageController {
 	IPackageService packageService;
 	
 	@Autowired
-	IPersonnelService personnelService;
-	
-	@Autowired
-	IUserService userService;
+	IUserService personnelService;
 	
 	@Autowired
 	IOrderFormService orderFormService;
@@ -97,8 +92,7 @@ public class PackageController {
     public ModelAndView addPackage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Commodity c = new Commodity();
 		OrderForm of = new OrderForm();
-		User u = new User();
-		Personnel person = new Personnel();
+		User person = new User();
 		Package pk= new Package();
 		String transport =request.getParameter("transport");
 		pk.setTransport(transport);
@@ -111,11 +105,10 @@ public class PackageController {
 		Integer orderformid = Integer.parseInt(request.getParameter("orderFormID"));
 		of.setOrderFormID(orderformid);
 		of.setStoreOperator(person);
-		userService.save(u);
 		orderFormService.save(of);
-		personnelService.save(person);
+		User per = personnelService.save(person);
 		packageService.save(pk);
-		of.setOrderUser(u);
+		of.setOrderUser(per);
 		c.setOrderNumber(of);
 		commodityService.save(c);
     	return packages(request, response);
