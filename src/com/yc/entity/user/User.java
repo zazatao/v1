@@ -38,6 +38,9 @@ public class User {
 
 	@Column
 	private String email;
+	
+	@Column
+	private String sex;
 
 	@Column
 	private String phone;
@@ -172,6 +175,14 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 
 	public String getPhone() {

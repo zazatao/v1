@@ -24,6 +24,11 @@ public class UserService extends GenericService<User> implements IUserService {
 	public User getUser(String name) {
 		return userDao.getFirstRecord("loginName", name);
 	}
+	
+	@Override
+	public List<User> FindByUserID(Integer id) {
+		return userDao.getBy("user.id", id);
+	}
 
 	@Override
 	public List<User> getUsersByParameters(String loginName, String userName) {
