@@ -43,18 +43,13 @@ public class User {
 	private String phone;
 
 	@OneToMany(mappedBy = "user")
-	private List<Address> address;//用户邮寄地址
+	private List<Address> addresses;//用户邮寄地址
 	
-	@Column(length = 32, unique = true, updatable = false)
-	private String shopName;//店名
+	@Column(unique = true, updatable = false)
+	private String personalAccount;//个人账户
 	
-	@OneToOne
-	@JoinColumn(name = "department_id")
-	private Department department;//部门
-	
-	@OneToOne
-	@JoinColumn(name = "position_id")//职位
-	private Position position;
+	@OneToMany(mappedBy = "commUser")
+    private List<Position> positions; //职位
 	
 	@Column
 	private Integer accomplishNum;//完成订单数
@@ -75,28 +70,28 @@ public class User {
 	@JoinColumn(name = "storeRoom_id")
 	private StoreRoom storeRoom;
 
-	public String getShopName() {
-		return shopName;
+	public List<Address> getAddresses() {
+		return addresses;
 	}
 
-	public void setShopName(String shopName) {
-		this.shopName = shopName;
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
 	}
 
-	public Department getDepartment() {
-		return department;
+	public String getPersonalAccount() {
+		return personalAccount;
 	}
 
-	public void setDepartment(Department department) {
-		this.department = department;
+	public void setPersonalAccount(String personalAccount) {
+		this.personalAccount = personalAccount;
 	}
 
-	public Position getPosition() {
-		return position;
+	public List<Position> getPositions() {
+		return positions;
 	}
 
-	public void setPosition(Position position) {
-		this.position = position;
+	public void setPositions(List<Position> positions) {
+		this.positions = positions;
 	}
 
 	public List<OrderForm> getOrderForms() {
@@ -105,14 +100,6 @@ public class User {
 
 	public void setOrderForms(List<OrderForm> orderForms) {
 		this.orderForms = orderForms;
-	}
-
-	public List<Address> getAddress() {
-		return address;
-	}
-
-	public void setAddress(List<Address> address) {
-		this.address = address;
 	}
 
 	public StoreRoom getStoreRoom() {

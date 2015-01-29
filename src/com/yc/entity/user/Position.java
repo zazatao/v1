@@ -6,10 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 @DiscriminatorValue("position")//职位
-
 public class Position {
 	
 	@Id
@@ -18,6 +19,21 @@ public class Position {
 	
 	@Column(length = 32)
     private String positionname;//职位名称；
+	
+	@ManyToOne
+    @JoinColumn(name = "department_id")
+	private Department department;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User commUser;
+	
+	public Department getDepartment() {
+		return department;
+	}
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
 	public Integer getPositionid() {
 		return positionid;
 	}
@@ -29,5 +45,11 @@ public class Position {
 	}
 	public void setPositionname(String positionname) {
 		this.positionname = positionname;
+	}
+	public User getCommUser() {
+		return commUser;
+	}
+	public void setCommUser(User commUser) {
+		this.commUser = commUser;
 	}
 }

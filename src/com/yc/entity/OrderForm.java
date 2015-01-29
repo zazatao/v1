@@ -16,7 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.yc.entity.user.User;
-import com.yc.entity.user.Position;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
