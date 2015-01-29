@@ -1,37 +1,35 @@
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>zazatao</title>
-<link href="css/css.css" rel="stylesheet" type="text/css" />
-<link href="css/qt.css" rel="stylesheet" type="text/css" />
-<link href="css/try.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/png.js"></script>
-<script type="text/javascript" src="js/sdmenu.js"></script>
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/js.js"></script>
-<SCRIPT src="js/ScrollPic.js" type=text/javascript></SCRIPT>
+<link href="../content/static/css/reception/css.css" rel="stylesheet" type="text/css" />
+<link href="../content/static/css/reception/persc.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../content/static/js/reception/png.js"></script>
+<script type="text/javascript" src="../content/static/js/reception/sdmenu.js"></script>
+<script type="text/javascript" src="../content/static/js/reception/jquery.min.js"></script>
+<script type="text/javascript" src="../content/static/js/reception/js.js"></script>
 </head>
 
 <body>
 <div class="topfd"><!---------------   浮动头部   ----------------------->
         <div class="topnone"></div>
 		<div class="top1">
-    		<div class="logo"><a href="index.html"><img src="images/logo.jpg" width="162" height="62" /></a></div>
+    		<div class="logo"><a href="index.html"><img src="../content/static/images/logo.jpg" width="162" height="62" /></a></div>
         	<div class="znss">
             	<div class="ssk"><input value="搜索" name="" type="text" onfocus="this.value=''" onblur="if(this.value==''){this.value='搜索';}"  /></div>
                 <div class="ssan"><input name="" type="button" /></div>
             </div>
             
-             <div class="top_tel"><img src="images/top_sj.png" /><p>全球统一客服电话<br /><span class="red">152386895258</span></p></div>
-            <div class="gwctb"><a href="shopcar.html"><img src="images/gwc.jpg" width="63" height="43" /></a></div>
+             <div class="top_tel"><img src="../content/static/images/top_sj.png" /><p>全球统一客服电话<br /><span class="red">152386895258</span></p></div>
+            <div class="gwctb"><a href="shopcar.html"><img src="../content/static/images/gwc.jpg" width="63" height="43" /></a></div>
             <div class="clear"></div>
-            <div class="qbfl"><a href="index.html"><img src="images/china.jpg" /></a><a href="../index.html"><img src="images/eluosi.jpg" /></a></div>
+            <div class="qbfl"><a href="index.html"><img src="../content/static/images/china.jpg" /></a><a href="../index.html"><img src="../content/static/images/eluosi.jpg" /></a></div>
         </div>
         <div class="topnone"></div>
 	</div>
-<!--------------------try_nav start------------------------>
-<div class="topfn">
+    <div class="topfn">
     	<div style="height:78px;"></div>
    			 <div class="dlzc">
         	<ul>
@@ -41,12 +39,12 @@
                 <li><a href="file_index.html">客户服务</a>
                 	<div class="filexlcd">
                     <ul>
-                      <li><a href="#"><span><img src="images/brand/filel_02.png"/></span>提问和回答</a></li>
-                      <li><a href="#"><span><img src="images/brand/filel_17.png"/></span>如何找到合适商品在产品目录</a></li>
-                      <li><a href="#"><span><img src="images/brand/filel_01.png"/></span>关于zazatao.com的服务</a></li>
-                      <li><a href="#"><span><img src="images/brand/filel_05.png"/></span>运费 </a></li>
-                      <li><a href="#"><span><img src="images/brand/filel_18.png"/></span>购物袋</a></li>
-                      <li><a href="#"><span><img src="images/brand/filel_19.png"/></span>联系我们</a></li>
+                      <li><a href="#"><span><img src="../content/static/images/brand/filel_02.png"/></span>提问和回答</a></li>
+                      <li><a href="#"><span><img src="../content/static/images/brand/filel_17.png"/></span>如何找到合适商品在产品目录</a></li>
+                      <li><a href="#"><span><img src="../content/static/images/brand/filel_01.png"/></span>关于zazatao.com的服务</a></li>
+                      <li><a href="#"><span><img src="../content/static/images/brand/filel_05.png"/></span>运费 </a></li>
+                      <li><a href="#"><span><img src="../content/static/images/brand/filel_18.png"/></span>购物袋</a></li>
+                      <li><a href="#"><span><img src="../content/static/images/brand/filel_19.png"/></span>联系我们</a></li>
                     </ul>  
                     </div>
                 </li>
@@ -55,11 +53,11 @@
             <div class="clear"></div>
         </div>
         </div>
-<div class="top">
+	<div class="top">
         <div class="menu"><!---------------   菜单   ----------------------->
         	<div class="menu1">
             	<ul class="nav">
-                	<li class="bg_none"><a href="index.html"><img src="images/fzan.jpg" width="16" height="17" /></a></li>
+                	<li class="bg_none"><a href="index.html"><img src="../content/static/images/fzan.jpg" width="16" height="17" /></a></li>
                     <li><a href="yl_1.html">季节</a>
                     	<div>
                         <div class="nav-column">
@@ -1523,122 +1521,245 @@
             <div class="clear"></div>
         </div>
     </div>
-<div class="clear"></div>
-<div class="try_nav">
-    <ul>
-        <li class="nav_li1"><a href="try01.html">准备好的图像</a></li>
-        <li class="nav_li2"><a href="try02.html">订购风格 </a></li>
-        <li class="nav_li3"><a href="try03.html">现在很时尚</a></li>
-        <li class="nav_li5"><a href="try05.html">创建自己的图像</a></li>
-    </ul>
-</div>
-<!--------------------try_nav start------------------------>
 
-<div class="con"><!---------------   页面主体   ----------------------->
-  <!---------------   pic_cont start   ----------------------->
-  <div class="pic_cont">
-  		<div class="pic_left">
-        <a href="yl_list.html"><img src="images/dz/img018.jpg" /><p>只有最好的造型师</p></a>
-        <a href="yl_list.html"><img src="images/dz/img019.jpg" /><p>适合自己的图像<span>获取时尚奥秘</span></p></a>
-        <a href="yl_list.html"><img src="images/dz/img018.jpg" /><p>只有最好的造型师</p></a></div>
-  		<div class="pic_right">
-        	<div class="pic_1"><span><a href="yl_list_detail.html"><img src="images/dz/img032.jpg" /></a><a href="yl_list_detail.html"><img src="images/dz/img024.jpg" /></a></span>
-            <span><a href="yl_list_detail.html"><img src="images/dz/img025.jpg" /></a></span></div>
-            <div class="pic_2"><span><a href="yl_list_detail.html"><img src="images/dz/img022.jpg" /></a></span>
-            <span><a href="yl_list_detail.html"><img src="images/dz/img023.jpg" /></a></span></div>
-            <div class="pic_3"><span><a href="yl_list_detail.html"><img src="images/dz/img020.jpg" /></a></span>
-            <span><a href="yl_list_detail.html"><img src="images/dz/img021.jpg" /></a></span></div>
+
+<!---------------   页面主体   ----------------------->
+<div class="con">
+
+	<!---------------   页面主体   ----------------------->
+	<div class="basic">
+    	<!-----基本信息-------->
+        <div class="perbastil">
+        	<div>
+            	<dl>
+            	  <dt><img src="../content/static/images/kx.jpg"/></dt>
+            	  <dd><b>Пополнить счет  счет</b><img src="../content/static/images/user.jpg"/></dd>
+            	  <dd>06.07.1992</dd>
+            	</dl>
+                <p>marat004@163.com</p>
+                <p>您的账号码:456789123</p>
+            </div>
+        	<div>
+            	<p>可以资金 </p>
+            	<p><b>$0</b></p>
+            	<p><a class="onck1" href="perscent_chongzhi.html">新增资金</a></p>
+            </div>
         </div>
-  </div>
-  <!---------------   pic_cont over  ----------------------->
-  
-  
-   <!---------------   pic_cont_2 over  ----------------------->
-   <div class="clear"></div>
-   <div class="pic_cont_2">
-   		<div class="pic_left_2">
-        <a href="yl_list.html"><img src="images/dz/img026.jpg" /><p>过设计师的生活<br />创建自己的图像</p></a></div>
-        <div class="pic_right_2">
-        	<div>
-            <a href="#"><img src="images/dz/img027.jpg" /></a>
-            <div><span>造型师：阿丽娜</span><span class="red">0<img src="images/small/xin.jpg" /></span></div>
+    	<!-----完善程度-------->
+         <script>
+            	$(document).ready(function(){ 
+						$(".onck2").click(function(){
+								$(".tc2all").show();
+							});
+						$(".tc2sel").click(function(){
+								$(".t2sall").toggle();
+							});
+						$(".t2sall p").click(function(){
+								$(".t2sall").hide();
+								$(".tc2stex").text($(this).text());
+							});
+						$(".tcnoe2").click(function(){
+								$(".tc2all").hide();
+							});
+						$(".tc2bg").click(function(){
+								$(".tc2all").hide();
+							});
+							
+					})
+            </script>
+           <div class="tc2all">
+           <div class="tc2bg"></div>
+           <div class="tc_2">
+				<h1>shangdianshan<span class="tcnoe2">x</span></h1>
+                <div  class="t2sel">
+                	<p class="t2s"><span class="tc2stex">请选择店铺类型</span><span class="tc2sel"></span></p>
+                    <div class="t2sall">
+                    	<p>123</p>
+                    	<p>456</p>
+                    	<p>789</p>
+                    	<p>sas</p>
+                    	<p>cxz</p>
+                    </div>
+                </div>
+                <p><input type="text" value="店铺名称" /></p>
+                <p><input type="text" value="店铺链接" /></p>
+                <p><input type="text" value="店铺链接地址" /></p>
+                <p><span>hfhfhfhfhfh</span></p>
+                <div class="tjtp"><img src="../content/static/images/tj.png" /><a href="#">添加图片信息</a></div>
+                <div class="bott"><a href="http://yc-e.net/zazatao_eyu/perscent.html">СОХРАНИТЬ</a></div>
+            </div>  
             </div>
-        	<div>
-            <a href="#"><img src="images/dz/img028.jpg" /></a>
-            <div><span>造型师：阿丽娜</span><span class="red">0<img src="images/small/xin.jpg" /></span></div>
-            </div>
-        	<div>
-            <a href="#"><img src="images/dz/img029.jpg" /></a>
-            <div><span>造型师：阿丽娜</span><span class="red">0<img src="images/small/xin.jpg" /></span></div>
-            </div>
-            <!--<p>
-            <a href="#"><img src="images/dz/img028.jpg" /></a>
-            
-            </p>
-            <p>
-            <a href="#"><img src="images/dz/img029.jpg" /></a>
-            
-            </p>-->
+        <div class="perbaspft">
+        	<div class="jdt"><div class="jdtc"></div><p class="bfb">33%</p></div>
+            <p class="udli"><a href="perscent_set.html">设置简介</a></p>
+            <p>您的资料已经填满100%</p>
+            <p><a class="onck2" href="#">我的展示窗</a></p></p>
         </div>
-   </div>
-   <!---------------   pic_cont_2 over  ----------------------->
-   
-   <!---------------   logo_list over  ----------------------->
-   <div class="clear"></div>
-   <div class="logo_list">
-   	<span class="xian"><a href="#"><img src="images/logo/1.jpg" /></a><a href="#"><img src="images/logo/2.jpg" /></a><a href="#"><img src="images/logo/3.jpg" /></a>
-    <a href="#"><img src="images/logo/4.jpg" /></a><a href="#"><img src="images/logo/5.jpg" /></a><a href="#"><img src="images/logo/6.jpg" /></a>
-    <a href="#"><img src="images/logo/7.jpg" /></a><a href="#"><img src="images/logo/8.jpg" /></a></span>
-    <span><a href="#"><img src="images/logo/9.jpg" /></a><a href="#"><img src="images/logo/10.jpg" /></a><a href="#"><img src="images/logo/11.jpg" /></a>
-    <a href="#"><img src="images/logo/12.jpg" /></a><a href="#"><img src="images/logo/13.jpg" /></a><a href="#"><img src="images/logo/14.jpg" /></a>
-    <a href="#"><img src="images/logo/15.jpg" /></a><a href="#"><img src="images/logo/16.jpg" /></a></span>
-   </div>
-   <!---------------   logo_list over  ----------------------->
-   
-   
-   <!---------------   pic_cont_2 over  ----------------------->
-   <div class="clear"></div>
-   <div class="pic_cont_2">
-   		<div class="pic_left_2">
-        <a href="yl_list.html"><img src="images/dz/img026.jpg" /><p>过设计师的生活<br />创建自己的图像</p></a></div>
-        <div class="pic_right_2">
-        	<div>
-            <a href="#"><img src="images/dz/img027.jpg" /></a>
-            <div><span>造型师：阿丽娜</span><span class="red">0<img src="images/small/xin.jpg" /></span></div>
-            </div>
-        	<div>
-            <a href="#"><img src="images/dz/img028.jpg" /></a>
-            <div><span>造型师：阿丽娜</span><span class="red">0<img src="images/small/xin.jpg" /></span></div>
-            </div>
-        	<div>
-            <a href="#"><img src="images/dz/img029.jpg" /></a>
-            <div><span>造型师：阿丽娜</span><span class="red">0<img src="images/small/xin.jpg" /></span></div>
-            </div>
-            <!--<p>
-            <a href="#"><img src="images/dz/img028.jpg" /></a>
-            
-            </p>
-            <p>
-            <a href="#"><img src="images/dz/img029.jpg" /></a>
-            
-            </p>-->
+    	<!-----切换表格-------->
+        <div class="perbastab">
+        	<ul>
+        	  <li class="pbeabclk"><a href="perscent_ord.html">我的账户</a></li>
+        	  <li><a href="perscent_bonuses.html">我的订单</a></li>
+        	  <li><a href="perscent_account.html">我的账单</a></li>
+        	  <li><a href="perscent_dreams.html">我喜欢的产品</a></li>
+        	  <li><a href="perscent_sup.html">引起支持呼吁</a></li>
+        	  <li><a href="./introduction">设置简介</a></li>
+        	  <li class="mr_n"><a href="perscent_size.html">我的尺寸</a></li>
+        	</ul>
         </div>
-   </div>
-   <!---------------   pic_cont_2 over  ----------------------->
-  
-  
+        <div class="cl"></div>
+    </div>
+    
+    
+	<!---------------   详细   ------------->
+    <div class="orders">
+    	<div class="ordersle">
+    	  <div class="ord_bas">
+          		<p class="ord_basye">Free Member 1<sup>st</sup> year</p>
+          		<dl>
+            	  <dt><img src="../content/static/images/kx.jpg"/></dt>
+            	  <dd><b>Пополнить счет  счет</b><img src="../content/static/images/user.jpg"/></dd>
+            	</dl>
+                <div class="cl"></div>
+                <div class="ordjd"><div class="ordjs"></div><p class="ordjts">33%</p></div>
+                <p class="udli"><a href="perscent_set.html">设置简介</a></p>
+                <p>您的资料已经填满100%</p>
+          </div>
+    	  <div>
+          		<ul>
+          		  <li><a href="file_index.html">关于服务</a></li>
+          		  <li><a href="file_index.html">关于我们</a></li>
+          		  <li><a href="#">Рекомендации просмотреть</a></li>
+          		  <li><a href="file02.html">尺寸表</a></li>
+          		  <li><a href="file.html">订单流程</a></li>
+          		  <li><a href="file14.html">退款</a></li>
+          		  <li><a href="file14.html">安全策略</a></li>
+          		  <li><a href="file06.html">运输方式</a></li>
+          		  <li><a href="file14.html">保证</a></li>
+          		</ul>
+          </div>
+    	  <div class="orderyjs">
+          		<div class="orderim"><span class="grean">Anne is online</span> <br />24 Hour Smart Response</div>
+          		<div><textarea name="" cols="" rows="" value ="Ask questions"></textarea></div>
+          		<div class="orderbtck"><a href="#"><b>NOMBER</b></a></div>
+          </div>
+    	  <div>
+          		<p>Товары которые вы смотрели </p>
+                <form id="form1" name="form1" method="post" action="">
+				<p><label><input type="radio" name="RadioGroup1" value="Скорость" id="RadioGroup1_0" />Скорость</label></p>
+          		<p><label><input type="radio" name="RadioGroup1" value="Сервис" id="RadioGroup1_1" />Сервис</label></p>
+          		<p><label><input type="radio" name="RadioGroup1" value="Условия оплаты" id="RadioGroup1_2" />Условия оплаты</label></p>
+                </form>
+          		<p><textarea name="" cols="" rows="" value ="Напишите ваше тут комментарии"></textarea></p>
+          		<p class="orderseonck"><a href="#">Отправить</a></p>
+          </div>
+    	</div>
+    	<div class="ordersre">
+    	  <div class="orderssup">
+       			<h3>The Fastest Way to Find the Right Suppliers</h3>
+                <div class="odrstex">
+               	  <p class="odrsuer"><span class="grean">12028</span> suppliers can give you quotations,</p>
+               	  <p class="odrstim">you'll get them in avg.<span class="grean">2 Minutis</span></p>
+                </div>
+                <div class="odrsput">
+                	<p>Искать продукты：</p>
+               	  	<p><input name="" type="text" value="Сюда видите то что вы ищите." /></p>
+                </div>
+                <p class="cl"></p>
+          </div>
+    	  <div class="orderlest">
+       			<h3>To Do List</h3>
+                <div class="orderls">
+                  	<div class="orderlsfal">
+                  	  <h3>Транзакции</h3>
+                  	  <p>Текущие<span><a href="#">0</a></span></p>
+                  	  <p>Завершенные<span><a href="#">0</a></span></p>
+                  	  <p>Невыкупленные<span><a href="#">0</a></span></p>
+                  	  <p>В обработке<span><a href="#">0</a></span></p>
+                  	  <p>Ожидающие оценки<span><a href="#">0</a></span></p>
+                  	</div>
+                  	<div>
+                  	  <h3>Запросы по товарам</h3>
+                  	  <p>Есть ответ<span><a href="#">0</a></span></p>
+                  	  <p>Предложение платформы<span><a href="#">0</a></span></p>
+                  	  <p>Комментарии к товарам<span><a href="#">0</a></span></p>
+                  	</div>
+                  	<div >
+                  	  <h3>Центр оповещение</h3>
+                  	  <p>Есть новые ответы<span><a href="#">0</a></span></p>
+                  	  <p>Мои диалоги<span><a href="#">0</a></span></p>
+                  	  <p>Покупки<span><a href="#">0</a></span></p>
+                  	  <p>Остальные<span><a href="#">0</a></span></p>
+                  	</div>
+                	<p class="cl"></p>
+                </div>
+          </div>
+    	  <div class="ordertab">
+          		<h3>Товары которые вы смотрели <span>Looking to better recommendations?<a href="#">Tell us what you like</a></span></h3>
+                <div class="ordertpag">
+               	  <p class="ordertpagt">Page <span>3</span> of <span>3</span></p>
+                  <div class="odtpagls">
+                    <div class="odtpaglsl"></div>
+                    <div class="odtpaglsa">
+                    	<div class="odtplas">
+                    	  <ul>
+                    	    <li>
+                    	        <p><img src="../content/static/images/img/odtplas01.jpg"/></p>
+                    	        <p class="odtplasti blon">pession ieos moserfd</p>
+                    	        <p class="odtplasta"><b>FOB Price:</b><b class="red">US $130-180</b></p>
+                    	        <p class="odtplastp"><b>Port:</b>shanghai</p>
+                    	        <p class="odtplasnu"><b>Min Order:</b>1 Set/Sers</p>
+                    	    </li>
+                    	    <li>
+                    	        <p><img src="../content/static/images/img/odtplas01.jpg"/></p>
+                    	        <p class="odtplasti blon">pession ieos moserfd</p>
+                    	        <p class="odtplasta"><b>FOB Price:</b><b class="red">US $130-180</b></p>
+                    	        <p class="odtplastp"><b>Port:</b>shanghai</p>
+                    	        <p class="odtplasnu"><b>Min Order:</b>1 Set/Sers</p>
+                    	    </li>
+                    	    <li>
+                    	        <p><img src="../content/static/images/img/odtplas01.jpg"/></p>
+                    	        <p class="odtplasti blon">pession ieos moserfd</p>
+                    	        <p class="odtplasta"><b>FOB Price:</b><b class="red">US $130-180</b></p>
+                    	        <p class="odtplastp"><b>Port:</b>shanghai</p>
+                    	        <p class="odtplasnu"><b>Min Order:</b>1 Set/Sers</p>
+                    	    </li>
+                    	    <li>
+                    	        <p><img src="../content/static/images/img/odtplas01.jpg"/></p>
+                    	        <p class="odtplasti blon">pession ieos moserfd</p>
+                    	        <p class="odtplasta"><b>FOB Price:</b><b class="red">US $130-180</b></p>
+                    	        <p class="odtplastp"><b>Port:</b>shanghai</p>
+                    	        <p class="odtplasnu"><b>Min Order:</b>1 Set/Sers</p>
+                    	    </li>
+                    	  </ul>
+                    	</div>
+                    </div>
+                    <div class="odtpaglsr"></div>
+                  </div>
+                </div>
+                <div class="cl"></div>
+          </div>
+    	  <div><img src="../content/static/images/ordresd.jpg"/></div>
+    	</div>
+        
+        
+      <div class="cl"></div>
+    </div>
+    
 </div>
-<div class="clear"></div>
-<div class="footer"> <!---------------   底部   ----------------------->
+
+
+<!---------------   底部   ----------------------->
+<div class="footer">
     	<div class="dyzx">
-        	<div class="fotlogo"><a href="index.html"><img src="images/fotlogo.jpg" width="150" height="60" /></a></div>
+        	<div class="fotlogo"><a href="index.html"><img src="../content/static/images/fotlogo.jpg" width="150" height="60" /></a></div>
             <div class="dyxx">订阅我们的时事通讯</div>
 			<input name="" type="text" value="email" onfocus="if(this.value=='email'){this.value='';$('.xbdj').css('display','block')}" onblur="if(this.value==''){this.value='email';$('.xbdj').css('display','none')}"  />
             <div class="xbdj">
             	<div class="xbxz">性别</div>
                 <div class="xban">
-                	<a href="#"><img style="float:left" src="images/xbn.jpg" width="81" height="29" /></a>
-                    <a href="#"><img style="float:right" src="images/xbw.jpg" width="81" height="29" /></a>
+                	<a href="#"><img style="float:left" src="../content/static/images/xbn.jpg" width="81" height="29" /></a>
+                    <a href="#"><img style="float:right" src="../content/static/images/xbw.jpg" width="81" height="29" /></a>
                     <div class="clear"></div>
             	</div>
             </div>
@@ -1646,14 +1767,14 @@
         </div>
 		<div class="fxlj">
         	社交网络 
-            <a href="http://instagram.com/"><img style="vertical-align:middle; margin-left:20px;" src="images/sj01.jpg" width="37" height="37" /></a>
-            <a href="https://www.facebook.com/"><img style="vertical-align:middle; margin-left:8px;" src="images/sj02.jpg" width="37" height="37" /></a>
-            <a href="http://vk.com/"><img style="vertical-align:middle; margin-left:8px;" src="images/sj03.jpg" width="37" height="37" /></a>
-            <a href="http://www.odnoklassniki.ru/"><img style="vertical-align:middle; margin-left:8px;" src="images/sj04.jpg" width="37" height="37" /></a>
-            <a href="https://twitter.com/"><img style="vertical-align:middle; margin-left:8px;" src="images/sj05.jpg" width="37" height="37" /></a>
-            <a href="https://mail.ru/"><img style="vertical-align:middle; margin:0 130px 0 8px;" src="images/sj06.jpg" width="37" height="37" /></a>
+            <a href="http://instagram.com/"><img style="vertical-align:middle; margin-left:20px;" src="../content/static/images/sj01.jpg" width="37" height="37" /></a>
+            <a href="https://www.facebook.com/"><img style="vertical-align:middle; margin-left:8px;" src="../content/static/images/sj02.jpg" width="37" height="37" /></a>
+            <a href="http://vk.com/"><img style="vertical-align:middle; margin-left:8px;" src="../content/static/images/sj03.jpg" width="37" height="37" /></a>
+            <a href="http://www.odnoklassniki.ru/"><img style="vertical-align:middle; margin-left:8px;" src="../content/static/images/sj04.jpg" width="37" height="37" /></a>
+            <a href="https://twitter.com/"><img style="vertical-align:middle; margin-left:8px;" src="../content/static/images/sj05.jpg" width="37" height="37" /></a>
+            <a href="https://mail.ru/"><img style="vertical-align:middle; margin:0 130px 0 8px;" src="../content/static/images/sj06.jpg" width="37" height="37" /></a>
         	分享好友 
-            <a href="#"><img style="vertical-align:middle; margin-left:30px;" src="images/sj07.jpg" width="316" height="45" /></a>
+            <a href="#"><img style="vertical-align:middle; margin-left:30px;" src="../content/static/images/sj07.jpg" width="316" height="45" /></a>
 		</div>
 		<div class="fotcd">
             <div class="dbcd">
@@ -1694,16 +1815,16 @@
                 <div class="clear"></div>
             </div>
     	</div>
-		<div class="fkfs"><a href="#"><img src="images/fkfs.jpg" width="1200" height="110" /></a></div>
-        <div class="bqsy"><a href="#"><img src="images/bqsy.jpg" width="192" height="31" /></a></div>
+		<div class="fkfs"><a href="#"><img src="../content/static/images/fkfs.jpg" width="1200" height="110" /></a></div>
+        <div class="bqsy"><a href="#"><img src="../content/static/images/bqsy.jpg" width="192" height="31" /></a></div>
     </div>
-<div class="zxzx"><a href="#"><img src="images/zxzx.png" /></a></div><!---------------   右侧浮动   ----------------------->
+<div class="zxzx"><a href="#"><img src="../content/static/images/zxzx.png" /></a></div><!---------------   右侧浮动   ----------------------->
 <div class="fdan">
 	<ul>
-		<li><a href="#"><img src="images/mfsh.png" width="123" height="55" /></a></li>
-		<li><a href="#"><img src="images/rhdg.png" width="123" height="55" /></a></li>
-		<li><a href="#"><img src="images/ysfs.png" width="123" height="55" /></a></li>
-		<li><a href="#"><img src="images/zftk.png" width="123" height="55" /></a></li>
+		<li><a href="#"><img src="../content/static/images/mfsh.png" width="123" height="55" /></a></li>
+		<li><a href="#"><img src="../content/static/images/rhdg.png" width="123" height="55" /></a></li>
+		<li><a href="#"><img src="../content/static/images/ysfs.png" width="123" height="55" /></a></li>
+		<li><a href="#"><img src="../content/static/images/zftk.png" width="123" height="55" /></a></li>
 	</ul>
 </div>
 </body>

@@ -6,8 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>zazatao</title>
 <link href="content/static/css/reception/css.css" rel="stylesheet" type="text/css" />
-<SCRIPT href="content/static/js/reception/png.js" type="text/javascript" /></SCRIPT>
-<SCRIPT src="content/static/js/reception/ScrollPic.js" type=text/javascript></SCRIPT>
+<script href="content/static/js/reception/png.js" type="text/javascript" ></script>
+<script src="content/static/js/reception/ScrollPic.js" type=text/javascript></script>
 <script type="text/javascript" src="content/static/js/reception/jquery.min.js"></script>
 <script type="text/javascript" src="content/static/js/reception/js.js"></script>
 </head>
@@ -23,7 +23,7 @@
             </div>
             
              <div class="top_tel"><img src="content/static/images/top_sj.png" /><p>全球统一客服电话<br /><span class="red">152386895258</span></p></div>
-            <div class="gwctb"><a href="shopcar"><img src="content/static/images/gwc.jpg" width="63" height="43" /></a></div>
+            <div class="gwctb"><a href="shopcar.jsp"><img src="content/static/images/gwc.jpg" width="63" height="43" /></a></div>
             <div class="clear"></div>
             <div class="qbfl"><a href="index.jsp"><img src="content/static/images/china.jpg" /></a><a href="../index.jsp"><img src="content/static/images/eluosi.jpg" /></a></div>
         </div>
@@ -33,9 +33,9 @@
     	<div style="height:78px;"></div>
    			 <div class="dlzc">
         	<ul>
-            	<li><a href="perscent_ord.html">我的办公室</a></li>
+            	<li><a href="./user/myoffice">我的办公室</a></li>
                 <li><a href="login.html">请登记</a></li>
-                <li class="zc"><a href="zhuce.html">免费注册</a></li>
+                <li class="zc"><a href="./user/regist">免费注册</a></li>
                 <li><a href="file_index.jsp">客户服务</a>
                 	<div class="filexlcd">
                     <ul>

@@ -1,31 +1,32 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>zazatao</title>
-<link href="css/css.css" rel="stylesheet" type="text/css" />
-<link href="css/persc.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/png.js"></script>
-<script type="text/javascript" src="js/sdmenu.js"></script>
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/js.js"></script>
+<link href="../content/static/css/reception/css.css" rel="stylesheet" type="text/css" />
+<link href="../content/static/css/reception/qt.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../content/static/js/reception/png.js"></script>
+<script type="text/javascript" src="../content/static/js/reception/sdmenu.js"></script>
+<script type="text/javascript" src="../content/static/js/reception/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="../content/static/js/reception/js.js"></script>
+<SCRIPT src="../content/static/js/reception/ScrollPic.js" type=text/javascript></SCRIPT>
 </head>
 
 <body>
 <div class="topfd"><!---------------   浮动头部   ----------------------->
         <div class="topnone"></div>
 		<div class="top1">
-    		<div class="logo"><a href="index.html"><img src="images/logo.jpg" width="162" height="62" /></a></div>
+    		<div class="logo"><a href="index.html"><img src="../content/static/images/logo.jpg" width="162" height="62" /></a></div>
         	<div class="znss">
             	<div class="ssk"><input value="搜索" name="" type="text" onfocus="this.value=''" onblur="if(this.value==''){this.value='搜索';}"  /></div>
                 <div class="ssan"><input name="" type="button" /></div>
             </div>
             
-             <div class="top_tel"><img src="images/top_sj.png" /><p>全球统一客服电话<br /><span class="red">152386895258</span></p></div>
-            <div class="gwctb"><a href="shopcar.html"><img src="images/gwc.jpg" width="63" height="43" /></a></div>
+             <div class="top_tel"><img src="../content/static/images/top_sj.png" /><p>全球统一客服电话<br /><span class="red">152386895258</span></p></div>
+            <div class="gwctb"><a href="shopcar.html"><img src="../content/static/images/gwc.jpg" width="63" height="43" /></a></div>
             <div class="clear"></div>
-            <div class="qbfl"><a href="index.html"><img src="images/china.jpg" /></a><a href="../index.html"><img src="images/eluosi.jpg" /></a></div>
+            <div class="qbfl"><a href="index.html"><img src="../content/static/images/china.jpg" /></a><a href="../index.html"><img src="../content/static/images/eluosi.jpg" /></a></div>
         </div>
         <div class="topnone"></div>
 	</div>
@@ -35,29 +36,29 @@
         	<ul>
             	<li><a href="perscent_ord.html">我的办公室</a></li>
                 <li><a href="login.html">请登记</a></li>
-                <li class="zc"><a href="zhuce.html">免费注册</a></li>
+                <li class="zc"><a class="cur_zc" href="zhuce.html">免费注册</a></li>
                 <li><a href="file_index.html">客户服务</a>
                 	<div class="filexlcd">
                     <ul>
-                      <li><a href="#"><span><img src="images/brand/filel_02.png"/></span>提问和回答</a></li>
-                      <li><a href="#"><span><img src="images/brand/filel_17.png"/></span>如何找到合适商品在产品目录</a></li>
-                      <li><a href="#"><span><img src="images/brand/filel_01.png"/></span>关于zazatao.com的服务</a></li>
-                      <li><a href="#"><span><img src="images/brand/filel_05.png"/></span>运费 </a></li>
-                      <li><a href="#"><span><img src="images/brand/filel_18.png"/></span>购物袋</a></li>
-                      <li><a href="#"><span><img src="images/brand/filel_19.png"/></span>联系我们</a></li>
+                      <li><a href="#"><span><img src="../content/static/images/brand/filel_02.png"/></span>提问和回答</a></li>
+                      <li><a href="#"><span><img src="../content/static/images/brand/filel_17.png"/></span>如何找到合适商品在产品目录</a></li>
+                      <li><a href="#"><span><img src="../content/static/images/brand/filel_01.png"/></span>关于zazatao.com的服务</a></li>
+                      <li><a href="#"><span><img src="../content/static/images/brand/filel_05.png"/></span>运费 </a></li>
+                      <li><a href="#"><span><img src="../content/static/images/brand/filel_18.png"/></span>购物袋</a></li>
+                      <li><a href="#"><span><img src="../content/static/images/brand/filel_19.png"/></span>联系我们</a></li>
                     </ul>  
                     </div>
                 </li>
                 <li style="background:#fff; height:32px; margin-top:1px;"><a style="color:#000;" href="shopcar.html">购物车(0)</a></li>
+                <div class="clear"></div>
             </ul>
-            <div class="clear"></div>
         </div>
         </div>
 	<div class="top">
         <div class="menu"><!---------------   菜单   ----------------------->
         	<div class="menu1">
             	<ul class="nav">
-                	<li class="bg_none"><a href="index.html"><img src="images/fzan.jpg" width="16" height="17" /></a></li>
+                	<li class="bg_none"><a href="index.html"><img src="../content/static/images/fzan.jpg" width="16" height="17" /></a></li>
                     <li><a href="yl_1.html">季节</a>
                     	<div>
                         <div class="nav-column">
@@ -1521,273 +1522,210 @@
             <div class="clear"></div>
         </div>
     </div>
-
-
-<!---------------   页面主体   ----------------------->
-<div class="con">
-
-	<!---------------   left   ----------------------->
-	<div class="perterl">
-    	<div class="perterles">
-        	<div>
-        	  <p>商品管理</p>
-        	  <ul>
-        	    <li><a href="send.html">发布新商品</a></li>
-        	    <li><a href="#">自动发货商品管理</a></li>
-        	    <li><a href="#">仓库中的商品</a></li>
-        	    <li><a href="#">出售中的商品</a></li>
-        	    <li><a href="#">拍卖的商品</a></li>
-        	    <li><a href="#">商品促销</a></li>
-        	    <li><a href="#">商品留言回复</a></li>
-        	  </ul>
-        	</div>
-        	<div>
-        	  <p>交易管理</p>
-        	  <ul>
-        	    <li><a href="#">全部卖出交易</a></li>
-        	    <li><a href="#">买家退款退货</a></li>
-        	    <li><a href="#">评价管理</a></li>
-        	    <li><a href="#">发货管理</a></li>
-        	    <li><a href="#">结算管理</a></li>
-        	    <li><a href="#">交易货款结算<span class="red">(新)</span></a></li>
-        	    <li><a href="#">代金卷结算</a></li>
-        	  </ul>
-        	</div>
-        	<div>
-        	  <p>营销管理</p>
-        	  <ul>
-        	    <li><a href="#">营销管理报名</a></li>
-        	    <li><a href="#">营销应用集合</a></li>
-        	    <li><a href="#">客户通CRM<span class="red">(新)</span></a></li>
-        	  </ul>
-        	</div>
-        	<div>
-        	  <p>店铺管理</p>
-        	  <ul>
-        	    <li><a href="#">查看我的店铺</a></li>
-        	    <li><a href="#">子账号管理<span class="red">(新)</span></a></li>
-        	    <li><a href="#">店铺管理</a></li>
-        	  </ul>
-        	</div>
-        </div>
-    </div>
-    
-    
-	<!---------------   right   ------------->
-    <div class="perterr">
-    	<div>
-        	<div class="pertertil">
-                <div>
-                    <dl>
-                      <dt><img src="images/kx.jpg"/></dt>
-                      <dd><b>Пополнить счет  счет</b><img src="images/user.jpg"/></dd>
-                      <dd>06.07.1992</dd>
-                    </dl>
-                    <p>marat004@163.com</p>
-                    <p>您的账号码:456789123</p>
-                </div>
-                <div>
-                    <p>可以资金 </p>
-                    <p><b>$0</b></p>
-                    <p><a class="onck1" href="#">新增资金</a></p>
-                </div>
-        	</div>
-            <div class="pertersgg">
-            	<h3>公告</h3>
-                <ul>
-                  <li>拍拍网店运营全攻略</li>
-                  <li>京东快递在拍拍网正式开通</li>
-                  <li>“拍拍大讲堂”微信账号开通了</li>
-                </ul>
-            </div>
-            <div class="cl"></div>
-        </div>
-    	<div class="catelist">
-        	<div>
-            	<p>商品</p>
-                <ul>
-                  <li><a href="#">问题商品<span class="gay">(0)</span></a></li>
-                  <li><a href="#">已售完<span class="gay">(0)</span></a></li>
-                  <li><a href="#">到期下架<span class="gay">(0)</span></a></li>
-                  <li><a href="#">留言/回复<span class="gay">(0)</span></a></li>
-                  <li><a href="#">出售中<span class="gay">(0)</span></a></li>
-                  <li><a href="#">仓库中<span class="gay">(0)</span></a></li>
-                </ul>
-                <span class="catelistup"></span>
-            </div>
-        	<div>
-            	<p>交易</p>
-                <ul>
-                  <li><a href="#">待买家付款<span class="gay">(0)</span></a></li>
-                  <li><a href="#">待发货<span class="gay">(0)</span></a></li>
-                  <li><a class="grean" href="#">待评价<span class="gay">(0)</span></a></li>
-                  <li><a href="#">留言/回复<span class="gay">(0)</span></a></li>
-                  <li><a href="#">待买家收货<span class="gay">(0)</span></a></li>
-                  <li><a href="#">退货退款<span class="gay">(0)</span></a></li>
-                  <li><a href="#">收到维权投诉<span class="gay">(0)</span></a></li>
-                  <li><a href="#">近期出售<span class="gay">(0)</span></a></li>
-                </ul>
-                <span class="catelistup"></span>
-            </div>
-            <div id="cl"></div>
-        </div>
-    	<div class="perterrtab">
-        	<h3>7天内店铺交易访问情况：<span><a href="#">查看详细图表</a></span></h3>
-            <div>
-            	<table border="0" cellspacing="0" cellpadding="0" width="100%;">
-                    <thead>
-                      <tr align="center">
-                        <td rowspan="2">日期</td>
-                        <td colspan="2">访问</td>
-                        <td colspan="3">下单</td>
-                        <td colspan="3">支付</td>
-                        <td colspan="3">退款</td>
-                      </tr>
-                      <tr align="center">
-                        <td>访问人数</td>
-                        <td>访问次数</td>
-                        <td>下单人数</td>
-                        <td>下单次数</td>
-                        <td>下单金额</td>
-                        <td>支付人数</td>
-                        <td>支付次数</td>
-                        <td>支付金额</td>
-                        <td>退款人数</td>
-                        <td>退款次数</td>
-                        <td>退款金额</td>
-                      </tr>
-                     </thead>
-                     <tbody>
-                      <tr align="center">
-                        <td>20101219</td>
-                        <td>4561</td>
-                        <td>45</td>
-                        <td>45612</td>
-                        <td>21</td>
-                        <td>4578941</td>
-                        <td>122</td>
-                        <td>123</td>
-                        <td>45678</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>45</td>
-                      </tr>
-                      <tr align="center">
-                        <td>20101218</td>
-                        <td>123</td>
-                        <td>1234</td>
-                        <td>789456</td>
-                        <td>12</td>
-                        <td>12</td>
-                        <td>123</td>
-                        <td>12345</td>
-                        <td>98745</td>
-                        <td>1</td>
-                        <td>4</td>
-                        <td>789</td>
-                      </tr>
-                      <tr align="center">
-                        <td>20101217</td>
-                        <td>789</td>
-                        <td>4561</td>
-                        <td>123</td>
-                        <td>1156</td>
-                        <td>4894123</td>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>45678</td>
-                        <td>789</td>
-                        <td>45</td>
-                        <td>78</td>
-                      </tr>
-                      <tr align="center">
-                        <td>20101216</td>
-                        <td>45</td>
-                        <td>45</td>
-                        <td>45</td>
-                        <td>45</td>
-                        <td>789</td>
-                        <td>453</td>
-                        <td>70855</td>
-                        <td>48</td>
-                        <td>48</td>
-                        <td>05812</td>
-                        <td>5</td>
-                      </tr>
-                      <tr align="center">
-                        <td>20101215</td>
-                        <td>54948.36</td>
-                        <td>4853</td>
-                        <td>469</td>
-                        <td>4639</td>
-                        <td>47639</td>
-                        <td>469</td>
-                        <td>41.36</td>
-                        <td>143.</td>
-                        <td>14</td>
-                        <td>648</td>
-                        <td>6146</td>
-                      </tr>
-                      <tr align="center">
-                        <td>20101214</td>
-                        <td>4869</td>
-                        <td>1465</td>
-                        <td>123</td>
-                        <td>465</td>
-                        <td>789</td>
-                        <td>56</td>
-                        <td>89</td>
-                        <td>4165</td>
-                        <td>4798</td>
-                        <td>15</td>
-                        <td>489</td>
-                      </tr>
-                      <tr align="center">
-                        <td>20101213</td>
-                        <td>489</td>
-                        <td>1456</td>
-                        <td>123</td>
-                        <td>489</td>
-                        <td>45</td>
-                        <td>67831</td>
-                        <td>5817</td>
-                        <td>89148</td>
-                        <td>5179</td>
-                        <td>48</td>
-                        <td>74</td>
-                      </tr>
-                      </tbody>
-                </table>
-			<script>
-            	$(function(){
-				   $('.perterrtab tbody tr:odd').css("backgroundColor","#e5e5e5");
-				});
-            </script>
-            </div>
-        </div>
-    	<div class="perterrcont">
-       	  <h3>官方客服联系方式</h3>
-            <p>
-            <img  style="CURSOR: pointer" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&sid=800025375&o=zzt&q=7', '_blank', 'height=502, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');"  border="0" SRC="images/brand/perterrcont1.jpg" alt="点击这里给我发消息"> 企业QQ(800025375)/在线时间<a href="#">08:00-23:30</a>
+<div class="con"><!---------------   页面主体   ----------------------->
+	<!--zhuce start-->
+	<div class="zc_left"><img src="../content/static/images/small/zc_left.png" /></div>
+    <div class="zc_center">
+        <p>在这里您会买到一切您所需要的东西</p>
+        <!-----------zc_box start----------------> 
+    	<div class="zc_box" style="display:block" >
+        <h1>注册新用户</h1>
+    	<div class="zc_cent_cont">
+            <h2>登陆社交网站</h2>
+            <p class="ptop_2">
+            <a href="#"><img src="../content/static/images/small/dl_pic_1.png" /></a>
+            <a href="#"><img src="../content/static/images/small/dl_pic_2.png" /></a>
+            <a href="#"><img src="../content/static/images/small/dl_pic_3.png" /></a>
             </p>
-            <span><img src="images/brand/perterrcont3.jpg"/><img src="images/brand/perterrcont2.jpg"/></span>
+            <p class="ptop_3">
+            <a href="#"><img src="../content/static/images/small/dl_pic_1.png" /></a>
+            <a href="#"><img src="../content/static/images/small/dl_pic_2.png" /></a>
+            <a href="#"><img src="../content/static/images/small/dl_pic_3.png" /></a>
+            </p>
+            <p><span>—————————ИЛИ————————</span></p>
+            <form action="./addUser" method="post">
+	            <ul>
+	            	<li>选择登录名<span class="red"> *</span><br /><input class="zc_input" type="text" name="name" id="name"/></li>
+	                
+	                <li>密码 <span class="red"> *</span><br /><input class="zc_input" type="password" name="password" id="password"/></li>
+	                
+	                <li><input type="checkbox" class="checkbox_2" checked="checked" /><span class="gray">显示密码</span> </li>
+	                
+	                <li>确认密码<span class="red"> *</span><br /><input class="zc_input" type="text" name="password" id="password" /></li>
+	                
+	                <li>输入电话号码<span class="red"> *</span><br />
+	                <select class="zc_input_2"><option>选择国家</option><option>中国</option><option>美国</option><option>俄罗斯</option><option>伊拉克</option></select>
+	                <span class="zc_bd">+90</span>-<input class="zc_input_2" type="text" name="phone" id="phone"/><span class="red">или</span></li>
+	                
+	                <li>输入电邮地址<span class="red"> *</span><br /><input class="zc_input" type="text" name="email" id="email"/></li>
+	                
+	                <li>短信代码<input class="zc_input_2" type="text" value="" /><input class="sub_3" type="submit" value="发送代码" /></li>
+	                <li><p>您的性别</p></li>
+	                <li><a class="green" name="sex" id="1" value="男" type="radio">男士  </a><a class="red" name="sex" id="2" type="radio" value="女">女士</a></li>
+	                <li>我有代码可以邀请朋友<input class="zc_input_2" type="text" value="" /></li>
+	                <li><input type="checkbox" class="checkbox_2" checked="checked" /><span class="gray">接受用户协议条款</span></li>
+	                <li><input type="submit"  class="bott" value="注册" /></li>
+	            </ul>
+            </form>
         </div>
+       </div>
+       <!-----------zc_box over---------------->  
+       
+       <!-----------zc_box_2 start----------------> 
+    	<div class="zc_box zc_box_2" style="display:none">
+        <h1>定于组织 </h1>
+    	<div class="zc_cent_cont">
+            <ul>
+            	<li>
+                代表组织名称<br /><input class="zc_input" type="text" value="" /><br />
+                <em>例子<br />-OOO有限公司<br />-阿斯塔纳责任有限公司<br />-"РосСТРАХ" 喀山公司</em>
+                </li>
+                
+                <li>收货人名称 <br /><input class="zc_input" type="password" value="" /></li>
+               
+                <li>法定地址<br /><input class="zc_input" type="text" value="" /></li>
+                
+                <li>实际地址&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;符合法律<br /><input class="zc_input" type="text" value="" /></li>
+                
+                <li>输入电话号码<span class="red"> *</span><br />
+                <select class="zc_input_2"><option>选择国家</option><option>中国</option><option>美国</option><option>俄罗斯</option><option>伊拉克</option></select>
+                <span class="zc_bd">+90</span>-<input class="zc_input_2" type="text" value="" /><span class="red">или</span></li>
+                
+                <li><span>NHH</span><input class="zc_input_2" type="text" value="4444444" /></li>
+                
+                <li><span>NHH</span><input class="zc_input_2" type="text" value="43334434" /></li>
+                
+                <li>银行名称<br /><input class="zc_input" type="text" value="" /></li>
+                
+                <li><span>银行的分类</span><input class="zc_input_3 zc_input_2" type="text" value="" /></li>
+                <li><span>计算账户</span><input class="zc_input_3 zc_input_2" type="text" value="" /></li>
+                <li><span>计算账户</span><input class="zc_input_3 zc_input_2" type="text" value="" /></li>
+                <li><input type="checkbox" class="checkbox_2" checked="checked" /><span class="gray">接收用户协议条款</span></li>
+            	<li><input type="button"  class="bott" value="注册" /></li>
+            </ul>
+            
+        </div>
+       </div>
+       <!-----------zc_box_2 over---------------->    
+       
+       
+       
+       
+        <!-----------zc_box_3 start----------------> 
+    	<div class="zc_box zc_box_2 zc_box_3" style="display:none">
+        <h1>免费注册</h1>
+    	<div class="zc_cent_cont">
+            <h3><img src="../content/static/images/zc_1.png" />设置登录名</h3>
+            <ul>
+            	<li><span>所在国家/地区</span>
+                <select><option>中国</option><option>美国</option><option>俄国</option><option>澳大利亚</option></select>
+                </li>
+                <li><span class="sp">手机号码</span>
+                <div class="tel"><span class="gray_tel">+86</span><input class="zc_input_2 zc_input_4" type="text" /></div>
+                </li>
+                
+                <li><span>验证码</span><input class="zc_input_2" type="password" value="" /></li>
+                
+                <li><input type="checkbox" class="checkbox_2" checked="checked" />同意<span class="orange">《服务协议》</span></li>
+                
+                <li class="down">下一步</li>
+                
+                <li><h3><img src="../content/static/images/zc_2.png" />填写账户信息</h3></li>
+                
+                <li><span>登录名</span><input class="zc_input_2" type="text" value="" /></li>
+                
+                <li><span>设置登录密码</span>登录时验证，保护账户信息</li>
+    
+               	<li><span>登录密码</span><input class="zc_input_2" type="password" value="" /></li>
+                
+                <li><span>再次确认密码</span><input class="zc_input_2" type="password" value="" /></li>
+                
+                <li><span>设置会员名</span></li>
+                
+                <li><span>会员名</span><input class="zc_input_2" type="text" value="" /></li>
+                
+                <li class="down">下一步</li>
+                
+                <li><h3><img src="../content/static/images/zc_3.png" />注册成功</h3></li>
+                
+            	<li><input type="button"  class="bott" value="开始销售" /></li>
+            </ul>
+            
+        </div>
+       </div>
+       <!-----------zc_box_3 over---------------->      
+           
+       
+       
+       <div class="side_tit"><a><img src="../content/static/images/right_tit_1.png" /></a><a><img src="../content/static/images/right_tit_2.png" /></a><a><img src="../content/static/images/right_tit_3.png" /></a></div>
     </div>
+    <div class="zc_right"><img src="../content/static/images/small/zc_right.png" /></div>
+    <!--zhuce over-->
+	<div class="clear"></div>    
+    <div class="wmdfw">
+        	<div class="wmtop">关于我们的服务</div>
+            <div class="wmcon">
+            	<ul>
+                	<li class="h_1"><a href="file06.html"></a></li>
+                    <li class="h_2"><a href="download.html"></a></li>
+                    <li class="h_3"><a href="file15.html"></a></li>
+                    <li class="h_4"><a href="#"></a></li>
+                </ul>
+            </div>
+        </div>
+        <!-------------图片轮播----------------->
+        <div class="spzx">
+        	<div class="sptop"><img src="../content/static/images/tbfh.jpg" width="14" height="14" />&nbsp; ВИДЕО ПОМОЩЬ ПОЛЬЗОВАНИИ САЙТОМ</div>
+            <div class="spcon">
+            <div class="catalog_img">          
+            <DIV class="LeftBotton" id="LeftArr"></DIV>
+            <DIV class="Cont" id="ISL_Cont_1"><!-- 图片列表 begin -->
+            <DIV class="box"><A class=imgBorder href="#"><img src="../content/static/images/lb.jpg"/></A> </DIV>
+            <DIV class="box"><A class=imgBorder href="#"><img src="../content/static/images/lb.jpg"/></A> </DIV>
+            <DIV class="box"><A class=imgBorder href="#"><img src="../content/static/images/lb.jpg"/></A> </DIV>
+            <DIV class="box"><A class=imgBorder href="#"><img src="../content/static/images/lb.jpg"/></A> </DIV>
+            <DIV class="box"><A class=imgBorder href="#"><img src="../content/static/images/lb.jpg"/></A> </DIV>
+            <DIV class="box"><A class=imgBorder href="#"><img src="../content/static/images/lb.jpg"/></A> </DIV>
+            <DIV class="box"><A class=imgBorder href="#"><img src="../content/static/images/lb.jpg"/></A> </DIV>
+            <DIV class="box"><A class=imgBorder href="#"><img src="../content/static/images/lb.jpg"/></A> </DIV><!-- 图片列表 end --></DIV>
+            
+            <DIV class="RightBotton" id="RightArr"></DIV></DIV>
+            
+            <SCRIPT language=javascript type=text/javascript>
+					<!--//--><![CDATA[//><!--
+					var scrollPic_02 = new ScrollPic();
+					scrollPic_02.scrollContId   = "ISL_Cont_1"; //内容容器ID
+					scrollPic_02.arrLeftId      = "LeftArr";//左箭头ID
+					scrollPic_02.arrRightId     = "RightArr"; //右箭头ID
+			
+					scrollPic_02.frameWidth     = 916; //显示框宽度
+					scrollPic_02.pageWidth      = 229; //翻页宽度
+			
+					scrollPic_02.speed          = 10; //移动速度(单位毫秒，越小越快)
+					scrollPic_02.space          = 10; //每次移动像素(单位px，越大越快)
+					scrollPic_02.autoPlay       = false; //自动播放
+					scrollPic_02.autoPlayTime   = 3; //自动播放间隔时间(秒)
+			
+					scrollPic_02.initialize(); //初始化
+										
+					//--><!]]>
+			</SCRIPT>
+            </div>            
+        </div>
+        <!-------------图片轮播----------------->
+    
     
 </div>
-
-
-<!---------------   底部   ----------------------->
-<div class="footer">
+<div class="footer"> <!---------------   底部   ----------------------->
     	<div class="dyzx">
-        	<div class="fotlogo"><a href="index.html"><img src="images/fotlogo.jpg" width="150" height="60" /></a></div>
+        	<div class="fotlogo"><a href="index.html"><img src="../content/static/images/fotlogo.jpg" width="150" height="60" /></a></div>
             <div class="dyxx">订阅我们的时事通讯</div>
 			<input name="" type="text" value="email" onfocus="if(this.value=='email'){this.value='';$('.xbdj').css('display','block')}" onblur="if(this.value==''){this.value='email';$('.xbdj').css('display','none')}"  />
             <div class="xbdj">
             	<div class="xbxz">性别</div>
                 <div class="xban">
-                	<a href="#"><img style="float:left" src="images/xbn.jpg" width="81" height="29" /></a>
-                    <a href="#"><img style="float:right" src="images/xbw.jpg" width="81" height="29" /></a>
+                	<a href="#"><img style="float:left" src="../content/static/images/xbn.jpg" width="81" height="29" /></a>
+                    <a href="#"><img style="float:right" src="../content/static/images/xbw.jpg" width="81" height="29" /></a>
                     <div class="clear"></div>
             	</div>
             </div>
@@ -1795,14 +1733,14 @@
         </div>
 		<div class="fxlj">
         	社交网络 
-            <a href="http://instagram.com/"><img style="vertical-align:middle; margin-left:20px;" src="images/sj01.jpg" width="37" height="37" /></a>
-            <a href="https://www.facebook.com/"><img style="vertical-align:middle; margin-left:8px;" src="images/sj02.jpg" width="37" height="37" /></a>
-            <a href="http://vk.com/"><img style="vertical-align:middle; margin-left:8px;" src="images/sj03.jpg" width="37" height="37" /></a>
-            <a href="http://www.odnoklassniki.ru/"><img style="vertical-align:middle; margin-left:8px;" src="images/sj04.jpg" width="37" height="37" /></a>
-            <a href="https://twitter.com/"><img style="vertical-align:middle; margin-left:8px;" src="images/sj05.jpg" width="37" height="37" /></a>
-            <a href="https://mail.ru/"><img style="vertical-align:middle; margin:0 130px 0 8px;" src="images/sj06.jpg" width="37" height="37" /></a>
+            <a href="http://instagram.com/"><img style="vertical-align:middle; margin-left:20px;" src="../content/static/images/sj01.jpg" width="37" height="37" /></a>
+            <a href="https://www.facebook.com/"><img style="vertical-align:middle; margin-left:8px;" src="../content/static/images/sj02.jpg" width="37" height="37" /></a>
+            <a href="http://vk.com/"><img style="vertical-align:middle; margin-left:8px;" src="../content/static/images/sj03.jpg" width="37" height="37" /></a>
+            <a href="http://www.odnoklassniki.ru/"><img style="vertical-align:middle; margin-left:8px;" src="../content/static/images/sj04.jpg" width="37" height="37" /></a>
+            <a href="https://twitter.com/"><img style="vertical-align:middle; margin-left:8px;" src="../content/static/images/sj05.jpg" width="37" height="37" /></a>
+            <a href="https://mail.ru/"><img style="vertical-align:middle; margin:0 130px 0 8px;" src="../content/static/images/sj06.jpg" width="37" height="37" /></a>
         	分享好友 
-            <a href="#"><img style="vertical-align:middle; margin-left:30px;" src="images/sj07.jpg" width="316" height="45" /></a>
+            <a href="#"><img style="vertical-align:middle; margin-left:30px;" src="../content/static/images/sj07.jpg" width="316" height="45" /></a>
 		</div>
 		<div class="fotcd">
             <div class="dbcd">
@@ -1843,16 +1781,16 @@
                 <div class="clear"></div>
             </div>
     	</div>
-		<div class="fkfs"><a href="#"><img src="images/fkfs.jpg" width="1200" height="110" /></a></div>
-        <div class="bqsy"><a href="#"><img src="images/bqsy.jpg" width="192" height="31" /></a></div>
+		<div class="fkfs"><a href="#"><img src="../content/static/images/fkfs.jpg" width="1200" height="110" /></a></div>
+        <div class="bqsy"><a href="#"><img src="../content/static/images/bqsy.jpg" width="192" height="31" /></a></div>
     </div>
-<div class="zxzx"><a href="#"><img src="images/zxzx.png" /></a></div><!---------------   右侧浮动   ----------------------->
+<div class="zxzx"><a href="#"><img src="../content/static/images/zxzx.png" /></a></div><!---------------   右侧浮动   ----------------------->
 <div class="fdan">
 	<ul>
-		<li><a href="#"><img src="images/mfsh.png" width="123" height="55" /></a></li>
-		<li><a href="#"><img src="images/rhdg.png" width="123" height="55" /></a></li>
-		<li><a href="#"><img src="images/ysfs.png" width="123" height="55" /></a></li>
-		<li><a href="#"><img src="images/zftk.png" width="123" height="55" /></a></li>
+		<li><a href="#"><img src="../content/static/images/mfsh.png" width="123" height="55" /></a></li>
+		<li><a href="#"><img src="../content/static/images/rhdg.png" width="123" height="55" /></a></li>
+		<li><a href="#"><img src="../content/static/images/ysfs.png" width="123" height="55" /></a></li>
+		<li><a href="#"><img src="../content/static/images/zftk.png" width="123" height="55" /></a></li>
 	</ul>
 </div>
 </body>

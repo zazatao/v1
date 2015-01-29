@@ -27,14 +27,14 @@ import com.yc.entity.user.User;
 import com.yc.service.IUserService;
 
 @Controller
-@RequestMapping("/personnel")
-public class PersonnelController {
+@RequestMapping("/user")
+public class UserController {
 	
 	@SuppressWarnings("unused")
-	private static final Logger LOG = Logger.getLogger(PersonnelController.class);
+	private static final Logger LOG = Logger.getLogger(UserController.class);
 
     @Autowired
-    IUserService personnelService;
+    IUserService userService;
    
     
     @RequestMapping(value = "login", method = RequestMethod.POST)
@@ -42,7 +42,7 @@ public class PersonnelController {
         String name = request.getParameter("name");
         String pwd = request.getParameter("password");
         HttpSession session = request.getSession();
-        User personnel = personnelService.getUser(name);
+        User personnel = userService.getUser(name);
         if (personnel == null) {
             request.getSession().setAttribute("message", "nouser");
             return "redirect:/";
@@ -59,13 +59,39 @@ public class PersonnelController {
     }
     @RequestMapping(value = "regist", method = RequestMethod.GET)
     public ModelAndView register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	return new ModelAndView("personnel/register", null);
+    	return new ModelAndView("reception/register", null);
+    }
+    
+    @RequestMapping(value = "myoffice", method = RequestMethod.GET)
+    public ModelAndView myoffice(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	return new ModelAndView("reception/myoffice", null);
+    }
+    
+    @RequestMapping(value = "introduction", method = RequestMethod.GET)
+    public ModelAndView introduction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	return new ModelAndView("reception/introduction", null);
+    }
+    
+    @RequestMapping(value="UpdateUser",method = RequestMethod.GET)
+    public ModelAndView update(Integer id, HttpServletRequest request,HttpServletResponse response){
+    	User user = userService.findById(id);
+    	ModelMap map = new ModelMap();
+    	map.put("user",user);
+    	return new ModelAndView("reception/introduction", map);
+    }
+    
+    @RequestMapping(value="editUser",method = RequestMethod.POST)
+    public String user(Integer id,HttpServletRequest reqeust,HttpServletResponse response){
+    	User user = userService.findById(id);
+    	
+    	
+    	return "redirect:/introduction";
     }
 
     @RequestMapping(value = "regist", method = RequestMethod.POST)
     public String registing(User personnel,HttpServletRequest request, HttpServletResponse response) throws Exception {
-    	personnelService.save(personnel);
-        return "redirect:/";
+    	userService.save(personnel);
+        return "redirect:/index";
     }
 
     @RequestMapping(value = "logout", method = RequestMethod.GET)
@@ -76,39 +102,40 @@ public class PersonnelController {
     
     @RequestMapping(value = "personnel", method = RequestMethod.GET)
     public ModelAndView packages(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<User> list = personnelService.getAll();
+		List<User> list = userService.getAll();
     	ModelMap mode = new ModelMap();
     	mode.put("list", list);
-		return new ModelAndView("personnel/personnel", mode);
+		return new ModelAndView("index", mode);
 	}
-    @RequestMapping(value = "toAddPersonnel", method = RequestMethod.GET)
-    public ModelAndView toAddShopOrder(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @RequestMapping(value = "toAddUser", method = RequestMethod.GET)
+    public ModelAndView toAddUser(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	request.getSession().getAttribute("loginUser");
     	ModelMap mode = new ModelMap();
     	mode.put("personel", request.getSession().getAttribute("loginUser"));
-    	return new ModelAndView("personnel/addpersonnel",mode);
+    	return new ModelAndView("user/adduser",mode);
     }
     
-	@RequestMapping(value = "addPersonnel", method = RequestMethod.POST)
-    public ModelAndView addPackage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@RequestMapping(value = "addUser", method = RequestMethod.POST)
+    public String addUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Commodity c = new Commodity();
 		OrderForm of = new OrderForm();
 		User person = new User();
-		Package pk= new Package();
-		String transport =request.getParameter("transport");
-		pk.setTransport(transport);
-		String personnel = request.getParameter("personnel");
-		person.setUserName(personnel);
+		String name =request.getParameter("name");
+		person.setUserName(name);
+		String password = request.getParameter("password");
+		person.setPassword(password);
+		String phone = request.getParameter("phone");
+		person.setPhone(phone);
+		String email = request.getParameter("email");
+		person.setEmail(email);
+		String sex = request.getParameter("sex");
+		person.setSex(sex);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		of.setOrderDate(sdf.format(new Date()));
-		String traffic = request.getParameter("traffic");
-		pk.setTraffic(traffic);
-		Integer orderformid = Integer.parseInt(request.getParameter("orderFormID"));
-		of.setOrderFormID(orderformid);
 		of.setStoreOperator(person);
-		User p = personnelService.save(person);
+		User p = userService.save(person);
 		of.setOrderUser(p);
 		c.setOrderNumber(of);
-    	return packages(request, response);
+		return "redirect:/index";
     }
 }
