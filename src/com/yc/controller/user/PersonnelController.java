@@ -20,14 +20,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.yc.controller.shop.PackageController;
 import com.yc.entity.Commodity;
 import com.yc.entity.OrderForm;
 import com.yc.entity.Package;
 import com.yc.entity.user.Personnel;
-import com.yc.entity.user.User;
 import com.yc.service.IPersonnelService;
-import com.yc.service.IUserService;
 
 @Controller
 @RequestMapping("/personnel")
@@ -38,9 +35,7 @@ public class PersonnelController {
 
     @Autowired
     IPersonnelService personnelService;
-    
-    @Autowired
-	IUserService userService;
+   
     
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String login(RedirectAttributes redirectAttributes, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -98,7 +93,6 @@ public class PersonnelController {
     public ModelAndView addPackage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Commodity c = new Commodity();
 		OrderForm of = new OrderForm();
-		User u = new User();
 		Personnel person = new Personnel();
 		Package pk= new Package();
 		String transport =request.getParameter("transport");
@@ -112,9 +106,8 @@ public class PersonnelController {
 		Integer orderformid = Integer.parseInt(request.getParameter("orderFormID"));
 		of.setOrderFormID(orderformid);
 		of.setStoreOperator(person);
-		userService.save(u);
-		personnelService.save(person);
-		of.setOrderUser(u);
+		Personnel p = personnelService.save(person);
+		of.setOrderUser(p);
 		c.setOrderNumber(of);
     	return packages(request, response);
     }

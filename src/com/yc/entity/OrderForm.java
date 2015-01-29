@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.yc.entity.user.Personnel;
-import com.yc.entity.user.User;
+import com.yc.entity.user.Position;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
@@ -34,7 +34,7 @@ public class OrderForm {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	private User orderUser;
+	private Personnel orderUser;
 
 	@OneToOne
 	@JoinColumn(name = "address_id")
@@ -173,16 +173,17 @@ public class OrderForm {
 		this.orderNumber = orderNumber;
 	}
 
-	public User getOrderUser() {
-		return orderUser;
-	}
-
-	public void setOrderUser(User orderUser) {
-		this.orderUser = orderUser;
-	}
 
 	public List<ImagePath> getImagePaths() {
 		return imagePaths;
+	}
+
+	public Personnel getOrderUser() {
+		return orderUser;
+	}
+
+	public void setOrderUser(Personnel orderUser) {
+		this.orderUser = orderUser;
 	}
 
 	public void setImagePaths(List<ImagePath> imagePaths) {

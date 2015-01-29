@@ -7,15 +7,9 @@ import com.yc.entity.Package;
 import com.yc.entity.user.Department;
 import com.yc.entity.user.Personnel;
 import com.yc.entity.user.Position;
-import com.yc.entity.user.User;
 
 @Configuration
 public class GenericDaoConfig {
-
-	@Bean
-	public GenericDao<User> getUserDao() {
-		return new GenericDaoSupport<User>(User.class);
-	}
 
 	@Bean
 	public GenericDao<UnKnownCommodity> getUnKnownCommodityDao() {

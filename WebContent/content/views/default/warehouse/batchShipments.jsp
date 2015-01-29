@@ -1,4 +1,4 @@
-<%@page import="com.yc.entity.user.User"%>
+<%@page import="com.yc.entity.user.Personnel"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -115,7 +115,7 @@
 								<td></td>
 								<td>${orders.grossWeight }</td>
 								<td>${orders.transportFee }</td>
-								<td><c:if test="${orders.status == 'sendOut' }">派送</c:if> <%-- 									<c:if test="${orders.inForwarding == 'inForwarding' }">在转发</c:if> --%>
+								<td><c:if test="${orders.orderForms[0].orderstatus == 'initializa' }">初始化</c:if> <%-- 									<c:if test="${orders.inForwarding == 'inForwarding' }">在转发</c:if> --%>
 									<%-- 									<c:if test="${orders.senToWarehouse == 'senToWarehouse' }">送货到仓库</c:if> --%>
 									<%-- 									<c:if test="${orders.packing == 'packing' }"> 打包</c:if> --%>
 								</td>

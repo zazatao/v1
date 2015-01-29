@@ -12,7 +12,6 @@ import javax.persistence.ManyToOne;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import com.yc.entity.user.Personnel;
-import com.yc.entity.user.User;
 
 @Entity
 @DiscriminatorValue("unknowncommodity")

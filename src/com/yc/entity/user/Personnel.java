@@ -8,13 +8,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
-import com.yc.entity.Commodity;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+import com.yc.entity.Address;
 import com.yc.entity.OrderForm;
+import com.yc.entity.StoreRoom;
 import com.yc.entity.UnKnownCommodity;
 @Entity
 @DiscriminatorValue("personnel")//工作人员
+@JsonIgnoreProperties(value = { "unCommOperators", "commOperators", "purchases", "orderForms","address" })
 public class Personnel {
 
 	@Id
@@ -40,13 +46,47 @@ public class Personnel {
 	private Integer accomplishNum;//完成订单数
 	
 	@OneToMany(mappedBy = "storeOperator")
-    private List<OrderForm> commOperators ;
+    private List<OrderForm> commOperators ;//仓库接收订单
 	
     @OneToMany(mappedBy = "operator")
     private List<UnKnownCommodity> unCommOperators ;
     
     @OneToMany(mappedBy = "purchase")
-    private List<OrderForm> purchases ;
+    private List<OrderForm> purchases ;//采购接收订单
+    
+    @OneToMany(mappedBy = "orderUser")
+	private List<OrderForm> orderForms;//用户订单
+	
+	@OneToMany(mappedBy = "user")
+	private List<Address> address;//用户邮寄地址
+	
+	@OneToOne
+	@JoinColumn(name = "storeRoom_id")
+	private StoreRoom storeRoom;
+
+	public List<OrderForm> getOrderForms() {
+		return orderForms;
+	}
+
+	public void setOrderForms(List<OrderForm> orderForms) {
+		this.orderForms = orderForms;
+	}
+
+	public List<Address> getAddress() {
+		return address;
+	}
+
+	public void setAddress(List<Address> address) {
+		this.address = address;
+	}
+
+	public StoreRoom getStoreRoom() {
+		return storeRoom;
+	}
+
+	public void setStoreRoom(StoreRoom storeRoom) {
+		this.storeRoom = storeRoom;
+	}
 
 	public List<UnKnownCommodity> getUnCommOperators() {
 		return unCommOperators;

@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.yc.entity.user.User;
+import com.yc.entity.user.Personnel;
 
 @Entity
 @DiscriminatorValue("address")
@@ -39,7 +39,7 @@ public class Address {
     private String room = "";// 房间号：1002
     @ManyToOne
 	@JoinColumn(name = "user_id")
-    private User user;
+    private Personnel user;
     
     public Integer getId() {
 		return id;
@@ -49,11 +49,11 @@ public class Address {
 		this.id = id;
 	}
 
-	public User getUser() {
+	public Personnel getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Personnel user) {
 		this.user = user;
 	}
 

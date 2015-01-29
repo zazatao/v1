@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import com.yc.entity.user.User;
+import com.yc.entity.user.Personnel;
 //仓库
 @Entity
 @DiscriminatorValue("storeroom")
@@ -21,7 +21,7 @@ public class StoreRoom {
 	@Column
 	private String packageNum;
 	@OneToOne(mappedBy = "storeRoom")
-	private User user;
+	private Personnel user;
 
 	private Boolean isInCell; //单元格已经被用了
 	
@@ -57,12 +57,11 @@ public class StoreRoom {
 		this.packageNum = packageNum;
 	}
 
-	public User getUser() {
+	public Personnel getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Personnel user) {
 		this.user = user;
 	}
-
 }
