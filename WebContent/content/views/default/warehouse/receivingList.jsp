@@ -64,10 +64,13 @@ th {
 				<div class="container-fluid">
 					<div class="row-fluid">
 						<div class="span12">
-							<div style="display: none;" id="msg"></div>
+							<div>
+								<font color="green" size="+2">${msg }</font>
+							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<a href="../warehouse/jobAction"><span class="badge navbar-right">返回</span></a>
+									货物： <a href="../warehouse/jobAction"><span
+										class="badge navbar-right">返回</span></a>
 								</div>
 								<table class="table table-bordered table-hover table-condensed">
 									<thead>
@@ -97,14 +100,12 @@ th {
 														<c:when test="${value.status =='refuse'}">拒绝入库</c:when>
 														<c:when test="${value.status =='lose'}">丢失</c:when>
 														<c:when test="${value.status =='inWarehouse'}">在库房中</c:when>
-														<c:when test="${value.status =='marriage'}">交易中</c:when>
+														<c:when test="${value.status =='marriage'}">瑕疵品</c:when>
 													</c:choose></td>
-												<td><select class="form-control" id="checkDate"
-													onchange="checkDate(this,${value.commodityID });">
-														<option value="">---操作---
-														<option value="senToWarehouse">送往库房
-														<option value="refuse">拒绝入库
-												</select></td>
+												<td>
+													<button class="btn btn-large btn-success" type="button"
+														onclick="checkData(${value.commodityID});">入库</button>
+												</td>
 											</tr>
 											<tr>
 												<td rowspan="5" height="140px;" width="140px;"><c:if
@@ -115,10 +116,10 @@ th {
 												<td colspan="12">颜色：&nbsp;${value.color }&nbsp;&nbsp;&nbsp;&nbsp;尺码：&nbsp;${value.size }</td>
 											</tr>
 											<tr>
-												<td colspan="12">操作员：&nbsp;${value.storeOperator.userName }</td>
+												<td colspan="12">操作员：&nbsp;${value.orderNumber.storeOperator.userName }</td>
 											</tr>
 											<tr>
-												<td colspan="12">采购：&nbsp;${value.purchase.userName }</td>
+												<td colspan="12">采购：&nbsp;${value.orderNumber.purchase.userName }</td>
 											</tr>
 											<tr>
 												<td colspan="12">重量：&nbsp;${value.weight }</td>
@@ -146,12 +147,10 @@ th {
 				formatDate : 'Y-m-d',
 			});
 		}
-		function checkDate(obj,id){
-				if(obj.value=='senToWarehouse'){
-					 if( confirm('您确定要这样做吗？') ){
-						 location.href ='../warehouse/working?commodityID='+id;
-					 }
-				}
+		function checkData(id){
+			if( confirm('您确定要将该货品入库吗？') ){
+				location.href ='../warehouse/working?commodityID='+id;
+			}
 		}
 		function checkvalue(obj) {
 			if (!/^[+|-]?\d+\.?\d*$/.test(obj.value) && obj.value != '') {

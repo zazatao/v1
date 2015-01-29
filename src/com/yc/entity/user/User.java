@@ -7,9 +7,8 @@ import javax.persistence.*;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import com.yc.entity.Address;
-import com.yc.entity.Commodity;
 import com.yc.entity.OrderForm;
-import com.yc.entity.UnKnownCommodity;
+import com.yc.entity.StoreRoom;
 
 @Entity
 @DiscriminatorValue("user")
@@ -40,6 +39,18 @@ public class User {
 	
 	@OneToMany(mappedBy = "user")
 	private List<Address> address;
+	
+	@OneToOne
+	@JoinColumn(name = "storeRoom_id")
+	private StoreRoom storeRoom;
+
+	public StoreRoom getStoreRoom() {
+		return storeRoom;
+	}
+
+	public void setStoreRoom(StoreRoom storeRoom) {
+		this.storeRoom = storeRoom;
+	}
 
 	public List<Address> getAddress() {
 		return address;

@@ -27,7 +27,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.yc.entity.Commodity;
 import com.yc.entity.CommoidityStatus;
 import com.yc.entity.ImagePath;
-import com.yc.entity.StoreRoom;
 import com.yc.entity.UnKnownCommodity;
 import com.yc.entity.user.Personnel;
 import com.yc.service.ICommodityService;
@@ -88,15 +87,19 @@ public class ReceivingGoodsController {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("code") != null) {
 			UnKnownCommodity unKnown = unKnownCommService.findById(Integer.parseInt(session.getAttribute("code").toString()));
-			unknownComm.setOperator((Personnel) session.getAttribute("loginUser"));
-			BeanUtils.copyProperties(unknownComm, unKnown);
-			unKnownCommService.update(unKnown);
-			session.removeAttribute("code");
-			return new ModelAndView("warehouse/receiving", null);
+			if (unKnown !=null) {
+				unknownComm.setOperator((Personnel) session.getAttribute("loginUser"));
+				BeanUtils.copyProperties(unknownComm, unKnown);
+				unKnownCommService.update(unKnown);
+				session.removeAttribute("code");
+			}
+			return new ModelAndView("warehouse/jobAction", null);
 		} else {
-			unknownComm.setOperator((Personnel) session.getAttribute("loginUser"));
-			unKnownCommService.save(unknownComm);
-			return new ModelAndView("warehouse/receiving", null);
+			if (unknownComm.getAmountNum() !=null && !unknownComm.getCategory().equals("") && !unknownComm.getComment().equals("")) {
+				unknownComm.setOperator((Personnel) session.getAttribute("loginUser"));
+				unKnownCommService.save(unknownComm);
+			}
+			return new ModelAndView("warehouse/jobAction", null);
 		}
 	}
 
@@ -172,29 +175,32 @@ public class ReceivingGoodsController {
 		Integer num = personnel.getAccomplishNum();
 		String msg ="";
 		ModelMap mode = new ModelMap();
-		if (commods.size() == 1) {
-			for (Commodity commod : commods) {
-				commod.setStatus(CommoidityStatus.senToWarehouse);
-				commod.getOrderNumber().setStoreOperator(personnel);
-				Commodity comm = commodityService.update(commod);
-				StoreRoom room = comm.getStoreRoom();
-				room.setInStoreRoomDate((new SimpleDateFormat("yyyy-MM-dd")).format(new Date()));
-				storeRoomService.update(room);
-				msg = "已经查找到货号："+commod.getCommItem()+"，请将它入库！";
-			}
-			if (num ==null) {
-				personnel.setAccomplishNum(1);
+		if (commods.size()>0) {
+			if (commods.size() == 1) {
+				for (Commodity commod : commods) {
+					commod.setStatus(CommoidityStatus.senToWarehouse);
+					commod.getOrderNumber().setStoreOperator(personnel);
+					commod.setInStoreRoomDate((new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date()));
+					commodityService.update(commod);
+					msg = "已经查找到货号："+commod.getCommItem()+"，请将它入库！";
+				}
+				if (num ==null) {
+					personnel.setAccomplishNum(1);
+				}else{
+					personnel.setAccomplishNum(num + 1);
+				}
+				personnelService.update(personnel);
+				mode.put("msg", msg);
+				return new ModelAndView("warehouse/jobAction",mode);
 			}else{
-				personnel.setAccomplishNum(num + 1);
+				mode.put("list", commods);
+				request.getSession().setAttribute("map", map);
+				return new ModelAndView("warehouse/receivingList",mode);
 			}
-			personnelService.update(personnel);
-			mode.put("msg", msg);
-			return new ModelAndView("warehouse/jobAction",mode);
 		}else{
-			mode.put("list", commods);
-			request.getSession().setAttribute("map", map);
-			return new ModelAndView("warehouse/receivingList",mode);
+			return new ModelAndView("warehouse/jobAction",null);
 		}
+		
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -206,14 +212,12 @@ public class ReceivingGoodsController {
 		ModelMap mode = null;
 		if (commod != null) {
 			commod.setStatus(CommoidityStatus.senToWarehouse);
+			personnel = (Personnel)request.getSession().getAttribute("loginUser");
 			commod.getOrderNumber().setStoreOperator(personnel);
-			Commodity comm = commodityService.update(commod);
-			StoreRoom room = comm.getStoreRoom();
-			room.setInStoreRoomDate((new SimpleDateFormat("yyyy-MM-dd")).format(new Date()));
-			storeRoomService.update(room);
+			commod.setInStoreRoomDate((new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date()));
+			commodityService.update(commod);
 			msg = "已经查找到货号："+commod.getCommItem()+"，请将它入库！";
 			mode =  new ModelMap();
-			personnel = (Personnel)request.getSession().getAttribute("loginUser");
 			Integer num = personnel.getAccomplishNum();
 			if (num ==null) {
 				personnel.setAccomplishNum(1);

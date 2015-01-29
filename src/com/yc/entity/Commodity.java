@@ -16,11 +16,9 @@ import javax.persistence.OneToMany;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-import com.yc.entity.user.Personnel;
-
 @Entity
 @DiscriminatorValue("commodity")
-@JsonIgnoreProperties(value = { "storeOperator", "purchase", "storeRoom", "orderNumber", "imagePaths" ,})
+@JsonIgnoreProperties(value = { "storeRoom", "orderNumber", "imagePaths", })
 public class Commodity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,7 +30,7 @@ public class Commodity {
 	@Column
 	private String barcodes;// 自己的条形码
 	@Column
-	private String tpek;	//卖家条形码
+	private String tpek; // 卖家条形码
 	@Column
 	private String color;// 颜色
 	@Column
@@ -48,16 +46,16 @@ public class Commodity {
 	@Column
 	private Float money;// 金额
 	@Column
-	private String currency;//币种
+	private String currency;// 币种
 	@Column
 	private String comment;// 评论
-	
+
 	@Column
-	private String seller;//卖家
+	private String seller;// 卖家
 	@Column
-	private String sellerDate;//卖家付款日期
+	private String sellerDate;// 卖家付款日期
 	@Column
-	private String tradingCode;//交易码
+	private String tradingCode;// 交易码
 	@Column
 	@Enumerated(EnumType.STRING)
 	private CommoidityStatus status;// 状态
@@ -65,13 +63,30 @@ public class Commodity {
 	@Enumerated(EnumType.STRING)
 	private DisposeStatus disposeStatus;// 订单处理状态
 	@ManyToOne
-	@JoinColumn(name = "storeRoom_id")
-	private StoreRoom storeRoom;
-	@ManyToOne
 	@JoinColumn(name = "orderform_id")
-	private OrderForm orderNumber;			
+	private OrderForm orderNumber;
 	@OneToMany(mappedBy = "commodity")
 	private List<ImagePath> imagePaths;
+	@Column
+	private String cellDate;// 入单元格时间
+	@Column
+	private String inStoreRoomDate;// 入库房时间
+
+	public String getCellDate() {
+		return cellDate;
+	}
+
+	public void setCellDate(String cellDate) {
+		this.cellDate = cellDate;
+	}
+
+	public String getInStoreRoomDate() {
+		return inStoreRoomDate;
+	}
+
+	public void setInStoreRoomDate(String inStoreRoomDate) {
+		this.inStoreRoomDate = inStoreRoomDate;
+	}
 
 	public String getCurrency() {
 		return currency;
@@ -105,21 +120,12 @@ public class Commodity {
 		this.nameOfGoods = nameOfGoods;
 	}
 
-
 	public Float getPrice() {
 		return price;
 	}
 
 	public void setPrice(Float price) {
 		this.price = price;
-	}
-
-	public StoreRoom getStoreRoom() {
-		return storeRoom;
-	}
-
-	public void setStoreRoom(StoreRoom storeRoom) {
-		this.storeRoom = storeRoom;
 	}
 
 	public List<ImagePath> getImagePaths() {
@@ -250,6 +256,4 @@ public class Commodity {
 		this.tradingCode = tradingCode;
 	}
 
-	
-	
 }

@@ -22,7 +22,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @Entity
 @DiscriminatorValue("orderform")
-@JsonIgnoreProperties(value = { "orderUser", "commodities", "address","packAge" })
+@JsonIgnoreProperties(value = {"storeOperator", "purchase", "orderUser", "commodities", "address","packAge" })
 public class OrderForm {
 
 	@Id

@@ -35,7 +35,6 @@ public class WeighingController {
 	public ModelAndView weighing(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.getSession().removeAttribute("packageMap");
 		List<Package> list = packageService.getAll();
-		System.out.println("list.size()=================="+list.size());
 		ModelMap map = new ModelMap();
 		map.put("list", list);
 		return new ModelAndView("warehouse/weighing", map);

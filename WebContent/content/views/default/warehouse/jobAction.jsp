@@ -38,7 +38,7 @@
 				<div class="row-fluid">
 					<div class="span12">
 						<c:if test="${msg!='' }">
-							<font color="blue" size="3px;">${msg }</font>
+							<font color="green" size="+2">${msg }</font>
 						</c:if>
 						<div class="tabbable" id="tabs-323194">
 							<ul class="nav nav-tabs">
@@ -159,9 +159,6 @@
 				<script type="text/javascript">
 				function saveUnknow(){
 					$("form").submit();
-					window.opener = null;
-					window.open('', '_self');
-					window.close();
 				}
 				function reloadData() {
 					setTimeout(function() {
@@ -194,8 +191,7 @@
 						window.opener = null;
 						window.open('', '_self');
 						window.close();
-					} else {
-					}
+					} 
 				}
 				</script>
 			</div>
