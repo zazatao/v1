@@ -1,4 +1,4 @@
-<%@page import="com.yc.entity.user.Personnel"%>
+<%@page import="com.yc.entity.user.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -106,7 +106,7 @@
 											<div class="form-group">
 												<label for="inputEmail3" class="col-sm-2 control-label">操作员</label>
 												<div class="col-sm-10">
-													<input type="text" name="operatorUser" class="form-control" readonly="readonly" value="<%=((Personnel) request.getSession().getAttribute("loginUser")).getUserName()%>"><br>
+													<input type="text" name="operatorUser" class="form-control" readonly="readonly" value="<%=((User) request.getSession().getAttribute("loginUser")).getUserName()%>"><br>
 												</div>
 											</div>
 											<div class="form-group">

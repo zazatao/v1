@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-import com.yc.entity.user.Personnel;
+import com.yc.entity.user.User;
 
 @Entity
 @DiscriminatorValue("unknowncommodity")
@@ -24,7 +24,7 @@ public class UnKnownCommodity {
 
 	@ManyToOne
 	@JoinColumn(name = "from_personnel")
-	private Personnel operator;
+	private User operator;
 
 	@Column
 	private Integer amountNum;
@@ -43,11 +43,11 @@ public class UnKnownCommodity {
 		this.code = code;
 	}
 
-	public Personnel getOperator() {
+	public User getOperator() {
 		return operator;
 	}
 
-	public void setOperator(Personnel operator) {
+	public void setOperator(User operator) {
 		this.operator = operator;
 	}
 

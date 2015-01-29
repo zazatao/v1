@@ -25,11 +25,11 @@ import com.yc.entity.ImagePath;
 import com.yc.entity.OrderForm;
 import com.yc.entity.CommoidityStatus;
 import com.yc.entity.OrderStatus;
-import com.yc.entity.user.Personnel;
+import com.yc.entity.user.User;
 import com.yc.service.ICommodityService;
 import com.yc.service.IImagePathService;
 import com.yc.service.IOrderFormService;
-import com.yc.service.IPersonnelService;
+import com.yc.service.IUserService;
 import com.yc.service.impl.OrderFormService;
 
 //商店订单
@@ -47,7 +47,7 @@ public class ShopOrderController {
 	IImagePathService imagePathService;
 	
 	@Autowired
-	IPersonnelService personnelService;
+	IUserService personnelService;
 	
 	@Autowired
 	IOrderFormService orderFormService;
@@ -122,7 +122,7 @@ public class ShopOrderController {
     	Commodity comm =  commodityService.findById(id); 
     	OrderForm of = comm.getOrderNumber();
     	of.setOrderstatus(OrderStatus.valueOf(request.getParameter("orderstatus")));
-		Personnel u =  personnelService.findById(comm.getOrderNumber().getOrderUser().getId()); 
+		User u =  personnelService.findById(comm.getOrderNumber().getOrderUser().getId()); 
 		String user = request.getParameter("customer");
 		u.setUserName(user);
 		String phone = request.getParameter("phone");
@@ -149,7 +149,7 @@ public class ShopOrderController {
     public ModelAndView addShopOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Commodity c = new Commodity();
 		OrderForm of = new OrderForm();
-		Personnel person = new Personnel();
+		User person = new User();
 		of.setOrderstatus(OrderStatus.valueOf(request.getParameter("orderstatus")));
 		String commItem = request.getParameter("commItem");
 		c.setCommItem(commItem);

@@ -19,9 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.controller.warehouse.WeighingController;
 import com.yc.entity.OrderForm;
-import com.yc.entity.user.Personnel;
+import com.yc.entity.user.User;
 import com.yc.service.IOrderFormService;
-import com.yc.service.IPersonnelService;
+import com.yc.service.IUserService;
 
 //中转问题
 @Controller
@@ -34,11 +34,11 @@ public class QuestionController {
 	IOrderFormService orderService;
 	
 	@Autowired
-	IPersonnelService personnelService;
+	IUserService personnelService;
 	
 	@RequestMapping(value = "question", method = RequestMethod.GET)
 	public ModelAndView question(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Personnel> list = personnelService.getAll();
+		List<User> list = personnelService.getAll();
 		ModelMap mode = new ModelMap();
 		mode.put("list", list);
 		return new ModelAndView("forwarding/question", mode);
@@ -46,7 +46,7 @@ public class QuestionController {
 	
 	@RequestMapping(value = "searchQuestion", method = RequestMethod.POST)
 	public ModelAndView searchQuestion(String loginName ,String userName,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Personnel> list = personnelService.getUsersByParameters(loginName,userName);
+		List<User> list = personnelService.getUsersByParameters(loginName,userName);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("loginName", loginName);
 		map.put("userName", userName);
@@ -60,7 +60,7 @@ public class QuestionController {
 	@RequestMapping(value = "getOrders", method = RequestMethod.GET)
 	public ModelAndView getOrders(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String, String> map = (Map<String, String>)request.getSession().getAttribute("para");
-		List<Personnel> list = null;
+		List<User> list = null;
 		if (map !=null) {
 			list = personnelService.getUsersByParameters(map.get("loginName"),map.get("userName"));
 		}else{

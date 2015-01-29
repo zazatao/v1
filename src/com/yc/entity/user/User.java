@@ -19,9 +19,9 @@ import com.yc.entity.OrderForm;
 import com.yc.entity.StoreRoom;
 import com.yc.entity.UnKnownCommodity;
 @Entity
-@DiscriminatorValue("personnel")//工作人员
+@DiscriminatorValue("user")//用户
 @JsonIgnoreProperties(value = { "unCommOperators", "commOperators", "purchases", "orderForms","address" })
-public class Personnel {
+public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
