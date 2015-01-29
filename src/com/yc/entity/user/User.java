@@ -42,6 +42,20 @@ public class User {
 	@Column
 	private String phone;
 
+	@OneToMany(mappedBy = "user")
+	private List<Address> address;//用户邮寄地址
+	
+	@Column(length = 32, unique = true, updatable = false)
+	private String shopName;//店名
+	
+	@OneToOne
+	@JoinColumn(name = "department_id")
+	private Department department;//部门
+	
+	@OneToOne
+	@JoinColumn(name = "position_id")//职位
+	private Position position;
+	
 	@Column
 	private Integer accomplishNum;//完成订单数
 	
@@ -57,12 +71,33 @@ public class User {
     @OneToMany(mappedBy = "orderUser")
 	private List<OrderForm> orderForms;//用户订单
 	
-	@OneToMany(mappedBy = "user")
-	private List<Address> address;//用户邮寄地址
-	
 	@OneToOne
 	@JoinColumn(name = "storeRoom_id")
 	private StoreRoom storeRoom;
+
+	public String getShopName() {
+		return shopName;
+	}
+
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	public Position getPosition() {
+		return position;
+	}
+
+	public void setPosition(Position position) {
+		this.position = position;
+	}
 
 	public List<OrderForm> getOrderForms() {
 		return orderForms;
