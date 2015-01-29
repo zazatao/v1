@@ -95,29 +95,18 @@ th {
 								class="form-control" id="tpek">
 						</div>
 						<div class="col-sm-1">
-							<select class="form-control" name="formStatus" id="formStatus"
+							<select class="form-control" name="orderstatus" id="orderstatus"
 								placeholder="状态">
 								<option value="">-----状态-----
-								<option value="unchanged">没有变化
-								<option value="refuse">拒绝接受货物
-								<option value="lack">缺乏
-								<option value="inWarehouse">在仓库
-								<option value="inAuctionlose">下拍
-								<option value="cancel">取消
-								<option value="delivery">交付
-								<option value="support">支持
-								<option value="sendOut">派送
-								<option value="buyerNotPay">买方没有支付
-								<option value="inCell">在格子
-								<option value="lose">丢失
-								<option value="manualProcessing">手工加工
-								<option value="inForwarding">在转发
-								<option value="senToWarehouse">送货到仓库
-								<option value="packing">打包
-								<option value="paid">已付
-								<option value="apiProcessing">API处理
-								<option value="delete">删除
-								<option value="waitingForTracking">等待的追踪
+								<option value="waitAcceptance" name = "waitAcceptance">等待验收
+								<option value="waitPayment" name = "waitPayment">等待支付
+								<option value="inForwarding" name = "inForwarding">在线转发
+								<option value="waitDelivery" name = "waitDelivery">等待发货
+								<option value="transitGoods" name = "transitGoods">在途货物
+								<option value="consigneeSigning" name = "consigneeSigning">收货人签单
+								<option value="completionTransaction" name = "completionTransaction">完成交易
+								<option value="closeTransaction" name = "closeTransaction">关闭交易
+								<option value="autoCloseTransaction" name = "autoCloseTransaction">自动关闭交易
 							</select>
 						</div>
 						<div class="col-sm-1">
@@ -129,6 +118,7 @@ th {
 					<thead>
 						<tr>
 							<th>编号</th>
+							<th>订单编号</th>
 							<th>组货</th>
 							<th>追踪</th>
 							<th>创建日期</th>
@@ -147,6 +137,7 @@ th {
 						<tbody>
 							<tr class="success">
 								<td align="center">${package.packageID }</td>
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>

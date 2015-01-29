@@ -40,20 +40,24 @@ public class OrderFormService extends GenericService<OrderForm> implements IOrde
 	public List<OrderForm> getOrderByOrderGroup(Integer id) {
 		return orderFormDao.getBy("orderGroup.orderGroupID", id);
 	}
+	
+	@Override
+	public List<OrderForm> getAllByOrderStatus() {
+		String hql = " from OrderForm c where c.orderstatus in ('packing')";
+		return orderFormDao.find(hql, null, null);
+	}
 
 	@Override
 	public List<OrderForm> getOrderFormByParameters(Map<String, Object> map) {
-		StringBuffer hql = new StringBuffer(" from OrderForm o where (? is null or o.packAge.packageCode = ?) and "
-				+ " (? is null or o.orderUser.userName like ?) and (? is null or o.orderDate = ?) and  (? is null or o.paymentDate = ?) ");
-		Object[] paramete = new Object[8];
-		paramete[0] = map.get("packageCode"); 
-		paramete[1] = map.get("packageCode"); 
-		paramete[2] = map.get("userName"); 
-		paramete[3] = "%"+map.get("userName")+"%"; 
-		paramete[4] = map.get("orderDate"); 
-		paramete[5] = map.get("orderDate"); 
-		paramete[6] = map.get("paymentDate"); 
-		paramete[7] = map.get("paymentDate"); 
+		StringBuffer hql = new StringBuffer(" from OrderForm o where (? is null or o.orderstatus = ?) and (? is null or o.orderDate like ?) and (? is null or o.storeOperator.userName = ?)");
+		Object[] paramete = new Object[6];
+		paramete[0] = map.get("orderstatus");
+		paramete[1] = map.get("orderstatus");
+		paramete[2] = map.get("orderDate"); 
+		paramete[3] = "%"+map.get("orderDate")+"%";
+		paramete[4] = map.get("storeOperator");
+		paramete[5] = map.get("storeOperator");
+
 		return orderFormDao.find(hql.toString(), paramete, -1, -1);
 	}
 }

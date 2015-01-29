@@ -71,16 +71,16 @@ th {
 								class="form-control" id="transNumForTaobao" onblur="checkvalue(this);">
 						</div>
 						<div class="col-sm-1">
-							<input type="text" name="userName" placeholder="买方"
-								class="form-control" id="userName">
+							<input type="text" name="orderUser" placeholder="买方"
+								class="form-control" id="orderUser">
 						</div>
 						<div class="col-sm-1">
 							<input type="text" name="packageCode" placeholder="包裹"
 								class="form-control" id="packageCode">
 						</div>
 						<div class="col-sm-1">
-							<input type="text" name="operatorPurchase" placeholder="操作员"
-								class="form-control" id="operatorPurchase">
+							<input type="text" name="storeOperator" placeholder="操作员"
+								class="form-control" id="storeOperator">
 						</div>
 						<div class="col-sm-1">
 							<input type="text" name="orderDate" placeholder="创建日期"
@@ -97,29 +97,18 @@ th {
 								class="form-control" id="tpek">
 						</div>
 						<div class="col-sm-1">
-							<select class="form-control" name="formStatus" id="formStatus"
+							<select class="form-control" name="orderstatus" id="orderstatus"
 								placeholder="状态">
 								<option value="">-----状态-----
-								<option value="unchanged" name = "unchanged">没有变化
-								<option value="refuse" name = "refuse">拒绝接受货物
-								<option value="lack" name = "lack">缺乏
-								<option value="inWarehouse" name = "inWarehouse">在仓库
-								<option value="inAuctionlose" name = "inAuctionlose">下拍
-								<option value="cancel" name = "cancel">取消
-								<option value="delivery" name = "delivery">交付
-								<option value="support" name = "support">支持
-								<option value="sendOut" name = "sendOut">派送
-								<option value="buyerNotPay" name = "buyerNotPay">买方没有支付
-								<option value="inCell" name = "inCell">在格子
-								<option value="lose" name = "lose">丢失
-								<option value="manualProcessing" name = "manualProcessing">手工加工
-								<option value="inForwarding" name = "inForwarding">在转发
-								<option value="senToWarehouse" name = "senToWarehouse">送货到仓库
-								<option value="packing" name = "packing">打包
-								<option value="paid" name = "paid">已付
-								<option value="apiProcessing" name = "apiProcessing">API处理
-								<option value="delete" name = "delete">删除
-								<option value="waitingForTracking" name = "waitingForTracking">等待的追踪
+								<option value="waitAcceptance" name = "waitAcceptance">等待验收
+								<option value="waitPayment" name = "waitPayment">等待支付
+								<option value="inForwarding" name = "inForwarding">在线转发
+								<option value="waitDelivery" name = "waitDelivery">等待发货
+								<option value="transitGoods" name = "transitGoods">在途货物
+								<option value="consigneeSigning" name = "consigneeSigning">收货人签单
+								<option value="completionTransaction" name = "completionTransaction">完成交易
+								<option value="closeTransaction" name = "closeTransaction">关闭交易
+								<option value="autoCloseTransaction" name = "autoCloseTransaction">自动关闭交易
 							</select>															
 						</div>
 						<div class="col-sm-1">
@@ -149,70 +138,61 @@ th {
 							<th></th>
 						</tr>
 					</thead>
-					<c:forEach var="commodity" items="${list }" varStatus="vs">
+					<c:forEach var="orderform" items="${list }" varStatus="vs">
 						<tbody>
 							<tr class="success">
-								<td align="center">${commodity.orderNumber.orderFormID }</td>
-								<td>${commodity.transNumForTaobao }</td>
-								<td>${commodity.orderNumber.orderUser.userName }</td>
-								<td>${commodity.orderNumber.orderUser.email }</td>
-								<td>${commodity.orderNumber.orderUser.phone }</td>
-								<td>${commodity.tpek }</td>
-								<td>${commodity.quantity }</td>
-								<td>${commodity.money }</td>
-								<td>${commodity.money }</td>
-								<td>${commodity.currency }</td>
-								<td>${commodity.orderNumber.orderDate }</td>
-								<td>${commodity.orderNumber.paymentDate }</td>
+								<td align="center">${orderform.orderFormID }</td>
+								<td></td>
+								<td>${orderform.orderUser.userName }</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>${orderform.orderDate }</td>
+								<td></td>
 								<td><c:choose>
-										<c:when test="${commodity.status =='unchanged'}">没有变化</c:when>
-										<c:when test="${commodity.status =='lack'}">缺乏</c:when>
-										<c:when test="${commodity.status =='inWarehouse'}">在仓库</c:when>
-										<c:when test="${commodity.status =='inAuctionlose'}">下拍</c:when>
-										<c:when test="${commodity.status =='cancel'}">取消</c:when>
-										<c:when test="${commodity.status =='delivery'}">交付</c:when>
-										<c:when test="${commodity.status =='support'}">支持</c:when>
-										<c:when test="${commodity.status =='sendOut'}">派送</c:when>
-										<c:when test="${commodity.status =='buyerNotPay'}">买方没有支付</c:when>
-										<c:when test="${commodity.status =='senToWarehouse'}">送往库房</c:when>
-										<c:when test="${commodity.status =='inCell'}">在格子</c:when>
-										<c:when test="${commodity.status =='lose'}">丢失</c:when>
-										<c:when test="${commodity.status =='manualProcessing'}">手工加工</c:when>
-										<c:when test="${commodity.status =='inForwarding'}">在转发</c:when>
-										<c:when test="${commodity.status =='senToWarehouse'}">送货到仓库</c:when>
-										<c:when test="${commodity.status =='packing'}">打包</c:when>
-										<c:when test="${commodity.status =='paid'}">已付</c:when>
-										<c:when test="${commodity.status =='apiProcessing'}">API处理</c:when>
-										<c:when test="${commodity.status =='delete'}">删除</c:when>
-										<c:when test="${commodity.status =='waitingForTracking'}">等待的追踪</c:when>
+										<c:when test="${orderform.orderstatus =='waitAcceptance'}">等待验收</c:when>
+										<c:when test="${orderform.orderstatus =='waitPayment'}">等待支付</c:when>
+										<c:when test="${orderform.orderstatus =='inForwarding'}">在线转发</c:when>
+										<c:when test="${orderform.orderstatus =='waitDelivery'}">等待发货</c:when>
+										<c:when test="${orderform.orderstatus =='transitGoods'}">在途货物</c:when>
+										<c:when test="${orderform.orderstatus =='consigneeSigning'}">收货人签单</c:when>
+										<c:when test="${orderform.orderstatus =='completionTransaction'}">完成交易</c:when>
+										<c:when test="${orderform.orderstatus =='closeTransaction'}">关闭交易</c:when>
+										<c:when test="${orderform.orderstatus =='autoCloseTransaction'}">自动关闭交易</c:when>
 									</c:choose>
 								</td>
-								<td>${commodity.orderNumber.packAge.packageCode }</td>
-								<td>${commodity.purchase.accomplishNum }</td>
-								<td>${commodity.storeOperator.userName }</td>
-								<td><button class="btn btn-default" data-toggle="modal" data-target="#detailModal" onclick="updateShopOrder(${commodity.commodityID});">修改</button>&nbsp;&nbsp;
-									<button class="btn btn-default" id="del" onclick="deleteShopOrder(${commodity.commodityID});">删除</button></td>
+								<td>${orderform.packAge.packageCode }</td>
+								<td>${orderform.purchase.accomplishNum }</td>
+								<td>${orderform.storeOperator.userName }</td>
+								<td><button class="btn btn-default" data-toggle="modal" data-target="#detailModal" onclick="updateShopOrder(${orderform.orderFormID});">修改</button>&nbsp;&nbsp;
+									<button class="btn btn-default" id="del" onclick="deleteShopOrder(${orderform.orderFormID});">删除</button></td>
 <!-- 									<button class="btn btn-default" onclick="#" id="del">删除</button> -->
 							</tr>
 							<tr>
-								<td rowspan="5" height="140px;" width="140px;"><c:if
-										test="${commodity.imagePaths[0].path !=null}">
-										<img height="140px;" width="140px;"
-											src="..${commodity.imagePaths[0].path}">
-									</c:if></td>
-								<td colspan="16">颜色：&nbsp;${commodity.color }&nbsp;&nbsp;&nbsp;&nbsp;尺码：&nbsp;${commodity.size }</td>
+								<td rowspan="5" height="140px;" width="140px;">
+<%-- 									<c:if --%>
+<%-- 										test="${orderform.imagePaths[0].path !=null}"> --%>
+<!-- 										<img height="140px;" width="140px;" -->
+<%-- 											src="..${orderform.imagePaths[0].path}"> --%>
+<%-- 									</c:if> --%>
+								</td>
+								<td colspan="16">颜色：&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;尺码：&nbsp;</td>
 							</tr>
 							<tr>
-								<td colspan="16">操作员：&nbsp;${commodity.storeOperator.userName }</td>
+								<td colspan="16">操作员：&nbsp;${orderform.storeOperator.userName }</td>
 							</tr>
 							<tr>
-								<td colspan="16">采购：&nbsp;${commodity.purchase.userName }</td>
+								<td colspan="16">采购：&nbsp;${orderform.purchase.userName }</td>
 							</tr>
 							<tr>
-								<td colspan="16">重量：&nbsp;${commodity.weight }</td>
+								<td colspan="16">重量：&nbsp;</td>
 							</tr>	
 							<tr>
-								<td colspan="16">评论：&nbsp;${commodity.comment  }</td>
+								<td colspan="16">评论：&nbsp;</td>
 							</tr>
 						</tbody>
 					</c:forEach>

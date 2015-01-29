@@ -18,7 +18,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @Entity
 @DiscriminatorValue("commodity")
-@JsonIgnoreProperties(value = { "storeRoom", "orderNumber", "imagePaths", })
+@JsonIgnoreProperties(value = { "purchase", "storeRoom", "orderNumber", "imagePaths" ,})
 public class Commodity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -63,8 +63,13 @@ public class Commodity {
 	@Enumerated(EnumType.STRING)
 	private DisposeStatus disposeStatus;// 订单处理状态
 	@ManyToOne
+	@JoinColumn(name = "storeRoom_id")
+	private StoreRoom storeRoom;
+	
+	@ManyToOne
 	@JoinColumn(name = "orderform_id")
-	private OrderForm orderNumber;
+	private OrderForm orderNumber;			
+	
 	@OneToMany(mappedBy = "commodity")
 	private List<ImagePath> imagePaths;
 	@Column

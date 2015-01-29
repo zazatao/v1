@@ -13,7 +13,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @Entity
 @DiscriminatorValue("imagePath")
-@JsonIgnoreProperties(value={"unKnownComm","commodity"})
+@JsonIgnoreProperties(value={"unKnownComm","commodity","orderform"})
 public class ImagePath {
 
 	@Id
@@ -27,6 +27,11 @@ public class ImagePath {
 	@JoinColumn(name = "from_commodity")
 	private Commodity commodity;
 	
+
+	@ManyToOne
+	@JoinColumn(name = "from_orderform")
+	private OrderForm orderform;
+	
 	@Column
 	private String path;
 
@@ -36,6 +41,14 @@ public class ImagePath {
 
 	public void setCommodity(Commodity commodity) {
 		this.commodity = commodity;
+	}
+	
+	public OrderForm getOrderform() {
+		return orderform;
+	}
+
+	public void setOrderform(OrderForm orderform) {
+		this.orderform = orderform;
 	}
 
 	public Integer getImageId() {
