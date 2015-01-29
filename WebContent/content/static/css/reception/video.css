@@ -1,0 +1,17 @@
+@charset "utf-8";
+/* CSS Document */
+.video_side{ width:250px; float:left;}
+.video_side h1{ text-transform:uppercase; font-size:14px; color:#666666;}
+.video_side h1 img{ vertical-align:middle; width:20px; height:25px; margin-right:10px;}
+.video_side ul{ width:250px; height:auto; background:#fafafa; margin-top:10px;}
+.video_side ul li{ padding:10px 0 10px 20px; border-bottom:1px solid #ececec;}
+.video_side ul li:hover{ background:#f6f6f6;}
+.video_con{ width:750px; height:auto; float:right; margin-top:35px;}
+.video_bf{ width:750px; margin-bottom:20px;}
+.video_bf p{ height:30px; line-height:30px; border-bottom:2px solid #d0d0d0; font-weight:bold; font-size:16px;}
+.video_list dl{ width:236px; height:150px; float:left; margin:0 0 40px 20px;}
+.video_list dl.dl_left{ margin-left:0;}
+.video_list dl dt{ float:left; margin-bottom:5px;}
+.video_list dl dt a img{ width:236px; height:150px;}
+.video_list dl dd{ float:left; text-align:center;}
+.video_list dl dd a{ color:#666666;}
