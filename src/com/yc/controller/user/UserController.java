@@ -4,7 +4,9 @@ package com.yc.controller.user;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,13 +22,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.yc.entity.Address;
-import com.yc.entity.Commodity;
 import com.yc.entity.OrderForm;
-import com.yc.entity.Package;
+import com.yc.entity.OrderStatus;
 import com.yc.entity.user.User;
 import com.yc.service.IAddressService;
 import com.yc.service.IUserService;
+import com.yc.service.impl.UserService;
 
 @Controller
 @RequestMapping("/user")
@@ -62,6 +63,36 @@ public class UserController {
             }
         }
     }
+    
+    @RequestMapping(value = "serachUser",method = RequestMethod.POST)
+    public ModelAndView serachUser(HttpServletRequest request,HttpServletResponse response){
+    	Map<String, Object> map = new HashMap<String, Object>();
+    	if (request.getParameter("userName").trim().equals("")) {
+			map.put("userName", null);
+		}else{
+			map.put("userName", request.getParameter("userName"));
+		}
+		if (request.getParameter("email").trim().equals("")) {
+			map.put("email", null);
+		}else{
+			map.put("email", OrderStatus.valueOf(request.getParameter("email")));
+		}
+		if (request.getParameter("phone").trim().equals("")) {
+			map.put("phone", null);
+		}else{
+			map.put("phone", request.getParameter("phone"));
+		}
+		if (request.getParameter("sex").trim().equals("")) {
+			map.put("sex", null);
+		}else{
+			map.put("sex", request.getParameter("sex"));
+		}
+		List<User> list = userService.getUsersByParameters(map);
+		ModelMap mode = new ModelMap();
+    	mode.put("list", list);
+        return new ModelAndView("reception/introduction", mode);
+    }
+    
     @RequestMapping(value = "regist", method = RequestMethod.GET)
     public ModelAndView register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	return new ModelAndView("reception/register", null);
@@ -83,6 +114,7 @@ public class UserController {
     	String password = request.getParameter("password");
     	System.out.println("======="+password);
     	u.setPassword(password);
+    	userService.save(u);
     	return "redirect:/introduction";
     }
     

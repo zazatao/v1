@@ -1614,7 +1614,7 @@
     
 	<!---------------   详细   ------------->
     <div class="sets">
-<%--     	<form action="./editUser?id=${user.ID}" method="post" name="form" id="form"> --%>
+    	<form action="./serachUser" method="post" name="form" id="form">
     	<div class="settil">
         	<h3>账户</h3>
                 <ul>
@@ -1635,6 +1635,7 @@
               	<p class="seacaleimg"><img src="../content/static/images/users.jpg"/></p>
               	<p><a href="#">上传照片</a></p>
               </div>
+               <c:forEach var="user"  items="${list}" varStatus="vs">
               <div class="seacare seacarefa">
               	<ul>
               	  <li>
@@ -1669,7 +1670,7 @@
                 <p class="secaclk"><label><span><input name="" type="checkbox" value="" /></span>我想订阅电子报刊ZAZATAO,COM及时获取促销活动信息 </label></p>
                 <p class="secaclk">您的个人数据将被用来改进ZAZATAO.COM，加快结算订单，以及给您带来部分限制使用的机会，提供您的信息给ZAZATAO会提高整体服务水平，ZAZATAO一定会保护您的数据</p>
               </div>
-              <c:forEach var="user"  items="${list}" varStatus="vs">
+             
               <div class="seacare seacareno">
               	<ul>
               	  <li>
@@ -1735,7 +1736,7 @@
 					})
             </script>
         </div>
-<!--         </form> -->
+        </form>
         <div class="setcan">
         	<div class="setaddonlest">
                 <h3>通讯录<span>保存地址</span></h3>
@@ -1814,36 +1815,39 @@
                 <p class="setcanbon setcanbontw"><a href="#">确认</a></p>
              </div>
         </div>
-		<form action="./updateUser" method="post" name="form1" id="form1">
-        <div class="setcan">
-        	<div class="setcposs">
-                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <th scope="row">旧密码</th>
-                    <td><input name="password" id="password" type="text" /></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">新密码</th>
-                    <td><input name="password" id="password1" type="text" /></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">确认密码</th>
-                    <td><input name="password" id="password2" type="text" /></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">&nbsp;</th>
-                    <td><a href="#" onclick="sumbit();">更改密码</a>
-                    </td>
-                  </tr>
-                </table>
-				<script type="text/javascript">
-				 function sumbit(){
-					 document.getElementById("form1").submit();
-				 }
-				</script>
-                <div class="cl"></div>
-             </div>
-        </div>
+		<form action="./updateUser?id=${user.id}" method="post" name="form1" id="form1">
+	        <div class="setcan">
+	        	<div class="setcposs">
+	                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+	                  <tr>
+	                    <th scope="row">旧密码</th>
+	                    <td><input name="password" id="password" type="text"/></td>
+	                  </tr>
+	                  <tr>
+	                    <th scope="row">新密码</th>
+	                    <td><input name="password" id="password" type="text" /></td>
+	                  </tr>
+	                  <tr>
+	                    <th scope="row">确认密码</th>
+	                    <td><input name="password" id="password" type="text" /></td>
+	                  </tr>
+	                  <tr>
+	                    <th scope="row">&nbsp;</th>
+	                    <td><a href="#" onclick="sumbit();">更改密码</a>
+	                    </td>
+	                  </tr>
+	                </table>
+					<script type="text/javascript">
+					 function sumbit(){
+						 document.getElementById("form1").submit();
+					 }
+					 function updateUser(num){
+						 location.href = './updateUser?id=' + num; 
+					 }
+					</script>
+	                <div class="cl"></div>
+	             </div>
+	        </div>
         </form>
         <div class="setcan">
         	<div class="setcposs">
