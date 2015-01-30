@@ -2,8 +2,6 @@
 package com.yc.controller.user;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -20,10 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.yc.entity.Address;
-import com.yc.entity.Commodity;
-import com.yc.entity.OrderForm;
-import com.yc.entity.Package;
 import com.yc.entity.user.User;
 import com.yc.service.IAddressService;
 import com.yc.service.IUserService;
@@ -41,7 +35,12 @@ public class UserController {
     @Autowired
     IAddressService addressService;
    
-    
+    @RequestMapping(value = "login", method = RequestMethod.GET)
+    public ModelAndView login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	HttpSession session = request.getSession();
+        session.removeAttribute("message");
+    	return new ModelAndView("user/login",null);
+    }
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String login(RedirectAttributes redirectAttributes, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
@@ -50,15 +49,15 @@ public class UserController {
         User personnel = userService.getUser(name);
         if (personnel == null) {
             request.getSession().setAttribute("message", "nouser");
-            return "redirect:/";
+            return "redirect:/user/login";
         } else {
         	 if(personnel.getPassword().equals(pwd.trim())){
         		 session.setAttribute("loginUser", personnel);
-        		  return "redirect:/homePage";
+        		  return "redirect:/";
             } else {
                 System.out.println("密码错误！！");
                 request.getSession().setAttribute("message", "nouser");
-                return "redirect:/";
+                return "redirect:/user/login";
             }
         }
     }

@@ -70,10 +70,10 @@ img{ border:none;}
 .banner{float:left; width:818px; height:450px;}
 .syj{float:right; width:196px; height:400px; overflow:hidden;}
 .syjan, .kdan{margin:8px 4px;}
-.syjan a{ display:block; width:188px; height:46px; background:url(../images/syja.jpg) no-repeat; text-indent:-9999px;}
-.syjan a:hover{ display:block; width:188px; height:46px; background:url(../images/syja1.jpg) no-repeat;}
-.kdan a{ display:block; width:188px; height:46px; background:url(../images/ksdp.jpg) no-repeat; text-indent:-9999px;}
-.kdan a:hover{ display:block; width:188px; height:46px; background:url(../images/ksdp1.jpg) no-repeat;}
+.syjan a{ display:block; width:188px; height:46px; background:url(../content/static/images/syja.jpg) no-repeat; text-indent:-9999px;}
+.syjan a:hover{ display:block; width:188px; height:46px; background:url(../content/static/images/syja1.jpg) no-repeat;}
+.kdan a{ display:block; width:188px; height:46px; background:url(../content/static/images/ksdp.jpg) no-repeat; text-indent:-9999px;}
+.kdan a:hover{ display:block; width:188px; height:46px; background:url(../content/static/images/ksdp1.jpg) no-repeat;}
 .bannerli{ text-align:center;}
 .bannerli ul{ margin:5px auto 0; display:inline-block; width:120px;}
 .bannerli li{ background:url(../images/bannerli.png) no-repeat; width:13px; height:12px; margin:0 10px; float:left; cursor:pointer;}

@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.yc.entity.OrderForm;
 import com.yc.entity.UnKnownCommodity;
@@ -39,6 +41,14 @@ public class Personnel {
 	@Column
 	private String phone;
 	
+	@OneToOne
+	@JoinColumn(name = "department_id")
+	private Department department;//所属部门；
+	
+	@OneToOne
+	@JoinColumn(name = "position_id")
+	private Position position;//职位；
+	
 	@Column
 	private Integer accomplishNum;//完成订单数
 	
@@ -53,6 +63,23 @@ public class Personnel {
     
     @OneToMany(mappedBy = "orderUser")
 	private List<OrderForm> orderForms;//用户订单
+    
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	public Position getPosition() {
+		return position;
+	}
+
+	public void setPosition(Position position) {
+		this.position = position;
+	}
 
 	public Integer getId() {
 		return id;
