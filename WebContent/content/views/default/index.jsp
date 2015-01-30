@@ -16,7 +16,7 @@
 <div class="topfd"><!---------------   浮动头部   ----------------------->
         <div class="topnone"></div>
 		<div class="top1">
-    		<div class="logo"><a href="index.jsp"><img src="content/static/images/logo.jpg" width="162" height="62" /></a></div>
+    		<div class="logo"><a href="./index"><img src="content/static/images/logo.jpg" width="162" height="62" /></a></div>
         	<div class="znss">
             	<div class="ssk"><input value="搜索" name="" type="text" onfocus="this.value=''" onblur="if(this.value==''){this.value='搜索';}"  /></div>
                 <div class="ssan"><input name="" type="button" /></div>
@@ -25,7 +25,7 @@
              <div class="top_tel"><img src="content/static/images/top_sj.png" /><p>全球统一客服电话<br /><span class="red">152386895258</span></p></div>
             <div class="gwctb"><a href="shopcar.jsp"><img src="content/static/images/gwc.jpg" width="63" height="43" /></a></div>
             <div class="clear"></div>
-            <div class="qbfl"><a href="index.jsp"><img src="content/static/images/china.jpg" /></a><a href="../index.jsp"><img src="content/static/images/eluosi.jpg" /></a></div>
+            <div class="qbfl"><a href="./index"><img src="content/static/images/china.jpg" /></a><a href="../index"><img src="content/static/images/eluosi.jpg" /></a></div>
         </div>
         <div class="topnone"></div>
 	</div>
@@ -57,7 +57,7 @@
         <div class="menu"><!---------------   菜单   ----------------------->
         	<div class="menu1">
             	<ul class="nav">
-                	<li class="bg_none"><a href="index.jsp"><img src="content/static/images/fzan.jpg" width="16" height="17" /></a></li>
+                	<li class="bg_none"><a href="./index"><img src="content/static/images/fzan.jpg" width="16" height="17" /></a></li>
                     <li><a href="yl_1.html">季节</a>
                     	<div>
                         <div class="nav-column">
