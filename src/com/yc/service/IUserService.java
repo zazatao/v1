@@ -10,7 +10,9 @@ public interface IUserService extends IGenericService<User> {
 
 	User getUser(String name);
 
-	List<User> getUsersByParameters(Map<String, Object> map);
+	List<User> getUsersByParameters(String loginName, String userName);
 	
 	List<User> FindByUserID(Integer id);
+	
+	List<User> getAllByParameters(Map<String, Object> map);
 }
