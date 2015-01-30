@@ -1,3 +1,4 @@
+<%@page import="com.yc.entity.user.Personnel"%>
 <%@page import="com.yc.entity.user.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -204,8 +205,8 @@
 					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><%=((User) request.getSession().getAttribute("loginUser")).getUserName()%></a></li>
-				<li><a href="../user/logout">退出</a></li>
+				<li><a href="#"><%=((Personnel) request.getSession().getAttribute("loginPersonnle")).getUserName()%></a></li>
+				<li><a href="../personnel/logout">退出</a></li>
 			</ul>
 		</div>
 		<!--/.nav-collapse -->

@@ -1,4 +1,3 @@
-
 package com.yc.controller.user;
 
 import java.io.IOException;
@@ -20,26 +19,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.yc.entity.Address;
 import com.yc.entity.Commodity;
 import com.yc.entity.OrderForm;
-import com.yc.entity.Package;
-import com.yc.entity.user.User;
-import com.yc.service.IAddressService;
-import com.yc.service.IUserService;
+import com.yc.entity.user.Personnel;
+import com.yc.service.IPersonnelService;
 
 @Controller
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/personnel")
+public class PersonnelController {
 	
 	@SuppressWarnings("unused")
-	private static final Logger LOG = Logger.getLogger(UserController.class);
+	private static final Logger LOG = Logger.getLogger(PersonnelController.class);
 
     @Autowired
-    IUserService userService;
-    
-    @Autowired
-    IAddressService addressService;
+    IPersonnelService personnelService;
    
     
     @RequestMapping(value = "login", method = RequestMethod.POST)
@@ -47,24 +40,24 @@ public class UserController {
         String name = request.getParameter("name");
         String pwd = request.getParameter("password");
         HttpSession session = request.getSession();
-        User personnel = userService.getUser(name);
+        Personnel personnel = personnelService.getPersonnle(name);
         if (personnel == null) {
-            request.getSession().setAttribute("message", "nouser");
-            return "redirect:/";
+            request.getSession().setAttribute("message", "noPersonnle");
+            return "redirect:/personnel";
         } else {
         	 if(personnel.getPassword().equals(pwd.trim())){
-        		 session.setAttribute("loginUser", personnel);
+        		 session.setAttribute("loginPersonnle", personnel);
         		  return "redirect:/homePage";
             } else {
                 System.out.println("密码错误！！");
-                request.getSession().setAttribute("message", "nouser");
-                return "redirect:/";
+                request.getSession().setAttribute("message", "noPersonnle");
+                return "redirect:/personnel";
             }
         }
     }
     @RequestMapping(value = "regist", method = RequestMethod.GET)
     public ModelAndView register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	return new ModelAndView("reception/register", null);
+    	return new ModelAndView("personnel/register", null);
     }
     
     @RequestMapping(value = "myoffice", method = RequestMethod.GET)
@@ -77,61 +70,53 @@ public class UserController {
     	return new ModelAndView("reception/introduction", null);
     }
     
-    @RequestMapping(value="updateUser",method = RequestMethod.POST)
-    public String updateUser(Integer id, HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
-    	User u = userService.findById(id);
-    	String password = request.getParameter("password");
-    	System.out.println("======="+password);
-    	u.setPassword(password);
-    	return "redirect:/introduction";
+    @RequestMapping(value="UpdatePersonnle",method = RequestMethod.GET)
+    public ModelAndView update(Integer id, HttpServletRequest request,HttpServletResponse response){
+    	Personnel Personnle = personnelService.findById(id);
+    	ModelMap map = new ModelMap();
+    	map.put("Personnle",Personnle);
+    	return new ModelAndView("reception/introduction", map);
     }
     
-    @RequestMapping(value="editUser",method = RequestMethod.POST)
-    public String user(Integer id,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
-    	User u = userService.findById(id);
-    	String name = request.getParameter("name");
-    	u.setUserName(name);
-    	String password = request.getParameter("password");
-    	u.setPassword(password);
-    	String email = request.getParameter("email");
-    	u.setEmail(email);
-    	String phone = request.getParameter("phone");
-    	u.setPhone(phone);
-    	String sex = request.getParameter("sex");
-    	u.setSex(sex);
+    @RequestMapping(value="editPersonnle",method = RequestMethod.POST)
+    public String Personnle(Integer id,HttpServletRequest reqeust,HttpServletResponse response){
+    	Personnel Personnle = personnelService.findById(id);
+    	
     	return "redirect:/introduction";
     }
 
     @RequestMapping(value = "regist", method = RequestMethod.POST)
-    public String registing(User personnel,HttpServletRequest request, HttpServletResponse response) throws Exception {
-    	userService.save(personnel);
-        return "redirect:/index";
+    public String registing(Personnel personnel,HttpServletRequest request, HttpServletResponse response) throws Exception {
+    	personnelService.save(personnel);
+        return "redirect:/homePage";
     }
 
     @RequestMapping(value = "logout", method = RequestMethod.GET)
     public String logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getSession().removeAttribute("loginUser");
-        return "redirect:/index";
+        request.getSession().removeAttribute("loginPersonnle");
+        return "redirect:/personnel";
     }
     
     @RequestMapping(value = "personnel", method = RequestMethod.GET)
     public ModelAndView packages(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<User> list = userService.getAll();
+		List<Personnel> list = personnelService.getAll();
     	ModelMap mode = new ModelMap();
     	mode.put("list", list);
 		return new ModelAndView("index", mode);
 	}
-    @RequestMapping(value = "toAddUser", method = RequestMethod.GET)
-    public ModelAndView toAddUser(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	request.getSession().getAttribute("loginUser");
+    @RequestMapping(value = "toAddPersonnle", method = RequestMethod.GET)
+    public ModelAndView toAddPersonnle(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	request.getSession().getAttribute("loginPersonnle");
     	ModelMap mode = new ModelMap();
-    	mode.put("personel", request.getSession().getAttribute("loginUser"));
-    	return new ModelAndView("user/adduser",mode);
+    	mode.put("personel", request.getSession().getAttribute("loginPersonnle"));
+    	return new ModelAndView("Personnle/addPersonnle",mode);
     }
     
-	@RequestMapping(value = "addUser", method = RequestMethod.POST)
-    public String addUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {;
-		User person = new User();
+	@RequestMapping(value = "addPersonnle", method = RequestMethod.POST)
+    public String addPersonnle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Commodity c = new Commodity();
+		OrderForm of = new OrderForm();
+		Personnel person = new Personnel();
 		String name =request.getParameter("name");
 		person.setUserName(name);
 		String password = request.getParameter("password");
@@ -142,7 +127,12 @@ public class UserController {
 		person.setEmail(email);
 		String sex = request.getParameter("sex");
 		person.setSex(sex);
-		userService.save(person);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		of.setOrderDate(sdf.format(new Date()));
+		of.setStoreOperator(person);
+		Personnel p = personnelService.save(person);
+		of.setPurchase(p);
+		c.setOrderNumber(of);
 		return "redirect:/index";
     }
 }

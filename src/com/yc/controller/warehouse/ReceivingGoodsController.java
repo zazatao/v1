@@ -28,10 +28,11 @@ import com.yc.entity.Commodity;
 import com.yc.entity.CommoidityStatus;
 import com.yc.entity.ImagePath;
 import com.yc.entity.UnKnownCommodity;
+import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
 import com.yc.service.ICommodityService;
 import com.yc.service.IOrderFormService;
-import com.yc.service.IUserService;
+import com.yc.service.IPersonnelService;
 import com.yc.service.IStoreRoomService;
 import com.yc.service.IUnKnownCommodityService;
 import com.yc.service.impl.ImagePathService;
@@ -59,7 +60,7 @@ public class ReceivingGoodsController {
 	ImagePathService imagePathService;
 	
 	@Autowired
-	IUserService personnelService;
+	IPersonnelService personnelService;
 
 	@RequestMapping(value = "receiving", method = RequestMethod.GET)
 	public ModelAndView receiving(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -171,7 +172,7 @@ public class ReceivingGoodsController {
 		}
 		map.put("formStatus", CommoidityStatus.valueOf("paid"));
 		List<Commodity> commods = commodityService.getAllByParameters(map);
-		User personnel = (User)request.getSession().getAttribute("loginUser");
+		Personnel personnel = (Personnel)request.getSession().getAttribute("loginUser");
 		Integer num = personnel.getAccomplishNum();
 		String msg ="";
 		ModelMap mode = new ModelMap();
@@ -208,11 +209,11 @@ public class ReceivingGoodsController {
 	public ModelAndView working(Integer commodityID , HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Commodity commod = commodityService.findById(commodityID);
 		String msg ="";
-		User personnel = null;
+		Personnel personnel = null;
 		ModelMap mode = null;
 		if (commod != null) {
 			commod.setStatus(CommoidityStatus.senToWarehouse);
-			personnel = (User)request.getSession().getAttribute("loginUser");
+			personnel = (Personnel)request.getSession().getAttribute("loginUser");
 			commod.getOrderNumber().setStoreOperator(personnel);
 			commod.setInStoreRoomDate((new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date()));
 			commodityService.update(commod);
