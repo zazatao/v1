@@ -27,7 +27,7 @@ public class UserService extends GenericService<User> implements IUserService {
 	
 	@Override
 	public List<User> FindByUserID(Integer id) {
-		return userDao.getBy("user.id", id);
+		return userDao.getBy("id", id);
 	}
 
 	@Override

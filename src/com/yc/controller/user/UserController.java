@@ -20,10 +20,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.yc.entity.Address;
 import com.yc.entity.Commodity;
 import com.yc.entity.OrderForm;
 import com.yc.entity.Package;
 import com.yc.entity.user.User;
+import com.yc.service.IAddressService;
 import com.yc.service.IUserService;
 
 @Controller
@@ -35,6 +37,9 @@ public class UserController {
 
     @Autowired
     IUserService userService;
+    
+    @Autowired
+    IAddressService addressService;
    
     
     @RequestMapping(value = "login", method = RequestMethod.POST)
@@ -72,19 +77,28 @@ public class UserController {
     	return new ModelAndView("reception/introduction", null);
     }
     
-    @RequestMapping(value="UpdateUser",method = RequestMethod.GET)
-    public ModelAndView update(Integer id, HttpServletRequest request,HttpServletResponse response){
-    	User user = userService.findById(id);
-    	ModelMap map = new ModelMap();
-    	map.put("user",user);
-    	return new ModelAndView("reception/introduction", map);
+    @RequestMapping(value="updateUser",method = RequestMethod.POST)
+    public String updateUser(Integer id, HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+    	User u = userService.findById(id);
+    	String password = request.getParameter("password");
+    	System.out.println("======="+password);
+    	u.setPassword(password);
+    	return "redirect:/introduction";
     }
     
     @RequestMapping(value="editUser",method = RequestMethod.POST)
-    public String user(Integer id,HttpServletRequest reqeust,HttpServletResponse response){
-    	User user = userService.findById(id);
-    	
-    	
+    public String user(Integer id,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+    	User u = userService.findById(id);
+    	String name = request.getParameter("name");
+    	u.setUserName(name);
+    	String password = request.getParameter("password");
+    	u.setPassword(password);
+    	String email = request.getParameter("email");
+    	u.setEmail(email);
+    	String phone = request.getParameter("phone");
+    	u.setPhone(phone);
+    	String sex = request.getParameter("sex");
+    	u.setSex(sex);
     	return "redirect:/introduction";
     }
 
@@ -116,9 +130,7 @@ public class UserController {
     }
     
 	@RequestMapping(value = "addUser", method = RequestMethod.POST)
-    public String addUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Commodity c = new Commodity();
-		OrderForm of = new OrderForm();
+    public String addUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {;
 		User person = new User();
 		String name =request.getParameter("name");
 		person.setUserName(name);
@@ -130,11 +142,7 @@ public class UserController {
 		person.setEmail(email);
 		String sex = request.getParameter("sex");
 		person.setSex(sex);
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		of.setOrderDate(sdf.format(new Date()));
-		User p = userService.save(person);
-		of.setOrderUser(p);
-		c.setOrderNumber(of);
+		userService.save(person);
 		return "redirect:/index";
     }
 }
