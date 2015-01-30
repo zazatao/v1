@@ -1614,6 +1614,7 @@
     
 	<!---------------   详细   ------------->
     <div class="sets">
+<%--     	<form action="./editUser?id=${user.ID}" method="post" name="form" id="form"> --%>
     	<div class="settil">
         	<h3>账户</h3>
                 <ul>
@@ -1734,7 +1735,7 @@
 					})
             </script>
         </div>
-        
+<!--         </form> -->
         <div class="setcan">
         	<div class="setaddonlest">
                 <h3>通讯录<span>保存地址</span></h3>
@@ -1813,32 +1814,37 @@
                 <p class="setcanbon setcanbontw"><a href="#">确认</a></p>
              </div>
         </div>
-        
+		<form action="./updateUser" method="post" name="form1" id="form1">
         <div class="setcan">
         	<div class="setcposs">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <th scope="row">旧密码</th>
-                    <td><input name="" type="text" /></td>
+                    <td><input name="password" id="password" type="text" /></td>
                   </tr>
                   <tr>
                     <th scope="row">新密码</th>
-                    <td><input name="password" type="text" /></td>
+                    <td><input name="password" id="password1" type="text" /></td>
                   </tr>
                   <tr>
                     <th scope="row">确认密码</th>
-                    <td><input name="password" type="text" /></td>
+                    <td><input name="password" id="password2" type="text" /></td>
                   </tr>
                   <tr>
                     <th scope="row">&nbsp;</th>
-                    <td><a href="#">更改密码</a></td>
+                    <td><a href="#" onclick="sumbit();">更改密码</a>
+                    </td>
                   </tr>
                 </table>
-
+				<script type="text/javascript">
+				 function sumbit(){
+					 document.getElementById("form1").submit();
+				 }
+				</script>
                 <div class="cl"></div>
              </div>
         </div>
-        
+        </form>
         <div class="setcan">
         	<div class="setcposs">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
