@@ -26,4 +26,9 @@ public class IndexController {
     public ModelAndView homePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         return new ModelAndView("homePage", null);
     }
+    
+    @RequestMapping(value = "personnel", method = RequestMethod.GET)
+    public ModelAndView personnel(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        return new ModelAndView("personnel", null);
+    }
 }

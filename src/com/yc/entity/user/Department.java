@@ -26,19 +26,9 @@ public class Department {
     @Column(length=32)
 	private String departmentname;//部门名称
     
-    @ManyToOne
-    @JoinColumn(name = "shop_id")
-    private Shop shop;
-    
     @OneToMany(mappedBy = "department")
     private List<Position> positions; 
     
-	public Shop getShop() {
-		return shop;
-	}
-	public void setShop(Shop shop) {
-		this.shop = shop;
-	}
 	public List<Position> getPositions() {
 		return positions;
 	}

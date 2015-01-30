@@ -24,10 +24,6 @@ public class Position {
     @JoinColumn(name = "department_id")
 	private Department department;
 	
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User commUser;
-	
 	public Department getDepartment() {
 		return department;
 	}
@@ -45,11 +41,5 @@ public class Position {
 	}
 	public void setPositionname(String positionname) {
 		this.positionname = positionname;
-	}
-	public User getCommUser() {
-		return commUser;
-	}
-	public void setCommUser(User commUser) {
-		this.commUser = commUser;
 	}
 }

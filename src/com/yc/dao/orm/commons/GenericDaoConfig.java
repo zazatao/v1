@@ -5,6 +5,7 @@ import org.springframework.context.annotation.*;
 import com.yc.entity.*;
 import com.yc.entity.Package;
 import com.yc.entity.user.Department;
+import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
 import com.yc.entity.user.Position;
 
@@ -47,7 +48,12 @@ public class GenericDaoConfig {
 	}
 
 	@Bean
-	public GenericDao<User> getPersonnelDao() {
+	public GenericDao<Personnel> getPersonnelDao() {
+		return new GenericDaoSupport<Personnel>(Personnel.class);
+	}
+	
+	@Bean
+	public GenericDao<User> getUserDao() {
 		return new GenericDaoSupport<User>(User.class);
 	}
 	
@@ -59,6 +65,7 @@ public class GenericDaoConfig {
 	public GenericDao<Position> getPositionDao() {
 		return new GenericDaoSupport<Position>(Position.class);
 	}
+
 	@Bean
 	public GenericDao<Department> getDepartmentDao() {
 		return new GenericDaoSupport<Department>(Department.class);

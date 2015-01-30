@@ -10,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.yc.entity.user.Department;
-
 @Entity
 @DiscriminatorValue("shop")//商店
 public class Shop {
@@ -41,9 +39,6 @@ public class Shop {
 	@OneToMany(mappedBy = "belongTo")
 	private List<ShopCommoidty> shopCommoidties;//店铺商品
 	
-	@OneToMany(mappedBy = "shop")
-	private List<Department> departments ;//部门
-
 	public List<ShopCommoidty> getShopCommoidties() {
 		return shopCommoidties;
 	}
@@ -106,14 +101,6 @@ public class Shop {
 
 	public void setIsPermit(Boolean isPermit) {
 		this.isPermit = isPermit;
-	}
-
-	public List<Department> getDepartments() {
-		return departments;
-	}
-
-	public void setDepartments(List<Department> departments) {
-		this.departments = departments;
 	}
 
 }
