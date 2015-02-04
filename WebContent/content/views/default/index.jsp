@@ -30,7 +30,7 @@
             </div>
             <div class="syj">
             	<div><a href="try01.html"><img src="content/static/images/syjt.jpg" width="196" height="283" /></a></div>
-                <div class="syjan"><a href="try01.html">试衣间</a></div>
+                <div class="syjan" style="background:url(content/static/images/syja.jpg) no-repeat;"><a href="try01.html">试衣间</a></div>
                 <div class="kdan"><a href="kd.html">我要开店</a></div>
                 <div class="clear"></div>
             </div>

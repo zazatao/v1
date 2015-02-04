@@ -44,8 +44,20 @@ public class UserService extends GenericService<User> implements IUserService {
 
 	@Override
 	public List<User> getAllByParameters(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuffer hql = new StringBuffer(" from User u where (? is null or u.userName like ?) and (? is null or u.password like ?)"
+				+ "and (? is null or u.email like ?) and (? is null or u.phone like ?) and (? is null or u.sex like ?)");
+		Object[] paramete =  new Object[10];
+		paramete[0] = map.get("userName");
+		paramete[1] = "%"+map.get("userName")+"%";
+		paramete[2] = map.get("password"); 
+		paramete[3] = "%"+map.get("password")+"%";
+		paramete[4] = map.get("email");
+		paramete[5] = "%"+map.get("email")+"%";
+		paramete[6] = map.get("phone");
+		paramete[7] = "%"+map.get("phone")+"%";
+		paramete[8] = map.get("sex");
+		paramete[9] = "%"+map.get("sex")+"%";
+		return userDao.find(hql.toString(), paramete, -1, -1);
 	}
 
 }
