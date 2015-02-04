@@ -38,11 +38,11 @@
 					src="../content/static/images/small/dl_pic_6.png" /></a>
 			</p>
 			<div class="clear"></div>
-<!-- 			<p> -->
+			<p>
 <%-- 				<c:if test="${not empty message }"> --%>
 <!-- 					<font color="red">用户名或密码错误，请重新输入您的登陆信息</font> -->
-<!-- 				</c:if> -->
-<!-- 			</p> -->
+<%-- 				</c:if> --%>
+			</p>
 			<form action="../user/login" method="post">
 				<p>
 					您的用户名和电子邮件<br /> <input class="zh" type="text" value=""
