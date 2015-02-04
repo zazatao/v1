@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("shopCommoidty")//商品表
@@ -18,6 +19,9 @@ public class ShopCommoidty {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer commCode;//商品编码
+	
+	@Column
+	private String commoidtyName;//商品名称
 	
 	@Column
 	private String commItem;// 货号
@@ -64,6 +68,25 @@ public class ShopCommoidty {
 	@ManyToMany(mappedBy = "shopCommoidties")
 	private List<Specifications> specifications;
 	
+	@OneToMany(mappedBy = "shopCommoidty")
+	private List<ShopImage> shopImages;//商品照片
+	
+	public String getCommoidtyName() {
+		return commoidtyName;
+	}
+
+	public void setCommoidtyName(String commoidtyName) {
+		this.commoidtyName = commoidtyName;
+	}
+
+	public List<ShopImage> getShopImages() {
+		return shopImages;
+	}
+
+	public void setShopImages(List<ShopImage> shopImages) {
+		this.shopImages = shopImages;
+	}
+
 	public List<Specifications> getSpecifications() {
 		return specifications;
 	}

@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.yc.entity.ShopCategory;
 import com.yc.entity.user.User;
 import com.yc.service.IAddressService;
+import com.yc.service.IShopCategoryService;
 import com.yc.service.IUserService;
 
 @Controller
@@ -33,6 +35,9 @@ public class UserController {
     IUserService userService;
     
     @Autowired
+    IShopCategoryService ShopCategoryService;
+    
+    @Autowired
     IAddressService addressService;
    
     @RequestMapping(value = "login", method = RequestMethod.GET)
@@ -43,8 +48,9 @@ public class UserController {
     }
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String login(RedirectAttributes redirectAttributes, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("name");
+        String name = request.getParameter("loginName");
         String pwd = request.getParameter("password");
+        System.out.println(name +"  == =  "+pwd);
         HttpSession session = request.getSession();
         User personnel = userService.getUser(name);
         if (personnel == null) {
@@ -68,7 +74,10 @@ public class UserController {
     
     @RequestMapping(value = "myoffice", method = RequestMethod.GET)
     public ModelAndView myoffice(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	return new ModelAndView("reception/myoffice", null);
+    	List<ShopCategory> shopCates = ShopCategoryService.getAllByLevel(2);
+    	ModelMap map = new ModelMap();
+    	map.put("shopCates", shopCates);
+    	return new ModelAndView("reception/myoffice", map);
     }
     
     @RequestMapping(value = "introduction", method = RequestMethod.GET)

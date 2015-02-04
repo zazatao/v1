@@ -15,6 +15,7 @@ import javax.persistence.OneToOne;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import com.yc.entity.Address;
+import com.yc.entity.Shop;
 import com.yc.entity.StoreRoom;
 
 @Entity
@@ -43,6 +44,10 @@ public class User {
 
 	@Column
 	private String phone;
+	
+	@OneToOne
+	@JoinColumn(name = "shop_id")
+	private Shop shop;
 
 	@OneToMany(mappedBy = "user")
 	private List<Address> addresses;//用户邮寄地址
@@ -53,6 +58,14 @@ public class User {
 	@OneToOne
 	@JoinColumn(name = "storeRoom_id")
 	private StoreRoom storeRoom;
+
+	public Shop getShop() {
+		return shop;
+	}
+
+	public void setShop(Shop shop) {
+		this.shop = shop;
+	}
 
 	public List<Address> getAddresses() {
 		return addresses;

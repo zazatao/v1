@@ -1,4 +1,5 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -56,31 +57,38 @@
 						$(".tc2bg").click(function(){
 								$(".tc2all").hide();
 							});
+						$("#shopImg").click(function(){
+							
+						});
 							
 					})
             </script>
            <div class="tc2all">
            <div class="tc2bg"></div>
            <div class="tc_2">
-				<h1>shangdianshan<span class="tcnoe2">x</span></h1>
+				<h1>开店<span class="tcnoe2">x</span></h1>
                 <div  class="t2sel">
                 	<p class="t2s"><span class="tc2stex">请选择店铺类型</span><span class="tc2sel"></span></p>
                     <div class="t2sall">
-                    	<p>123</p>
-                    	<p>456</p>
-                    	<p>789</p>
-                    	<p>sas</p>
-                    	<p>cxz</p>
+                    	<c:forEach items="${shopCates }" var="shopcate" varStatus="loop">
+                    		<p>${shopcate.category }</p>
+                    	</c:forEach>                    	
                     </div>
                 </div>
-                <p><input type="text" value="店铺名称" /></p>
-                <p><input type="text" value="店铺链接" /></p>
-                <p><input type="text" value="店铺链接地址" /></p>
-                <p><span>hfhfhfhfhfh</span></p>
-                <div class="tjtp"><img src="../content/static/images/tj.png" /><a href="#">添加图片信息</a></div>
-                <div class="bott"><a href="http://yc-e.net/zazatao_eyu/perscent.html">СОХРАНИТЬ</a></div>
+                <p><input type="text" placeholder="店铺名称" id="shopName" value="" /></p>
+                <p><input type="text" placeholder="店铺链接" value="" /></p>
+                <p><input type="text" placeholder="店铺链接地址" value="" /></p>
+                <p><span> </span></p>
+                <div class="tjtp"><a href="#" id="shopImg"><img src="../content/static/images/tj.png" />添加图片信息</a></div>
+                <div class="bott"><a href="#" onclick="kaidian();">创建</a></div>
             </div>  
             </div>
+         <script >
+			function kaidian(){
+				var name = $('#shopName').val();
+				location.href ='../proscenium/setUpShop?shopName='+ name;
+			}
+		</script>
         <div class="perbaspft">
         	<div class="jdt"><div class="jdtc"></div><p class="bfb">33%</p></div>
             <p class="udli"><a href="perscent_set.html">设置简介</a></p>

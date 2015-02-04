@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
    <div class="footer"> <!---------------   底部   ----------------------->
     	<div class="dyzx">
-        	<div class="fotlogo"><a href="index.jsp"><img src="../content/static/images/fotlogo.jpg" width="150" height="60" /></a></div>
+        	<div class="fotlogo"><a href="../index"><img src="../content/static/images/fotlogo.jpg" width="150" height="60" /></a></div>
             <div class="dyxx">订阅我们的时事通讯</div>
 			<input name="" type="text" value="email" onfocus="if(this.value=='email'){this.value='';$('.xbdj').css('display','block')}" onblur="if(this.value==''){this.value='email';$('.xbdj').css('display','none')}"  />
             <div class="xbdj">
