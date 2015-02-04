@@ -8,10 +8,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @Entity
 @DiscriminatorValue("shopCategory")//商品类别表
+@JsonIgnoreProperties(value = { "shops", "shopCommoidties", "brands", "specifications" })
 public class ShopCategory {
 
 	@Id
@@ -19,20 +23,42 @@ public class ShopCategory {
 	private Integer categoryID;//列别ID
 	
 	@Column
-	private String category;//商品名称;
+	private String category;//商品类名;
 	
 	@Column
 	private Integer level;//节点级别
 	
 	@Column
 	private Integer parentLevel;//父节点；
-
+	
+	@OneToMany(mappedBy = "shopCat")
+	private List<Shop>  shops;//商品
+	
 	@OneToMany(mappedBy = "shopCategory")
 	private List<ShopCommoidty>  shopCommoidties;//商品
 
 	@OneToMany(mappedBy = "shopCateg")
 	private List<Brand> brands;//品牌
 	
+	@ManyToMany(mappedBy = "shopCategories")
+	private List<Specifications> specifications;//规格
+
+	public List<Specifications> getSpecifications() {
+		return specifications;
+	}
+
+	public void setSpecifications(List<Specifications> specifications) {
+		this.specifications = specifications;
+	}
+
+	public List<Shop> getShops() {
+		return shops;
+	}
+
+	public void setShops(List<Shop> shops) {
+		this.shops = shops;
+	}
+
 	public List<ShopCommoidty> getShopCommoidties() {
 		return shopCommoidties;
 	}

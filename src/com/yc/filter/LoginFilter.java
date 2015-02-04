@@ -13,12 +13,11 @@ public class LoginFilter implements Filter {
 
     private boolean needLogin(HttpServletRequest request) {
         String uri = request.getRequestURI();
-        String loginUri = getLoginUri(request);
-        if (uri.endsWith("login") || uri.endsWith("regist") || uri.equals(loginUri)) {
-            return false;
+        if (uri.endsWith("myoffice") || uri.endsWith("setUpShop") ) {
+            return true;
         }
 
-        if (uri.contains("static")) {
+        if (uri.contains("static") || uri.equals(request.getContextPath() +"/")) {
             return false;
         }
         return true;
@@ -34,7 +33,8 @@ public class LoginFilter implements Filter {
         HttpSession session = request.getSession();
         if (session.getAttribute("loginUser") == null && needLogin(request)) {
             HttpServletResponse response = (HttpServletResponse) rsp;
-            response.sendRedirect(getLoginUri(request));
+            System.out.println("jiangbo==========="+getLoginUri(request)+"user/login");
+            response.sendRedirect(request.getContextPath()+"/user/login");
             return;
         }
         chain.doFilter(req, rsp);

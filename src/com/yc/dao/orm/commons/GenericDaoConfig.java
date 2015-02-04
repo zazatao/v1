@@ -74,5 +74,25 @@ public class GenericDaoConfig {
 	public GenericDao<Address> getAddressDao() {
 		return new GenericDaoSupport<Address>(Address.class);
 	}
+	@Bean
+	public GenericDao<Brand> getBrandDao() {
+		return new GenericDaoSupport<Brand>(Brand.class);
+	}
+	@Bean
+	public GenericDao<Shop> getShopDao() {
+		return new GenericDaoSupport<Shop>(Shop.class);
+	}
+	@Bean
+	public GenericDao<ShopCategory> getShopCategoryDao() {
+		return new GenericDaoSupport<ShopCategory>(ShopCategory.class);
+	}
+	@Bean
+	public GenericDao<ShopCommoidty> getShopCommoidtyDao() {
+		return new GenericDaoSupport<ShopCommoidty>(ShopCommoidty.class);
+	}
+	@Bean
+	public GenericDao<Specifications> getSpecificationsDao() {
+		return new GenericDaoSupport<Specifications>(Specifications.class);
+	}
 	
 }

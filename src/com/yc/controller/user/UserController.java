@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.yc.entity.ShopCategory;
 import com.yc.entity.user.User;
 import com.yc.service.IAddressService;
+import com.yc.service.IShopCategoryService;
 import com.yc.service.IUserService;
 import com.yc.service.impl.UserService;
 
@@ -36,6 +38,9 @@ public class UserController {
     IUserService userService;
     
     @Autowired
+    IShopCategoryService ShopCategoryService;
+    
+    @Autowired
     IAddressService addressService;
 
     @RequestMapping(value = "introductions", method = RequestMethod.GET)
@@ -46,23 +51,30 @@ public class UserController {
         return new ModelAndView("reception/introduction", mode);
     }
     
+    @RequestMapping(value = "login", method = RequestMethod.GET)
+    public ModelAndView login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	HttpSession session = request.getSession();
+        session.removeAttribute("message");
+    	return new ModelAndView("user/login",null);
+    }
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String login(RedirectAttributes redirectAttributes, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("name");
+        String name = request.getParameter("loginName");
         String pwd = request.getParameter("password");
+        System.out.println(name +"  == =  "+pwd);
         HttpSession session = request.getSession();
         User personnel = userService.getUser(name);
         if (personnel == null) {
             request.getSession().setAttribute("message", "nouser");
-            return "redirect:/";
+            return "redirect:/user/login";
         } else {
         	 if(personnel.getPassword().equals(pwd.trim())){
         		 session.setAttribute("loginUser", personnel);
-        		  return "redirect:/homePage";
+        		  return "redirect:/";
             } else {
                 System.out.println("密码错误！！");
                 request.getSession().setAttribute("message", "nouser");
-                return "redirect:/";
+                return "redirect:/user/login";
             }
         }
     }
@@ -120,7 +132,10 @@ public class UserController {
     
     @RequestMapping(value = "myoffice", method = RequestMethod.GET)
     public ModelAndView myoffice(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	return new ModelAndView("reception/myoffice", null);
+    	List<ShopCategory> shopCates = ShopCategoryService.getAllByLevel(2);
+    	ModelMap map = new ModelMap();
+    	map.put("shopCates", shopCates);
+    	return new ModelAndView("reception/myoffice", map);
     }
     
     @RequestMapping(value = "introduction", method = RequestMethod.GET)
