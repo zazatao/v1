@@ -94,5 +94,9 @@ public class GenericDaoConfig {
 	public GenericDao<Specifications> getSpecificationsDao() {
 		return new GenericDaoSupport<Specifications>(Specifications.class);
 	}
+	@Bean
+	public GenericDao<ShopCommImage> getShopCommImageDao() {
+		return new GenericDaoSupport<ShopCommImage>(ShopCommImage.class);
+	}
 	
 }

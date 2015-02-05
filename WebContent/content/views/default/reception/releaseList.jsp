@@ -57,7 +57,7 @@
 							<td>${shopComm.commCode }</td>
 							<td>${shopComm.shopCategory.category }</td>
 							<td>${shopComm.commoidtyName }</td>
-							<td><img src="../${shopComm.shopImages[0].imagePath }" /></td>
+							<td><img src="../${shopComm.shopCommImages[0].imagePath }" /></td>
 							<td>￥${shopComm.unitPrice }</td>
 							<td><input type="checkbox" /></td>
 							<td><span class="red">￥${shopComm.special }</span></td>

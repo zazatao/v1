@@ -41,13 +41,13 @@
 					href="#">全选</a></span>
 			</h3>
 			<div class="kd_yz_cont">
-				<form action="" method="post">
+				<form action="./saveCommoidty" enctype="multipart/form-data" method="post">
 					 <dl>
 			            <dd><span>商品名称</span><input type="text" value="" name="commoidtyName"/></dd>
 			            <dd><span>货号</span><input type="text" value="" name="commItem"/></dd>
 			            <dd><span>商品分类</span>
-				            <select name="" onchange="shopcateOne(this);" style="height:35px; width:303px; border:1px solid #ccc; margin-left: 7px">
-				           		<option>----请选择----</option>
+				            <select onchange="shopcateOne(this);" style="height:35px; width:303px; border:1px solid #ccc; margin-left: 7px">
+				           		<option value="-1">----请选择----</option>
 				            	<c:forEach items="${shopCategory }" var="shopcate" varStatus="loop">
 				            		<c:if test="${shopcate.level == 1 }">
 				            			<option value="${shopcate.categoryID }">${shopcate.category }</option>
@@ -56,37 +56,53 @@
 				            </select>
 			            </dd>
 			            <dd><span>商品分类</span>
-			            	<select name="" id="shopcateTwo" onchange="shopcate(this);" style="height:35px; width:303px; border:1px solid #ccc; margin-left: 7px">
-				            	<option>----请选择----</option>
+			            	<select id="shopcateTwo" onchange="shopcate(this);" style="height:35px; width:303px; border:1px solid #ccc; margin-left: 7px">
+				            	<option value="-1">----请选择----</option>
 				            </select>
 			            </dd>
 			            <dd><span>商品分类</span>
-			            	<select name="" id="shopcateThree" style="height:35px; width:303px; border:1px solid #ccc; margin-left: 7px">
-				            	<option>----请选择----</option>
+			            	<select name="fenlei" id="shopcateThree" onchange="shopBrand(this);" style="height:35px; width:303px; border:1px solid #ccc; margin-left: 7px">
+				            	<option value="-1">----请选择----</option>
 				            </select>
 				        </dd>
 				        <div id="guige">
-					        
 				        </div>
+				        <input type='hidden' id='guize' name="guige" value=""/>
 			            <dd><span>供应商(店家链接)</span><input type="text" value="" name="supplier"/></dd>
 			            <dd><span>库存数量</span><input type="text" style="width:100px;" value="" name="stock"/><span>显示比例</span><input type="text" style="width:100px;" value="" name="proportion"/></dd>
 			            <dd><span>单价</span><input type="text" style="width:100px;" value="" name="unitPrice"/><span>大概重量</span><input type="text" style="width:100px;" value="" name="probablyWeight"/></dd>
-			            <dd><span>是否上架</span><input type="radio" style="width: 15px; height: 15px;" value="shi" name="shelves" checked="checked"/>上架&nbsp;&nbsp;&nbsp;&nbsp;<input style="width: 15px; height: 15px;"type="radio" value="fou" name="shelves" checked="checked"/>上架
-			            	<span>是否折扣</span><input style="width: 15px; height: 15px;"type="radio" value="fou" name="isSpecial" checked="checked"/>不折扣&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" style="width: 15px; height: 15px;" value="shi" name="isSpecial" checked="checked"/>折扣<input type="text" style="width:100px;" value="" name="special"/>
+			            <dd><span>是否上架</span><input type="radio" style="width: 15px; height: 15px;" value="true" name="shelves" checked="checked"/>上架&nbsp;&nbsp;&nbsp;&nbsp;<input style="width: 15px; height: 15px;"type="radio" value="false" name="shelves" checked="checked"/>暂不上架
+			            	<span>是否折扣</span><input style="width: 15px; height: 15px;"type="radio" value="false" name="isSpecial" checked="checked"/>不折扣&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" style="width: 15px; height: 15px;" value="true" name="isSpecial" checked="checked"/>折扣<input type="text" style="width:100px;" value="" name="special"/>
 			            	</dd>
-			            <dd><span>是否精品</span><input type="radio" style="width: 15px; height: 15px;" value="shi" name="iscChoice" checked="checked"/>精品&nbsp;&nbsp;&nbsp;&nbsp;<input style="width: 15px; height: 15px;"type="radio" value="fou" name="iscChoice" checked="checked"/>普通
+			            <dd><span>是否精品</span><input type="radio" style="width: 15px; height: 15px;" value="true" name="iscChoice" checked="checked"/>精品&nbsp;&nbsp;&nbsp;&nbsp;<input style="width: 15px; height: 15px;"type="radio" value="false" name="iscChoice" checked="checked"/>普通
 			            	</dd>
 			            <dd><span>所属品牌</span>
-			            <select name="belongTo" style="height:35px; width:303px; border:1px solid #ccc; margin-left: 7px">
-				            	<option>----请选择----</option>
+			            <select name="brandid" id="brand" style="height:35px; width:303px; border:1px solid #ccc; margin-left: 7px">
+				            	<option value="-1">----请选择----</option>
 				            </select></dd>
-			            <dd><span>照片上传</span><input type="file" /></dd>
+				            <dd><span>照片上传</span><input type="file" name="file"/></dd>
+					        <div id="newUpload2">  
+	        				</div>
+	        				<dd><span></span><input type="button" id="btn_add2" style="height:35px; width:80px;" value="再增加一张" > </dd>
 			            <dd><span></span><button type="submit">添加</button></dd>
 	        		</dl>
         		</form>
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">    
+    j = 1;  
+    $(document).ready(function(){  
+        $("#btn_add2").click(function(){  
+            document.getElementById("newUpload2").innerHTML+='<div id="div_'+j+'"><dd><span></span><input  name="file_'+j+'" type="file"  /><input type="button"  style="width: 35px; height: 35px;" value="删除"  onclick="del_2('+j+')"/></dd></div>';  
+              j = j + 1;  
+        });  
+    });  
+    function del_2(o){  
+         document.getElementById("newUpload2").removeChild(document.getElementById("div_"+o));  
+    }  
+  
+</script> 
 	<script >
 		function shopcateOne(obj){
 			var Code = obj.value;
@@ -123,6 +139,8 @@
 				url : './getSpecific?ids='+Code,
 				dataType : 'json',
 				success : function(data) {
+					$("#guige").empty();
+					$('#guize').val("");
 						if (data
 								&& data.success == "true") {
 							var $guige ="";
@@ -132,7 +150,7 @@
 								for (var j = 0; j < gui.length; j++) {
 									d =  d+"<option value='"+gui[j]+"'>"+gui[j]+"</option>";
 								}
-								$guige = $guige + "<dd><span>"+item.specificatName+"</span><select onchange='guigechange(this,g"+i+");'  name='' style='height:35px; width:303px; border:1px solid #ccc; margin-left: 7px'><option>----请选择----</option>"+d+"</select></dd><input type='hidden' id='g"+i+"'/>";
+								$guige = $guige + "<dd><span id='"+i+"'>"+item.specificatName+"</span><select onchange='guigechange(this,"+i+");'  name='' style='height:35px; width:303px; border:1px solid #ccc; margin-left: 7px'><option value='-1'>----请选择----</option>"+d+"</select></dd>";
 							});
 						}
 						$('#guige').append($guige);
@@ -154,9 +172,56 @@
 			}
 			</c:forEach>
 		}
-		function guigechange(obj,id){
-			alert(obj.value+"  "+id);
+		function shopBrand(obj){
+			var Code = obj.value;
+			alert(Code);
+			var brand =  document.getElementById('brand');
+			var num = brand.options.length;
+			for (i = num - 1; i >= 0; i--) {
+				brand.remove(i);
+			}
+			var objOptionB = new Option("----请选择----", -1);
+			brand.options[brand.options.length] = objOptionB;
+			<c:forEach items="${shopCategory }" var="brands">
+				<c:forEach items="${brands.brands }" var="brand">
+					if ('${brand.shopCateg.categoryID }' == Code) {
+						var objOption = new Option("${brand.brandName }",
+								'${brand.brandID }');
+						brand.options[brand.options.length] = objOption;
+					}
+				</c:forEach>
+			</c:forEach>
 		}
+		function guigechange(obj,id){
+			var gui = $('#'+id).html();
+			var ze = obj.value;
+			var guizes = $('#guize').val();
+			var guize = guizes.split(',');
+			var isok = false;
+			var str = "";
+			for (var i = 1; i < guize.length; i++) {
+	 			if (guize[i].split('-')[0] == gui ) {
+	 				if(ze != '-1'){
+	 					guize[i] = gui+'-'+ze;
+						str = str +","+guize[i];
+	 				}else{
+	 					guize[i] = "";
+	 					str = str +guize[i];
+	 				}
+	 				isok = true;
+	 			}else{
+	 				str = str +","+guize[i];
+	 			} 
+			}
+			if(isok){
+				$('#guize').val(str);
+			}else{
+				guizes = guizes +","+gui+"-"+ ze;
+				$('#guize').val(guizes);
+			}
+			alert($('#guize').val());
+		}
+		
 	</script>
 	<div class="clear">
 	</div>

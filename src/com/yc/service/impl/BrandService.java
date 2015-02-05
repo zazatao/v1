@@ -18,5 +18,4 @@ public class BrandService extends GenericService<Brand> implements IBrandService
 		return brandService;
 	}
 
-
 }

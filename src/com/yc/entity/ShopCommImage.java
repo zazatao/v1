@@ -11,8 +11,8 @@ import javax.persistence.ManyToOne;
 
 //商品照片
 @Entity
-@DiscriminatorValue("shopimage")
-public class ShopImage {
+@DiscriminatorValue("shopCommImage")
+public class ShopCommImage {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

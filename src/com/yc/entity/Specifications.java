@@ -14,7 +14,7 @@ import javax.persistence.ManyToMany;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @Entity
-@DiscriminatorValue("shopCategory")//货品规格属性类
+@DiscriminatorValue("Specifications")//货品规格属性类
 @JsonIgnoreProperties(value = { "shopCommoidties", "shopCategories"})
 public class Specifications {
 
@@ -27,27 +27,16 @@ public class Specifications {
 	
 	@Column
 	private String attribute;
-	
+
 	@ManyToMany(cascade = CascadeType.ALL)
-	private List<ShopCommoidty> shopCommoidties;
-	
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<ShopCategory> shopCategories;//商品
-	
+	private List<ShopCategory> shopCategories;
+
 	public List<ShopCategory> getShopCategories() {
 		return shopCategories;
 	}
 
 	public void setShopCategories(List<ShopCategory> shopCategories) {
 		this.shopCategories = shopCategories;
-	}
-
-	public List<ShopCommoidty> getShopCommoidties() {
-		return shopCommoidties;
-	}
-
-	public void setShopCommoidties(List<ShopCommoidty> shopCommoidties) {
-		this.shopCommoidties = shopCommoidties;
 	}
 
 	public Integer getId() {

@@ -30,6 +30,9 @@ public class ShopCommoidty {
 	private String supplier ;//供应商
 	
 	@Column
+	private String commSpec;//规格【，颜色-红色，】
+	
+	@Column
 	private Integer stock = 0 ;//库存数量
 	
 	@Column
@@ -64,13 +67,18 @@ public class ShopCommoidty {
 	@ManyToOne
 	@JoinColumn(name = "shop_id")
 	private Shop belongTo;//商品所属店面
-
-	@ManyToMany(mappedBy = "shopCommoidties")
-	private List<Specifications> specifications;
 	
 	@OneToMany(mappedBy = "shopCommoidty")
-	private List<ShopImage> shopImages;//商品照片
+	private List<ShopCommImage> shopCommImages;//商品照片
 	
+	public String getCommSpec() {
+		return commSpec;
+	}
+
+	public void setCommSpec(String commSpec) {
+		this.commSpec = commSpec;
+	}
+
 	public String getCommoidtyName() {
 		return commoidtyName;
 	}
@@ -79,20 +87,12 @@ public class ShopCommoidty {
 		this.commoidtyName = commoidtyName;
 	}
 
-	public List<ShopImage> getShopImages() {
-		return shopImages;
+	public List<ShopCommImage> getShopCommImages() {
+		return shopCommImages;
 	}
 
-	public void setShopImages(List<ShopImage> shopImages) {
-		this.shopImages = shopImages;
-	}
-
-	public List<Specifications> getSpecifications() {
-		return specifications;
-	}
-
-	public void setSpecifications(List<Specifications> specifications) {
-		this.specifications = specifications;
+	public void setShopCommImages(List<ShopCommImage> shopCommImages) {
+		this.shopCommImages = shopCommImages;
 	}
 
 	public ShopCategory getShopCategory() {
