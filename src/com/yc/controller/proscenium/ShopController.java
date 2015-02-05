@@ -235,6 +235,7 @@ public class ShopController {
 						shopCommoidty.setBrand(brand);
 					}
 					ShopCommoidty shopcomm = shopCommService.save(shopCommoidty);
+					List<ShopCommImage> images = new ArrayList<ShopCommImage>();
 					CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext()); 
 					if(multipartResolver.isMultipart(request)){
 						String pathDir = "/content/static/img/"+shop.getId()+"/"; 
@@ -263,11 +264,13 @@ public class ShopController {
 					           			 image.setImagePath(pathDir+fileName);
 					           			 image.setShopCommoidty(shopcomm);
 					           			 image = shopCommImageService.save(image);
-					           			 
+					           			images.add(image);
 				                    }  
 				                }  
 				            }  
 						}
+					shopcomm.setShopCommImages(images);
+					shopCommService.update(shopcomm);
 					return "redirect:/proscenium/release";
 				}else{
 					return "redirect:/proscenium/releaseCommoidty";

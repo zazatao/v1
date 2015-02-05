@@ -68,15 +68,15 @@ public class UserController {
         User personnel = userService.getUser(name);
         if (personnel == null) {
             request.getSession().setAttribute("message", "nouser");
-            return "user/login";
+            return "redirect:/user/login";
         } else {
         	 if(personnel.getPassword().equals(pwd.trim())){
         		 session.setAttribute("loginUser", personnel);
-        		  return "reception/myoffice";
+        		  return "redirect:/index";
             } else {
                 System.out.println("密码错误！！");
                 request.getSession().setAttribute("message", "nouser");
-                return "user/login";
+                return "redirect:/user/login";
             }
         }
     }
