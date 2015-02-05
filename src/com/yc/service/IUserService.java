@@ -12,7 +12,7 @@ public interface IUserService extends IGenericService<User> {
 
 	List<User> getUsersByParameters(String loginName, String userName);
 	
-	List<User> FindByUserID(Integer id);
+	User FindByUserID(Integer id);
 	
 	List<User> getAllByParameters(Map<String, Object> map);
 }

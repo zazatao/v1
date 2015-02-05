@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.yc.dao.orm.commons.GenericDao;
+import com.yc.entity.Shop;
 import com.yc.entity.user.User;
 import com.yc.service.IUserService;
 
@@ -25,10 +26,9 @@ public class UserService extends GenericService<User> implements IUserService {
 	public User getUser(String name) {
 		return userDao.getFirstRecord("loginName", name);
 	}
-	
 	@Override
-	public List<User> FindByUserID(Integer id) {
-		return userDao.getBy("id", id);
+	public User FindByUserID(Integer id) {
+		return userDao.getFirstRecord("user.id", id);
 	}
 
 	@Override
@@ -59,5 +59,7 @@ public class UserService extends GenericService<User> implements IUserService {
 		paramete[9] = "%"+map.get("sex")+"%";
 		return userDao.find(hql.toString(), paramete, -1, -1);
 	}
+	
+	
 
 }

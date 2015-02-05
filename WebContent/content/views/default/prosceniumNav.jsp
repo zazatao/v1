@@ -1,6 +1,7 @@
 <%@page import="com.yc.entity.user.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<link href="content/static/css/reception/css.css" rel="stylesheet" type="text/css" />
 <div class="topfd"><!---------------   浮动头部   ----------------------->
         <div class="topnone"></div>
 		<div class="top1">
@@ -21,7 +22,7 @@
     	<div style="height:78px;"></div>
    			 <div class="dlzc">
         	<ul>
-            	<li><a href="./user/myoffice">我的办公室</a></li>
+            	<li><a href="./user/login">我的办公室</a></li>
                 <li><a href="./user/login">请登记</a></li>
                 <li class="zc"><a href="./user/regist">免费注册</a></li>
                 <li><a href="file_index.jsp">客户服务</a>

@@ -1,4 +1,6 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+﻿<%@page import="com.yc.entity.user.Personnel"%>
+<%@page import="com.yc.entity.user.User"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -17,6 +19,7 @@
 <jsp:include page="../common/prosceniumNav.jsp"></jsp:include>
 
 <!---------------   页面主体   ----------------------->
+<form action="./user" method="post"></form>
 <div class="con">
 
 	<!---------------   页面主体   ----------------------->
@@ -98,7 +101,7 @@
     	<!-----切换表格-------->
         <div class="perbastab">
         	<ul>
-        	  <li class="pbeabclk"><a href="perscent_ord.html">我的账户</a></li>
+        	  <li class="pbeabclk"><a href="perscent_ord.html"><%=((User) request.getSession().getAttribute("loginUser")).getUserName()%>我的账户</a></li>
         	  <li><a href="perscent_bonuses.html">我的订单</a></li>
         	  <li><a href="perscent_account.html">我的账单</a></li>
         	  <li><a href="perscent_dreams.html">我喜欢的产品</a></li>
@@ -115,7 +118,7 @@
     <div class="orders">
     	<div class="ordersle">
     	  <div class="ord_bas">
-          		<p class="ord_basye">Free Member 1<sup>st</sup> year</p>
+          		<p class="ord_basye">Free Member<sup>st</sup> year</p>
           		<dl>
             	  <dt><img src="../content/static/images/kx.jpg"/></dt>
             	  <dd><b>Пополнить счет  счет</b><img src="../content/static/images/user.jpg"/></dd>

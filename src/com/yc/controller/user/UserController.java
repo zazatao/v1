@@ -20,10 +20,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.yc.entity.Shop;
 import com.yc.entity.ShopCategory;
 import com.yc.entity.user.User;
 import com.yc.service.IAddressService;
 import com.yc.service.IShopCategoryService;
+import com.yc.service.IShopService;
 import com.yc.service.IUserService;
 import com.yc.service.impl.UserService;
 
@@ -42,9 +44,10 @@ public class UserController {
     
     @Autowired
     IAddressService addressService;
+   
 
     @RequestMapping(value = "introductions", method = RequestMethod.GET)
-    public ModelAndView shopOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public ModelAndView user(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	List<User> list = userService.getAll();
     	ModelMap mode = new ModelMap();
     	mode.put("list", list);
@@ -61,20 +64,19 @@ public class UserController {
     public String login(RedirectAttributes redirectAttributes, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("loginName");
         String pwd = request.getParameter("password");
-        System.out.println(name +"  == =  "+pwd);
         HttpSession session = request.getSession();
         User personnel = userService.getUser(name);
         if (personnel == null) {
             request.getSession().setAttribute("message", "nouser");
-            return "redirect:/user/login";
+            return "user/login";
         } else {
         	 if(personnel.getPassword().equals(pwd.trim())){
         		 session.setAttribute("loginUser", personnel);
-        		  return "redirect:/";
+        		  return "reception/myoffice";
             } else {
                 System.out.println("密码错误！！");
                 request.getSession().setAttribute("message", "nouser");
-                return "redirect:/user/login";
+                return "user/login";
             }
         }
     }
@@ -113,23 +115,6 @@ public class UserController {
     	return new ModelAndView("reception/register", null);
     }
     
-    @RequestMapping(value = "session", method = RequestMethod.GET)
-    public ModelAndView session(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	String loginName = request.getParameter("loginName");
-    	HttpSession session = request.getSession();
-    	User user =userService.getUser("loginName");
-    	if(user == null)
-    	{
-    		request.getSession().setAttribute("message", "nouser");
-    		return new ModelAndView("index", null);
-    	}
-    	else
-    	{
-    		request.getSession().setAttribute("message", "nouser");
-    		return new ModelAndView("reception/introduction", null);
-    	}	
-    }
-    
     @RequestMapping(value = "myoffice", method = RequestMethod.GET)
     public ModelAndView myoffice(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	List<ShopCategory> shopCates = ShopCategoryService.getAllByLevel(2);
@@ -140,32 +125,46 @@ public class UserController {
     
     @RequestMapping(value = "introduction", method = RequestMethod.GET)
     public ModelAndView introduction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	return new ModelAndView("reception/introduction", null);
+    	User user = (User)request.getSession().getAttribute("loginUser");
+    	if (user !=null) {
+    		ModelMap map = new ModelMap();
+    		map.put("user", user);
+    		return new ModelAndView("reception/introduction", map);
+		}else{
+			return login(request, response);
+		}
+    	
     }
     
-    @RequestMapping(value="updateUser",method = RequestMethod.POST)
-    public String updateUser(Integer id, HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+    @RequestMapping(value="updateUser",method = RequestMethod.GET)
+    public  ModelAndView updateUser(Integer id, HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
     	User u = userService.findById(id);
-    	String password = request.getParameter("password");
-    	u.setPassword(password);
-    	userService.save(u);
-    	return "redirect:/introduction";
+    	ModelMap mode = new ModelMap();
+    	mode.put("user", u);
+    	return new ModelAndView("reception/introduction", mode);
     }
     
     @RequestMapping(value="editUser",method = RequestMethod.POST)
-    public String user(Integer id,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+    public String editUser(Integer id,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
     	User u = userService.findById(id);
-    	String name = request.getParameter("name");
-    	u.setUserName(name);
-    	String password = request.getParameter("password");
-    	u.setPassword(password);
+    	String userName = request.getParameter("userName");
+    	u.setUserName(userName);
     	String email = request.getParameter("email");
     	u.setEmail(email);
     	String phone = request.getParameter("phone");
     	u.setPhone(phone);
     	String sex = request.getParameter("sex");
     	u.setSex(sex);
-    	return "redirect:/introduction";
+    	userService.update(u);
+    	return "reception/introduction";
+    }
+    @RequestMapping(value="editUserpwd",method = RequestMethod.POST)
+    public String editUserpwd(Integer id,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+    	User u = userService.findById(id);
+    	String password = request.getParameter("password");
+    	u.setPassword(password);
+    	userService.update(u);
+    	return "reception/introduction";
     }
 
     @RequestMapping(value = "regist", method = RequestMethod.POST)

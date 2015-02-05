@@ -1,6 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="com.yc.entity.user.User"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -106,7 +107,7 @@
         <div class="cl"></div>
     </div>
     
-    
+ <form action="./editUser?id=${user.id}" id="form" name="form" method="post">
 	<!---------------   详细   ------------->
     <div class="sets">
     	<div class="settil">
@@ -121,7 +122,7 @@
                 </ul>
             
         </div>
-       <c:forEach var="user"  items="${list}" varStatus="loop">       
+        
     	<div class="setcan"  style="display:block">
         	<h3>我的信息</h3>
             <p> 更新您的个人信息和发照片到您的个人资料</p>
@@ -148,7 +149,7 @@
               	  </li>
               	  <li>
               	    <p class="seacaretil">性别:</p>
-              	    <p>${user.sex}22</p>
+              	    <p>${user.sex}</p>
               	  </li>
               	  <li>
               	    <p class="seacaretil">生日:</p>
@@ -175,15 +176,15 @@
               	  </li>
               	  <li>
               	    <p class="seacaretil">姓名:</p>
-              	    <p><input name="" value="Maikl" type="text" /></p>
+              	    <p><input name="userName" id="userName" value="${user.userName}" type="text" /></p>
               	  </li>
               	  <li>
               	    <p class="seacaretil">邮件:</p>
-              	    <p><input name="" value="marat004@163.com" type="text" /></p>
+              	    <p><input name="email" id="email" value="${user.email}" type="text" /></p>
               	  </li>
               	  <li>
               	    <p class="seacaretil">性别:</p>
-              	    <p><input name="" value="My" type="text" /></p>
+              	    <p><input name="sex" id="sex" value="${user.sex}" type="text" /></p>
               	  </li>
               	  <li>
               	    <p class="seacaretil">生日:</p>
@@ -195,16 +196,17 @@
               	  </li>
               	  <li>
               	    <p class="seacaretil">电话</p>
-              	    <p><input name="" value="1235684446" type="text" /></p>
+              	    <p><input name="phone" id="phone" value="${user.phone}" type="text" /></p>
               	  </li>
               	</ul>
                 <p class="secaclk"><label><span><input name="" type="checkbox" value="" /></span>我想订阅电子报刊ZAZATAO,COM及时获取促销活动信息 </label></p>
                 <p class="secaclk">您的个人数据将被用来改进ZAZATAO.COM，加快结算订单，以及给您带来部分限制使用的机会，提供您的信息给ZAZATAO会提高整体服务水平，ZAZATAO一定会保护您的数据</p>
               </div>
-            
+          
+
             </div>
             <div class="cl"></div>
-            <p class="setcanbon setcanbonfs"><a href="#">更改</a></p>
+            <p class="setcanbon setcanbonfs"><a href="#" onclick="submit();">更改</a></p>
             <script>
             	$(function(){
 						$(".setcanbonfs a").toggle(function(){
@@ -230,9 +232,12 @@
 								
 							});
 					})
+						 function submit(){
+							 document.getElementById("form").submit();
+						 }
             </script>
         </div>
- </c:forEach>
+
         <div class="setcan">
         	<div class="setaddonlest">
                 <h3>通讯录<span>保存地址</span></h3>
@@ -308,10 +313,11 @@
                 <p class="setalckl"><label><span><input name="" type="checkbox" value="" /></span>默认情况下，按以前的地址</label></p>
                 <p class="setalckl">您输入的个人信息将用于ZAZATAO结算，ZAZATAO会保证您数据的安全性。详情请参阅我们的隐私保障</p>
                 <div class="cl"></div>
-                <p class="setcanbon setcanbontw"><a href="#">确认</a></p>
+                <p class="setcanbon setcanbontw"><a href="#" onclick="submit();">确认</a></p>
              </div>
         </div>
-<%-- 		<form action="./updateUser?id=${user.id}" method="post" name="form1" id="form1"> --%>
+        </form>
+        <form action="./editUserpwd?id=${user.id}" method="post" name="form1" id="form1">
 	        <div class="setcan">
 	        	<div class="setcposs">
 	                <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -329,22 +335,19 @@
 	                  </tr>
 	                  <tr>
 	                    <th scope="row">&nbsp;</th>
-	                    <td><a href="#" onclick="sumbit();">更改密码</a>
+	                    <td><a href="#" onclick="submit1();">更改密码</a>
 	                    </td>
 	                  </tr>
 	                </table>
-					<script type="text/javascript">
-					 function sumbit(){
-						 document.getElementById("form1").submit();
-					 }
-					 function updateUser(num){
-						 location.href = './updateUser?id=' + num; 
-					 }
-					</script>
 	                <div class="cl"></div>
 	             </div>
 	        </div>
-
+	     </form>   
+					<script type="text/javascript">
+						 function submit1(){
+							 document.getElementById("form1").submit();
+						 }
+					</script>
         <div class="setcan">
         	<div class="setcposs">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
