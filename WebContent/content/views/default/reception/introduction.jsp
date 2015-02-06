@@ -33,9 +33,9 @@
 		 document.form.action="./editUserpwd";
 		 document.form.submit();
 	 }
-	 function deleteaddress()
+	 function deleteaddress(num)
 	 {
-		 document.form.action="./deleteaddress";
+		 document.form.action='./deleteaddress?id'+num;
 		 document.form.submit();
 	 }
 	 function editaddress()
@@ -282,13 +282,15 @@
                             <p class="sels7"></p>
                         </div>
                         <ul>
+                        <c:forEach var="address" items="${user.addresses}" varStatus="vs">
                           <li>
                             <p class="sels1">${address.toName}</p>
                             <p class="sels2">删除  </p>
                             <p class="sels3">★</p>
-                            <p class="sels4"><a href="#" onclick="deleteaddress();">删除</a></p>
+                            <p class="sels4"><a href="#" onclick="deleteaddress(${address.id});">删除</a></p>
                             <p class="sels5"><a>更改</a></p>
                           </li>
+                         </c:forEach>
                         </ul>
                 	</div>
                 </div>

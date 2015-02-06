@@ -216,7 +216,6 @@ public class UserController {
     public String Address(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {;
 		Address as = new Address();
 		String toName =request.getParameter("toName");
-		System.out.println("============"+toName);
 		as.setToName(toName);
 		String phone = request.getParameter("phone");
 		as.setPhone(phone);
@@ -255,7 +254,7 @@ public class UserController {
     	return "redirect:/reception/introduction";
     }
 	//删除地址
-	@RequestMapping(value = "deleteaddress", method = RequestMethod.GET)
+	@RequestMapping(value = "deleteaddress", method = RequestMethod.POST)
     public String deleteaddress(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	User ad =  userService.findById(id);
     	List<Address> as =ad.getAddresses();
@@ -266,7 +265,7 @@ public class UserController {
     			addressService.delete(id);
     		}
     		}else{
-			addressService.delete(id);
+    			addressService.delete(id);
     		}
     	return "redirect:/reception/introduction";
     }
