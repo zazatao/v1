@@ -52,28 +52,30 @@ public class ShopController {
 	private static final Logger LOG = Logger.getLogger(ShopController.class);
 
 	@Autowired
-	IShopService shopService;
+	IShopService shopService;//商店
 
 	@Autowired
-	IShopCommoidtyService shopCommService;
+	IShopCommoidtyService shopCommService;//商品
 
 	@Autowired
-	IShopCategoryService shopCategService;
+	IShopCategoryService shopCategService;//类别
 
 	@Autowired
-	ISpecificationsService specificationService;
+	ISpecificationsService specificationService;//货品规格
 
 	@Autowired
-	IBrandService brandService;
+	IBrandService brandService;//品牌
 	@Autowired
 	IShopCommImageService shopCommImageService;
 
 	@RequestMapping(value = "setUpShop", method = RequestMethod.GET)
 	public ModelAndView setUpShop(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute("loginUser");
+		ModelMap mode = new ModelMap();
+		mode = getShopCategory(mode);
 		String shopName = request.getParameter("shopName");
 		if (user == null) {
-			return new ModelAndView("user/login", null);
+			return new ModelAndView("user/login", mode);
 		} else {
 			Shop shop = shopService.getShopByUser(user.getId());
 			if (shop != null) {
@@ -83,25 +85,26 @@ public class ShopController {
 					shopService.update(shop);
 				}
 				if (shop.getIsPermit()) {
-					ModelMap mode = new ModelMap();
 					mode.put("shop", shop);
 					return new ModelAndView("reception/myShop", mode);
 				}
-				return new ModelAndView("reception/setUpShop", null);
+				return new ModelAndView("reception/setUpShop", mode);
 			} else {
 				if (null != shopName && !shopName.equals("")) {
 					shop = new Shop();
 					shop.setShopName(shopName);
 					shopService.save(shop);
 				}
-				return new ModelAndView("reception/setUpShop", null);
+				return new ModelAndView("reception/setUpShop", mode);
 			}
 		}
 	}
 
 	@RequestMapping(value = "authentication", method = RequestMethod.GET)
 	public ModelAndView authentication(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		return new ModelAndView("reception/authentication", null);
+		ModelMap mode = new ModelMap();
+		mode = getShopCategory(mode);
+		return new ModelAndView("reception/authentication", mode);
 	}
 
 	@RequestMapping(value = "authentication", method = RequestMethod.POST)
@@ -109,6 +112,8 @@ public class ShopController {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("loginUser");
 		String password = request.getParameter("password");
+		ModelMap mode = new ModelMap();
+		mode = getShopCategory(mode);
 		Shop shop = null;
 		if (user != null) {
 			if (password.trim().equals(user.getPassword())) {
@@ -132,17 +137,17 @@ public class ShopController {
 						shop.setCreateDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 						shopService.save(shop);
 					}
-					return new ModelAndView("reception/setUpShop", null);
+					return new ModelAndView("reception/setUpShop", mode);
 				} else {
 					session.setAttribute("msg", "必填字段输入不正确");
-					return new ModelAndView("reception/authentication", null);
+					return new ModelAndView("reception/authentication", mode);
 				}
 			} else {
 				session.setAttribute("msg", "密码输入错误");
-				return new ModelAndView("reception/authentication", null);
+				return new ModelAndView("reception/authentication", mode);
 			}
 		} else {
-			return new ModelAndView("user/login", null);
+			return new ModelAndView("user/login", mode);
 		}
 	}
 
@@ -179,11 +184,12 @@ public class ShopController {
 	@RequestMapping(value = "release", method = RequestMethod.GET)
 	public ModelAndView release(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute("loginUser");
+		ModelMap mode = new ModelMap();
+		mode = getShopCategory(mode);
 		if (user != null) {
 			Shop shop = user.getShop();
 			if (shop != null && shop.getIsPermit()) {
 				List<ShopCommoidty> list = shopCommService.getAllByShop(shop.getId());
-				ModelMap mode = new ModelMap();
 				mode.put("shopComms", list);
 				mode.put("shop", shop);
 				return new ModelAndView("reception/releaseList", mode);
@@ -191,7 +197,7 @@ public class ShopController {
 				return setUpShop(request, response);
 			}
 		} else {
-			return new ModelAndView("user/login", null);
+			return new ModelAndView("user/login", mode);
 		}
 	}
 
@@ -199,13 +205,14 @@ public class ShopController {
 	@RequestMapping(value = "releaseCommoidty", method = RequestMethod.GET)
 	public ModelAndView releaseCommoidty(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute("loginUser");
+		ModelMap mode = new ModelMap();
+		mode = getShopCategory(mode);
 		if (user == null) {
-			return new ModelAndView("user/login", null);
+			return new ModelAndView("user/login", mode);
 		} else {
 			Shop shop = shopService.getShopByUser(user.getId());
 			if (shop != null && shop.getIsPermit()) {
 				List<ShopCategory> list = shopCategService.getAll();
-				ModelMap mode = new ModelMap();
 				mode.put("shopCategory", list);
 				mode.put("shop", shop);
 				return new ModelAndView("reception/releaseCommoidty", mode);
@@ -338,11 +345,12 @@ public class ShopController {
 	@RequestMapping(value = "storehouseShopComm", method = RequestMethod.GET)
 	public ModelAndView storehouseShopComm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute("loginUser");
+		ModelMap mode = new ModelMap();
+		mode = getShopCategory(mode);
 		if (user != null) {
 			Shop shop = shopService.getShopByUser(user.getId());
 			if (shop != null && shop.getIsPermit()) {
 				List<ShopCommoidty> list = shopCommService.getAllByCondition("shelves", false,shop.getId());
-				ModelMap mode = new ModelMap();
 				mode.put("shopComms", list);
 				mode.put("shop", shop);
 				return new ModelAndView("reception/sthoseShopComm", mode);
@@ -350,7 +358,7 @@ public class ShopController {
 				return setUpShop(request, response);
 			}
 		}else{
-			return new ModelAndView("user/login",null);
+			return new ModelAndView("user/login",mode);
 		}
 	}
 	//更改商品状态上架，下架，折扣。。
@@ -394,11 +402,12 @@ public class ShopController {
 	@RequestMapping(value = "soldShopComm", method = RequestMethod.GET)
 	public ModelAndView soldShopComm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute("loginUser");
+		ModelMap mode = new ModelMap();
+		mode = getShopCategory(mode);
 		if (user != null) {
 			Shop shop = shopService.getShopByUser(user.getId());
 			if (shop != null && shop.getIsPermit()) {
 				List<ShopCommoidty> list = shopCommService.getAllByCondition("shelves", true,shop.getId());
-				ModelMap mode = new ModelMap();
 				mode.put("shopComms", list);
 				mode.put("shop", shop);
 				return new ModelAndView("reception/soldShopComm", mode);
@@ -406,18 +415,19 @@ public class ShopController {
 				return setUpShop(request, response);
 			}
 		}else{
-			return new ModelAndView("user/login",null);
+			return new ModelAndView("user/login",mode);
 		}
 	}
 	//拍卖的商品，本店
 	@RequestMapping(value = "auctionShopComm", method = RequestMethod.GET)
 	public ModelAndView auctionShopComm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute("loginUser");
+		ModelMap mode = new ModelMap();
+		mode = getShopCategory(mode);
 		if (user != null) {
 			Shop shop = shopService.getShopByUser(user.getId());
 			if (shop != null && shop.getIsPermit()) {
 				List<ShopCommoidty> list = shopCommService.getAllByCondition("auction", true,shop.getId());
-				ModelMap mode = new ModelMap();
 				mode.put("shopComms", list);
 				mode.put("shop", shop);
 				return new ModelAndView("reception/auctionShopComm", mode);
@@ -425,8 +435,13 @@ public class ShopController {
 				return setUpShop(request, response);
 			}
 		}else{
-			return new ModelAndView("user/login",null);
+			return new ModelAndView("user/login",mode);
 		}
 	}
 	
+	private ModelMap getShopCategory(ModelMap mode){
+		List<ShopCategory> list = shopCategService.getAll();
+		mode.put("shopCategories", list);
+		return mode;
+	}
 }

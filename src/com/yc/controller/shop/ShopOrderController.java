@@ -23,7 +23,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.yc.entity.Commodity;
 import com.yc.entity.ImagePath;
 import com.yc.entity.OrderForm;
-import com.yc.entity.CommoidityStatus;
 import com.yc.entity.OrderStatus;
 import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
@@ -32,7 +31,6 @@ import com.yc.service.IImagePathService;
 import com.yc.service.IOrderFormService;
 import com.yc.service.IPersonnelService;
 import com.yc.service.IUserService;
-import com.yc.service.impl.OrderFormService;
 
 //商店订单
 @Controller
