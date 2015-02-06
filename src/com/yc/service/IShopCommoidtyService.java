@@ -8,4 +8,6 @@ public interface IShopCommoidtyService extends IGenericService<ShopCommoidty> {
 
 	List<ShopCommoidty> getAllByShop(Integer id);
 
+	List<ShopCommoidty> getAllByCondition(String condition, boolean isTrue, Integer shopID);
+
 }

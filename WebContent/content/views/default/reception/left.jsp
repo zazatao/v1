@@ -7,9 +7,9 @@
 			<ul>
 				<li><a href="../proscenium/release">发布新商品</a></li>
 				<li><a href="#">自动发货商品管理</a></li>
-				<li><a href="#">仓库中的商品</a></li>
-				<li><a href="#">出售中的商品</a></li>
-				<li><a href="#">拍卖的商品</a></li>
+				<li><a href="../proscenium/storehouseShopComm">仓库中的商品</a></li>
+				<li><a href="../proscenium/soldShopComm">出售中的商品</a></li>
+				<li><a href="../proscenium/auctionShopComm">拍卖的商品</a></li>
 				<li><a href="#">商品促销</a></li>
 				<li><a href="#">商品留言回复</a></li>
 			</ul>
@@ -50,16 +50,16 @@
                 <div>
                     <dl>
                       <dt><img src="../content/static/images/kx.jpg"/></dt>
-                      <dd><b>Пополнить счет  счет</b><img src="../content/static/images/user.jpg"/></dd>
-                      <dd>06.07.1992</dd>
+                      <dd><b>${shop.shopName }</b><br><img src="../content/static/images/user.jpg"/></dd>
+                      <dd>${shop.createDate }</dd>
                     </dl>
-                    <p>marat004@163.com</p>
-                    <p>homp:456789123</p>
+                    <p>${shop.email }</p>
+                    <p>${shop.id }</p>
                 </div>
                 <div>
-                    <p>Доступные средства </p>
-                    <p><b>$0</b></p>
-                    <p><a class="onck1" href="#">Пополнить счет</a></p>
+                    <p>可用资金 </p>
+                    <p><b>${shop.money }</b></p>
+                    <p><a class="onck1" href="#">新增资金</a></p>
                 </div>
         	</div>
             <div class="pertersgg">

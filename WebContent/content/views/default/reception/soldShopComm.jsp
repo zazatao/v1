@@ -8,7 +8,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>zazatao</title>
+<title>在售的商品</title>
 <link href="../content/static/css/reception/css.css" rel="stylesheet"
 	type="text/css" />
 <link href="../content/static/css/reception/qt.css" rel="stylesheet"
@@ -37,8 +37,8 @@
 
 		<div class="perterrtab perterrtab_2">
 			<h3>
-				发布商品：<span><a href="../proscenium/releaseCommoidty">新增&nbsp;&nbsp;/&nbsp;&nbsp;</a><a
-					href="#">修改&nbsp;&nbsp;/&nbsp;&nbsp;</a><a href="#" onclick="deleteShopComm();">删除&nbsp;&nbsp;/&nbsp;&nbsp;</a><a
+				在售商品：<span><a href="#">修改&nbsp;&nbsp;/&nbsp;&nbsp;</a><a
+					href="#" onclick="deleteShopComm();">删除&nbsp;&nbsp;/&nbsp;&nbsp;</a><a
 					href="#" onclick="checkAll();">全选</a></span>
 			</h3>
 			<div>
@@ -49,8 +49,9 @@
 						<td width="220">商品名称</td>
 						<td width="122">商品图片</td>
 						<td width="58">商品价格</td>
-						<td width="51">加入拍卖</td>
-						<td width="59">加入折扣</td>
+						<td width="51">当前状态</td>
+						<td width="51">加入促销</td>
+						<td width="59">数量</td>
 						<td width="28"></td>
 					</tr>
 					<c:forEach var="shopComm" items="${shopComms }" varStatus="loop">
@@ -60,10 +61,19 @@
 							<td>${shopComm.commoidtyName }</td>
 							<td><img src="..${shopComm.shopCommImages[0].imagePath }" /></td>
 							<td>￥${shopComm.unitPrice }</td>
-							<td><button onclick="zhekou1(${shopComm.auction},${shopComm.commCode },${shopComm.shelves });"><c:if test="${shopComm.auction}">拍卖中</c:if><c:if test="${!shopComm.auction}">下拍</c:if></button></td>
-							<td><button onclick="zhekou(${shopComm.isSpecial},${shopComm.commCode },${shopComm.shelves });"><c:if test="${shopComm.isSpecial}">已加入</c:if><c:if test="${!shopComm.isSpecial}">不加入</c:if></button></td>
-							<td><span class="red">￥<fmt:formatNumber value="${shopComm.unitPrice * shopComm.special }" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber></span></td>
-							<td><input type="checkbox" name="commID" value="${shopComm.commCode}"/></td>
+							<td><button
+									onclick="zhekou(${shopComm.shelves},${shopComm.commCode });">
+									<c:if test="${shopComm.shelves}">已上架</c:if>
+									<c:if test="${!shopComm.shelves}">下架</c:if>
+								</button></td>
+							<td><button
+									onclick="zhekou1(${shopComm.isSpecial},${shopComm.commCode },${shopComm.shelves });">
+									<c:if test="${shopComm.isSpecial}">已加入</c:if>
+									<c:if test="${!shopComm.isSpecial}">不加入</c:if>
+								</button></td>
+							<td><span class="red">${shopComm.stock }</span></td>
+							<td><input type="checkbox" name="commID"
+								value="${shopComm.commCode}" /></td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -78,22 +88,33 @@
 						});
 						if (ids != "") {
 							if( confirm('您确定要删除这些货品吗？') ){
-								location.href ='../proscenium/deleteComm?ids='+ids+"&page=release";
+								location.href ='../proscenium/deleteComm?ids='+ids+"&page=storehouseShopComm";
 							}
 						}
 					}
-					function zhekou(bool,commID,shangjia){
+					function zhekou(bool,commID){
 						if (bool) {
-							if( confirm('该货品确定要退出折扣吗？') ){
-								location.href ='../proscenium/updateState?id='+commID+'&page=release&param=isSpecial&isTrue='+!bool+"&num=0";
+							if( confirm('该货品确定要下架吗？') ){
+								location.href ='../proscenium/updateState?id='+commID+'&page=soldShopComm&param=shelves&isTrue='+!bool;
 							}
 						}else{
-							if (shangjia) {
+							if( confirm('确定将该货品上架销售吗？') ){
+								location.href ='../proscenium/updateState?id='+commID+'&page=soldShopComm&param=shelves&isTrue='+!bool;
+							}
+						}
+					}
+					function zhekou1(bool,commID,shangjia){
+						if (bool) {
+							if( confirm('该货品确定要退出折扣吗？') ){
+								location.href ='../proscenium/updateState?id='+commID+'&page=soldShopComm&param=isSpecial&isTrue='+!bool+"&num=0";
+							}
+						}else{
+							if(shangjia){
 								if( confirm('确定将该货品加入折扣吗？') ){
 									var num=prompt("该商品将要打几折呢？","9折");
 									if (!isNaN(num))
 								    {
-										location.href ='../proscenium/updateState?id='+commID+'&page=release&param=isSpecial&isTrue='+!bool+"&num="+num;
+										location.href ='../proscenium/updateState?id='+commID+'&page=soldShopComm&param=isSpecial&isTrue='+!bool+"&num="+num;
 								    }
 									else
 									{
@@ -105,21 +126,7 @@
 							}
 						}
 					}
-					function zhekou1(bool,commID,shangjia){
-						if (bool) {
-							if( confirm('该货品确定要下拍吗？') ){
-								location.href ='../proscenium/updateState?id='+commID+'&page=release&param=auction&isTrue='+!bool;
-							}
-						}else{
-							if(shangjia){
-								if( confirm('确定将该货品拍卖吗？') ){
-									location.href ='../proscenium/updateState?id='+commID+'&page=release&param=auction&isTrue='+!bool;
-								}
-							}else{
-								alert("请将该货品先上架！！");
-							}
-						}
-					}
+					
 					function checkAll(){
 							if (!check) {
 								$("input[name='commID']").each(function(){

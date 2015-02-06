@@ -53,7 +53,10 @@ public class Shop {
 	private Possession possession;//所属地
 	
 	@Column
-	private String blank;
+	private String blank;//银行
+	
+	@Column
+	private String money;//钱
 	
 	@Column( unique = true, updatable = false)
 	private String blankAccount;//公司账户
@@ -67,12 +70,31 @@ public class Shop {
 	@Column
 	private Boolean isPermit = false;//是否许可开店
 	
+	@Column
+	private String createDate;//开店日期
+	
 	@OneToMany(mappedBy = "belongTo")
 	private List<ShopCommoidty> shopCommoidties;//店铺商品
 	
 	@OneToOne(mappedBy = "shop")
 	private User user;
 	
+	public String getMoney() {
+		return money;
+	}
+
+	public void setMoney(String money) {
+		this.money = money;
+	}
+
+	public String getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+
 	public ShopCategory getShopCat() {
 		return shopCat;
 	}

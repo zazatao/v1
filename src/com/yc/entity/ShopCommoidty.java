@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -45,16 +44,19 @@ public class ShopCommoidty {
 	private Float  probablyWeight = 0f;//大概重量
 	
 	@Column
-	private Boolean shelves ;//是否上架
+	private Boolean shelves =true;//是否上架
 	
 	@Column
-	private Boolean isSpecial;//是否折扣
+	private Boolean isSpecial =false;//是否折扣
 	
 	@Column
 	private Float  special;//打几折
 	
 	@Column
-	private  Boolean iscChoice;//是否精品
+	private  Boolean iscChoice = false;//是否精品
+	
+	@Column
+	private  Boolean auction =false;//是否拍卖
 	
 	@ManyToOne
 	@JoinColumn(name = "shopCategory_id")
@@ -71,6 +73,14 @@ public class ShopCommoidty {
 	@OneToMany(mappedBy = "shopCommoidty")
 	private List<ShopCommImage> shopCommImages;//商品照片
 	
+	public Boolean getAuction() {
+		return auction;
+	}
+
+	public void setAuction(Boolean auction) {
+		this.auction = auction;
+	}
+
 	public String getCommSpec() {
 		return commSpec;
 	}
