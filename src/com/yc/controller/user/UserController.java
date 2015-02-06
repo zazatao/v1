@@ -20,14 +20,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.yc.entity.Shop;
+import com.yc.entity.Address;
 import com.yc.entity.ShopCategory;
 import com.yc.entity.user.User;
 import com.yc.service.IAddressService;
 import com.yc.service.IShopCategoryService;
-import com.yc.service.IShopService;
 import com.yc.service.IUserService;
-import com.yc.service.impl.UserService;
 
 @Controller
 @RequestMapping("/user")
@@ -155,16 +153,18 @@ public class UserController {
     	u.setPhone(phone);
     	String sex = request.getParameter("sex");
     	u.setSex(sex);
+    	String birthday = request.getParameter("birthday");
+    	u.setBirthday(birthday);
     	userService.update(u);
-    	return "reception/introduction";
+    	return "redirect:/reception/introduction";
     }
     @RequestMapping(value="editUserpwd",method = RequestMethod.POST)
     public String editUserpwd(Integer id,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
-    	User u = userService.findById(id);
+    	User user = userService.findById(id);
     	String password = request.getParameter("password");
-    	u.setPassword(password);
-    	userService.update(u);
-    	return "reception/introduction";
+    	user.setPassword(password);
+    	userService.update(user);
+    	return "redirect:/reception/introduction";
     }
 
     @RequestMapping(value = "regist", method = RequestMethod.POST)
@@ -209,5 +209,65 @@ public class UserController {
 		person.setSex(sex);
 		userService.save(person);
 		return "redirect:/index";
+    }
+	
+	//地址添加
+	@RequestMapping(value = "Address", method = RequestMethod.POST)
+    public String Address(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {;
+		Address as = new Address();
+		String toName =request.getParameter("toName");
+		System.out.println("============"+toName);
+		as.setToName(toName);
+		String phone = request.getParameter("phone");
+		as.setPhone(phone);
+		String toEmail = request.getParameter("toEmail");
+		as.setToEmail(toEmail);
+		String country = request.getParameter("country");
+		as.setCountry(country);
+		String city = request.getParameter("city");
+		as.setCity(city);
+		String street = request.getParameter("street");
+		as.setStreet(street);
+		String district = request.getParameter("district");
+		as.setDistrict(district);
+		String handedAddress = request.getParameter("handedAddress");
+		as.setHandedAddress(handedAddress);
+		String indexNum = request.getParameter("indexNum");
+		as.setIndexNum(indexNum);
+		addressService.save(as);
+		return "redirect:/reception/introduction";
+    }
+	//修改地址
+	@RequestMapping(value="editaddress",method = RequestMethod.POST)
+    public String editaddress(Integer id,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+    	User u = userService.findById(id);
+    	String userName = request.getParameter("userName");
+    	u.setUserName(userName);
+    	String email = request.getParameter("email");
+    	u.setEmail(email);
+    	String phone = request.getParameter("phone");
+    	u.setPhone(phone);
+    	String sex = request.getParameter("sex");
+    	u.setSex(sex);
+    	String birthday = request.getParameter("birthday");
+    	u.setBirthday(birthday);
+    	userService.update(u);
+    	return "redirect:/reception/introduction";
+    }
+	//删除地址
+	@RequestMapping(value = "deleteaddress", method = RequestMethod.GET)
+    public String deleteaddress(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	User ad =  userService.findById(id);
+    	List<Address> as =ad.getAddresses();
+    	if(as.size()>0){
+    		boolean isok = addressService.deleteByadd(id);
+    		if (isok != true) 
+    		{
+    			addressService.delete(id);
+    		}
+    		}else{
+			addressService.delete(id);
+    		}
+    	return "redirect:/reception/introduction";
     }
 }

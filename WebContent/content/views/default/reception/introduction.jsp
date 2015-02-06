@@ -19,6 +19,32 @@
 	src="../content/static/js/reception/jquery.min.js"></script>
 <script type="text/javascript"
 	src="../content/static/js/reception/js.js"></script>
+<script>
+ 
+	 function address()
+	 {
+		 document.form.action="./Address";
+		 if (isok) {
+		 document.form.submit();
+		 }
+	 }
+	 function editpwd()
+	 {
+		 document.form.action="./editUserpwd";
+		 document.form.submit();
+	 }
+	 function deleteaddress()
+	 {
+		 document.form.action="./deleteaddress";
+		 document.form.submit();
+	 }
+	 function editaddress()
+	 {
+		 document.form.action="./editaddress";
+		 document.form.submit();
+	 }
+
+</script>
 </head>
 
 <body>
@@ -107,9 +133,10 @@
         <div class="cl"></div>
     </div>
     
- <form action="./editUser?id=${user.id}" id="form" name="form" method="post">
+<form action="./editUser?id=${user.id}" id="form" name="form" method="post">
 	<!---------------   详细   ------------->
     <div class="sets">
+
     	<div class="settil">
         	<h3>账户</h3>
                 <ul>
@@ -120,9 +147,7 @@
                   <li>网站设置 </li>
                   <li>邀请你的朋友和我们一起赚钱</li>
                 </ul>
-            
         </div>
-        
     	<div class="setcan"  style="display:block">
         	<h3>我的信息</h3>
             <p> 更新您的个人信息和发照片到您的个人资料</p>
@@ -153,7 +178,7 @@
               	  </li>
               	  <li>
               	    <p class="seacaretil">生日:</p>
-              	    <p>06.07.1992</p>
+              	    <p>${user.birthday}</p>
               	  </li>
               	  <li>
               	    <p class="seacaretil">默认地址:</p>
@@ -188,11 +213,11 @@
               	  </li>
               	  <li>
               	    <p class="seacaretil">生日:</p>
-              	    <p><input name="" value="06.07.1992" type="text" /></p>
+              	    <p><input name="birthday" id="birthday" value="${user.birthday}" type="text" /></p>
               	  </li>
               	  <li>
               	    <p class="seacaretil">默认地址:</p>
-              	    <p><input name="" value="06.07.1992" type="text" /></p>
+              	    <p><input name="addresses" id="addresses" value="" type="text" /></p>
               	  </li>
               	  <li>
               	    <p class="seacaretil">电话</p>
@@ -208,15 +233,18 @@
             <div class="cl"></div>
             <p class="setcanbon setcanbonfs"><a href="#" onclick="submit();">更改</a></p>
             <script>
+            var isok = false;
             	$(function(){
 						$(".setcanbonfs a").toggle(function(){
 								$(".seacarefa").hide();
 								$(".seacareno").show();
 								$(this).text("确认");
+								isok = true;
 							},function(){
 								$(".seacareno").hide();
 								$(".seacarefa").show();
 								$(this).text("更改");
+								isok = false;
 							})
 						$(".setaddonlest .sels5 a").click(function(){
 								$(".setaddonlest").hide();
@@ -225,19 +253,22 @@
 						$(".setaddonlest .setcanbon a").click(function(){
 								$(".setaddonlest").hide();
 								$(".setaddallstw").show();
+								isok = true;
 							});
 						$(".setcanbontw a").click(function(){
 								$(".setaddonlest").show();
 								$(".setaddalls").hide();
-								
+								isok = false;
 							});
 					})
 						 function submit(){
-							 document.getElementById("form").submit();
+            				if (isok) {
+            		 		form.submit();
+							}
 						 }
+            			
             </script>
         </div>
-
         <div class="setcan">
         	<div class="setaddonlest">
                 <h3>通讯录<span>保存地址</span></h3>
@@ -252,78 +283,69 @@
                         </div>
                         <ul>
                           <li>
-                            <p class="sels1">157</p>
+                            <p class="sels1">${address.toName}</p>
                             <p class="sels2">删除  </p>
                             <p class="sels3">★</p>
-                            <p class="sels4"><a>删除</a></p>
-                            <p class="sels5"><a>更改</a></p>
-                          </li>
-                          <li>
-                            <p class="sels1">11</p>
-                            <p class="sels2">删除</p>
-                            <p class="sels3">★</p>
-                            <p class="sels4"><a>删除</a></p>
+                            <p class="sels4"><a href="#" onclick="deleteaddress();">删除</a></p>
                             <p class="sels5"><a>更改</a></p>
                           </li>
                         </ul>
                 	</div>
                 </div>
                 <div class="cl"></div>
-                <p class="setcanbon"><a>添加新地址</a></p>
+                <p class="setcanbon"><a href="#" onclick="address();">添加新地址</a></p>
              </div>
-        	<div class="setaddalls setaddallsfs">
-                <h3>通讯录</h3>
-                <p class="setaddl">保存收货地址，使得采购更加快捷方便，“快速购买”也是在“我的账户”结算信息保存到下单，只需点击一次。填写资料时候，只能使用字母</p>
-                <p class="setaddls">详细运输资料</p>
-                <p class="setalip"><span>名字* </span><span>姓*</span></p>
-                <p class="setalip"><span><input name="" type="text" value="*******" /></span><span><input name="" type="text" value="*******" /></span></p>
-                <p class="setalip"><span>电话*</span><span>邮箱:</span></p>
-                <p class="setalip"><span><input name="" type="text" value="*******" /></span><span><input name="" type="text" value="*******" /></span></p>
-                <p class="setaddlinks"></p>
-                <p class="setalip"><span>国家 *</span><span>城市 *</span></p>
-                <p class="setalip"><span><input name="" type="text" value="*******" /></span><span><input name="" type="text" value="*******" /></span></p>
-                <p class="setalip"><span>地址 *</span><span>地区*</span></p>
-                <p class="setalip"><span><input name="" type="text" value="*******" /></span><span><input name="" type="text" value="*******" /></span></p>
-                <p class="setalip"><span>转交地址</span><span>指数*</span></p>
-                <p class="setalip"><span><input name="" type="text" value="*******" /></span><span><input name="" type="text" value="*******" /></span></p>
-                <p class="setaddlinks"></p>
-                <p class="setalckl"><label><span><input name="" type="checkbox" value="" /></span>默认送货地址</label></p>
-                <p class="setalckl"><label><span><input name="" type="checkbox" value="" /></span>默认情况下，按以前的地址</label></p>
-                <p class="setalckl">您输入的个人信息将用于ZAZATAO结算，ZAZATAO会保证您数据的安全性。详情请参阅我们的隐私保障</p>
-                <div class="cl"></div>
-                <p class="setcanbon setcanbontw"><a href="#">确认</a></p>
-             </div>
+<!--         	<div class="setaddalls setaddallsfs"> -->
+<!--                 <h3>通讯录</h3> -->
+<!--                 <p class="setaddl">保存收货地址，使得采购更加快捷方便，“快速购买”也是在“我的账户”结算信息保存到下单，只需点击一次。填写资料时候，只能使用字母</p> -->
+<!--                 <p class="setaddls">详细运输资料</p> -->
+<!--                 <p class="setalip"><span>名字* </span><span>姓*</span></p> -->
+<!--                 <p class="setalip"><span><input name="toName" type="text" value="" /></span><span><input name="toName" type="text" value="" /></span></p> -->
+<!--                 <p class="setalip"><span>电话*</span><span>邮箱:</span></p> -->
+<!--                 <p class="setalip"><span><input name="phone" type="text" value="" /></span><span><input name="toEmail" type="text" value="" /></span></p> -->
+<!--                 <p class="setaddlinks"></p> -->
+<!--                 <p class="setalip"><span>国家 *</span><span>城市 *</span></p> -->
+<!--                 <p class="setalip"><span><input name="country" type="text" value="" /></span><span><input name="city" type="text" value="" /></span></p> -->
+<!--                 <p class="setalip"><span>地址 *</span><span>地区*</span></p> -->
+<!--                 <p class="setalip"><span><input name="street" type="text" value="" /></span><span><input name="district" type="text" value="" /></span></p> -->
+<!--                 <p class="setalip"><span>转交地址</span><span>指数*</span></p> -->
+<!--                 <p class="setalip"><span><input name="handedAddress" type="text" value="" /></span><span><input name="indexNum" type="text" value="" /></span></p> -->
+<!--                 <p class="setaddlinks"></p> -->
+<!--                 <p class="setalckl"><label><span><input name="theDefault" type="checkbox" value="" /></span>默认送货地址</label></p> -->
+<!--                 <p class="setalckl"><label><span><input name="" type="checkbox" value="" /></span>默认情况下，按以前的地址</label></p> -->
+<!--                 <p class="setalckl">您输入的个人信息将用于ZAZATAO结算，ZAZATAO会保证您数据的安全性。详情请参阅我们的隐私保障</p> -->
+<!--                 <div class="cl"></div> -->
+<!--                 <p class="setcanbon setcanbontw"><a href="#" onclick="address();">确认</a></p> -->
+<!--              </div> -->
         	<div class="setaddalls setaddallstw">
                 <h3>通讯录</h3>
                 <p class="setaddl">保存收货地址，使得采购更加快捷方便，“快速购买”也是在“我的账户”结算信息保存到下单，只需点击一次。填写资料时候，只能使用字母</p>
                 <p class="setaddls">详细运输资料</p>
                 <p class="setalip"><span>名字* </span><span>姓*</span></p>
-                <p class="setalip"><span><input name="" type="text" /></span><span><input name="" type="text" /></span></p>
+                <p class="setalip"><span><input name="toName" type="text" /></span><span><input name="toName" type="text" /></span></p>
                 <p class="setalip"><span>电话*</span><span>邮箱:</span></p>
-                <p class="setalip"><span><input name="" type="text" /></span><span><input name="" type="text" /></span></p>
+                <p class="setalip"><span><input name="phone" type="text" /></span><span><input name="toEmail" type="text" /></span></p>
                 <p class="setaddlinks"></p>
                 <p class="setalip"><span>国家 *</span><span>城市 *</span></p>
-                <p class="setalip"><span><input name="" type="text" /></span><span><input name="" type="text" /></span></p>
+                <p class="setalip"><span><input name="country" type="text" /></span><span><input name="city" type="text" /></span></p>
                 <p class="setalip"><span>地址 *</span><span>地区*</span></p>
-                <p class="setalip"><span><input name="" type="text" /></span><span><input name="" type="text" /></span></p>
+                <p class="setalip"><span><input name="street" type="text" /></span><span><input name="district" type="text" /></span></p>
                 <p class="setalip"><span>转交地址</span><span>指数*</span></p>
-                <p class="setalip"><span><input name="" type="text" /></span><span><input name="" type="text" /></span></p>
+                <p class="setalip"><span><input name="handedAddress" type="text" /></span><span><input name="indexNum" type="text" /></span></p>
                 <p class="setaddlinks"></p>
-                <p class="setalckl"><label><span><input name="" type="checkbox" value="" /></span>默认送货地址</label></p>
+                <p class="setalckl"><label><span><input name="theDefault" type="checkbox" value="" /></span>默认送货地址</label></p>
                 <p class="setalckl"><label><span><input name="" type="checkbox" value="" /></span>默认情况下，按以前的地址</label></p>
                 <p class="setalckl">您输入的个人信息将用于ZAZATAO结算，ZAZATAO会保证您数据的安全性。详情请参阅我们的隐私保障</p>
                 <div class="cl"></div>
-                <p class="setcanbon setcanbontw"><a href="#" onclick="submit();">确认</a></p>
+                <p class="setcanbon setcanbontw"><a href="#" onclick="address();">确认</a></p>
              </div>
         </div>
-        </form>
-        <form action="./editUserpwd?id=${user.id}" method="post" name="form1" id="form1">
 	        <div class="setcan">
 	        	<div class="setcposs">
 	                <table width="100%" border="0" cellspacing="0" cellpadding="0">
 	                  <tr>
 	                    <th scope="row">旧密码</th>
-	                    <td><input name="password" id="password" type="text"/></td>
+	                    <td><input name="password1" id="password1" type="text"/></td>
 	                  </tr>
 	                  <tr>
 	                    <th scope="row">新密码</th>
@@ -335,19 +357,13 @@
 	                  </tr>
 	                  <tr>
 	                    <th scope="row">&nbsp;</th>
-	                    <td><a href="#" onclick="submit1();">更改密码</a>
+	                    <td><a href="#" onclick="editpwd();">更改密码</a>
 	                    </td>
 	                  </tr>
 	                </table>
 	                <div class="cl"></div>
 	             </div>
 	        </div>
-	     </form>   
-					<script type="text/javascript">
-						 function submit1(){
-							 document.getElementById("form1").submit();
-						 }
-					</script>
         <div class="setcan">
         	<div class="setcposs">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -586,13 +602,9 @@
                 <img class="img2" src="../content/static/images/brand/an17.jpg" width="440" height="358" />
             </div>
         </div>
-        
-        
       <div class="cl"></div>
-
     </div>
-
-		
+   </form> 
 
  <jsp:include page="../common/foot.jsp"></jsp:include>
 </body>

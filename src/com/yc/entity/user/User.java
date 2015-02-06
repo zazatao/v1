@@ -45,6 +45,9 @@ public class User {
 	@Column
 	private String phone;
 	
+	@Column
+	private String birthday;
+	
 	@OneToOne
 	@JoinColumn(name = "shop_id")
 	private Shop shop;
@@ -146,5 +149,14 @@ public class User {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
+	public String getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+	
 
 }
