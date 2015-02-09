@@ -161,8 +161,9 @@ public class UserController {
     @RequestMapping(value="editUserpwd",method = RequestMethod.POST)
     public String editUserpwd(Integer id,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
     	User user = userService.findById(id);
-    	String password = request.getParameter("password");
-    	user.setPassword(password);
+    	String password1 =request.getParameter("password1");
+    	String pwd = request.getParameter("password");
+    	user.setPassword(pwd);
     	userService.update(user);
     	return "redirect:/reception/introduction";
     }

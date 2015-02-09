@@ -23,10 +23,10 @@ public class Specifications {
 	private Integer id;
 	
 	@Column
-	private String specificatName;
+	private String specificatName;//类别名
 	
 	@Column
-	private String attribute;
+	private String attribute;//属性名
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<ShopCategory> shopCategories;

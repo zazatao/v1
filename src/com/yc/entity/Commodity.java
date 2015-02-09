@@ -49,9 +49,11 @@ public class Commodity {
 	private String currency;// 币种
 	@Column
 	private String comment;// 评论
-
 	@Column
-	private String seller;// 卖家
+	private String commSpec;//规格【，颜色-红色，尺寸-12L,】
+	@ManyToOne
+	@JoinColumn(name = "seller_name")
+	private Shop seller;// 卖家
 	@Column
 	private String sellerDate;// 卖家付款日期
 	@Column
@@ -109,12 +111,28 @@ public class Commodity {
 		this.sellerDate = sellerDate;
 	}
 
-	public String getSeller() {
+	public String getCommSpec() {
+		return commSpec;
+	}
+
+	public void setCommSpec(String commSpec) {
+		this.commSpec = commSpec;
+	}
+
+	public Shop getSeller() {
 		return seller;
 	}
 
-	public void setSeller(String seller) {
+	public void setSeller(Shop seller) {
 		this.seller = seller;
+	}
+
+	public StoreRoom getStoreRoom() {
+		return storeRoom;
+	}
+
+	public void setStoreRoom(StoreRoom storeRoom) {
+		this.storeRoom = storeRoom;
 	}
 
 	public String getNameOfGoods() {

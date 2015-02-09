@@ -32,7 +32,7 @@ public class ShopCategory {
 	private Integer parentLevel;//父节点；
 	
 	@OneToMany(mappedBy = "shopCat")
-	private List<Shop>  shops;//商品
+	private List<Shop>  shops;//商店
 	
 	@OneToMany(mappedBy = "shopCategory")
 	private List<ShopCommoidty>  shopCommoidties;//商品

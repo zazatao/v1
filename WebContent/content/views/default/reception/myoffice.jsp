@@ -102,7 +102,7 @@
         <div class="perbastab">
         	<ul>
         	  <li class="pbeabclk"><a href="perscent_ord.html"><%=((User) request.getSession().getAttribute("loginUser")).getUserName()%>我的账户</a></li>
-        	  <li><a href="perscent_bonuses.html">我的订单</a></li>
+        	  <li><a href="./myorder">我的订单</a></li>
         	  <li><a href="perscent_account.html">我的账单</a></li>
         	  <li><a href="perscent_dreams.html">我喜欢的产品</a></li>
         	  <li><a href="perscent_sup.html">引起支持呼吁</a></li>
