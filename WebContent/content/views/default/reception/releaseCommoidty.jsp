@@ -217,43 +217,6 @@
 		}
 		function shopcate(obj) {
 			var Code = obj.value;
-			jQuery
-					.ajax({
-						type : 'GET',
-						contentType : 'application/json',
-						url : './getSpecific?ids=' + Code,
-						dataType : 'json',
-						success : function(data) {
-							$("#guige").empty();
-							$('#guize').val("");
-							if (data && data.success == "true") {
-								var $guige = "";
-								$
-										.each(
-												data.spec,
-												function(i, item) {
-													var gui = item.attribute
-															.split(',');
-													var d = "";
-													for (var j = 0; j < gui.length; j++) {
-														d = d
-																+ "<option value='"+gui[j]+"'>"
-																+ gui[j]
-																+ "</option>";
-													}
-													$guige = $guige
-															+ "<dd><span id='"+i+"'>"
-															+ item.specificatName
-															+ "</span><select onchange='guigechange(this,"
-															+ i
-															+ ");'  name='' style='height:35px; width:303px; border:1px solid #ccc; margin-left: 7px'><option value='-1'>----请选择----</option>"
-															+ d
-															+ "</select></dd>";
-												});
-							}
-							$('#guige').append($guige);
-						}
-					});
 			var shopcateThree = document.getElementById('shopcateThree');
 			var num = shopcateThree.options.length;
 			for (i = num - 1; i >= 0; i--) {
@@ -272,6 +235,40 @@
 		}
 		function shopBrand(obj) {
 			var Code = obj.value;
+			jQuery
+			.ajax({
+				type : 'GET',
+				contentType : 'application/json',
+				url : './getSpecific?ids=' + Code,
+				dataType : 'json',
+				success : function(data) {
+					$('#guige').empty();
+					$('#guize').val("");
+					if (data && data.success == "true") {
+						var $guige = "";
+						$.each(data.spec,function(i, item) {
+											var gui = item.attribute
+													.split(',');
+											var d = "";
+											for (var j = 0; j < gui.length; j++) {
+												d = d
+														+ "<option value='"+gui[j]+"'>"
+														+ gui[j]
+														+ "</option>";
+											}
+											$guige = $guige
+													+ "<dd><span id='"+i+"'>"
+													+ item.specificatName
+													+ "</span><select onchange='guigechange(this,"
+													+ i
+													+ ");'  name='' style='height:35px; width:303px; border:1px solid #ccc; margin-left: 7px'><option value='-1'>----请选择----</option>"
+													+ d
+													+ "</select></dd>";
+										});
+					}
+					$('#guige').append($guige);
+				}
+			});
 			var brand = document.getElementById('brand');
 			var num = brand.options.length;
 			for (i = num - 1; i >= 0; i--) {
