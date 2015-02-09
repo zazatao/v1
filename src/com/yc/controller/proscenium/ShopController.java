@@ -93,6 +93,11 @@ public class ShopController {
 				if (null != shopName && !shopName.equals("")) {
 					shop = new Shop();
 					shop.setShopName(shopName);
+					shop.setUser(user);
+					shopService.save(shop);
+				}else{
+					shop = new Shop();
+					shop.setUser(user);
 					shopService.save(shop);
 				}
 				return new ModelAndView("reception/setUpShop", mode);

@@ -14,30 +14,6 @@
 
 <body>
 	<jsp:include page="./prosceniumNav.jsp"></jsp:include>
-			<script type="text/javascript">
-			$(document).ready(function(){
-			    var $guige = "";
-				<c:forEach items="${shopCategories }" var="shopCategory">
-					if ('${shopCategory.level}' == 1) {
-						alert('${shopCategory.categoryID}');
-						$guige = $guige + "<li><a href='../proscenium/categoryOne?id=${shopCategory.categoryID}'>${shopCategory.category}</a><div>";
-					}
-					<c:forEach items="${shopCategories }" var="shopCategory2">
-						if('${shopCategory2.level}' == 2 && '${shopCategory2.parentLevel}' == '${shopCategory.categoryID}' ){
-							$guige = $guige + "<div class='nav-column'><h3>${shopCategory.category}</h3><ul>";
-						}
-						<c:forEach items="${shopCategories }" var="shopCategory3">
-							if('${shopCategory3.level}' == 3 && '${shopCategory3.parentLevel}' == '${shopCategory2.categoryID}' ){
-								$guige = $guige + "<li><a href='../proscenium/categoryThree?id=${shopCategory3.categoryID}'>${shopCategory3.category }</a></li>";
-							}
-						</c:forEach>
-						$guige = $guige + "</ul></div>";
-					</c:forEach>
-					$guige = $guige + "</div></li>";
-				</c:forEach>
-				$('#navShopCaegory1').append($guige);
-			});
-		</script>
     <div class="con"><!---------------   内容主体   ----------------------->
     	<div class="ban">
     		<div class="banner">

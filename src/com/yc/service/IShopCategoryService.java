@@ -8,4 +8,8 @@ public interface IShopCategoryService extends IGenericService<ShopCategory> {
 
 	List<ShopCategory> getAllByLevel(Integer i);
 
+	List<ShopCategory> getAllForBrand();
+
+	List<ShopCategory> getAllForSpecial();
+
 }
