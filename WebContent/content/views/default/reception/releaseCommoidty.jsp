@@ -66,12 +66,6 @@
 								onchange="shopcate(this);"
 								style="height: 35px; width: 303px; border: 1px solid #ccc; margin-left: 7px">
 								<option value="-1">----请选择----</option>
-								<c:forEach items="${shopCategory }" var="shopcate"
-									varStatus="loop">
-									<c:if test="${shopcate.level == 2 }">
-										<option value="${shopcate.categoryID }">${shopcate.category }</option>
-									</c:if>
-								</c:forEach>
 							</select>
 						</dd>
 						<dd>
@@ -79,12 +73,6 @@
 								onchange="shopBrand(this);"
 								style="height: 35px; width: 303px; border: 1px solid #ccc; margin-left: 7px">
 								<option value="-1">----请选择----</option>
-								<c:forEach items="${shopCategory }" var="shopcate"
-									varStatus="loop">
-									<c:if test="${shopcate.level == 3 }">
-										<option value="${shopcate.categoryID }">${shopcate.category }</option>
-									</c:if>
-								</c:forEach>
 							</select>
 						</dd>
 						<div id="guige"></div>
