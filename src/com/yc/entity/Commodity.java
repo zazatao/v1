@@ -51,6 +51,11 @@ public class Commodity {
 	private String comment;// 评论
 	@Column
 	private String commSpec;//规格【，颜色-红色，尺寸-12L,】
+	
+	@ManyToOne
+	@JoinColumn(name = "shopcategory")
+	private ShopCategory shopcategory;// 类别
+	
 	@ManyToOne
 	@JoinColumn(name = "seller_name")
 	private Shop seller;// 卖家
@@ -278,5 +283,14 @@ public class Commodity {
 	public void setTradingCode(String tradingCode) {
 		this.tradingCode = tradingCode;
 	}
+
+	public ShopCategory getShopcategory() {
+		return shopcategory;
+	}
+
+	public void setShopcategory(ShopCategory shopcategory) {
+		this.shopcategory = shopcategory;
+	}
+	
 
 }

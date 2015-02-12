@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,8 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Brand;
+import com.yc.entity.OrderForm;
+import com.yc.entity.OrderStatus;
 import com.yc.entity.Possession;
 import com.yc.entity.Shop;
 import com.yc.entity.ShopCategory;
@@ -449,4 +452,5 @@ public class ShopController {
 		mode.put("shopCategories", list);
 		return mode;
 	}
+	
 }
