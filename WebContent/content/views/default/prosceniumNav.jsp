@@ -1,43 +1,28 @@
 <%@page import="com.yc.entity.user.User"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<link href="content/static/css/reception/css.css" rel="stylesheet"
-	type="text/css" />
-<div class="topfd">
-	<!---------------   浮动头部   ----------------------->
-	<div class="topnone"></div>
-	<div class="top1">
-		<div class="logo">
-			<a href="./index"><img src="content/static/images/logo.jpg"
-				width="162" height="62" /></a>
-		</div>
-		<div class="znss">
-			<div class="ssk">
-				<input value="搜索" name="" type="text" onfocus="this.value=''"
-					onblur="if(this.value==''){this.value='搜索';}" />
-			</div>
-			<div class="ssan">
-				<input name="" type="button" />
-			</div>
-		</div>
-
-		<div class="top_tel">
-			<img src="content/static/images/top_sj.png" />
-			<p>
-				全球统一客服电话<br />
-				<span class="red">152386895258</span>
-			</p>
-		</div>
-		<div class="gwctb">
-			<a href="shopcar.jsp"><img src="content/static/images/gwc.jpg"
-				width="63" height="43" /></a>
-		</div>
-		<div class="clear"></div>
-		<div class="qbfl">
-			<a href="./index"><img src="content/static/images/china.jpg" /></a><a
-				href="../index"><img src="content/static/images/eluosi.jpg" /></a>
-		</div>
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link href="content/static/css/reception/css.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="topfd"><!---------------   浮动头部   ----------------------->
+        <div class="topnone"></div>
+		<div class="top1">
+    		<div class="logo"><a href="index.html"><img src="content/static/images/logo.jpg" width="162" height="62" /></a></div>
+        	<div class="znss">
+            	<div class="ssk"><input value="搜索" name="" type="text" onfocus="this.value=''" onblur="if(this.value==''){this.value='搜索';}"  /></div>
+                <div class="ssan"><input name="" type="button" /></div>
+            </div>
+            
+             <div class="top_tel"><img src="content/static/images/top_sj.png" /><p>全球统一客服电话<br /><span class="red">152386895258</span></p></div>
+            <div class="gwctb"><a href="shopcar.html"><img src="content/static/images/gwc.jpg" width="63" height="43" /></a></div>
+            <div class="clear"></div>
+            <div class="qbfl"><a href="index.html"><img src="content/static/images/china.jpg" /></a><a href="../index.html"><img src="content/static/images/eluosi.jpg" /></a></div>
+        </div>
+        <div class="topnone"></div>
 	</div>
+
 	<div class="topnone"></div>
 </div>
 <div class="topfn">

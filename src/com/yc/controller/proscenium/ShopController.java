@@ -29,6 +29,8 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Brand;
+import com.yc.entity.OrderForm;
+import com.yc.entity.OrderStatus;
 import com.yc.entity.Possession;
 import com.yc.entity.Shop;
 import com.yc.entity.ShopCategory;

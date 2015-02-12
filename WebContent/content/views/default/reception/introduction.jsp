@@ -33,9 +33,9 @@
 		 document.form.action="./editUserpwd";
 		 document.form.submit();
 	 }
-	 function deleteaddress()
+	 function deleteaddress(num)
 	 {
-		 document.form.action="./deleteaddress";
+		 document.form.action='./deleteaddress?id'+num;
 		 document.form.submit();
 	 }
 	 function editaddress()
@@ -122,7 +122,7 @@
         <div class="perbastab">
         	<ul>
         	  <li><a href="perscent_ord.html">我的账户</a></li>
-        	  <li><a href="perscent_bonuses.html">我的订单</a></li>
+        	  <li><a href="./myorder">我的订单</a></li>
         	  <li><a href="perscent_account.html">我的账单</a></li>
         	  <li><a href="perscent_dreams.html">我喜欢的产品</a></li>
         	  <li><a href="perscent_sup.html">引起支持呼吁</a></li>
@@ -282,19 +282,43 @@
                             <p class="sels7"></p>
                         </div>
                         <ul>
+                        <c:forEach var="address" items="${user.addresses}" varStatus="vs">
                           <li>
                             <p class="sels1">${address.toName}</p>
                             <p class="sels2">删除  </p>
                             <p class="sels3">★</p>
-                            <p class="sels4"><a href="#" onclick="deleteaddress();">删除</a></p>
+                            <p class="sels4"><a href="#" onclick="deleteaddress(${address.id});">删除</a></p>
                             <p class="sels5"><a>更改</a></p>
                           </li>
+                         </c:forEach>
                         </ul>
                 	</div>
                 </div>
                 <div class="cl"></div>
                 <p class="setcanbon"><a href="#" onclick="address();">添加新地址</a></p>
              </div>
+<!--         	<div class="setaddalls setaddallsfs"> -->
+<!--                 <h3>通讯录</h3> -->
+<!--                 <p class="setaddl">保存收货地址，使得采购更加快捷方便，“快速购买”也是在“我的账户”结算信息保存到下单，只需点击一次。填写资料时候，只能使用字母</p> -->
+<!--                 <p class="setaddls">详细运输资料</p> -->
+<!--                 <p class="setalip"><span>名字* </span><span>姓*</span></p> -->
+<!--                 <p class="setalip"><span><input name="toName" type="text" value="" /></span><span><input name="toName" type="text" value="" /></span></p> -->
+<!--                 <p class="setalip"><span>电话*</span><span>邮箱:</span></p> -->
+<!--                 <p class="setalip"><span><input name="phone" type="text" value="" /></span><span><input name="toEmail" type="text" value="" /></span></p> -->
+<!--                 <p class="setaddlinks"></p> -->
+<!--                 <p class="setalip"><span>国家 *</span><span>城市 *</span></p> -->
+<!--                 <p class="setalip"><span><input name="country" type="text" value="" /></span><span><input name="city" type="text" value="" /></span></p> -->
+<!--                 <p class="setalip"><span>地址 *</span><span>地区*</span></p> -->
+<!--                 <p class="setalip"><span><input name="street" type="text" value="" /></span><span><input name="district" type="text" value="" /></span></p> -->
+<!--                 <p class="setalip"><span>转交地址</span><span>指数*</span></p> -->
+<!--                 <p class="setalip"><span><input name="handedAddress" type="text" value="" /></span><span><input name="indexNum" type="text" value="" /></span></p> -->
+<!--                 <p class="setaddlinks"></p> -->
+<!--                 <p class="setalckl"><label><span><input name="theDefault" type="checkbox" value="" /></span>默认送货地址</label></p> -->
+<!--                 <p class="setalckl"><label><span><input name="" type="checkbox" value="" /></span>默认情况下，按以前的地址</label></p> -->
+<!--                 <p class="setalckl">您输入的个人信息将用于ZAZATAO结算，ZAZATAO会保证您数据的安全性。详情请参阅我们的隐私保障</p> -->
+<!--                 <div class="cl"></div> -->
+<!--                 <p class="setcanbon setcanbontw"><a href="#" onclick="address();">确认</a></p> -->
+<!--              </div> -->
         	<div class="setaddalls setaddallstw">
                 <h3>通讯录</h3>
                 <p class="setaddl">保存收货地址，使得采购更加快捷方便，“快速购买”也是在“我的账户”结算信息保存到下单，只需点击一次。填写资料时候，只能使用字母</p>

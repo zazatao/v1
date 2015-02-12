@@ -6,14 +6,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>zazatao</title>
 <link href="content/static/css/reception/css.css" rel="stylesheet" type="text/css" />
-<script href="content/static/js/reception/png.js" type="text/javascript" ></script>
-<script src="content/static/js/reception/ScrollPic.js" type=text/javascript></script>
+<script src="content/static/js/reception/png.js" type="text/javascript" ></script>
+<script src="content/static/js/reception/ScrollPic.js" type="text/javascript" ></script>
 <script type="text/javascript" src="content/static/js/reception/jquery.min.js"></script>
 <script type="text/javascript" src="content/static/js/reception/js.js"></script>
 </head>
 
 <body>
 	<jsp:include page="./prosceniumNav.jsp"></jsp:include>
+
     <div class="con"><!---------------   内容主体   ----------------------->
     	<div class="ban">
     		<div class="banner">

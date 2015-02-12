@@ -15,7 +15,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @Entity
 @DiscriminatorValue("shopCategory")//商品类别表
-@JsonIgnoreProperties(value = { "shops", "shopCommoidties", "brands", "specifications" })
+@JsonIgnoreProperties(value = { "shops", "shopCommoidties", "brands", "specifications","commodity" })
 public class ShopCategory {
 
 	@Id
@@ -32,13 +32,16 @@ public class ShopCategory {
 	private Integer parentLevel;//父节点；
 	
 	@OneToMany(mappedBy = "shopCat")
-	private List<Shop>  shops;//商品
+	private List<Shop>  shops;//商店
 	
 	@OneToMany(mappedBy = "shopCategory")
 	private List<ShopCommoidty>  shopCommoidties;//商品
 
 	@OneToMany(mappedBy = "shopCateg")
 	private List<Brand> brands;//品牌
+	
+	@OneToMany(mappedBy = "shopcategory")
+	private List<Commodity> commodity;//
 	
 	@ManyToMany(mappedBy = "shopCategories")
 	private List<Specifications> specifications;//规格
@@ -106,5 +109,14 @@ public class ShopCategory {
 	public void setParentLevel(Integer parentLevel) {
 		this.parentLevel = parentLevel;
 	}
+
+	public List<Commodity> getCommodity() {
+		return commodity;
+	}
+
+	public void setCommodity(List<Commodity> commodity) {
+		this.commodity = commodity;
+	}
+	
 	
 }

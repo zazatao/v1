@@ -29,7 +29,7 @@ public class ShopCommoidty {
 	private String supplier ;//供应商
 	
 	@Column
-	private String commSpec;//规格【，颜色-红色，】
+	private String commSpec;//规格【，颜色-红色，尺寸-12L,】
 	
 	@Column
 	private Integer stock = 0 ;//库存数量
