@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -52,19 +53,19 @@ public class ShopController {
 	private static final Logger LOG = Logger.getLogger(ShopController.class);
 
 	@Autowired
-	IShopService shopService;//商店
+	IShopService shopService;// 商店
 
 	@Autowired
-	IShopCommoidtyService shopCommService;//商品
+	IShopCommoidtyService shopCommService;// 商品
 
 	@Autowired
-	IShopCategoryService shopCategService;//类别
+	IShopCategoryService shopCategService;// 类别
 
 	@Autowired
-	ISpecificationsService specificationService;//货品规格
+	ISpecificationsService specificationService;// 货品规格
 
 	@Autowired
-	IBrandService brandService;//品牌
+	IBrandService brandService;// 品牌
 	@Autowired
 	IShopCommImageService shopCommImageService;
 
@@ -95,7 +96,7 @@ public class ShopController {
 					shop.setShopName(shopName);
 					shop.setUser(user);
 					shopService.save(shop);
-				}else{
+				} else {
 					shop = new Shop();
 					shop.setUser(user);
 					shopService.save(shop);
@@ -232,7 +233,7 @@ public class ShopController {
 	@ResponseBody
 	public Map<String, Object> getSpecific(@RequestParam(value = "ids", required = true) Integer ids) throws ServletException, IOException {
 		ShopCategory shopCate = shopCategService.findById(ids);
-		List<Specifications> spec = specificationService.getAllByShopCateg(shopCate);
+		List<Specifications> spec = specificationService.getAllByShopCateg(ids);
 		ModelMap mode = new ModelMap();
 		mode.put("spec", spec);
 		mode.put("success", "true");
@@ -251,8 +252,8 @@ public class ShopController {
 					String guige = request.getParameter("guige");// 规格
 					shopCommoidty.setCommSpec(guige + ",");
 					shopCommoidty.setBelongTo(shop);
-					if (shopCommoidty.getSpecial()!=null && shopCommoidty.getSpecial()>=0) {
-						shopCommoidty.setSpecial(shopCommoidty.getSpecial()*0.1f);
+					if (shopCommoidty.getSpecial() != null && shopCommoidty.getSpecial() >= 0) {
+						shopCommoidty.setSpecial(shopCommoidty.getSpecial() * 0.1f);
 					}
 					ShopCategory category = shopCategService.findById(Integer.parseInt(fenlei));
 					shopCommoidty.setShopCategory(category);
@@ -311,9 +312,10 @@ public class ShopController {
 			return "redirect:/user/login";
 		}
 	}
-	//删除商品
+
+	// 删除商品
 	@RequestMapping(value = "deleteComm", method = RequestMethod.GET)
-	public String deleteComm(String ids,String page, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String deleteComm(String ids, String page, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute("loginUser");
 		if (user != null) {
 			Shop shop = shopService.getShopByUser(user.getId());
@@ -344,9 +346,10 @@ public class ShopController {
 				}
 			}
 		}
-		return "redirect:/proscenium/"+page;
+		return "redirect:/proscenium/" + page;
 	}
-	//仓库中商品自己商店的
+
+	// 仓库中商品自己商店的
 	@RequestMapping(value = "storehouseShopComm", method = RequestMethod.GET)
 	public ModelAndView storehouseShopComm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute("loginUser");
@@ -355,55 +358,57 @@ public class ShopController {
 		if (user != null) {
 			Shop shop = shopService.getShopByUser(user.getId());
 			if (shop != null && shop.getIsPermit()) {
-				List<ShopCommoidty> list = shopCommService.getAllByCondition("shelves", false,shop.getId());
+				List<ShopCommoidty> list = shopCommService.getAllByCondition("shelves", false, shop.getId());
 				mode.put("shopComms", list);
 				mode.put("shop", shop);
 				return new ModelAndView("reception/sthoseShopComm", mode);
-			}else{
+			} else {
 				return setUpShop(request, response);
 			}
-		}else{
-			return new ModelAndView("user/login",mode);
+		} else {
+			return new ModelAndView("user/login", mode);
 		}
 	}
-	//更改商品状态上架，下架，折扣。。
+
+	// 更改商品状态上架，下架，折扣。。
 	@RequestMapping(value = "updateState", method = RequestMethod.GET)
-	public String updateState(Integer id,String page,String param,boolean isTrue,Float num, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String updateState(Integer id, String page, String param, boolean isTrue, Float num, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute("loginUser");
 		if (user != null) {
 			Shop shop = shopService.getShopByUser(user.getId());
 			if (shop != null && shop.getIsPermit()) {
 				ShopCommoidty shopCommoidty = shopCommService.findById(id);
-				if (shopCommoidty !=null) {
-					if (param !=null && !param.equals("") && param.equals("isSpecial")) {
-						if(num !=null && num>0){
-							shopCommoidty.setSpecial(num*0.1f);
+				if (shopCommoidty != null) {
+					if (param != null && !param.equals("") && param.equals("isSpecial")) {
+						if (num != null && num > 0) {
+							shopCommoidty.setSpecial(num * 0.1f);
 						}
 						shopCommoidty.setIsSpecial(isTrue);
 					}
-					System.out.println(id+page+param+isTrue);
-					if (param !=null && !param.equals("") && param.equals("auction")) {
+					System.out.println(id + page + param + isTrue);
+					if (param != null && !param.equals("") && param.equals("auction")) {
 						shopCommoidty.setAuction(isTrue);
 					}
-					if (param !=null && !param.equals("") && param.equals("shelves")) {
+					if (param != null && !param.equals("") && param.equals("shelves")) {
 						shopCommoidty.setShelves(isTrue);
 					}
-					if (param !=null && !param.equals("") && param.equals("shelves") && !isTrue) {
+					if (param != null && !param.equals("") && param.equals("shelves") && !isTrue) {
 						shopCommoidty.setShelves(isTrue);
 						shopCommoidty.setIsSpecial(false);
 						shopCommoidty.setAuction(false);
 					}
 					shopCommService.update(shopCommoidty);
 				}
-				return "redirect:/proscenium/"+page;
-			}else{
+				return "redirect:/proscenium/" + page;
+			} else {
 				return "redirect:/proscenium/setUpShop";
 			}
-		}else{
+		} else {
 			return "redirect:/user/login";
 		}
 	}
-	//在售商品，本店
+
+	// 在售商品，本店
 	@RequestMapping(value = "soldShopComm", method = RequestMethod.GET)
 	public ModelAndView soldShopComm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute("loginUser");
@@ -412,18 +417,19 @@ public class ShopController {
 		if (user != null) {
 			Shop shop = shopService.getShopByUser(user.getId());
 			if (shop != null && shop.getIsPermit()) {
-				List<ShopCommoidty> list = shopCommService.getAllByCondition("shelves", true,shop.getId());
+				List<ShopCommoidty> list = shopCommService.getAllByCondition("shelves", true, shop.getId());
 				mode.put("shopComms", list);
 				mode.put("shop", shop);
 				return new ModelAndView("reception/soldShopComm", mode);
-			}else{
+			} else {
 				return setUpShop(request, response);
 			}
-		}else{
-			return new ModelAndView("user/login",mode);
+		} else {
+			return new ModelAndView("user/login", mode);
 		}
 	}
-	//拍卖的商品，本店
+
+	// 拍卖的商品，本店
 	@RequestMapping(value = "auctionShopComm", method = RequestMethod.GET)
 	public ModelAndView auctionShopComm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute("loginUser");
@@ -432,21 +438,157 @@ public class ShopController {
 		if (user != null) {
 			Shop shop = shopService.getShopByUser(user.getId());
 			if (shop != null && shop.getIsPermit()) {
-				List<ShopCommoidty> list = shopCommService.getAllByCondition("auction", true,shop.getId());
+				List<ShopCommoidty> list = shopCommService.getAllByCondition("auction", true, shop.getId());
 				mode.put("shopComms", list);
 				mode.put("shop", shop);
 				return new ModelAndView("reception/auctionShopComm", mode);
-			}else{
+			} else {
 				return setUpShop(request, response);
 			}
-		}else{
-			return new ModelAndView("user/login",mode);
+		} else {
+			return new ModelAndView("user/login", mode);
 		}
 	}
-	
-	private ModelMap getShopCategory(ModelMap mode){
+
+	private ModelMap getShopCategory(ModelMap mode) {
 		List<ShopCategory> list = shopCategService.getAll();
 		mode.put("shopCategories", list);
 		return mode;
+	}
+
+	// 规格查询
+	@RequestMapping(value = "shopCommItem", method = RequestMethod.GET)
+	public ModelAndView shopCommItem(Integer id, String page, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ModelMap mode = new ModelMap();
+		ShopCategory cate = shopCategService.findById(id);
+		List<ShopCategory> shopcates = new ArrayList<ShopCategory>();
+		mode.put("brands", cate.getBrands());
+		mode.put("specifications", cate.getSpecifications());
+		String strs = "";
+		shopcates.add(cate);
+		while (cate.getParentLevel() != null) {
+			cate = shopCategService.findById(cate.getParentLevel());
+			if (cate != null) {
+				shopcates.add(cate);
+			}
+		}
+		for (int i = shopcates.size() - 1; i >= 0; i--) {
+			strs = strs + shopcates.get(i).getCategoryID() + "-" + shopcates.get(i).getCategory() + "|";
+		}
+		mode.put("page", page);
+		mode.put("id", id);
+		mode.put("nvabar", strs.substring(0, strs.length() - 1));
+		List<ShopCommoidty> list = shopCommService.getAllByShopCategoryID(id,page);
+		mode.put("list", list);
+		if (page.equals("page")) {
+			return new ModelAndView("reception/searchList", mode);
+		} else if (page.equals("brand")) {
+			return new ModelAndView("reception/searchList", mode);
+		} else if (page.equals("special")) {
+			return new ModelAndView("reception/searchList", mode);
+		}else{
+			return null;
+		}
+	}
+
+	@RequestMapping(value = "searchShopComm", method = RequestMethod.POST)
+	public ModelAndView searchShopComm(Integer id, String page, String params, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println(id + "page =" + page + " param  " + params);
+		ShopCategory cate = shopCategService.findById(id);
+		List<ShopCategory> shopcates = new ArrayList<ShopCategory>();
+		shopcates.add(cate);
+		ModelMap mode = new ModelMap();
+		mode.put("brands", cate.getBrands());
+		mode.put("specifications", cate.getSpecifications());
+		mode.put("page", page);
+		mode.put("id", id);
+		mode.put("params", params);
+		String strs = "";
+		while (cate.getParentLevel() != null) {
+			cate = shopCategService.findById(cate.getParentLevel());
+			if (cate != null) {
+				shopcates.add(cate);
+			}
+		}
+		for (int i = shopcates.size() - 1; i >= 0; i--) {
+			strs = strs + shopcates.get(i).getCategoryID() + "-" + shopcates.get(i).getCategory() + "|";
+		}
+		mode.put("nvabar", strs.substring(0, strs.length() - 1));
+		String brand = "(";
+		String specs = "";
+		String money = "";
+
+		String[] param = params.split(",");
+		for (int i = 1; i < param.length; i++) {
+			if (param[i].split("-")[0].equals("brand")) {
+				brand = brand + param[i].split("-")[1] + ",";
+			} else if (param[i].split("-")[0].equals("money")) {
+				money = param[i].split("-")[1];
+			} else {
+				specs = specs + "%," + param[i] + ",%" + "@";
+			}
+		}
+		if (brand.length() > 1) {
+			brand = brand.substring(0, brand.length() - 1) + ")";
+		}
+		if (specs.length() > 0) {
+			specs = specs.substring(0, specs.length() - 1);
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (id == null) {
+			map.put("id", null);
+		} else {
+			map.put("id", id);
+		}
+		if (brand.trim().equals("(")) {
+			map.put("brand", null);
+		} else {
+			map.put("brand", brand);
+		}
+		if (specs.trim().equals("")) {
+			map.put("specs", null);
+		} else {
+			map.put("specs", specs);
+		}
+		if (money.trim().equals("")) {
+			map.put("money", null);
+		} else {
+			map.put("money", money);
+		}
+		List<ShopCommoidty> list = shopCommService.getAllByParams(map,page);
+		mode.put("list", list);
+		if (page.equals("page")) {
+			return new ModelAndView("reception/searchList", mode);
+		} else if (page.equals("brand")) {
+			return new ModelAndView("reception/searchList", mode);
+		} else if (page.equals("special")) {
+			return new ModelAndView("reception/searchList", mode);
+		}else{
+			return null;
+		}
+	}
+	
+	//购物Item
+	@RequestMapping(value = "shopItem", method = RequestMethod.GET)
+	public ModelAndView shopItem(Integer commID,Integer category,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ModelMap mode = new ModelMap();
+		ShopCategory cate = shopCategService.findById(category);
+		List<ShopCategory> shopcates = new ArrayList<ShopCategory>();
+		shopcates.add(cate);
+		mode.put("specifications", cate.getSpecifications());
+		String strs = "";
+		while (cate.getParentLevel() != null) {
+			cate = shopCategService.findById(cate.getParentLevel());
+			if (cate != null) {
+				shopcates.add(cate);
+			}
+		}
+		for (int i = shopcates.size() - 1; i >= 0; i--) {
+			strs = strs + shopcates.get(i).getCategoryID() + "-" + shopcates.get(i).getCategory() + "|";
+		}
+		mode.put("nvabar", strs.substring(0, strs.length() - 1));
+		ShopCommoidty shopCommoidty = shopCommService.findById(commID);
+		mode.put("shopCommoidty", shopCommoidty);
+		return new ModelAndView("reception/shopItem", mode);
 	}
 }

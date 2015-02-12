@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.yc.dao.orm.commons.GenericDao;
-import com.yc.entity.ShopCategory;
 import com.yc.entity.Specifications;
 import com.yc.service.ISpecificationsService;
 
@@ -22,8 +21,8 @@ public class SpecificationsService extends GenericService<Specifications> implem
 	}
 
 	@Override
-	public List<Specifications> getAllByShopCateg(ShopCategory shopCate) {
-		String hql = "select s from Specifications s left join s.shopCategories sp where sp = ?";
+	public List<Specifications> getAllByShopCateg(Integer shopCate) {
+		String hql = "select s from Specifications s left join s.shopCategories sp where sp.categoryID = ?";
 		Object[] para = new Object[1];
         para[0] = shopCate;
         return specificationsDao.find(hql, para, -1, -1);

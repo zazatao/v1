@@ -44,7 +44,7 @@
 	<div style="height: 78px;"></div>
 	<div class="dlzc">
 		<ul>
-			<li><a href="./user/login">我的办公室</a></li>
+			<li><a href="./user/myoffice">我的办公室</a></li>
 			<li><a href="./user/login">请登记</a></li>
 			<li class="zc"><a href="./user/regist">免费注册</a></li>
 			<li><a href="file_index.jsp">客户服务</a>
@@ -104,13 +104,13 @@
 					if (data && data.success == "true") {
 						$.each(data.shopCategories,function(i, shopCategory) {
 							if(shopCategory.level == 1 && shopCategory.category != '汽车用具' && shopCategory.category != '电子产品'){
-								$guige = $guige + "<li><a href='../proscenium/categoryOne?id="+shopCategory.categoryID+"'>"+shopCategory.category+"</a><div>";
+								$guige = $guige + "<li><a href='./proscenium/categoryOne?id="+shopCategory.categoryID+"'>"+shopCategory.category+"</a><div>";
 								$.each(data.shopCategories,function(i, shopCategory2) {
 									if(shopCategory2.level == 2 && shopCategory2.parentLevel == shopCategory.categoryID){
 										$guige = $guige + "<div class='nav-column'><h3>"+shopCategory2.category+"</h3><ul>";
 										$.each(data.shopCategories,function(i, shopCategory3) {
 											if(shopCategory3.level == 3 && shopCategory3.parentLevel == shopCategory2.categoryID){
-												$guige = $guige + "<li><a href='../proscenium/shopCommItem?id="+shopCategory3.categoryID+"'>"+ shopCategory3.category +"</a></li>";
+												$guige = $guige + "<li><a href='./proscenium/shopCommItem?id="+shopCategory3.categoryID+"&page=page'>"+ shopCategory3.category +"</a></li>";
 											}
 										});
 										$guige = $guige + "</ul></div>";
@@ -122,13 +122,13 @@
 						$('#navShopCaegory1').append($guige);
 						$.each(data.shopCategories,function(i, shopCategory) {
 							if(shopCategory.level == 1 && (shopCategory.category == '电子产品' || shopCategory.category == '汽车用具')){
-								$guige1 = $guige1 + "<li><a href='../proscenium/categoryLei?id="+shopCategory.categoryID+"'>"+shopCategory.category+"</a><div>";
+								$guige1 = $guige1 + "<li><a href='./proscenium/categoryLei?id="+shopCategory.categoryID+"'>"+shopCategory.category+"</a><div>";
 								$.each(data.shopCategories,function(i, shopCategory2) {
 									if(shopCategory2.level == 2 && shopCategory2.parentLevel == shopCategory.categoryID){
 										$guige1 = $guige1 + "<div class='nav-column'><h3>"+shopCategory2.category+"</h3><ul>";
 										$.each(data.shopCategories,function(i, shopCategory3) {
 											if(shopCategory3.level == 3 && shopCategory3.parentLevel == shopCategory2.categoryID){
-												$guige1 = $guige1 + "<li><a href='../proscenium/shopCommItem?id="+shopCategory3.categoryID+"'>"+ shopCategory3.category +"</a></li>";
+												$guige1 = $guige1 + "<li><a href='./proscenium/shopCommItem?id="+shopCategory3.categoryID+"&page=page'>"+ shopCategory3.category +"</a></li>";
 											}
 										});
 										$guige1 = $guige1 + "</ul></div>";
@@ -149,18 +149,18 @@
 				success : function(data) {
 					var $guige2 = "";
 					if (data && data.success == "true") {
-						$guige2 = $guige2 + "<li><a href='../proscenium/categoryLei?id=-1&page=brand'>名品街</a><div>";
+						$guige2 = $guige2 + "<li><a href='./proscenium/categoryLei?id=-1&page=brand'>名品街</a><div>";
 						$.each(data.shopCategories,function(i, brandCategory) {
 							$guige2 = $guige2 + "<div class='nav-column'><h3>"+brandCategory.category+"</h3><ul>";
 							var strs = brandCategory.brandStr.split("|");
 								for (var i = 0; i < strs.length; i++) {
-									$guige2 = $guige2 + "<li><a href='../proscenium/shopCommItem?id="+strs[i].split('-')[0]+"&page=brand'>"+ strs[i].split('-')[1] +"</a></li>";
+									$guige2 = $guige2 + "<li><a href='./proscenium/shopCommItem?id="+strs[i].split('-')[0]+"&page=brand'>"+ strs[i].split('-')[1] +"</a></li>";
 								}
 								$guige2 = $guige2 + "</ul></div>";
 						});
 						$guige2 = $guige2 + "</div></li>";
 					}else{
-						var $guige2 = "<li><a href='../proscenium/categoryLei?id=-1&page=brand'>名品街</a><div></div></li>";
+						var $guige2 = "<li><a href='./proscenium/categoryLei?id=-1&page=brand'>名品街</a><div></div></li>";
 					}
 					$('#navShopCaegory2').append($guige2);
 				}
@@ -173,18 +173,18 @@
 				success : function(data) {
 					var $guige2 = "";
 					if (data && data.success == "true") {
-						$guige2 = $guige2 + "<li><a href='../proscenium/categoryLei?id=-1&page=special'>折扣</a><div>";
+						$guige2 = $guige2 + "<li><a href='./proscenium/categoryLei?id=-1&page=special'>折扣</a><div>";
 						$.each(data.shopCategories,function(i, brandCategory) {
 							$guige2 = $guige2 + "<div class='nav-column'><h3>"+brandCategory.category+"</h3><ul>";
 							var strs = brandCategory.brandStr.split("|");
 								for (var i = 0; i < strs.length; i++) {
-									$guige2 = $guige2 + "<li><a href='../proscenium/shopCommItem?id="+strs[i].split('-')[0]+"&page=special'>"+ strs[i].split('-')[1] +"</a></li>";
+									$guige2 = $guige2 + "<li><a href='./proscenium/shopCommItem?id="+strs[i].split('-')[0]+"&page=special'>"+ strs[i].split('-')[1] +"</a></li>";
 								}
 								$guige2 = $guige2 + "</ul></div>";
 						});
 						$guige2 = $guige2 + "</div></li>";
 					}else{
-						var $guige2 = "<li><a href='../proscenium/categoryLei?id=-1&page=special'>折扣</a><div></div></li>";
+						var $guige2 = "<li><a href='./proscenium/categoryLei?id=-1&page=special'>折扣</a><div></div></li>";
 					}
 					$('#navShopCaegory3').append($guige2);
 				}

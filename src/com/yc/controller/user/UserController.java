@@ -115,6 +115,10 @@ public class UserController {
     
     @RequestMapping(value = "myoffice", method = RequestMethod.GET)
     public ModelAndView myoffice(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	User user = (User)request.getSession().getAttribute("loginUser");
+    	if (user == null) {
+    		return new ModelAndView("user/login", null);
+		}
     	List<ShopCategory> shopCates = ShopCategoryService.getAllByLevel(2);
     	ModelMap map = new ModelMap();
     	map.put("shopCates", shopCates);

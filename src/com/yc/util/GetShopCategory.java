@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.yc.entity.Brand;
 import com.yc.entity.ShopCategory;
-import com.yc.entity.ShopCommoidty;
 import com.yc.model.BrandCategory;
 import com.yc.service.IShopCategoryService;
 
@@ -41,22 +39,28 @@ public class GetShopCategory {
 	public Map<String, Object> getShopCategoryBrand() throws ServletException, IOException {
 		ModelMap mode = new ModelMap();
 		List<ShopCategory> list = shopCategService.getAllForBrand();
-		BrandCategory brandCategory =null;
 		List<BrandCategory> shopCategories = new ArrayList<BrandCategory>();
+		Map<String, String> map = new HashMap<String, String>();
 		if (list.size()>0) {
 			for (ShopCategory shopCategory : list) {
-				brandCategory = new BrandCategory();
-				String str = "";
-				brandCategory.setCategory(shopCategory.getCategory());
-				if(shopCategory.getBrands().size()>0){
-					for (Brand brand : shopCategory.getBrands()) {
-						str = str +brand.getBrandID() +"-"+brand.getBrandName()+"|";
+				String cateName = "";
+				if (shopCategory !=null) {
+					ShopCategory cate = shopCategService.findById(shopCategory.getParentLevel());
+					if (map.containsKey(cate.getCategory())) {
+						cateName = map.get(cate.getCategory()) + shopCategory.getCategoryID()+"-"+shopCategory.getCategory()+"|";
+						map.put(cate.getCategory(), cateName);
+					}else{
+						map.put(cate.getCategory(), shopCategory.getCategoryID()+"-"+shopCategory.getCategory()+"|");
 					}
-					str = str.substring(0,str.length()-1);
-					brandCategory.setBrandStr(str);
 				}
-				shopCategories.add(brandCategory);
 			}
+		}
+		BrandCategory brand = null;
+		for (String key : map.keySet()) {
+			brand = new BrandCategory();
+			brand.setCategory(key);
+			brand.setBrandStr(map.get(key).substring(0,map.get(key).length()-1));
+			shopCategories.add(brand);
 		}
 		mode.put("shopCategories", shopCategories);
 		mode.put("success", "true");
@@ -73,18 +77,19 @@ public class GetShopCategory {
 		if (list.size()>0) {
 			for (ShopCategory shopCategory : list) {
 				String cateName = "";
-				ShopCategory cate = shopCategService.findById(shopCategory.getParentLevel());
-				if (map.containsKey(cate.getCategory())) {
-					cateName = map.get(cate.getCategory()) + shopCategory.getCategoryID()+"-"+shopCategory.getCategory()+"|";
-					map.put(cate.getCategory(), cateName);
-				}else{
-					map.put(cate.getCategory(), shopCategory.getCategoryID()+"-"+shopCategory.getCategory()+"|");
+				if (shopCategory !=null) {
+					ShopCategory cate = shopCategService.findById(shopCategory.getParentLevel());
+					if (map.containsKey(cate.getCategory())) {
+						cateName = map.get(cate.getCategory()) + shopCategory.getCategoryID()+"-"+shopCategory.getCategory()+"|";
+						map.put(cate.getCategory(), cateName);
+					}else{
+						map.put(cate.getCategory(), shopCategory.getCategoryID()+"-"+shopCategory.getCategory()+"|");
+					}
 				}
 			}
 		}
 		BrandCategory brand = null;
 		for (String key : map.keySet()) {
-			System.out.println(key+"         ==        "+map.get(key));
 			brand = new BrandCategory();
 			brand.setCategory(key);
 			brand.setBrandStr(map.get(key).substring(0,map.get(key).length()-1));
