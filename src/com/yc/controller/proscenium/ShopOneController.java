@@ -29,8 +29,6 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Brand;
-import com.yc.entity.OrderForm;
-import com.yc.entity.OrderStatus;
 import com.yc.entity.Possession;
 import com.yc.entity.Shop;
 import com.yc.entity.ShopCategory;
@@ -49,10 +47,10 @@ import com.yc.service.ISpecificationsService;
 //前台
 @Controller
 @RequestMapping("/proscenium")
-public class ShopController {
+public class ShopOneController {
 
 	@SuppressWarnings("unused")
-	private static final Logger LOG = Logger.getLogger(ShopController.class);
+	private static final Logger LOG = Logger.getLogger(ShopOneController.class);
 
 	@Autowired
 	IShopService shopService;// 商店
@@ -492,7 +490,7 @@ public class ShopController {
 			return null;
 		}
 	}
-
+	//规则搜寻商品
 	@RequestMapping(value = "searchShopComm", method = RequestMethod.POST)
 	public ModelAndView searchShopComm(Integer id, String page, String params, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println(id + "page =" + page + " param  " + params);
@@ -597,4 +595,5 @@ public class ShopController {
 		mode.put("user", user);
 		return new ModelAndView("reception/shopItem", mode);
 	}
+
 }
