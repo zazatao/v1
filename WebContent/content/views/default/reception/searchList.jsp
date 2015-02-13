@@ -381,7 +381,7 @@
 				<div class="fzcon">
 					<ul>
 						<c:forEach items="${list }" var="commShop">
-							<li><a href="../proscenium/shopItem?id=${commShop.commCode }&category=${id }"><img
+							<li><a href="../proscenium/shopItem?commID=${commShop.commCode }&category=${id }&shopID=${commShop.belongTo.id }&commoName=${commShop.commoidtyName }"><img
 									src="..${commShop.shopCommImages[0].imagePath }" /></a> <h>
 								<dl>
 									<dt>
@@ -398,8 +398,8 @@
 									</dt>
 									<dd>
 										<span class="red">$ ${commShop.unitPrice }</span><span
-											class="p1"><a href="../proscenium/shopItem?commID=${commShop.commCode }&category=${id }"><img
-												src="../content/static/images/con_10.png" /></a></span><span
+											class="p1"><a href="../proscenium/shopItem?commID=${commShop.commCode }&category=${id }&shopID=${commShop.belongTo.id }&commoName=${commShop.commoidtyName }">
+											<img src="../content/static/images/con_10.png" /></a></span><span
 											class="p2"><a href="#"><img
 												src="../content/static/images/con_11.png" /></a></span>
 									</dd>

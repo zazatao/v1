@@ -41,7 +41,7 @@ public class ShopCommoidtyService extends GenericService<ShopCommoidty> implemen
 
 	@Override
 	public List<ShopCommoidty> getAllByShopCategoryID(Integer id,String page) {
-		StringBuffer hql = new StringBuffer("select shc.* from ShopCommoidty shc where shc.shelves = 1");
+		StringBuffer hql = new StringBuffer("select shc.* from ShopCommoidty shc where shc.shelves = 1 and shopCategory_id = "+id);
 		if (page.equals("brand")) {
 			hql.append(" and shc.brand_id is not null");
 		}
@@ -92,6 +92,17 @@ public class ShopCommoidtyService extends GenericService<ShopCommoidty> implemen
 		Query query = shopCommoidtyDao.getEntityManager().createNativeQuery(hql.toString(), ShopCommoidty.class);
 		List<ShopCommoidty> list = query.getResultList();
 		return list;
+	}
+
+	@Override
+	public List<ShopCommoidty> getAllByNameAndShop(String commoName, Integer shopID) {
+		 List<String> keys = new ArrayList<String>();
+	        keys.add("commoidtyName");
+	        keys.add("belongTo.id");
+	        List<Object> values = new ArrayList<Object>();
+	        values.add(commoName);
+	        values.add(shopID);
+		return shopCommoidtyDao.getBy(keys,values );
 	}
 
 }

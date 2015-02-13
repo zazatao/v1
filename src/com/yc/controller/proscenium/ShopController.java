@@ -572,7 +572,7 @@ public class ShopController {
 	
 	//购物Item
 	@RequestMapping(value = "shopItem", method = RequestMethod.GET)
-	public ModelAndView shopItem(Integer commID,Integer category,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ModelAndView shopItem(Integer commID,Integer category,Integer shopID,String commoName,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ModelMap mode = new ModelMap();
 		ShopCategory cate = shopCategService.findById(category);
 		List<ShopCategory> shopcates = new ArrayList<ShopCategory>();
@@ -590,7 +590,11 @@ public class ShopController {
 		}
 		mode.put("nvabar", strs.substring(0, strs.length() - 1));
 		ShopCommoidty shopCommoidty = shopCommService.findById(commID);
+		List<ShopCommoidty> list =shopCommService.getAllByNameAndShop(commoName,shopID);
 		mode.put("shopCommoidty", shopCommoidty);
+		mode.put("list", list);
+		User user = (User)request.getSession().getAttribute("loginUser");
+		mode.put("user", user);
 		return new ModelAndView("reception/shopItem", mode);
 	}
 }
