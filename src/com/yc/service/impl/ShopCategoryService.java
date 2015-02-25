@@ -35,5 +35,10 @@ public class ShopCategoryService extends GenericService<ShopCategory> implements
 		String hql = "select distinct s from ShopCategory s right join s.shopCommoidties sh with sh.isSpecial = 1 order by parentLevel ";
 		return shopCategoryDao.find(hql, null, -1, -1);
 	}
+
+	@Override
+	public List<ShopCategory> getAllByParentLevel(Integer categoryID) {
+		return shopCategoryDao.getBy("parentLevel", categoryID);
+	}
 	
 }

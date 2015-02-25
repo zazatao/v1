@@ -45,7 +45,7 @@ public class GetShopCategory {
 			for (ShopCategory shopCategory : list) {
 				String cateName = "";
 				if (shopCategory !=null) {
-					ShopCategory cate = shopCategService.findById(shopCategory.getParentLevel());
+					ShopCategory cate = shopCategService.findById(shopCategory.getParentLevel().getCategoryID());
 					if (map.containsKey(cate.getCategory())) {
 						cateName = map.get(cate.getCategory()) + shopCategory.getCategoryID()+"-"+shopCategory.getCategory()+"|";
 						map.put(cate.getCategory(), cateName);
@@ -78,7 +78,7 @@ public class GetShopCategory {
 			for (ShopCategory shopCategory : list) {
 				String cateName = "";
 				if (shopCategory !=null) {
-					ShopCategory cate = shopCategService.findById(shopCategory.getParentLevel());
+					ShopCategory cate = shopCategService.findById(shopCategory.getParentLevel().getCategoryID());
 					if (map.containsKey(cate.getCategory())) {
 						cateName = map.get(cate.getCategory()) + shopCategory.getCategoryID()+"-"+shopCategory.getCategory()+"|";
 						map.put(cate.getCategory(), cateName);

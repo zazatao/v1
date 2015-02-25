@@ -49,6 +49,7 @@
 
 <body>
 	<jsp:include page="../common/prosceniumNav.jsp"></jsp:include>
+	<div class="con">
 	<!---------------   页面主体   ----------------------->
 	<div class="basic">
     	<!-----基本信息-------->
@@ -132,7 +133,7 @@
         </div>
         <div class="cl"></div>
     </div>
-    
+  
 <form action="./editUser?id=${user.id}" id="form" name="form" method="post">
 	<!---------------   详细   ------------->
     <div class="sets">
@@ -607,7 +608,7 @@
       <div class="cl"></div>
     </div>
    </form> 
-
+  </div>
  <jsp:include page="../common/foot.jsp"></jsp:include>
 </body>
 </html>

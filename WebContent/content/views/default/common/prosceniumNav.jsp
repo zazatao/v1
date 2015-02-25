@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="topfd"><!---------------   浮动头部   ----------------------->
         <div class="topnone"></div>
 		<div class="top1">
@@ -47,10 +48,48 @@
 			<ul class="nav" id="navShopCaegory1">
 				<li class="bg_none"><a href="../index"><img
 						src="../content/static/images/fzan.jpg" width="16" height="17" /></a></li>
+				<c:forEach items="${shopCategories }" var="shopCategory">
+					<c:if test="${shopCategory.level == 1 && shopCategory.category != '汽车用具' && shopCategory.category != '电子产品' }">
+							<li><a href="../proscenium/categoryOne?id=${shopCategory.categoryID}">${shopCategory.category }</a><div>
+									<c:forEach items="${shopCategory.children }" var="shopCategory2">
+										<c:if test="${shopCategory2.level == 2  }">
+											<div class="nav-column"><h3>${shopCategory2.category }</h3><ul>
+												<c:forEach  items="${shopCategory2.children }" var="shopCategory3">
+													<c:if test="${shopCategory3.level == 3 }">
+														<li><a href='../proscenium/shopCommItem?id=${shopCategory3.categoryID }&page=page'>${shopCategory3.category }</a></li>
+													</c:if>
+												</c:forEach>
+											</ul>
+											</div>
+										</c:if>
+									</c:forEach>
+								</div>
+							</li>
+						</c:if>
+					</c:forEach>
 			</ul>
 		</div>
 		<div class="menu2">
 			<ul class="nav nav_2" id="navShopCaegory2">
+			<c:forEach items="${shopCategories }" var="shopCategory">
+						<c:if test="${shopCategory.level == 1 && (shopCategory.category == '电子产品' || shopCategory.category == '汽车用具') }">
+							<li><a href="../proscenium/categoryLei?id=${shopCategory.categoryID}&page="<c:if test="${shopCategory.category == '电子产品' }">electronics</c:if><c:if test="${shopCategory.category == '汽车用具' }">autoSupplies</c:if>>${shopCategory.category }</a><div>
+									<c:forEach items="${shopCategory.children }" var="shopCategory2">
+										<c:if test="${shopCategory2.level == 2  }">
+											<div class="nav-column"><h3>${shopCategory2.category }</h3><ul>
+												<c:forEach  items="${shopCategory2.children }" var="shopCategory3">
+													<c:if test="${shopCategory3.level == 3 }">
+														<li><a href='../proscenium/shopCommItem?id=${shopCategory3.categoryID }&page=page'>${shopCategory3.category }</a></li>
+													</c:if>
+												</c:forEach>
+												</ul>
+											</div>
+										</c:if>
+									</c:forEach>
+								</div>
+							</li>
+						</c:if>
+					</c:forEach>
 			</ul>
 		</div>
 		<div class="menu3">
@@ -63,82 +102,6 @@
 </div>
 <script type="text/javascript">
 		$(document).ready(function(){
-			jQuery.ajax({
-				type : 'GET',
-				contentType : 'application/json',
-				url : '../getShopCategory/shopCategoryAll',
-				dataType : 'json',
-				success : function(data) {
-					var $guige = "";
-					var $guige1 = "";
-					var $guige2 = "";
-					var idOne ="";
-					var idTwo ="";
-					if (data && data.success == "true") {
-						$.each(data.shopCategories,function(i, shopCategory) {
-							if(shopCategory.level == 1 && shopCategory.category != '汽车用具' && shopCategory.category != '电子产品'){
-								$guige = $guige + "<li><a href='../proscenium/categoryOne?id="+shopCategory.categoryID+"'>"+shopCategory.category+"</a><div>";
-								$.each(data.shopCategories,function(i, shopCategory2) {
-									if(shopCategory2.level == 2 && shopCategory2.parentLevel == shopCategory.categoryID){
-										$guige = $guige + "<div class='nav-column'><h3>"+shopCategory2.category+"</h3><ul>";
-										$.each(data.shopCategories,function(i, shopCategory3) {
-											if(shopCategory3.level == 3 && shopCategory3.parentLevel == shopCategory2.categoryID){
-												$guige = $guige + "<li><a href='../proscenium/shopCommItem?id="+shopCategory3.categoryID+"&page=page'>"+ shopCategory3.category +"</a></li>";
-											}
-										});
-										$guige = $guige + "</ul></div>";
-									}
-								});
-								$guige = $guige + "</div></li>";
-							}
-						});
-						$('#navShopCaegory1').append($guige);
-						$.each(data.shopCategories,function(i, shopCategory) {
-							if(shopCategory.level == 1 && (shopCategory.category == '电子产品' || shopCategory.category == '汽车用具')){
-								$guige1 = $guige1 + "<li><a href='../proscenium/categoryLei?id="+shopCategory.categoryID+"'>"+shopCategory.category+"</a><div>";
-								$.each(data.shopCategories,function(i, shopCategory2) {
-									if(shopCategory2.level == 2 && shopCategory2.parentLevel == shopCategory.categoryID){
-										$guige1 = $guige1 + "<div class='nav-column'><h3>"+shopCategory2.category+"</h3><ul>";
-										$.each(data.shopCategories,function(i, shopCategory3) {
-											if(shopCategory3.level == 3 && shopCategory3.parentLevel == shopCategory2.categoryID){
-												$guige1 = $guige1 + "<li><a href='../proscenium/shopCommItem?id="+shopCategory3.categoryID+"&page=page'>"+ shopCategory3.category +"</a></li>";
-											}
-										});
-										$guige1 = $guige1 + "</ul></div>";
-									}
-								});
-								$guige1 = $guige1 + "</div></li>";
-							}
-						});
-						$('#navShopCaegory2').append($guige1);
-						var strs = '${nvabar}';
-						var str = strs.split("|");
-						for (var j = 0; j < str.length; j++) {
-							if(j == 0){
-								idOne = str[j].split("-")[0];
-							}
-							if(j == 1){
-								idTwo = str[j].split("-")[0];
-							}
-						}
-						$.each(data.shopCategories,function(i, shopCategory) {
-							if(shopCategory.level == 2 && shopCategory.parentLevel == idOne){
-								$guige2 = $guige2 + "<div class='collapsed'><span>"+shopCategory.category+"</span><div id='cate"+i+"'>";
-									$.each(data.shopCategories,function(j, cate2) {
-									    if(cate2.level == 3 && cate2.parentLevel == shopCategory.categoryID){
-										 	if(cate2.categoryID == idTwo){
-										 		$('#cate'+i+"'").attr("sytle","'display:block;'");
-										 	}
-										 	$guige2 = $guige2 +"<a href='../proscenium/shopCommItem?id="+cate2.categoryID+"&page=${page}'>"+cate2.category+"</a>";
-									    }
-									});
-								$guige2 = $guige2 +"</div></div>";
-							}
-						});
-						$('.sdmenu').append($guige2);
-					}
-				}
-			});
 			jQuery.ajax({
 				type : 'GET',
 				contentType : 'application/json',

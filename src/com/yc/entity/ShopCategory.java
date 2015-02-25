@@ -1,14 +1,21 @@
 package com.yc.entity;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -28,8 +35,12 @@ public class ShopCategory {
 	@Column
 	private Integer level;//节点级别
 	
-	@Column
-	private Integer parentLevel;//父节点；
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "parentLevel")
+	private ShopCategory parentLevel;//父节点；
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "parentLevel", fetch = FetchType.EAGER)
+	private List<ShopCategory> children = new ArrayList<ShopCategory>();
 	
 	@OneToMany(mappedBy = "shopCat")
 	private List<Shop>  shops;//商店
@@ -45,6 +56,22 @@ public class ShopCategory {
 	
 	@ManyToMany(mappedBy = "shopCategories")
 	private List<Specifications> specifications;//规格
+
+	public List<ShopCategory> getChildren() {
+		return children;
+	}
+
+	public void setChildren(List<ShopCategory> children) {
+		this.children = children;
+	}
+
+	public ShopCategory getParentLevel() {
+		return parentLevel;
+	}
+
+	public void setParentLevel(ShopCategory parentLevel) {
+		this.parentLevel = parentLevel;
+	}
 
 	public List<Specifications> getSpecifications() {
 		return specifications;
@@ -102,14 +129,6 @@ public class ShopCategory {
 		this.level = level;
 	}
 
-	public Integer getParentLevel() {
-		return parentLevel;
-	}
-
-	public void setParentLevel(Integer parentLevel) {
-		this.parentLevel = parentLevel;
-	}
-
 	public List<Commodity> getCommodity() {
 		return commodity;
 	}
@@ -117,6 +136,5 @@ public class ShopCategory {
 	public void setCommodity(List<Commodity> commodity) {
 		this.commodity = commodity;
 	}
-	
 	
 }

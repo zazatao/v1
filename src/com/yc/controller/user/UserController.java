@@ -56,7 +56,10 @@ public class UserController {
     public ModelAndView login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	HttpSession session = request.getSession();
         session.removeAttribute("message");
-    	return new ModelAndView("user/login",null);
+        ModelMap mode = new ModelMap();
+        List<ShopCategory> list = ShopCategoryService.getAll();
+        mode.put("shopCategories", list);
+    	return new ModelAndView("user/login",mode);
     }
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String login(RedirectAttributes redirectAttributes, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -110,17 +113,22 @@ public class UserController {
     
     @RequestMapping(value = "regist", method = RequestMethod.GET)
     public ModelAndView register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	return new ModelAndView("reception/register", null);
+    	ModelMap mode = new ModelMap();
+        List<ShopCategory> list = ShopCategoryService.getAll();
+        mode.put("shopCategories", list);
+    	return new ModelAndView("reception/register", mode);
     }
     
     @RequestMapping(value = "myoffice", method = RequestMethod.GET)
     public ModelAndView myoffice(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	User user = (User)request.getSession().getAttribute("loginUser");
+    	List<ShopCategory> list = ShopCategoryService.getAll();
+    	ModelMap map = new ModelMap();
+    	map.put("shopCategories", list);
     	if (user == null) {
-    		return new ModelAndView("user/login", null);
+    		return new ModelAndView("user/login", map);
 		}
     	List<ShopCategory> shopCates = ShopCategoryService.getAllByLevel(2);
-    	ModelMap map = new ModelMap();
     	map.put("shopCates", shopCates);
     	return new ModelAndView("reception/myoffice", map);
     }

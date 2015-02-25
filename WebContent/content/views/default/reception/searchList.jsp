@@ -39,11 +39,23 @@
 								var $guige1 = "";
 								for (var j = 0; j < str.length; j++) {
 									if (j == 0) {
-										$guige = $guige
-												+ "> <a href='../proscenium/categoryOne?id="
-												+ str[j].split("-")[0] + "'>"
-												+ str[j].split("-")[1]
-												+ "</a> ";
+										if('${page}'=='brand'){
+											$guige = $guige
+											+ "> <a href='..proscenium/categoryLei?id=-1&page=brand'>"
+											+ '品牌街'
+											+ "</a> ";
+										}else if('${page}'=='special'){
+											$guige = $guige
+											+ "> <a href='..proscenium/categoryLei?id=-1&page=special'>"
+											+ '打折热卖产品'
+											+ "</a> ";
+										}else{
+											$guige = $guige
+											+ "> <a href='../proscenium/categoryOne?id="
+											+ str[j].split("-")[0] + "'>"
+											+ str[j].split("-")[1]
+											+ "</a> ";
+										}
 									} else {
 										$guige = $guige + "> <a href='#'>"
 												+ str[j].split("-")[1]
@@ -269,7 +281,6 @@
 						}else{
 							$('#params').val(str+check);
 						}
-						alert('${id}');
 						$('#paramForm').submit(); 
 					}
 					

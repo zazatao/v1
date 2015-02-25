@@ -66,6 +66,7 @@ public class ShopOneController {
 
 	@Autowired
 	IBrandService brandService;// 品牌
+	
 	@Autowired
 	IShopCommImageService shopCommImageService;
 
@@ -467,14 +468,22 @@ public class ShopOneController {
 		String strs = "";
 		shopcates.add(cate);
 		while (cate.getParentLevel() != null) {
-			cate = shopCategService.findById(cate.getParentLevel());
+			cate = shopCategService.findById(cate.getParentLevel().getCategoryID());
 			if (cate != null) {
 				shopcates.add(cate);
 			}
 		}
 		for (int i = shopcates.size() - 1; i >= 0; i--) {
+			if (i == shopcates.size() - 1) {
+				cate = shopcates.get(i);
+			}
 			strs = strs + shopcates.get(i).getCategoryID() + "-" + shopcates.get(i).getCategory() + "|";
 		}
+		shopcates = shopCategService.getAll();
+		System.out.println("shopcates.size()==========="+shopcates.size());
+		System.out.println("shopcate  ==========="+cate.getCategory());
+		mode.put("shopCategories", shopcates);
+		mode.put("cate", cate);
 		mode.put("page", page);
 		mode.put("id", id);
 		mode.put("nvabar", strs.substring(0, strs.length() - 1));
@@ -505,14 +514,21 @@ public class ShopOneController {
 		mode.put("params", params);
 		String strs = "";
 		while (cate.getParentLevel() != null) {
-			cate = shopCategService.findById(cate.getParentLevel());
+			cate = shopCategService.findById(cate.getParentLevel().getCategoryID());
 			if (cate != null) {
+				cate.getChildren();
 				shopcates.add(cate);
 			}
 		}
 		for (int i = shopcates.size() - 1; i >= 0; i--) {
+			if (i == shopcates.size() - 1) {
+				cate = shopcates.get(i);
+			}
 			strs = strs + shopcates.get(i).getCategoryID() + "-" + shopcates.get(i).getCategory() + "|";
 		}
+		mode.put("cate", cate);
+		shopcates = shopCategService.getAll();
+		mode.put("shopCategories", shopcates);
 		mode.put("nvabar", strs.substring(0, strs.length() - 1));
 		String brand = "(";
 		String specs = "";
@@ -578,7 +594,7 @@ public class ShopOneController {
 		mode.put("specifications", cate.getSpecifications());
 		String strs = "";
 		while (cate.getParentLevel() != null) {
-			cate = shopCategService.findById(cate.getParentLevel());
+			cate = shopCategService.findById(cate.getParentLevel().getCategoryID());
 			if (cate != null) {
 				shopcates.add(cate);
 			}
@@ -586,6 +602,8 @@ public class ShopOneController {
 		for (int i = shopcates.size() - 1; i >= 0; i--) {
 			strs = strs + shopcates.get(i).getCategoryID() + "-" + shopcates.get(i).getCategory() + "|";
 		}
+		List<ShopCategory> shopcategories = shopCategService.getAll();
+		mode.put("shopCategories", shopcategories);
 		mode.put("nvabar", strs.substring(0, strs.length() - 1));
 		ShopCommoidty shopCommoidty = shopCommService.findById(commID);
 		List<ShopCommoidty> list =shopCommService.getAllByNameAndShop(commoName,shopID);

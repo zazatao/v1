@@ -107,7 +107,6 @@
 				<script type="text/javascript">
 					$(document).ready(
 							function() {
-
 								$(".jqzoom").imagezoom();
 								$(".tbaqw li").click(
 										function() {
@@ -219,14 +218,12 @@
 						$(document).ready(function(){
 							<c:forEach items="${list }" var="shopComm">
 								var strs = '${shopComm.commSpec }';
-								alert(strs);
+								alert('strs=='+strs);
 								var sss = strs.split(",");
 								for (var j = 0; j < sss.length; j++) {
 									if (sss[j] != '') {
-										
 										if (sss[j].split('-')[0] == '颜色') {
 											$guize = $guize + "<div class='choice_color'>";
-											alert(sss[j].split('-')[1]);
 										}
 									}
 								}
@@ -579,7 +576,6 @@
 		<!-----right_y over-------->
 	</div>
 	<div class="clear"></div>
-	</div>
 	<jsp:include page="../common/foot.jsp"></jsp:include>
 </body>
 </html>
