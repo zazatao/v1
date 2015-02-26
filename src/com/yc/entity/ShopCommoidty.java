@@ -35,7 +35,7 @@ public class ShopCommoidty {
 	private Integer stock = 0 ;//库存数量
 	
 	@Column
-	private String proportion;//显示比例
+	private Integer proportion = 1;//显示比例
 	
 	@Column
 	private Float  unitPrice =0f;//单价
@@ -50,7 +50,7 @@ public class ShopCommoidty {
 	private Boolean isSpecial =false;//是否折扣
 	
 	@Column
-	private Float  special;//打几折
+	private Float  special  = 1f;//打几折
 	
 	@Column
 	private  Boolean iscChoice = false;//是否精品
@@ -161,11 +161,11 @@ public class ShopCommoidty {
 		this.stock = stock;
 	}
 
-	public String getProportion() {
+	public Integer getProportion() {
 		return proportion;
 	}
 
-	public void setProportion(String proportion) {
+	public void setProportion(Integer proportion) {
 		this.proportion = proportion;
 	}
 

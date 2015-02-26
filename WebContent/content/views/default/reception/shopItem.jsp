@@ -184,23 +184,31 @@
 								<span class="n4">216</span>
 							</p></li>
 					</ul>
-					<div id="choiceSpecs">
-						
-					</div>
-					<div class="choice_cm">
-						选择尺寸：<a>47</a><a>47</a><a>47</a><a>47</a><a>47</a>
-					</div>
-					<div class="choice_color">
-						选择颜色： <span><img src="../content/static/images/dz/y1.jpg" /></span>
-						<span><img src="../content/static/images/dz/y1.jpg" /></span> <span><img
-							src="../content/static/images/dz/y1.jpg" /></span> <span><img
-							src="../content/static/images/dz/y1.jpg" /></span>
-					</div>
+					<c:forEach items="${map }" var="keySet" >
+						<c:if test="${keySet.key == '颜色' }">
+							<div class="choice_color">
+							选择颜色：
+								<c:forEach items="${keySet.value }" var="spec">
+									<c:set var="index1" value="${fn:indexOf(spec, '$') }"></c:set>
+									<c:set var="index2" value="${fn:length(spec) }"></c:set>
+									<span title="${fn:substring(spec, 0, index1)}" onclick="searchs('${keySet.key}','${spec}');"><img src="..${fn:substring(spec, index1+1, index2)}" /></span>
+								</c:forEach>
+							</div>
+						</c:if>
+						<c:if test="${keySet.key != '颜色' }">
+							<div class="choice_cm">
+								选择${keySet.key }：
+								<c:forEach items="${keySet.value }" var="spec">
+									<a onclick="searchs('${keySet.key}','${spec}');">${spec }</a>
+								</c:forEach>
+							</div>
+						</c:if>
+					</c:forEach>
 					<div class="choice_sl">
 						<span style="float: left">选择数量：</span>
 						<div style="float: left">
 							<input class="btn_prev gy" name="" type="button" value="-" /> <input
-								class="texnum ct" name="" type="text" value="1" /> <input
+								class="texnum ct" id="buyAmount" type="text" value="1" /> <input
 								class="btn_next gy" name="" type="button" value="+" />
 						</div>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -209,26 +217,62 @@
 						<p>Bcero B Ha..:765.</p>
 					</div>
 					<div class="anniu">
-						<a class="jrgwc"><img src="../content/static/images/bt_2.png" /></a><a
+						<a onclick="buyCat();"><img src="../content/static/images/bt_2.png" /></a><a
 							href="#"><img src="../content/static/images/bt_3.png" /></a><img
 							src="../content/static/images/xx.png" />
 					</div>
+					<input id="params" type="hidden">
+					<input id="commID" type="hidden" value="${shopCommoidty.commCode }">
 					<script type="text/javascript">
-					var $guize = "";
-						$(document).ready(function(){
-							<c:forEach items="${list }" var="shopComm">
-								var strs = '${shopComm.commSpec }';
-								alert('strs=='+strs);
-								var sss = strs.split(",");
-								for (var j = 0; j < sss.length; j++) {
-									if (sss[j] != '') {
-										if (sss[j].split('-')[0] == '颜色') {
-											$guize = $guize + "<div class='choice_color'>";
-										}
+						function buyCat(){
+							var commID = $('#commID').val();
+							var params = $('#params').val();
+							var buyAmount = $('#buyAmount').val();
+							jQuery.ajax({
+								type : 'GET',
+								contentType : 'application/json',
+								url : '../proscenium/buyCat?params='+params+'&commID='+commID+'&buyAmount='+buyAmount,
+								dataType : 'json',
+								success : function(data) {
+									if(data.success == 'true'){
+										$(".gucjm").css("display", "block");
 									}
 								}
-							</c:forEach>
-						});
+							});
+						}
+						function searchs(name, obj) {
+							var isok = false;
+							var str = "";
+							var searchParam = $('#params').val();
+							var guize = searchParam.split(',');
+							for (var i = 1; i < guize.length; i++) {
+								if (guize[i].split('-')[0] == name) {
+									if(guize[i].split('-')[0] == 'brand'){
+										guize[i] = "";
+										str = str + guize[i];
+									}else{
+										guize[i] = name+"-" + obj;
+										str = str + "," + guize[i];
+									}
+									isok = true;
+								}else{
+									if(guize[i].split('-')[0] == 'brand'){
+										guize[i] = "";
+										str = str + guize[i];
+									}else{
+										str = str + "," + guize[i];
+									}
+								}
+							}
+							if (!isok) {
+								str = str + ","+name+"-" + obj ;
+							}
+							if(guize.length == 1){
+								$('#params').val(","+name+"-" + obj);
+							}else{
+								$('#params').val(str);
+							}
+						}
 						$(function() {
 							//获得文本框对象
 							//数量增加操作
@@ -272,10 +316,10 @@
 						<div class="gucjonckl">
 							<span><img src="../content/static/images/small/kd_2.png" />添加成功！</span>
 							<p>
-								<a href="#" class="gucjnone">继续购物</a>
+								<a href="#" class="gucjnone" >继续购物</a>
 							</p>
 							<p>
-								<a href="shopcar.html">进入购物车</a>
+								<a href="./shopcar">进入购物车</a>
 							</p>
 						</div>
 					</div>

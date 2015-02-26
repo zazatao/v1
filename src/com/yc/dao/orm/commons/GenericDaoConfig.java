@@ -98,5 +98,8 @@ public class GenericDaoConfig {
 	public GenericDao<ShopCommImage> getShopCommImageDao() {
 		return new GenericDaoSupport<ShopCommImage>(ShopCommImage.class);
 	}
-	
+	@Bean
+	public GenericDao<BuyCat> getBuyCatDao() {
+		return new GenericDaoSupport<BuyCat>(BuyCat.class);
+	}
 }

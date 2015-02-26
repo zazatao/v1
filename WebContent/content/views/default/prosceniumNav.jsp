@@ -34,13 +34,13 @@
 				</p>
 			</div>
 			<div class="gwctb">
-				<a href="shopcar.html"><img src="content/static/images/gwc.jpg"
+				<a href="./proscenium/shopcar"><img src="content/static/images/gwc.jpg"
 					width="63" height="43" /></a>
 			</div>
 			<div class="clear"></div>
 			<div class="qbfl">
-				<a href="index.html"><img src="content/static/images/china.jpg" /></a><a
-					href="../index.html"><img
+				<a href="index"><img src="content/static/images/china.jpg" /></a><a
+					href="index"><img
 					src="content/static/images/eluosi.jpg" /></a>
 			</div>
 		</div>
@@ -74,7 +74,7 @@
 						</ul>
 					</div></li>
 				<li style="background: #fff; height: 32px; margin-top: 1px;"><a
-					style="color: #000;" href="shopcar.html">购物车(0)</a></li>
+					style="color: #000;" href="./proscenium/shopcar" id="buyCatNum">购物车(0)</a></li>
 			</ul>
 			<div class="clear"></div>
 		</div>
@@ -139,6 +139,17 @@
 	</div>
 	<script type="text/javascript">
 				$(document).ready(function(){
+						jQuery.ajax({
+							type : 'GET',
+							contentType : 'application/json',
+							url : './getShopCategory/getBuyCatNum',
+							dataType : 'json',
+							success : function(data) {
+								if(data.success == 'true'){
+									$('#buyCatNum').html("购物车("+data.num+")");
+								}
+							}
+						});
 					jQuery.ajax({
 						type : 'GET',
 						contentType : 'application/json',

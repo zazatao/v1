@@ -267,7 +267,7 @@ public class ShopOneController {
 					List<ShopCommImage> images = new ArrayList<ShopCommImage>();
 					CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
 					if (multipartResolver.isMultipart(request)) {
-						String pathDir = "/content/static/img/" + shop.getId() + "/";
+						String pathDir = "";
 						MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
 						// 取得request中的所有文件名
 						Iterator<String> iter = multiRequest.getFileNames();
@@ -283,6 +283,11 @@ public class ShopOneController {
 									// 重命名上传后的文件名
 									String fileName = file.getOriginalFilename();
 									// 定义上传路径
+									if (!file.getName().equals("yanse")) {
+										pathDir = "/content/static/img/" + shop.getId() + "/";
+									}else{
+										pathDir = "/content/static/img/yanse/" + shop.getId() + "/";
+									}
 									String logoRealPathDir = request.getSession().getServletContext().getRealPath(pathDir);
 									File file1 = new File(logoRealPathDir);
 									if (!file1.exists())
@@ -291,6 +296,22 @@ public class ShopOneController {
 									if (file2.getParentFile() == null)
 										file2.mkdirs();
 									file.transferTo(file2);
+									if (file.getName().equals("yanse")) {
+										String[] specs = shopcomm.getCommSpec().split(",");
+										if (specs.length>0) {
+											String str = ",";
+											for (int i = 0; i < specs.length; i++) {
+												if (!specs[i].equals("")) {
+													if (specs[i].split("-")[0].equals("颜色")) {
+														str = str + specs[i]+"$"+pathDir + fileName+",";
+													}else{
+														str = str + specs[i]+",";
+													}
+												}
+											}
+											shopcomm.setCommSpec(str);
+										}
+									}
 									ShopCommImage image = new ShopCommImage();
 									image.setImagePath(pathDir + fileName);
 									image.setShopCommoidty(shopcomm);
@@ -301,6 +322,8 @@ public class ShopOneController {
 						}
 					}
 					shopcomm.setShopCommImages(images);
+					String supplier = "/proscenium/shopItem?commID="+shopcomm.getCommItem()+"&category="+Integer.parseInt(fenlei)+"&shopID="+shop.getId()+"&commoName="+shopcomm.getCommoidtyName();
+					shopcomm.setSupplier(supplier);
 					shopCommService.update(shopcomm);
 					return "redirect:/proscenium/release";
 				} else {
@@ -480,8 +503,6 @@ public class ShopOneController {
 			strs = strs + shopcates.get(i).getCategoryID() + "-" + shopcates.get(i).getCategory() + "|";
 		}
 		shopcates = shopCategService.getAll();
-		System.out.println("shopcates.size()==========="+shopcates.size());
-		System.out.println("shopcate  ==========="+cate.getCategory());
 		mode.put("shopCategories", shopcates);
 		mode.put("cate", cate);
 		mode.put("page", page);
@@ -607,8 +628,30 @@ public class ShopOneController {
 		mode.put("nvabar", strs.substring(0, strs.length() - 1));
 		ShopCommoidty shopCommoidty = shopCommService.findById(commID);
 		List<ShopCommoidty> list =shopCommService.getAllByNameAndShop(commoName,shopID);
+		Map<String, List<String>> map = new HashMap<String, List<String>>();
+		List<String> specStrs = null;
+		for (ShopCommoidty comm : list) {
+			String spec = comm.getCommSpec();
+			String[] specs = spec.split(",");
+			if (specs.length>0) {
+				for (int i = 0; i < specs.length; i++) {
+					if (!specs[i].equals("")) {
+						if (map.containsKey(specs[i].split("-")[0])) {
+							specStrs = map.get(specs[i].split("-")[0]);
+							if (!specStrs.contains(specs[i].split("-")[1])) {
+								specStrs.add(specs[i].split("-")[1]);
+							}
+						}else{
+							specStrs = new ArrayList<String>();
+							specStrs.add(specs[i].split("-")[1]);
+							map.put(specs[i].split("-")[0], specStrs);
+						}
+					}
+				}
+			}
+		}
 		mode.put("shopCommoidty", shopCommoidty);
-		mode.put("list", list);
+		mode.put("map", map);
 		User user = (User)request.getSession().getAttribute("loginUser");
 		mode.put("user", user);
 		return new ModelAndView("reception/shopItem", mode);

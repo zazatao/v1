@@ -136,7 +136,7 @@
 					$(function() {
 						$('.perterrtab tbody tr:odd').css("backgroundColor",
 								"#e5e5e5");
-					});
+					})
 				</script>
 			</div>
 		</div>

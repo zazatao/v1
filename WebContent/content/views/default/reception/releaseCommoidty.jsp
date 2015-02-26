@@ -194,7 +194,7 @@
 			var objOptionT = new Option("----请选择----", -1);
 			shopcateThree.options[shopcateThree.options.length] = objOptionT;
 			<c:forEach items="${shopCategory }" var="leiBieTwo">
-			if ('${leiBieTwo.parentLevel }' == Code
+			if ('${leiBieTwo.parentLevel.categoryID }' == Code
 					&& '${leiBieTwo.level}' == 2) {
 				var objOption = new Option("${leiBieTwo.category }",
 						'${leiBieTwo.categoryID}');
@@ -213,7 +213,7 @@
 			var objOptionT = new Option("----请选择----", -1);
 			shopcateThree.options[shopcateThree.options.length] = objOptionT;
 			<c:forEach items="${shopCategory }" var="leiBieThree">
-			if ('${leiBieThree.parentLevel }' == Code
+			if ('${leiBieThree.parentLevel.categoryID }' == Code
 					&& '${leiBieThree.level}' == 3) {
 				var objOption = new Option("${leiBieThree.category }",
 						'${leiBieThree.categoryID}');
@@ -265,17 +265,22 @@
 			var objOptionB = new Option("----请选择----", -1);
 			brand.options[brand.options.length] = objOptionB;
 			<c:forEach items="${shopCategory }" var="brands">
-			<c:forEach items="${brands.brands }" var="brand">
-			if ('${brand.shopCateg.categoryID }' == Code) {
-				var objOption = new Option("${brand.brandName }",
-						'${brand.brandID }');
-				brand.options[brand.options.length] = objOption;
-			}
-			</c:forEach>
+				<c:forEach items="${brands.brands }" var="brand">
+					if ('${brand.shopCateg.categoryID }' == Code) {
+						var objOption = new Option("${brand.brandName }",
+								'${brand.brandID }');
+						brand.options[brand.options.length] = objOption;
+					}
+				</c:forEach>
 			</c:forEach>
 		}
 		function guigechange(obj, id) {
 			var gui = $('#' + id).html();
+			if(gui == '颜色'){
+				$('#yanse').remove();
+				var $guige ="<dd id='yanse'><span>该颜色商品照片</span><input type='file' name='yanse' /></dd>";
+				$('#guige').append($guige);
+			}
 			var ze = obj.value;
 			var guizes = $('#guize').val();
 			var guize = guizes.split(',');
