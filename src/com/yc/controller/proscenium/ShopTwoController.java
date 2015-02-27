@@ -19,11 +19,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yc.entity.Address;
 import com.yc.entity.BuyCat;
 import com.yc.entity.ShopCategory;
 import com.yc.entity.ShopCommoidty;
 import com.yc.entity.user.User;
 import com.yc.model.BuyCatSession;
+import com.yc.service.IAddressService;
 import com.yc.service.IBrandService;
 import com.yc.service.IBuyCatService;
 import com.yc.service.IShopCategoryService;
@@ -59,8 +61,11 @@ public class ShopTwoController {
 	IShopCommImageService shopCommImageService;
 	
 	@Autowired
-	IBuyCatService buyCatService;
+	IBuyCatService buyCatService;//购物车
 	
+	@Autowired
+	IAddressService addressService;
+
 	@RequestMapping(value = "categoryOne", method = RequestMethod.GET)
 	public ModelAndView categoryOne(Integer id ,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ModelMap mode = new ModelMap();
@@ -329,6 +334,8 @@ public class ShopTwoController {
 				session.removeAttribute("buyCates");
 			}
 			List<BuyCat> list = buyCatService.getBuyCatByUser(user.getId());
+			List<Address> addresses = addressService.getAllByUser(user.getId());
+			mode.put("addresses", addresses);
 			mode.put("list", list);
 		}
 		return  new ModelAndView("reception/shopcardelv",mode);

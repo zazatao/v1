@@ -103,6 +103,9 @@
 															</li>
 														</c:if>
 													</c:forEach>
+														<li class="sctbldscrlb"><span>原价</span><fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice }" type="currency" pattern="#,###.00#"/></li>
+														<li class="sctbldscrlb"><span>现价</span><fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special}" type="currency" pattern="#,###.00#"/> </li>
+														<li class="sctbldscrlb"><span>购买数量</span>${shopCar.buyAmount }</li>
 													</ul>
 													<p class="sctbldscp red">库存数量：<c:out value="${shopCar.shopCommoidty.proportion * shopCar.shopCommoidty.stock} "></c:out></p>
 												</div>
@@ -139,66 +142,16 @@
 				<div class="shopcartabt2">
 					<div class="shcaadd">
 						<p class="shcaadds">
-							<select name="">
-								<option value="volvo">选择地址</option>
-								<option value="volvo">选择国家</option>
-							</select> <select name="">
-								<option value="volvo">选择地址</option>
-								<option value="volvo">选择国家</option>
-							</select>
+							<select name="" onchange="">
+								<option value="-1">-----选择收件人----</option>
+								<c:forEach items="${addresses }" var="address">
+									<option value="${address.id }">${address.toName }</option>
+								</c:forEach>
+							</select> 
 						</p>
-						<ul class="shcaaddtex">
-							<li>
-								<p>姓*</p>
-								<p>
-									<input name="" type="text" />
-								</p>
-							</li>
-							<li>
-								<p>指数*</p>
-								<p>
-									<input name="" type="text" />
-								</p>
-							</li>
-							<li>
-								<p>街道号牌地址*</p>
-								<p>
-									<input name="" type="text" />
-								</p>
-							</li>
-							<li>
-								<p>名*</p>
-								<p>
-									<input name="" type="text" />
-								</p>
-							</li>
-							<li>
-								<p>区域*</p>
-								<p>
-									<input name="" type="text" />
-								</p>
-							</li>
-							<li>
-								<p>电话*</p>
-								<p>
-									<input name="" type="text" />
-								</p>
-							</li>
-							<li>
-								<p>收货人的父姓*</p>
-								<p>
-									<input name="" type="text" />
-								</p>
-							</li>
-							<li>
-								<p>Город *</p>
-								<p>
-									<input name="" type="text" />
-								</p>
-							</li>
-							<li class="shcaaddtexc"><span><input name=""
-									type="checkbox" value="" /></span> 保存这个地址在您的地址簿里</li>
-						</ul>
+						<p class="shcaadds" id="addressShow">
+							
+						</p>
 						<div class="cl"></div>
 						<div class="shcaaddselink"></div>
 					</div>

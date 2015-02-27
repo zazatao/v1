@@ -130,6 +130,7 @@ public class UserController {
 		}
     	List<ShopCategory> shopCates = ShopCategoryService.getAllByLevel(2);
     	map.put("shopCates", shopCates);
+    	map.put("user", user);
     	return new ModelAndView("reception/myoffice", map);
     }
     
@@ -138,7 +139,11 @@ public class UserController {
     	User user = (User)request.getSession().getAttribute("loginUser");
     	if (user !=null) {
     		ModelMap map = new ModelMap();
+    		List<ShopCategory> list = ShopCategoryService.getAll();
+    		List<ShopCategory> shopCates = ShopCategoryService.getAllByLevel(2);
+        	map.put("shopCates", shopCates);
     		map.put("user", user);
+    		map.put("shopCategories", list);
     		return new ModelAndView("reception/introduction", map);
 		}else{
 			return login(request, response);

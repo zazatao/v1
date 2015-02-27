@@ -34,10 +34,10 @@
 			<!-----基本信息-------->
 			<div class="shopcartop">
 				<ul>
-					<li class="shcatock"><a href="shopcar.html"><img
+					<li class="shcatock"><a href="shopcar"><img
 							src="../content/static/images/brand/shcanumc_1.png" />购物车</a></li>
 					<li><img src="../content/static/images/brand/shcatoplis.png" /></li>
-					<li><a href="shopcardelv.html"><img
+					<li><a href="shopcardelv"><img
 							src="../content/static/images/brand/shcanum_2.png" />交付</a></li>
 					<li><img src="../content/static/images/brand/shcatoplis.png" /></li>
 					<li><a href="shopcarpro.html"><img
