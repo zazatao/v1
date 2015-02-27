@@ -247,7 +247,7 @@ public class UserController {
 		String indexNum = request.getParameter("indexNum");
 		as.setIndexNum(indexNum);
 		addressService.save(as);
-		return "redirect:/reception/introduction";
+		return "redirect:/user/introduction";
     }
 	//修改地址
 	@RequestMapping(value="editaddress",method = RequestMethod.POST)
