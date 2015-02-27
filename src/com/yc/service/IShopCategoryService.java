@@ -13,5 +13,7 @@ public interface IShopCategoryService extends IGenericService<ShopCategory> {
 	List<ShopCategory> getAllForSpecial();
 
 	List<ShopCategory> getAllByParentLevel(Integer categoryID);
+	
+	List<ShopCategory> getAllParentLevel();
 
 }

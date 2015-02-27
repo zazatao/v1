@@ -305,6 +305,7 @@
 					</p>
 					<script>
             var isok = false;
+            var is = false;
             	$(function(){
 						$(".setcanbonfs a").toggle(function(){
 								$(".seacarefa").hide();
@@ -339,260 +340,243 @@
 						 }
             			
             </script>
-				</div>
-				<div class="setcan">
-					<div class="setaddonlest">
-						<h3>
-							通讯录<span>保存地址</span>
-						</h3>
-						<p class="setaddl">保存收货地址，使得采购更加快捷方便，“快速购买”也是在“我的账户”结算信息保存到下单，只需点击一次。填写资料时候，只能使用字母</p>
-						<div>
-							<div class="setlest">
-								<div>
-									<p class="sels1">名字</p>
-									<p class="sels2">地址</p>
-									<p class="sels6">默认送货地址</p>
-									<p class="sels7"></p>
-								</div>
-								<ul>
-									<c:forEach var="address" items="${user.addresses}"
-										varStatus="vs">
-										<li>
-											<p class="sels1">${address.toName}</p>
-											<p class="sels2">删除</p>
-											<p class="sels3">★</p>
-											<p class="sels4">
-												<a href="#" onclick="deleteaddress(${address.id});">删除</a>
-											</p>
-											<p class="sels5">
-												<a>更改</a>
-											</p>
-										</li>
-									</c:forEach>
-								</ul>
-							</div>
-						</div>
-						<div class="cl"></div>
-						<p class="setcanbon">
-							<a href="#" onclick="address();">添加新地址</a>
-						</p>
-					</div>
-					<div class="setaddalls setaddallstw">
-						<h3>通讯录</h3>
-						<p class="setaddl">保存收货地址，使得采购更加快捷方便，“快速购买”也是在“我的账户”结算信息保存到下单，只需点击一次。填写资料时候，只能使用字母</p>
-						<p class="setaddls">详细运输资料</p>
-						<p class="setalip">
-							<span>名字* </span><span>姓*</span>
-						</p>
-						<p class="setalip">
-							<span><input name="toName" type="text" /></span><span><input
-								name="toName" type="text" /></span>
-						</p>
-						<p class="setalip">
-							<span>电话*</span><span>邮箱:</span>
-						</p>
-						<p class="setalip">
-							<span><input name="phone" type="text" /></span><span><input
-								name="toEmail" type="text" /></span>
-						</p>
-						<p class="setaddlinks"></p>
-						<p class="setalip">
-							<span>国家 *</span><span>城市 *</span>
-						</p>
-						<p class="setalip">
-							<span><input name="country" type="text" /></span><span><input
-								name="city" type="text" /></span>
-						</p>
-						<p class="setalip">
-							<span>地址 *</span><span>地区*</span>
-						</p>
-						<p class="setalip">
-							<span><input name="street" type="text" /></span><span><input
-								name="district" type="text" /></span>
-						</p>
-						<p class="setalip">
-							<span>转交地址</span><span>指数*</span>
-						</p>
-						<p class="setalip">
-							<span><input name="handedAddress" type="text" /></span><span><input
-								name="indexNum" type="text" /></span>
-						</p>
-						<p class="setaddlinks"></p>
-						<p class="setalckl">
-							<label><span><input name="theDefault"
-									type="checkbox" value="" /></span>默认送货地址</label>
-						</p>
-						<p class="setalckl">
-							<label><span><input name="" type="checkbox"
-									value="" /></span>默认情况下，按以前的地址</label>
-						</p>
-						<p class="setalckl">您输入的个人信息将用于ZAZATAO结算，ZAZATAO会保证您数据的安全性。详情请参阅我们的隐私保障</p>
-						<div class="cl"></div>
-						<p class="setcanbon setcanbontw">
-							<a href="#" onclick="address();">确认</a>
-						</p>
-					</div>
-				</div>
-				<div class="setcan">
-					<div class="setcposs">
-						<table width="100%" border="0" cellspacing="0" cellpadding="0">
-							<tr>
-								<th scope="row">旧密码</th>
-								<td><input name="password1" id="password1" type="text" /></td>
-							</tr>
-							<tr>
-								<th scope="row">新密码</th>
-								<td><input name="password" id="password" type="text" /></td>
-							</tr>
-							<tr>
-								<th scope="row">确认密码</th>
-								<td><input name="password" id="password" type="text" /></td>
-							</tr>
-							<tr>
-								<th scope="row">&nbsp;</th>
-								<td><a href="#" onclick="editpwd();">更改密码</a></td>
-							</tr>
-						</table>
-						<div class="cl"></div>
-					</div>
-				</div>
-				<div class="setcan">
-					<div class="setcposs">
-						<table width="100%" border="0" cellspacing="0" cellpadding="0">
-							<tr>
-								<th scope="row">邮箱</th>
-								<td><input name="" type="text" /></td>
-							</tr>
-							<tr>
-								<th scope="row">电话</th>
-								<td><input name="" type="text" /></td>
-							</tr>
-							<tr>
-								<th scope="row">程序</th>
-								<td><input name="" type="text" /></td>
-							</tr>
-						</table>
-						<div class="day">
-							<h1>星期</h1>
-							<ul>
-								<li><span class="d1">周一</span><span class="d2"><input
-										type="checkbox" /></span></li>
-								<li><span class="d1">周二</span><span class="d2"><input
-										type="checkbox" /></span></li>
-								<li><span class="d1">周三</span><span class="d2"><input
-										type="checkbox" /></span></li>
-								<li><span class="d1">周四</span><span class="d2"><input
-										type="checkbox" /></span></li>
-								<li><span class="d1">周五</span><span class="d2"><input
-										type="checkbox" /></span></li>
-								<li><span class="d1">周六</span><span class="d2"><input
-										type="checkbox" /></span></li>
-								<li><span class="d1">周末</span><span class="d3"><input
-										type="checkbox" /></span></li>
-							</ul>
-						</div>
-
-
-						<div class="day">
-							<h1>每天订阅号分类</h1>
-							<ul>
-								<li><span class="d1 d4">周一<br />电子及电器
-								</span><span class="d2"><input type="checkbox" /></span></li>
-								<li><span class="d1 d4">周二<br />只针对家用
-								</span><span class="d2"><input type="checkbox" /></span></li>
-								<li><span class="d1 d4">周三<br />孩子用品
-								</span><span class="d2"><input type="checkbox" /></span></li>
-								<li><span class="d1 d4">周四<br />衣服
-								</span><span class="d2"><input type="checkbox" /></span></li>
-								<li><span class="d1 d4">周五<br />旅游
-								</span><span class="d2"><input type="checkbox" /></span></li>
-								<li><span class="d1 d4">周六<br />美容
-								</span><span class="d2"><input type="checkbox" /></span></li>
-								<li><span class="d1 d4">周末<br />美容
-								</span><span class="d3"><input type="checkbox" /></span></li>
-							</ul>
-						</div>
-
-						<div class="day day_2">
-							<h1>每天订阅</h1>
-							<ul>
-								<li style="padding-left: 560px;">邮箱</li>
-								<li>所有折扣<span><input type="checkbox" /></span></li>
-								<li>服务<span><input type="checkbox" /></span></li>
-								<li>商品<span><input type="checkbox" /></span></li>
-								<li>旅游<span><input type="checkbox" /></span></li>
-								<li>推荐折扣<span><input type="checkbox" /></span></li>
-							</ul>
-						</div>
-
-						<div class="day day_2">
-							<h1>ЕЖЕДНЕВНЫЕ РАССЫЛКИ</h1>
-							<ul>
-								<li style="padding-left: 490px;">CMC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E-mail</li>
-								<li>Все акции<span><input type="checkbox" /></span><span><input
-										type="checkbox" /></span></li>
-								<li>Услуги<span><input type="checkbox" /></span><span></span></li>
-								<li>Товары<span><input type="checkbox" /></span><span><input
-										type="checkbox" /></span></li>
-							</ul>
-						</div>
-						<div class="day_bottom">
-							<h1>通知</h1>
-							<p>如果您希望收到短信或是电子邮件的形式，请在个人资料处填写您的电话号码邮箱地址</p>
-							<div class="d_right">SMS&nbsp;&nbsp;&nbsp;&nbsp;элektpoнная
-								почтa</div>
-							<ul>
-								<li>特别优惠<span><input type="checkbox" /><input
-										type="checkbox" checked="checked" /></span></li>
-								<li>结束命令<span><input type="checkbox" /><input
-										type="checkbox" checked="checked" /></span></li>
-								<li>关于仓库到货 <span><input type="checkbox" /><input
-										type="checkbox" checked="checked" /></span></li>
-								<li>关于交付货物<span><input type="checkbox" /><input
-										type="checkbox" checked="checked" /></span></li>
-								<li>货物状态<span><input type="checkbox" /><input
-										type="checkbox" checked="checked" /></span></li>
-								<li>反馈意见<span><input type="checkbox" /><input
-										type="checkbox" checked="checked" /></span></li>
-							</ul>
-						</div>
-
-						<div class="cl"></div>
-					</div>
-				</div>
-
-
-				<div class="setcan">
-					<div class="setcposs">
-						<p>查看产品目录</p>
-						<div>
-							<p>新品</p>
-						</div>
-						<p>
-							排序方式 <select name="">
-								<option value="volvo">------------</option>
-								<option value="saab">价格从低到高排列</option>
-								<option value="audi">价格最高</option>
-								<option value="auda">品名</option>
-								<option value="fiat" selected="selected">新品</option>
-								<option value="auds">购物评价</option>
-								<option value="volvo">热门程度排列</option>
-							</select>
-						</p>
-						<p class="setaddlinks"></p>
-						<p>Вид каталогаВид каталога</p>
-						<p>Вид каталогаВид каталогаВид каталогаВид каталогаВид
-							каталога</p>
-						<div class="cl"></div>
-						<p>
-							<a href="#">保存</a>
-						</p>
-					</div>
-				</div>
-
-
-				<div class="setcan setcan_2">
-					<script>
+        </div>
+        <div class="setcan">
+        	<div class="setaddonlest">
+                <h3>通讯录<span>保存地址</span></h3>
+                <p class="setaddl">保存收货地址，使得采购更加快捷方便，“快速购买”也是在“我的账户”结算信息保存到下单，只需点击一次。填写资料时候，只能使用字母</p>
+                <div>
+                 	<div class="setlest">
+                        <div>
+                            <p class="sels1">名字</p>
+                            <p class="sels2">地址</p>
+                            <p class="sels6">默认送货地址</p>
+                            <p class="sels7"></p>
+                        </div>
+                        <ul>
+                        <c:forEach var="address" items="${user.addresses}" varStatus="vs">
+                          <li>
+                            <p class="sels1">${address.toName}</p>
+                            <p class="sels2">删除  </p>
+                            <p class="sels3">★</p>
+                            <p class="sels4"><a href="#" onclick="deleteaddress(${address.id});">删除</a></p>
+                            <p class="sels5"><a>更改</a></p>
+                          </li>
+                         </c:forEach>
+                        </ul>
+                	</div>
+                </div>
+                <div class="cl"></div>
+                <p class="setcanbon"><a href="#" onclick="address();">添加新地址</a></p>
+             </div>
+        	<div class="setaddalls setaddallsfs">
+                <h3>通讯录</h3>
+                <p class="setaddl">保存收货地址，使得采购更加快捷方便，“快速购买”也是在“我的账户”结算信息保存到下单，只需点击一次。填写资料时候，只能使用字母</p>
+                <p class="setaddls">详细运输资料</p>
+                <p class="setalip"><span>名字* </span><span>姓*</span></p>
+                <p class="setalip"><span><input name="toName" type="text" value="" /></span><span><input name="toName" type="text" value="" /></span></p>
+                <p class="setalip"><span>电话*</span><span>邮箱:</span></p>
+                <p class="setalip"><span><input name="phone" type="text" value="" /></span><span><input name="toEmail" type="text" value="" /></span></p>
+                <p class="setaddlinks"></p>
+                <p class="setalip"><span>国家 *</span><span>城市 *</span></p>
+                <p class="setalip"><span><input name="country" type="text" value="" /></span><span><input name="city" type="text" value="" /></span></p>
+                <p class="setalip"><span>地址 *</span><span>地区*</span></p>
+                <p class="setalip"><span><input name="street" type="text" value="" /></span><span><input name="district" type="text" value="" /></span></p>
+                <p class="setalip"><span>转交地址</span><span>指数*</span></p>
+                <p class="setalip"><span><input name="handedAddress" type="text" value="" /></span><span><input name="indexNum" type="text" value="" /></span></p>
+                <p class="setaddlinks"></p>
+                <p class="setalckl"><label><span><input name="theDefault" type="checkbox" value="" /></span>默认送货地址</label></p>
+                <p class="setalckl"><label><span><input name="" type="checkbox" value="" /></span>默认情况下，按以前的地址</label></p>
+                <p class="setalckl">您输入的个人信息将用于ZAZATAO结算，ZAZATAO会保证您数据的安全性。详情请参阅我们的隐私保障</p>
+                <div class="cl"></div>
+                <p class="setcanbon setcanbontw"><a href="#" onclick="address();">确认</a></p>
+             </div>
+        	<div class="setaddalls setaddallstw">
+                <h3>通讯录</h3>
+                <p class="setaddl">保存收货地址，使得采购更加快捷方便，“快速购买”也是在“我的账户”结算信息保存到下单，只需点击一次。填写资料时候，只能使用字母</p>
+                <p class="setaddls">详细运输资料</p>
+                <p class="setalip"><span>名字* </span><span>姓*</span></p>
+                <p class="setalip"><span><input name="toName" type="text" /></span><span><input name="toName" type="text" /></span></p>
+                <p class="setalip"><span>电话*</span><span>邮箱:</span></p>
+                <p class="setalip"><span><input name="phone" type="text" /></span><span><input name="toEmail" type="text" /></span></p>
+                <p class="setaddlinks"></p>
+                <p class="setalip"><span>国家 *</span><span>城市 *</span></p>
+                <p class="setalip"><span><input name="country" type="text" /></span><span><input name="city" type="text" /></span></p>
+                <p class="setalip"><span>地址 *</span><span>地区*</span></p>
+                <p class="setalip"><span><input name="street" type="text" /></span><span><input name="district" type="text" /></span></p>
+                <p class="setalip"><span>转交地址</span><span>指数*</span></p>
+                <p class="setalip"><span><input name="handedAddress" type="text" /></span><span><input name="indexNum" type="text" /></span></p>
+                <p class="setaddlinks"></p>
+                <p class="setalckl"><label><span><input name="theDefault" type="checkbox" value="" /></span>默认送货地址</label></p>
+                <p class="setalckl"><label><span><input name="" type="checkbox" value="" /></span>默认情况下，按以前的地址</label></p>
+                <p class="setalckl">您输入的个人信息将用于ZAZATAO结算，ZAZATAO会保证您数据的安全性。详情请参阅我们的隐私保障</p>
+                <div class="cl"></div>
+                <p class="setcanbon setcanbontw"><a href="#" onclick="address();">确认</a></p>
+             </div>
+        </div>
+	        <div class="setcan">
+	        	<div class="setcposs">
+	                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+	                  <tr>
+	                    <th scope="row">旧密码</th>
+	                    <td><input name="password1" id="password1" type="text"/></td>
+	                  </tr>
+	                  <tr>
+	                    <th scope="row">新密码</th>
+	                    <td><input name="password" id="password" type="text" /></td>
+	                  </tr>
+	                  <tr>
+	                    <th scope="row">确认密码</th>
+	                    <td><input name="password" id="password" type="text" /></td>
+	                  </tr>
+	                  <tr>
+	                    <th scope="row">&nbsp;</th>
+	                    <td><a href="#" onclick="editpwd();">更改密码</a>
+	                    </td>
+	                  </tr>
+	                </table>
+	                <div class="cl"></div>
+	             </div>
+	        </div>
+        <div class="setcan">
+        	<div class="setcposs">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <th scope="row">邮箱</th>
+                    <td><input name="" type="text" /></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">电话</th>
+                    <td><input name="" type="text" /></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">程序</th>
+                    <td><input name="" type="text" /></td>
+                  </tr>
+                </table>
+                <div class="day">
+                	<h1>星期</h1>
+                    <ul>
+                    	<li>
+                        	<span class="d1">周一</span><span class="d2"><input type="checkbox" /></span>
+                        </li>
+                        <li>
+                        	<span class="d1">周二</span><span class="d2"><input type="checkbox" /></span>
+                        </li>
+                        <li>
+                        	<span class="d1">周三</span><span class="d2"><input type="checkbox" /></span>
+                        </li>
+                        <li>
+                        	<span class="d1">周四</span><span class="d2"><input type="checkbox" /></span>
+                        </li>
+                        <li>
+                        	<span class="d1">周五</span><span class="d2"><input type="checkbox" /></span>
+                        </li>
+                        <li>
+                        	<span class="d1">周六</span><span class="d2"><input type="checkbox" /></span>
+                        </li>
+                        <li>
+                        	<span class="d1">周末</span><span class="d3"><input type="checkbox" /></span>
+                        </li>
+                    </ul>
+                </div>
+                
+                
+                <div class="day">
+                	<h1>每天订阅号分类</h1>
+                    <ul>
+                    	<li>
+                        	<span class="d1 d4">周一<br />电子及电器</span><span class="d2"><input type="checkbox" /></span>
+                        </li>
+                        <li>
+                        	<span class="d1 d4">周二<br />只针对家用</span><span class="d2"><input type="checkbox" /></span>
+                        </li>
+                        <li>
+                        	<span class="d1 d4">周三<br />孩子用品</span><span class="d2"><input type="checkbox" /></span>
+                        </li>
+                        <li>
+                        	<span class="d1 d4">周四<br />衣服</span><span class="d2"><input type="checkbox" /></span>
+                        </li>
+                        <li>
+                        	<span class="d1 d4">周五<br />旅游</span><span class="d2"><input type="checkbox" /></span>
+                        </li>
+                        <li>
+                        	<span class="d1 d4">周六<br />美容</span><span class="d2"><input type="checkbox" /></span>
+                        </li>
+                        <li>
+                        	<span class="d1 d4">周末<br />美容</span><span class="d3"><input type="checkbox" /></span>
+                        </li>
+                    </ul>
+                </div>
+                
+               <div class="day day_2">
+                <h1>每天订阅</h1>
+                	<ul>
+                    	<li style="padding-left:560px;">邮箱</li>
+                        <li>所有折扣<span><input type="checkbox" /></span></li>
+                        <li>服务<span><input type="checkbox" /></span></li>
+                        <li>商品<span><input type="checkbox" /></span></li>
+                        <li>旅游<span><input type="checkbox" /></span></li>
+                        <li>推荐折扣<span><input type="checkbox" /></span></li>
+                    </ul>
+                </div>
+                
+                <div class="day day_2">
+                <h1>ЕЖЕДНЕВНЫЕ РАССЫЛКИ</h1>
+                	<ul>
+                    	<li style="padding-left:490px;">CMC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E-mail</li>
+                        <li>Все акции<span><input type="checkbox" /></span><span><input type="checkbox" /></span></li>
+                        <li>Услуги<span><input type="checkbox" /></span><span></span></li>
+                        <li>Товары<span><input type="checkbox" /></span><span><input type="checkbox" /></span></li>
+                    </ul>
+                </div>
+                <div class="day_bottom">
+                	<h1>通知</h1>
+                    <p>如果您希望收到短信或是电子邮件的形式，请在个人资料处填写您的电话号码邮箱地址</p>
+               		<div class="d_right">SMS&nbsp;&nbsp;&nbsp;&nbsp;элektpoнная почтa</div>
+                    <ul>
+                    	<li>特别优惠<span><input type="checkbox"/><input type="checkbox" checked="checked" /></span></li>
+                        <li>结束命令<span><input type="checkbox"/><input type="checkbox" checked="checked" /></span></li>
+                        <li>关于仓库到货 <span><input type="checkbox"/><input type="checkbox" checked="checked" /></span></li>
+                        <li>关于交付货物<span><input type="checkbox"/><input type="checkbox" checked="checked" /></span></li>
+                        <li>货物状态<span><input type="checkbox"/><input type="checkbox" checked="checked" /></span></li>
+                        <li>反馈意见<span><input type="checkbox"/><input type="checkbox" checked="checked" /></span></li>
+                    </ul>
+                </div>
+                
+                <div class="cl"></div>
+             </div>
+        </div>
+        
+        
+        <div class="setcan">
+        	<div class="setcposs">
+                <p>查看产品目录</p>
+                <div>
+                	<p>新品</p>
+                </div>
+                <p>排序方式 
+                    <select name="">
+                        <option value="volvo">------------</option>
+                        <option value="saab">价格从低到高排列</option>
+                        <option value="audi">价格最高</option>
+                        <option value="auda">品名 </option>
+                        <option value="fiat" selected="selected">新品</option>
+                        <option value="auds">购物评价</option>
+                        <option value="volvo">热门程度排列</option>
+                    </select>
+                </p>
+                <p class="setaddlinks"></p>
+                <p>Вид каталогаВид каталога</p>
+                <p>Вид каталогаВид каталогаВид каталогаВид каталогаВид каталога</p>
+                <div class="cl"></div>
+                <p><a href="#">保存</a></p>
+             </div>
+        </div>
+        
+        
+        <div class="setcan setcan_2">
+        	<script>
             	$(document).ready(function(){ 
 						$(".emalonc img").click(function(){
 								$(".tcall").show();
