@@ -6,27 +6,14 @@
 
 .Jiaoyi .nei input{width:150px; border:1px solid #CCC; overflow:hidden}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 .autoh{width:780px; margin-top:20px; margin-left:20px}
 .tab-title{ color:#444; height:31px; *height:31px;  border-bottom:none;width:780px; float:left; border-bottom:3px solid #36C}
 .tab-title a{ color:#333; height:31px; *height:31px;  border-bottom:none;}
-.active1{padding:0 12px;color:#333;height:32px;display:block;float:left;line-height:32px;text-align:center;z-index:20;cursor:pointer;font-weight:bold; font-size:12px;  font-family:"微软雅黑"; background:url(images/TT1.jpg); border-right:1px #336699 solid; border-left:1px #336699 solid; border-top:1px #336699 solid}
+.active1{padding:0 12px;color:#333;height:32px;display:block;float:left;line-height:32px;text-align:center;z-index:20;cursor:pointer;font-weight:bold; font-size:12px;  font-family:"微软雅黑"; background:url(../content/static/images/TT1.jpg); border-right:1px #336699 solid; border-left:1px #336699 solid; border-top:1px #336699 solid}
 .active1 a{ color:#333; padding:0 12px}
 
 .active2{color:#333; height:32px;display:block;float:left;line-height:32px;text-align:center;z-index:20;cursor:pointer;font-weight:bold; font-size:12px;  font-family:"微软雅黑";padding:0 12px}
-.normal1{height:31px;display:block;float:left;line-height:32px;text-align:center;cursor:pointer; font-size:12px; font-family:"微软雅黑";background:url(images/TT2.jpg);border-right:3px #FFFFFF solid;padding:0 12px}
+.normal1{height:31px;display:block;float:left;line-height:32px;text-align:center;cursor:pointer; font-size:12px; font-family:"微软雅黑";background:url(../content/static/images/TT2.jpg);border-right:3px #FFFFFF solid;padding:0 12px}
 
 .blank0 {clear: both; display: block; font-size:1px; visibility:hidden; line-height: 0; height: 0px}
 .blank0{clear:both;display:block;font-size:1px;visibility:hidden;height:-1px;line-height:0;}

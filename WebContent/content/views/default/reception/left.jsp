@@ -17,7 +17,7 @@
 		<div>
 			<p>交易管理</p>
 			<ul>
-				<li><a href="#">全部卖出交易</a></li>
+				<li><a href="../proscenium/shopTransaction">全部卖出交易</a></li>
 				<li><a href="#">买家退款退货</a></li>
 				<li><a href="#">评价管理</a></li>
 				<li><a href="#">发货管理</a></li>
