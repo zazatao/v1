@@ -72,7 +72,7 @@ public class ShopThreeController {
 	@Autowired
 	IImagePathService imagePathService;
 
-	// 发布商品list
+	//后台交易管理
 	@RequestMapping(value = "shopTransaction", method = RequestMethod.GET)
 	public ModelAndView shopTransaction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute("loginUser");
@@ -84,6 +84,26 @@ public class ShopThreeController {
 			if (shop != null && shop.getIsPermit()) {
 				mode.put("shop", shop);
 				return new ModelAndView("reception/shopTransaction", mode);
+			} else {
+				return new ModelAndView("proscenium/setUpShop",null);
+			}
+		} else {
+			return new ModelAndView("user/login", mode);
+		}
+	}
+	
+	//后台评价管理
+	@RequestMapping(value = "shopEvaluation", method = RequestMethod.GET)
+	public ModelAndView shopEvaluation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		User user = (User) request.getSession().getAttribute("loginUser");
+		ModelMap mode = new ModelMap();
+		List<ShopCategory> shopCategories = shopCategService.getAll();
+		mode.put("shopCategories", shopCategories);
+		if (user != null) {
+			Shop shop = user.getShop();
+			if (shop != null && shop.getIsPermit()) {
+				mode.put("shop", shop);
+				return new ModelAndView("reception/shopEvaluation", mode);
 			} else {
 				return new ModelAndView("proscenium/setUpShop",null);
 			}

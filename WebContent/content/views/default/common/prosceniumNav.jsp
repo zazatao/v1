@@ -72,7 +72,7 @@
 	<div class="menu">
 		<!---------------   菜单   ----------------------->
 		<div class="menu1">
-			<ul class="nav" id="navShopCaegory1">
+			<ul class="navf" id="navShopCaegory1">
 				<li class="bg_none"><a href="../index"><img
 						src="../content/static/images/fzan.jpg" width="16" height="17" /></a></li>
 				<c:forEach items="${shopCategories }" var="shopCategory">
@@ -103,7 +103,7 @@
 			</ul>
 		</div>
 		<div class="menu2">
-			<ul class="nav nav_2" id="navShopCaegory2">
+			<ul class="navf nav_2" id="navShopCaegory2">
 				<c:forEach items="${shopCategories }" var="shopCategory">
 					<c:if
 						test="${shopCategory.level == 1 && (shopCategory.category == '电子产品' || shopCategory.category == '汽车用具') }">
@@ -137,7 +137,7 @@
 			</ul>
 		</div>
 		<div class="menu3">
-			<ul class="nav nav_3" id="navShopCaegory3">
+			<ul class="navf nav_3" id="navShopCaegory3">
 
 			</ul>
 		</div>

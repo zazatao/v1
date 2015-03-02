@@ -35,9 +35,9 @@
 						<ul>
 							<li>重量</li>
 							<li class="ordersselon">在线查询</li>
-							<li>完成</li>
+							<li><a href="#" onclick="onOrderStatus('wanjie');">完成</a></li>
 							<li>未兑换</li>
-							<li>进行中</li>
+							<li><a href="#" onclick="onOrderStatus('weiwanjie');">进行中</a></li>
 							<li>等待评价</li>
 						</ul>
 					</div>
@@ -64,6 +64,9 @@
 						var orderStatus = $("#orderStatus").find("option:selected").val();
 						location.href = "perscentBonuses?orderDate="+orderDate+"&orderStatus="+orderStatus;
 					}
+					function onOrderStatus(value){
+						location.href = "perscentBonuses?orderDate=&orderStatus="+value;
+					}
 				</script>
 				<div class="orderstil">
 					<ul class="ordersall">
@@ -71,7 +74,7 @@
 						<li class="ordersli2">出发日期</li>
 						<li class="ordersli3">商品价格</li>
 						<li class="ordersli4">卖家</li>
-						<li class="ordersli5">运输</li>
+						<li class="ordersli5">运输费</li>
 						<li class="ordersli6">总额</li>
 						<li class="ordersli7">目前状态</li>
 					</ul>
