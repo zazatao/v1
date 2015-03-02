@@ -26,6 +26,7 @@ import com.yc.entity.user.User;
 import com.yc.service.IAddressService;
 import com.yc.service.IShopCategoryService;
 import com.yc.service.IUserService;
+import com.yc.service.impl.UserService;
 
 @Controller
 @RequestMapping("/user")
@@ -227,7 +228,8 @@ public class UserController {
 	//地址添加
 	@RequestMapping(value = "Address", method = RequestMethod.POST)
     public String Address(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {;
-		Address as = new Address();
+		User user = new User();
+    	Address as = new Address();
 		String toName =request.getParameter("toName");
 		as.setToName(toName);
 		String phone = request.getParameter("phone");

@@ -53,7 +53,7 @@ img{ border:none;}
 .flcd .fenlei{ float:left; margin-left:110px; display:none;}
 .flcd .fenlei span{ margin-left:10px; height:20px; line-height:20px; float:left; display:block; text-align:center;}
 .flcd .fenlei span div{width:10px; height:10px; margin-top:4px; border:1px solid #000; float:left;}
-.flcd .fenlei span.f1{ border-bottom:2px solid #ffd50d; width:80px;}
+.flcd .fenlei span.f1{ border-bottom:2px solid #ffd50d; width:75px;}
 .flcd .fenlei span.f2{ border-bottom:2px solid #686c5e; width:118px;}
 .flcd .fenlei span.f3{ border-bottom:2px solid #29342c; width:80px;}
 .flcd .fenlei span.f4{ border-bottom:2px solid #603e57; width:118px;}
@@ -61,7 +61,7 @@ img{ border:none;}
 .flcd .fenlei span a{ font-size:12px;}
 .flcd .fenlei span input{ vertical-align:middle; margin-right:5px;}
 .fltplas,.fltps,.fltpf{ display:none;}
-.tj{ float:right;width:275px; text-align:right;}
+.tj{ float:right;width:235px; text-align:right;}
 .tj a{ display:bolck; float:right; width:115px; height:23px; line-height:23px;text-align:center; font-size:12px;}
 .tj a.gray{ background:#e4e6e5; border:1px solid #d0d0d0;}
 .tj a.gray:hover{ background:#fff;}
