@@ -111,8 +111,15 @@
 				<ul class="nav nav_2" id="navShopCaegory2">
 				<c:forEach items="${shopCategories }" var="shopCategory">
 						<c:if test="${shopCategory.level == 1 && (shopCategory.category == '电子产品' || shopCategory.category == '汽车用具') }">
-							<li><a href="./proscenium/categoryLei?id=${shopCategory.categoryID}&page="<c:if test="${shopCategory.category == '电子产品' }">electronics</c:if><c:if test="${shopCategory.category == '汽车用具' }">autoSupplies</c:if>>${shopCategory.category }</a><div>
-									<c:forEach items="${shopCategory.children }" var="shopCategory2">
+							<li>
+							<c:if test="${shopCategory.category == '电子产品' }">
+								<a href="./proscenium/categoryLei?id=${shopCategory.categoryID}&page=electronics">${shopCategory.category }</a>
+							</c:if>
+							<c:if test="${shopCategory.category == '汽车用具' }">
+								<a href="./proscenium/categoryLei?id=${shopCategory.categoryID}&page=autoSupplies">${shopCategory.category }</a>
+							</c:if>	
+							<div>
+								<c:forEach items="${shopCategory.children }" var="shopCategory2">
 										<c:if test="${shopCategory2.level == 2  }">
 											<div class="nav-column"><h3>${shopCategory2.category }</h3><ul>
 												<c:forEach  items="${shopCategory2.children }" var="shopCategory3">

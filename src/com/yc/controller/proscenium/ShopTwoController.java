@@ -1,7 +1,10 @@
 package com.yc.controller.proscenium;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,13 +22,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yc.entity.Address;
 import com.yc.entity.BuyCat;
+import com.yc.entity.Commodity;
+import com.yc.entity.CommoidityStatus;
+import com.yc.entity.Delivery;
+import com.yc.entity.DisposeStatus;
+import com.yc.entity.ImagePath;
+import com.yc.entity.OrderForm;
+import com.yc.entity.OrderStatus;
 import com.yc.entity.ShopCategory;
+import com.yc.entity.ShopCommImage;
 import com.yc.entity.ShopCommoidty;
 import com.yc.entity.user.User;
 import com.yc.model.BuyCatSession;
+import com.yc.service.IAddressService;
 import com.yc.service.IBrandService;
 import com.yc.service.IBuyCatService;
+import com.yc.service.ICommodityService;
+import com.yc.service.IImagePathService;
+import com.yc.service.IOrderFormService;
 import com.yc.service.IShopCategoryService;
 import com.yc.service.IShopCommImageService;
 import com.yc.service.IShopCommoidtyService;
@@ -59,8 +75,20 @@ public class ShopTwoController {
 	IShopCommImageService shopCommImageService;
 	
 	@Autowired
-	IBuyCatService buyCatService;
+	IBuyCatService buyCatService;//购物车
 	
+	@Autowired
+	IAddressService addressService;
+	
+	@Autowired
+	ICommodityService commodityService;
+	
+	@Autowired
+	IOrderFormService formService;
+	
+	@Autowired
+	IImagePathService imagePathService;
+
 	@RequestMapping(value = "categoryOne", method = RequestMethod.GET)
 	public ModelAndView categoryOne(Integer id ,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ModelMap mode = new ModelMap();
@@ -206,8 +234,9 @@ public class ShopTwoController {
 		User user = (User)session.getAttribute("loginUser");
 		ModelMap mode = new ModelMap();
 		List<ShopCategory> shopCategories = shopCategService.getAll();
+		mode.put("shopCategories", shopCategories);
 		if (user == null) {
-			return new ModelAndView("user/login",null);
+			return new ModelAndView("user/login",mode);
 		}else{
 			@SuppressWarnings("unchecked")
 			List<BuyCatSession> buycats = (List<BuyCatSession>)session.getAttribute("buyCates");
@@ -259,7 +288,6 @@ public class ShopTwoController {
 			List<BuyCat> list = buyCatService.getBuyCatByUser(user.getId());
 			mode.put("list", list);
 		}
-		mode.put("shopCategories", shopCategories);
 		return new ModelAndView("reception/shopcar",mode);
 	}
 	
@@ -279,7 +307,7 @@ public class ShopTwoController {
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("loginUser");
 		if (user == null) {
-			return new ModelAndView("user/login",null);
+			return new ModelAndView("user/login",mode);
 		}else{
 			@SuppressWarnings("unchecked")
 			List<BuyCatSession> buycats = (List<BuyCatSession>)session.getAttribute("buyCates");
@@ -329,8 +357,232 @@ public class ShopTwoController {
 				session.removeAttribute("buyCates");
 			}
 			List<BuyCat> list = buyCatService.getBuyCatByUser(user.getId());
+			List<Address> addresses = addressService.getAllByUser(user.getId());
+			mode.put("addresses", addresses);
 			mode.put("list", list);
 		}
 		return  new ModelAndView("reception/shopcardelv",mode);
+	}
+	
+	@RequestMapping(value = "shopcarpro", method = RequestMethod.GET)
+	public ModelAndView shopcarpro(Integer addID,String deliveryComm, Float deliveryMoney, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ModelMap mode = new ModelMap();
+		List<ShopCategory> shopCategories = shopCategService.getAll();
+		mode.put("shopCategories", shopCategories);
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("loginUser");
+		if (user == null) {
+			return new ModelAndView("user/login",mode);
+		}else{
+			@SuppressWarnings("unchecked")
+			List<BuyCatSession> buycats = (List<BuyCatSession>)session.getAttribute("buyCates");
+			if (buycats != null && buycats.size()>0) {
+				List<BuyCat> list = buyCatService.getBuyCatByUser(user.getId());
+				for (BuyCatSession buyCatSession : buycats) {
+					boolean bool = true;
+					for (BuyCat buyCat : list) {
+						boolean isok = true;
+						if (buyCatSession.getShopCommoidty().getCommoidtyName().equals(buyCat.getShopCommoidty().getCommoidtyName())) {
+							String[] buycat1 = buyCatSession.getSpecs().split(",");
+							String[] guige = new String[buycat1.length];
+							String[] buycat2 = buyCat.getSpecs().split(",");
+							for (int i = 0; i < buycat1.length; i++) {
+								for (int j = 0; j < buycat2.length; j++) {
+									if (buycat1[i].equals(buycat2[j])) {
+										guige[i] = "t";
+									}
+								}
+								if (guige[i] == null ||guige[i].equals("")) {
+									guige[i] = "f";
+								}
+							}
+							for (int i = 0; i < guige.length; i++) {
+								if (guige[i].equals("f")) {
+									isok = false;
+								}
+							}
+						}else{
+							isok = false;
+						}
+						if (isok) {
+							buyCat.setBuyAmount(buyCatSession.getBuyAmount()+buyCat.getBuyAmount());
+							buyCatService.update(buyCat);
+							bool = false;
+						}
+					}
+					if (bool) {
+						BuyCat buyCat = new BuyCat();
+						buyCat.setBuyAmount(buyCatSession.getBuyAmount());
+						buyCat.setCatUser(user);
+						buyCat.setShopCommoidty(buyCatSession.getShopCommoidty());
+						buyCat.setSpecs(buyCatSession.getSpecs());
+						buyCatService.save(buyCat);
+					}
+				}
+				session.removeAttribute("buyCates");
+			}
+			mode.put("deliveryComm", deliveryComm);
+			mode.put("deliveryMoney", deliveryMoney);
+			List<BuyCat> list = buyCatService.getBuyCatByUser(user.getId());
+			saveOrderForm(addID,deliveryComm,deliveryMoney,request);
+			Address address = addressService.findById(addID);
+			mode.put("address", address);
+			mode.put("list", list);
+		}
+		return  new ModelAndView("reception/shopcarpro",mode);
+	}
+	
+	private void saveOrderForm (Integer addID,String deliveryComm, Float deliveryMoney, HttpServletRequest request){
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("loginUser");
+		Address address = addressService.findById(addID);
+		List<BuyCat> list = buyCatService.getBuyCatByUser(user.getId());
+		Map<Integer, List<BuyCat>> map = new HashMap<Integer, List<BuyCat>>();
+		 List<BuyCat> buycates =null;
+		for (int i = 0; i < list.size(); i++) {
+			if (i==0) {
+				buycates = new ArrayList<BuyCat>();
+				buycates.add(list.get(i));
+				map.put(list.get(i).getShopCommoidty().getBelongTo().getId(), buycates);
+			}else{
+				boolean isok = true;
+				for (Integer key : map.keySet()) {
+					if (list.get(i).getShopCommoidty().getBelongTo().getId() == key ) {
+						map.get(key).add(list.get(i));
+						isok = false;
+					}
+				}
+				if (isok) {
+					buycates = new ArrayList<BuyCat>();
+					buycates.add(list.get(i));
+					map.put(list.get(i).getShopCommoidty().getBelongTo().getId(), buycates);
+				}
+			}
+		}
+		Commodity commodity = null;
+		OrderForm orderform = null;
+		for (Integer key : map.keySet()) {
+			buycates = map.get(key);
+			if (buycates != null && buycates.size()>0) {
+				orderform = new OrderForm();
+				orderform.setAddress(address);
+				orderform.setChangeStatusDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+				orderform.setDelivery(Delivery.valueOf(deliveryComm));
+				orderform.setOrderDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+				orderform.setOrderTime(new SimpleDateFormat("HH:mm:ss").format(new Date()));
+				orderform.setOrderstatus(OrderStatus.waitDelivery);
+				orderform.setOrderUser(user);
+				orderform.setPaymentDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+				orderform.setPaymentTime(new SimpleDateFormat("HH:mm:ss").format(new Date()));
+				orderform.setDeliveryMoney(deliveryMoney);
+				orderform = formService.save(orderform);
+				for (BuyCat buyCat : buycates) {
+					commodity = new Commodity();
+					commodity.setCommItem(buyCat.getShopCommoidty().getCommItem());
+					commodity.setQuantity(buyCat.getBuyAmount());
+					commodity.setWeight(buyCat.getShopCommoidty().getProbablyWeight());
+					commodity.setNameOfGoods(buyCat.getShopCommoidty().getCommoidtyName());
+					commodity.setPrice(buyCat.getShopCommoidty().getUnitPrice() * buyCat.getShopCommoidty().getSpecial());
+					commodity.setMoney(buyCat.getShopCommoidty().getUnitPrice() * buyCat.getShopCommoidty().getSpecial() * buyCat.getBuyAmount());
+					commodity.setCurrency(buyCat.getShopCommoidty().getCurrency());
+					commodity.setCommSpec(buyCat.getShopCommoidty().getCommSpec());
+					commodity.setShopcategory(buyCat.getShopCommoidty().getShopCategory());
+					commodity.setSeller(buyCat.getShopCommoidty().getBelongTo());
+//					commodity.setSellerDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));//买家付款日期
+					commodity.setStatus(CommoidityStatus.paid);
+					commodity.setDisposeStatus(DisposeStatus.process);
+					commodity.setOrderNumber(orderform);
+					Commodity comm = commodityService.save(commodity);
+					for (ShopCommImage imagePath : buyCat.getShopCommoidty().getShopCommImages()) {
+						ImagePath image = new ImagePath();
+						image.setCommodity(comm);
+						image.setOrderform(orderform);
+						image.setPath(imagePath.getImagePath());
+						imagePathService.save(image);
+					}
+				}
+			}
+		}
+	}
+	
+	//添加商家商品
+	@RequestMapping(value = "addSupplier", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> addSupplier(Integer commID,Integer category,Integer shopID,String commoName,HttpServletRequest request) throws ServletException, IOException {
+		ModelMap mode = new ModelMap();
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("loginUser");
+		if (user != null) {
+			ShopCommoidty shopCommoidty = shopCommService.findById(commID);
+			if (shopCommoidty.getBelongTo().getUser() != user && user.getShop().getIsPermit() == true) {
+				String supplier = "/proscenium/shopItem?commID="+commID+"&category="+category+"&shopID="+shopID+"&commoName="+commoName;
+				Boolean isok = true;
+				List<ShopCommoidty> myShopComms =shopCommService.getAllByNameAndShop(commoName,user.getShop().getId());
+				for (ShopCommoidty comm : myShopComms) {
+					if (comm.getSupplier().equals(supplier)) {
+						isok = false;
+					}
+				}
+				if (isok) {
+					List<ShopCommoidty> list =shopCommService.getAllByNameAndShop(commoName,shopID);
+					Map<String, List<String>> map = new HashMap<String, List<String>>();
+					List<String> specStrs = null;
+					for (ShopCommoidty comm : list) {
+						String spec = comm.getCommSpec();
+						String[] specs = spec.split(",");
+						if (specs.length>0) {
+							for (int i = 0; i < specs.length; i++) {
+								if (!specs[i].equals("")) {
+									if (map.containsKey(specs[i].split("-")[0])) {
+										specStrs = map.get(specs[i].split("-")[0]);
+										if (!specStrs.contains(specs[i].split("-")[1])) {
+											specStrs.add(specs[i].split("-")[1]);
+										}
+									}else{
+										specStrs = new ArrayList<String>();
+										specStrs.add(specs[i].split("-")[1]);
+										map.put(specs[i].split("-")[0], specStrs);
+									}
+								}
+							}
+						}
+					}
+					String strs = ",";
+					for (String key : map.keySet()) {
+						List<String> valueList = map.get(key);
+						for (String string : valueList) {
+							strs = strs +key +"-"+ string + ",";
+						}
+					}
+					ShopCommoidty commoidty = new ShopCommoidty();
+					commoidty.setCommoidtyName(shopCommoidty.getCommoidtyName());
+					commoidty.setCommItem(shopCommoidty.getCommItem());
+					commoidty.setSupplier(supplier);
+					commoidty.setCommSpec(strs);
+					commoidty.setStock(shopCommoidty.getStock());
+					commoidty.setProportion(shopCommoidty.getProportion());
+					commoidty.setUnitPrice(shopCommoidty.getUnitPrice());
+					commoidty.setProbablyWeight(shopCommoidty.getProbablyWeight());
+					commoidty.setShelves(true);
+					commoidty.setIsSpecial(false);
+					commoidty.setSpecial(1f);
+					commoidty.setCurrency(shopCommoidty.getCurrency());
+					commoidty.setShopCategory(shopCommoidty.getShopCategory());
+					commoidty.setBrand(shopCommoidty.getBrand());
+					commoidty.setBelongTo(user.getShop());
+					ShopCommoidty commo = shopCommService.save(commoidty);
+					for (ShopCommImage image : shopCommoidty.getShopCommImages()) {
+						ShopCommImage images = new ShopCommImage();
+						images.setImagePath(image.getImagePath());
+						images.setShopCommoidty(commo);
+						shopCommImageService.save(images);
+					}
+					mode.put("success", "true");
+				}else{
+					mode.put("success", "false");
+				}
+			}
+		}
+		return mode;
 	}
 }

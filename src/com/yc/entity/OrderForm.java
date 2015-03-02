@@ -57,6 +57,9 @@ public class OrderForm {
 
 	@Column
 	private String orderDate;// 下单日期
+	
+	@Column
+	private String orderTime;// 下单时间
 
 	@ManyToOne
 	@JoinColumn(name = "orderGroup_id")
@@ -64,6 +67,9 @@ public class OrderForm {
 
 	@Column
 	private String paymentDate;// 付款日期
+	
+	@Column
+	private String paymentTime;// 付款时间
 
 	@ManyToOne
 	@JoinColumn(name = "store_user")
@@ -75,6 +81,33 @@ public class OrderForm {
 	
 	@OneToMany(mappedBy = "orderform")
 	private List<ImagePath> imagePaths;
+	
+	@Column
+	private Float deliveryMoney;//运输费
+
+	public String getOrderTime() {
+		return orderTime;
+	}
+
+	public void setOrderTime(String orderTime) {
+		this.orderTime = orderTime;
+	}
+
+	public String getPaymentTime() {
+		return paymentTime;
+	}
+
+	public void setPaymentTime(String paymentTime) {
+		this.paymentTime = paymentTime;
+	}
+
+	public Float getDeliveryMoney() {
+		return deliveryMoney;
+	}
+
+	public void setDeliveryMoney(Float deliveryMoney) {
+		this.deliveryMoney = deliveryMoney;
+	}
 
 	public Personnel getStoreOperator() {
 		return storeOperator;

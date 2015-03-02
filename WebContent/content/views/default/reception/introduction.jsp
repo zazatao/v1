@@ -50,190 +50,140 @@
 <body>
 	<jsp:include page="../common/prosceniumNav.jsp"></jsp:include>
 	<div class="con">
-	<!---------------   页面主体   ----------------------->
-	<div class="basic">
-    	<!-----基本信息-------->
-        <div class="perbastil">
-        	<div>
-            	<dl>
-            	  <dt><img src="../content/static/images/kx.jpg"/></dt>
-            	  <dd><b>Пополнить счет  счет</b><img src="../content/static/images/user.jpg"/></dd>
-            	  <dd>06.07.1992</dd>
-            	</dl>
-                <p>marat004@163.com</p>
-                <p>您的账号码:456789123</p>
-            </div>
-        	<div>
-            	<p>可以资金 </p>
-            	<p><b>$0</b></p>
-            	<p><a class="onck1" href="perscent_chongzhi.html">新增资金</a></p>
-            </div>
-        </div>
-    	<!-----完善程度-------->
-         <script>
-            	$(document).ready(function(){ 
-						$(".onck2").click(function(){
-								$(".tc2all").show();
-							});
-						$(".tc2sel").click(function(){
-								$(".t2sall").toggle();
-							});
-						$(".t2sall p").click(function(){
-								$(".t2sall").hide();
-								$(".tc2stex").text($(this).text());
-							});
-						$(".tcnoe2").click(function(){
-								$(".tc2all").hide();
-							});
-						$(".tc2bg").click(function(){
-								$(".tc2all").hide();
-							});
-							
-					})
-            </script>
-           <div class="tc2all">
-           <div class="tc2bg"></div>
-           <div class="tc_2">
-				<h1>shangdianshan<span class="tcnoe2">x</span></h1>
-                <div  class="t2sel">
-                	<p class="t2s"><span class="tc2stex">请选择店铺类型</span><span class="tc2sel"></span></p>
-                    <div class="t2sall">
-                    	<p>123</p>
-                    	<p>456</p>
-                    	<p>789</p>
-                    	<p>sas</p>
-                    	<p>cxz</p>
-                    </div>
-                </div>
-                <p><input type="text" value="店铺名称" /></p>
-                <p><input type="text" value="店铺链接" /></p>
-                <p><input type="text" value="店铺链接地址" /></p>
-                <p><span>hfhfhfhfhfh</span></p>
-                <div class="tjtp"><img src="../content/static/images/tj.png" /><a href="#">添加图片信息</a></div>
-                <div class="bott"><a href="http://yc-e.net/zazatao_eyu/perscent.html">СОХРАНИТЬ</a></div>
-            </div>  
-            </div>
-        <div class="perbaspft">
-        	<div class="jdt"><div class="jdtc"></div><p class="bfb">33%</p></div>
-            <p class="udli"><a href="perscent_set.html">设置简介</a></p>
-            <p>您的资料已经填满100%</p>
-            <p><a class="onck2" href="#">我的展示窗</a></p></p>
-        </div>
-    	<!-----切换表格-------->
-        <div class="perbastab">
-        	<ul>
-        	  <li><a href="perscent_ord.html">我的账户</a></li>
-        	  <li><a href="./myorder">我的订单</a></li>
-        	  <li><a href="perscent_account.html">我的账单</a></li>
-        	  <li><a href="perscent_dreams.html">我喜欢的产品</a></li>
-        	  <li><a href="perscent_sup.html">引起支持呼吁</a></li>
-        	  <li class="pbeabclk"><a href="perscent_set.html">设置简介</a></li>
-        	  <li class="mr_n"><a href="perscent_size.html">我的尺寸</a></li>
-        	</ul>
-        </div>
-        <div class="cl"></div>
-    </div>
-  
-<form action="./editUser?id=${user.id}" id="form" name="form" method="post">
-	<!---------------   详细   ------------->
-    <div class="sets">
+	<jsp:include page="userTop.jsp"></jsp:include>
 
-    	<div class="settil">
-        	<h3>账户</h3>
-                <ul>
-                  <li class="setonc">个人资料</li>
-                  <li>地址簿</li>
-                  <li>更改密码</li>
-                  <li>公告  </li>
-                  <li>网站设置 </li>
-                  <li>邀请你的朋友和我们一起赚钱</li>
-                </ul>
-        </div>
-    	<div class="setcan"  style="display:block">
-        	<h3>我的信息</h3>
-            <p> 更新您的个人信息和发照片到您的个人资料</p>
-            <div>
-        	
-              <div class="seacale">
-              	<p class="seacaleimg"><img src="../content/static/images/users.jpg"/></p>
-              	<p><a href="#">上传照片</a></p>
-              </div>
-         
-              <div class="seacare seacarefa">
-              	<ul>
-              	  <li>
-              	    <p class="seacaretil">名字:</p>
-              	    <p>${user.userName}</p>
-              	  </li>
-              	  <li>
-              	    <p class="seacaretil">姓名:</p>
-              	    <p>${user.userName}</p>
-              	  </li>
-              	  <li>
-              	    <p class="seacaretil">邮件:</p>
-              	    <p>${user.email}</p>
-              	  </li>
-              	  <li>
-              	    <p class="seacaretil">性别:</p>
-              	    <p>${user.sex}</p>
-              	  </li>
-              	  <li>
-              	    <p class="seacaretil">生日:</p>
-              	    <p>${user.birthday}</p>
-              	  </li>
-              	  <li>
-              	    <p class="seacaretil">默认地址:</p>
-              	    <p></p>
-              	  </li>
-              	  <li>
-              	    <p class="seacaretil">电话</p>
-              	    <p>${user.phone}</p>
-              	  </li>
-              	</ul>
-                <p class="secaclk"><label><span><input name="" type="checkbox" value="" /></span>我想订阅电子报刊ZAZATAO,COM及时获取促销活动信息 </label></p>
-                <p class="secaclk">您的个人数据将被用来改进ZAZATAO.COM，加快结算订单，以及给您带来部分限制使用的机会，提供您的信息给ZAZATAO会提高整体服务水平，ZAZATAO一定会保护您的数据</p>
-              </div>
-           
-              <div class="seacare seacareno">
-              	<ul>
-              	  <li>
-              	    <p class="seacaretil">名字:</p>
-              	    <p><input name="userName" id="userName" value="${user.userName}" type="text" /></p>
-              	  </li>
-              	  <li>
-              	    <p class="seacaretil">姓名:</p>
-              	    <p><input name="userName" id="userName" value="${user.userName}" type="text" /></p>
-              	  </li>
-              	  <li>
-              	    <p class="seacaretil">邮件:</p>
-              	    <p><input name="email" id="email" value="${user.email}" type="text" /></p>
-              	  </li>
-              	  <li>
-              	    <p class="seacaretil">性别:</p>
-              	    <p><input name="sex" id="sex" value="${user.sex}" type="text" /></p>
-              	  </li>
-              	  <li>
-              	    <p class="seacaretil">生日:</p>
-              	    <p><input name="birthday" id="birthday" value="${user.birthday}" type="text" /></p>
-              	  </li>
-              	  <li>
-              	    <p class="seacaretil">默认地址:</p>
-              	    <p><input name="addresses" id="addresses" value="" type="text" /></p>
-              	  </li>
-              	  <li>
-              	    <p class="seacaretil">电话</p>
-              	    <p><input name="phone" id="phone" value="${user.phone}" type="text" /></p>
-              	  </li>
-              	</ul>
-                <p class="secaclk"><label><span><input name="" type="checkbox" value="" /></span>我想订阅电子报刊ZAZATAO,COM及时获取促销活动信息 </label></p>
-                <p class="secaclk">您的个人数据将被用来改进ZAZATAO.COM，加快结算订单，以及给您带来部分限制使用的机会，提供您的信息给ZAZATAO会提高整体服务水平，ZAZATAO一定会保护您的数据</p>
-              </div>
-          
+		<form action="./editUser?id=${user.id}" id="form" name="form"
+			method="post">
+			<!---------------   详细   ------------->
+			<div class="sets">
 
-            </div>
-            <div class="cl"></div>
-            <p class="setcanbon setcanbonfs"><a href="#" onclick="submit();">更改</a></p>
-            <script>
+				<div class="settil">
+					<h3>账户</h3>
+					<ul>
+						<li class="setonc">个人资料</li>
+						<li>地址簿</li>
+						<li>更改密码</li>
+						<li>公告</li>
+						<li>网站设置</li>
+						<li>邀请你的朋友和我们一起赚钱</li>
+					</ul>
+				</div>
+				<div class="setcan" style="display: block">
+					<h3>我的信息</h3>
+					<p>更新您的个人信息和发照片到您的个人资料</p>
+					<div>
+
+						<div class="seacale">
+							<p class="seacaleimg">
+								<img src="../content/static/images/users.jpg" />
+							</p>
+							<p>
+								<a href="#">上传照片</a>
+							</p>
+						</div>
+
+						<div class="seacare seacarefa">
+							<ul>
+								<li>
+									<p class="seacaretil">名字:</p>
+									<p>${user.userName}</p>
+								</li>
+								<li>
+									<p class="seacaretil">姓名:</p>
+									<p>${user.userName}</p>
+								</li>
+								<li>
+									<p class="seacaretil">邮件:</p>
+									<p>${user.email}</p>
+								</li>
+								<li>
+									<p class="seacaretil">性别:</p>
+									<p>${user.sex}</p>
+								</li>
+								<li>
+									<p class="seacaretil">生日:</p>
+									<p>${user.birthday}</p>
+								</li>
+								<li>
+									<p class="seacaretil">默认地址:</p>
+									<p></p>
+								</li>
+								<li>
+									<p class="seacaretil">电话</p>
+									<p>${user.phone}</p>
+								</li>
+							</ul>
+							<p class="secaclk">
+								<label><span><input name="" type="checkbox"
+										value="" /></span>我想订阅电子报刊ZAZATAO,COM及时获取促销活动信息 </label>
+							</p>
+							<p class="secaclk">您的个人数据将被用来改进ZAZATAO.COM，加快结算订单，以及给您带来部分限制使用的机会，提供您的信息给ZAZATAO会提高整体服务水平，ZAZATAO一定会保护您的数据</p>
+						</div>
+
+						<div class="seacare seacareno">
+							<ul>
+								<li>
+									<p class="seacaretil">名字:</p>
+									<p>
+										<input name="userName" id="userName" value="${user.userName}"
+											type="text" />
+									</p>
+								</li>
+								<li>
+									<p class="seacaretil">姓名:</p>
+									<p>
+										<input name="userName" id="userName" value="${user.userName}"
+											type="text" />
+									</p>
+								</li>
+								<li>
+									<p class="seacaretil">邮件:</p>
+									<p>
+										<input name="email" id="email" value="${user.email}"
+											type="text" />
+									</p>
+								</li>
+								<li>
+									<p class="seacaretil">性别:</p>
+									<p>
+										<input name="sex" id="sex" value="${user.sex}" type="text" />
+									</p>
+								</li>
+								<li>
+									<p class="seacaretil">生日:</p>
+									<p>
+										<input name="birthday" id="birthday" value="${user.birthday}"
+											type="text" />
+									</p>
+								</li>
+								<li>
+									<p class="seacaretil">默认地址:</p>
+									<p>
+										<input name="addresses" id="addresses" value="" type="text" />
+									</p>
+								</li>
+								<li>
+									<p class="seacaretil">电话</p>
+									<p>
+										<input name="phone" id="phone" value="${user.phone}"
+											type="text" />
+									</p>
+								</li>
+							</ul>
+							<p class="secaclk">
+								<label><span><input name="" type="checkbox"
+										value="" /></span>我想订阅电子报刊ZAZATAO,COM及时获取促销活动信息 </label>
+							</p>
+							<p class="secaclk">您的个人数据将被用来改进ZAZATAO.COM，加快结算订单，以及给您带来部分限制使用的机会，提供您的信息给ZAZATAO会提高整体服务水平，ZAZATAO一定会保护您的数据</p>
+						</div>
+
+
+					</div>
+					<div class="cl"></div>
+					<p class="setcanbon setcanbonfs">
+						<a href="#" onclick="submit();">更改</a>
+					</p>
+					<script>
             var isok = false;
             var is = false;
             	$(function(){
@@ -263,7 +213,7 @@
 								$(".setaddalls").hide();
 								isok = false;
 							});
-					})
+					});
 						 function submit(){
             				if (isok) {
             		 		form.submit();
@@ -521,96 +471,148 @@
 							});
 					})
             </script>
-            <div class="tcall">
-            <div class="tcbg"></div>
-            <div class="tc">
-            	<h1>3arpy3ak 3arpy3ak<span class="tcnoe">x</span></h1>
-                <p>aaaa<br /><input type="text" />@<span class="emaladd">gmail.com</span></p>
-                <p>aaaa<br /><input type="text" /></p>
-                <p><a>3arpy3ak</a></p>
-            </div>
-            </div>
-        	<div class="set_left">
-            	<h1><img src="../content/static/images/brand/xf.jpg" />通过电子邮件邀请</h1>
-                <p>邀请朋友以自己的名义给他们发邮件，还可以在“收件人”以ZAZATAO邮件的名义发送您的信息，在发送多邮件地址的时候，以逗号隔开便可 </p>
-           	<ul>
-            	<li><span>来自谁:</span><input type="text" value="Maikl Maikl" /></li>
-                <li><span>给谁:</span><textarea></textarea>
-                	<div class="emalonc">
-                	发送邀请
-                    <img src="../content/static/images/brand/an_1.jpg" eml="gmail.com"  />
-                    <img src="../content/static/images/brand/an_2.jpg" eml="rhekc.com" />
-                    <img src="../content/static/images/brand/an_3.jpg" eml="mall.ru" />
-                    <img src="../content/static/images/brand/an_4.jpg" eml="pamnep.com" />
-                   </div>	
-                </li>
-                <li><span>联系:</span><textarea></textarea></li>
-                <li style="text-align:right;"><a href="#">发送邀请</a></li>
-            </ul>
-            </div>
-            <div class="set_right">
-            	<h1><img src="../content/static/images/brand/an_5.png" />邀请和我们一起赚钱</h1>
-                <p>你有很多的朋友在社交网络，这是一个好机会，邀请他们加入</p>
-                <p><a href="#"><img src="../content/static/images/brand/an_6.png" width="115" height="40" /></a>
-                <a href="#"><img src="../content/static/images/brand/an_7.png"  width="115" height="40"/></a></p>
-                <p><a href="#"><img src="../content/static/images/brand/an_8.png" /></a>
-                <a href="#"><img src="../content/static/images/brand/an_9.png" /></a>
-                <a href="#"><img src="../content/static/images/brand/an_10.png" /></a></p>
-                <p> 为了适应邀请，按社交网络的风格放置图片</p>
-            </div>
-            
-            <div class="set_cent_1">
-            	<h1><img src="../content/static/images/brand/an_11.png" />发送邀请</h1>
-                <p style="border:1px solid #d0d0d0; text-align:center; margin-top:45px;">http:www.zazatao.com</p>
-                <p style="margin:30px 0 0 50px;">您可以复制链接并粘贴在论坛上，或者用SKYPE等等 </p>
-            </div>
-            <div class="set_cent_1">
-            	<h1><img src="../content/static/images/brand/an_12.png" />请发送一个代码来邀请朋友</h1>
-                <p style="margin:30px 0 0 150px; width:550px;">这将成为唯一的代码，当您购买任何商品时都可以使用。这个唯一代码会放在收到货的印刷单据上 <a href="#">ПРИМЕР</a></p>
-            </div>
-            
-            <div class="set_cent_1 set_cent_2">
-            	<h1>完整的规则</h1><span class="h01"><a href="#">所有受邀</a></span><span class="h02"><a href="#">前往购物</a></span>
-            </div>
-            
-            <div class="set_cent_1 set_cent_3">
-            	<ul>
-                	<li class="li_tit1"><img src="../content/static/images/brand/an_14.png" />邀请好友</li>
-                    <li class="li_tit2"><img src="../content/static/images/brand/an15.png" />历史记录</li>
-                </ul>
-                <div class="jifen">
-                	您的积分:
-                </div>
-         		<table>
-                	<tr><td width="195" height="37">何时</td><td width="197">给谁</td><td width="197">状态</td><td width="203">发展</td></tr>
-                </table>
-            </div>
-            
-            <div class="set_cent_1 set_cent_4">
-            	<h1>邀请朋友<span>进入ZAZATAO看如何更改图标</span></h1>
-                <dl>
-            	<dt><img src="../content/static/images/brand/pe_1.png" /></dt>
-                <dd>您发出的邀请会有显示</dd>
-                </dl>
-                <dl>
-                    <dt><img src="../content/static/images/brand/pe_2.png" /></dt>
-                    <dd>邀请被接收时小人会变成白色</dd>
-                </dl>
-                <dl>
-                    <dt><img src="../content/static/images/brand/pe_3.png" /></dt>
-                    <dd>在每次购买的时候会变成蓝色</dd>
-                </dl>
-            </div>
-             <div class="set_cent_1 set_cent_5">
-                <h1><img src="../content/static/images/brand/an_12.png" />订购卡给朋友<input type="text" value="" /></h1>
-                <img class="img1" src="../content/static/images/brand/an16.jpg" width="420" height="170" />
-                <img class="img2" src="../content/static/images/brand/an17.jpg" width="440" height="358" />
-            </div>
-        </div>
-      <div class="cl"></div>
-    </div>
-   </form> 
-  </div>
- <jsp:include page="../common/foot.jsp"></jsp:include>
+					<div class="tcall">
+						<div class="tcbg"></div>
+						<div class="tc">
+							<h1>
+								3arpy3ak 3arpy3ak<span class="tcnoe">x</span>
+							</h1>
+							<p>
+								aaaa<br />
+								<input type="text" />@<span class="emaladd">gmail.com</span>
+							</p>
+							<p>
+								aaaa<br />
+								<input type="text" />
+							</p>
+							<p>
+								<a>3arpy3ak</a>
+							</p>
+						</div>
+					</div>
+					<div class="set_left">
+						<h1>
+							<img src="../content/static/images/brand/xf.jpg" />通过电子邮件邀请
+						</h1>
+						<p>邀请朋友以自己的名义给他们发邮件，还可以在“收件人”以ZAZATAO邮件的名义发送您的信息，在发送多邮件地址的时候，以逗号隔开便可
+						</p>
+						<ul>
+							<li><span>来自谁:</span><input type="text" value="Maikl Maikl" /></li>
+							<li><span>给谁:</span>
+							<textarea></textarea>
+								<div class="emalonc">
+									发送邀请 <img src="../content/static/images/brand/an_1.jpg"
+										eml="gmail.com" /> <img
+										src="../content/static/images/brand/an_2.jpg" eml="rhekc.com" />
+									<img src="../content/static/images/brand/an_3.jpg"
+										eml="mall.ru" /> <img
+										src="../content/static/images/brand/an_4.jpg" eml="pamnep.com" />
+								</div></li>
+							<li><span>联系:</span>
+							<textarea></textarea></li>
+							<li style="text-align: right;"><a href="#">发送邀请</a></li>
+						</ul>
+					</div>
+					<div class="set_right">
+						<h1>
+							<img src="../content/static/images/brand/an_5.png" />邀请和我们一起赚钱
+						</h1>
+						<p>你有很多的朋友在社交网络，这是一个好机会，邀请他们加入</p>
+						<p>
+							<a href="#"><img
+								src="../content/static/images/brand/an_6.png" width="115"
+								height="40" /></a> <a href="#"><img
+								src="../content/static/images/brand/an_7.png" width="115"
+								height="40" /></a>
+						</p>
+						<p>
+							<a href="#"><img
+								src="../content/static/images/brand/an_8.png" /></a> <a href="#"><img
+								src="../content/static/images/brand/an_9.png" /></a> <a href="#"><img
+								src="../content/static/images/brand/an_10.png" /></a>
+						</p>
+						<p>为了适应邀请，按社交网络的风格放置图片</p>
+					</div>
+
+					<div class="set_cent_1">
+						<h1>
+							<img src="../content/static/images/brand/an_11.png" />发送邀请
+						</h1>
+						<p
+							style="border: 1px solid #d0d0d0; text-align: center; margin-top: 45px;">http:www.zazatao.com</p>
+						<p style="margin: 30px 0 0 50px;">您可以复制链接并粘贴在论坛上，或者用SKYPE等等</p>
+					</div>
+					<div class="set_cent_1">
+						<h1>
+							<img src="../content/static/images/brand/an_12.png" />请发送一个代码来邀请朋友
+						</h1>
+						<p style="margin: 30px 0 0 150px; width: 550px;">
+							这将成为唯一的代码，当您购买任何商品时都可以使用。这个唯一代码会放在收到货的印刷单据上 <a href="#">ПРИМЕР</a>
+						</p>
+					</div>
+
+					<div class="set_cent_1 set_cent_2">
+						<h1>完整的规则</h1>
+						<span class="h01"><a href="#">所有受邀</a></span><span class="h02"><a
+							href="#">前往购物</a></span>
+					</div>
+
+					<div class="set_cent_1 set_cent_3">
+						<ul>
+							<li class="li_tit1"><img
+								src="../content/static/images/brand/an_14.png" />邀请好友</li>
+							<li class="li_tit2"><img
+								src="../content/static/images/brand/an15.png" />历史记录</li>
+						</ul>
+						<div class="jifen">您的积分:</div>
+						<table>
+							<tr>
+								<td width="195" height="37">何时</td>
+								<td width="197">给谁</td>
+								<td width="197">状态</td>
+								<td width="203">发展</td>
+							</tr>
+						</table>
+					</div>
+
+					<div class="set_cent_1 set_cent_4">
+						<h1>
+							邀请朋友<span>进入ZAZATAO看如何更改图标</span>
+						</h1>
+						<dl>
+							<dt>
+								<img src="../content/static/images/brand/pe_1.png" />
+							</dt>
+							<dd>您发出的邀请会有显示</dd>
+						</dl>
+						<dl>
+							<dt>
+								<img src="../content/static/images/brand/pe_2.png" />
+							</dt>
+							<dd>邀请被接收时小人会变成白色</dd>
+						</dl>
+						<dl>
+							<dt>
+								<img src="../content/static/images/brand/pe_3.png" />
+							</dt>
+							<dd>在每次购买的时候会变成蓝色</dd>
+						</dl>
+					</div>
+					<div class="set_cent_1 set_cent_5">
+						<h1>
+							<img src="../content/static/images/brand/an_12.png" />订购卡给朋友<input
+								type="text" value="" />
+						</h1>
+						<img class="img1" src="../content/static/images/brand/an16.jpg"
+							width="420" height="170" /> <img class="img2"
+							src="../content/static/images/brand/an17.jpg" width="440"
+							height="358" />
+					</div>
+				</div>
+				<div class="cl"></div>
+			</div>
+		</form>
+	</div>
+	<jsp:include page="../common/foot.jsp"></jsp:include>
 </body>
 </html>

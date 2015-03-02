@@ -95,7 +95,7 @@
 					<p>
 						卖家:${shopCommoidty.belongTo.shopName }
 						<c:if test="${user != null && user.shop.isPermit == true }">
-							<span>添加</span>
+							<span onclick="addSupplier();">添加</span>
 						</c:if>
 					</p>
 					<p>
@@ -105,6 +105,22 @@
 				<!-----------lb_pic over-------------->
 				<!-------        放大镜ja        ----------->
 				<script type="text/javascript">
+					function addSupplier(){
+						jQuery.ajax({
+							type : 'GET',
+							contentType : 'application/json',
+							url : '../proscenium/addSupplier?commID=${shopCommoidty.commCode }&category=${shopCommoidty.shopCategory.categoryID }&shopID=${shopCommoidty.belongTo.id }&commoName=${shopCommoidty.commoidtyName }',
+							dataType : 'json',
+							success : function(data) {
+								if(data.success == 'true'){
+									alert('已将该商品加入到您的商铺中！！！');
+								}
+								if(data.success == 'false'){
+									alert('对不起,添加失败！！或该商品已加入到您的商铺中！！！');
+								}
+							}
+						});
+					}
 					$(document).ready(
 							function() {
 								$(".jqzoom").imagezoom();

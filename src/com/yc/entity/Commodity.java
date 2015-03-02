@@ -32,10 +32,6 @@ public class Commodity {
 	@Column
 	private String tpek; // 卖家条形码
 	@Column
-	private String color;// 颜色
-	@Column
-	private String size;// 尺码
-	@Column
 	private Integer quantity;// 数量
 	@Column
 	private Float weight;// 重量
@@ -162,22 +158,6 @@ public class Commodity {
 
 	public void setImagePaths(List<ImagePath> imagePaths) {
 		this.imagePaths = imagePaths;
-	}
-
-	public String getColor() {
-		return color;
-	}
-
-	public void setColor(String color) {
-		this.color = color;
-	}
-
-	public String getSize() {
-		return size;
-	}
-
-	public void setSize(String size) {
-		this.size = size;
 	}
 
 	public Integer getQuantity() {
