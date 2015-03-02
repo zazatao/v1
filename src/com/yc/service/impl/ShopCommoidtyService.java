@@ -41,7 +41,7 @@ public class ShopCommoidtyService extends GenericService<ShopCommoidty> implemen
 
 	@Override
 	public List<ShopCommoidty> getAllByShopCategoryID(Integer id,String page) {
-		StringBuffer hql = new StringBuffer("select shc.* from ShopCommoidty shc where shc.shelves = 1 and shopCategory_id = "+id);
+		StringBuffer hql = new StringBuffer("select shc.* from ShopCommoidty shc where shc.shelves = 1 and shc.shop_id is not null and shopCategory_id = "+id);
 		if (page.equals("brand")) {
 			hql.append(" and shc.brand_id is not null");
 		}
@@ -56,7 +56,7 @@ public class ShopCommoidtyService extends GenericService<ShopCommoidty> implemen
 	//Integer id, String brand, String specs, String money
 	@Override
 	public List<ShopCommoidty> getAllByParams(Map<String, Object> map,String page ) {
-		StringBuffer hql = new StringBuffer("select shc.* from ShopCommoidty shc where shc.shelves = 1");
+		StringBuffer hql = new StringBuffer("select shc.* from ShopCommoidty shc where shc.shop_id is not null and shc.shelves = 1 ");
 		if (page.equals("special")) {
 			hql.append(" and shc.isSpecial = 1");
 		}

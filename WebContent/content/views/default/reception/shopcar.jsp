@@ -40,7 +40,7 @@
 					<li><a href="shopcardelv"><img
 							src="../content/static/images/brand/shcanum_2.png" />交付</a></li>
 					<li><img src="../content/static/images/brand/shcatoplis.png" /></li>
-					<li><a href="shopcarpro.html"><img
+					<li><a href="#" ><img
 							src="../content/static/images/brand/shcanum_3.png" />付款</a></li>
 					<li><img src="../content/static/images/brand/shcatoplis.png" /></li>
 					<li><a href="#"><img

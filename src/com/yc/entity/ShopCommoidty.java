@@ -53,6 +53,9 @@ public class ShopCommoidty {
 	private Float  special  = 1f;//打几折
 	
 	@Column
+	private String currency;//币种
+	
+	@Column
 	private  Boolean iscChoice = false;//是否精品
 	
 	@Column
@@ -73,6 +76,14 @@ public class ShopCommoidty {
 	@OneToMany(mappedBy = "shopCommoidty")
 	private List<ShopCommImage> shopCommImages;//商品照片
 	
+	public String getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+
 	public Boolean getAuction() {
 		return auction;
 	}

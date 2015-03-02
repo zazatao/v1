@@ -28,11 +28,33 @@ public class BuyCat {
 	private ShopCommoidty shopCommoidty;
 	
 	@Column
+	private String deliveryComm;
+	
+	@Column
+	private Float deliveryMoney;
+	
+	@Column
 	private Integer buyAmount;
 	
 	@Column
 	private String specs;
 	
+	public String getDeliveryComm() {
+		return deliveryComm;
+	}
+
+	public void setDeliveryComm(String deliveryComm) {
+		this.deliveryComm = deliveryComm;
+	}
+
+	public Float getDeliveryMoney() {
+		return deliveryMoney;
+	}
+
+	public void setDeliveryMoney(Float deliveryMoney) {
+		this.deliveryMoney = deliveryMoney;
+	}
+
 	public String getSpecs() {
 		return specs;
 	}

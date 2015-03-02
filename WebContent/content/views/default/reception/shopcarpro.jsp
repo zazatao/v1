@@ -66,7 +66,7 @@
 					<li><a href="shopcardelv"><img
 							src="../content/static/images/brand/shcanum_2.png" />交付</a></li>
 					<li><img src="../content/static/images/brand/shcatoplis.png" /></li>
-					<li><a href="#" onclick="focusTT();"><img
+					<li><a href="#"><img
 							src="../content/static/images/brand/shcanum_3.png" />付款</a></li>
 					<li><img src="../content/static/images/brand/shcatoplis.png" /></li>
 					<li><a href="#"><img
@@ -137,7 +137,8 @@
 												</div>
 											</div>
 										</dd>
-										<dd><fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount }" type="currency" pattern="#,###.00#"/>
+										<dd>
+										<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount }" type="currency" pattern="#,###.00#"/>
 										</dd>
 										<c:set var="sum" value="${sum + shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount}"></c:set>
 									</dl>
@@ -151,124 +152,73 @@
 								<li>订单总额 <span><fmt:formatNumber value="${sum }" type="currency" pattern="#,###.00#"/></span></li>
 								<li>额外包装</li>
 								<li>礼品包装“自己手工”<span></span></li>
+								<li>运输方式</li>
+                    	  		<li>${deliveryComm }<span><fmt:formatNumber value="${deliveryMoney }" type="currency" pattern="#,###.00#"/></span></li>
 							</ul>
 							<p class="shcabra">
-								总金额<span><fmt:formatNumber value="${sum }" type="currency" pattern="#,###.00#"/></span>
+								总金额<span><fmt:formatNumber value="${sum +deliveryMoney }" type="currency" pattern="#,###.00#"/></span>
 							</p>
 
 						</div>
 						<p class="shcabrb">
 							<a href="#">隐藏商品</a>
 						</p>
-					</div>
-
-					<h3 class="shopcarles">
-						<img src="../content/static/images/brand/shcanumc_2.png" width="18" height="18" />输入送货地址
-					</h3>
-				</div>
-				<div class="shopcartabt2">
-					<div class="shcaadd">
-						<p class="shcaadds">
-							<select name="" id="addressChange">
-								<option value="-1" selected="selected">-----选择收件人----</option>
-								<c:forEach items="${addresses }" var="address">
-									<option value="${address.id }" <c:if test="${address.theDefault == true }">selected</c:if>>${address.toName }</option>
-								</c:forEach>
-							</select> 
-							<a href="#" onclick="popupwindow('../user/toNewAddress');"><font color="blue">使用新地址</font></a>
+						 <div class="shcabrbsk">
+                    	<p class="shcabrbsko"><font style="font-size: 14px;">订单将被送往指定地址:</font> </p>
+                    	<p class="shcaadds" id="addressShow">
+						<font style='font-size: 18px; color: blue;'>${address.toName}&nbsp;&nbsp;</font><font style='font-size: 18px;'>(收)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话：&nbsp;&nbsp;${address.phone }</font><br><br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style='font-size: 18px;'>${address.country}&nbsp;${address.provience}&nbsp;${address.city}&nbsp;</font><br><br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style='font-size: 18px;'>${address.district}&nbsp;${address.street}&nbsp;${address.orther}&nbsp;</font><br><br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style='font-size: 18px;'>转交地址：&nbsp;&nbsp;${address.handedAddress}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email:&nbsp;&nbsp;${address.toEmail}</font><br><br>
+							
 						</p>
-						<p class="shcaadds" id="addressShow">
-						</p>
-						<div class="cl"></div>
-						<div class="shcaaddselink"></div>
+                    	<p class="shcabrbsks" onclick="popupwindow('../user/toNewAddress');"><font color="blue">更改</font></p>
+                    	<p class="shcabrbskf"><input name="" type="text" value="有没有优惠券？输入代码"  onfocus="this.value=''" onblur="if(this.value==''){this.value='有没有优惠券？输入代码';}"/> <a href="#">ok</a></p>
+                        <div class="cl"></div>
+                    </div>
 					</div>
 				</div>
-				<script type="text/javascript">
-					$(document).ready(function(){
-						var code = $("#addressChange").find("option:selected").val();
-						$option = "";
-						<c:forEach items="${addresses }" var="address">
-							if('${address.id}' == code){
-								$option = $option +"&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<font style='font-size: 18px; color: blue;'>${address.toName}&nbsp;&nbsp;</font><font style='font-size: 18px;'>(收)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话：&nbsp;&nbsp;${address.phone }</font><br><br>";
-								$option = $option +"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style='font-size: 18px;'>${address.country}&nbsp;${address.provience}&nbsp;${address.city}&nbsp;</font><br><br>";
-								$option = $option +"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style='font-size: 18px;'>${address.district}&nbsp;${address.street}&nbsp;${address.orther}&nbsp;</font><br><br>";
-								$option = $option +"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style='font-size: 18px;'>转交地址：&nbsp;&nbsp;${address.handedAddress}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email:&nbsp;&nbsp;${address.toEmail}</font><br><br>";
-							}
-						</c:forEach>
-						$('#addressShow').append($option);
-					});
-					$("#addressChange").change(function(){
-						  var code = $(this).val();
-						  $('#addressShow').html("");
-							$option = "";
-							<c:forEach items="${addresses }" var="address">
-							if('${address.id}' == code){
-								$option = $option +"&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<font style='font-size: 18px; color: blue;'>${address.toName}&nbsp;&nbsp;</font><font style='font-size: 18px;'>(收)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话：&nbsp;&nbsp;${address.phone }</font><br><br>";
-								$option = $option +"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style='font-size: 18px;'>${address.country}&nbsp;${address.provience}&nbsp;${address.city}&nbsp;</font><br><br>";
-								$option = $option +"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style='font-size: 18px;'>${address.district}&nbsp;${address.street}&nbsp;${address.orther}&nbsp;</font><br><br>";
-								$option = $option +"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style='font-size: 18px;'>转交地址：&nbsp;&nbsp;${address.handedAddress}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email:&nbsp;&nbsp;${address.toEmail}</font><br><br>";
-							}
-						</c:forEach>
-							$('#addressShow').append($option);
-					});
-				</script>
-				<div class="shopcartabtb">
-					<h3 class="shopcarles">
-						<img src="../content/static/images/brand/shcanumc_3.png" width="18" height="18" />选择送货方式
-						<span>价格</span>
-					</h3>
-					<div class="shopcartabca">
-						<img src="../content/static/images/brand/shopcartabca.jpg" width="220" height="221" />
-					</div>
-					<div class="shopcartabt3">
-						<div class="shcacho">
-							<ul>
-								<li>
-									<p class="shcachos">
-										<span><label><input name="deliveryComm" type="radio"
-												value="EMS" checked="checked"/>邮政 <b>EMS</b></label></span><span class="shcachostim">周期：2-3周</span>
-									</p>
-									<p class="shcachom">
-										<span></span><span>EUR230.00</span>
-										<input type="hidden" name="deliveryMoney" id="deliveryMoney" value="230.00">
-										
-									</p>
-								</li>
-							</ul>
-						</div>
-					</div>
-<!-- 					<p class="shcachomcr"> -->
-<!-- 						<span><b>保险</b></span> <span class="shcachomcrock">为什么需要保险？ -->
-<!-- 						</span> <span><label><input name="" type="checkbox" -->
-<!-- 								value="" /><b>保证我的订单</b></label></span> <span class="shcachomany">£ -->
-<!-- 							230.00</span> -->
-<!-- 					</p> -->
-					<div class="shcks">
-						<div class="shcrocbg"></div>
-						<div class="shcrockal">
-							<div class="shcrockno">X</div>
-							<div class="shcrockre"></div>
-						</div>
-					</div>
-					<div class="cl"></div>
-				</div>
+            	<div class="shcabrblse">
+                	<ul>
+                	  <li>fdsauief32</li>
+                	  <li>fdsauief32</li>
+                	  <li>fdsauief32</li>
+                	  <li>fdsauief32</li>
+                	  <li>fdsauief32</li>
+                	  <li>fdsauief32</li>
+                	  <li>fdsauief32</li>
+                	  <li>fdsauief32</li>
+                	</ul>
+                </div>
+            	<div class="shcabrbbank">
+                	<div class="shcabrbk">
+                	  <div class="shcabrbklo"><img src="../content/static/images/brand/srbbank_01.png"/></div>
+                	  <div class="shcabrbkse"><label><input name="back" type="radio" value="" />fdvcxzuiotr230,revnmcxz890r23vdaf</label></div>
+                	  <div class="shcabrbkbc">
+                      	<p class="shcabrbkbct">yubncvz uyewiq ndska ure njkdsa hfuyiq bfjdsa ruiowe nbk huwif qhfew hr hu32r rh4 hu3 h43 r4 43 h734 t439 hfue918 fbhuqo fgby8eoq fh38y1 fhy832</p>
+                      	<p class="shcabrbkbcb"><a href="#">оплатить</a></p>
+                      </div>
+                	</div>
+                	<div class="shcabrbk">
+                	  <div class="shcabrbklo"><img src="../content/static/images/brand/srbbank_02.png"/></div>
+                	  <div class="shcabrbkse"><label><input name="back" type="radio" value="" />fdvcxzuiotr230,revnmcxz890r23vdaf</label></div>
+                	  <div class="shcabrbkbc">
+                      	<p class="shcabrbkbct">yubncvz uyewiq ndska ure njkdsa hfuyiq bfjdsa ruiowe nbk huwif qhfew hr hu32r rh4 hu3 h43 r4 43 h734 t439 hfue918 fbhuqo fgby8eoq fh38y1 fhy832</p>
+                      	<p class="shcabrbkbcb"><a href="#">оплатить</a></p>
+                      </div>
+                	</div>
+                	<div class="shcabrbk">
+                	  <div class="shcabrbklo"><img src="../content/static/images/brand/srbbank_03.png"/></div>
+                	  <div class="shcabrbkse"><label><input name="back" type="radio" value="" />fdvcxzuiotr230,revnmcxz890r23vdaf</label></div>
+                	  <div class="shcabrbkbc">
+                      	<p class="shcabrbkbct">yubncvz uyewiq ndska ure njkdsa hfuyiq bfjdsa ruiowe nbk huwif qhfew hr hu32r rh4 hu3 h43 r4 43 h734 t439 hfue918 fbhuqo fgby8eoq fh38y1 fhy832</p>
+                      	<p class="shcabrbkbcb"><a href="#">оплатить</a></p>
+                      </div>
+                	</div>
+                    <div class="shcabrlinksd"></div>
+                </div>
+                <div class="cl"></div>
 			</div>
-			<div class="shopcarbtns">
-				<p>
-					总金额 <span class="gray"><b><font style="color: red;font-size: 20px;"><fmt:formatNumber value="${sum+230 }" type="currency" pattern="#,###.00#"/></font></b></span>
-				</p>
-				<p>
-					<a href="#" onclick="focusTT();" class="scbtonc">继续购物>></a>
-				</p>
-			</div>
-			<script type="text/javascript">
-				function focusTT(){
-					var addID = $("#addressChange").find("option:selected").val();
-					var deliveryComm = $("input[name='deliveryComm'][checked]").val();
-					var deliveryMoney = $("#deliveryMoney").val();
-					location.href ="../proscenium/shopcarpro?addID="+addID+"&deliveryComm="+deliveryComm+"&deliveryMoney="+deliveryMoney;
-				}
-			</script>
 			<div class="shopcarlesimgs">
 				<p class="scligb">
 					<a href="#">推荐商品</a>
