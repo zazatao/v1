@@ -130,10 +130,10 @@
 									<c:if test="${shopCategory.level == 1 && (shopCategory.category == '电子产品') }">
 											<div>
 												<c:forEach items="${shopCategory.children }" var="shopCategory2">
-													<c:if test="${shopCategory2.level == 2}">
+													<c:if test="${shopCategory2.level == 2 }">
 														<div class="nav-column"><ul>
 															<c:forEach  items="${shopCategory2.children }" var="shopCategory3">
-																<c:if test="${shopCategory3.level == 3}">
+																<c:if test="${shopCategory3.level == 3 }">
 																	<li><a href='./proscenium/shopCommItem?id=${shopCategory3.categoryID }&page=page'>${shopCategory3.category }</a></li>
 																</c:if>
 															</c:forEach>
