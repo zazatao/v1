@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yc.entity.OrderForm;
 import com.yc.entity.Shop;
 import com.yc.entity.ShopCategory;
-import com.yc.entity.ShopCommoidty;
 import com.yc.entity.user.User;
 import com.yc.service.IAddressService;
 import com.yc.service.IBrandService;
@@ -71,7 +71,7 @@ public class ShopThreeController {
 
 	@Autowired
 	IImagePathService imagePathService;
-
+	
 	//后台交易管理
 	@RequestMapping(value = "shopTransaction", method = RequestMethod.GET)
 	public ModelAndView shopTransaction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -83,6 +83,8 @@ public class ShopThreeController {
 			Shop shop = user.getShop();
 			if (shop != null && shop.getIsPermit()) {
 				mode.put("shop", shop);
+				List<OrderForm> orders = formService.getShopOrderByShop(shop);
+				mode.put("list", orders);
 				return new ModelAndView("reception/shopTransaction", mode);
 			} else {
 				return new ModelAndView("proscenium/setUpShop",null);

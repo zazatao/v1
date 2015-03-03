@@ -27,7 +27,6 @@ import com.yc.service.IAddressService;
 import com.yc.service.IOrderFormService;
 import com.yc.service.IShopCategoryService;
 import com.yc.service.IUserService;
-import com.yc.service.impl.UserService;
 
 @Controller
 @RequestMapping("/user")

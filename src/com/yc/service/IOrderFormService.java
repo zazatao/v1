@@ -2,6 +2,7 @@ package com.yc.service;
 
 
 import com.yc.entity.OrderForm;
+import com.yc.entity.Shop;
 import com.yc.entity.user.User;
 
 import java.util.List;
@@ -22,4 +23,6 @@ public interface IOrderFormService extends IGenericService<OrderForm>{
 	List<OrderForm> getAllByOrderStatus();
 
 	List<OrderForm> getAllByParams(Map<String, Object> map, User user);
+
+	List<OrderForm> getShopOrderByShop(Shop shop);
 }
