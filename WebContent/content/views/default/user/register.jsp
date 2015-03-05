@@ -54,7 +54,7 @@
 					<form action="./regist" method="post">
 						<ul>
 							<li>选择登录名<span class="red"> *</span><br />
-							<input class="zc_input" type="text" name="loginName" id="name" /></li>
+							<input class="zc_input" type="text" name="loginName" id="loginName" /></li>
 
 							<li>密码 <span class="red"> *</span><br />
 							<input class="zc_input" type="password" name="password"
@@ -64,7 +64,7 @@
 								checked="checked" /><span class="gray">显示密码</span></li>
 
 							<li>确认密码<span class="red"> *</span><br />
-							<input class="zc_input" type="text" name="password" id="password" /></li>
+							<input class="zc_input" type="text" name="password1" id="password" /></li>
 
 							<li>输入电话号码<span class="red"> *</span><br /> <select
 								class="zc_input_2"><option>选择国家</option>
