@@ -1,5 +1,6 @@
 package com.yc.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,9 @@ import org.springframework.stereotype.Component;
 
 import com.yc.dao.orm.commons.GenericDao;
 import com.yc.entity.Commodity;
+import com.yc.entity.CommoidityStatus;
+import com.yc.entity.OrderForm;
+import com.yc.entity.Shop;
 import com.yc.entity.StoreRoom;
 import com.yc.service.ICommodityService;
 
@@ -170,5 +174,17 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 		paramete[16] = map.get("commItem");
 		paramete[17] = map.get("commItem");
 		return paramete;
+	}
+
+	@Override
+	public List<Commodity> getShopCommodityByStatus(CommoidityStatus commoidStatus,CommoidityStatus cancel, CommoidityStatus delete, CommoidityStatus marriage,  Shop shop) {
+		StringBuffer hql = new StringBuffer(" from Commodity c where  c.status = ? or c.status = ? or c.status = ? or c.status = ? and c.seller.id = ?");
+		Object[] paramete = new Object[5];
+		paramete[0] = commoidStatus;
+		paramete[1] = cancel;
+		paramete[2] = delete;
+		paramete[3] = marriage;
+		paramete[4] = shop.getId();
+		return commodityDao.find(hql.toString(), paramete, -1, -1);
 	}
 }

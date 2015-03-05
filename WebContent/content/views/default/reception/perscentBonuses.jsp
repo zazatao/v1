@@ -72,10 +72,10 @@
 					<ul class="ordersall">
 						<li class="ordersli1">订单号码</li>
 						<li class="ordersli2">出发日期</li>
-						<li class="ordersli3">商品价格</li>
 						<li class="ordersli4">卖家</li>
-						<li class="ordersli5">运输费</li>
-						<li class="ordersli6">总额</li>
+						<li class="ordersli3">数量</li>
+						<li class="ordersli5">单价</li>
+						<li class="ordersli6">价格</li>
 						<li class="ordersli7">目前状态</li>
 					</ul>
 				</div>
@@ -84,23 +84,23 @@
 						<div class="ordcontil">
 							<p>${orderForm.orderFormID }</p>
 							<div class="octd">
-								<span class="octdw" style="margin-left: 362px;">${orderForm.deliveryMoney }</span>
+								<span class="octdw" style="margin-left: 362px;">运费：${orderForm.deliveryMoney }</span>
 							</div>
 						</div>
 						<div class="ordconpic">
 							<c:forEach items="${orderForm.commodities }" var="commodity">
 								<ul class="ordersall">
 									<li class="ordersli1"><div class="midl">
-											<img src="..${commodity.imagePaths[0].path }" /><br />${commodity.nameOfGoods }<br />${commodity.quantity }件
+											<img src="..${commodity.imagePaths[0].path }" /><br />${commodity.nameOfGoods }
 										</div></li>
 									<li class="ordersli2"><div class="midl">
 											${orderForm.orderDate }<br /> ${orderForm.orderTime }
 										</div></li>
-									<li class="ordersli3"><div class="midl">${commodity.price }</div></li>
+									<li class="ordersli3"><div class="midl" >${commodity.seller.shopName }</div></li>
 									<li class="ordersli4"><div class="midl">
-											<span class="octdw">${commodity.seller.shopName }</span>
+											<span class="octdw">${commodity.quantity }</span>
 										</div></li>
-									<li class="ordersli5"><div class="midl"></div></li>
+									<li class="ordersli5"><div class="midl">${commodity.price }</div></li>
 									<li class="ordersli6"><div class="midl">${commodity.money }</div></li>
 									<li class="ordersli7"><div class="midl">
 											<c:choose>

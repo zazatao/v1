@@ -18,8 +18,7 @@
 			<p>交易管理</p>
 			<ul>
 				<li><a href="../proscenium/shopTransaction">全部卖出交易</a></li>
-				<li><a href="#">买家退款退货</a></li>
-				<li><a href="#">发货管理</a></li>
+				<li><a href="../proscenium/returnGoods">买家退款退货</a></li>
 				<li><a href="#">结算管理</a></li>
 				<li><a href="../proscenium/shopEvaluation">评价管理</a></li>
 <!-- 				<li><a href="#">交易货款结算<span class="red">(新)</span></a></li> -->
@@ -44,7 +43,7 @@
 <!-- 		</div> -->
 	</div>
 </div>
-       <div class="perterr">
+<div class="perterr">
     	<div>
         	<div class="pertertil">
                 <div>

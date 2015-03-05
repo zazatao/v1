@@ -5,6 +5,7 @@ import com.yc.entity.OrderForm;
 import com.yc.entity.Shop;
 import com.yc.entity.user.User;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -25,4 +26,6 @@ public interface IOrderFormService extends IGenericService<OrderForm>{
 	List<OrderForm> getAllByParams(Map<String, Object> map, User user);
 
 	List<OrderForm> getShopOrderByShop(Shop shop);
+
+	List<OrderForm> getShopOrderByParam(Map<String, Object> map, Shop shop) throws ParseException ;
 }
