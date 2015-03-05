@@ -43,7 +43,7 @@ public class ShopCategoryService extends GenericService<ShopCategory> implements
 	
 	@Override
 	public List<ShopCategory> getAllParentLevel(){
-		String hql = "select distinct c from commodity c right join  shopcategory s on c.shopcategory = s.categoryID  where s.`level` and s.parentLevel GROUP BY quantity desc  ";
+		String hql = "select distinct c from commodity c right join  shopcategory s on c.shopcategory = s.categoryID  where s.`level` and s.parentLevel GROUP BY quantity desc  top 7";
 		return shopCategoryDao.find(hql, null, -1, -1);	
 	}
 }

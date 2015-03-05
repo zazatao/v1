@@ -102,14 +102,13 @@
                             <ul>
                             	<c:forEach items="${shopCategories }" var="shopCategory">
 									<c:if test="${shopCategory.level == 1 && (shopCategory.category == '电子产品') }">
-										
 											<div>
 												<c:forEach items="${shopCategory.children }" var="shopCategory2">
 													<c:if test="${shopCategory2.level == 2  }">
 														<div class="nav-column"><ul>
 															<c:forEach  items="${shopCategory2.children }" var="shopCategory3">
 																<c:if test="${shopCategory3.level == 3 }">
-																	<li><a href='./proscenium/shopCommItem?id=${shopCategory3.categoryID }&page=page'>${shopCategory3.category }</a></li>
+																	<a href='./proscenium/shopCommItem?id=${shopCategory3.categoryID }&page=page'><li>${shopCategory3.category }</li></a>
 																</c:if>
 															</c:forEach>
 															</ul>
@@ -117,11 +116,9 @@
 													</c:if>
 												</c:forEach>
 											</div>
-										
 									</c:if>
 								</c:forEach>                           
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                                
+                                <li><div><p><a href="gr_list.html">更多</a></p></div></li> 
                             </ul>
                         </div>
                         <div class="fltpf">
@@ -130,11 +127,11 @@
 									<c:if test="${shopCategory.level == 1 && (shopCategory.category == '电子产品') }">
 											<div>
 												<c:forEach items="${shopCategory.children }" var="shopCategory2">
-													<c:if test="${shopCategory2.level == 2 }">
+													<c:if test="${shopCategory2.level == 2 && shopCategory2.category == '手机和配件'}">
 														<div class="nav-column"><ul>
 															<c:forEach  items="${shopCategory2.children }" var="shopCategory3">
 																<c:if test="${shopCategory3.level == 3 }">
-																	<li><a href='./proscenium/shopCommItem?id=${shopCategory3.categoryID }&page=page'>${shopCategory3.category }</a></li>
+																	<a href='./proscenium/shopCommItem?id=${shopCategory3.categoryID }&page=page'><li>${shopCategory3.category }</li></a>
 																</c:if>
 															</c:forEach>
 															</ul>
@@ -144,26 +141,31 @@
 											</div>
 									</c:if>
 								</c:forEach>
-<!--                                 <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_1.jpg" /></a></li> -->
-<!--                                 <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_2.jpg" /></a></li> -->
-<!--                                 <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_3.jpg" /></a></li> -->
-<!--                                 <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_4.jpg" /></a></li> -->
-<!--                                 <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_5.jpg" /></a></li> -->
-<!--                                 <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_6.jpg" /></a></li> -->
-<!--                                 <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_7.jpg" /></a></li> -->
-<!--                                 <li><div><p><a href="gr_list.html">更多</a></p></div></li> -->
+                                <li><div><p><a href='./proscenium/shopCommItem?id=${shopCategory.categoryID }&page=page'>更多</a></p></div></li>
                             </ul>
                         </div>
                         <div class="fltpf">
                             <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
+                                <c:forEach items="${shopCategories }" var="shopCategory">
+									<c:if test="${shopCategory.level == 1 && (shopCategory.category == '电子产品') }">
+											<div>
+												<c:forEach items="${shopCategory.children }" var="shopCategory2">
+													<c:if test="${shopCategory2.level == 2 && shopCategory2.category == '平板电脑'}">
+														<div class="nav-column">
+															<ul>
+																<c:forEach  items="${shopCategory2.children }" var="shopCategory3">
+																	<c:if test="${shopCategory3.level == 3 }">
+																		<a href='./proscenium/shopCommItem?id=${shopCategory3.categoryID }&page=page'><li>${shopCategory3.category }</li></a>
+																	</c:if>
+																</c:forEach>
+															</ul>
+														</div>
+													</c:if>
+												</c:forEach>
+											</div>
+									</c:if>
+								</c:forEach>
+                                <li><div><p><c:forEach items="${shopCategories }" var="shopCategory"><a href='./proscenium/shopCommItem?id=${shopCategory.categoryID }&page=page'>更多</a></c:forEach></p></div></li>
                             </ul>
                         </div>
                         <div class="fltpf">
