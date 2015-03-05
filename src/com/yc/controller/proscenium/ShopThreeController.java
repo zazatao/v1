@@ -2,6 +2,7 @@ package com.yc.controller.proscenium;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,7 @@ import com.yc.entity.OrderForm;
 import com.yc.entity.OrderStatus;
 import com.yc.entity.Shop;
 import com.yc.entity.ShopCategory;
+import com.yc.entity.ShopCommoidty;
 import com.yc.entity.user.User;
 import com.yc.model.ShopOrderSearch;
 import com.yc.service.IAddressService;
@@ -60,6 +62,9 @@ public class ShopThreeController {
 
 	@Autowired
 	IBrandService brandService;// 品牌
+	
+	@Autowired
+	ICommodityService CommodityService;
 
 	@Autowired
 	IShopCommImageService shopCommImageService;
@@ -280,4 +285,13 @@ public class ShopThreeController {
 			return new ModelAndView("user/login", mode);
 		}
 	}
+	// 分类查询
+		@RequestMapping(value = "shopCommItems", method = RequestMethod.GET)
+		public ModelAndView shopCommItems(Integer id,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			ModelMap mode = new ModelMap();
+			List<ShopCategory> shopcates = shopCategService.getAll();
+			commodityService.getAllByShopCategoryID(id);
+			mode.put("shopCategories", shopcates);
+				return null;
+		}
 }

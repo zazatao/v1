@@ -78,11 +78,7 @@
             <div class="flzs">
             	<div class="flan">
                 	<ul>
-                		<c:forEach items="${shopCategories }" var="shopCategory">
-                		<c:if test="${shopCategory.level == 1 && shopCategory.category == '电子产品'}">
-                    	<li><a href="#"><img src="content/static/images/at/zxj.jpg" big="content/static/images/zxj.jpg" mid="content/static/images/at/zxj.jpg" width="67" height="64" /></a></li>
-                        </c:if>
-                        </c:forEach>
+                    	<li><a href="./proscenium/shopCommItems?id=30"><img src="content/static/images/at/zxj.jpg" big="content/static/images/zxj.jpg" mid="content/static/images/at/zxj.jpg" width="67" height="64" /></a></li>
                         <li><a href="#"><img src="content/static/images/cf.jpg" big="content/static/images/cf.jpg" mid="content/static/images/at/cf.jpg" width="67" height="64" /></a></li>
                         <li><a href="#"><img src="content/static/images/gwb.jpg" big="content/static/images/gwb.jpg" mid="content/static/images/at/gwb.jpg" width="67" height="64" /></a></li>
                         <li><a href="#"><img src="content/static/images/dj.jpg" big="content/static/images/dj.jpg" mid="content/static/images/at/dj.jpg" width="67" height="64" /></a></li>
@@ -128,7 +124,8 @@
 											<div>
 												<c:forEach items="${shopCategory.children }" var="shopCategory2">
 													<c:if test="${shopCategory2.level == 2 && shopCategory2.category == '手机和配件'}">
-														<div class="nav-column"><ul>
+														<div class="nav-column">
+															<ul>
 															<c:forEach  items="${shopCategory2.children }" var="shopCategory3">
 																<c:if test="${shopCategory3.level == 3 }">
 																	<a href='./proscenium/shopCommItem?id=${shopCategory3.categoryID }&page=page'><li>${shopCategory3.category }</li></a>
@@ -155,7 +152,7 @@
 															<ul>
 																<c:forEach  items="${shopCategory2.children }" var="shopCategory3">
 																	<c:if test="${shopCategory3.level == 3 }">
-																		<a href='./proscenium/shopCommItem?id=${shopCategory3.categoryID }&page=page'><li>${shopCategory3.category }</li></a>
+																			<a href=""><li>${shopCategory3.category }</li></a>
 																	</c:if>
 																</c:forEach>
 															</ul>
@@ -165,7 +162,21 @@
 											</div>
 									</c:if>
 								</c:forEach>
-                                <li><div><p><c:forEach items="${shopCategories }" var="shopCategory"><a href='./proscenium/shopCommItem?id=${shopCategory.categoryID }&page=page'>更多</a></c:forEach></p></div></li>
+                                <li><div><p>
+                                <c:forEach items="${shopCategories }" var="shopCategory">
+									<c:if test="${shopCategory.level == 1 && (shopCategory.category == '电子产品') }">
+										<c:forEach items="${shopCategory.children }" var="shopCategory2">
+											<c:if test="${shopCategory2.level == 2 && shopCategory2.category == '平板电脑'}">
+												<c:forEach  items="${shopCategory2.children }" var="shopCategory3">
+													<c:if test="${shopCategory3.level == 3 }">
+                              								<a href='./proscenium/shopCommItem?id=${shopCategory2.categoryID }&page=page'>更多</a>
+                              							</c:if>
+												</c:forEach>
+											</c:if>
+										</c:forEach>
+									</c:if>
+								</c:forEach>
+								</p></div></li>
                             </ul>
                         </div>
                         <div class="fltpf">

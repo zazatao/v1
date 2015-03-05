@@ -85,10 +85,6 @@
 						<div class="seacare seacarefa">
 							<ul>
 								<li>
-									<p class="seacaretil">名字:</p>
-									<p>${user.userName}</p>
-								</li>
-								<li>
 									<p class="seacaretil">姓名:</p>
 									<p>${user.userName}</p>
 								</li>
@@ -122,13 +118,6 @@
 
 						<div class="seacare seacareno">
 							<ul>
-								<li>
-									<p class="seacaretil">名字:</p>
-									<p>
-										<input name="userName" id="userName" value="${user.userName}"
-											type="text" />
-									</p>
-								</li>
 								<li>
 									<p class="seacaretil">姓名:</p>
 									<p>

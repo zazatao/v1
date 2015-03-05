@@ -213,13 +213,13 @@ public class ShopOneController {
 	public ModelAndView releaseCommoidty(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute("loginUser");
 		ModelMap mode = new ModelMap();
-		mode = getShopCategory(mode);
+		List<ShopCategory> list = shopCategService.getAll();
+		mode.put("shopCategories", list);
 		if (user == null) {
 			return new ModelAndView("user/login", mode);
 		} else {
 			Shop shop = shopService.getShopByUser(user.getId());
 			if (shop != null && shop.getIsPermit()) {
-				List<ShopCategory> list = shopCategService.getAll();
 				mode.put("shopCategory", list);
 				mode.put("shop", shop);
 				return new ModelAndView("reception/releaseCommoidty", mode);
