@@ -130,16 +130,34 @@
 														</c:if>
 													</c:forEach>
 														<li class="sctbldscrlb"><span>原价</span><fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice }" type="currency" pattern="#,###.00#"/></li>
-														<li class="sctbldscrlb"><span>现价</span><fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special}" type="currency" pattern="#,###.00#"/> </li>
+														<li class="sctbldscrlb"><span>现价</span>
+														<c:if test="${shopCar.shopCommoidty.isSpecial }">
+															<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special}" type="currency" pattern="#,###.00#"/> 
+														</c:if>
+														<c:if test="${!shopCar.shopCommoidty.isSpecial }">
+															<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice }" type="currency" pattern="#,###.00#"/> 
+														</c:if>
+														</li>
 														<li class="sctbldscrlb"><span>购买数量</span>${shopCar.buyAmount }</li>
 													</ul>
 													<p class="sctbldscp red">库存数量：<c:out value="${shopCar.shopCommoidty.proportion * shopCar.shopCommoidty.stock} "></c:out></p>
 												</div>
 											</div>
 										</dd>
-										<dd><fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount }" type="currency" pattern="#,###.00#"/>
+										<dd>
+										<c:if test="${shopCar.shopCommoidty.isSpecial }">
+											<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount }" type="currency" pattern="#,###.00#"/>
+										</c:if>
+										<c:if test="${!shopCar.shopCommoidty.isSpecial }">
+											<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice * shopCar.buyAmount }" type="currency" pattern="#,###.00#"/>
+										</c:if>
 										</dd>
-										<c:set var="sum" value="${sum + shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount}"></c:set>
+										<c:if test="${shopCar.shopCommoidty.isSpecial }">
+											<c:set var="sum" value="${sum + shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount}"></c:set>
+										</c:if>
+										<c:if test="${!shopCar.shopCommoidty.isSpecial }">
+											<c:set var="sum" value="${sum + shopCar.shopCommoidty.unitPrice * shopCar.buyAmount}"></c:set>
+										</c:if>
 									</dl>
 								</li>
 								</c:forEach>

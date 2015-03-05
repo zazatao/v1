@@ -177,17 +177,20 @@ public class UserController {
 		String birthday = request.getParameter("birthday");
 		u.setBirthday(birthday);
 		userService.update(u);
-		return "redirect:/reception/introduction";
+		return "redirect:/user/introduction";
 	}
 
 	@RequestMapping(value = "editUserpwd", method = RequestMethod.POST)
 	public String editUserpwd(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = userService.findById(id);
 		String password1 = request.getParameter("password1");
-		String pwd = request.getParameter("password");
-		user.setPassword(pwd);
-		userService.update(user);
-		return "redirect:/reception/introduction";
+		System.out.println(password1 +"user.getPassword() "+user.getPassword());
+		if (password1.equals(user.getPassword())) {
+			String pwd = request.getParameter("password");
+			user.setPassword(pwd);
+			userService.update(user);
+		}
+		return "redirect:/user/introduction";
 	}
 
 	@RequestMapping(value = "regist", method = RequestMethod.POST)
@@ -220,7 +223,7 @@ public class UserController {
 
 	// 地址添加
 	@RequestMapping(value = "Address", method = RequestMethod.POST)
-	public String Address(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String Address(Address address, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Address as = new Address();
 		String toName = request.getParameter("toName");
 		as.setToName(toName);
@@ -240,6 +243,7 @@ public class UserController {
 		as.setHandedAddress(handedAddress);
 		String indexNum = request.getParameter("indexNum");
 		as.setIndexNum(indexNum);
+		as.setUser((User)request.getSession().getAttribute("loginUser"));
 		addressService.save(as);
 		return "redirect:/user/introduction";
 	}
@@ -259,7 +263,7 @@ public class UserController {
 		String birthday = request.getParameter("birthday");
 		u.setBirthday(birthday);
 		userService.update(u);
-		return "redirect:/reception/introduction";
+		return "redirect:/user/introduction";
 	}
 
 	// 删除地址
@@ -275,7 +279,7 @@ public class UserController {
 		} else {
 			addressService.delete(id);
 		}
-		return "redirect:/reception/introduction";
+		return "redirect:/user/introduction";
 	}
 
 	// 添加新地址
