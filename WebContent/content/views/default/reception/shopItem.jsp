@@ -94,7 +94,7 @@
 					</p>
 					<p>
 						卖家:${shopCommoidty.belongTo.shopName }
-						<c:if test="${user != null && user.shop.isPermit == true }">
+						<c:if test="${user != null && user.shop.isPermit == true && user.shop.id != shopCommoidty.belongTo.id}">
 							<span onclick="addSupplier();">添加</span>
 						</c:if>
 					</p>
@@ -166,9 +166,17 @@
 					<h1>${shopCommoidty.commoidtyName }<p></p>
 					</h1>
 					<h2>
-						现价：<span class="red">￥ <fmt:formatNumber
+						现价：
+						<c:if test="${shopCommoidty.isSpecial }">
+							<span class="red">￥ <fmt:formatNumber
 								value="${shopCommoidty.unitPrice * shopCommoidty.special }"
 								pattern="##.##" minFractionDigits="2"></fmt:formatNumber></span>
+						</c:if>
+						<c:if test="${!shopCommoidty.isSpecial }">
+							<span class="red">￥ <fmt:formatNumber
+								value="${shopCommoidty.unitPrice }"
+								pattern="##.##" minFractionDigits="2"></fmt:formatNumber></span>
+						</c:if>
 						<p>
 							原价：<span class="thr">￥ ${shopCommoidty.unitPrice }</span>
 						</p>
@@ -244,6 +252,7 @@
 							var commID = $('#commID').val();
 							var params = $('#params').val();
 							var buyAmount = $('#buyAmount').val();
+							if(params != ""){
 							jQuery.ajax({
 								type : 'GET',
 								contentType : 'application/json',
@@ -255,6 +264,9 @@
 									}
 								}
 							});
+							}else{
+								alert("请选择型号或规格");
+							}
 						}
 						function searchs(name, obj) {
 							var isok = false;

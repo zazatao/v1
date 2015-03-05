@@ -30,7 +30,7 @@
 	 }
 	 function editpwd()
 	 {
-		 document.form.action="./editUserpwd";
+		 document.form.action="./editUserpwd?id=${user.id}";
 		 document.form.submit();
 	 }
 	 function deleteaddress(num)

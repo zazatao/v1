@@ -38,7 +38,7 @@
             	<li><span>选择开店类型：</span><input type="radio" name="type" checked="checked" value="individual"/>个人开店<input type="radio" name="type" value="company" />企业开店</li>
                 <li><span>选择所在地：</span><input type="radio"
 						name="possessions" value="mainlandcChina" checked="checked" />中国大陆<input type="radio" name="possessions" value="HongKongAndMacao" />香港/澳门<input type="radio" name="possessions"   value="Taiwan"/>台湾<input type="radio" name="possessions"  value="Overseas"/>海外</li>
-                <li><span>认&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;证：</span><em>您已绑定了zazatao账户：<%=((User) request.getSession().getAttribute("loginUser")).getId()%></em></li>
+                <li><span>认&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;证：</span><em>您已绑定了zazatao账户：${user.loginName }</em></li>
                 <li>
                 	<table>
                     	<tr class="kdtr_1"><td>状态</td><td>认证名称</td><td>操作</td></tr>

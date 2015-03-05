@@ -43,6 +43,7 @@ import com.yc.service.IShopCommImageService;
 import com.yc.service.IShopCommoidtyService;
 import com.yc.service.IShopService;
 import com.yc.service.ISpecificationsService;
+import com.yc.service.IUserService;
 
 //前台
 @Controller
@@ -69,7 +70,12 @@ public class ShopOneController {
 	
 	@Autowired
 	IShopCommImageService shopCommImageService;
+	
+	@Autowired
+	IUserService userService;
 
+	//开店信息填写
+	@SuppressWarnings("unused")
 	@RequestMapping(value = "setUpShop", method = RequestMethod.GET)
 	public ModelAndView setUpShop(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute("loginUser");
@@ -79,11 +85,11 @@ public class ShopOneController {
 		if (user == null) {
 			return new ModelAndView("user/login", mode);
 		} else {
+			mode.put("user", user);
 			Shop shop = shopService.getShopByUser(user.getId());
 			if (shop != null) {
 				if (shopName != null && !shopName.equals("")) {
 					shop.setShopName(shopName);
-					shop.setCreateDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 					shopService.update(shop);
 				}
 				if (shop.getIsPermit()) {
@@ -95,12 +101,16 @@ public class ShopOneController {
 				if (null != shopName && !shopName.equals("")) {
 					shop = new Shop();
 					shop.setShopName(shopName);
-					shop.setUser(user);
-					shopService.save(shop);
+					shop.setCreateDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+					shop = shopService.save(shop);
+					user.setShop(shop);
+					userService.update(user);
 				} else {
 					shop = new Shop();
-					shop.setUser(user);
-					shopService.save(shop);
+					shop.setCreateDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+					shop = shopService.save(shop);
+					user.setShop(shop);
+					userService.update(user);
 				}
 				return new ModelAndView("reception/setUpShop", mode);
 			}
@@ -111,7 +121,13 @@ public class ShopOneController {
 	public ModelAndView authentication(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ModelMap mode = new ModelMap();
 		mode = getShopCategory(mode);
-		return new ModelAndView("reception/authentication", mode);
+		User user = (User)request.getSession().getAttribute("loginUser");
+		if (user == null) {
+			return new ModelAndView("user/login", mode);
+		}else{
+			mode.put("user", user);
+			return new ModelAndView("reception/authentication", mode);
+		}
 	}
 
 	@RequestMapping(value = "authentication", method = RequestMethod.POST)
@@ -159,6 +175,7 @@ public class ShopOneController {
 	}
 
 	// 开店
+	@SuppressWarnings("unused")
 	@RequestMapping(value = "openShop", method = RequestMethod.GET)
 	public String openShop(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String possessions = request.getParameter("possessions");
@@ -168,18 +185,24 @@ public class ShopOneController {
 		Shop shop = null;
 		if (user != null) {
 			shop = shopService.getShopByUser(user.getId());
-			if (shop != null && shop.getIsPermit()) {
+			System.out.println("shop.getId()============"+shop.getId());
+			if (shop != null) {
 				shop.setShopType(ShopType.valueOf(type));
 				shop.setPossession(Possession.valueOf(possessions));
-				shop.setCreateDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+				if (shop.getCreateDate().equals("")) {
+					shop.setCreateDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+				}
 				shopService.update(shop);
 			} else {
 				shop = new Shop();
 				shop.setShopType(ShopType.valueOf(type));
 				shop.setPossession(Possession.valueOf(possessions));
-				shop.setCreateDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-				shop.setUser(user);
-				shopService.save(shop);
+				if (shop.getCreateDate().equals("")) {
+					shop.setCreateDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+				}
+				shop = shopService.save(shop);
+				user.setShop(shop);
+				userService.update(user);
 			}
 			return "redirect:/";
 		} else {

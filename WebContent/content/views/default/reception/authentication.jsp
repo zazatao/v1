@@ -26,7 +26,6 @@
 <SCRIPT src="../content/static/js/reception/ScrollPic.js"
 	type=text/javascript></SCRIPT>
 </head>
-
 <body>
 	<jsp:include page="../common/prosceniumNav.jsp"></jsp:include>
 <div class="con"><!---------------   页面主体   ----------------------->
@@ -37,7 +36,7 @@
         <div class="kd_yz_cont">
         <dl>
         	<dt class="dt_1">为了给你提供更好的支付和金融服务，你需要填写真实的身份信息享受会员保障服务。身份信息一经录入不可更改，隐私信息未经本人许可严格保密。</dt>
-            <dd>账户名:<b><%=((User) request.getSession().getAttribute("loginUser")).getId()%></b></dd>
+            <dd>账户名:<b>${user.loginName }</b></dd>
         </dl>
         <c:if test="${not empty msg }">密码输入错误</c:if>
         <form action="./authentication" method="post">
