@@ -120,7 +120,7 @@ public class UserController {
 		ModelMap mode = new ModelMap();
 		List<ShopCategory> list = ShopCategoryService.getAll();
 		mode.put("shopCategories", list);
-		return new ModelAndView("reception/register", mode);
+		return new ModelAndView("user/register", mode);
 	}
 
 	@RequestMapping(value = "myoffice", method = RequestMethod.GET)
@@ -216,24 +216,6 @@ public class UserController {
 		ModelMap mode = new ModelMap();
 		mode.put("personel", request.getSession().getAttribute("loginUser"));
 		return new ModelAndView("user/adduser", mode);
-	}
-
-	@RequestMapping(value = "addUser", method = RequestMethod.POST)
-	public String addUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		;
-		User person = new User();
-		String name = request.getParameter("name");
-		person.setUserName(name);
-		String password = request.getParameter("password");
-		person.setPassword(password);
-		String phone = request.getParameter("phone");
-		person.setPhone(phone);
-		String email = request.getParameter("email");
-		person.setEmail(email);
-		String sex = request.getParameter("sex");
-		person.setSex(sex);
-		userService.save(person);
-		return "redirect:/index";
 	}
 
 	// 地址添加

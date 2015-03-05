@@ -51,10 +51,10 @@
 					<p>
 						<span>—————————ИЛИ————————</span>
 					</p>
-					<form action="./addUser" method="post">
+					<form action="./regist" method="post">
 						<ul>
 							<li>选择登录名<span class="red"> *</span><br />
-							<input class="zc_input" type="text" name="name" id="name" /></li>
+							<input class="zc_input" type="text" name="loginName" id="name" /></li>
 
 							<li>密码 <span class="red"> *</span><br />
 							<input class="zc_input" type="password" name="password"
