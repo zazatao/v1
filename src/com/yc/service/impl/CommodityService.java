@@ -1,6 +1,5 @@
 package com.yc.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +8,7 @@ import org.springframework.stereotype.Component;
 import com.yc.dao.orm.commons.GenericDao;
 import com.yc.entity.Commodity;
 import com.yc.entity.CommoidityStatus;
-import com.yc.entity.OrderForm;
 import com.yc.entity.Shop;
-import com.yc.entity.ShopCommoidty;
 import com.yc.entity.StoreRoom;
 import com.yc.service.ICommodityService;
 
@@ -24,7 +21,7 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 
 	@Autowired
 	GenericDao<Commodity> commodityDao;
-
+	
 	@Override
 	GenericDao<Commodity> getDao() {
 		return commodityDao;
@@ -194,9 +191,11 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 	@Override
 	public List getAllByShopCategoryID(Integer id) {
 		StringBuffer hql = new StringBuffer("select SUM(quantity) sums,s.parentLevel,s.category as q from commodity c right join shopcategory s on s.categoryID = c.shopcategory where  c.shopcategory in (select sc.categoryID from shopcategory sc where sc.parentLevel in (select cat.categoryID from shopcategory cat where cat.parentLevel = "+id+")) group by s.parentLevel order by sums desc");
-		Query query = commodityDao.getEntityManager().createNativeQuery(hql.toString(), Commodity.class);
+		Query query = commodityDao.getEntityManager().createNativeQuery(hql.toString());
 		List list = query.getResultList();
 		System.out.println("list.size()==========="+list.size());
-		return list;
+//		return list;
+		
+		return null;
 	}
 }
