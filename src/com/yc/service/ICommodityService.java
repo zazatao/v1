@@ -9,6 +9,7 @@ import com.yc.entity.Shop;
 import java.util.Map;
 
 import com.yc.entity.StoreRoom;
+import com.yc.model.CommdityModel;
 
 public interface ICommodityService extends IGenericService<Commodity> {
 
@@ -22,7 +23,7 @@ public interface ICommodityService extends IGenericService<Commodity> {
 
 	List<Commodity> getAllByParametersForOrder(Map<String, Object> map);
 	
-	List getAllByShopCategoryID(Integer id);
+	List<CommdityModel> getAllByShopCategoryID(Integer id);
 	
 	//订单处理
 	List<Commodity> getDisposeByParameters(Map<String, Object> map);

@@ -1,12 +1,30 @@
 package com.yc.model;
 
-import com.yc.entity.ShopCategory;
-
 public class CommdityModel {
 	
 	private int sums;
 	
-	private ShopCategory shopCategory;
+	private int categoryID;
+	
+	private String category;
+	
+	
+
+	public int getCategoryID() {
+		return categoryID;
+	}
+
+	public void setCategoryID(int categoryID) {
+		this.categoryID = categoryID;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
 
 	public int getSums() {
 		return sums;
@@ -15,15 +33,5 @@ public class CommdityModel {
 	public void setSums(int sums) {
 		this.sums = sums;
 	}
-
-	public ShopCategory getShopCategory() {
-		return shopCategory;
-	}
-
-	public void setShopCategory(ShopCategory shopCategory) {
-		this.shopCategory = shopCategory;
-	}
-	
-	
 
 }
