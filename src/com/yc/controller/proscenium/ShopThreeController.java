@@ -294,6 +294,6 @@ public class ShopThreeController {
 			List list =  commodityService.getAllByShopCategoryID(id);
 			mode.put("list", list);
 			mode.put("shopCategories", shopcates);
-			return new ModelAndView("index", mode);
+			return new ModelAndView("../index", mode);
 		}
 }

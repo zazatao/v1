@@ -251,17 +251,26 @@ public class UserController {
 	// 修改地址
 	@RequestMapping(value = "editaddress", method = RequestMethod.POST)
 	public String editaddress(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		User u = userService.findById(id);
-		u.setSex(Sex.valueOf(request.getParameter("sex")));
-		String userName = request.getParameter("userName");
-		u.setUserName(userName);
-		String email = request.getParameter("email");
-		u.setEmail(email);
+		Address ad = addressService.findById(id);
+		String toName = request.getParameter("toName");
+		ad.setToName(toName);
+		String toEmail = request.getParameter("toEmail");
+		ad.setToEmail(toEmail);
 		String phone = request.getParameter("phone");
-		u.setPhone(phone);
-		String birthday = request.getParameter("birthday");
-		u.setBirthday(birthday);
-		userService.update(u);
+		ad.setPhone(phone);
+		String country = request.getParameter("country");
+		ad.setCountry(country);
+		String city = request.getParameter("city");
+		ad.setCity(city);
+		String street = request.getParameter("street");
+		ad.setStreet(street);
+		String district = request.getParameter("district");
+		ad.setDistrict(district);
+		String handedAddress = request.getParameter("handedAddress");
+		ad.setHandedAddress(handedAddress);
+		String indexNum = request.getParameter("indexNum");
+		ad.setIndexNum(indexNum);
+		addressService.update(ad);
 		return "redirect:/user/introduction";
 	}
 
