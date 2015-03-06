@@ -81,9 +81,9 @@
 							<li>短信代码<input class="zc_input_2" type="text" value="" /><input
 								class="sub_3" type="submit" value="发送代码" /></li>
 							<li><p>您的性别</p></li>
-							<li><a class="green" name="sex" id="1" value="男"
-								type="radio">男士 </a><a class="red" name="sex" id="2"
-								type="radio" value="女">女士</a></li>
+							<li>
+								<a class="green" name="Male" id="Male" value="Male"type="radio">男士 </a>
+								<a class="red" name="Female" id="Female" type="radio" value="Female">女士</a></li>
 							<li>我有代码可以邀请朋友<input class="zc_input_2" type="text" value="" /></li>
 							<li><input type="checkbox" class="checkbox_2"
 								checked="checked" /><span class="gray">接受用户协议条款</span></li>

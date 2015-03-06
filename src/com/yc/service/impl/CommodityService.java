@@ -10,6 +10,7 @@ import com.yc.entity.Commodity;
 import com.yc.entity.CommoidityStatus;
 import com.yc.entity.Shop;
 import com.yc.entity.StoreRoom;
+import com.yc.model.CommdityModel;
 import com.yc.service.ICommodityService;
 
 import java.util.Map;
@@ -188,14 +189,12 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 		return commodityDao.find(hql.toString(), paramete, -1, -1);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List getAllByShopCategoryID(Integer id) {
-		StringBuffer hql = new StringBuffer("select SUM(quantity) sums,s.parentLevel,s.category as q from commodity c right join shopcategory s on s.categoryID = c.shopcategory where  c.shopcategory in (select sc.categoryID from shopcategory sc where sc.parentLevel in (select cat.categoryID from shopcategory cat where cat.parentLevel = "+id+")) group by s.parentLevel order by sums desc");
+		StringBuffer hql = new StringBuffer("select SUM(quantity) sums,s.categoryID categoryID,s.category category from commodity c right join shopcategory s on s.categoryID = c.shopcategory where  c.shopcategory in (select sc.categoryID from shopcategory sc where sc.parentLevel in (select cat.categoryID from shopcategory cat where cat.parentLevel = "+id+"))group by s.parentLevel order by sums desc");
 		Query query = commodityDao.getEntityManager().createNativeQuery(hql.toString());
 		List list = query.getResultList();
-		System.out.println("list.size()==========="+list.size());
-//		return list;
-		
-		return null;
+		return list;
 	}
 }

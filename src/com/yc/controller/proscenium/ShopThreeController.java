@@ -27,6 +27,7 @@ import com.yc.entity.Shop;
 import com.yc.entity.ShopCategory;
 import com.yc.entity.ShopCommoidty;
 import com.yc.entity.user.User;
+import com.yc.model.CommdityModel;
 import com.yc.model.ShopOrderSearch;
 import com.yc.service.IAddressService;
 import com.yc.service.IBrandService;
@@ -290,8 +291,9 @@ public class ShopThreeController {
 		public ModelAndView shopCommItems(Integer id,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			ModelMap mode = new ModelMap();
 			List<ShopCategory> shopcates = shopCategService.getAll();
-			commodityService.getAllByShopCategoryID(id);
+			List list =  commodityService.getAllByShopCategoryID(id);
+			mode.put("list", list);
 			mode.put("shopCategories", shopcates);
-				return null;
+			return new ModelAndView("index", mode);
 		}
 }

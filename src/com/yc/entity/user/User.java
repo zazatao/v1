@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,7 +42,8 @@ public class User {
 	private String email;
 	
 	@Column
-	private String sex;
+	@Enumerated(EnumType.STRING)
+	private Sex sex;
 
 	@Column
 	private String phone;
@@ -134,11 +137,11 @@ public class User {
 		this.email = email;
 	}
 
-	public String getSex() {
+	public Sex getSex() {
 		return sex;
 	}
 
-	public void setSex(String sex) {
+	public void setSex(Sex sex) {
 		this.sex = sex;
 	}
 

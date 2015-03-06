@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.yc.entity.Address;
 import com.yc.entity.OrderForm;
 import com.yc.entity.ShopCategory;
+import com.yc.entity.user.Sex;
 import com.yc.entity.user.User;
 import com.yc.service.IAddressService;
 import com.yc.service.IOrderFormService;
@@ -166,14 +167,13 @@ public class UserController {
 	@RequestMapping(value = "editUser", method = RequestMethod.POST)
 	public String editUser(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User u = userService.findById(id);
+		u.setSex(Sex.valueOf(request.getParameter("sex")));
 		String userName = request.getParameter("userName");
 		u.setUserName(userName);
 		String email = request.getParameter("email");
 		u.setEmail(email);
 		String phone = request.getParameter("phone");
 		u.setPhone(phone);
-		String sex = request.getParameter("sex");
-		u.setSex(sex);
 		String birthday = request.getParameter("birthday");
 		u.setBirthday(birthday);
 		userService.update(u);
@@ -252,14 +252,13 @@ public class UserController {
 	@RequestMapping(value = "editaddress", method = RequestMethod.POST)
 	public String editaddress(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User u = userService.findById(id);
+		u.setSex(Sex.valueOf(request.getParameter("sex")));
 		String userName = request.getParameter("userName");
 		u.setUserName(userName);
 		String email = request.getParameter("email");
 		u.setEmail(email);
 		String phone = request.getParameter("phone");
 		u.setPhone(phone);
-		String sex = request.getParameter("sex");
-		u.setSex(sex);
 		String birthday = request.getParameter("birthday");
 		u.setBirthday(birthday);
 		userService.update(u);

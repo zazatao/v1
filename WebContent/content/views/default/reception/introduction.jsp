@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="com.yc.entity.user.User"%>
+<%@page import="java.util.Date"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -11,6 +12,10 @@
 	type="text/css" />
 <link href="../content/static/css/reception/persc.css" rel="stylesheet"
 	type="text/css" />
+<link href="../content/static/css/datetime/jquery-clockpicker.min.css"
+	rel="stylesheet" />
+<link href="../content/static/css/datetime/jquery.datetimepicker.css"
+	rel="stylesheet" />
 <script type="text/javascript"
 	src="../content/static/js/reception/png.js"></script>
 <script type="text/javascript"
@@ -19,7 +24,11 @@
 	src="../content/static/js/reception/jquery.min.js"></script>
 <script type="text/javascript"
 	src="../content/static/js/reception/js.js"></script>
-<script>
+<script type="text/javascript"
+	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
+<script type="text/javascript"
+	src="../content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
+<script type="text/javascript">
  
 	 function address()
 	 {
@@ -43,7 +52,12 @@
 		 document.form.action="./editaddress";
 		 document.form.submit();
 	 }
-
+	 $('#textfield9').datetimepicker({
+			lang:'ch',
+			timepicker:false,
+			format:'Y-m-d',
+			formatDate:'Y-m-d',
+	});
 </script>
 </head>
 
@@ -94,7 +108,12 @@
 								</li>
 								<li>
 									<p class="seacaretil">性别:</p>
-									<p>${user.sex}</p>
+									<p>
+									<c:choose>
+										<c:when test="${user.sex == 'Female'}">女</c:when>
+										<c:when test="${user.sex == 'Male'}">男</c:when>
+									</c:choose>
+									</p>
 								</li>
 								<li>
 									<p class="seacaretil">生日:</p>
@@ -121,34 +140,32 @@
 								<li>
 									<p class="seacaretil">姓名:</p>
 									<p>
-										<input name="userName" id="userName" value="${user.userName}"
-											type="text" />
+										<input name="userName" id="userName" value="${user.userName}" type="text"/>
 									</p>
 								</li>
 								<li>
 									<p class="seacaretil">邮件:</p>
 									<p>
-										<input name="email" id="email" value="${user.email}"
-											type="text" />
+										<input name="email" id="email" value="${user.email}" type="text" />
 									</p>
 								</li>
 								<li>
 									<p class="seacaretil">性别:</p>
-									<p>
-										<input name="sex" id="sex" value="${user.sex}" type="text" />
-									</p>
+										<select name="sex" id="sex" type="text" style="width:50px">
+											<option value="Female" name="Female">女</option>
+											<option value="Male" name="Male">男</option>
+										</select>
 								</li>
 								<li>
 									<p class="seacaretil">生日:</p>
 									<p>
-										<input name="birthday" id="birthday" value="${user.birthday}"
-											type="text" />
+										<input name="birthday"  id="textfield9" value="${user.birthday}" type="text" />
 									</p>
 								</li>
 								<li>
 									<p class="seacaretil">默认地址:</p>
 									<p>
-										<input name="addresses" id="addresses" value="" type="text" />
+										<input name="addresses" id="textfield9" value="" type="text" />
 									</p>
 								</li>
 								<li>
@@ -165,51 +182,48 @@
 							</p>
 							<p class="secaclk">您的个人数据将被用来改进ZAZATAO.COM，加快结算订单，以及给您带来部分限制使用的机会，提供您的信息给ZAZATAO会提高整体服务水平，ZAZATAO一定会保护您的数据</p>
 						</div>
-
-
 					</div>
 					<div class="cl"></div>
 					<p class="setcanbon setcanbonfs">
 						<a href="#" onclick="submit();">更改</a>
 					</p>
-					<script>
-            var isok = false;
-            var is = false;
-            	$(function(){
-						$(".setcanbonfs a").toggle(function(){
-								$(".seacarefa").hide();
-								$(".seacareno").show();
-								$(this).text("确认");
-								isok = true;
-							},function(){
-								$(".seacareno").hide();
-								$(".seacarefa").show();
-								$(this).text("更改");
-								isok = false;
-							})
-						$(".setaddonlest .sels5 a").click(function(){
-								$(".setaddonlest").hide();
-								$(".setaddallsfs").show();
-								isok = true;
-							});
-						$(".setaddonlest .setcanbon a").click(function(){
-								$(".setaddonlest").hide();
-								$(".setaddallstw").show();
-								isok = true;
-							});
-						$(".setcanbontw a").click(function(){
-								$(".setaddonlest").show();
-								$(".setaddalls").hide();
-								isok = false;
-							});
-					});
-						 function submit(){
-            				if (isok) {
-            		 		form.submit();
-							}
-						 }
-            			
-            </script>
+				<script type="text/javascript">
+		            var isok = false;
+		            var is = false;
+		            	$(function(){
+							$(".setcanbonfs a").toggle(function(){
+									$(".seacarefa").hide();
+									$(".seacareno").show();
+									$(this).text("确认");
+									isok = true;
+								},function(){
+									$(".seacareno").hide();
+									$(".seacarefa").show();
+									$(this).text("更改");
+									isok = false;
+								})
+							$(".setaddonlest .sels5 a").click(function(){
+									$(".setaddonlest").hide();
+									$(".setaddallsfs").show();
+									isok = true;
+								});
+							$(".setaddonlest .setcanbon a").click(function(){
+									$(".setaddonlest").hide();
+									$(".setaddallstw").show();
+									isok = true;
+								});
+							$(".setcanbontw a").click(function(){
+									$(".setaddonlest").show();
+									$(".setaddalls").hide();
+									isok = false;
+								});
+						});
+					 function submit(){
+           				if (isok) {
+           		 		form.submit();
+						}
+					 }		
+           		</script>
         </div>
         <div class="setcan">
         	<div class="setaddonlest">
