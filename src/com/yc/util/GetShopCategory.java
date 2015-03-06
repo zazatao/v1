@@ -175,8 +175,10 @@ public class GetShopCategory {
 		}else{
 			@SuppressWarnings("unchecked")
 			List<BuyCatSession> buycats = (List<BuyCatSession>)session.getAttribute("buyCates");
-			Integer num = buycats.size();
-			mode.put("num", num);
+			if (buycats != null && buycats.size()>0) {
+				Integer num = buycats.size();
+				mode.put("num", num);
+			}
 		}
     	mode.put("success", "true");
     	return mode;

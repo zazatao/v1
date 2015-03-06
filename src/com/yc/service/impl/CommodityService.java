@@ -1,5 +1,6 @@
 package com.yc.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -189,12 +190,24 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 		return commodityDao.find(hql.toString(), paramete, -1, -1);
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
-	public List getAllByShopCategoryID(Integer id) {
+	public List<CommdityModel> getAllByShopCategoryID(Integer id) {
 		StringBuffer hql = new StringBuffer("select SUM(quantity) sums,s.categoryID categoryID,s.category category from commodity c right join shopcategory s on s.categoryID = c.shopcategory where  c.shopcategory in (select sc.categoryID from shopcategory sc where sc.parentLevel in (select cat.categoryID from shopcategory cat where cat.parentLevel = "+id+"))group by s.parentLevel order by sums desc");
 		Query query = commodityDao.getEntityManager().createNativeQuery(hql.toString());
-		List list = query.getResultList();
+		@SuppressWarnings("rawtypes")
+		List objecArraytList = query.getResultList();  
+		List<CommdityModel> list = new ArrayList<CommdityModel>();
+		CommdityModel mode = null;
+		if (objecArraytList != null && objecArraytList.size()>0) {
+			for(int i=0;i<objecArraytList.size();i++) {   
+				mode = new CommdityModel();
+	            Object[] obj = (Object[]) objecArraytList.get(i); 
+	            mode.setSums(Integer.parseInt(obj[0].toString()));
+	            mode.setCategoryID(Integer.parseInt(obj[1].toString()));
+	            mode.setCategory(obj[2].toString());
+	            list.add(mode);
+	        } 
+		}
 		return list;
 	}
 }

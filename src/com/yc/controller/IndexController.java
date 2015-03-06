@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.ShopCategory;
+import com.yc.model.CommdityModel;
+import com.yc.service.ICommodityService;
 import com.yc.service.IShopCategoryService;
 
 //首页
@@ -26,6 +28,9 @@ public class IndexController {
 	@Autowired
 	IShopCategoryService shopCategService;// 类别
 	
+	@Autowired
+	ICommodityService commodityService;
+	
     @RequestMapping(value = "index", method = RequestMethod.GET)
     public ModelAndView index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	List<ShopCategory> list = shopCategService.getAll();
@@ -34,7 +39,18 @@ public class IndexController {
     	return new ModelAndView("index", mode);
     }
     
-    @RequestMapping(value = "homePage", method = RequestMethod.GET)
+    // 分类查询
+ 	@RequestMapping(value = "shopCommItems", method = RequestMethod.GET)
+ 	public ModelAndView shopCommItems(Integer id,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+ 		ModelMap mode = new ModelMap();
+ 		List<ShopCategory> shopcates = shopCategService.getAll();
+ 		List<CommdityModel> list =  commodityService.getAllByShopCategoryID(id);
+ 		mode.put("list", list);
+ 		mode.put("shopCategories", shopcates);
+ 		return new ModelAndView("index", mode);
+ 	}
+    
+ 	@RequestMapping(value = "homePage", method = RequestMethod.GET)
     public ModelAndView homePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         return new ModelAndView("homePage", null);
     }
