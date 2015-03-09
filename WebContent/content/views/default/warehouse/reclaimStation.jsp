@@ -157,7 +157,7 @@ th {
 													<th>价格</th>
 													<th>金额</th>
 													<th>重量</th>
-													<th>改变日期</th>
+													<th>入库日期</th>
 													<th>状态</th>
 												</tr>
 											</thead>
@@ -165,8 +165,8 @@ th {
 												varStatus="loop">
 												<tbody>
 													<tr class="success">
-														<td align="center">${value.storeRoom.cellStr }</td>
-														<td>${value.storeRoom.packageNum }</td>
+														<td align="center">${value.orderNumber.orderUser.storeRoom.cellStr }</td>
+														<td>${value.orderNumber.orderUser.storeRoom.packageNum }</td>
 														<td>${value.orderNumber.orderFormID }</td>
 														<td>${value.commItem }</td>
 														<td>${value.orderNumber.orderUser.userName }</td>
@@ -175,7 +175,7 @@ th {
 														<td>${value.price }</td>
 														<td>${value.money }</td>
 														<td>${value.weight }</td>
-														<td>${value.storeRoom.cellDate }</td>
+														<td>${value.inStoreRoomDate }</td>
 														<td><c:choose>
 																<c:when test="${value.status =='unchanged'}">没有变化</c:when>
 																<c:when test="${value.status =='cancel'}">取消交易</c:when>
@@ -191,10 +191,10 @@ th {
 														<td colspan="12">颜色：&nbsp;${value.color }&nbsp;&nbsp;&nbsp;&nbsp;尺码：&nbsp;${value.size }</td>
 													</tr>
 													<tr>
-														<td colspan="12">操作员：&nbsp;${value.storeOperator.userName }</td>
+														<td colspan="12">操作员：&nbsp;${value.orderNumber.storeOperator.userName }</td>
 													</tr>
 													<tr>
-														<td colspan="12">采购：&nbsp;${value.purchase.userName }</td>
+														<td colspan="12">采购：&nbsp;${value.orderNumber.purchase.userName }</td>
 													</tr>
 													<tr>
 														<td colspan="12">重量：&nbsp;${value.weight }</td>

@@ -1,15 +1,15 @@
 package com.yc.entity;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
+import com.yc.entity.user.User;
+//仓库
 @Entity
 @DiscriminatorValue("storeroom")
 public class StoreRoom {
@@ -20,12 +20,8 @@ public class StoreRoom {
 	private String cellStr;
 	@Column
 	private String packageNum;
-	@Column
-	private String cellDate;//入单元格时间
-	@Column
-	private String inStoreRoomDate;//入库房时间
-	@OneToMany(mappedBy = "storeRoom")
-	private List<Commodity> commodities;
+	@OneToOne(mappedBy = "storeRoom")
+	private User user;
 
 	private Boolean isInCell; //单元格已经被用了
 	
@@ -61,28 +57,11 @@ public class StoreRoom {
 		this.packageNum = packageNum;
 	}
 
-	public String getCellDate() {
-		return cellDate;
+	public User getUser() {
+		return user;
 	}
 
-	public void setCellDate(String cellDate) {
-		this.cellDate = cellDate;
+	public void setUser(User user) {
+		this.user = user;
 	}
-
-	public String getInStoreRoomDate() {
-		return inStoreRoomDate;
-	}
-
-	public void setInStoreRoomDate(String inStoreRoomDate) {
-		this.inStoreRoomDate = inStoreRoomDate;
-	}
-
-	public List<Commodity> getCommodities() {
-		return commodities;
-	}
-
-	public void setCommodities(List<Commodity> commodities) {
-		this.commodities = commodities;
-	}
-
 }

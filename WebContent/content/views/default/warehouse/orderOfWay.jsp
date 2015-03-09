@@ -89,8 +89,7 @@ th {
 								onclick="dateInfoxxx('changeStatusDate')">
 						</div>
 						<div class="col-sm-1">
-							<select class="form-control" name="formStatus" id="formStatus"
-								placeholder="状态">
+							<select class="form-control" name="formStatus" id="formStatus" >
 								<option value="">-----状态-----
 								<option value="unchanged">没有变化
 								<option value="refuse">拒绝接受货物

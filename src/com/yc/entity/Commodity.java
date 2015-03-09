@@ -16,12 +16,9 @@ import javax.persistence.OneToMany;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-import com.yc.entity.user.Personnel;
-import com.yc.entity.user.User;
-
 @Entity
 @DiscriminatorValue("commodity")
-@JsonIgnoreProperties(value = { "storeOperator", "purchase", "storeRoom", "orderNumber", "imagePaths" })
+@JsonIgnoreProperties(value = { "purchase", "storeRoom", "orderNumber", "imagePaths" ,})
 public class Commodity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,13 +28,9 @@ public class Commodity {
 	@Column
 	private String commItem;// 货号
 	@Column
-	private String barcodes;// 条形码
+	private String barcodes;// 自己的条形码
 	@Column
-	private String tpek;	//追踪
-	@Column
-	private String color;// 颜色
-	@Column
-	private String size;// 尺码
+	private String tpek; // 卖家条形码
 	@Column
 	private Integer quantity;// 数量
 	@Column
@@ -49,35 +42,59 @@ public class Commodity {
 	@Column
 	private Float money;// 金额
 	@Column
-	private String currency;//币种
+	private String currency;// 币种
 	@Column
 	private String comment;// 评论
+	@Column
+	private String commSpec;//规格【，颜色-红色，尺寸-12L,】
+	
 	@ManyToOne
-	@JoinColumn(name = "store_user")
-	private Personnel storeOperator;// 库房操作员
+	@JoinColumn(name = "shopcategory")
+	private ShopCategory shopcategory;// 类别
+	
 	@ManyToOne
-	@JoinColumn(name = "purchase_user")
-	private Personnel purchase;// 采购员
+	@JoinColumn(name = "seller_name")
+	private Shop seller;// 卖家
 	@Column
-	private String seller;//卖家
+	private String sellerDate;// 卖家付款日期
 	@Column
-	private String sellerDate;//卖家付款日期
-	@Column
-	private String tradingCode;//交易码
+	private String tradingCode;// 交易码
 	@Column
 	@Enumerated(EnumType.STRING)
-	private OrderStatus status;// 状态
+	private CommoidityStatus status;// 状态
 	@Column
 	@Enumerated(EnumType.STRING)
 	private DisposeStatus disposeStatus;// 订单处理状态
 	@ManyToOne
 	@JoinColumn(name = "storeRoom_id")
 	private StoreRoom storeRoom;
+	
 	@ManyToOne
 	@JoinColumn(name = "orderform_id")
 	private OrderForm orderNumber;			
+	
 	@OneToMany(mappedBy = "commodity")
 	private List<ImagePath> imagePaths;
+	@Column
+	private String cellDate;// 入单元格时间
+	@Column
+	private String inStoreRoomDate;// 入库房时间
+
+	public String getCellDate() {
+		return cellDate;
+	}
+
+	public void setCellDate(String cellDate) {
+		this.cellDate = cellDate;
+	}
+
+	public String getInStoreRoomDate() {
+		return inStoreRoomDate;
+	}
+
+	public void setInStoreRoomDate(String inStoreRoomDate) {
+		this.inStoreRoomDate = inStoreRoomDate;
+	}
 
 	public String getCurrency() {
 		return currency;
@@ -95,44 +112,20 @@ public class Commodity {
 		this.sellerDate = sellerDate;
 	}
 
-	public String getSeller() {
+	public String getCommSpec() {
+		return commSpec;
+	}
+
+	public void setCommSpec(String commSpec) {
+		this.commSpec = commSpec;
+	}
+
+	public Shop getSeller() {
 		return seller;
 	}
 
-	public void setSeller(String seller) {
+	public void setSeller(Shop seller) {
 		this.seller = seller;
-	}
-
-	public String getNameOfGoods() {
-		return nameOfGoods;
-	}
-
-	public void setNameOfGoods(String nameOfGoods) {
-		this.nameOfGoods = nameOfGoods;
-	}
-
-	public Personnel getStoreOperator() {
-		return storeOperator;
-	}
-
-	public void setStoreOperator(Personnel storeOperator) {
-		this.storeOperator = storeOperator;
-	}
-
-	public Personnel getPurchase() {
-		return purchase;
-	}
-
-	public void setPurchase(Personnel purchase) {
-		this.purchase = purchase;
-	}
-
-	public Float getPrice() {
-		return price;
-	}
-
-	public void setPrice(Float price) {
-		this.price = price;
 	}
 
 	public StoreRoom getStoreRoom() {
@@ -143,28 +136,28 @@ public class Commodity {
 		this.storeRoom = storeRoom;
 	}
 
+	public String getNameOfGoods() {
+		return nameOfGoods;
+	}
+
+	public void setNameOfGoods(String nameOfGoods) {
+		this.nameOfGoods = nameOfGoods;
+	}
+
+	public Float getPrice() {
+		return price;
+	}
+
+	public void setPrice(Float price) {
+		this.price = price;
+	}
+
 	public List<ImagePath> getImagePaths() {
 		return imagePaths;
 	}
 
 	public void setImagePaths(List<ImagePath> imagePaths) {
 		this.imagePaths = imagePaths;
-	}
-
-	public String getColor() {
-		return color;
-	}
-
-	public void setColor(String color) {
-		this.color = color;
-	}
-
-	public String getSize() {
-		return size;
-	}
-
-	public void setSize(String size) {
-		this.size = size;
 	}
 
 	public Integer getQuantity() {
@@ -199,11 +192,11 @@ public class Commodity {
 		this.comment = comment;
 	}
 
-	public OrderStatus getStatus() {
+	public CommoidityStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(OrderStatus status) {
+	public void setStatus(CommoidityStatus status) {
 		this.status = status;
 	}
 
@@ -271,6 +264,12 @@ public class Commodity {
 		this.tradingCode = tradingCode;
 	}
 
-	
+	public ShopCategory getShopcategory() {
+		return shopcategory;
+	}
+
+	public void setShopcategory(ShopCategory shopcategory) {
+		this.shopcategory = shopcategory;
+	}
 	
 }

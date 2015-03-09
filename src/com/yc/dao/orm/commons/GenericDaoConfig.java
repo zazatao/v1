@@ -4,16 +4,13 @@ import org.springframework.context.annotation.*;
 
 import com.yc.entity.*;
 import com.yc.entity.Package;
+import com.yc.entity.user.Department;
 import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
+import com.yc.entity.user.Position;
 
 @Configuration
 public class GenericDaoConfig {
-
-	@Bean
-	public GenericDao<User> getUserDao() {
-		return new GenericDaoSupport<User>(User.class);
-	}
 
 	@Bean
 	public GenericDao<UnKnownCommodity> getUnKnownCommodityDao() {
@@ -56,8 +53,53 @@ public class GenericDaoConfig {
 	}
 	
 	@Bean
+	public GenericDao<User> getUserDao() {
+		return new GenericDaoSupport<User>(User.class);
+	}
+	
+	@Bean
 	public GenericDao<OrderGroup> getOrderGroupDao() {
 		return new GenericDaoSupport<OrderGroup>(OrderGroup.class);
 	}
+	@Bean
+	public GenericDao<Position> getPositionDao() {
+		return new GenericDaoSupport<Position>(Position.class);
+	}
 
+	@Bean
+	public GenericDao<Department> getDepartmentDao() {
+		return new GenericDaoSupport<Department>(Department.class);
+	}
+	@Bean
+	public GenericDao<Address> getAddressDao() {
+		return new GenericDaoSupport<Address>(Address.class);
+	}
+	@Bean
+	public GenericDao<Brand> getBrandDao() {
+		return new GenericDaoSupport<Brand>(Brand.class);
+	}
+	@Bean
+	public GenericDao<Shop> getShopDao() {
+		return new GenericDaoSupport<Shop>(Shop.class);
+	}
+	@Bean
+	public GenericDao<ShopCategory> getShopCategoryDao() {
+		return new GenericDaoSupport<ShopCategory>(ShopCategory.class);
+	}
+	@Bean
+	public GenericDao<ShopCommoidty> getShopCommoidtyDao() {
+		return new GenericDaoSupport<ShopCommoidty>(ShopCommoidty.class);
+	}
+	@Bean
+	public GenericDao<Specifications> getSpecificationsDao() {
+		return new GenericDaoSupport<Specifications>(Specifications.class);
+	}
+	@Bean
+	public GenericDao<ShopCommImage> getShopCommImageDao() {
+		return new GenericDaoSupport<ShopCommImage>(ShopCommImage.class);
+	}
+	@Bean
+	public GenericDao<BuyCat> getBuyCatDao() {
+		return new GenericDaoSupport<BuyCat>(BuyCat.class);
+	}
 }

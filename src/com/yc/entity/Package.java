@@ -17,9 +17,11 @@ import javax.persistence.OneToOne;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+import com.yc.entity.user.User;
+
 @Entity
 @DiscriminatorValue("package")
-@JsonIgnoreProperties(value={"packageSize","orderForms"})
+@JsonIgnoreProperties(value={"packageSize","orderForms","storeOperator"})
 public class Package {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -58,16 +60,22 @@ public class Package {
 	private Float transportFee;//运输费
 	
 	@Column
-	@Enumerated(EnumType.STRING)
-	private Transit transit;//中转地
+	private String transport;//运输方式
+	
+	@Column
+	private String traffic;//交通方式
 	
 	@Column
 	@Enumerated(EnumType.STRING)
-	private OrderStatus status;// 状态
+	private Transit transit;//中转地
 	
 	@ManyToOne
 	@JoinColumn(name = "from_cargoGroup")
 	private CargoGroup cargoGroup;
+	
+	@ManyToOne
+	@JoinColumn(name= "store_name")
+	private User storeOperator;
 	
 	public Transit getTransit() {
 		return transit;
@@ -91,14 +99,6 @@ public class Package {
 
 	public void setCargoGroup(CargoGroup cargoGroup) {
 		this.cargoGroup = cargoGroup;
-	}
-
-	public OrderStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(OrderStatus status) {
-		this.status = status;
 	}
 
 	public Float getTransportFee() {
@@ -176,9 +176,32 @@ public class Package {
 	public List<OrderForm> getOrderForms() {
 		return orderForms;
 	}
+	public String getTransport() {
+		return transport;
+	}
+
+	public void setTransport(String transport) {
+		this.transport = transport;
+	}
 
 	public void setOrderForms(List<OrderForm> orderForms) {
 		this.orderForms = orderForms;
+	}
+
+	public String getTraffic() {
+		return traffic;
+	}
+
+	public void setTraffic(String traffic) {
+		this.traffic = traffic;
+	}
+
+	public User getStoreOperator() {
+		return storeOperator;
+	}
+
+	public void setStoreOperator(User storeOperator) {
+		this.storeOperator = storeOperator;
 	}
 	
 }

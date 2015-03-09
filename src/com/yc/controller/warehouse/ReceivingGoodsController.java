@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -23,14 +25,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Commodity;
-import com.yc.entity.OrderStatus;
+import com.yc.entity.CommoidityStatus;
 import com.yc.entity.ImagePath;
-import com.yc.entity.OrderForm;
-import com.yc.entity.StoreRoom;
 import com.yc.entity.UnKnownCommodity;
 import com.yc.entity.user.Personnel;
+import com.yc.entity.user.User;
 import com.yc.service.ICommodityService;
 import com.yc.service.IOrderFormService;
+import com.yc.service.IPersonnelService;
 import com.yc.service.IStoreRoomService;
 import com.yc.service.IUnKnownCommodityService;
 import com.yc.service.impl.ImagePathService;
@@ -56,6 +58,9 @@ public class ReceivingGoodsController {
 
 	@Autowired
 	ImagePathService imagePathService;
+	
+	@Autowired
+	IPersonnelService personnelService;
 
 	@RequestMapping(value = "receiving", method = RequestMethod.GET)
 	public ModelAndView receiving(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -83,15 +88,19 @@ public class ReceivingGoodsController {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("code") != null) {
 			UnKnownCommodity unKnown = unKnownCommService.findById(Integer.parseInt(session.getAttribute("code").toString()));
-			unknownComm.setOperator((Personnel) session.getAttribute("loginUser"));
-			BeanUtils.copyProperties(unknownComm, unKnown);
-			unKnownCommService.update(unKnown);
-			session.removeAttribute("code");
-			return new ModelAndView("warehouse/receiving", null);
+			if (unKnown !=null) {
+				unknownComm.setOperator((User) session.getAttribute("loginUser"));
+				BeanUtils.copyProperties(unknownComm, unKnown);
+				unKnownCommService.update(unKnown);
+				session.removeAttribute("code");
+			}
+			return new ModelAndView("warehouse/jobAction", null);
 		} else {
-			unknownComm.setOperator((Personnel) session.getAttribute("loginUser"));
-			unKnownCommService.save(unknownComm);
-			return new ModelAndView("warehouse/receiving", null);
+			if (unknownComm.getAmountNum() !=null && !unknownComm.getCategory().equals("") && !unknownComm.getComment().equals("")) {
+				unknownComm.setOperator((User) session.getAttribute("loginUser"));
+				unKnownCommService.save(unknownComm);
+			}
+			return new ModelAndView("warehouse/jobAction", null);
 		}
 	}
 
@@ -139,26 +148,90 @@ public class ReceivingGoodsController {
 	}
 
 	@RequestMapping(value = "enterStoreRoom", method = RequestMethod.POST)
-	public ModelAndView enterStoreRoom(Commodity commodity, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String orderNum = request.getParameter("orderNum");
-		OrderForm orderForm = orderFormService.findById(Integer.parseInt(orderNum));
-		String msg = "";
-		ModelMap map = new ModelMap();
-		if (orderForm != null) {
-			for (Commodity commod : orderForm.getCommodities()) {
-				if (commod.getTransNumForTaobao().equals(commodity.getTransNumForTaobao()) && commod.getTpek().equals(commodity.getTpek()) && commod.getCommItem().equals(commodity.getCommItem())) {
-					commod.setStatus(OrderStatus.senToWarehouse);
-					commod.setStoreOperator((Personnel)request.getSession().getAttribute("loginUser"));
-					Commodity comm = commodityService.update(commod);
-					StoreRoom room = comm.getStoreRoom();
-					room.setInStoreRoomDate((new SimpleDateFormat("yyyy-MM-dd")).format(new Date()));
-					storeRoomService.update(room);
-					msg = "找到货物，并已入库！！";
-					break;
-				}
-			}
+	public ModelAndView enterStoreRoom( HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (request.getParameter("orderNum").trim().equals("")) {
+			map.put("orderNum", null);
+		}else{
+			map.put("orderNum", Integer.parseInt(request.getParameter("orderNum")));
 		}
-		map.put("msg", msg);
-		return new ModelAndView("warehouse/jobAction",map);
+		if (request.getParameter("tpek").trim().equals("")) {
+			map.put("tpek", null);
+		}else{
+			map.put("tpek", request.getParameter("tpek").trim());
+		}
+		if (request.getParameter("transNumForTaobao").trim().equals("")) {
+			map.put("transNumForTaobao", null);
+		}else{
+			map.put("transNumForTaobao", Integer.parseInt(request.getParameter("transNumForTaobao").trim()));
+		}
+		if (request.getParameter("commItem").trim().equals("")) {
+			map.put("commItem", null);
+		}else{
+			map.put("commItem", request.getParameter("commItem").trim());
+		}
+		map.put("formStatus", CommoidityStatus.valueOf("paid"));
+		List<Commodity> commods = commodityService.getAllByParameters(map);
+		Personnel personnel = (Personnel)request.getSession().getAttribute("loginUser");
+		Integer num = personnel.getAccomplishNum();
+		String msg ="";
+		ModelMap mode = new ModelMap();
+		if (commods.size()>0) {
+			if (commods.size() == 1) {
+				for (Commodity commod : commods) {
+					commod.setStatus(CommoidityStatus.senToWarehouse);
+					commod.getOrderNumber().setStoreOperator(personnel);
+					commod.setInStoreRoomDate((new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date()));
+					commodityService.update(commod);
+					msg = "已经查找到货号："+commod.getCommItem()+"，请将它入库！";
+				}
+				if (num ==null) {
+					personnel.setAccomplishNum(1);
+				}else{
+					personnel.setAccomplishNum(num + 1);
+				}
+				personnelService.update(personnel);
+				mode.put("msg", msg);
+				return new ModelAndView("warehouse/jobAction",mode);
+			}else{
+				mode.put("list", commods);
+				request.getSession().setAttribute("map", map);
+				return new ModelAndView("warehouse/receivingList",mode);
+			}
+		}else{
+			return new ModelAndView("warehouse/jobAction",null);
+		}
+		
 	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "working", method = RequestMethod.GET)
+	public ModelAndView working(Integer commodityID , HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Commodity commod = commodityService.findById(commodityID);
+		String msg ="";
+		Personnel personnel = null;
+		ModelMap mode = null;
+		if (commod != null) {
+			commod.setStatus(CommoidityStatus.senToWarehouse);
+			personnel = (Personnel)request.getSession().getAttribute("loginUser");
+			commod.getOrderNumber().setStoreOperator(personnel);
+			commod.setInStoreRoomDate((new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date()));
+			commodityService.update(commod);
+			msg = "已经查找到货号："+commod.getCommItem()+"，请将它入库！";
+			mode =  new ModelMap();
+			Integer num = personnel.getAccomplishNum();
+			if (num ==null) {
+				personnel.setAccomplishNum(1);
+			}else{
+				personnel.setAccomplishNum(num + 1);
+			}
+			personnelService.update(personnel);
+			mode.put("msg", msg);
+		}
+		Map<String, Object> map = (Map<String, Object>)request.getSession().getAttribute("map");
+		List<Commodity> commods = commodityService.getAllByParameters(map);
+		mode.put("list", commods);
+		return new ModelAndView("warehouse/receivingList",mode);
+	}
+	
 }

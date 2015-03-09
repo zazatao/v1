@@ -38,7 +38,7 @@
 				<div class="row-fluid">
 					<div class="span12">
 						<c:if test="${msg!='' }">
-							<font color="blue" size="3px;">${msg }</font>
+							<font color="green" size="+2">${msg }</font>
 						</c:if>
 						<div class="tabbable" id="tabs-323194">
 							<ul class="nav nav-tabs">
@@ -52,7 +52,7 @@
 									<br>
 										<form action="enterStoreRoom" method="POST">
 											<div class="form-group">
-												<label for="inputEmail3" class="col-sm-2 control-label">tpek</label>
+												<label for="inputEmail3" class="col-sm-2 control-label">条形码</label>
 												<div class="col-sm-10">
 													<input type="text" name="tpek" class="form-control"><br>
 												</div>
@@ -107,7 +107,7 @@
 											<div class="form-group">
 												<label for="inputEmail3" class="col-sm-2 control-label">操作员</label>
 												<div class="col-sm-10">
-													<input type="text" name="operatorUser" class="form-control" readonly="readonly" value="<%=((Personnel) request.getSession().getAttribute("loginUser")).getUserName()%>"><br>
+													<input type="text" name="operatorUser" class="form-control" readonly="readonly" value="<%=((Personnel) request.getSession().getAttribute("loginPersonnle")).getUserName()%>"><br>
 												</div>
 											</div>
 											<div class="form-group">
@@ -159,9 +159,6 @@
 				<script type="text/javascript">
 				function saveUnknow(){
 					$("form").submit();
-					window.opener = null;
-					window.open('', '_self');
-					window.close();
 				}
 				function reloadData() {
 					setTimeout(function() {
@@ -194,8 +191,7 @@
 						window.opener = null;
 						window.open('', '_self');
 						window.close();
-					} else {
-					}
+					} 
 				}
 				</script>
 			</div>

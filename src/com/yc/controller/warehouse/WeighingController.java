@@ -18,15 +18,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Delivery;
 import com.yc.entity.OrderForm;
-import com.yc.entity.OrderStatus;
 import com.yc.entity.Package;
-import com.yc.service.IOrderFormService;
 import com.yc.service.IPackageService;
 //仓库称量
 @Controller
 @RequestMapping("/warehouse")
 public class WeighingController {
 	
+	@SuppressWarnings("unused")
 	private static final Logger LOG = Logger.getLogger(WeighingController.class);
 	
 	@Autowired

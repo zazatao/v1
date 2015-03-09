@@ -2,6 +2,8 @@
 package com.yc.controller.shop;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +32,7 @@ import com.yc.service.IOrderFormService;
 import com.yc.service.IPersonnelService;
 import com.yc.service.IUserService;
 
-//鍟嗗簵璁㈠崟
+//商店订单
 @Controller
 @RequestMapping("/shop")
 public class ShopOrderController {
@@ -45,17 +47,17 @@ public class ShopOrderController {
 	IImagePathService imagePathService;
 	
 	@Autowired
-	IUserService userService;
+	IPersonnelService personnelService;
 	
 	@Autowired
-	IPersonnelService personnelService;
+	IUserService userlService;
 	
 	@Autowired
 	IOrderFormService orderFormService;
 	
     @RequestMapping(value = "shopOrder", method = RequestMethod.GET)
     public ModelAndView shopOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	List<Commodity> list = commodityService.getAll();
+    	List<OrderForm> list = orderFormService.getAll();
     	ModelMap mode = new ModelMap();
     	mode.put("list", list);
         return new ModelAndView("shop/shopOrder", mode);
@@ -64,47 +66,27 @@ public class ShopOrderController {
     @RequestMapping(value = "searchShopOrder", method = RequestMethod.POST)
     public ModelAndView searchShopOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	Map<String, Object> map = new HashMap<String, Object>();
-		if (request.getParameter("packageCode").trim().equals("")) {
-			map.put("packageCode", null);
-		}else{
-			map.put("packageCode", request.getParameter("packageCode"));
-		}
-		if (request.getParameter("transNumForTaobao").trim().equals("")) {
-			map.put("transNumForTaobao", null);
-		} else {
-			map.put("transNumForTaobao", Integer.parseInt(request.getParameter("transNumForTaobao")));
-		}
-		if (request.getParameter("userName").trim().equals("")) {
-			map.put("userName", null);
-		}else{
-			map.put("userName", request.getParameter("userName"));
-		}
-		if (request.getParameter("operatorPurchase").trim().equals("")) {
-			map.put("operatorPurchase", null);
-		}else{
-			map.put("operatorPurchase", request.getParameter("operatorPurchase"));
-		}
 		if (request.getParameter("orderDate").trim().equals("")) {
 			map.put("orderDate", null);
 		}else{
 			map.put("orderDate", request.getParameter("orderDate"));
 		}
-		if (request.getParameter("paymentDate").trim().equals("")) {
-			map.put("paymentDate", null);
+		if (request.getParameter("orderstatus").trim().equals("")) {
+			map.put("orderstatus", null);
 		}else{
-			map.put("paymentDate", request.getParameter("paymentDate"));
+			map.put("orderstatus", OrderStatus.valueOf(request.getParameter("orderstatus")));
 		}
-		if (request.getParameter("tpek").trim().equals("")) {
-			map.put("tpek", null);
+		if (request.getParameter("storeOperator").trim().equals("")) {
+			map.put("storeOperator", null);
 		}else{
-			map.put("tpek", request.getParameter("tpek"));
+			map.put("storeOperator", request.getParameter("storeOperator"));
 		}
-		if (request.getParameter("formStatus").trim().equals("")) {
-			map.put("formStatus", null);
+		if (request.getParameter("transNumForTaobao").trim().equals("")) {
+			map.put("transNumForTaobao", null);
 		}else{
-			map.put("formStatus", OrderStatus.valueOf(request.getParameter("formStatus")));
+			map.put("transNumForTaobao", request.getParameter("transNumForTaobao"));
 		}
-		List<Commodity> list = commodityService.getAllByParameters(map);
+		List<OrderForm> list = orderFormService.getOrderFormByParameters(map);
 		ModelMap mode = new ModelMap();
     	mode.put("list", list);
         return new ModelAndView("shop/shopOrder", mode);
@@ -116,18 +98,18 @@ public class ShopOrderController {
     }
     
     @RequestMapping(value = "deleteShopOrder", method = RequestMethod.GET)
-    public ModelAndView deleteShopOrder(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	Commodity comm =  commodityService.findById(id);
+    public String deleteShopOrder(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	OrderForm comm =  orderFormService.findById(id);
     	List<ImagePath> comms = comm.getImagePaths();
     	if (comms.size()>0) {
     		boolean isok = imagePathService.deleteByComm(id);
     		if (isok != true) {
-    			commodityService.delete(id);
+    			orderFormService.delete(id);
     		}
 		}else{
-			commodityService.delete(id);
+			orderFormService.delete(id);
 		}
-    	return shopOrder(request, response);
+    	return "redirect:/shop/shopOrder";
     }
     
     @RequestMapping(value = "updateShopOrder", method = RequestMethod.GET)
@@ -141,16 +123,16 @@ public class ShopOrderController {
     @RequestMapping(value = "editShopOrder", method = RequestMethod.POST)
     public String editShopOrder(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	Commodity comm =  commodityService.findById(id); 
-    	comm.setStatus(OrderStatus.valueOf(request.getParameter("formStatus")));
     	OrderForm of = comm.getOrderNumber();
-		User u =  userService.findById(comm.getOrderNumber().getOrderUser().getId()); 
+    	of.setOrderstatus(OrderStatus.valueOf(request.getParameter("orderstatus")));
+		User u =  userlService.findById(comm.getOrderNumber().getOrderUser().getId()); 
 		String user = request.getParameter("customer");
 		u.setUserName(user);
 		String phone = request.getParameter("phone");
 		u.setPhone(phone);
 		String email = request.getParameter("email");
 		u.setEmail(email);
-		u = userService.update(u);
+		u = userlService.update(u);
 		of.setOrderUser(u);
 		of = orderFormService.update(of);
 		comm.setOrderNumber(of);
@@ -170,35 +152,34 @@ public class ShopOrderController {
     public ModelAndView addShopOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Commodity c = new Commodity();
 		OrderForm of = new OrderForm();
-		User u = new User();
 		Personnel person = new Personnel();
-		c.setStatus(OrderStatus.valueOf(request.getParameter("formStatus")));
+		of.setOrderstatus(OrderStatus.valueOf(request.getParameter("orderstatus")));
 		String commItem = request.getParameter("commItem");
 		c.setCommItem(commItem);
 		Integer transNumForTaobao = Integer.parseInt(request.getParameter("transNumForTaobao"));
 		c.setTransNumForTaobao(transNumForTaobao);
-		String user = request.getParameter("user");
-		u.setUserName(user);
+		String user = request.getParameter("orderUser");
+		person.setUserName(user);
 		String personnel = request.getParameter("personnel");
 		person.setUserName(personnel);
 		String email = request.getParameter("email");
-		u.setEmail(email);
+		person.setEmail(email);
 		String phone = request.getParameter("phone");
-		u.setPhone(phone);
+		person.setPhone(phone);
 		String tpek = request.getParameter("tpek");
 		c.setTpek(tpek);
 		Integer quantity = Integer.parseInt(request.getParameter("quantity"));
 		c.setQuantity(quantity);
 		Float money = Float.parseFloat(request.getParameter("money"));
 		c.setMoney(money);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		of.setOrderDate(sdf.format(new Date()));
 		String currency = request.getParameter("currency");
 		c.setCurrency(currency);
-		userService.save(u);
+		c.setOrderNumber(of);
 		orderFormService.save(of);
 		personnelService.save(person);
-		of.setOrderUser(u);
-		c.setOrderNumber(of);
-		c.setStoreOperator(person);
+		of.setStoreOperator(person);
 		commodityService.save(c);
     	return shopOrder(request, response);
     }

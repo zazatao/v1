@@ -36,7 +36,7 @@ public class OrderGroup {
 	
 	@Column
 	@Enumerated(EnumType.STRING)
-	private OrderGroupStatus groupStatus;
+	private OrderStatus groupStatus;
 	
 	@Column
 	private String pay;//支付
@@ -84,11 +84,11 @@ public class OrderGroup {
 		this.sumOfMoney = sumOfMoney;
 	}
 
-	public OrderGroupStatus getGroupStatus() {
+	public OrderStatus getGroupStatus() {
 		return groupStatus;
 	}
 
-	public void setGroupStatus(OrderGroupStatus groupStatus) {
+	public void setGroupStatus(OrderStatus groupStatus) {
 		this.groupStatus = groupStatus;
 	}
 

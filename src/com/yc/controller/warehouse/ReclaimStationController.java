@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Commodity;
-
-import com.yc.entity.OrderStatus;
+import com.yc.entity.CommoidityStatus;
 import com.yc.entity.StoreRoom;
 import com.yc.service.ICommodityService;
 import com.yc.service.IOrderFormService;
@@ -29,6 +28,7 @@ import com.yc.service.impl.ImagePathService;
 @RequestMapping("/warehouse")
 public class ReclaimStationController {
 	
+	@SuppressWarnings("unused")
 	private static final Logger LOG = Logger.getLogger(ReclaimStationController.class);
 
 	@Autowired
@@ -94,7 +94,7 @@ public class ReclaimStationController {
 		if (request.getParameter("formStatus").equals("")) {
 			map.put("formStatus", null);
 		} else {
-			map.put("formStatus", OrderStatus.valueOf(request.getParameter("formStatus")));
+			map.put("formStatus", CommoidityStatus.valueOf(request.getParameter("formStatus")));
 		}
 		Map<String, List<Commodity>> maps = new HashMap<String, List<Commodity>>();
 		if (request.getParameter("cellStr").equals("")) {

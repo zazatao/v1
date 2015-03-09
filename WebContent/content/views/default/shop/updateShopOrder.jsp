@@ -51,7 +51,7 @@ th {
 	<br>
 	<br>
 	<br>
-	<form class="form-horizontal" action="./editShopOrder?id=${commodity.commodityID}" method="POST">
+	<form class="form-horizontal" action="./editShopOrder?id=${orderform.orderFormID}" method="POST">
 		<div class="form-group" style="text-align: center;">
 			<label><font style="font-size: 40px;">订单修改</font> </label> <br>
 			<br>
@@ -60,7 +60,7 @@ th {
 			<label for="inputEmail3" class="col-sm-2 control-label"><a
 				class="frred">*</a><font style="font-size: 18px;">编号</font></label>
 			<div class="col-sm-8">
-				<input type="text" name="commodityID" class="form-control" id="inputEmail3" value="${commodity.commodityID }" readonly="readonly">
+				<input type="text" name="orderFormID" class="form-control" id="inputEmail3" value="${orderform.orderFormID}" readonly="readonly">
 			</div>
 		</div>
 		<div class="form-group">
@@ -95,29 +95,18 @@ th {
 			<label for="inputEmail3" class="col-sm-2 control-label">
 				<font style="font-size: 18px;">状态</font></label>
 			<div class="col-sm-8">
-				<select class="form-control" name="formStatus" id="formStatus"
+				<select class="form-control" name="orderstatus" id="orderstatus" value="${orderform.orderstatus}"
 					placeholder="状态">
 					<option value="">-----状态-----
-					<option value="unchanged" <c:if test="${commodity.status=='unchanged' }">selected</c:if>>没有变化
-					<option value="refuse" <c:if test="${commodity.status=='refuse' }">selected</c:if>>拒绝接受货物
-					<option value="lack" <c:if test="${commodity.status=='lack' }">selected</c:if>>缺乏
-					<option value="inWarehouse" <c:if test="${commodity.status=='inWarehouse' }">selected</c:if>>在仓库
-					<option value="inAuctionlose" <c:if test="${commodity.status=='inAuctionlose' }">selected</c:if>>下拍
-					<option value="cancel" <c:if test="${commodity.status=='cancel' }">selected</c:if>>取消
-					<option value="delivery" <c:if test="${commodity.status=='delivery' }">selected</c:if>>交付
-					<option value="support" <c:if test="${commodity.status=='support' }">selected</c:if>>支持
-					<option value="sendOut" <c:if test="${commodity.status=='sendOut' }">selected</c:if>>派送
-					<option value="buyerNotPay" <c:if test="${commodity.status=='buyerNotPay' }">selected</c:if>>买方没有支付
-					<option value="inCell" <c:if test="${commodity.status=='inCell' }">selected</c:if>>在格子
-					<option value="lose" <c:if test="${commodity.status=='lose' }">selected</c:if>>丢失
-					<option value="manualProcessing" <c:if test="${commodity.status=='manualProcessing' }">selected</c:if>>手工加工
-					<option value="inForwarding" <c:if test="${commodity.status=='inForwarding' }">selected</c:if>>在转发
-					<option value="senToWarehouse" <c:if test="${commodity.status=='senToWarehouse' }">selected</c:if>>送货到仓库
-					<option value="packing" <c:if test="${commodity.status=='packing' }">selected</c:if>>打包
-					<option value="paid" <c:if test="${commodity.status=='paid' }">selected</c:if>>已付
-					<option value="apiProcessing" <c:if test="${commodity.status=='apiProcessing' }">selected</c:if>>API处理
-					<option value="delete" <c:if test="${commodity.status=='delete' }">selected</c:if>>删除
-					<option value="waitingForTracking" <c:if test="${commodity.status=='waitingForTracking' }">selected</c:if>>等待的追踪
+					<option value="waitAcceptance" name = "waitAcceptance">等待验收
+					<option value="waitPayment" name = "waitPayment">等待支付
+					<option value="inForwarding" name = "inForwarding">在线转发
+					<option value="waitDelivery" name = "waitDelivery">等待发货
+					<option value="transitGoods" name = "transitGoods">在途货物
+					<option value="consigneeSigning" name = "consigneeSigning">收货人签单
+					<option value="completionTransaction" name = "completionTransaction">完成交易
+					<option value="closeTransaction" name = "closeTransaction">关闭交易
+					<option value="autoCloseTransaction" name = "autoCloseTransaction">自动关闭交易
 				</select>
 			</div>
 			</div>
@@ -137,6 +126,9 @@ th {
 		}
 		function deleteShopOrder(num) {
 			location.href = './deleteShopOrder?id=' + num;
+		}
+		function cancel(num) {
+			location.href = './shopOrder?id=' + num;
 		}
 		function dateInfoxxx(obj) {
 			var date = obj;

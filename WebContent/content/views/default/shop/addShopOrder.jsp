@@ -75,7 +75,7 @@ th {
 		<div class="form-group">
 			<label class="col-md-3 control-label">买方</label>
 			<div class="col-md-6">
-				<input type="text" class="form-control" name="user">
+				<input type="text" class="form-control" name="orderUser" value="${orderUser.userName }" readonly="readonly">
 			</div>
 		</div>
 		<div class="form-group">
@@ -121,51 +121,34 @@ th {
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-md-3 control-label">包裹</label>
-			<div class="col-md-6">
-				<input type="text" class="form-control" name="transNumForTaobao">
-			</div>
-		</div>
-		<div class="form-group">
 			<label class="col-md-3 control-label">状态</label>
 			<div class="col-md-6">
-			<select class="form-control" name="formStatus" id="formStatus"
+
+			<select class="form-control" name="orderstatus" id="orderstatus"
 				placeholder="状态">
 				<option value="">-----状态-----
-				<option value="unchanged" name = "unchanged">没有变化
-				<option value="refuse" name = "refuse">拒绝接受货物
-				<option value="lack" name = "lack">缺乏
-				<option value="inWarehouse" name = "inWarehouse">在仓库
-				<option value="inAuctionlose" name = "inAuctionlose">下拍
-				<option value="cancel" name = "cancel">取消
-				<option value="delivery" name = "delivery">交付
-				<option value="support" name = "support">支持
-				<option value="sendOut" name = "sendOut">派送
-				<option value="buyerNotPay" name = "buyerNotPay">买方没有支付
-				<option value="inCell" name = "inCell">在格子
-				<option value="lose" name = "lose">丢失
-				<option value="manualProcessing" name = "manualProcessing">手工加工
-				<option value="inForwarding" name = "inForwarding">在转发
-				<option value="senToWarehouse" name = "senToWarehouse">送货到仓库
-				<option value="packing" name = "packing">打包
-				<option value="paid" name = "paid">已付
-				<option value="apiProcessing" name = "apiProcessing">API处理
-				<option value="delete" name = "delete">删除
-				<option value="waitingForTracking" name = "waitingForTracking">等待的追踪
+					<option value="waitAcceptance" name = "waitAcceptance">等待验收
+					<option value="waitPayment" name = "waitPayment">等待支付
+					<option value="inForwarding" name = "inForwarding">在线转发
+					<option value="waitDelivery" name = "waitDelivery">等待发货
+					<option value="transitGoods" name = "transitGoods">在途货物
+					<option value="consigneeSigning" name = "consigneeSigning">收货人签单
+					<option value="completionTransaction" name = "completionTransaction">完成交易
+					<option value="closeTransaction" name = "closeTransaction">关闭交易
+					<option value="autoCloseTransaction" name = "autoCloseTransaction">自动关闭交易
 			</select>	
-				
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-md-3 control-label">操作员</label>
 			<div class="col-md-6">
 				<input type="text" class="form-control" name="personnel"
-					placeholder="手机号、座机号" value="${personel.userName }" readonly="readonly">
+				 placeholder="手机号、座机号" value="${personel.userName }" readonly="readonly">
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-md-2 col-md-offset-3">
-				<button type="submit" class="form-control btn-primary">提交</button>
+				<button type="submit" class="form-control btn-primary" >提交</button>
 			</div>
 			<div class="col-md-2 col-md-offset-1">
 				<button type="reset" class="form-control btn-warning">重置</button>

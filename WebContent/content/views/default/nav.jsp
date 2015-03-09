@@ -1,4 +1,5 @@
 <%@page import="com.yc.entity.user.Personnel"%>
+<%@page import="com.yc.entity.user.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -52,7 +53,7 @@
 					data-toggle="dropdown">商店 <span class="caret"></span></a>
 					<ul class="dropdown-menu menu-top" role="menu">
 						<li><a href="./shop/shopOrder">订单</a></li>
-						<li><a href="#">包裹</a></li>
+						<li><a href="./shop/package">包裹</a></li>
 						<li class="dropdown-submenu"><a href="#">财务</a>
 							<ul class="dropdown-menu">
 								<li><a href="#">操作</a></li>
@@ -174,7 +175,7 @@
 								<li><a href="#">商品黑名单</a></li>
 							</ul></li>
 						<li><a href="#">客户</a></li>
-						<li class="dropdown-submenu"><a href="#">员工</a>
+						<li class="dropdown-submenu"><a href="./personnel/personnel">员工</a>
 							<ul class="dropdown-menu">
 								<li><a href="#">操作员</a></li>
 								<li><a href="#">发货员</a></li>
@@ -204,8 +205,8 @@
 					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><%=((Personnel) request.getSession().getAttribute("loginUser")).getUserName()%></a></li>
-				<li><a href="./user/logout">退出</a></li>
+				<li><a href="#"><%=((Personnel) request.getSession().getAttribute("loginPersonnle")).getUserName()%></a></li>
+				<li><a href="./personnel/logout">退出</a></li>
 			</ul>
 		</div>
 		<!--/.nav-collapse -->

@@ -25,6 +25,11 @@
 <script type="text/javascript"
 	src="../content/static/js/lib/jquery.min.js"></script>
 <script type="text/javascript"
+	src="../content/static/js/lib/strophe-custom-1.0.0.js"></script>
+<script type="text/javascript" src="../content/static/js/lib/json2.js"></script>
+<script type="text/javascript"
+	src="../content/static/js/lib/easemob.im-1.0.4.js"></script>
+<script type="text/javascript"
 	src="../content/static/js/lib/bootstrap.min.js"></script>
 <script type="text/javascript" src="./content/static/js/lib/scripts.js"></script>
 
@@ -38,6 +43,7 @@
 	src="../content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
 <script type="text/javascript"
 	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
+
 </head>
 <style type="text/css">
 th {
@@ -48,7 +54,7 @@ th {
 
 	<!-- Static navbar -->
 	<jsp:include page="../common/navbar.jsp"></jsp:include>
-	<div class="container-fluid"  style="padding:0;margin-top:32px;">
+	<div class="container-fluid" style="padding: 0; margin-top: 32px;">
 		<div class="row-fluid">
 			<div class="span12">
 				<ul class="breadcrumb">
@@ -92,7 +98,7 @@ th {
 								class="form-control" id="userName">
 						</div>
 						<div class="col-sm-1">
-							<input type="text" name="tpek" placeholder="追踪"
+							<input type="text" name="tpek" placeholder="条形码"
 								class="form-control" id="tpek">
 						</div>
 						<div class="col-sm-1">
@@ -106,7 +112,8 @@ th {
 								onclick="dateInfoxxx('inStoreRoomDate')">
 						</div>
 						<div class="col-sm-1">
-							<select class="form-control" name="formStatus" id="formStatus" placeholder="状态">
+							<select class="form-control" name="formStatus" id="formStatus"
+								placeholder="状态">
 								<option value="">-----状态-----
 								<option value="unchanged">没有变化
 								<option value="refuse">拒绝接受货物
@@ -159,7 +166,7 @@ th {
 													<th>订单</th>
 													<th>货号(淘宝ID)</th>
 													<th>买方</th>
-													<th>追踪</th>
+													<th>条形码</th>
 													<th>数量</th>
 													<th>价格</th>
 													<th>金额</th>
@@ -173,7 +180,7 @@ th {
 												varStatus="loop">
 												<tbody>
 													<tr class="success">
-														<td align="center">${value.storeRoom.cellStr }</td>
+														<td align="center">${value.orderNumber.orderUser.storeRoom.cellStr }</td>
 														<td>${value.orderNumber.packAge.packageCode }</td>
 														<td>${value.orderNumber.orderFormID }</td>
 														<td>${value.commItem }</td>
@@ -183,15 +190,15 @@ th {
 														<td>${value.price }</td>
 														<td>${value.money }</td>
 														<td>${value.weight }</td>
-														<td>${value.storeRoom.cellDate }</td>
-														<td>${value.storeRoom.inStoreRoomDate }</td>
+														<td>${value.cellDate }</td>
+														<td>${value.inStoreRoomDate }</td>
 														<td><c:choose>
 																<c:when test="${value.status =='unchanged'}">没有变化</c:when>
 																<c:when test="${value.status =='senToWarehouse'}">送往库房</c:when>
 																<c:when test="${value.status =='refuse'}">拒绝入库</c:when>
 																<c:when test="${value.status =='lose'}">丢失</c:when>
 																<c:when test="${value.status =='inWarehouse'}">在库房中</c:when>
-																<c:when test="${value.status =='marriage'}">交易中</c:when>
+																<c:when test="${value.status =='marriage'}">瑕疵品</c:when>
 															</c:choose></td>
 													</tr>
 													<tr>
@@ -203,10 +210,10 @@ th {
 														<td colspan="12">颜色：&nbsp;${value.color }&nbsp;&nbsp;&nbsp;&nbsp;尺码：&nbsp;${value.size }</td>
 													</tr>
 													<tr>
-														<td colspan="12">操作员：&nbsp;${value.storeOperator.userName }</td>
+														<td colspan="12">操作员：&nbsp;${value.orderNumber.storeOperator.userName }</td>
 													</tr>
 													<tr>
-														<td colspan="12">采购：&nbsp;${value.purchase.userName }</td>
+														<td colspan="12">采购：&nbsp;${value.orderNumber.purchase.userName }</td>
 													</tr>
 													<tr>
 														<td colspan="12">重量：&nbsp;${value.weight }</td>
