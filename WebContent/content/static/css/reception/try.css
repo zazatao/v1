@@ -1,0 +1,26 @@
+@charset "utf-8";
+/* CSS Document */
+ul,li{ list-style:none;}
+.try_nav{ width:1259px; height:200px;background:url(../images/try_navbg.png) no-repeat; margin:0px auto 0 auto; }
+.try_nav ul{ width:1024px; display:block; margin:0 auto;}
+.try_nav ul li{float:left;}
+.try_nav ul li.navimg{ padding-left:150px; margin-top:-20px}
+.try_nav ul li.navimg img{ width:230px; height:219px;}
+.try_nav ul li a{font-size:16px; font-weight:bold; display:block; padding:10px 30px 10px 30px; margin-right:5px;}
+.try_nav ul li.nav_li1 a,.try_nav ul li.nav_li2 a{ border-top:7px solid #fadd1f;margin-top:20px;}
+.try_nav ul li.nav_li2 a{margin-top:40px;}
+.try_nav ul li.nav_li3 a,.try_nav ul li.nav_li4 a{ margin-top:60px;border-top:7px solid #3ea957;}
+.try_nav ul li.nav_li4 a{margin-top:60px;}
+.try_nav ul li.nav_li5 a{margin-top:80px;border-top:7px solid #c52219;}
+.try_nav ul li a.cur1{border-left:1px solid #fadd1f;border-bottom:1px solid #fadd1f;border-right:1px solid #fadd1f;}
+.try_nav ul li a.cur2{border-left:1px solid #3ea957;border-bottom:1px solid #3ea957;border-right:1px solid #3ea957;}
+.try_nav ul li a.cur3{border-left:1px solid #c52219;border-bottom:1px solid #c52219;border-right:1px solid #c52219;}
+.pic_list a{ display:block; width:231px; height:190px; float:left; color:#fff; font-size:16px; text-align:center; padding-top:80px;font-weight:bold;}
+.pic_list a.trya_1{ background:url(../images/dz/img014.jpg) no-repeat;}
+.pic_list a.trya_2{ background:url(../images/dz/img015.jpg) no-repeat;}
+.pic_list a.trya_3{ background:url(../images/dz/img016.jpg) no-repeat;}
+.right_cont{ float:right; width:226px; height:381px; border:1px solid #d0d0d0; position:relative;}
+.right_cont p{ display:block;width:226px; height:170px; color:#000; font-size:14px; font-weight:bold; text-align:center; top:191px; left:0; padding:20px 10px 0 10px;bottom:0; position:absolute;  background:#fff; opacity:0.7;}
+.right_cont p span{ display:block; width:200px;}
+.right_cont p em{ display:block; width:200px; font-style:normal; font-size:12px; font-weight:normal;}
+.right_cont p a{ display:block; width:120px; height:20px; line-height:20px; border:1px solid #d0d0d0; font-size:12px; font-weight:normal; margin:20px 0 0 40px;}
