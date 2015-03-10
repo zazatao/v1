@@ -140,6 +140,7 @@
 														</li>
 														<li class="sctbldscrlb"><span>购买数量</span>${shopCar.buyAmount }</li>
 													</ul>
+													<p class="sctbldscp red">库存数量：<c:out value="${shopCar.shopCommoidty.proportion * shopCar.shopCommoidty.stock} "></c:out></p>
 												</div>
 											</div>
 										</dd>

@@ -88,6 +88,7 @@
                         <li><a href="#"><img src="content/static/images/yd.jpg" big="content/static/images/yd.jpg" mid="content/static/images/at/yd.jpg" width="67" height="64" /></a></li>
                         <li><a href="#"><img src="content/static/images/hlyp.jpg" big="content/static/images/hlyp.jpg" mid="content/static/images/at/hlyp.jpg" width="67" height="64" /></a></li>
                         <li><a href="#"><img src="content/static/images/sb.jpg" big="content/static/images/sb.jpg" mid="content/static/images/at/sb.jpg" width="67" height="64" /></a></li>
+                    	
                     </ul>
                 </div>
                 

@@ -58,6 +58,4 @@ public class UserService extends GenericService<User> implements IUserService {
 		return userDao.find(hql.toString(), paramete, -1, -1);
 	}
 	
-	
-
 }

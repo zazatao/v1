@@ -104,6 +104,8 @@
 													</c:if>
 											</c:forEach>
 										</ul>
+										<p class="sctbldscp red">
+										库存数量：<c:out value="${shopCar.shopCommoidty.proportion * shopCar.shopCommoidty.stock} "></c:out></p>
 									</div>
 							</div>
 							<div class="cl"></div>

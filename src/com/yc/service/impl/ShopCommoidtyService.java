@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import com.yc.dao.orm.commons.GenericDao;
 import com.yc.entity.ShopCommoidty;
-import com.yc.model.CommdityModel;
 import com.yc.service.IShopCommoidtyService;
 @Component
 public class ShopCommoidtyService extends GenericService<ShopCommoidty> implements IShopCommoidtyService {
