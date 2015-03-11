@@ -167,15 +167,12 @@
 									url : '../getShopCategory/shopCategoryBrand',
 									dataType : 'json',
 									success : function(data) {
+										elemnt
 										var $guige2 = "";
 										if (data && data.success == "true") {
 											$guige2 = $guige2
 													+ "<li><a href='../proscenium/categoryLei?id=-1&page=brand'>名品街</a><div>";
-											$
-													.each(
-															data.shopCategories,
-															function(i,
-																	brandCategory) {
+											$.each(data.shopCategories,function(i,brandCategory) {
 																$guige2 = $guige2
 																		+ "<div class='nav-column'><h3>"
 																		+ brandCategory.category

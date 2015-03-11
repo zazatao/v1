@@ -36,6 +36,7 @@
 .choice_cm a.chicon{border:1px solid #cc0000;}
 .choice_color{ float:left; clear:both; margin-top:20px;width:420px;}
 .choice_color span{width:20px; height:20px;border:1px solid #d0d0d0; margin-right:10px; text-align:center; display:inline-block; padding:5px;}
+.color_span{width:20px; height:20px;border:1px solid #d0d0d0; margin-right:10px; text-align:center; display:inline-block; padding:5px;}
 .choice_color span.choice_colorspr{border:1px solid #c00;}
 .choice_color img{ width:20px; height:20px;vertical-align:middle;}
 .choice_sl{ float:left; margin-top:20px; clear:both;width:420px;}

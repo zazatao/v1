@@ -11,4 +11,5 @@ public interface IPersonnelService  extends IGenericService<Personnel>{
 	List<Personnel> getUsersByParameters(String loginName, String userName);
 	
 	List<Personnel> FindByUserID(Integer id);
+
 }

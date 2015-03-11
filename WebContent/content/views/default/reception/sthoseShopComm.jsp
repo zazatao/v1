@@ -50,7 +50,6 @@
 						<td width="122">商品图片</td>
 						<td width="58">商品价格</td>
 						<td width="51">当前状态</td>
-						<td width="59">数量</td>
 						<td width="28"></td>
 					</tr>
 					<c:forEach var="shopComm" items="${shopComms }" varStatus="loop">
@@ -61,7 +60,6 @@
 							<td><img src="..${shopComm.shopCommImages[0].imagePath }" /></td>
 							<td>￥${shopComm.unitPrice }</td>
 							<td><button onclick="zhekou(${shopComm.shelves},${shopComm.commCode });"><c:if test="${shopComm.shelves}">已上架</c:if><c:if test="${!shopComm.shelves}">下架</c:if></button></td>
-							<td><span class="red">${shopComm.stock }</span></td>
 							<td><input type="checkbox" name="commID" value="${shopComm.commCode}"/></td>
 						</tr>
 					</c:forEach>

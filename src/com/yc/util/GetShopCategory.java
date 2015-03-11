@@ -178,6 +178,8 @@ public class GetShopCategory {
 			if (buycats != null && buycats.size()>0) {
 				Integer num = buycats.size();
 				mode.put("num", num);
+			}else{
+				mode.put("num", 0);
 			}
 		}
     	mode.put("success", "true");

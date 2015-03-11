@@ -8,14 +8,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>zazatao</title>
-<link href="../content/static/css/reception/css.css" rel="stylesheet"
-	type="text/css" />
-<link href="../content/static/css/reception/persc.css" rel="stylesheet"
-	type="text/css" />
+<link href="../content/static/css/bootstrap/bootstrap.css"
+	rel="stylesheet" />
 <link href="../content/static/css/datetime/jquery-clockpicker.min.css"
 	rel="stylesheet" />
 <link href="../content/static/css/datetime/jquery.datetimepicker.css"
 	rel="stylesheet" />
+<link href="../content/static/css/reception/css.css" rel="stylesheet"
+	type="text/css" />
+<link href="../content/static/css/reception/persc.css" rel="stylesheet"
+	type="text/css" />
 <script type="text/javascript"
 	src="../content/static/js/reception/png.js"></script>
 <script type="text/javascript"
@@ -24,6 +26,11 @@
 	src="../content/static/js/reception/jquery.min.js"></script>
 <script type="text/javascript"
 	src="../content/static/js/reception/js.js"></script>
+
+<script type="text/javascript"
+	src="../content/static/js/lib/jquery.min.js"></script>
+<script type="text/javascript"
+	src="../content/static/js/lib/bootstrap.min.js"></script>
 <script type="text/javascript"
 	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
 <script type="text/javascript"
@@ -52,12 +59,6 @@
 		 document.form.action='./editaddress?id=' + num;
 		 document.form.submit();
 	 }
-	 $('#textfield9').datetimepicker({
-			lang:'ch',
-			timepicker:false,
-			format:'Y-m-d',
-			formatDate:'Y-m-d',
-	});
 </script>
 </head>
 
@@ -134,7 +135,6 @@
 							</p>
 							<p class="secaclk">您的个人数据将被用来改进ZAZATAO.COM，加快结算订单，以及给您带来部分限制使用的机会，提供您的信息给ZAZATAO会提高整体服务水平，ZAZATAO一定会保护您的数据</p>
 						</div>
-
 						<div class="seacare seacareno">
 							<ul>
 								<li>
@@ -159,7 +159,7 @@
 								<li>
 									<p class="seacaretil">生日:</p>
 									<p>
-										<input name="birthday"  id="textfield9" value="${user.birthday}" type="text" />
+										<input name="birthday"  id="birthdayID" value="${user.birthday}" type="text" />
 									</p>
 								</li>
 								<li>
@@ -222,7 +222,13 @@
            				if (isok) {
            		 		form.submit();
 						}
-					 }		
+					 }	
+					 $('#birthdayID').datetimepicker({
+							lang:'ch',
+							timepicker:false,
+							format:'Y-m-d',
+							formatDate:'Y-m-d',
+					});
            		</script>
         </div>
         <div class="setcan">

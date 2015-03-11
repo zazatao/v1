@@ -22,23 +22,23 @@ public class ShopCommoidty {
 	@Column
 	private String commoidtyName;//商品名称
 	
-	@Column
+	@Column(unique=true)
 	private String commItem;// 货号
 	
 	@Column
 	private String supplier ;//供应商
 	
-	@Column
-	private String commSpec;//规格【，颜色-红色，尺寸-12L,】
-	
-	@Column
-	private Integer stock = 0 ;//库存数量
+	@OneToMany(mappedBy = "shopCommSpecs")
+	private List<ShopCommoidtySpecs> commsPecs;
 	
 	@Column
 	private Integer proportion = 1;//显示比例
 	
 	@Column
 	private Float  unitPrice =0f;//单价
+	
+	@Column
+	private Integer stock = 1 ;//库存总数量
 	
 	@Column(nullable = true)
 	private Float  probablyWeight = 0f;//大概重量
@@ -76,6 +76,22 @@ public class ShopCommoidty {
 	@OneToMany(mappedBy = "shopCommoidty")
 	private List<ShopCommImage> shopCommImages;//商品照片
 	
+	public Integer getStock() {
+		return stock;
+	}
+
+	public void setStock(Integer stock) {
+		this.stock = stock;
+	}
+
+	public List<ShopCommoidtySpecs> getCommsPecs() {
+		return commsPecs;
+	}
+
+	public void setCommsPecs(List<ShopCommoidtySpecs> commsPecs) {
+		this.commsPecs = commsPecs;
+	}
+
 	public String getCurrency() {
 		return currency;
 	}
@@ -90,14 +106,6 @@ public class ShopCommoidty {
 
 	public void setAuction(Boolean auction) {
 		this.auction = auction;
-	}
-
-	public String getCommSpec() {
-		return commSpec;
-	}
-
-	public void setCommSpec(String commSpec) {
-		this.commSpec = commSpec;
 	}
 
 	public String getCommoidtyName() {
@@ -162,14 +170,6 @@ public class ShopCommoidty {
 
 	public void setBelongTo(Shop belongTo) {
 		this.belongTo = belongTo;
-	}
-
-	public Integer getStock() {
-		return stock;
-	}
-
-	public void setStock(Integer stock) {
-		this.stock = stock;
 	}
 
 	public Integer getProportion() {

@@ -102,4 +102,8 @@ public class GenericDaoConfig {
 	public GenericDao<BuyCat> getBuyCatDao() {
 		return new GenericDaoSupport<BuyCat>(BuyCat.class);
 	}
+	@Bean
+	public GenericDao<ShopCommoidtySpecs> getShopCommoidtySpecsDao() {
+		return new GenericDaoSupport<ShopCommoidtySpecs>(ShopCommoidtySpecs.class);	
+	}
 }

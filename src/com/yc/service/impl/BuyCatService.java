@@ -23,4 +23,9 @@ public class BuyCatService extends GenericService<BuyCat> implements IBuyCatServ
 	public List<BuyCat> getBuyCatByUser(Integer id) {
 		return buyCatDao.getBy("catUser.id", id);
 	}
+
+	@Override
+	public List<BuyCat> getBuyCatByShopComm(Integer commCode) {
+		return buyCatDao.getBy("shopCommoidty.commCode", commCode);
+	}
 }

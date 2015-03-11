@@ -17,4 +17,8 @@ public interface IShopCommoidtyService extends IGenericService<ShopCommoidty> {
 
 	List<ShopCommoidty> getAllByNameAndShop(String commoName, Integer shopID);
 
+	ShopCommoidty getAllByCommItemAndShop(String commItem, Integer id);
+
+	List<String> getShopCommBySpecesAndCommID(Integer id, String speces);
+
 }

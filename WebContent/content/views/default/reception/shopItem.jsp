@@ -215,7 +215,7 @@
 								<c:forEach items="${keySet.value }" var="spec">
 									<c:set var="index1" value="${fn:indexOf(spec, '$') }"></c:set>
 									<c:set var="index2" value="${fn:length(spec) }"></c:set>
-									<span title="${fn:substring(spec, 0, index1)}" onclick="searchs('${keySet.key}','${spec}');"><img src="..${fn:substring(spec, index1+1, index2)}" /></span>
+									<span title="${keySet.key }-${fn:substring(spec, 0, index1)}" onclick="searchs('${keySet.key}','${spec}');" ><img src="..${fn:substring(spec, index1+1, index2)}" /></span>
 								</c:forEach>
 							</div>
 						</c:if>
@@ -223,7 +223,7 @@
 							<div class="choice_cm">
 								选择${keySet.key }：
 								<c:forEach items="${keySet.value }" var="spec">
-									<a onclick="searchs('${keySet.key}','${spec}');">${spec }</a>
+									<a name="c22" title="${keySet.key }-${spec}" onclick="searchs('${keySet.key}','${spec}');">${spec }</a>
 								</c:forEach>
 							</div>
 						</c:if>
@@ -267,6 +267,48 @@
 							}else{
 								alert("请选择型号或规格");
 							}
+						}
+						function gui7212(ements,name,obj){
+							$(ements).parent('div').siblings().filter('.choice_color').children('span').each(
+									function(){  
+											$(this).css("display", "none");		
+							 		}
+								);
+							var  element = ements;
+							var gui = $(ements).attr("title");
+							var commID = $('#commID').val();
+						    var gui = $(ements).attr("title");
+							jQuery
+							.ajax({
+								type : 'GET',
+								contentType : 'application/json',
+								url : '../proscenium/getShopCommSpeces?speces='+gui+'&id='+commID ,
+								dataType : 'json',
+								success : function(data) {
+									$.each(data.mySpeces,function(i,spec) {
+										var strs = spec.split('@');
+										for (var j = 0; j < strs.length; j++) {
+											var sss = strs[j];
+											if(sss != ''){
+											$(element).parent('div').siblings().filter('.choice_color').children('span').each(
+													function(){  
+														if (sss.split('$')[0]==$(this).attr("title")) {
+															
+														}
+											 		}
+												);
+// 											$(element).parent('div').siblings().filter('.choice_cm').children('a').each(
+// 												function(){  
+// 													if (sss.contains($(this).attr("title"))) {
+// 														$(this).css("display", "none");		
+// 													}	
+// 												 }
+// 											);
+											}
+										}
+									});
+								}
+							});
 						}
 						function searchs(name, obj) {
 							var isok = false;

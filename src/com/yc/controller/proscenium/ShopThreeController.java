@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Commodity;
@@ -26,7 +27,6 @@ import com.yc.entity.OrderStatus;
 import com.yc.entity.Shop;
 import com.yc.entity.ShopCategory;
 import com.yc.entity.user.User;
-import com.yc.model.CommdityModel;
 import com.yc.model.ShopOrderSearch;
 import com.yc.service.IAddressService;
 import com.yc.service.IBrandService;
@@ -281,5 +281,22 @@ public class ShopThreeController {
 		} else {
 			return new ModelAndView("user/login", mode);
 		}
+	}
+	
+	@RequestMapping(value = "getShopCommSpeces", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getShopCommSpeces(Integer id ,String speces) throws ServletException, IOException {
+		ModelMap mode = new ModelMap();
+		List<String> list = shopCommService.getShopCommBySpecesAndCommID(id,speces);
+		List<String> strs = new ArrayList<String>();
+		if (list != null && list.size()>0) {
+			for (int i = 0; i < list.size(); i++) {
+				strs.add(list.get(i).replace(",", "@"));
+			}
+		}
+		list.add("ddddd");
+		mode.put("mySpeces", strs);
+		mode.put("elemnt", speces);
+		return mode;
 	}
 }

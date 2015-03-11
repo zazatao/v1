@@ -8,4 +8,6 @@ public interface IBuyCatService extends IGenericService<BuyCat> {
 
 	List<BuyCat> getBuyCatByUser(Integer id);
 
+	List<BuyCat> getBuyCatByShopComm(Integer commCode);
+
 }

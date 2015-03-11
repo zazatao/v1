@@ -29,18 +29,22 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Brand;
+import com.yc.entity.BuyCat;
 import com.yc.entity.Possession;
 import com.yc.entity.Shop;
 import com.yc.entity.ShopCategory;
 import com.yc.entity.ShopCommImage;
 import com.yc.entity.ShopCommoidty;
+import com.yc.entity.ShopCommoidtySpecs;
 import com.yc.entity.ShopType;
 import com.yc.entity.Specifications;
 import com.yc.entity.user.User;
 import com.yc.service.IBrandService;
+import com.yc.service.IBuyCatService;
 import com.yc.service.IShopCategoryService;
 import com.yc.service.IShopCommImageService;
 import com.yc.service.IShopCommoidtyService;
+import com.yc.service.IShopCommoidtySpecsService;
 import com.yc.service.IShopService;
 import com.yc.service.ISpecificationsService;
 import com.yc.service.IUserService;
@@ -58,6 +62,9 @@ public class ShopOneController {
 
 	@Autowired
 	IShopCommoidtyService shopCommService;// 商品
+	
+	@Autowired
+	IShopCommoidtySpecsService commoidtySpecsService;
 
 	@Autowired
 	IShopCategoryService shopCategService;// 类别
@@ -73,6 +80,9 @@ public class ShopOneController {
 	
 	@Autowired
 	IUserService userService;
+	
+	@Autowired
+	IBuyCatService buyCatService;
 
 	//开店信息填写
 	@SuppressWarnings("unused")
@@ -273,81 +283,153 @@ public class ShopOneController {
 			if (shop != null && shop.getIsPermit()) {
 				String fenlei = request.getParameter("fenlei");
 				if (fenlei != null && !fenlei.equals("-1")) {
-					String guige = request.getParameter("guige");// 规格
-					shopCommoidty.setCommSpec(guige + ",");
-					shopCommoidty.setBelongTo(shop);
-					if (shopCommoidty.getSpecial() != null && shopCommoidty.getSpecial() >= 0) {
-						shopCommoidty.setSpecial(shopCommoidty.getSpecial() * 0.1f);
-					}
-					ShopCategory category = shopCategService.findById(Integer.parseInt(fenlei));
-					shopCommoidty.setShopCategory(category);
-					String brandid = request.getParameter("brandid");
-					if (brandid != null && !brandid.equals("")) {
-						Brand brand = brandService.findById(Integer.parseInt(brandid));
-						shopCommoidty.setBrand(brand);
-					}
-					ShopCommoidty shopcomm = shopCommService.save(shopCommoidty);
-					List<ShopCommImage> images = new ArrayList<ShopCommImage>();
 					CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
-					if (multipartResolver.isMultipart(request)) {
-						String pathDir = "";
-						MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
-						// 取得request中的所有文件名
-						Iterator<String> iter = multiRequest.getFileNames();
-						while (iter.hasNext()) {
-							// 取得上传文件
-							MultipartFile file = multiRequest.getFile(iter.next());
-							if (file != null) {
-								// 取得当前上传文件的文件名称
-								String myFileName = file.getOriginalFilename();
-								// 如果名称不为“”,说明该文件存在，否则说明该文件不存在
-								if (myFileName.trim() != "") {
-									System.out.println(myFileName);
-									// 重命名上传后的文件名
-									String fileName = file.getOriginalFilename();
-									// 定义上传路径
-									if (!file.getName().equals("yanse")) {
-										pathDir = "/content/static/img/" + shop.getId() + "/";
-									}else{
-										pathDir = "/content/static/img/yanse/" + shop.getId() + "/";
-									}
-									String logoRealPathDir = request.getSession().getServletContext().getRealPath(pathDir);
-									File file1 = new File(logoRealPathDir);
-									if (!file1.exists())
-										file1.mkdirs();
-									File file2 = new File(logoRealPathDir, fileName);
-									if (file2.getParentFile() == null)
-										file2.mkdirs();
-									file.transferTo(file2);
-									if (file.getName().equals("yanse")) {
-										String[] specs = shopcomm.getCommSpec().split(",");
-										if (specs.length>0) {
-											String str = ",";
-											for (int i = 0; i < specs.length; i++) {
-												if (!specs[i].equals("")) {
-													if (specs[i].split("-")[0].equals("颜色")) {
-														str = str + specs[i]+"$"+pathDir + fileName+",";
-													}else{
-														str = str + specs[i]+",";
+					ShopCommoidty shopCom = shopCommService.getAllByCommItemAndShop(shopCommoidty.getCommItem(), shop.getId());
+					String guige = request.getParameter("guige");// 规格
+					if (shopCom != null) {
+						ShopCommoidtySpecs specs = commoidtySpecsService.getSpecsByParam(shopCom.getCommCode(),guige);
+						Integer stock = Integer.parseInt(request.getParameter("stock"));
+						if (specs == null) {
+							if (multipartResolver.isMultipart(request)) {
+								String pathDir = "";
+								MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
+								// 取得request中的所有文件名
+								Iterator<String> iter = multiRequest.getFileNames();
+								while (iter.hasNext()) {
+									// 取得上传文件
+									MultipartFile file = multiRequest.getFile(iter.next());
+									if (file != null) {
+										// 取得当前上传文件的文件名称
+										String myFileName = file.getOriginalFilename();
+										// 如果名称不为“”,说明该文件存在，否则说明该文件不存在
+										if (myFileName.trim() != "") {
+											// 重命名上传后的文件名
+											String fileName = file.getOriginalFilename();
+											// 定义上传路径
+											System.out.println("file.getName().equals()"+file.getName().equals("yanse"));
+											if (file.getName().equals("yanse")) {
+											pathDir = "/content/static/img/yanse/" + shop.getId() + "/";
+											String logoRealPathDir = request.getSession().getServletContext().getRealPath(pathDir);
+											File file1 = new File(logoRealPathDir);
+											if (!file1.exists())
+												file1.mkdirs();
+											File file2 = new File(logoRealPathDir, fileName);
+											if (file2.getParentFile() == null)
+												file2.mkdirs();
+											file.transferTo(file2);
+												String[] spec = guige.split(",");
+												if (spec.length>0) {
+													String str = ",";
+													for (int i = 0; i < spec.length; i++) {
+														if (!spec[i].equals("")) {
+															if (spec[i].split("-")[0].equals("颜色")) {
+																str = str + spec[i]+"$"+pathDir + fileName+",";
+															}else{
+																str = str + spec[i]+",";
+															}
+														}
 													}
+													specs = new ShopCommoidtySpecs();
+													specs.setCommSpec(str);
+													specs.setStock(stock);
+													specs.setUnitPrice(shopCommoidty.getUnitPrice());
+													specs.setShopCommSpecs(shopCom);
+													commoidtySpecsService.save(specs);
+													shopCom.setStock(shopCom.getStock() + stock);
 												}
 											}
-											shopcomm.setCommSpec(str);
 										}
 									}
-									ShopCommImage image = new ShopCommImage();
-									image.setImagePath(pathDir + fileName);
-									image.setShopCommoidty(shopcomm);
-									image = shopCommImageService.save(image);
-									images.add(image);
+								}
+							}
+						}else{
+							specs.setStock(specs.getStock()+stock);
+							commoidtySpecsService.update(specs);
+							shopCom.setStock(shopCom.getStock() + stock);
+						}
+						shopCommService.update(shopCom);
+					}else{
+						shopCommoidty.setBelongTo(shop);
+						if (shopCommoidty.getSpecial() != null && shopCommoidty.getSpecial() >= 0) {
+							shopCommoidty.setSpecial(shopCommoidty.getSpecial() * 0.1f);
+						}else{
+							shopCommoidty.setSpecial(1f);
+						}
+						ShopCategory category = shopCategService.findById(Integer.parseInt(fenlei));
+						shopCommoidty.setShopCategory(category);
+						String brandid = request.getParameter("brandid");
+						if (brandid != null && !brandid.equals("")) {
+							Brand brand = brandService.findById(Integer.parseInt(brandid));
+							shopCommoidty.setBrand(brand);
+						}
+						ShopCommoidty shopcomm = shopCommService.save(shopCommoidty);
+						List<ShopCommImage> images = new ArrayList<ShopCommImage>();
+						if (multipartResolver.isMultipart(request)) {
+							String pathDir = "";
+							MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
+							// 取得request中的所有文件名
+							Iterator<String> iter = multiRequest.getFileNames();
+							while (iter.hasNext()) {
+								// 取得上传文件
+								MultipartFile file = multiRequest.getFile(iter.next());
+								if (file != null) {
+									// 取得当前上传文件的文件名称
+									String myFileName = file.getOriginalFilename();
+									// 如果名称不为“”,说明该文件存在，否则说明该文件不存在
+									if (myFileName.trim() != "") {
+										System.out.println(myFileName);
+										// 重命名上传后的文件名
+										String fileName = file.getOriginalFilename();
+										// 定义上传路径
+										if (!file.getName().equals("yanse")) {
+											pathDir = "/content/static/img/" + shop.getId() + "/";
+										}else{
+											pathDir = "/content/static/img/yanse/" + shop.getId() + "/";
+										}
+										String logoRealPathDir = request.getSession().getServletContext().getRealPath(pathDir);
+										File file1 = new File(logoRealPathDir);
+										if (!file1.exists())
+											file1.mkdirs();
+										File file2 = new File(logoRealPathDir, fileName);
+										if (file2.getParentFile() == null)
+											file2.mkdirs();
+										file.transferTo(file2);
+										if (file.getName().equals("yanse")) {
+											String[] specs = guige.split(",");
+											if (specs.length>0) {
+												String str = ",";
+												for (int i = 0; i < specs.length; i++) {
+													if (!specs[i].equals("")) {
+														if (specs[i].split("-")[0].equals("颜色")) {
+															str = str + specs[i]+"$"+pathDir + fileName+",";
+														}else{
+															str = str + specs[i]+",";
+														}
+													}
+												}
+												ShopCommoidtySpecs spec = new ShopCommoidtySpecs();
+												spec.setCommSpec(str);
+												Integer stock = Integer.parseInt(request.getParameter("stock"));
+												spec.setStock(stock);
+												spec.setUnitPrice(shopCommoidty.getUnitPrice());
+												spec.setShopCommSpecs(shopcomm);
+												commoidtySpecsService.save(spec);
+											}
+										}
+										ShopCommImage image = new ShopCommImage();
+										image.setImagePath(pathDir + fileName);
+										image.setShopCommoidty(shopcomm);
+										image = shopCommImageService.save(image);
+										images.add(image);
+									}
 								}
 							}
 						}
+						shopcomm.setShopCommImages(images);
+						String supplier = "/proscenium/shopItem?commID="+shopcomm.getCommItem()+"&category="+Integer.parseInt(fenlei)+"&shopID="+shop.getId()+"&commoName="+shopcomm.getCommoidtyName();
+						shopcomm.setSupplier(supplier);
+						shopCommService.update(shopcomm);
 					}
-					shopcomm.setShopCommImages(images);
-					String supplier = "/proscenium/shopItem?commID="+shopcomm.getCommItem()+"&category="+Integer.parseInt(fenlei)+"&shopID="+shop.getId()+"&commoName="+shopcomm.getCommoidtyName();
-					shopcomm.setSupplier(supplier);
-					shopCommService.update(shopcomm);
 					return "redirect:/proscenium/release";
 				} else {
 					return "redirect:/proscenium/releaseCommoidty";
@@ -388,6 +470,30 @@ public class ShopOneController {
 								shopCommImageService.delete(shopCommImage.getImageID());
 							}
 						}
+						List<ShopCommoidtySpecs> specs = commoidtySpecsService.getSpecsByShopComm(Integer.parseInt(commIDs[i]));
+						if (specs != null && specs.size() > 0) {
+							for (ShopCommoidtySpecs spec : specs) {
+								String logoRealPathDir = request.getSession().getServletContext().getRealPath(spec.getCommSpec());
+								File file = new File(logoRealPathDir);
+								if (file.exists()) {
+									file.delete();
+									if (file.getParentFile().isDirectory()) {
+										File[] childs = file.getParentFile().listFiles();
+										if (childs == null || childs.length == 0) {
+											file.getParentFile().delete();
+										}
+									}
+								}
+								commoidtySpecsService.delete(spec.getId());
+							}
+						}
+						List<BuyCat> buycats = buyCatService.getBuyCatByShopComm(shopComm.getCommCode()); 
+						if (buycats !=null && buycats.size()>0) {
+							for (BuyCat buyCat : buycats) {
+								buyCatService.delete(buyCat.getCatID());
+							}
+						}
+						System.out.println("shopComm.getCommCode()========"+shopComm.getCommCode());
 						shopCommService.delete(shopComm.getCommCode());
 					}
 				}
@@ -585,7 +691,11 @@ public class ShopOneController {
 			} else if (param[i].split("-")[0].equals("money")) {
 				money = param[i].split("-")[1];
 			} else {
-				specs = specs + "%," + param[i] + ",%" + "@";
+				if (param[i].contains("颜色-")) {
+					specs = specs + "%," + param[i] + "%" + "@";
+				}else{
+					specs = specs + "%," + param[i] + ",%" + "@";
+				}
 			}
 		}
 		if (brand.length() > 1) {
@@ -650,29 +760,50 @@ public class ShopOneController {
 		mode.put("shopCategories", shopcategories);
 		mode.put("nvabar", strs.substring(0, strs.length() - 1));
 		ShopCommoidty shopCommoidty = shopCommService.findById(commID);
-		List<ShopCommoidty> list =shopCommService.getAllByNameAndShop(commoName,shopID);
 		Map<String, List<String>> map = new HashMap<String, List<String>>();
 		List<String> specStrs = null;
-		for (ShopCommoidty comm : list) {
-			String spec = comm.getCommSpec();
+			for (ShopCommoidtySpecs spe : shopCommoidty.getCommsPecs()) {
+			String spec = spe.getCommSpec();
 			String[] specs = spec.split(",");
 			if (specs.length>0) {
 				for (int i = 0; i < specs.length; i++) {
 					if (!specs[i].equals("")) {
 						if (map.containsKey(specs[i].split("-")[0])) {
-							specStrs = map.get(specs[i].split("-")[0]);
-							if (!specStrs.contains(specs[i].split("-")[1])) {
-								specStrs.add(specs[i].split("-")[1]);
+								specStrs = map.get(specs[i].split("-")[0]);
+								if (specs[i].split("-")[0].equals("颜色")) {
+									boolean isok = true;
+									for (String str : specStrs) {
+										if (str.contains(specs[i].split("-")[1].substring(0,specs[i].split("-")[1].indexOf("$")))) {
+											isok = false;
+										}
+									}
+									if (isok) {
+										specStrs.add(specs[i].split("-")[1]);
+									}
+								}else{
+									boolean isok = true;
+									for (String str : specStrs) {
+										System.out.println(str+"   dd  "+specs[i].split("-")[1]+"   "+str.equals(specs[i].split("-")[1]));
+										if (str.equals(specs[i].split("-")[1])) {
+											isok = false;
+										}
+									}
+									if (isok) {
+										specStrs.add(specs[i].split("-")[1]);
+									}
+								}
+								map.put(specs[i].split("-")[0], specStrs);
+							}else{
+								specStrs = new ArrayList<String>();
+								if (!specStrs.contains(specs[i].split("-")[1])) {
+									specStrs.add(specs[i].split("-")[1]);
+								}
+								map.put(specs[i].split("-")[0], specStrs);
 							}
-						}else{
-							specStrs = new ArrayList<String>();
-							specStrs.add(specs[i].split("-")[1]);
-							map.put(specs[i].split("-")[0], specStrs);
 						}
 					}
 				}
 			}
-		}
 		mode.put("shopCommoidty", shopCommoidty);
 		mode.put("map", map);
 		User user = (User)request.getSession().getAttribute("loginUser");

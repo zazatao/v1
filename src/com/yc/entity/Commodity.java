@@ -272,4 +272,5 @@ public class Commodity {
 		this.shopcategory = shopcategory;
 	}
 	
+
 }

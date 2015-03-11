@@ -56,7 +56,7 @@ public class ShopCommoidtyService extends GenericService<ShopCommoidty> implemen
 	//Integer id, String brand, String specs, String money
 	@Override
 	public List<ShopCommoidty> getAllByParams(Map<String, Object> map,String page ) {
-		StringBuffer hql = new StringBuffer("select shc.* from ShopCommoidty shc where shc.shop_id is not null and shc.shelves = 1 ");
+		StringBuffer hql = new StringBuffer("select shc.* from ShopCommoidty shc right join ShopCommoidtySpecs sp on shc.commCode = sp.shopComm_id where shc.shop_id is not null and shc.shelves = 1 ");
 		if (page.equals("special")) {
 			hql.append(" and shc.isSpecial = 1");
 		}
@@ -68,10 +68,10 @@ public class ShopCommoidtyService extends GenericService<ShopCommoidty> implemen
 			if (map.get("specs").toString().contains("@")) {
 				spec =map.get("specs").toString().split("@");
 				for (int i = 0; i < spec.length; i++) {
-					hql.append(" and ('"+spec[i]+"' is null or shc.commSpec like '"+spec[i]+"') ");
+					hql.append(" and ('"+spec[i]+"' is null or sp.commSpec like '"+spec[i]+"') ");
 				}
 			}else{
-				hql.append(" and ('"+map.get("specs")+"' is null or shc.commSpec like '"+map.get("specs")+"') ");
+				hql.append(" and ('"+map.get("specs")+"' is null or sp.commSpec like '"+map.get("specs")+"') ");
 			}
 		}
 		if (map.get("money") != null && !map.get("money").equals("")) {
@@ -103,6 +103,31 @@ public class ShopCommoidtyService extends GenericService<ShopCommoidty> implemen
 	        values.add(commoName);
 	        values.add(shopID);
 		return shopCommoidtyDao.getBy(keys,values );
+	}
+
+	@Override
+	public ShopCommoidty getAllByCommItemAndShop(String commItem, Integer id) {
+		 List<String> keys = new ArrayList<String>();
+	        keys.add("commItem");
+	        keys.add("belongTo.id");
+	        List<Object> values = new ArrayList<Object>();
+	        values.add(commItem);
+	        values.add(id);
+		return shopCommoidtyDao.getFirstRecord(keys, values);
+	}
+
+	@Override
+	public List<String> getShopCommBySpecesAndCommID(Integer id, String speces) {
+		StringBuffer hql = new StringBuffer("select sp.commSpec from ShopCommoidty sc join ShopCommoidtySpecs sp on sp.shopComm_id = sc.commCode where sp.commSpec  LIKE '%,"+speces+"%'");
+		Query query = shopCommoidtyDao.getEntityManager().createNativeQuery(hql.toString());
+		@SuppressWarnings("rawtypes")
+		List objecArraytList = query.getResultList(); 
+		List<String> list = new ArrayList<String>();
+		for (Object object : objecArraytList) {
+			list.add(object.toString());
+			System.out.println("fff ==   "+object.toString());
+		}
+		return list;
 	}
 
 }

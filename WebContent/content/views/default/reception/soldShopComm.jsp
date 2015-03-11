@@ -51,7 +51,6 @@
 						<td width="58">商品价格</td>
 						<td width="51">当前状态</td>
 						<td width="51">加入促销</td>
-						<td width="59">数量</td>
 						<td width="28"></td>
 					</tr>
 					<c:forEach var="shopComm" items="${shopComms }" varStatus="loop">
@@ -71,7 +70,6 @@
 									<c:if test="${shopComm.isSpecial}">已加入</c:if>
 									<c:if test="${!shopComm.isSpecial}">不加入</c:if>
 								</button></td>
-							<td><span class="red">${shopComm.stock }</span></td>
 							<td><input type="checkbox" name="commID"
 								value="${shopComm.commCode}" /></td>
 						</tr>
