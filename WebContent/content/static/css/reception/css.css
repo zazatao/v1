@@ -18,7 +18,7 @@ img{ border:none;}
 .top{width:1024px; height:54px; margin:0 auto; position:relative;}
 .topfn{background:url(../../images/topbg.jpg) repeat-x bottom; height:112px; width:100%; z-index:999;}
 /*********************logo部分***************************/
-.topfd{position:fixed; background:url(content/static/images/topbg.jpg) repeat-x; width:100%; z-index:999; top:0; border-bottom:1px solid #ccc;    -moz-box-shadow: 0px 0px 4px #000;
+.topfd{position:fixed; background:url(../../images/topbg.jpg) repeat-x; width:100%; z-index:999; top:0; border-bottom:1px solid #ccc;    -moz-box-shadow: 0px 0px 0px #000;
     -webkit-box-shadow: 0px 0px 4px #000;
     box-shadow: 0px 0px 4px #000;}
 .top1{width:1024px; margin:0 auto; height:58px;}

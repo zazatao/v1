@@ -160,45 +160,30 @@
 								}
 							}
 						});
-						jQuery
-								.ajax({
-									type : 'GET',
-									contentType : 'application/json',
-									url : '../getShopCategory/shopCategoryBrand',
-									dataType : 'json',
-									success : function(data) {
-										elemnt
-										var $guige2 = "";
-										if (data && data.success == "true") {
-											$guige2 = $guige2
-													+ "<li><a href='../proscenium/categoryLei?id=-1&page=brand'>名品街</a><div>";
-											$.each(data.shopCategories,function(i,brandCategory) {
-																$guige2 = $guige2
-																		+ "<div class='nav-column'><h3>"
-																		+ brandCategory.category
-																		+ "</h3><ul>";
-																var strs = brandCategory.brandStr
-																		.split("|");
-																for (var i = 0; i < strs.length; i++) {
-																	$guige2 = $guige2
-																			+ "<li><a href='../proscenium/shopCommItem?id="
-																			+ strs[i]
-																					.split('-')[0]
-																			+ "&page=brand'>"
-																			+ strs[i]
-																					.split('-')[1]
-																			+ "</a></li>";
-																}
-																$guige2 = $guige2
-																		+ "</ul></div>";
-															});
-											$guige2 = $guige2 + "</div></li>";
-										} else {
-											var $guige2 = "<li><a href='../proscenium/categoryLei?id=-1&page=brand'>名品街</a><div></div></li>";
-										}
-										$('#navShopCaegory2').append($guige2);
-									}
-								});
+						jQuery.ajax({
+							type : 'GET',
+							contentType : 'application/json',
+							url : '../getShopCategory/shopCategoryBrand',
+							dataType : 'json',
+							success : function(data) {
+								var $guige2 = "";
+								if (data && data.success == "true") {
+									$guige2 = $guige2 + "<li><a href='../proscenium/categoryLei?id=-1&page=brand'>名品街</a><div>";
+									$.each(data.shopCategories,function(i, brandCategory) {
+										$guige2 = $guige2 + "<div class='nav-column'><h3>"+brandCategory.category+"</h3><ul>";
+										var strs = brandCategory.brandStr.split("|");
+											for (var i = 0; i < strs.length; i++) {
+												$guige2 = $guige2 + "<li><a href='../proscenium/shopCommItem?id="+strs[i].split('-')[0]+"&page=brand'>"+ strs[i].split('-')[1] +"</a></li>";
+											}
+											$guige2 = $guige2 + "</ul></div>";
+									});
+									$guige2 = $guige2 + "</div></li>";
+								}else{
+									var $guige2 = "<li><a href='../proscenium/categoryLei?id=-1&page=brand'>名品街</a><div></div></li>";
+								}
+								$('#navShopCaegory2').append($guige2);
+							}
+						});
 						jQuery
 								.ajax({
 									type : 'GET',
