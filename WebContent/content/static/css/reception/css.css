@@ -16,7 +16,7 @@ img{ border:none;}
 
 /*******************top 开始*********************/
 .top{width:1024px; height:54px; margin:0 auto; position:relative;}
-.topfn{background:url(content/static/images/topbg.jpg) repeat-x bottom; height:112px; width:100%; z-index:999;}
+.topfn{background:url(../../images/topbg.jpg) repeat-x bottom; height:112px; width:100%; z-index:999;}
 /*********************logo部分***************************/
 .topfd{position:fixed; background:url(content/static/images/topbg.jpg) repeat-x; width:100%; z-index:999; top:0; border-bottom:1px solid #ccc;    -moz-box-shadow: 0px 0px 4px #000;
     -webkit-box-shadow: 0px 0px 4px #000;
@@ -119,14 +119,14 @@ img{ border:none;}
 .wmtop{width:1015px; height:30px; padding:0 0 0 9px; font-size:14px; font-weight:bold; color:#666;}
 .wmcon{width:1022px; height:213px; border:1px solid #ccc;}
 .wmcon li{float:left; width:175px; height:170px; margin:25px 40px;}
-.wmcon li.h_1 a{ display:block; width:175px; height:170px; background:url(../content/static/images/ysaj.jpg) no-repeat;}
-.wmcon li.h_2 a{ display:block; width:175px; height:170px; background:url(../content/static/images/lxaj.jpg) no-repeat;}
-.wmcon li.h_3 a{ display:block; width:175px; height:170px; background:url(../content/static/images/lxwm.jpg) no-repeat;}
-.wmcon li.h_4 a{ display:block; width:175px; height:170px; background:url(../content/static/images/ltaj.jpg) no-repeat;}
-.wmcon li.h_1 a:hover{display:block; width:175px; height:170px; background:url(../content/static/images/ysaj1.jpg) no-repeat;}
-.wmcon li.h_2 a:hover{display:block; width:175px; height:170px; background:url(../content/static/images/lxaj1.jpg) no-repeat;}
-.wmcon li.h_3 a:hover{display:block; width:175px; height:170px; background:url(../content/static/images/lxwm1.jpg) no-repeat;}
-.wmcon li.h_4 a:hover{display:block; width:175px; height:170px; background:url(../content/static/images/ltaj1.jpg) no-repeat;}
+.wmcon li.h_1 a{ display:block; width:175px; height:170px; background:url(../../images/ysaj.jpg) no-repeat;}
+.wmcon li.h_2 a{ display:block; width:175px; height:170px; background:url(../../images/lxaj.jpg) no-repeat;}
+.wmcon li.h_3 a{ display:block; width:175px; height:170px; background:url(../../images/lxwm.jpg) no-repeat;}
+.wmcon li.h_4 a{ display:block; width:175px; height:170px; background:url(../../images/ltaj.jpg) no-repeat;}
+.wmcon li.h_1 a:hover{display:block; width:175px; height:170px; background:url(../../images/ysaj1.jpg) no-repeat;}
+.wmcon li.h_2 a:hover{display:block; width:175px; height:170px; background:url(../../images/lxaj1.jpg) no-repeat;}
+.wmcon li.h_3 a:hover{display:block; width:175px; height:170px; background:url(../../images/lxwm1.jpg) no-repeat;}
+.wmcon li.h_4 a:hover{display:block; width:175px; height:170px; background:url(../../images/ltaj1.jpg) no-repeat;}
 
 .spzx{position:relative; width:1024px; height:238px; margin:15px 0; border-bottom:1px solid #43ac4f;}
 .sptop{width:1015px; height:30px; padding:0 0 0 9px; font-size:14px; font-weight:bold; color:#666;}
@@ -240,7 +240,7 @@ div.sdmenu div a:hover{color:#666; font-weight:bold; text-decoration:none;}
 .red_menu{width:1024px; font-size:15px;}
 
 /**************************底部信息****************************/
-.footer{position:relative; background:url(../content/static/images/fotbg.jpg) repeat-x; width:100%; height:703px; overflow:hidden;}
+.footer{position:relative; background:url(../../images/fotbg.jpg) repeat-x; width:100%; height:703px; overflow:hidden;}
 
 .dyzx{width:1200px; margin:0 auto; height:133px; overflow:hidden;}
 .fotlogo{float:left; width:160px; margin:40px 0 0 40px;}
@@ -273,8 +273,8 @@ div.sdmenu div a:hover{color:#666; font-weight:bold; text-decoration:none;}
 /***********底部图片轮播***************/
 .catalog_img{ height:150px;}
 .catalog_img { padding:10px 0px; overflow: hidden;  zoom: 1; position: relative}
-.catalog_img .LeftBotton {	background:url(../content/static/images/left_bt.png) no-repeat 0px 0px; LEFT: 5px; FLOAT: left; WIDTH: 25px; cursor: pointer; position: absolute; top: 75px; height: 114px}
-.catalog_img .RightBotton {	right: 0px; BACKGROUND:url(../content/static/images/right_bt.png) no-repeat 0px 0px; FLOAT: right; WIDTH: 25px; cursor: pointer; position: absolute; top: 75px; height: 114px}
+.catalog_img .LeftBotton {	background:url(../../images/left_bt.png) no-repeat 0px 0px; LEFT: 5px; FLOAT: left; WIDTH: 25px; cursor: pointer; position: absolute; top: 75px; height: 114px}
+.catalog_img .RightBotton {	right: 0px; BACKGROUND:url(../../images/right_bt.png) no-repeat 0px 0px; FLOAT: right; WIDTH: 25px; cursor: pointer; position: absolute; top: 75px; height: 114px}
 .catalog_img .Cont {	margin: 0px auto; overflow: hidden; width: 958px; padding-top: 5px}
 .catalog_img .box {	float: left; text-align: center; margin:0 10px; width:209px;}
 .catalog_img .box img { padding:3px 10px; width:189px;border: #ccc 1px solid; display: block; background: #fff;  margin: 0px auto;}
@@ -350,9 +350,9 @@ div.sdmenu div a:hover{color:#666; font-weight:bold; text-decoration:none;}
 .navf li { list-style: none; }
 .navf li img{ padding-top:2px;}
 /* Menu Container */
-.navf {display: inline-block;cursor: default;z-index: 500;background:url(../content/static/images/menu1.jpg) repeat-x; padding-top:6px;}
-.nav_2 {background:url(../content/static/images/menu2.jpg) repeat-x;}
-.nav_3 {background:url(../content/static/images/menu3.jpg) repeat-x;}
+.navf {display: inline-block;cursor: default;z-index: 500;background:url(../../images/menu1.jpg) repeat-x; padding-top:6px;}
+.nav_2 {background:url(../../images/menu2.jpg) repeat-x;}
+.nav_3 {background:url(../../images/menu3.jpg) repeat-x;}
 .navf > li > a{ width:70px;}
 .nav_2 > li > a{width:80px;}
 .nav_3 > li > a{ width:97.5px;}
