@@ -32,69 +32,6 @@
 
 <body>
 
-<<<<<<< HEAD
-	<!-- Static navbar -->
-	<jsp:include page="../common/navbar.jsp"></jsp:include>
-	<div class="container-fluid"  style="padding:0;margin-top:32px;">
-		<div class="row-fluid">
-			<div class="span12">
-				<ul class="breadcrumb">
-					<li><a href="#" style="font-size: 18px;">仓库</a></li> <span class="divider" ><font style="font-size: 18px;">/</font></span>
-					<li><font style="font-size: 18px;">收货</font>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<div class="row clearfix"
-		style="vertical-align: middle; text-align: center;">
-		<div class="container-fluid">
-			<div class="row-fluid">
-				<div class="span12">
-					<button class="btn btn-large btn-success" type="button"
-						onclick="popupwindow('../warehouse/jobAction?isTrue=true');">&nbsp;开&nbsp;始&nbsp;工&nbsp;作&nbsp;</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<script type="text/javascript">
-		// Popup window code
-		function reloadData() {
-			setTimeout(function() {
-				window.location.reload();
-			}, 1000);
-		}
-		function popupwindow(url) {
-			var w = 700;
-			var h = 800;
-			var title = "";
-			var left = (screen.width / 2) - (w / 2);
-			var top = (screen.height / 2) - (h / 2);
-			return window
-					.open(
-							url,
-							title,
-							'directories=0,titlebar=0,toolbar=0,location=0,status=0,menubar=0,scrollbars=yes,resizable=yes, width='
-									+ w
-									+ ', height='
-									+ h
-									+ ', top='
-									+ top
-									+ ', left=' + left);
-		}
-	</script>
-</body>
-</html>
-=======
 	<!-- Static navbar -->
 	<jsp:include page="../common/navbar.jsp"></jsp:include>
 	<div class="container-fluid" style="padding: 0; margin-top: 32px;">
@@ -157,4 +94,3 @@
 	</script>
 </body>
 </html>
->>>>>>> branch 'master' of https://github.com/zazatao/v1.git

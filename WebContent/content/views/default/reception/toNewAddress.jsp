@@ -31,77 +31,6 @@
 	<div class="con">
 
 		<!---------------   shopcar   ----------------------->
-<<<<<<< HEAD
-				<div class="shopcartabt2">
-					<div class="shcaadd">
-						<ul class="shcaaddtex">
-							<li>
-								<p>收货人*</p>
-								<p>
-									<input name="" type="text" />
-								</p>
-							</li>
-							<li>
-								<p>电话*</p>
-								<p>
-									<input name="" type="text" />
-								</p>
-							</li>
-							<li>
-								<p>Emial</p>
-								<p>
-									<input name="" type="text" />
-								</p>
-							</li>
-							<li>
-								<p>国家*</p>
-								<p class="shcaadds">
-									<select name="">
-										<option value="volvo">选择国家</option>
-									</select>
-								</p>
-							</li>
-							<li>
-								<p>省份*</p>
-								<p class="shcaadds">
-									<select name="">
-								<option value="volvo">选择省份</option>
-							</select>
-								</p>
-								
-							</li>
-							<li>
-								<p>城市*</p>
-								<p class="shcaadds">
-									<select name="">
-								<option value="volvo">选择城市</option>
-							</select>
-								</p>
-								
-							</li>
-							<li>
-								<p>区县*</p>
-								<p class="shcaadds">
-									<select name="">
-								<option value="volvo">选择区县</option>
-							</select>
-								</p>
-								
-							</li>
-							<li>
-								<p>详细地址*</p>
-								<p>
-									<input name="" type="text" />
-								</p>
-							</li>
-							<li class="shcaaddtexc"><span><input name=""
-									type="checkbox" value="" /></span> 是否设定为默认地址</li>
-						</ul>
-						<div align="right" style="margin-right: 60px;"><a style="color: green;">确认新增</a></div>
-					</div>
-				</div>
-			</div>
-=======
 		<div class="shopcartabt2">
 			<div class="shcaadd">
 				<ul class="shcaaddtex">
@@ -173,6 +102,5 @@
 			</div>
 		</div>
 	</div>
->>>>>>> branch 'master' of https://github.com/zazatao/v1.git
 </body>
 </html>

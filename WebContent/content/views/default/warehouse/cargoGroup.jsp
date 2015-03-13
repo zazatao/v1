@@ -43,11 +43,7 @@
 
 	<!-- Static navbar -->
 	<jsp:include page="../common/navbar.jsp"></jsp:include>
-<<<<<<< HEAD
-	<div class="container-fluid"  style="padding:0;margin-top:32px;">
-=======
 	<div class="container-fluid" style="padding: 0; margin-top: 32px;">
->>>>>>> branch 'master' of https://github.com/zazatao/v1.git
 		<div class="row-fluid">
 			<div class="span12">
 				<ul class="breadcrumb">

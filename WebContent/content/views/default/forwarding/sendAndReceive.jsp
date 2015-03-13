@@ -41,50 +41,6 @@
 <body>
 	<!-- Static navbar -->
 	<jsp:include page="../common/navbar.jsp"></jsp:include>
-<<<<<<< HEAD
-<div class="container-fluid" style="padding:0;margin-top:32px;" >
-		<div class="row-fluid">
-			<div class="span12">
-				<ul class="breadcrumb">
-					<li><a href="#" style="font-size: 18px;">中转</a></li>
-					<span class="divider"><font style="font-size: 18px;">/</font></span>
-					<li><font style="font-size: 18px;">接收&发送</font>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<br> 
-	<br>
-	<div class="row clearfix"
-		style="vertical-align: middle; text-align: center;">
-		<div class="container-fluid">
-			<div class="row-fluid">
-				<div class="span12">
-					<form class="form-horizontal" action=""
-						method="POST">
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-3 control-label">
-								<font color="green" style="font-size: 18px;">包裹:</font>
-							</label>
-							<div class="col-sm-6">
-								<input type="text" name="hospitalDesignation"
-									class="form-control" id="inputEmail3">
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-7">
-								<input type="radio" name="sendOrReceive" value="receive" checked="checked"><font
-									color="red" style="font-size: 18px;">接收</font>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-									type="radio" name="sendOrReceive" value="send"
-									><font color="red"
-									style="font-size: 18px;">发送</font>
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-7">
-							<br>
-=======
 	<div class="container-fluid" style="padding: 0; margin-top: 32px;">
 		<div class="row-fluid">
 			<div class="span12">
@@ -126,7 +82,6 @@
 						<div class="form-group">
 							<div class="col-sm-7">
 								<br>
->>>>>>> branch 'master' of https://github.com/zazatao/v1.git
 								<button class="btn btn-large btn-success" type="button">&nbsp;&nbsp;处&nbsp;&nbsp;理&nbsp;&nbsp;</button>
 							</div>
 						</div>

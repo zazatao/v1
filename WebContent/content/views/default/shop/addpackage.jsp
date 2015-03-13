@@ -45,64 +45,6 @@ th {
 }
 </style>
 <body>
-<<<<<<< HEAD
-		<jsp:include page="../common/navbar.jsp"></jsp:include>
-	<div class="panel panel-default" style="padding: 0; margin-top: 32px;">
-		<div class="panel-heading">
-			<h3 class="panel-title">
-				<a href="./insertShopOrder" style="font-size: 18px;">商品</a> <span class="divider"><font
-					style="font-size: 18px;">/</font></span> <font style="font-size: 18px;">订单</font>
-					<a href="#" style="font-size: 18px;" id="add">
-					<span class="badge navbar-right">添加&nbsp;+</span></a>
-			</h3>
-		</div>
-	</div>
-	
-	<form action="./addPackage" method="POST" class="form-horizontal" role="from">
-		<div class="form-group">
-			<label class="col-md-3 control-label">操作员</label>
-			<div class="col-md-6">
-				<input style="width: 400px;" type="text" class="form-control" name="personnel" value="${personel.userName }" readonly="readonly">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-md-3 control-label">交通方式</label>
-			<div class="col-md-6">
-				<select style="width:400px;" name="traffic">
-					<option value="ky">空运</option>
-					<option value="ly">陆运</option>
-					<option value="sy">水运</option>
-				</select>
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-md-3 control-label">运输方式</label>
-			<div class="col-md-6">
-				<select style="width:400px;" name="transport">
-					<option value="ems">EMS</option>
-					<option value="yt">圆通</option>
-					<option value="sf">顺风</option>
-					<option value="yd">韵达</option>
-				</select>
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-md-3 control-label">订单编号</label>
-			<div class="col-md-6">
-				<textarea rows="2" cols="3"  style="width:400px;" class="form-control" name="orderFormID" ></textarea>
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-md-2 col-md-offset-3">
-				<button type="submit" class="form-control btn-primary" >提交</button>
-			</div>
-			<div class="col-md-2 col-md-offset-1">
-				<button type="reset" class="form-control btn-warning">重置</button>
-			</div>
-		</div>
-	</form>
-	
-=======
 	<jsp:include page="../common/navbar.jsp"></jsp:include>
 	<div class="panel panel-default" style="padding: 0; margin-top: 32px;">
 		<div class="panel-heading">
@@ -162,8 +104,6 @@ th {
 			</div>
 		</div>
 	</form>
-
->>>>>>> branch 'master' of https://github.com/zazatao/v1.git
 
 	<jsp:include page="../common/delModelBox.jsp"></jsp:include>
 
