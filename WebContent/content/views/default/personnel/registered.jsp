@@ -6,6 +6,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<<<<<<< HEAD
  <base href="<%=basePath%>">
 <html>
 <head>
@@ -15,5 +16,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>	
          Thanks, you are register ${success}. go to <a href="user/login">Login</a> page
+=======
+<base href="<%=basePath%>">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>User Registered</title>
+
+</head>
+<body>
+	Thanks, you are register ${success}. go to
+	<a href="user/login">Login</a> page
+>>>>>>> branch 'master' of https://github.com/zazatao/v1.git
 </body>
 </html>

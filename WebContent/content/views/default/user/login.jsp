@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -42,6 +43,53 @@
 <%-- 				<c:if test="${not empty message }"> --%>
 <!-- 					<font color="red">用户名或密码错误，请重新输入您的登陆信息</font> -->
 <%-- 				</c:if> --%>
+=======
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>zazatao</title>
+<link href="../content/static/css/reception/css.css" rel="stylesheet"
+	type="text/css" />
+<link href="../content/static/css/reception/qt.css" rel="stylesheet"
+	type="text/css" />
+<script type="text/javascript"
+	src="../content/static/js/reception/png.js"></script>
+<script type="text/javascript"
+	src="../content/static/js/reception/sdmenu.js"></script>
+<script type="text/javascript"
+	src="../content/static/js/reception/jquery-1.4.2.min.js"></script>
+<script type="text/javascript"
+	src="../content/static/js/reception/js.js"></script>
+<SCRIPT src="../content/static/js/reception/ScrollPic.js"
+	type=text/javascript></SCRIPT>
+</head>
+
+<body>
+	<jsp:include page="../common/prosceniumNav.jsp"></jsp:include>
+	<div class="con">
+		<!---------------   页面主体   ----------------------->
+		<!--login start-->
+		<div class="login">
+			<h1>登陆社交网站</h1>
+			<p class="ptop">
+				<a href="#"><img
+					src="../content/static/images/small/dl_pic_1.png" /></a> <a href="#"><img
+					src="../content/static/images/small/dl_pic_2.png" /></a> <a href="#"><img
+					src="../content/static/images/small/dl_pic_3.png" /></a> <a href="#"><img
+					src="../content/static/images/small/dl_pic_4.png" /></a> <a href="#"><img
+					src="../content/static/images/small/dl_pic_5.png" /></a> <a href="#"><img
+					src="../content/static/images/small/dl_pic_6.png" /></a>
+			</p>
+			<div class="clear"></div>
+			<p>
+				<%-- 				<c:if test="${not empty message }"> --%>
+				<!-- 					<font color="red">用户名或密码错误，请重新输入您的登陆信息</font> -->
+				<%-- 				</c:if> --%>
+>>>>>>> branch 'master' of https://github.com/zazatao/v1.git
 			</p>
 			<form action="../user/login" method="post">
 				<p>

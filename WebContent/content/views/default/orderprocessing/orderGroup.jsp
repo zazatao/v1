@@ -29,7 +29,7 @@
 <script type="text/javascript" src="./content/static/js/lib/scripts.js"></script>
 
 <script type="text/javascript"
-	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>	
+	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
 <link href="../content/static/css/datetime/jquery-clockpicker.min.css"
 	rel="stylesheet">
 <link href="../content/static/css/datetime/jquery.datetimepicker.css"
@@ -42,7 +42,7 @@
 <body>
 	<!-- Static navbar -->
 	<jsp:include page="../common/navbar.jsp"></jsp:include>
-	<div class="container-fluid"  style="padding:0;margin-top:32px;">
+	<div class="container-fluid" style="padding: 0; margin-top: 32px;">
 		<div class="row-fluid">
 			<div class="span12">
 				<ul class="breadcrumb">
@@ -55,38 +55,38 @@
 	</div>
 	<div class="container-fluid">
 		<div class="row-fluid">
-		<form class="form-horizontal" action="./searchOrderProcess"
-					method="POST">
-					<div class="form-group">
-						<div class="col-sm-1">
-							<input type="text" name="orderGroupID" placeholder="订单编号"
-								class="form-control" id="orderGroupID" onblur="checkvalue(this)">
-						</div>
-						<div class="col-sm-1">
-							<input type="text" name="taskNumber" placeholder="任务号"
-								class="form-control" id="taskNumber">
-						</div>
-						<div class="col-sm-1">
-							<select class="form-control" name="orderStatus" placeholder="订单状态"
-								id="orderStatus">
-								<option value="">订单状态
-								<option value="initializa">初始化
-								<option value="waitAcceptance">等待验收
-								<option value="waitPayment">等待支付
-								<option value="waitDelivery"> 等待发货
-								<option value="transitGoods">在途货物
-								<option value="consigneeSigning">收货人签单
-								<option value="completionTransaction">完成交易
-								<option value="closeTransaction">关闭交易
-								<option value="autoCloseTransaction">自动关闭交易
-							</select>
-						</div>
-						
-						<div class="col-sm-1">
-							<input type="submit" value="搜索" class="btn btn-default">
-						</div>
+			<form class="form-horizontal" action="./searchOrderProcess"
+				method="POST">
+				<div class="form-group">
+					<div class="col-sm-1">
+						<input type="text" name="orderGroupID" placeholder="订单编号"
+							class="form-control" id="orderGroupID" onblur="checkvalue(this)">
 					</div>
-				</form>
+					<div class="col-sm-1">
+						<input type="text" name="taskNumber" placeholder="任务号"
+							class="form-control" id="taskNumber">
+					</div>
+					<div class="col-sm-1">
+						<select class="form-control" name="orderStatus" placeholder="订单状态"
+							id="orderStatus">
+							<option value="">订单状态
+							<option value="initializa">初始化
+							<option value="waitAcceptance">等待验收
+							<option value="waitPayment">等待支付
+							<option value="waitDelivery">等待发货
+							<option value="transitGoods">在途货物
+							<option value="consigneeSigning">收货人签单
+							<option value="completionTransaction">完成交易
+							<option value="closeTransaction">关闭交易
+							<option value="autoCloseTransaction">自动关闭交易
+						</select>
+					</div>
+
+					<div class="col-sm-1">
+						<input type="submit" value="搜索" class="btn btn-default">
+					</div>
+				</div>
+			</form>
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">订单组</h3>
@@ -113,12 +113,15 @@
 										<tr class="success">
 									</c:otherwise>
 								</c:choose>
-								<td><a href="#" onclick="haveOrder(${orderGroups.orderGroupID });">${orderGroups.orderGroupID }</a></td>
+								<td><a href="#"
+									onclick="haveOrder(${orderGroups.orderGroupID });">${orderGroups.orderGroupID }</a></td>
 								<td>${orderGroups.sale }</td>
 								<td>${orderGroups.taskNumber }</td>
 								<td>${orderGroups.alipayPay }</td>
 								<td>${orderGroups.sumOfMoney }</td>
-								<td><c:if test="${orderGroups.groupStatus == 'initializa' }">初始化</c:if> <%-- 									<c:if test="${orders.inForwarding == 'inForwarding' }">在转发</c:if> --%>
+								<td><c:if
+										test="${orderGroups.groupStatus == 'initializa' }">初始化</c:if>
+									<%-- 									<c:if test="${orders.inForwarding == 'inForwarding' }">在转发</c:if> --%>
 									<%-- 									<c:if test="${orders.senToWarehouse == 'senToWarehouse' }">送货到仓库</c:if> --%>
 									<%-- 									<c:if test="${orders.packing == 'packing' }"> 打包</c:if> --%>
 								</td>

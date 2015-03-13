@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
 <meta charset="utf-8">
 <title>zazatao</title>
 
@@ -103,6 +104,107 @@
 											class="form-control">
 									</div>
 								</div>
+=======
+<meta charset="utf-8">
+<title>zazatao</title>
+
+<link href="../content/static/css/bootstrap/bootstrap.css"
+	rel="stylesheet">
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144"
+	href="../content/static/img/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114"
+	href="../content/static/img/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72"
+	href="../content/static/img/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed"
+	href="../content/static/img/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="../content/static/img/favicon.png">
+
+<script type="text/javascript"
+	src="../content/static/js/lib/jquery.min.js"></script>
+<script type="text/javascript"
+	src="../content/static/js/lib/bootstrap.min.js"></script>
+<script type="text/javascript" src="../content/static/js/lib/scripts.js"></script>
+
+<link href="../content/static/css/datetime/jquery-clockpicker.min.css"
+	rel="stylesheet">
+<link href="../content/static/css/datetime/jquery.datetimepicker.css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="../content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
+<script type="text/javascript"
+	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
+<style>
+.frred {
+	color: #FF0000;
+	font-size: 12px;
+}
+
+.frbule {
+	color: #0066CC;
+	font-size: 12px;
+}
+
+.fgren {
+	color: #339933;
+	font-size: 12px;
+}
+</style>
+</head>
+<body>
+
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<div class="row clearfix">
+					<br> <br>
+				</div>
+
+				<div class="row clearfix">
+					<div class="col-md-3 column"></div>
+					<div class="col-md-6 column">
+						<form class="form-horizontal" action="../personnel/regist"
+							method="POST">
+							<div class="form-group" style="text-align: center;">
+								<label><font style="font-size: 40px;">用户注册</font> </label> <br>
+								<br>
+							</div>
+							<div class="form-group">
+								<label for="inputEmail3" class="col-sm-2 control-label"><a
+									class="frred">*</a>用户名</label>
+								<div class="col-sm-10">
+									<input type="text" name="loginName" class="form-control"
+										id="inputEmail3" onblur="checkformname()"> <span
+										id="sname" class="frbule">输入至少2位用户名</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputPassword3" class="col-sm-2 control-label"><a
+									class="frred">*</a>密码 </label>
+								<div class="col-sm-10">
+									<input type="password" name="password1" class="form-control"
+										id="inputPassword3" onblur="checkpwd()"><span
+										id="spwd" class="frbule"> 请输入至少6为密码</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputPassword4" class="col-sm-2 control-label"><a
+									class="frred">*</a>确认密码</label>
+								<div class="col-sm-10">
+									<input type="password" name="password" class="form-control"
+										id="inputPassword4" onblur="rcheckpwd()"><span
+										id="srpwd" class="frbule"> 请输入重复密码</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputPhone" class="col-sm-2 control-label">姓名</label>
+								<div class="col-sm-10">
+									<input type="tel" id="inputPatientName" name="userName"
+										class="form-control">
+								</div>
+							</div>
+>>>>>>> branch 'master' of https://github.com/zazatao/v1.git
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10"
 									style="text-align: center;">

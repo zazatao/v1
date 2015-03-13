@@ -43,16 +43,25 @@
 					</div>
 					<div class="ordersclics">
 						<form action="perscentBonuses" method="get" id="formSearch">
-							<span>按日期筛选</span> <span> <select name="orderDate" onchange="searchParam();" id="orderDate">
-									<option value="volvo" <c:if test="${orderDate == 'volvo' }">selected</c:if>>最近五天</option>
-									<option value="saab" <c:if test="${orderDate == 'saab' }">selected</c:if>>最近一个月</option>
-									<option value="fiat" <c:if test="${orderDate == 'fiat' }">selected</c:if>>最近三个月</option>
-									<option value="-1" <c:if test="${orderDate == '-1' }">selected</c:if>>全部时间</option>
+							<span>按日期筛选</span> <span> <select name="orderDate"
+								onchange="searchParam();" id="orderDate">
+									<option value="volvo"
+										<c:if test="${orderDate == 'volvo' }">selected</c:if>>最近五天</option>
+									<option value="saab"
+										<c:if test="${orderDate == 'saab' }">selected</c:if>>最近一个月</option>
+									<option value="fiat"
+										<c:if test="${orderDate == 'fiat' }">selected</c:if>>最近三个月</option>
+									<option value="-1"
+										<c:if test="${orderDate == '-1' }">selected</c:if>>全部时间</option>
 							</select>
-							</span> <span> <select name="orderStatus"  onchange="searchParam();"  id="orderStatus">
-									<option value="-1" <c:if test="${orderStatus == '-1' }">selected</c:if>>全部状态</option>
-									<option value="wanjie" <c:if test="${orderStatus == 'wanjie' }">selected</c:if>>已完结</option>
-									<option value="weiwanjie" <c:if test="${orderStatus == 'weiwanjie' }">selected</c:if>>未完结</option>
+							</span> <span> <select name="orderStatus"
+								onchange="searchParam();" id="orderStatus">
+									<option value="-1"
+										<c:if test="${orderStatus == '-1' }">selected</c:if>>全部状态</option>
+									<option value="wanjie"
+										<c:if test="${orderStatus == 'wanjie' }">selected</c:if>>已完结</option>
+									<option value="weiwanjie"
+										<c:if test="${orderStatus == 'weiwanjie' }">selected</c:if>>未完结</option>
 							</select>
 							</span>
 						</form>
@@ -96,7 +105,7 @@
 									<li class="ordersli2"><div class="midl">
 											${orderForm.orderDate }<br /> ${orderForm.orderTime }
 										</div></li>
-									<li class="ordersli3"><div class="midl" >${commodity.seller.shopName }</div></li>
+									<li class="ordersli3"><div class="midl">${commodity.seller.shopName }</div></li>
 									<li class="ordersli4"><div class="midl">
 											<span class="octdw">${commodity.quantity }</span>
 										</div></li>

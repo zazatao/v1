@@ -58,5 +58,5 @@ public class IndexController {
     @RequestMapping(value = "personnel", method = RequestMethod.GET)
     public ModelAndView personnel(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         return new ModelAndView("personnel", null);
-    }
+    } 
 }

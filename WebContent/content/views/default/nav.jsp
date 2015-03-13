@@ -212,4 +212,8 @@
 		<!--/.nav-collapse -->
 	</div>
 	<!--/.container-fluid -->
+<<<<<<< HEAD
 </nav>
+=======
+</nav>
+>>>>>>> branch 'master' of https://github.com/zazatao/v1.git

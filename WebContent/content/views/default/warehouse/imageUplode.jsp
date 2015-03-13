@@ -40,7 +40,12 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10" style="text-align: center;">
+<<<<<<< HEAD
 				<button type="button" class="btn btn-default" onclick="saveImage();">保存</button>
+=======
+					<button type="button" class="btn btn-default"
+						onclick="saveImage();">保存</button>
+>>>>>>> branch 'master' of https://github.com/zazatao/v1.git
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<button type="button" class="btn btn-default" onclick="onSave()">取消</button>
 				</div>

@@ -29,19 +29,17 @@
 			<div class="top_tel">
 				<img src="content/static/images/top_sj.png" />
 				<p>
-					全球统一客服电话<br />
-					<span class="red">152386895258</span>
+					全球统一客服电话<br /> <span class="red">152386895258</span>
 				</p>
 			</div>
 			<div class="gwctb">
-				<a href="./proscenium/shopcar"><img src="content/static/images/gwc.jpg"
-					width="63" height="43" /></a>
+				<a href="./proscenium/shopcar"><img
+					src="content/static/images/gwc.jpg" width="63" height="43" /></a>
 			</div>
 			<div class="clear"></div>
 			<div class="qbfl">
 				<a href="index"><img src="content/static/images/china.jpg" /></a><a
-					href="index"><img
-					src="content/static/images/eluosi.jpg" /></a>
+					href="index"><img src="content/static/images/eluosi.jpg" /></a>
 			</div>
 		</div>
 		<div class="topnone"></div>
@@ -86,52 +84,64 @@
 					<li class="bg_none"><a href="./index"><img
 							src="content/static/images/fzan.jpg" width="16" height="17" /></a></li>
 					<c:forEach items="${shopCategories }" var="shopCategory">
-						<c:if test="${shopCategory.level == 1 && shopCategory.category != '汽车用具' && shopCategory.category != '电子产品' }">
-							<li><a href="./proscenium/categoryOne?id=${shopCategory.categoryID}">${shopCategory.category }</a><div>
-									<c:forEach items="${shopCategory.children }" var="shopCategory2">
+						<c:if
+							test="${shopCategory.level == 1 && shopCategory.category != '汽车用具' && shopCategory.category != '电子产品' }">
+							<li><a
+								href="./proscenium/categoryOne?id=${shopCategory.categoryID}">${shopCategory.category }</a>
+							<div>
+									<c:forEach items="${shopCategory.children }"
+										var="shopCategory2">
 										<c:if test="${shopCategory2.level == 2  }">
-											<div class="nav-column"><h3>${shopCategory2.category }</h3><ul>
-												<c:forEach  items="${shopCategory2.children }" var="shopCategory3">
-													<c:if test="${shopCategory3.level == 3 }">
-														<li><a href='./proscenium/shopCommItem?id=${shopCategory3.categoryID }&page=page'>${shopCategory3.category }</a></li>
-													</c:if>
-												</c:forEach>
-											</ul>
+											<div class="nav-column">
+												<h3>${shopCategory2.category }</h3>
+												<ul>
+													<c:forEach items="${shopCategory2.children }"
+														var="shopCategory3">
+														<c:if test="${shopCategory3.level == 3 }">
+															<li><a
+																href='./proscenium/shopCommItem?id=${shopCategory3.categoryID }&page=page'>${shopCategory3.category }</a></li>
+														</c:if>
+													</c:forEach>
+												</ul>
 											</div>
 										</c:if>
 									</c:forEach>
-								</div>
-							</li>
+								</div></li>
 						</c:if>
 					</c:forEach>
 				</ul>
 			</div>
 			<div class="menu2">
 				<ul class="navf nav_2" id="navShopCaegory2">
-				<c:forEach items="${shopCategories }" var="shopCategory">
-						<c:if test="${shopCategory.level == 1 && (shopCategory.category == '电子产品' || shopCategory.category == '汽车用具') }">
-							<li>
-							<c:if test="${shopCategory.category == '电子产品' }">
-								<a href="./proscenium/categoryLei?id=${shopCategory.categoryID}&page=electronics">${shopCategory.category }</a>
-							</c:if>
-							<c:if test="${shopCategory.category == '汽车用具' }">
-								<a href="./proscenium/categoryLei?id=${shopCategory.categoryID}&page=autoSupplies">${shopCategory.category }</a>
-							</c:if>	
-							<div>
-								<c:forEach items="${shopCategory.children }" var="shopCategory2">
+					<c:forEach items="${shopCategories }" var="shopCategory">
+						<c:if
+							test="${shopCategory.level == 1 && (shopCategory.category == '电子产品' || shopCategory.category == '汽车用具') }">
+							<li><c:if test="${shopCategory.category == '电子产品' }">
+									<a
+										href="./proscenium/categoryLei?id=${shopCategory.categoryID}&page=electronics">${shopCategory.category }</a>
+								</c:if> <c:if test="${shopCategory.category == '汽车用具' }">
+									<a
+										href="./proscenium/categoryLei?id=${shopCategory.categoryID}&page=autoSupplies">${shopCategory.category }</a>
+								</c:if>
+								<div>
+									<c:forEach items="${shopCategory.children }"
+										var="shopCategory2">
 										<c:if test="${shopCategory2.level == 2  }">
-											<div class="nav-column"><h3>${shopCategory2.category }</h3><ul>
-												<c:forEach  items="${shopCategory2.children }" var="shopCategory3">
-													<c:if test="${shopCategory3.level == 3 }">
-														<li><a href='./proscenium/shopCommItem?id=${shopCategory3.categoryID }&page=page'>${shopCategory3.category }</a></li>
-													</c:if>
-												</c:forEach>
+											<div class="nav-column">
+												<h3>${shopCategory2.category }</h3>
+												<ul>
+													<c:forEach items="${shopCategory2.children }"
+														var="shopCategory3">
+														<c:if test="${shopCategory3.level == 3 }">
+															<li><a
+																href='./proscenium/shopCommItem?id=${shopCategory3.categoryID }&page=page'>${shopCategory3.category }</a></li>
+														</c:if>
+													</c:forEach>
 												</ul>
 											</div>
 										</c:if>
 									</c:forEach>
-								</div>
-							</li>
+								</div></li>
 						</c:if>
 					</c:forEach>
 				</ul>

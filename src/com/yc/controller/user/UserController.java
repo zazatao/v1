@@ -326,5 +326,5 @@ public class UserController {
 			mode.put("orderStatus", orderStatus);
 			return new ModelAndView("reception/perscentBonuses",mode);
 		}
-	}
+	}	
 }

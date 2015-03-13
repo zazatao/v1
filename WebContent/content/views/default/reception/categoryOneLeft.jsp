@@ -10,6 +10,7 @@
 	<div class="nyflcd">
 		<div id="my_menu" class="sdmenu">
 			<c:forEach items="${cate.children }" var="category" varStatus="loop">
+<<<<<<< HEAD
 					<div class="collapsed">
 						<span>${category.category }</span>
 							<div>
@@ -18,6 +19,17 @@
 								</c:forEach>
 							</div>
 					</div>
+=======
+				<div class="collapsed">
+					<span>${category.category }</span>
+					<div>
+						<c:forEach items="${category.children }" var="one">
+							<a
+								href="../proscenium/shopCommItem?id=${one.categoryID }&page=page">${one.category }</a>
+						</c:forEach>
+					</div>
+				</div>
+>>>>>>> branch 'master' of https://github.com/zazatao/v1.git
 			</c:forEach>
 		</div>
 	</div>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .Pingjia{width:550px; margin-left:20px;}
 .Pingjia .biao{width:550px; background:url(../content/static/images/pingjia/icon01.png) no-repeat left; font-size:14px; color:#06C; font-weight:bold; text-indent:20px; height:40px; line-height:40px}
 
@@ -98,3 +99,427 @@
 
 
 
+=======
+.Pingjia {
+	width: 550px;
+	margin-left: 20px;
+}
+
+.Pingjia .biao {
+	width: 550px;
+	background: url(../content/static/images/pingjia/icon01.png) no-repeat
+		left;
+	font-size: 14px;
+	color: #06C;
+	font-weight: bold;
+	text-indent: 20px;
+	height: 40px;
+	line-height: 40px
+}
+
+.Pingjia .nei {
+	width: 550px;
+	border: 1px solid #CCC;
+	overflow: hidden
+}
+
+.Pingjia .nei .nei01 {
+	width: 530px;
+	overflow: hidden;
+	clear: both;
+	padding: 5px
+}
+
+.Pingjia .nei .nei01 .neileft {
+	width: 180px;
+	float: left
+}
+
+.Pingjia .nei .nei01 .neileft h1 {
+	width: 180px;
+	height: 1px;
+	font-size: 14px;
+	color: #333;
+	font-weight: bold;
+	line-height: 15px
+}
+
+.Pingjia .nei .nei01 .neileft h2 {
+	width: 180px;
+	height: 1px;
+}
+
+.Pingjia .nei .nei01 .neileft h2 img {
+	float: left
+}
+
+.Pingjia .nei .nei01 .neileft h3 {
+	width: 180px;
+	font-size: 12px;
+	color: #888;
+	font-weight: normal;
+	line-height: 15px
+}
+
+.Pingjia .nei .nei01 .neiright {
+	width: 340px;
+	overflow: hidden;
+	float: right;
+	margin-top: 30px
+}
+
+.Pingjia .nei .nei02 {
+	width: 550px;
+	overflow: hidden;
+	background: #e8e8e8;
+	color: #666
+}
+
+.Pingjia01 {
+	width: 550px;
+	margin-left: 20px;
+	overflow: hidden
+}
+
+.Pingjia01 .biao {
+	width: 550px;
+	background: url(../content/static/images/pingjia/icon02.png) no-repeat
+		left;
+	height: 40px;
+}
+
+.Pingjia01 .biao h1 {
+	width: 130px;
+	font-size: 14px;
+	color: #333;
+	font-weight: bold;
+	text-indent: 20px;
+	height: 40px;
+	line-height: 40px;
+	float: left
+}
+
+.Pingjia01 .biao h2 {
+	width: 20px;
+	font-size: 14px;
+	color: #06C;
+	font-weight: bold;
+	height: 40px;
+	line-height: 40px;
+	float: left
+}
+
+.Pingjia01 .biao h3 {
+	width: 180px;
+	font-size: 14px;
+	color: #06C;
+	font-weight: bold;
+	height: 40px;
+	line-height: 40px;
+	float: left
+}
+
+.Pingjia01 .biao h3 img {
+	float: left;
+	margin-top: 12px;
+	margin-right: 3px
+}
+
+.Pingjia01 .biao h4 {
+	width: 100px;
+	font-size: 12px;
+	color: #666;
+	font-weight: normal;
+	height: 40px;
+	line-height: 40px;
+	float: right
+}
+
+.Pingjia01 .nei {
+	width: 550px;
+	overflow: hidden
+}
+
+.Pingjia02 {
+	width: 780px;
+	margin-left: 20px;
+	overflow: hidden
+}
+
+.Pingjia021 .biao {
+	width: 780px;
+	background: url(../content/static/images/pingjia/icon02.png) no-repeat
+		left;
+	font-size: 14px;
+	color: #06C;
+	font-weight: bold;
+	text-indent: 20px;
+	height: 40px;
+	line-height: 40px
+}
+
+.Pingjia02 .nei {
+	width: 550px;
+	overflow: hidden
+}
+
+.autoh {
+	width: 780px;
+	margin-top: 20px;
+	margin-left: 20px
+}
+
+.tab-title {
+	color: #444;
+	height: 31px;
+	*height: 31px;
+	border-bottom: none;
+	width: 780px;
+	float: left;
+	border-bottom: 3px solid #36C
+}
+
+.tab-title a {
+	color: #333;
+	height: 31px;
+	*height: 31px;
+	border-bottom: none;
+	width: 470px;
+}
+
+.active1 {
+	color: #333;
+	width: 110px;
+	height: 32px;
+	display: block;
+	float: left;
+	line-height: 32px;
+	text-align: center;
+	z-index: 20;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 12px;
+	font-family: "微软雅黑";
+	background: url(images/TT1.jpg);
+	border-right: 1px #336699 solid;
+	border-left: 1px #336699 solid;
+	border-top: 1px #336699 solid
+}
+
+.active1 a {
+	color: #333;
+}
+
+.active2 {
+	color: #333;
+	width: 110px;
+	height: 32px;
+	display: block;
+	float: left;
+	line-height: 32px;
+	text-align: center;
+	z-index: 20;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 12px;
+	font-family: "微软雅黑";
+}
+
+.normal1 {
+	width: 110px;
+	height: 31px;
+	display: block;
+	float: left;
+	line-height: 32px;
+	text-align: center;
+	cursor: pointer;
+	font-size: 12px;
+	font-family: "微软雅黑";
+	background: url(images/TT2.jpg);
+	border-right: 3px #FFFFFF solid
+}
+
+.blank0 {
+	clear: both;
+	display: block;
+	font-size: 1px;
+	visibility: hidden;
+	line-height: 0;
+	height: 0px
+}
+
+.blank0 {
+	clear: both;
+	display: block;
+	font-size: 1px;
+	visibility: hidden;
+	height: -1px;
+	line-height: 0;
+}
+
+.TabContent {
+	overflow:;
+	border: 0px #d7d7d7 solid;
+	border-top: none;
+	margin-top: 10px;
+}
+
+.TabContent .pro {
+	width: 780px;
+	margin-top: 0px;
+	overflow: hidden
+}
+
+.TabContent .pro .tou {
+	width: 780px;
+	border-bottom: 1px solid #CCC;
+	height: 40px;
+	line-height: 40px;
+	text-align: left
+}
+
+.TabContent .pro .tou .t1 {
+	width: 80px;
+	float: left;
+	margin-right: 10px
+}
+
+.TabContent .pro .tou .t2 {
+	width: 100px;
+	float: left;
+	margin-right: 10px
+}
+
+.TabContent .pro .tou .t3 {
+	width: 190px;
+	float: left;
+	margin-right: 10px
+}
+
+.TabContent .pro .tou .t4 {
+	width: 220px;
+	float: left;
+	margin-right: 10px
+}
+
+.TabContent .pro .tou .t5 {
+	width: 150px;
+	float: right;
+}
+
+.TabContent .pro .xinxi {
+	width: 780px;
+	border-bottom: 1px solid #CCC;
+	overflow: hidden;
+	text-align: left;
+	line-height: 20px;
+	color: #666;
+	margin-top: 5px;
+	padding-bottom: 5px;
+	clear: both
+}
+
+.TabContent .pro .xinxi a {
+	color: #369;
+	line-height: 20px
+}
+
+.TabContent .pro .xinxi .t1 {
+	width: 80px;
+	float: left;
+	margin-right: 10px
+}
+
+.TabContent .pro .xinxi .t1 img {
+	margin-top: 10px
+}
+
+.TabContent .pro .xinxi .t2 {
+	width: 100px;
+	float: left;
+	margin-right: 10px
+}
+
+.TabContent .pro .xinxi .t3 {
+	width: 190px;
+	float: left;
+	margin-right: 10px
+}
+
+.TabContent .pro .xinxi .t4 {
+	width: 220px;
+	float: left;
+	margin-right: 10px
+}
+
+.TabContent .pro .xinxi .t5 {
+	width: 150px;
+	float: right;
+}
+
+.TabContent .pro .xinxi .t5 a {
+	width: 78px;
+	height: 24px;
+	background: url(../content/static/images/pingjia/reply_btn_normal.png)
+		no-repeat;
+	display: block;
+	text-align: center;
+	line-height: 24px
+}
+
+.page01 {
+	width: 780px;
+	height: 40px;
+}
+
+.page01 a {
+	border: 1px solid #CCC;
+	font-size: 12px;
+	padding: 1px 10px;
+	margin: 2px;
+	float: left
+}
+
+.page01 a:hover {
+	border: 1px solid #F30;
+	color: #F30;
+	font-size: 12px;
+	padding: 1px 10px;
+	margin: 2px;
+	float: left
+}
+
+.invite-table3, .invite-table4 {
+	border-collapse: collapse;
+	clear: both;
+	margin-top: 23px;
+	_margin-top: 22px;
+	width: 470px;
+	border-left: 0px solid #d8d8d8;
+	border-top: 0px solid #d8d8d8;
+	margin-left: 0px;
+	display: inline-block;
+}
+
+.invite-table3 td, .invite-table4 td {
+	padding: 0px;
+	border: 0px solid #d8d8d8;
+	line-height: 18px;
+}
+
+.invite-table3 th, .invite-table4 th {
+	border: 0;
+	background: #f9f9f9;
+	height: 30px;
+	line-height: 30px;
+	color: #444;
+	width: 470px;
+}
+
+.invite-table4 {
+	display: none;
+	margin-top: 24px;
+	_margin-top: 22px;
+	width: 480px;
+}
+>>>>>>> branch 'master' of https://github.com/zazatao/v1.git
