@@ -1740,8 +1740,6 @@ div.sdmenu div a:hover {
 .nav_3 {
 	background: url(../content/static/images/menu3.jpg) repeat-x;
 }
-
-=======
 .topfn {
 	background: url(../../images/topbg.jpg) repeat-x bottom;
 	height: 112px;
@@ -1799,7 +1797,7 @@ div.sdmenu div a:hover {
 
 .ssan input {
 	float: left;
-	background: url(content/static/images/ss.jpg);
+	background: url(../../images/ss.jpg);
 	width: 16px;
 	height: 16px;
 	border: 0;
@@ -3501,8 +3499,6 @@ div.sdmenu div a:hover {
 	background: url(../../images/menu3.jpg) repeat-x;
 }
 
->>>>>>>
-branch 'master ' of https: //github.com /zazatao/v1
 .navf>li>a {
 	width: 70px;
 }

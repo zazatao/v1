@@ -123,8 +123,7 @@
 	<script type="text/javascript">
 
 		function cancel() {
-			window.location.href = "../index.jsp?backurl="
-					+ window.location.href;
+			window.location.href = "../homePage";
 		}
 		function checkformname() {
 			var fname = document.getElementById("inputEmail3");
