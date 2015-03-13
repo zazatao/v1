@@ -25,16 +25,16 @@ public class LoginFilter implements Filter {
     private boolean needLoginUser(HttpServletRequest request){
     	String uri = request.getRequestURI();
     	
-    	if (uri.contains("setUpShop")||uri.contains("setUpShop")||uri.contains("releaseCommoidty")||uri.contains("storehouseShopComm")||uri.contains("soldShopComm")||uri.contains("auctionShopComm")) {
+    	if (uri.contains("/setUpShop/")||uri.contains("/setUpShop/")||uri.contains("/releaseCommoidty/")||uri.contains("/storehouseShopComm/")||uri.contains("/soldShopComm/")||uri.contains("/auctionShopComm/")) {
             return true;
         }
-    	if (uri.contains("specialShopComm")||uri.contains("shopTransaction")||uri.contains("payMent")||uri.contains("orderDelivery")||uri.contains("shopOrderSearch")||uri.contains("returnGoods")) {
+    	if (uri.contains("/specialShopComm/")||uri.contains("/shopTransaction/")||uri.contains("/payMent/")||uri.contains("/orderDelivery/")||uri.contains("/shopOrderSearch/")||uri.contains("/returnGoods/")) {
     		return true;
     	}
-    	if (uri.contains("shopEvaluation")||uri.contains("deleteComm")||uri.contains("updateState")||uri.contains("myoffice")||uri.contains("perscentBonuses")||uri.contains("introduction")) {
+    	if (uri.contains("/shopEvaluation/")||uri.contains("/deleteComm/")||uri.contains("/updateState/")||uri.contains("/myoffice/")||uri.contains("/perscentBonuses/")||uri.contains("/introduction/")) {
     		return true;
     	}
-    	if (uri.contains("authentication")||uri.contains("shopcar")||uri.contains("shopcardelv")||uri.contains("shopcarpro")||uri.contains("perscentBonuses")||uri.contains("introduction")) {
+    	if (uri.contains("/authentication/")||uri.contains("/shopcar/")||uri.contains("/shopcardelv/")||uri.contains("/shopcarpro/")||uri.contains("/perscentBonuses/")||uri.contains("/introduction/")) {
     		return true;
     	}
     	return false;
@@ -45,21 +45,22 @@ public class LoginFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         String url = request.getRequestURI();
         HttpSession session = request.getSession();
-        if (url.contains("warehouse") || url.contains("forwarding") || url.contains("management") || url.contains("orderprocessing") || url.contains("overall") || url.contains("shop") || url.contains("statistics")) {
-        	if (session.getAttribute("loginPersonnle") == null && needLogin(request)) {
+        if (url.contains("warehouse/") || url.contains("/forwarding/") || url.contains("/management/") 
+        		|| url.contains("/orderprocessing/") || url.contains("/overall/") || url.contains("/shop/") || url.contains("/statistics/")) {
+        	if (session.getAttribute("/loginPersonnle") == null && needLogin(request)) {
         		HttpServletResponse response = (HttpServletResponse) rsp;
         		response.sendRedirect(request.getContextPath()+"/homePage");
         		return;
         	}
 		}
-        if (url.contains("proscenium")) {
+        if (url.contains("/proscenium/")) {
         	if (session.getAttribute("loginUser") == null && needLoginUser(request)) {
         		HttpServletResponse response = (HttpServletResponse) rsp;
         		response.sendRedirect(request.getContextPath()+"/user/login");
         		return;
         	}
         }
-        if (url.contains("user")) {
+        if (url.contains("/user/")) {
         	if (session.getAttribute("loginUser") == null && needLoginUser(request)) {
         		HttpServletResponse response = (HttpServletResponse) rsp;
         		response.sendRedirect(request.getContextPath()+"/user/login");
