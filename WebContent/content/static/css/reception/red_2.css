@@ -1,52 +1,5 @@
 @charset "utf-8";
 /* CSS Document */
-<<<<<<< HEAD
-body{ background:#e9e9e9;}
-.mt10{ margin-top:10px;}
-.mb20{ margin-bottom:20px;}
-.cont_lb {width:1024px; height:480px; margin:0 auto; overflow:hidden; position:relative; clear:both; float:left; margin-bottom:3px; margin-top:10px;}
-.cont_lb ul { position:absolute;}
-.cont_lb ul li {float:left; width:1024px; height:480px; overflow:hidden; position:relative; background:#e9e9e9;}
-.cont_lb ul li div {position:absolute; overflow:hidden;}
-.cont_lb .btnBg {position:absolute; width:1024px; height:20px; left:0; bottom:0;}
-.cont_lb .btn {position:absolute; width:1024px; height:10px; padding:5px 10px; right:43%; bottom:15px; text-align:right;}
-.cont_lb .btn span {display:inline-block; _display:inline; _zoom:1; width:25px; height:10px; _font-size:0; margin-left:5px; cursor:pointer; background:#000;}
-.cont_lb .btn span.on {background:#fff;}
-.cont_lb .next {right:0; background-position:right top;}
-.cont_lb ul li .leftnone{ margin-left:0;}
-.cont_lb ul li dl{ float:left; width:245px; height:210px; background:#fff; margin-left:14.6px; margin-bottom:15px; border-radius:5px; font-size:13px; box-shadow:2px 2px 2px #ccc; overflow:hidden;}
-.cont_lb ul li dl dt img{ width:245px; height:138px; border-radius:5px 5px 0 0;}
-.cont_lb ul li dl dd{ padding:2px 0 0 10px;}
-.cont_lb ul li dl dd img{ vertical-align:middle; width:15px; height:15px; margin-right:5px;}
-.cont_lb ul li dl dd em{ font-size:14px; font-weight:bold; color:#be2c1d;}
-.cont_lb ul li dl dd.jiacu{ font-weight:bold;}
-
-
-.cont_lb ul li .aonhov dl{background:#f52d5e;}
-.cont_lb ul li .aonhov dl dt img{ }
-.cont_lb ul li .aonhov dl dd{ color:#fff;}
-.cont_lb ul li .aonhov dl dd img{ vertical-align:middle; width:15px; height:15px; margin-right:5px;}
-.cont_lb ul li dl dd em{ padding:1px 5px; margin-left:5px; background:#fff;}
-.cont_lb ul li .aonhov dl dd.jiacu{ font-weight:bold;}
-
-.cont_list{ border-radius:5px;border:1px solid #d0d0d0; height:468px; background:#fff;}
-.banner_red{ float:left; width:1024px; height:368px;}
-.red2_left{ width:296px; height:468px; float:left;border-right:1px solid #d0d0d0;}
-.red2_left img{ width:297px; height:295px; border-radius:5px 0 0 0;}
-.red2_left ul{ width:297px; float:left; height:160px; overflow:hidden;}
-.red2_left ul li{ float:left; padding:5px 0 0 15px;}
-.red2_left a:hover{ color:#f52d5e;}
-.red2_right dl{ float:left; width:144px;border-right:1px solid #d0d0d0;border-bottom:1px solid #d0d0d0;}
-.red2_right dl dt{ width:144px; height:191px; font-size:0;}
-.red2_right dl dt img{ width:144px; height:191px;}
-.red2_right dl dd{ text-align:center; height:42px; line-height:40px;}
-
-
-.red2_right .dlonhov{ background:#43ac50; color:#fff;}
-.red2_right .dlonhov dt{ width:144px; height:191px; font-size:0;}
-.red2_right .dlonhov dt img{ width:144px; height:191px;}
-.red2_right .dlonhov dd{ text-align:center; height:42px; line-height:40px;}
-=======
 body {
 	background: #e9e9e9;
 }
@@ -288,4 +241,3 @@ body {
 	height: 42px;
 	line-height: 40px;
 }
->>>>>>> branch 'master' of https://github.com/zazatao/v1.git
