@@ -800,66 +800,34 @@
 				});
 			});
         </script>
-
-			<!---right_cen_3 start---->
-			<div class="right_cen_1 right_cen_3">
-				<h1>流行电子产品</h1>
-				<ul>
-					<li><a href="#"><img
-							src="../content/static/images/dq/img_12.jpg" /></a><span><h3>fdsaec</h3>
-							<p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-					<li><a href="#"><img
-							src="../content/static/images/dq/img_13.jpg" /></a><span><h3>fdsaec</h3>
-							<p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-					<li><a href="#"><img
-							src="../content/static/images/dq/img_14.jpg" /></a><span><h3>fdsaec</h3>
-							<p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-					<li><a href="#"><img
-							src="../content/static/images/dq/img_15.jpg" /></a><span><h3>fdsaec</h3>
-							<p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-					<li><a href="#"><img
-							src="../content/static/images/dq/img_12.jpg" /></a><span><h3>fdsaec</h3>
-							<p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-					<li><a href="#"><img
-							src="../content/static/images/dq/img_13.jpg" /></a><span><h3>fdsaec</h3>
-							<p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-					<li><a href="#"><img
-							src="../content/static/images/dq/img_12.jpg" /></a><span><h3>fdsaec</h3>
-							<p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-					<li><a href="#"><img
-							src="../content/static/images/dq/img_13.jpg" /></a><span><h3>fdsaec</h3>
-							<p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-					<li><a href="#"><img
-							src="../content/static/images/dq/img_12.jpg" /></a><span><h3>fdsaec</h3>
-							<p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-					<li><a href="#"><img
-							src="../content/static/images/dq/img_13.jpg" /></a><span><h3>fdsaec</h3>
-							<p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-					<li><a href="#"><img
-							src="../content/static/images/dq/img_14.jpg" /></a><span><h3>fdsaec</h3>
-							<p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-					<li><a href="#"><img
-							src="../content/static/images/dq/img_15.jpg" /></a><span><h3>fdsaec</h3>
-							<p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-					<li><a href="#"><img
-							src="../content/static/images/dq/img_12.jpg" /></a><span><h3>fdsaec</h3>
-							<p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-					<li><a href="#"><img
-							src="../content/static/images/dq/img_13.jpg" /></a><span><h3>fdsaec</h3>
-							<p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-					<li><a href="#"><img
-							src="../content/static/images/dq/img_12.jpg" /></a><span><h3>fdsaec</h3>
-							<p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-					<li><a href="#"><img
-							src="../content/static/images/dq/img_13.jpg" /></a><span><h3>fdsaec</h3>
-							<p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-
-				</ul>
-			</div>
-			<!---right_cen_3 over---->
-		</div>
-		<div class="clear"></div>
-		<jsp:include page="../common/foot.jsp"></jsp:include>
-	</div>
+        
+         <!---right_cen_3 start---->
+        <div class="right_cen_1 right_cen_3">
+        	<h1>流行电子产品</h1>
+            	<ul>
+                	<li><a href="#"><img src="../content/static/images/dq/img_12.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
+                    <li><a href="#"><img src="../content/static/images/dq/img_13.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
+                    <li><a href="#"><img src="../content/static/images/dq/img_14.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
+                    <li><a href="#"><img src="../content/static/images/dq/img_15.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
+                    <li><a href="#"><img src="../content/static/images/dq/img_12.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
+                    <li><a href="#"><img src="../content/static/images/dq/img_13.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
+                    <li><a href="#"><img src="../content/static/images/dq/img_12.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
+                    <li><a href="#"><img src="../content/static/images/dq/img_13.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
+                    <li><a href="#"><img src="../content/static/images/dq/img_12.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
+                    <li><a href="#"><img src="../content/static/images/dq/img_13.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
+                    <li><a href="#"><img src="../content/static/images/dq/img_14.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
+                    <li><a href="#"><img src="../content/static/images/dq/img_15.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
+                    <li><a href="#"><img src="../content/static/images/dq/img_12.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
+                    <li><a href="#"><img src="../content/static/images/dq/img_13.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
+                    <li><a href="#"><img src="../content/static/images/dq/img_12.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
+                    <li><a href="#"><img src="../content/static/images/dq/img_13.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
+                    
+                </ul>
+        </div>
+        <!---right_cen_3 over---->
+    </div>
+    <div class="clear"></div>
+</div>
+	<jsp:include page="../common/foot.jsp"></jsp:include>
 </body>
 </html>

@@ -18,5 +18,4 @@ public class DepartmentService extends GenericService<Department> implements IDe
 		return departmentDao;
 	}
 
-
 }

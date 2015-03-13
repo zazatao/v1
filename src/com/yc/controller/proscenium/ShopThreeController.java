@@ -26,6 +26,7 @@ import com.yc.entity.OrderForm;
 import com.yc.entity.OrderStatus;
 import com.yc.entity.Shop;
 import com.yc.entity.ShopCategory;
+import com.yc.entity.ShopCommoidty;
 import com.yc.entity.user.User;
 import com.yc.model.ShopOrderSearch;
 import com.yc.service.IAddressService;
@@ -151,7 +152,7 @@ public class ShopThreeController {
 			return new ModelAndView("user/login", mode);
 		}
 	}
-	
+	//商品交易管理
 	@RequestMapping(value = "orderDelivery", method = RequestMethod.GET)
 	public ModelAndView orderDelivery(String ids,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute("loginUser");
@@ -161,21 +162,23 @@ public class ShopThreeController {
 		if (user != null) {
 			Shop shop = user.getShop();
 			if (shop != null && shop.getIsPermit()) {
-				String[] id = ids.split("-");
-				for (int i = 0; i < id.length; i++) {
-					if (!id[i].equals("")) {
-						OrderForm orderForm =  formService.findById(Integer.parseInt(id[i]));
-						for (Commodity comm : orderForm.getCommodities()) {
-							comm.setStatus(CommoidityStatus.sendOut);
-							commodityService.update(comm);
+				if (ids != null && !ids.equals("")) {
+					String[] id = ids.split("-");
+					for (int i = 0; i < id.length; i++) {
+						if (!id[i].equals("")) {
+							OrderForm orderForm =  formService.findById(Integer.parseInt(id[i]));
+							for (Commodity comm : orderForm.getCommodities()) {
+								comm.setStatus(CommoidityStatus.sendOut);
+								commodityService.update(comm);
+							}
+							orderForm.setOrderstatus(OrderStatus.transitGoods);
+							formService.update(orderForm);
 						}
-						orderForm.setOrderstatus(OrderStatus.transitGoods);
-						formService.update(orderForm);
 					}
+					List<OrderForm> orders = formService.getShopOrderByShop(shop);
+					mode.put("list", orders);
 				}
 				mode.put("shop", shop);
-				List<OrderForm> orders = formService.getShopOrderByShop(shop);
-				mode.put("list", orders);
 				return new ModelAndView("reception/shopTransaction", mode);
 			} else {
 				return new ModelAndView("proscenium/setUpShop",null);
@@ -184,7 +187,7 @@ public class ShopThreeController {
 			return new ModelAndView("user/login", mode);
 		}
 	}
-	
+	//店家订单查询
 	@RequestMapping(value = "shopOrderSearch", method = RequestMethod.POST)
 	public ModelAndView shopOrderSearch(ShopOrderSearch orderSearch, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
 		User user = (User) request.getSession().getAttribute("loginUser");
@@ -237,7 +240,7 @@ public class ShopThreeController {
 			return new ModelAndView("user/login", mode);
 		}
 	}
-	
+	//退款退货List
 	@RequestMapping(value = "returnGoods", method = RequestMethod.GET)
 	public ModelAndView returnGoods( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute("loginUser");
@@ -258,7 +261,7 @@ public class ShopThreeController {
 			return new ModelAndView("user/login", mode);
 		}
 	}
-	
+	//退款退货
 	@RequestMapping(value = "updateCommStatus", method = RequestMethod.GET)
 	public ModelAndView updateCommStatus(String status,Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute("loginUser");
@@ -283,6 +286,27 @@ public class ShopThreeController {
 		}
 	}
 	
+	@RequestMapping(value = "specialShopComm", method = RequestMethod.GET)
+	public ModelAndView specialShopComm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		User user = (User) request.getSession().getAttribute("loginUser");
+		ModelMap mode = new ModelMap();
+		List<ShopCategory> shopCategories = shopCategService.getAll();
+		mode.put("shopCategories", shopCategories);
+		if (user != null) {
+			Shop shop = shopService.getShopByUser(user.getId());
+			if (shop != null && shop.getIsPermit()) {
+				List<ShopCommoidty> list = shopCommService.getAllByCondition("isSpecial", true, shop.getId());
+				mode.put("shopComms", list);
+				mode.put("shop", shop);
+				return new ModelAndView("reception/specialShopComm", mode);
+			} else {
+				return new ModelAndView("reception/setUpShop", mode);
+			}
+		} else {
+			return new ModelAndView("user/login", mode);
+		}
+	}
+
 	@RequestMapping(value = "getShopCommSpeces", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> getShopCommSpeces(Integer id ,String speces) throws ServletException, IOException {
@@ -299,4 +323,5 @@ public class ShopThreeController {
 		mode.put("elemnt", speces);
 		return mode;
 	}
+	
 }

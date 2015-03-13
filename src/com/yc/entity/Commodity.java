@@ -23,7 +23,7 @@ public class Commodity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer commodityID;
-	@Column(unique = true)
+	@Column
 	private Integer transNumForTaobao;// 淘宝id
 	@Column
 	private String commItem;// 货号
@@ -65,9 +65,6 @@ public class Commodity {
 	@Column
 	@Enumerated(EnumType.STRING)
 	private DisposeStatus disposeStatus;// 订单处理状态
-	@ManyToOne
-	@JoinColumn(name = "storeRoom_id")
-	private StoreRoom storeRoom;
 	
 	@ManyToOne
 	@JoinColumn(name = "orderform_id")
@@ -126,14 +123,6 @@ public class Commodity {
 
 	public void setSeller(Shop seller) {
 		this.seller = seller;
-	}
-
-	public StoreRoom getStoreRoom() {
-		return storeRoom;
-	}
-
-	public void setStoreRoom(StoreRoom storeRoom) {
-		this.storeRoom = storeRoom;
 	}
 
 	public String getNameOfGoods() {

@@ -570,6 +570,7 @@ function nTabs(thisObj, Num,Value) {
 }
             </script>
 	</div>
+	</div>
 	<div class="clear"></div>
 	<jsp:include page="../common/foot.jsp"></jsp:include>
 </body>

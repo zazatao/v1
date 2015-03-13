@@ -49,7 +49,7 @@
 						<td width="220">商品名称</td>
 						<td width="122">商品图片</td>
 						<td width="58">商品价格</td>
-						<td width="51">加入拍卖</td>
+						<td width="51">加入促销</td>
 						<td width="28"></td>
 					</tr>
 					<c:forEach var="shopComm" items="${shopComms }" varStatus="loop">
@@ -59,13 +59,8 @@
 							<td>${shopComm.commoidtyName }</td>
 							<td><img src="..${shopComm.shopCommImages[0].imagePath }" /></td>
 							<td>￥${shopComm.unitPrice }</td>
-							<td><button
-									onclick="zhekou(${shopComm.auction},${shopComm.commCode },${shopComm.shelves });">
-									<c:if test="${shopComm.auction}">拍卖中</c:if>
-									<c:if test="${!shopComm.auction}">下拍</c:if>
-								</button></td>
-							<td><input type="checkbox" name="commID"
-								value="${shopComm.commCode}" /></td>
+							<td><button onclick="zhekou(${shopComm.isSpecial},${shopComm.commCode },${shopComm.shelves });"><c:if test="${shopComm.isSpecial}">折扣促销</c:if><c:if test="${!shopComm.isSpecial}">取消促销</c:if></button></td>
+							<td><input type="checkbox" name="commID" value="${shopComm.commCode}"/></td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -86,13 +81,13 @@
 					}
 					function zhekou(bool,commID,shangjia){
 						if (bool) {
-							if( confirm('该货品确定要下拍吗？') ){
-								location.href ='../proscenium/updateState?id='+commID+'&page=auctionShopComm&param=auction&isTrue='+!bool;
+							if( confirm('该货品确定不参加促销了吗？') ){
+								location.href ='../proscenium/updateState?id='+commID+'&page=specialShopComm&param=isSpecial&isTrue='+!bool;
 							}
 						}else{
 							if(shangjia){
-								if( confirm('确定将该货品拍卖吗？') ){
-									location.href ='../proscenium/updateState?id='+commID+'&page=auctionShopComm&param=auction&isTrue='+!bool;
+								if( confirm('确定将该货品加入促销吗？') ){
+									location.href ='../proscenium/updateState?id='+commID+'&page=specialShopComm&param=isSpecial&isTrue='+!bool;
 								}
 							}else{
 								alert("请将该货品先上架！！");

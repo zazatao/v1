@@ -77,7 +77,6 @@ img {
 	position: relative;
 }
 
-<<<<<<<
 HEAD
 .topfn {
 	background: url(content/static/images/topbg.jpg) repeat-x bottom;
@@ -86,118 +85,22 @@ HEAD
 	z-index: 999;
 }
 /*********************logo部分***************************/
-.topfd {
-	position: fixed;
-	background: url(content/static/images/topbg.jpg) repeat-x;
-	width: 100%;
-	z-index: 999;
-	top: 0;
-	border-bottom: 1px solid #ccc;
-	-moz-box-shadow: 0px 0px 4px #000;
-	-webkit-box-shadow: 0px 0px 4px #000;
-	box-shadow: 0px 0px 4px #000;
-}
-
-.top1 {
-	width: 1024px;
-	margin: 0 auto;
-	height: 58px;
-}
-
-.topnone {
-	height: 10px;
-}
-
-.logo {
-	margin: 3px 10px 5px 0;
-	width: 162px;
-	float: left;
-}
-
-.znss {
-	float: left;
-	margin: 0 35px 0;
-	width: 480px;
-	height: 42px;
-	padding: 2px 0 0;
-	border-bottom: 5px solid #666;
-}
-
-.ssk input {
-	float: left;
-	width: 445px;
-	margin-top: 15px;
-	height: 24px;
-	border: none;
-	outline: none;
-	font-size: 16px;
-	color: #999;
-}
-
-.ssan input {
-	float: left;
-	background: url(content/static/images/ss.jpg);
-	width: 16px;
-	height: 16px;
-	border: 0;
-	margin: 20px 0 0 10px;
-}
-
-.qbfl {
-	width: auto;
-	height: 36px;
-	position: fixed;
-	top: 0;
-	right: 0;
-}
-
-.qbfl a {
-	display: block;
-	padding: 1px;
-	margin-right: 15px;
-	margin-top: 5px;
-	text-align: center;
-	float: left;
-	border: 1px solid #d0d0d0;
-}
-
-.qbfl a img {
-	width: 30px;
-	height: 20px;
-}
-
-.top_tel {
-	float: left;
-	width: auto;
-	padding-top: 15px;
-	letter-spacing: 1px;
-	font-size: 16px;
-	font-family: "Adobe 宋体 Std L";
-	font-weight: bold;
-	color: #666666;
-}
-
-.top_tel img {
-	width: 50px;
-	height: 30px;
-	margin-right: 5px;
-	float: left;
-	margin-top: 4px;
-}
-
-.top_tel p {
-	float: left;
-	height: 30px;
-	font-size: 14px;
-	line-height: 1.5em;
-}
-
-.gwctb {
-	float: left;
-	width: 63px;
-	height: 43px;
-	margin: 8px 0 0 20px;
-}
+.topfd{position:fixed; background:url(../../images/topbg.jpg) repeat-x; width:100%; z-index:999; top:0; border-bottom:1px solid #ccc;    -moz-box-shadow: 0px 0px 0px #000;
+    -webkit-box-shadow: 0px 0px 4px #000;
+    box-shadow: 0px 0px 4px #000;}
+.top1{width:1024px; margin:0 auto; height:58px;}
+.topnone{ height:10px;}
+.logo{margin:3px 10px 5px 0; width:162px; float:left;}
+.znss{float:left; margin:0 35px 0; width:480px; height:42px; padding:2px 0 0; border-bottom:5px solid #666;}
+.ssk input{float:left; width:445px; margin-top:15px; height:24px; border:none; outline:none; font-size:16px; color:#999;}
+.ssan input{float:left; background:url(content/static/images/ss.jpg); width:16px; height:16px; border:0; margin:20px 0 0 10px;}
+.qbfl{width:auto; height:36px; position:fixed; top:0; right:0;}
+.qbfl a{ display:block; padding:1px; margin-right:15px; margin-top:5px; text-align:center; float:left; border:1px solid #d0d0d0;}
+.qbfl a img{ width:30px; height:20px;}
+.top_tel{float:left; width:auto; padding-top:15px; letter-spacing:1px; font-size:16px; font-family:"Adobe 宋体 Std L";font-weight:bold; color:#666666;}
+.top_tel img{ width:50px; height:30px; margin-right:5px; float:left; margin-top:4px;}
+.top_tel p{ float:left; height:30px; font-size:14px; line-height:1.5em;}
+.gwctb{float:left; width:63px; height:43px; margin:8px 0 0 20px;}
 
 /*********************menu部分***************************/
 .dlzc {

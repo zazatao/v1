@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.ShopCategory;
+import com.yc.entity.user.Personnel;
 import com.yc.model.CommdityModel;
 import com.yc.service.ICommodityService;
 import com.yc.service.IShopCategoryService;
@@ -52,7 +53,12 @@ public class IndexController {
     
  	@RequestMapping(value = "homePage", method = RequestMethod.GET)
     public ModelAndView homePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        return new ModelAndView("homePage", null);
+ 		Personnel personnel = (Personnel)request.getSession().getAttribute("loginPersonnle");
+ 		if (personnel != null) {
+ 			return new ModelAndView("homePage", null);
+		}else{
+			return new ModelAndView("personnel/login", null);
+		}
     }
     
     @RequestMapping(value = "personnel", method = RequestMethod.GET)

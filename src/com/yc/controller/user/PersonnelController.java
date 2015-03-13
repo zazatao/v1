@@ -59,51 +59,21 @@ public class PersonnelController {
     public ModelAndView register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	return new ModelAndView("personnel/register", null);
     }
-    
-    @RequestMapping(value = "myoffice", method = RequestMethod.GET)
-    public ModelAndView myoffice(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	return new ModelAndView("reception/myoffice", null);
-    }
-    
-    @RequestMapping(value = "introduction", method = RequestMethod.GET)
-    public ModelAndView introduction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	return new ModelAndView("reception/introduction", null);
-    }
-    
-    @RequestMapping(value="UpdatePersonnle",method = RequestMethod.GET)
-    public ModelAndView update(Integer id, HttpServletRequest request,HttpServletResponse response){
-    	Personnel Personnle = personnelService.findById(id);
-    	ModelMap map = new ModelMap();
-    	map.put("Personnle",Personnle);
-    	return new ModelAndView("reception/introduction", map);
-    }
-    
-    @RequestMapping(value="editPersonnle",method = RequestMethod.POST)
-    public String Personnle(Integer id,HttpServletRequest reqeust,HttpServletResponse response){
-    	Personnel Personnle = personnelService.findById(id);
-    	
-    	return "redirect:/introduction";
-    }
 
     @RequestMapping(value = "regist", method = RequestMethod.POST)
     public String registing(Personnel personnel,HttpServletRequest request, HttpServletResponse response) throws Exception {
-    	personnelService.save(personnel);
+    	if (!personnel.getLoginName().equals("") && !personnel.getPassword().equals("")) {
+    		personnelService.save(personnel);
+		}
         return "redirect:/homePage";
     }
 
     @RequestMapping(value = "logout", method = RequestMethod.GET)
     public String logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getSession().removeAttribute("loginPersonnle");
-        return "redirect:/personnel";
+        return "redirect:/homePage";
     }
-    
-    @RequestMapping(value = "personnel", method = RequestMethod.GET)
-    public ModelAndView packages(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Personnel> list = personnelService.getAll();
-    	ModelMap mode = new ModelMap();
-    	mode.put("list", list);
-		return new ModelAndView("index", mode);
-	}
+  
     @RequestMapping(value = "toAddPersonnle", method = RequestMethod.GET)
     public ModelAndView toAddPersonnle(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	request.getSession().getAttribute("loginPersonnle");

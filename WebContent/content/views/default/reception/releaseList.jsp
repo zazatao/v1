@@ -29,8 +29,8 @@
 
 <body>
 	<jsp:include page="../common/prosceniumNav.jsp"></jsp:include>
-	<div class="con">
 
+	<div class="con">
 		<!---------------   left   ----------------------->
 		<jsp:include page="left.jsp"></jsp:include>
 		<!---------------   right   ------------->
@@ -148,9 +148,10 @@
 					$(function() {
 						$('.perterrtab tbody tr:odd').css("backgroundColor",
 								"#e5e5e5");
-					})
+					});
 				</script>
 			</div>
+		</div>
 		</div>
 	</div>
 	<div class="clear"></div>

@@ -324,6 +324,7 @@ public class UserController {
 			mode.put("orderForms", orders);
 			mode.put("orderDate", orderDate);
 			mode.put("orderStatus", orderStatus);
+			mode.put("user", user);
 			return new ModelAndView("reception/perscentBonuses",mode);
 		}
 	}	
