@@ -14,36 +14,49 @@
 		<ul class="menu4">
 			<c:forEach items="${shopCategories }" var="category" varStatus="loop">
 				<c:if test="${category.level == 1  }">
-					<c:if test="${category.category !='汽车用具' && category.category !='电子产品' }">
-						<li><a href="../proscenium/categoryOne?id=${category.categoryID  }"><p>${category.category }</p><span>></span></a><div> 
+					<c:if
+						test="${category.category !='汽车用具' && category.category !='电子产品' }">
+						<li><a
+							href="../proscenium/categoryOne?id=${category.categoryID  }"><p>${category.category }</p>
+								<span>></span></a>
+						<div>
 					</c:if>
 					<c:if test="${category.category =='电子产品' }">
-						<li><a href="../proscenium/categoryLei?id=${category.categoryID  }&page=electronics"><p>${category.category }</p><span>></span></a><div> 
+						<li><a
+							href="../proscenium/categoryLei?id=${category.categoryID  }&page=electronics"><p>${category.category }</p>
+								<span>></span></a>
+						<div>
 					</c:if>
 					<c:if test="${category.category =='汽车用具' }">
-						<li><a href="../proscenium/categoryLei?id=${category.categoryID  }&page=autoSupplies"><p>${category.category }</p><span>></span></a><div> 
+						<li><a
+							href="../proscenium/categoryLei?id=${category.categoryID  }&page=autoSupplies"><p>${category.category }</p>
+								<span>></span></a>
+						<div>
 					</c:if>
 					<c:forEach items="${shopCategories }" var="one">
 						<c:if test="${one.parentLevel == category }">
-							<dl><dt>
-								<a href="#">${fn:substring(one.category,0,6) }</a>
+							<dl>
+								<dt>
+									<a href="#">${fn:substring(one.category,0,6) }</a>
 								</dt>
 								<c:forEach items="${shopCategories }" var="two">
-									<c:if test="${fn:length(two.brands)>0 && two.parentLevel == one }">
+									<c:if
+										test="${fn:length(two.brands)>0 && two.parentLevel == one }">
 										<dd>
-											<a href="../proscenium/shopCommItem?id=${two.categoryID }&page=brand">${fn:substring(two.category,0,6) }</a>
+											<a
+												href="../proscenium/shopCommItem?id=${two.categoryID }&page=brand">${fn:substring(two.category,0,6) }</a>
 										</dd>
 									</c:if>
 								</c:forEach>
 							</dl>
 						</c:if>
 					</c:forEach>
-					</div>
-					</li>
-				</c:if>
-			</c:forEach>
-		</ul>
 	</div>
+	</li>
+	</c:if>
+	</c:forEach>
+	</ul>
+</div>
 </div>
 <div class="nyright_2">
 	<script type="text/javascript">

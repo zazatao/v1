@@ -94,7 +94,8 @@
 					</p>
 					<p>
 						卖家:${shopCommoidty.belongTo.shopName }
-						<c:if test="${user != null && user.shop.isPermit == true && user.shop.id != shopCommoidty.belongTo.id}">
+						<c:if
+							test="${user != null && user.shop.isPermit == true && user.shop.id != shopCommoidty.belongTo.id}">
 							<span onclick="addSupplier();">添加</span>
 						</c:if>
 					</p>
@@ -169,13 +170,13 @@
 						现价：
 						<c:if test="${shopCommoidty.isSpecial }">
 							<span class="red">￥ <fmt:formatNumber
-								value="${shopCommoidty.unitPrice * shopCommoidty.special }"
-								pattern="##.##" minFractionDigits="2"></fmt:formatNumber></span>
+									value="${shopCommoidty.unitPrice * shopCommoidty.special }"
+									pattern="##.##" minFractionDigits="2"></fmt:formatNumber></span>
 						</c:if>
 						<c:if test="${!shopCommoidty.isSpecial }">
 							<span class="red">￥ <fmt:formatNumber
-								value="${shopCommoidty.unitPrice }"
-								pattern="##.##" minFractionDigits="2"></fmt:formatNumber></span>
+									value="${shopCommoidty.unitPrice }" pattern="##.##"
+									minFractionDigits="2"></fmt:formatNumber></span>
 						</c:if>
 						<p>
 							原价：<span class="thr">￥ ${shopCommoidty.unitPrice }</span>
@@ -200,22 +201,23 @@
 								<span class="n1">216</span><br />已经卖了
 							</p></li>
 						<li><p class="bd_both">
-								<span class="n2">216</span><br />评价<br />
-								<span class="n3"><img
+								<span class="n2">216</span><br />评价<br /> <span class="n3"><img
 									src="../content/static/images/small/xx_1.png" />4.9</span>
 							</p></li>
 						<li><p>
 								<span class="n4">216</span>
 							</p></li>
 					</ul>
-					<c:forEach items="${map }" var="keySet" >
+					<c:forEach items="${map }" var="keySet">
 						<c:if test="${keySet.key == '颜色' }">
 							<div class="choice_color">
-							选择颜色：
+								选择颜色：
 								<c:forEach items="${keySet.value }" var="spec">
 									<c:set var="index1" value="${fn:indexOf(spec, '$') }"></c:set>
 									<c:set var="index2" value="${fn:length(spec) }"></c:set>
-									<span title="${keySet.key }-${fn:substring(spec, 0, index1)}" onclick="searchs('${keySet.key}','${spec}');" ><img src="..${fn:substring(spec, index1+1, index2)}" /></span>
+									<span title="${keySet.key }-${fn:substring(spec, 0, index1)}"
+										onclick="searchs('${keySet.key}','${spec}');"><img
+										src="..${fn:substring(spec, index1+1, index2)}" /></span>
 								</c:forEach>
 							</div>
 						</c:if>
@@ -223,7 +225,8 @@
 							<div class="choice_cm">
 								选择${keySet.key }：
 								<c:forEach items="${keySet.value }" var="spec">
-									<a name="c22" title="${keySet.key }-${spec}" onclick="searchs('${keySet.key}','${spec}');">${spec }</a>
+									<a name="c22" title="${keySet.key }-${spec}"
+										onclick="searchs('${keySet.key}','${spec}');">${spec }</a>
 								</c:forEach>
 							</div>
 						</c:if>
@@ -241,12 +244,13 @@
 						<p>Bcero B Ha..:765.</p>
 					</div>
 					<div class="anniu">
-						<a onclick="buyCat();"><img src="../content/static/images/bt_2.png" /></a><a
-							href="#"><img src="../content/static/images/bt_3.png" /></a><img
+						<a onclick="buyCat();"><img
+							src="../content/static/images/bt_2.png" /></a><a href="#"><img
+							src="../content/static/images/bt_3.png" /></a><img
 							src="../content/static/images/xx.png" />
 					</div>
-					<input id="params" type="hidden">
-					<input id="commID" type="hidden" value="${shopCommoidty.commCode }">
+					<input id="params" type="hidden"> <input id="commID"
+						type="hidden" value="${shopCommoidty.commCode }">
 					<script type="text/javascript">
 						function buyCat(){
 							var commID = $('#commID').val();
@@ -386,7 +390,7 @@
 						<div class="gucjonckl">
 							<span><img src="../content/static/images/small/kd_2.png" />添加成功！</span>
 							<p>
-								<a href="#" class="gucjnone" >继续购物</a>
+								<a href="#" class="gucjnone">继续购物</a>
 							</p>
 							<p>
 								<a href="./shopcar">进入购物车</a>
@@ -498,56 +502,56 @@
 						<DIV class="box">
 							<A class=imgBorder href="yl_list_detail.html"><img
 								src="../content/static/images/dz/img050.jpg" />
-							<p>
+								<p>
 									$233<span class="th">$577</span>
 								</p></A>
 						</DIV>
 						<DIV class="box">
 							<A class=imgBorder href="yl_list_detail.html"><img
 								src="../content/static/images/dz/img050.jpg" />
-							<p>
+								<p>
 									$233<span class="th">$577</span>
 								</p></A>
 						</DIV>
 						<DIV class="box">
 							<A class=imgBorder href="yl_list_detail.html"><img
 								src="../content/static/images/dz/img050.jpg" />
-							<p>
+								<p>
 									$233<span class="th">$577</span>
 								</p></A>
 						</DIV>
 						<DIV class="box">
 							<A class=imgBorder href="yl_list_detail.html"><img
 								src="../content/static/images/dz/img050.jpg" />
-							<p>
+								<p>
 									$233<span class="th">$577</span>
 								</p></A>
 						</DIV>
 						<DIV class="box">
 							<A class=imgBorder href="yl_list_detail.html"><img
 								src="../content/static/images/dz/img050.jpg" />
-							<p>
+								<p>
 									$233<span class="th">$577</span>
 								</p></A>
 						</DIV>
 						<DIV class="box">
 							<A class=imgBorder href="yl_list_detail.html"><img
 								src="../content/static/images/dz/img050.jpg" />
-							<p>
+								<p>
 									$233<span class="th">$577</span>
 								</p></A>
 						</DIV>
 						<DIV class="box">
 							<A class=imgBorder href="yl_list_detail.html"><img
 								src="../content/static/images/dz/img050.jpg" />
-							<p>
+								<p>
 									$233<span class="th">$577</span>
 								</p></A>
 						</DIV>
 						<DIV class="box">
 							<A class=imgBorder href="yl_list_detail.html"><img
 								src="../content/static/images/dz/img050.jpg" />
-							<p>
+								<p>
 									$233<span class="th">$577</span>
 								</p></A>
 						</DIV>

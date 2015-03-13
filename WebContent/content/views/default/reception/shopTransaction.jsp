@@ -50,103 +50,106 @@
 		<!---------------   left   ----------------------->
 		<jsp:include page="left.jsp"></jsp:include>
 		<form action="../proscenium/shopOrderSearch" method="post">
-		<div class="Jiaoyi">
-			<div class="biao">我是卖家&gt;交易管理&gt;全部卖出交易</div>
-			<div class="nei">
-				<div class="nei01">
-					<table width="760" border="0" align="center" cellpadding="0"
-						cellspacing="0">
-						<tr>
-							<td height="30"><div align="left">
-									商品名称： <input type="text" name="nameOfGoods" id="textfield" />
-								</div></td>
-							<td colspan="2"><div align="left">
-									成交日期：从 <input type="text" name="paymentDateLeft" id="textfield9"
-										style="width: 100px;" placeholder="年-月-日" />&nbsp;&nbsp;&nbsp;&nbsp;
-<!-- 										<input type="text" name="paymentTimeLeft" id="textfield10" -->
-<!-- 										onclick="timessss('textfield10');" style="width: 45px;" placeholder="时：分" /> -->
-										 到 &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" placeholder="年-月-日" name="paymentDateRight" id="textfield11" style="width: 100px;" /> 
-<!-- 										 <input type="text" placeholder="时：分" name="paymentTimeRight" -->
-<!-- 										id="textfield12" onclick="timessss('textfield12');" -->
-<!-- 										style="width: 45px;" /> -->
-								</div>
-								<div align="left"></div></td>
-						</tr>
-						<tr>
-							<td height="30"><div align="left">
-									买家昵称： <input type="text" name="orderUserName" id="textfield2" />
-								</div></td>
-							<td><div align="left">
-									订单状态： <select name="orderStatusFrom" id="textfield5"
-										placeholder="状态">
-										<option value="">-----状态-----
-											<option value="waitAcceptance">等待验收
-												<option value="waitPayment">等待支付
-													<option value="inForwarding">在转发
-														<option value="waitDelivery">等待发货
-															<option value="transitGoods">在途货物
-																<option value="consigneeSigning">收货人签单
-																	<option value="refundOrderForm">退款订单
-																		<option value="completionTransaction">完成交易
-																			<option value="closeTransaction">关闭交易
-																				<option value="autoCloseTransaction">自动关闭交易
-									</select>
-								</div></td>
-							<td><div align="left">
-									评价状态： <select name="textfield6" id="textfield6"
-										placeholder="状态">
-										<option value="">-----状态-----
-											<option value="needsComments">需要我评价
-												<option value="iAlreadyComments">我已经评价
-													<option value="orthSideComments">对方已评价
-														<option value="bothSideComments">双方已平价
-									</select>
-								</div></td>
-						</tr>
-						<tr>
-							<td height="30"><div align="left">
-									订单编号： <input type="text" name="orderFormID" id="textfield3" />
-								</div></td>
-							<td><div align="left">
-									物流服务： <select name="textfield7" id="textfield7"
-										placeholder="状态">
-										<option value="">-----状态-----
-											<option value="cashOnDelivery">货到付款
-									</select>
-								</div></td>
-							<td><div align="left">
-									运费服务： <select name="textfield8" id="textfield8"
-										placeholder="状态">
-										<option value="">-----状态-----
-											<option value="buyComplaint">买家投诉
-												<option value="myComplaint">我已投诉
-													<option value="refunding">退款中
-									</select>
-								</div></td>
-						</tr>
-						<!-- 						<tr> -->
-						<!-- 							<td height="30"><div align="left"> -->
-						<!-- 									交易类型： <select name="select3" id="select3" style="width: 150px"> -->
-						<!-- 										<option>所有类型</option> -->
-						<!-- 									</select> -->
-						<!-- 								</div></td> -->
-						<!-- 							<td><div align="left"></div></td> -->
-						<!-- 							<td><div align="left"></div></td> -->
-						<!-- 						</tr> -->
-						<tr>
-							<td height="30"><div align="left">
-									<input type="submit" name="button" id="button" value="搜索"
-										style="width: 50px; color: #36C" />
-									<!-- 									<input type="submit" name="button" id="button" value="批量导出" -->
-									<!-- 										style="width: 100px; color: #36C" /> -->
-								</div></td>
-							<td><div align="left"></div></td>
-							<td><div align="left"></div></td>
-						</tr>
-					</table>
+			<div class="Jiaoyi">
+				<div class="biao">我是卖家&gt;交易管理&gt;全部卖出交易</div>
+				<div class="nei">
+					<div class="nei01">
+						<table width="760" border="0" align="center" cellpadding="0"
+							cellspacing="0">
+							<tr>
+								<td height="30"><div align="left">
+										商品名称： <input type="text" name="nameOfGoods" id="textfield" />
+									</div></td>
+								<td colspan="2"><div align="left">
+										成交日期：从 <input type="text" name="paymentDateLeft"
+											id="textfield9" style="width: 100px;" placeholder="年-月-日" />&nbsp;&nbsp;&nbsp;&nbsp;
+										<!-- 										<input type="text" name="paymentTimeLeft" id="textfield10" -->
+										<!-- 										onclick="timessss('textfield10');" style="width: 45px;" placeholder="时：分" /> -->
+										到 &nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
+											placeholder="年-月-日" name="paymentDateRight" id="textfield11"
+											style="width: 100px;" />
+										<!-- 										 <input type="text" placeholder="时：分" name="paymentTimeRight" -->
+										<!-- 										id="textfield12" onclick="timessss('textfield12');" -->
+										<!-- 										style="width: 45px;" /> -->
+									</div>
+									<div align="left"></div></td>
+							</tr>
+							<tr>
+								<td height="30"><div align="left">
+										买家昵称： <input type="text" name="orderUserName" id="textfield2" />
+									</div></td>
+								<td><div align="left">
+										订单状态： <select name="orderStatusFrom" id="textfield5"
+											placeholder="状态">
+											<option value="">-----状态-----
+												<option value="waitAcceptance">等待验收
+													<option value="waitPayment">等待支付
+														<option value="inForwarding">在转发
+															<option value="waitDelivery">等待发货
+																<option value="transitGoods">在途货物
+																	<option value="consigneeSigning">收货人签单
+																		<option value="refundOrderForm">退款订单
+																			<option value="completionTransaction">完成交易
+																				<option value="closeTransaction">关闭交易
+																					<option value="autoCloseTransaction">自动关闭交易
+																					
+										</select>
+									</div></td>
+								<td><div align="left">
+										评价状态： <select name="textfield6" id="textfield6"
+											placeholder="状态">
+											<option value="">-----状态-----
+												<option value="needsComments">需要我评价
+													<option value="iAlreadyComments">我已经评价
+														<option value="orthSideComments">对方已评价
+															<option value="bothSideComments">双方已平价
+										</select>
+									</div></td>
+							</tr>
+							<tr>
+								<td height="30"><div align="left">
+										订单编号： <input type="text" name="orderFormID" id="textfield3" />
+									</div></td>
+								<td><div align="left">
+										物流服务： <select name="textfield7" id="textfield7"
+											placeholder="状态">
+											<option value="">-----状态-----
+												<option value="cashOnDelivery">货到付款
+										</select>
+									</div></td>
+								<td><div align="left">
+										运费服务： <select name="textfield8" id="textfield8"
+											placeholder="状态">
+											<option value="">-----状态-----
+												<option value="buyComplaint">买家投诉
+													<option value="myComplaint">我已投诉
+														<option value="refunding">退款中
+										</select>
+									</div></td>
+							</tr>
+							<!-- 						<tr> -->
+							<!-- 							<td height="30"><div align="left"> -->
+							<!-- 									交易类型： <select name="select3" id="select3" style="width: 150px"> -->
+							<!-- 										<option>所有类型</option> -->
+							<!-- 									</select> -->
+							<!-- 								</div></td> -->
+							<!-- 							<td><div align="left"></div></td> -->
+							<!-- 							<td><div align="left"></div></td> -->
+							<!-- 						</tr> -->
+							<tr>
+								<td height="30"><div align="left">
+										<input type="submit" name="button" id="button" value="搜索"
+											style="width: 50px; color: #36C" />
+										<!-- 									<input type="submit" name="button" id="button" value="批量导出" -->
+										<!-- 										style="width: 100px; color: #36C" /> -->
+									</div></td>
+								<td><div align="left"></div></td>
+								<td><div align="left"></div></td>
+							</tr>
+						</table>
+					</div>
 				</div>
 			</div>
-		</div>
 		</form>
 		<script type="text/javascript">
  						$('#textfield9').datetimepicker({
@@ -374,7 +377,8 @@
 											<c:forEach items="${list }" var="order">
 												<c:if test="${order.orderstatus == 'waitPayment' }">
 													<tr style="background-color: #BBFFEE;">
-														<td colspan="3"><input type="checkbox" name="payMent" value="${order.orderFormID }" />订单编号：${order.orderFormID }</td>
+														<td colspan="3"><input type="checkbox" name="payMent"
+															value="${order.orderFormID }" />订单编号：${order.orderFormID }</td>
 														<td><div align="center">${order.deliveryMoney }</div></td>
 														<td colspan="4"></td>
 													</tr>
@@ -420,7 +424,9 @@
 														<input type="checkbox" name="CheckboxGroup1" value="复选框"
 															id="CheckboxGroup1_0" />全选
 													</div></td>
-												<td width="70" bgcolor="#EEEEEE"><div align="center"><a onclick="piLiangPay();">批量免运费</a></div></td>
+												<td width="70" bgcolor="#EEEEEE"><div align="center">
+														<a onclick="piLiangPay();">批量免运费</a>
+													</div></td>
 												<td width="74" bgcolor="#EEEEEE"><div align="center"></div></td>
 												<td width="112" bgcolor="#EEEEEE"><div align="center"></div></td>
 												<td width="427" bgcolor="#EEEEEE"></td>
@@ -451,7 +457,7 @@
 										location.href ='../proscenium/payMent?ids='+ids;
 									}
 						          };
-								</script> 
+								</script>
 								<div class="TabContent" id="myTab1_2"
 									style="display: none; width: 780px;">
 									<div class="pro">
@@ -471,7 +477,8 @@
 											<c:forEach items="${list }" var="order">
 												<c:if test="${order.orderstatus == 'waitDelivery' }">
 													<tr style="background-color: #BBFFEE;">
-														<td colspan="3"><input type="checkbox" name="orderDelivery" value="${order.orderFormID }" />订单编号：${order.orderFormID }</td>
+														<td colspan="3"><input type="checkbox"
+															name="orderDelivery" value="${order.orderFormID }" />订单编号：${order.orderFormID }</td>
 														<td><div align="center">${order.deliveryMoney }</div></td>
 														<td colspan="4"></td>
 													</tr>
@@ -517,7 +524,9 @@
 														<input type="checkbox" name="CheckboxGroup1" value="复选框"
 															id="CheckboxGroup1_0_1" />全选
 													</div></td>
-												<td width="66" bgcolor="#EEEEEE"><div align="center"><a href="#" onclick="sendAll();">批量发货</a></div></td>
+												<td width="66" bgcolor="#EEEEEE"><div align="center">
+														<a href="#" onclick="sendAll();">批量发货</a>
+													</div></td>
 												<td width="74" bgcolor="#EEEEEE"><div align="center"></div></td>
 												<td width="112" bgcolor="#EEEEEE"><div align="center"></div></td>
 												<td width="427" bgcolor="#EEEEEE"><div align="left">
@@ -549,7 +558,7 @@
 										location.href ='../proscenium/orderDelivery?ids='+ids;
 									}
 						          };
-								</script> 
+								</script>
 								<div class="TabContent" id="myTab1_3"
 									style="display: none; width: 780px;">
 									<div class="pro">

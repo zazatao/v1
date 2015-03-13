@@ -41,7 +41,7 @@
 <body>
 	<!-- Static navbar -->
 	<jsp:include page="../common/navbar.jsp"></jsp:include>
-	
+
 	<div class="container-fluid" style="padding: 0; margin-top: 32px;">
 		<div class="row-fluid">
 			<div class="span12">
@@ -75,7 +75,8 @@
 					<div class="form-group">
 						<div class="col-sm-2">
 							<input type="text" name="packageCode" class="form-control"
-								id="packageCode" value="" placeholder="包裹编号"  onblur="checkvalue(this)">
+								id="packageCode" value="" placeholder="包裹编号"
+								onblur="checkvalue(this)">
 						</div>
 						<div class="col-sm-4">
 							<select class="form-control" name="formDelivery"
@@ -144,32 +145,31 @@
 								<td>${pack.totalWeight}</td>
 								<td><a href="#" onclick="packNum(${pack.packageID});">${pack.packageCode }</a></td>
 								<td>${pack.delivery }</td>
-								<td>
-								<c:choose>
-								<c:when test="${pack.orderForms[0].orderstatus =='initializa'}">初始化</c:when>
-<%-- 										<c:when test="${pack.status =='unchanged'}">没有变化</c:when> --%>
-<%-- 										<c:when test="${pack.status =='cancel'}">取消交易</c:when> --%>
-<%-- 										<c:when test="${pack.status =='delete'}">删除</c:when> --%>
-<%-- 										<c:when test="${pack.status =='senToWarehouse'}">送往库房</c:when> --%>
-<%-- 										<c:when test="${pack.status =='refuse'}">拒绝入库</c:when> --%>
-<%-- 										<c:when test="${pack.status =='lose'}">丢失</c:when> --%>
-<%-- 										<c:when test="${pack.status =='inWarehouse'}">在库房中</c:when> --%>
-<%-- 										<c:when test="${pack.status =='marriage'}">交易中</c:when> --%>
-<%-- 										<c:when test="${pack.status =='lack'}">缺少货品</c:when> --%>
-<%-- 										<c:when test="${pack.status =='inAuctionlose'}">下单</c:when> --%>
-<%-- 										<c:when test="${pack.status =='delivery'}">交付</c:when> --%>
-<%-- 										<c:when test="${pack.status =='support'}">支持</c:when> --%>
-<%-- 										<c:when test="${pack.status =='sendOut'}">派送</c:when> --%>
-<%-- 										<c:when test="${pack.status =='buyerNotPay'}">买方没有支付</c:when> --%>
-<%-- 										<c:when test="${pack.status =='inCell'}">在格子</c:when> --%>
-<%-- 										<c:when test="${pack.status =='manualProcessing'}">手工加工</c:when> --%>
-<%-- 										<c:when test="${pack.status =='inForwarding'}">转发中</c:when> --%>
-<%-- 										<c:when test="${pack.status =='packing'}">打包</c:when> --%>
-<%-- 										<c:when test="${pack.status =='paid'}">已付</c:when> --%>
-<%-- 										<c:when test="${pack.status =='apiProcessing'}">API处理</c:when> --%>
-<%-- 										<c:when test="${pack.status =='waitingForTracking'}">等待的追踪</c:when> --%>
-									</c:choose>
-									</td>
+								<td><c:choose>
+										<c:when
+											test="${pack.orderForms[0].orderstatus =='initializa'}">初始化</c:when>
+										<%-- 										<c:when test="${pack.status =='unchanged'}">没有变化</c:when> --%>
+										<%-- 										<c:when test="${pack.status =='cancel'}">取消交易</c:when> --%>
+										<%-- 										<c:when test="${pack.status =='delete'}">删除</c:when> --%>
+										<%-- 										<c:when test="${pack.status =='senToWarehouse'}">送往库房</c:when> --%>
+										<%-- 										<c:when test="${pack.status =='refuse'}">拒绝入库</c:when> --%>
+										<%-- 										<c:when test="${pack.status =='lose'}">丢失</c:when> --%>
+										<%-- 										<c:when test="${pack.status =='inWarehouse'}">在库房中</c:when> --%>
+										<%-- 										<c:when test="${pack.status =='marriage'}">交易中</c:when> --%>
+										<%-- 										<c:when test="${pack.status =='lack'}">缺少货品</c:when> --%>
+										<%-- 										<c:when test="${pack.status =='inAuctionlose'}">下单</c:when> --%>
+										<%-- 										<c:when test="${pack.status =='delivery'}">交付</c:when> --%>
+										<%-- 										<c:when test="${pack.status =='support'}">支持</c:when> --%>
+										<%-- 										<c:when test="${pack.status =='sendOut'}">派送</c:when> --%>
+										<%-- 										<c:when test="${pack.status =='buyerNotPay'}">买方没有支付</c:when> --%>
+										<%-- 										<c:when test="${pack.status =='inCell'}">在格子</c:when> --%>
+										<%-- 										<c:when test="${pack.status =='manualProcessing'}">手工加工</c:when> --%>
+										<%-- 										<c:when test="${pack.status =='inForwarding'}">转发中</c:when> --%>
+										<%-- 										<c:when test="${pack.status =='packing'}">打包</c:when> --%>
+										<%-- 										<c:when test="${pack.status =='paid'}">已付</c:when> --%>
+										<%-- 										<c:when test="${pack.status =='apiProcessing'}">API处理</c:when> --%>
+										<%-- 										<c:when test="${pack.status =='waitingForTracking'}">等待的追踪</c:when> --%>
+									</c:choose></td>
 								<td></td>
 								</tr>
 							</c:forEach>
@@ -278,24 +278,30 @@
 																		<c:when test="${order.packAge.status =='unchanged'}">没有变化</c:when>
 																		<c:when test="${order.packAge.status =='cancel'}">取消交易</c:when>
 																		<c:when test="${order.packAge.status =='delete'}">删除</c:when>
-																		<c:when test="${order.packAge.status =='senToWarehouse'}">送往库房</c:when>
+																		<c:when
+																			test="${order.packAge.status =='senToWarehouse'}">送往库房</c:when>
 																		<c:when test="${order.packAge.status =='refuse'}">拒绝入库</c:when>
 																		<c:when test="${order.packAge.status =='lose'}">丢失</c:when>
 																		<c:when test="${order.packAge.status =='inWarehouse'}">在库房中</c:when>
 																		<c:when test="${order.packAge.status =='marriage'}">交易中</c:when>
 																		<c:when test="${order.packAge.status =='lack'}">缺少货品</c:when>
-																		<c:when test="${order.packAge.status =='inAuctionlose'}">下单</c:when>
+																		<c:when
+																			test="${order.packAge.status =='inAuctionlose'}">下单</c:when>
 																		<c:when test="${order.packAge.status =='delivery'}">交付</c:when>
 																		<c:when test="${order.packAge.status =='support'}">支持</c:when>
 																		<c:when test="${order.packAge.status =='sendOut'}">派送</c:when>
 																		<c:when test="${order.packAge.status =='buyerNotPay'}">买方没有支付</c:when>
 																		<c:when test="${order.packAge.status =='inCell'}">在格子</c:when>
-																		<c:when test="${order.packAge.status =='manualProcessing'}">手工加工</c:when>
-																		<c:when test="${order.packAge.status =='inForwarding'}">转发中</c:when>
+																		<c:when
+																			test="${order.packAge.status =='manualProcessing'}">手工加工</c:when>
+																		<c:when
+																			test="${order.packAge.status =='inForwarding'}">转发中</c:when>
 																		<c:when test="${order.packAge.status =='packing'}">打包</c:when>
 																		<c:when test="${order.packAge.status =='paid'}">已付</c:when>
-																		<c:when test="${order.packAge.status =='apiProcessing'}">API处理</c:when>
-																		<c:when test="${order.packAge.status =='waitingForTracking'}">等待的追踪</c:when>
+																		<c:when
+																			test="${order.packAge.status =='apiProcessing'}">API处理</c:when>
+																		<c:when
+																			test="${order.packAge.status =='waitingForTracking'}">等待的追踪</c:when>
 																	</c:choose></td>
 															</c:forEach>
 														</tbody>

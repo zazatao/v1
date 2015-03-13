@@ -1,7 +1,8 @@
-			</div>
-			<!--/.nav-collapse -->
-		</div>
-		<!--/.container-fluid -->
-	</nav>
+
+</div>
+<!--/.nav-collapse -->
+</div>
+<!--/.container-fluid -->
+</nav>
 </body>
 </html>

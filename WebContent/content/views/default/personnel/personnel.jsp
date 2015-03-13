@@ -52,9 +52,8 @@ th {
 		<div class="panel-heading">
 			<h3 class="panel-title">
 				<a href="#" style="font-size: 18px;">员工列表</a> <span class="divider"><font
-					style="font-size: 18px;"></font></span><a
-					href="./toAddPersonnel" style="font-size: 18px;"><span
-					class="badge navbar-right">添加&nbsp;+</span></a>
+					style="font-size: 18px;"></font></span><a href="./toAddPersonnel"
+					style="font-size: 18px;"><span class="badge navbar-right">添加&nbsp;+</span></a>
 			</h3>
 		</div>
 	</div>
@@ -73,22 +72,22 @@ th {
 							<th></th>
 						</tr>
 					</thead>
-<%-- 					<c:forEach var="personnel" items="${list }" varStatus="loop"> --%>
-						<tbody>
-							<tr class="success">
-								<td align="center"></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>
+					<%-- 					<c:forEach var="personnel" items="${list }" varStatus="loop"> --%>
+					<tbody>
+						<tr class="success">
+							<td align="center"></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>
 								<button class="btn btn-default" onclick="">修改</button>&nbsp;&nbsp;
 								<button class="btn btn-default" onclick="">删除</button>
-								</td>
-							</tr>
-						</tbody>
-<%-- 					</c:forEach> --%>
+							</td>
+						</tr>
+					</tbody>
+					<%-- 					</c:forEach> --%>
 				</table>
 			</div>
 		</div>

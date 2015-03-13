@@ -10,14 +10,15 @@
 	<div class="nyflcd">
 		<div id="my_menu" class="sdmenu">
 			<c:forEach items="${cate.children }" var="category" varStatus="loop">
-					<div class="collapsed">
-						<span>${category.category }</span>
-							<div>
-								<c:forEach items="${category.children }" var="one">
-									<a href="../proscenium/shopCommItem?id=${one.categoryID }&page=page">${one.category }</a>
-								</c:forEach>
-							</div>
+				<div class="collapsed">
+					<span>${category.category }</span>
+					<div>
+						<c:forEach items="${category.children }" var="one">
+							<a
+								href="../proscenium/shopCommItem?id=${one.categoryID }&page=page">${one.category }</a>
+						</c:forEach>
 					</div>
+				</div>
 			</c:forEach>
 		</div>
 	</div>

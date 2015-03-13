@@ -28,7 +28,7 @@
 	type=text/javascript></SCRIPT>
 </head>
 <body>
-<script type="text/javascript">
+	<script type="text/javascript">
 	function reloadData() {
 		setTimeout(function() {
 			window.location.reload();
@@ -88,90 +88,114 @@
 							<ul>
 								<c:set var="sum" value="0"></c:set>
 								<c:forEach items="${list }" var="shopCar">
-								<c:set value="${fn:split(shopCar.specs,',')}" var="spec"></c:set>
-								<li>
-									<dl>
-										<dt>
-											<c:forEach items="${spec }" var="sp">
-												<c:if test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '颜色'}">
-													<img src="..${fn:substring(sp, fn:indexOf(sp, '$')+1, fn:length(sp)) }" />
-												</c:if>
-											</c:forEach>
-										</dt>
-										<dd>${shopCar.shopCommoidty.commoidtyName }</dd>
-										<dd class="shcabtlbtn">
-											<a href="#">详细 </a>
-											<div class="shcabtca">
-												<p class="sctbldscl">
-													<c:forEach items="${spec }" var="sp">
-														<c:if test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '颜色'}">
-															<img src="..${fn:substring(sp, fn:indexOf(sp, '$')+1, fn:length(sp)) }" />
-														</c:if>
-													</c:forEach>
-												</p>
-												<div class="sctbldscr">
-													<p>${shopCar.shopCommoidty.commoidtyName }</p>
-													<ul>
-													<c:forEach items="${spec }" var="sp">
-														<c:if test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '颜色'}">
-															<li><span>颜色:</span>
-																${fn:substring(sp,fn:indexOf(sp, '-') +1, fn:indexOf(sp, '$') )}
-															</li>
-														</c:if>
-														<c:if test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '尺寸'}">
-															<li><span>尺寸</span>
-																${fn:substring(sp,fn:indexOf(sp, '-') +1, fn:length(sp) )}
-															</li>
-														</c:if>
-														<c:if test="${fn:substring(sp,0,fn:indexOf(sp, '-')) != '尺寸' && fn:substring(sp,0,fn:indexOf(sp, '-')) != '颜色'}">
-															<li class="sctbldscrlb"><span>${fn:substring(sp,0,fn:indexOf(sp, '-'))}</span>
-																${fn:substring(sp,fn:indexOf(sp, '-') +1, fn:length(sp) )}
-															</li>
-														</c:if>
-													</c:forEach>
-														<li class="sctbldscrlb"><span>原价</span><fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice }" type="currency" pattern="#,###.00#"/></li>
-														<li class="sctbldscrlb"><span>现价</span>
-														<c:if test="${shopCar.shopCommoidty.isSpecial }">
-															<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special}" type="currency" pattern="#,###.00#"/> 
-														</c:if>
-														<c:if test="${!shopCar.shopCommoidty.isSpecial }">
-															<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice }" type="currency" pattern="#,###.00#"/> 
-														</c:if>
-														</li>
-														<li class="sctbldscrlb"><span>购买数量</span>${shopCar.buyAmount }</li>
-													</ul>
-													<p class="sctbldscp red">库存数量：<c:out value="${shopCar.shopCommoidty.proportion * shopCar.shopCommoidty.stock} "></c:out></p>
+									<c:set value="${fn:split(shopCar.specs,',')}" var="spec"></c:set>
+									<li>
+										<dl>
+											<dt>
+												<c:forEach items="${spec }" var="sp">
+													<c:if
+														test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '颜色'}">
+														<img
+															src="..${fn:substring(sp, fn:indexOf(sp, '$')+1, fn:length(sp)) }" />
+													</c:if>
+												</c:forEach>
+											</dt>
+											<dd>${shopCar.shopCommoidty.commoidtyName }</dd>
+											<dd class="shcabtlbtn">
+												<a href="#">详细 </a>
+												<div class="shcabtca">
+													<p class="sctbldscl">
+														<c:forEach items="${spec }" var="sp">
+															<c:if
+																test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '颜色'}">
+																<img
+																	src="..${fn:substring(sp, fn:indexOf(sp, '$')+1, fn:length(sp)) }" />
+															</c:if>
+														</c:forEach>
+													</p>
+													<div class="sctbldscr">
+														<p>${shopCar.shopCommoidty.commoidtyName }</p>
+														<ul>
+															<c:forEach items="${spec }" var="sp">
+																<c:if
+																	test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '颜色'}">
+																	<li><span>颜色:</span>
+																		${fn:substring(sp,fn:indexOf(sp, '-') +1, fn:indexOf(sp, '$') )}
+																	</li>
+																</c:if>
+																<c:if
+																	test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '尺寸'}">
+																	<li><span>尺寸</span>
+																		${fn:substring(sp,fn:indexOf(sp, '-') +1, fn:length(sp) )}
+																	</li>
+																</c:if>
+																<c:if
+																	test="${fn:substring(sp,0,fn:indexOf(sp, '-')) != '尺寸' && fn:substring(sp,0,fn:indexOf(sp, '-')) != '颜色'}">
+																	<li class="sctbldscrlb"><span>${fn:substring(sp,0,fn:indexOf(sp, '-'))}</span>
+																		${fn:substring(sp,fn:indexOf(sp, '-') +1, fn:length(sp) )}
+																	</li>
+																</c:if>
+															</c:forEach>
+															<li class="sctbldscrlb"><span>原价</span>
+															<fmt:formatNumber
+																	value="${shopCar.shopCommoidty.unitPrice }"
+																	type="currency" pattern="#,###.00#" /></li>
+															<li class="sctbldscrlb"><span>现价</span> <c:if
+																	test="${shopCar.shopCommoidty.isSpecial }">
+																	<fmt:formatNumber
+																		value="${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special}"
+																		type="currency" pattern="#,###.00#" />
+																</c:if> <c:if test="${!shopCar.shopCommoidty.isSpecial }">
+																	<fmt:formatNumber
+																		value="${shopCar.shopCommoidty.unitPrice }"
+																		type="currency" pattern="#,###.00#" />
+																</c:if></li>
+															<li class="sctbldscrlb"><span>购买数量</span>${shopCar.buyAmount }</li>
+														</ul>
+														<p class="sctbldscp red">
+															库存数量：
+															<c:out
+																value="${shopCar.shopCommoidty.proportion * shopCar.shopCommoidty.stock} "></c:out>
+														</p>
+													</div>
 												</div>
-											</div>
-										</dd>
-										<dd>
-										<c:if test="${shopCar.shopCommoidty.isSpecial }">
-											<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount }" type="currency" pattern="#,###.00#"/>
-										</c:if>
-										<c:if test="${!shopCar.shopCommoidty.isSpecial }">
-											<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice * shopCar.buyAmount }" type="currency" pattern="#,###.00#"/>
-										</c:if>
-										</dd>
-										<c:if test="${shopCar.shopCommoidty.isSpecial }">
-											<c:set var="sum" value="${sum + shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount}"></c:set>
-										</c:if>
-										<c:if test="${!shopCar.shopCommoidty.isSpecial }">
-											<c:set var="sum" value="${sum + shopCar.shopCommoidty.unitPrice * shopCar.buyAmount}"></c:set>
-										</c:if>
-									</dl>
-								</li>
+											</dd>
+											<dd>
+												<c:if test="${shopCar.shopCommoidty.isSpecial }">
+													<fmt:formatNumber
+														value="${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount }"
+														type="currency" pattern="#,###.00#" />
+												</c:if>
+												<c:if test="${!shopCar.shopCommoidty.isSpecial }">
+													<fmt:formatNumber
+														value="${shopCar.shopCommoidty.unitPrice * shopCar.buyAmount }"
+														type="currency" pattern="#,###.00#" />
+												</c:if>
+											</dd>
+											<c:if test="${shopCar.shopCommoidty.isSpecial }">
+												<c:set var="sum"
+													value="${sum + shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount}"></c:set>
+											</c:if>
+											<c:if test="${!shopCar.shopCommoidty.isSpecial }">
+												<c:set var="sum"
+													value="${sum + shopCar.shopCommoidty.unitPrice * shopCar.buyAmount}"></c:set>
+											</c:if>
+										</dl>
+									</li>
 								</c:forEach>
 							</ul>
 						</div>
 						<div class="shcabr">
 							<ul>
 								<li>在我购物车里的商品</li>
-								<li>订单总额 <span><fmt:formatNumber value="${sum }" type="currency" pattern="#,###.00#"/></span></li>
+								<li>订单总额 <span><fmt:formatNumber value="${sum }"
+											type="currency" pattern="#,###.00#" /></span></li>
 								<li>额外包装</li>
 								<li>礼品包装“自己手工”<span></span></li>
 							</ul>
 							<p class="shcabra">
-								总金额<span><fmt:formatNumber value="${sum }" type="currency" pattern="#,###.00#"/></span>
+								总金额<span><fmt:formatNumber value="${sum }"
+										type="currency" pattern="#,###.00#" /></span>
 							</p>
 
 						</div>
@@ -181,7 +205,8 @@
 					</div>
 
 					<h3 class="shopcarles">
-						<img src="../content/static/images/brand/shcanumc_2.png" width="18" height="18" />输入送货地址
+						<img src="../content/static/images/brand/shcanumc_2.png"
+							width="18" height="18" />输入送货地址
 					</h3>
 				</div>
 				<div class="shopcartabt2">
@@ -190,13 +215,13 @@
 							<select name="" id="addressChange">
 								<option value="-1" selected="selected">-----选择收件人----</option>
 								<c:forEach items="${addresses }" var="address">
-									<option value="${address.id }" <c:if test="${address.theDefault == true }">selected</c:if>>${address.toName }</option>
+									<option value="${address.id }"
+										<c:if test="${address.theDefault == true }">selected</c:if>>${address.toName }</option>
 								</c:forEach>
-							</select> 
-							<a href="#" onclick="popupwindow('../user/toNewAddress');"><font color="blue">使用新地址</font></a>
+							</select> <a href="#" onclick="popupwindow('../user/toNewAddress');"><font
+								color="blue">使用新地址</font></a>
 						</p>
-						<p class="shcaadds" id="addressShow">
-						</p>
+						<p class="shcaadds" id="addressShow"></p>
 						<div class="cl"></div>
 						<div class="shcaaddselink"></div>
 					</div>
@@ -232,35 +257,37 @@
 				</script>
 				<div class="shopcartabtb">
 					<h3 class="shopcarles">
-						<img src="../content/static/images/brand/shcanumc_3.png" width="18" height="18" />选择送货方式
-						<span>价格</span>
+						<img src="../content/static/images/brand/shcanumc_3.png"
+							width="18" height="18" />选择送货方式 <span>价格</span>
 					</h3>
 					<div class="shopcartabca">
-						<img src="../content/static/images/brand/shopcartabca.jpg" width="220" height="221" />
+						<img src="../content/static/images/brand/shopcartabca.jpg"
+							width="220" height="221" />
 					</div>
 					<div class="shopcartabt3">
 						<div class="shcacho">
 							<ul>
 								<li>
 									<p class="shcachos">
-										<span><label><input name="deliveryComm" type="radio"
-												value="EMS" checked="checked"/>邮政 <b>EMS</b></label></span><span class="shcachostim">周期：2-3周</span>
+										<span><label><input name="deliveryComm"
+												type="radio" value="EMS" checked="checked" />邮政 <b>EMS</b></label></span><span
+											class="shcachostim">周期：2-3周</span>
 									</p>
 									<p class="shcachom">
-										<span></span><span>EUR230.00</span>
-										<input type="hidden" name="deliveryMoney" id="deliveryMoney" value="230.00">
-										
+										<span></span><span>EUR230.00</span> <input type="hidden"
+											name="deliveryMoney" id="deliveryMoney" value="230.00">
+
 									</p>
 								</li>
 							</ul>
 						</div>
 					</div>
-<!-- 					<p class="shcachomcr"> -->
-<!-- 						<span><b>保险</b></span> <span class="shcachomcrock">为什么需要保险？ -->
-<!-- 						</span> <span><label><input name="" type="checkbox" -->
-<!-- 								value="" /><b>保证我的订单</b></label></span> <span class="shcachomany">£ -->
-<!-- 							230.00</span> -->
-<!-- 					</p> -->
+					<!-- 					<p class="shcachomcr"> -->
+					<!-- 						<span><b>保险</b></span> <span class="shcachomcrock">为什么需要保险？ -->
+					<!-- 						</span> <span><label><input name="" type="checkbox" -->
+					<!-- 								value="" /><b>保证我的订单</b></label></span> <span class="shcachomany">£ -->
+					<!-- 							230.00</span> -->
+					<!-- 					</p> -->
 					<div class="shcks">
 						<div class="shcrocbg"></div>
 						<div class="shcrockal">
@@ -273,7 +300,9 @@
 			</div>
 			<div class="shopcarbtns">
 				<p>
-					总金额 <span class="gray"><b><font style="color: red;font-size: 20px;"><fmt:formatNumber value="${sum+230 }" type="currency" pattern="#,###.00#"/></font></b></span>
+					总金额 <span class="gray"><b><font
+							style="color: red; font-size: 20px;"><fmt:formatNumber
+									value="${sum+230 }" type="currency" pattern="#,###.00#" /></font></b></span>
 				</p>
 				<p>
 					<a href="#" onclick="focusTT();" class="scbtonc">继续购物>></a>

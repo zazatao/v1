@@ -75,21 +75,35 @@
 									<td><div align="center">${comm.weight }</div></td>
 									<td><div align="center">${comm.orderNumber.orderUser.userName }</div></td>
 									<td>
-										<div align="center" >
-											<select onchange="updateCommStatus(this,'${comm.commodityID }');">
-												<option value="refuse" <c:if test="${comm.status =='refuse'}">selected</c:if>>拒绝接受
-												<option value="lack" <c:if test="${comm.status =='lack'}">selected</c:if>>缺货
-												<option value="cancel" <c:if test="${comm.status =='cancel'}">selected</c:if>>取消交易
-												<option value="delivery" <c:if test="${comm.status =='delivery'}">selected</c:if>>交付
-												<option value="support" <c:if test="${comm.status =='support'}">selected</c:if>>支持
-												<option value="sendOut" <c:if test="${comm.status =='sendOut'}">selected</c:if>>派送
-												<option value="buyerNotPay" <c:if test="${comm.status =='buyerNotPay'}">selected</c:if>>没有支付
-												<option value="lose" <c:if test="${comm.status =='lose'}">selected</c:if>>丢失
-												<option value="inForwarding" <c:if test="${comm.status =='inForwarding'}">selected</c:if>>在转发
-												<option value="paid" <c:if test="${comm.status =='paid'}">selected</c:if>>已付
-												<option value="delete" <c:if test="${comm.status =='delete'}">selected</c:if>>删除
+										<div align="center">
+											<select
+												onchange="updateCommStatus(this,'${comm.commodityID }');">
+												<option value="refuse"
+													<c:if test="${comm.status =='refuse'}">selected</c:if>>拒绝接受
+													<option value="lack"
+														<c:if test="${comm.status =='lack'}">selected</c:if>>缺货
+														<option value="cancel"
+															<c:if test="${comm.status =='cancel'}">selected</c:if>>取消交易
+															<option value="delivery"
+																<c:if test="${comm.status =='delivery'}">selected</c:if>>交付
+																<option value="support"
+																	<c:if test="${comm.status =='support'}">selected</c:if>>支持
+																	<option value="sendOut"
+																		<c:if test="${comm.status =='sendOut'}">selected</c:if>>派送
+																		<option value="buyerNotPay"
+																			<c:if test="${comm.status =='buyerNotPay'}">selected</c:if>>没有支付
+																			<option value="lose"
+																				<c:if test="${comm.status =='lose'}">selected</c:if>>丢失
+																				<option value="inForwarding"
+																					<c:if test="${comm.status =='inForwarding'}">selected</c:if>>在转发
+																					<option value="paid"
+																						<c:if test="${comm.status =='paid'}">selected</c:if>>已付
+																						<option value="delete"
+																							<c:if test="${comm.status =='delete'}">selected</c:if>>删除
+																						
 											</select>
-										</div></td>
+										</div>
+									</td>
 									<td><div align="center">${comm.money }</div></td>
 									<td><div align="center">好评</div></td>
 								</tr>

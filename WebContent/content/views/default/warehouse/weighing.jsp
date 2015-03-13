@@ -145,6 +145,7 @@
 
 
 
+<<<<<<< HEAD
 													
 													<option value="530x290x370">530&nbsp;x&nbsp;290&nbsp;x&nbsp;370
 
@@ -224,6 +225,97 @@
 
 													
 													<option value="195x105x135">195&nbsp;x&nbsp;105&nbsp;x1&nbsp;35
+=======
+
+													
+													<option value="530x290x370">530&nbsp;x&nbsp;290&nbsp;x&nbsp;370
+
+
+
+
+
+
+													
+													<option value="530x230x290">530&nbsp;x&nbsp;230&nbsp;x&nbsp;290
+
+
+
+
+
+
+													
+													<option value="430x210x270">430&nbsp;x&nbsp;210&nbsp;x&nbsp;270
+
+
+
+
+
+
+													
+													<option value="350x190x230">350&nbsp;x&nbsp;190&nbsp;x&nbsp;230
+
+
+
+
+
+
+
+													
+													<option value="290x170x190">290&nbsp;x&nbsp;170&nbsp;x&nbsp;190
+
+
+
+
+
+
+
+
+													
+													<option value="260x150x180">260&nbsp;x&nbsp;150&nbsp;x&nbsp;180
+
+
+
+
+
+
+
+
+
+
+
+
+													
+													<option value="230x130x160">230&nbsp;x&nbsp;130&nbsp;x&nbsp;160
+
+
+
+
+
+
+
+
+
+
+
+
+													
+													<option value="210x110x140">210&nbsp;x&nbsp;110&nbsp;x&nbsp;140
+
+
+
+
+
+
+
+
+
+
+
+
+													
+													<option value="195x105x135">195&nbsp;x&nbsp;105&nbsp;x1&nbsp;35
+
+>>>>>>> branch 'master' of https://github.com/zazatao/v1.git
 
 
 

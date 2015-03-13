@@ -32,7 +32,8 @@
 		<property name="validationQuery" value="SELECT 1" />
 	</bean>
 
-	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="mySQLDataSource"></property>
 		<property name="persistenceUnitName" value="mySQLJPASpringPU" />
 		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter" />

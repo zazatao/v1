@@ -41,7 +41,7 @@
 <body>
 	<!-- Static navbar -->
 	<jsp:include page="../common/navbar.jsp"></jsp:include>
-<div class="container-fluid" style="padding:0;margin-top:32px;" >
+	<div class="container-fluid" style="padding: 0; margin-top: 32px;">
 		<div class="row-fluid">
 			<div class="span12">
 				<ul class="breadcrumb">
@@ -52,15 +52,14 @@
 			</div>
 		</div>
 	</div>
-	<br> 
+	<br>
 	<br>
 	<div class="row clearfix"
 		style="vertical-align: middle; text-align: center;">
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="span12">
-					<form class="form-horizontal" action=""
-						method="POST">
+					<form class="form-horizontal" action="" method="POST">
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-3 control-label">
 								<font color="green" style="font-size: 18px;">包裹:</font>
@@ -72,17 +71,17 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-7">
-								<input type="radio" name="sendOrReceive" value="receive" checked="checked"><font
-									color="red" style="font-size: 18px;">接收</font>
+								<input type="radio" name="sendOrReceive" value="receive"
+									checked="checked"><font color="red"
+									style="font-size: 18px;">接收</font>
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-									type="radio" name="sendOrReceive" value="send"
-									><font color="red"
-									style="font-size: 18px;">发送</font>
+									type="radio" name="sendOrReceive" value="send"><font
+									color="red" style="font-size: 18px;">发送</font>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-7">
-							<br>
+								<br>
 								<button class="btn btn-large btn-success" type="button">&nbsp;&nbsp;处&nbsp;&nbsp;理&nbsp;&nbsp;</button>
 							</div>
 						</div>

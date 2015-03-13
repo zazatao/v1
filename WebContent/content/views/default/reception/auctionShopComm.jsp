@@ -59,8 +59,13 @@
 							<td>${shopComm.commoidtyName }</td>
 							<td><img src="..${shopComm.shopCommImages[0].imagePath }" /></td>
 							<td>￥${shopComm.unitPrice }</td>
-							<td><button onclick="zhekou(${shopComm.auction},${shopComm.commCode },${shopComm.shelves });"><c:if test="${shopComm.auction}">拍卖中</c:if><c:if test="${!shopComm.auction}">下拍</c:if></button></td>
-							<td><input type="checkbox" name="commID" value="${shopComm.commCode}"/></td>
+							<td><button
+									onclick="zhekou(${shopComm.auction},${shopComm.commCode },${shopComm.shelves });">
+									<c:if test="${shopComm.auction}">拍卖中</c:if>
+									<c:if test="${!shopComm.auction}">下拍</c:if>
+								</button></td>
+							<td><input type="checkbox" name="commID"
+								value="${shopComm.commCode}" /></td>
 						</tr>
 					</c:forEach>
 				</table>

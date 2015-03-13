@@ -97,12 +97,12 @@
 								</div>
 							</div>
 							<div class="form-group">
-									<label for="inputPhone" class="col-sm-2 control-label">姓名</label>
-									<div class="col-sm-10">
-										<input type="tel" id="inputPatientName" name="userName"
-											class="form-control">
-									</div>
+								<label for="inputPhone" class="col-sm-2 control-label">姓名</label>
+								<div class="col-sm-10">
+									<input type="tel" id="inputPatientName" name="userName"
+										class="form-control">
 								</div>
+							</div>
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10"
 									style="text-align: center;">

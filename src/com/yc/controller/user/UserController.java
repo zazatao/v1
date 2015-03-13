@@ -327,5 +327,5 @@ public class UserController {
 			mode.put("user", user);
 			return new ModelAndView("reception/perscentBonuses",mode);
 		}
-	}
+	}	
 }

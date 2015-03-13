@@ -26,32 +26,63 @@
 
 <body>
 	<jsp:include page="../common/prosceniumNav.jsp"></jsp:include>
-<div class="con"><!---------------   页面主体   ----------------------->
-	 <div class="tit_5"><h1>免费开店</h1></div>  
-     <div class="kd">
-        <div class="kd_right">
-        	<h2><img src="../content/static/images/small/kd_9.png" />开店条件检测</h2>
-            <p><img src="../content/static/images/small/kd_2.png" />亲，恭喜您满足开店条件，请继续完成下面的开店认证后才能创建店铺！<a href="kd_help.html">认证帮助</a></p>
-            <h2><img src="../content/static/images/small/kd_10.png" />申请开店认证</h2>
-            <form action="./setUpShop" method="post">
-            <ul>
-            	<li><span>选择开店类型：</span><input type="radio" name="type" checked="checked" value="individual"/>个人开店<input type="radio" name="type" value="company" />企业开店</li>
-                <li><span>选择所在地：</span><input type="radio"
-						name="possessions" value="mainlandcChina" checked="checked" />中国大陆<input type="radio" name="possessions" value="HongKongAndMacao" />香港/澳门<input type="radio" name="possessions"   value="Taiwan"/>台湾<input type="radio" name="possessions"  value="Overseas"/>海外</li>
-                <li><span>认&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;证：</span><em>您已绑定了zazatao账户：${user.loginName }</em></li>
-                <li>
-                	<table>
-                    	<tr class="kdtr_1"><td>状态</td><td>认证名称</td><td>操作</td></tr>
-                        <tr><td><img src="../content/static/images/small/kd_3.png" />未通过</td><td>zazatao实名认证</td><td><a href="../proscenium/authentication">重新认证</a></td></tr>
-                        <tr><td><img src="../content/static/images/small/kd_4.png" />未开始</td><td>开店认证</td><td><a href="#">立即认证</a></td></tr>
-                    </table>	
-                </li>
-            </ul>
-            </form>
-           <div class="cj"><a href="#" onclick="kd();"><img src="../content/static/images/small/kd_7.png" width="122" height="37" /></a></div>
-        </div>
-     </div>
-</div>
+	<div class="con">
+		<!---------------   页面主体   ----------------------->
+		<div class="tit_5">
+			<h1>免费开店</h1>
+		</div>
+		<div class="kd">
+			<div class="kd_right">
+				<h2>
+					<img src="../content/static/images/small/kd_9.png" />开店条件检测
+				</h2>
+				<p>
+					<img src="../content/static/images/small/kd_2.png" />亲，恭喜您满足开店条件，请继续完成下面的开店认证后才能创建店铺！<a
+						href="kd_help.html">认证帮助</a>
+				</p>
+				<h2>
+					<img src="../content/static/images/small/kd_10.png" />申请开店认证
+				</h2>
+				<form action="./setUpShop" method="post">
+					<ul>
+						<li><span>选择开店类型：</span><input type="radio" name="type"
+							checked="checked" value="individual" />个人开店<input type="radio"
+							name="type" value="company" />企业开店</li>
+						<li><span>选择所在地：</span><input type="radio" name="possessions"
+							value="mainlandcChina" checked="checked" />中国大陆<input
+							type="radio" name="possessions" value="HongKongAndMacao" />香港/澳门<input
+							type="radio" name="possessions" value="Taiwan" />台湾<input
+							type="radio" name="possessions" value="Overseas" />海外</li>
+						<li><span>认&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;证：</span><em>您已绑定了zazatao账户：${user.loginName }</em></li>
+						<li>
+							<table>
+								<tr class="kdtr_1">
+									<td>状态</td>
+									<td>认证名称</td>
+									<td>操作</td>
+								</tr>
+								<tr>
+									<td><img src="../content/static/images/small/kd_3.png" />未通过</td>
+									<td>zazatao实名认证</td>
+									<td><a href="../proscenium/authentication">重新认证</a></td>
+								</tr>
+								<tr>
+									<td><img src="../content/static/images/small/kd_4.png" />未开始</td>
+									<td>开店认证</td>
+									<td><a href="#">立即认证</a></td>
+								</tr>
+							</table>
+						</li>
+					</ul>
+				</form>
+				<div class="cj">
+					<a href="#" onclick="kd();"><img
+						src="../content/static/images/small/kd_7.png" width="122"
+						height="37" /></a>
+				</div>
+			</div>
+		</div>
+	</div>
 	<script type="text/javascript">
 		function kd(){
 			var types =$('input[name="type"]:checked').val();
