@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,6 +28,7 @@ import com.yc.entity.BuyCat;
 import com.yc.entity.Commodity;
 import com.yc.entity.CommoidityStatus;
 import com.yc.entity.Delivery;
+import com.yc.entity.DeliveryAddress;
 import com.yc.entity.DisposeStatus;
 import com.yc.entity.ImagePath;
 import com.yc.entity.OrderForm;
@@ -35,12 +37,14 @@ import com.yc.entity.ShopCategory;
 import com.yc.entity.ShopCommImage;
 import com.yc.entity.ShopCommoidty;
 import com.yc.entity.ShopCommoidtySpecs;
+import com.yc.entity.StoreRoom;
 import com.yc.entity.user.User;
 import com.yc.model.BuyCatSession;
 import com.yc.service.IAddressService;
 import com.yc.service.IBrandService;
 import com.yc.service.IBuyCatService;
 import com.yc.service.ICommodityService;
+import com.yc.service.IDeliveryAddressService;
 import com.yc.service.IImagePathService;
 import com.yc.service.IOrderFormService;
 import com.yc.service.IShopCategoryService;
@@ -49,6 +53,8 @@ import com.yc.service.IShopCommoidtyService;
 import com.yc.service.IShopCommoidtySpecsService;
 import com.yc.service.IShopService;
 import com.yc.service.ISpecificationsService;
+import com.yc.service.IStoreRoomService;
+import com.yc.service.IUserService;
 
 //前台
 @Controller
@@ -93,15 +99,25 @@ public class ShopTwoController {
 	
 	@Autowired
 	IShopCommoidtySpecsService commoidtySpecsService;
-
+	
+	@Autowired
+	IDeliveryAddressService deliveryAddressService;
+	
+	@Autowired
+	IStoreRoomService roomService;
+	
+	@Autowired
+	IUserService userService;
+	
+	//类别查找
 	@RequestMapping(value = "categoryOne", method = RequestMethod.GET)
 	public ModelAndView categoryOne(Integer id ,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ModelMap mode = new ModelMap();
 		ShopCategory cate = null;
-		if (id >0) {
+		List<ShopCategory> list = shopCategService.getAll();
+		mode.put("shopCategories", list);
+		if (id != null && id >0) {
 			cate = shopCategService.findById(id);
-			List<ShopCategory> list = shopCategService.getAll();
-			mode.put("shopCategories", list);
 			mode.put("cate", cate);
 		}
 		return new ModelAndView("reception/categoryOne",mode);
@@ -112,20 +128,20 @@ public class ShopTwoController {
 		ModelMap mode = new ModelMap();
 		ShopCategory cate = null;
 		List<ShopCategory> list = shopCategService.getAll();
-		if (id >0) {
+		if (id != null && id >0) {
 			cate = shopCategService.findById(id);
 			mode.put("shopCategories", list);
 			mode.put("cate", cate);
-			if (page.equals("electronics")) {
+			if (page != null && page.equals("electronics")) {
 				return new ModelAndView("reception/electronics",mode);
 			}else if(page.equals("autoSupplies")){
 				return new ModelAndView("reception/autoSupplies",mode);
 			}
 		}
-		if (page.equals("brand")) {
+		if (page != null && page.equals("brand")) {
 			mode.put("shopCategories", list);
 			return new ModelAndView("reception/brand",mode);
-		}else if (page.equals("special")) {
+		}else if (page != null && page.equals("special")) {
 			mode.put("shopCategories", list);
 			return new ModelAndView("reception/special",mode);
 		}else{
@@ -220,7 +236,6 @@ public class ShopTwoController {
 						buyCatService.update(buyCat);
 						bool = false;
 					}
-					System.out.println("buyCat.getBuyAmount()======="+buyCat.getBuyAmount());
 				}
 				if (bool) {
 					buyCatService.save(cat);
@@ -233,6 +248,7 @@ public class ShopTwoController {
 		return mode;
 	}
 	
+	//购物车
 	@RequestMapping(value = "shopcar", method = RequestMethod.GET)
 	public ModelAndView shopcar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -296,6 +312,7 @@ public class ShopTwoController {
 		return new ModelAndView("reception/shopcar",mode);
 	}
 	
+	//删除购物车产品
 	@RequestMapping(value = "deleteShopCar", method = RequestMethod.GET)
 	public String deleteShopCar(Integer id,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (id != null && !id.equals("")) {
@@ -304,6 +321,7 @@ public class ShopTwoController {
 		return "redirect:/proscenium/shopcar";
 	}
 	
+	//交付
 	@RequestMapping(value = "shopcardelv", method = RequestMethod.GET)
 	public ModelAndView shopcardelv(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<ShopCategory> shopCategories = shopCategService.getAll();
@@ -369,6 +387,7 @@ public class ShopTwoController {
 		return  new ModelAndView("reception/shopcardelv",mode);
 	}
 	
+	//付款
 	@RequestMapping(value = "shopcarpro", method = RequestMethod.GET)
 	public ModelAndView shopcarpro(Integer addID,String deliveryComm, Float deliveryMoney, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ModelMap mode = new ModelMap();
@@ -429,6 +448,7 @@ public class ShopTwoController {
 			mode.put("deliveryComm", deliveryComm);
 			mode.put("deliveryMoney", deliveryMoney);
 			List<BuyCat> list = buyCatService.getBuyCatByUser(user.getId());
+			//订单生成
 			saveOrderForm(addID,deliveryComm,deliveryMoney,request);
 			Address address = addressService.findById(addID);
 			mode.put("address", address);
@@ -437,6 +457,7 @@ public class ShopTwoController {
 		return  new ModelAndView("reception/shopcarpro",mode);
 	}
 	
+	//订单生成
 	private void saveOrderForm (Integer addID,String deliveryComm, Float deliveryMoney, HttpServletRequest request){
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("loginUser");
@@ -471,7 +492,11 @@ public class ShopTwoController {
 				buycates = map.get(key);
 				if (buycates != null && buycates.size()>0) {
 					orderform = new OrderForm();
-					orderform.setAddress(address);
+					DeliveryAddress deliveryAddress = new DeliveryAddress();
+					BeanUtils.copyProperties(address,deliveryAddress);
+					deliveryAddress.setId(null);
+					deliveryAddress = deliveryAddressService.save(deliveryAddress);
+					orderform.setAddress(deliveryAddress);
 					orderform.setChangeStatusDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 					orderform.setDelivery(Delivery.valueOf(deliveryComm));
 					orderform.setOrderDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
@@ -484,6 +509,7 @@ public class ShopTwoController {
 					orderform = formService.save(orderform);
 					for (BuyCat buyCat : buycates) {
 						commodity = new Commodity();
+						commodity.setTransNumForTaobao(buyCat.getShopCommoidty().getCommCode());
 						commodity.setCommItem(buyCat.getShopCommoidty().getCommItem());
 						commodity.setQuantity(buyCat.getBuyAmount());
 						commodity.setWeight(buyCat.getShopCommoidty().getProbablyWeight());
@@ -508,12 +534,23 @@ public class ShopTwoController {
 						}
 						buyCatService.delete(buyCat.getCatID());
 					}
+					if (orderform != null) {
+						if (user.getStoreRoom() == null) {
+							StoreRoom storeRoom = roomService.getStoreRoomByIsInCell(false);
+							if (storeRoom != null) {
+								storeRoom.setIsInCell(true);
+								storeRoom = roomService.update(storeRoom);
+								user.setStoreRoom(storeRoom);
+								userService.update(user);
+							}
+						}
+					}
 				}
 			}
 		}
 	}
 	
-	//添加商家商品
+	//店家添加商家商品
 	@RequestMapping(value = "addSupplier", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> addSupplier(Integer commID,Integer category,Integer shopID,String commoName,HttpServletRequest request) throws ServletException, IOException {

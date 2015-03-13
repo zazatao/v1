@@ -149,59 +149,63 @@ public class ReceivingGoodsController {
 
 	@RequestMapping(value = "enterStoreRoom", method = RequestMethod.POST)
 	public ModelAndView enterStoreRoom( HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Map<String, Object> map = new HashMap<String, Object>();
-		if (request.getParameter("orderNum").trim().equals("")) {
-			map.put("orderNum", null);
+		Personnel personnel = (Personnel)request.getSession().getAttribute("loginPersonnle");
+		if (personnel == null) {
+			return new ModelAndView("personnel/login");
 		}else{
-			map.put("orderNum", Integer.parseInt(request.getParameter("orderNum")));
-		}
-		if (request.getParameter("tpek").trim().equals("")) {
-			map.put("tpek", null);
-		}else{
-			map.put("tpek", request.getParameter("tpek").trim());
-		}
-		if (request.getParameter("transNumForTaobao").trim().equals("")) {
-			map.put("transNumForTaobao", null);
-		}else{
-			map.put("transNumForTaobao", Integer.parseInt(request.getParameter("transNumForTaobao").trim()));
-		}
-		if (request.getParameter("commItem").trim().equals("")) {
-			map.put("commItem", null);
-		}else{
-			map.put("commItem", request.getParameter("commItem").trim());
-		}
-		map.put("formStatus", CommoidityStatus.valueOf("paid"));
-		List<Commodity> commods = commodityService.getAllByParameters(map);
-		Personnel personnel = (Personnel)request.getSession().getAttribute("loginUser");
-		Integer num = personnel.getAccomplishNum();
-		String msg ="";
-		ModelMap mode = new ModelMap();
-		if (commods.size()>0) {
-			if (commods.size() == 1) {
-				for (Commodity commod : commods) {
-					commod.setStatus(CommoidityStatus.senToWarehouse);
-					commod.getOrderNumber().setStoreOperator(personnel);
-					commod.setInStoreRoomDate((new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date()));
-					commodityService.update(commod);
-					msg = "已经查找到货号："+commod.getCommItem()+"，请将它入库！";
-				}
-				if (num ==null) {
-					personnel.setAccomplishNum(1);
-				}else{
-					personnel.setAccomplishNum(num + 1);
-				}
-				personnelService.update(personnel);
-				mode.put("msg", msg);
-				return new ModelAndView("warehouse/jobAction",mode);
+			Map<String, Object> map = new HashMap<String, Object>();
+			if (request.getParameter("orderNum").trim().equals("")) {
+				map.put("orderNum", null);
 			}else{
-				mode.put("list", commods);
-				request.getSession().setAttribute("map", map);
-				return new ModelAndView("warehouse/receivingList",mode);
+				map.put("orderNum", Integer.parseInt(request.getParameter("orderNum")));
 			}
-		}else{
-			return new ModelAndView("warehouse/jobAction",null);
+			if (request.getParameter("tpek").trim().equals("")) {
+				map.put("tpek", null);
+			}else{
+				map.put("tpek", request.getParameter("tpek").trim());
+			}
+			if (request.getParameter("transNumForTaobao").trim().equals("")) {
+				map.put("transNumForTaobao", null);
+			}else{
+				map.put("transNumForTaobao", Integer.parseInt(request.getParameter("transNumForTaobao").trim()));
+			}
+			if (request.getParameter("commItem").trim().equals("")) {
+				map.put("commItem", null);
+			}else{
+				map.put("commItem", request.getParameter("commItem").trim());
+			}
+			map.put("formStatus", CommoidityStatus.valueOf("transitGoods"));
+			List<Commodity> commods = commodityService.getAllByParameters(map);
+			
+			Integer num = personnel.getAccomplishNum();
+			String msg ="";
+			ModelMap mode = new ModelMap();
+			if (commods.size()>0) {
+				if (commods.size() == 1) {
+					for (Commodity commod : commods) {
+						commod.setStatus(CommoidityStatus.senToWarehouse);
+						commod.getOrderNumber().setStoreOperator(personnel);
+						commod.setInStoreRoomDate((new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date()));
+						commodityService.update(commod);
+						msg = "已经查找到订单号："+commod.getOrderNumber().getOrderFormID()+"，请将它入库！";
+					}
+					if (num ==null) {
+						personnel.setAccomplishNum(1);
+					}else{
+						personnel.setAccomplishNum(num + 1);
+					}
+					personnelService.update(personnel);
+					mode.put("msg", msg);
+					return new ModelAndView("warehouse/jobAction",mode);
+				}else{
+					mode.put("list", commods);
+					request.getSession().setAttribute("map", map);
+					return new ModelAndView("warehouse/receivingList",mode);
+				}
+			}else{
+				return new ModelAndView("warehouse/jobAction",null);
+			}
 		}
-		
 	}
 	
 	@SuppressWarnings("unchecked")

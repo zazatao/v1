@@ -37,7 +37,7 @@
 
 		<div class="perterrtab perterrtab_2">
 			<h3>
-				发布商品：<span><a href="../proscenium/releaseCommoidty">新增&nbsp;&nbsp;/&nbsp;&nbsp;</a><a
+				发布商品：<span></a><a
 					href="#">修改&nbsp;&nbsp;/&nbsp;&nbsp;</a><a href="#" onclick="deleteShopComm();">删除&nbsp;&nbsp;/&nbsp;&nbsp;</a><a
 					href="#" onclick="checkAll();">全选</a></span>
 			</h3>
@@ -112,6 +112,7 @@
 								"#e5e5e5");
 					});
 				</script>
+			</div>
 			</div>
 		</div>
 	</div>

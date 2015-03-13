@@ -127,6 +127,7 @@ public class ShopOneController {
 		}
 	}
 
+	//开店验证信息
 	@RequestMapping(value = "authentication", method = RequestMethod.GET)
 	public ModelAndView authentication(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ModelMap mode = new ModelMap();
@@ -140,6 +141,7 @@ public class ShopOneController {
 		}
 	}
 
+	//验证信息添加
 	@RequestMapping(value = "authentication", method = RequestMethod.POST)
 	public ModelAndView authentications(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();

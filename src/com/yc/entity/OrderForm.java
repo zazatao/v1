@@ -38,7 +38,7 @@ public class OrderForm {
 
 	@OneToOne
 	@JoinColumn(name = "address_id")
-	private Address address;
+	private DeliveryAddress address;
 
 	@Column
 	@Enumerated(EnumType.STRING)
@@ -173,11 +173,11 @@ public class OrderForm {
 		this.delivery = delivery;
 	}
 
-	public Address getAddress() {
+	public DeliveryAddress getAddress() {
 		return address;
 	}
 
-	public void setAddress(Address address) {
+	public void setAddress(DeliveryAddress address) {
 		this.address = address;
 	}
 

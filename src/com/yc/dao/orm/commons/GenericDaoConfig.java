@@ -106,4 +106,9 @@ public class GenericDaoConfig {
 	public GenericDao<ShopCommoidtySpecs> getShopCommoidtySpecsDao() {
 		return new GenericDaoSupport<ShopCommoidtySpecs>(ShopCommoidtySpecs.class);	
 	}
+	@Bean
+	public GenericDao<DeliveryAddress> getDeliveryAddressDao() {
+		return new GenericDaoSupport<DeliveryAddress>(DeliveryAddress.class);	
+	}
+	
 }

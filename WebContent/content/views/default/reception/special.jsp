@@ -87,7 +87,7 @@
         </ul>
     </div>
     <div class="clear"></div>
-	<jsp:include page="../common/foot.jsp"></jsp:include>
 	</div>
+	<jsp:include page="../common/foot.jsp"></jsp:include>
 </body>
 </html>
