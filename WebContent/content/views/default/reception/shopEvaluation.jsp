@@ -11,8 +11,8 @@
 	type="text/css" />
 <link href="../content/static/css/reception/persc.css" rel="stylesheet"
 	type="text/css" />
-<link href="../content/static/css/reception/Pingjia.css"
-	rel="stylesheet" type="text/css" />
+<link href="../content/static/css/reception/Pingjia.css" rel="stylesheet"
+	type="text/css" />
 
 <script type="text/javascript"
 	src="../content/static/js/reception/png.js"></script>
@@ -46,8 +46,7 @@
 		<!---------------   left   ----------------------->
 		<jsp:include page="left.jsp"></jsp:include>
 		<div class="Pingjia">
-			<div class="biao"
-				style="background: url(../content/static/images/pingjia/icon01.png) no-repeat left;">店铺半年内动态评分</div>
+			<div class="biao" style=" background:url(../content/static/images/pingjia/icon01.png) no-repeat left;">店铺半年内动态评分</div>
 			<div class="nei">
 				<div class="nei01">
 					<div class="neileft">
@@ -122,9 +121,8 @@
 			</div>
 		</div>
 		<div class="Pingjia01">
-			<div class="biao">
-				<h1
-					style="background: url(../content/static/images/pingjia/icon02.png) no-repeat left;">卖家累积信用：</h1>
+			<div class="biao" >
+				<h1 style="background:url(../content/static/images/pingjia/icon02.png) no-repeat left;">卖家累积信用：</h1>
 				<h2>81</h2>
 				<h3>
 					<img src="../content/static/images/pingjia/silver_icon.png" /><img
@@ -151,8 +149,7 @@
 						</tr>
 						<tr>
 							<td height="26" bgcolor="#FFFFFF"><div align="center">
-									<img src="../content/static/images/pingjia/gold_icon.png"
-										width="16" height="16" />好评
+									<img src="../content/static/images/pingjia/gold_icon.png" width="16" height="16" />好评
 								</div></td>
 							<td bgcolor="#FFFFFF"><div align="center">1</div></td>
 							<td bgcolor="#FFFFFF"><div align="center">0</div></td>
@@ -162,8 +159,8 @@
 						</tr>
 						<tr>
 							<td height="26" bgcolor="#FFFFFF"><div align="center">
-									<img src="../content/static/images/pingjia/silver_icon.png"
-										width="16" height="16" />中评
+									<img src="../content/static/images/pingjia/silver_icon.png" width="16"
+										height="16" />中评
 								</div></td>
 							<td bgcolor="#FFFFFF"><div align="center">0</div></td>
 							<td bgcolor="#FFFFFF"><div align="center">2</div></td>
@@ -173,8 +170,7 @@
 						</tr>
 						<tr>
 							<td height="26" bgcolor="#FFFFFF"><div align="center">
-									<img src="../content/static/images/pingjia/ash_icon.png"
-										width="16" height="16" />差评
+									<img src="../content/static/images/pingjia/ash_icon.png" width="16" height="16" />差评
 								</div></td>
 							<td bgcolor="#FFFFFF"><div align="center">0</div></td>
 							<td bgcolor="#FFFFFF"><div align="center">0</div></td>
@@ -248,7 +244,7 @@
 													style="color: #C60">78.00 元</span>
 											</div>
 											<div class="t5">
-												<a href="#">回复</a>还有3天可以解释
+												<a href="#" >回复</a>还有3天可以解释
 											</div>
 										</div>
 
@@ -570,7 +566,7 @@ function nTabs(thisObj, Num,Value) {
 }
             </script>
 	</div>
-	<div class="clear"></div>
+            <div class="clear"></div>
 	<jsp:include page="../common/foot.jsp"></jsp:include>
 </body>
 </html>

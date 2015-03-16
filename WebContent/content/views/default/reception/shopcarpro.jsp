@@ -28,7 +28,7 @@
 	type=text/javascript></SCRIPT>
 </head>
 <body>
-	<script type="text/javascript">
+<script type="text/javascript">
 	function reloadData() {
 		setTimeout(function() {
 			window.location.reload();
@@ -88,200 +88,136 @@
 							<ul>
 								<c:set var="sum" value="0"></c:set>
 								<c:forEach items="${list }" var="shopCar">
-									<c:set value="${fn:split(shopCar.specs,',')}" var="spec"></c:set>
-									<li>
-										<dl>
-											<dt>
-												<c:forEach items="${spec }" var="sp">
-													<c:if
-														test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '颜色'}">
-														<img
-															src="..${fn:substring(sp, fn:indexOf(sp, '$')+1, fn:length(sp)) }" />
-													</c:if>
-												</c:forEach>
-											</dt>
-											<dd>${shopCar.shopCommoidty.commoidtyName }</dd>
-											<dd class="shcabtlbtn">
-												<a href="#">详细 </a>
-												<div class="shcabtca">
-													<p class="sctbldscl">
-														<c:forEach items="${spec }" var="sp">
-															<c:if
-																test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '颜色'}">
-																<img
-																	src="..${fn:substring(sp, fn:indexOf(sp, '$')+1, fn:length(sp)) }" />
-															</c:if>
-														</c:forEach>
-													</p>
-													<div class="sctbldscr">
-														<p>${shopCar.shopCommoidty.commoidtyName }</p>
-														<ul>
-															<c:forEach items="${spec }" var="sp">
-																<c:if
-																	test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '颜色'}">
-																	<li><span>颜色:</span>
-																		${fn:substring(sp,fn:indexOf(sp, '-') +1, fn:indexOf(sp, '$') )}
-																	</li>
-																</c:if>
-																<c:if
-																	test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '尺寸'}">
-																	<li><span>尺寸</span>
-																		${fn:substring(sp,fn:indexOf(sp, '-') +1, fn:length(sp) )}
-																	</li>
-																</c:if>
-																<c:if
-																	test="${fn:substring(sp,0,fn:indexOf(sp, '-')) != '尺寸' && fn:substring(sp,0,fn:indexOf(sp, '-')) != '颜色'}">
-																	<li class="sctbldscrlb"><span>${fn:substring(sp,0,fn:indexOf(sp, '-'))}</span>
-																		${fn:substring(sp,fn:indexOf(sp, '-') +1, fn:length(sp) )}
-																	</li>
-																</c:if>
-															</c:forEach>
-															<li class="sctbldscrlb"><span>原价</span>
-															<fmt:formatNumber
-																	value="${shopCar.shopCommoidty.unitPrice }"
-																	type="currency" pattern="#,###.00#" /></li>
-															<li class="sctbldscrlb"><span>现价</span>
-															<fmt:formatNumber
-																	value="${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special}"
-																	type="currency" pattern="#,###.00#" /></li>
-															<li class="sctbldscrlb"><span>购买数量</span>${shopCar.buyAmount }</li>
-														</ul>
-														<p class="sctbldscp red">
-															库存数量：
-															<c:out
-																value="${shopCar.shopCommoidty.proportion * shopCar.shopCommoidty.stock} "></c:out>
-														</p>
-													</div>
+								<c:set value="${fn:split(shopCar.specs,',')}" var="spec"></c:set>
+								<li>
+									<dl>
+										<dt>
+											<c:forEach items="${spec }" var="sp">
+												<c:if test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '颜色'}">
+													<img src="..${fn:substring(sp, fn:indexOf(sp, '$')+1, fn:length(sp)) }" />
+												</c:if>
+											</c:forEach>
+										</dt>
+										<dd>${shopCar.shopCommoidty.commoidtyName }</dd>
+										<dd class="shcabtlbtn">
+											<a href="#">详细 </a>
+											<div class="shcabtca">
+												<p class="sctbldscl">
+													<c:forEach items="${spec }" var="sp">
+														<c:if test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '颜色'}">
+															<img src="..${fn:substring(sp, fn:indexOf(sp, '$')+1, fn:length(sp)) }" />
+														</c:if>
+													</c:forEach>
+												</p>
+												<div class="sctbldscr">
+													<p>${shopCar.shopCommoidty.commoidtyName }</p>
+													<ul>
+													<c:forEach items="${spec }" var="sp">
+														<c:if test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '颜色'}">
+															<li><span>颜色:</span>
+																${fn:substring(sp,fn:indexOf(sp, '-') +1, fn:indexOf(sp, '$') )}
+															</li>
+														</c:if>
+														<c:if test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '尺寸'}">
+															<li><span>尺寸</span>
+																${fn:substring(sp,fn:indexOf(sp, '-') +1, fn:length(sp) )}
+															</li>
+														</c:if>
+														<c:if test="${fn:substring(sp,0,fn:indexOf(sp, '-')) != '尺寸' && fn:substring(sp,0,fn:indexOf(sp, '-')) != '颜色'}">
+															<li class="sctbldscrlb"><span>${fn:substring(sp,0,fn:indexOf(sp, '-'))}</span>
+																${fn:substring(sp,fn:indexOf(sp, '-') +1, fn:length(sp) )}
+															</li>
+														</c:if>
+													</c:forEach>
+														<li class="sctbldscrlb"><span>原价</span><fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice }" type="currency" pattern="#,###.00#"/></li>
+														<li class="sctbldscrlb"><span>现价</span><fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special}" type="currency" pattern="#,###.00#"/> </li>
+														<li class="sctbldscrlb"><span>购买数量</span>${shopCar.buyAmount }</li>
+													</ul>
+													<p class="sctbldscp red">库存数量：<c:out value="${shopCar.shopCommoidty.proportion * shopCar.shopCommoidty.stock} "></c:out></p>
 												</div>
-											</dd>
-											<dd>
-												<fmt:formatNumber
-													value="${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount }"
-													type="currency" pattern="#,###.00#" />
-											</dd>
-											<c:set var="sum"
-												value="${sum + shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount}"></c:set>
-										</dl>
-									</li>
+											</div>
+										</dd>
+										<dd>
+										<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount }" type="currency" pattern="#,###.00#"/>
+										</dd>
+										<c:set var="sum" value="${sum + shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount}"></c:set>
+									</dl>
+								</li>
 								</c:forEach>
 							</ul>
 						</div>
 						<div class="shcabr">
 							<ul>
 								<li>在我购物车里的商品</li>
-								<li>订单总额 <span><fmt:formatNumber value="${sum }"
-											type="currency" pattern="#,###.00#" /></span></li>
+								<li>订单总额 <span><fmt:formatNumber value="${sum }" type="currency" pattern="#,###.00#"/></span></li>
 								<li>额外包装</li>
 								<li>礼品包装“自己手工”<span></span></li>
 								<li>运输方式</li>
-								<li>${deliveryComm }<span><fmt:formatNumber
-											value="${deliveryMoney }" type="currency" pattern="#,###.00#" /></span></li>
+                    	  		<li>${deliveryComm }<span><fmt:formatNumber value="${deliveryMoney }" type="currency" pattern="#,###.00#"/></span></li>
 							</ul>
 							<p class="shcabra">
-								总金额<span><fmt:formatNumber value="${sum +deliveryMoney }"
-										type="currency" pattern="#,###.00#" /></span>
+								总金额<span><fmt:formatNumber value="${sum +deliveryMoney }" type="currency" pattern="#,###.00#"/></span>
 							</p>
 
 						</div>
 						<p class="shcabrb">
 							<a href="#">隐藏商品</a>
 						</p>
-						<div class="shcabrbsk">
-							<p class="shcabrbsko">
-								<font style="font-size: 14px;">订单将被送往指定地址:</font>
-							</p>
-							<p class="shcaadds" id="addressShow">
-								<font style='font-size: 18px; color: blue;'>${address.toName}&nbsp;&nbsp;</font><font
-									style='font-size: 18px;'>(收)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话：&nbsp;&nbsp;${address.phone }</font><br>
-								<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
-									style='font-size: 18px;'>${address.country}&nbsp;${address.provience}&nbsp;${address.city}&nbsp;</font><br>
-								<br>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
-									style='font-size: 18px;'>${address.district}&nbsp;${address.street}&nbsp;${address.orther}&nbsp;</font><br>
-								<br>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
-									style='font-size: 18px;'>转交地址：&nbsp;&nbsp;${address.handedAddress}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email:&nbsp;&nbsp;${address.toEmail}</font><br>
-								<br>
-
-							</p>
-							<p class="shcabrbsks"
-								onclick="popupwindow('../user/toNewAddress');">
-								<font color="blue">更改</font>
-							</p>
-							<p class="shcabrbskf">
-								<input name="" type="text" value="有没有优惠券？输入代码"
-									onfocus="this.value=''"
-									onblur="if(this.value==''){this.value='有没有优惠券？输入代码';}" /> <a
-									href="#">ok</a>
-							</p>
-							<div class="cl"></div>
-						</div>
+						 <div class="shcabrbsk">
+                    	<p class="shcabrbsko"><font style="font-size: 14px;">订单将被送往指定地址:</font> </p>
+                    	<p class="shcaadds" id="addressShow">
+						<font style='font-size: 18px; color: blue;'>${address.toName}&nbsp;&nbsp;</font><font style='font-size: 18px;'>(收)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话：&nbsp;&nbsp;${address.phone }</font><br><br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style='font-size: 18px;'>${address.country}&nbsp;${address.provience}&nbsp;${address.city}&nbsp;</font><br><br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style='font-size: 18px;'>${address.district}&nbsp;${address.street}&nbsp;${address.orther}&nbsp;</font><br><br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style='font-size: 18px;'>转交地址：&nbsp;&nbsp;${address.handedAddress}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email:&nbsp;&nbsp;${address.toEmail}</font><br><br>
+							
+						</p>
+                    	<p class="shcabrbsks" onclick="popupwindow('../user/toNewAddress');"><font color="blue">更改</font></p>
+                    	<p class="shcabrbskf"><input name="" type="text" value="有没有优惠券？输入代码"  onfocus="this.value=''" onblur="if(this.value==''){this.value='有没有优惠券？输入代码';}"/> <a href="#">ok</a></p>
+                        <div class="cl"></div>
+                    </div>
 					</div>
 				</div>
-				<div class="shcabrblse">
-					<ul>
-						<li>fdsauief32</li>
-						<li>fdsauief32</li>
-						<li>fdsauief32</li>
-						<li>fdsauief32</li>
-						<li>fdsauief32</li>
-						<li>fdsauief32</li>
-						<li>fdsauief32</li>
-						<li>fdsauief32</li>
-					</ul>
-				</div>
-				<div class="shcabrbbank">
-					<div class="shcabrbk">
-						<div class="shcabrbklo">
-							<img src="../content/static/images/brand/srbbank_01.png" />
-						</div>
-						<div class="shcabrbkse">
-							<label><input name="back" type="radio" value="" />fdvcxzuiotr230,revnmcxz890r23vdaf</label>
-						</div>
-						<div class="shcabrbkbc">
-							<p class="shcabrbkbct">yubncvz uyewiq ndska ure njkdsa hfuyiq
-								bfjdsa ruiowe nbk huwif qhfew hr hu32r rh4 hu3 h43 r4 43 h734
-								t439 hfue918 fbhuqo fgby8eoq fh38y1 fhy832</p>
-							<p class="shcabrbkbcb">
-								<a href="#">оплатить</a>
-							</p>
-						</div>
-					</div>
-					<div class="shcabrbk">
-						<div class="shcabrbklo">
-							<img src="../content/static/images/brand/srbbank_02.png" />
-						</div>
-						<div class="shcabrbkse">
-							<label><input name="back" type="radio" value="" />fdvcxzuiotr230,revnmcxz890r23vdaf</label>
-						</div>
-						<div class="shcabrbkbc">
-							<p class="shcabrbkbct">yubncvz uyewiq ndska ure njkdsa hfuyiq
-								bfjdsa ruiowe nbk huwif qhfew hr hu32r rh4 hu3 h43 r4 43 h734
-								t439 hfue918 fbhuqo fgby8eoq fh38y1 fhy832</p>
-							<p class="shcabrbkbcb">
-								<a href="#">оплатить</a>
-							</p>
-						</div>
-					</div>
-					<div class="shcabrbk">
-						<div class="shcabrbklo">
-							<img src="../content/static/images/brand/srbbank_03.png" />
-						</div>
-						<div class="shcabrbkse">
-							<label><input name="back" type="radio" value="" />fdvcxzuiotr230,revnmcxz890r23vdaf</label>
-						</div>
-						<div class="shcabrbkbc">
-							<p class="shcabrbkbct">yubncvz uyewiq ndska ure njkdsa hfuyiq
-								bfjdsa ruiowe nbk huwif qhfew hr hu32r rh4 hu3 h43 r4 43 h734
-								t439 hfue918 fbhuqo fgby8eoq fh38y1 fhy832</p>
-							<p class="shcabrbkbcb">
-								<a href="#">оплатить</a>
-							</p>
-						</div>
-					</div>
-					<div class="shcabrlinksd"></div>
-				</div>
-				<div class="cl"></div>
+            	<div class="shcabrblse">
+                	<ul>
+                	  <li>fdsauief32</li>
+                	  <li>fdsauief32</li>
+                	  <li>fdsauief32</li>
+                	  <li>fdsauief32</li>
+                	  <li>fdsauief32</li>
+                	  <li>fdsauief32</li>
+                	  <li>fdsauief32</li>
+                	  <li>fdsauief32</li>
+                	</ul>
+                </div>
+            	<div class="shcabrbbank">
+                	<div class="shcabrbk">
+                	  <div class="shcabrbklo"><img src="../content/static/images/brand/srbbank_01.png"/></div>
+                	  <div class="shcabrbkse"><label><input name="back" type="radio" value="" />fdvcxzuiotr230,revnmcxz890r23vdaf</label></div>
+                	  <div class="shcabrbkbc">
+                      	<p class="shcabrbkbct">yubncvz uyewiq ndska ure njkdsa hfuyiq bfjdsa ruiowe nbk huwif qhfew hr hu32r rh4 hu3 h43 r4 43 h734 t439 hfue918 fbhuqo fgby8eoq fh38y1 fhy832</p>
+                      	<p class="shcabrbkbcb"><a href="#">оплатить</a></p>
+                      </div>
+                	</div>
+                	<div class="shcabrbk">
+                	  <div class="shcabrbklo"><img src="../content/static/images/brand/srbbank_02.png"/></div>
+                	  <div class="shcabrbkse"><label><input name="back" type="radio" value="" />fdvcxzuiotr230,revnmcxz890r23vdaf</label></div>
+                	  <div class="shcabrbkbc">
+                      	<p class="shcabrbkbct">yubncvz uyewiq ndska ure njkdsa hfuyiq bfjdsa ruiowe nbk huwif qhfew hr hu32r rh4 hu3 h43 r4 43 h734 t439 hfue918 fbhuqo fgby8eoq fh38y1 fhy832</p>
+                      	<p class="shcabrbkbcb"><a href="#">оплатить</a></p>
+                      </div>
+                	</div>
+                	<div class="shcabrbk">
+                	  <div class="shcabrbklo"><img src="../content/static/images/brand/srbbank_03.png"/></div>
+                	  <div class="shcabrbkse"><label><input name="back" type="radio" value="" />fdvcxzuiotr230,revnmcxz890r23vdaf</label></div>
+                	  <div class="shcabrbkbc">
+                      	<p class="shcabrbkbct">yubncvz uyewiq ndska ure njkdsa hfuyiq bfjdsa ruiowe nbk huwif qhfew hr hu32r rh4 hu3 h43 r4 43 h734 t439 hfue918 fbhuqo fgby8eoq fh38y1 fhy832</p>
+                      	<p class="shcabrbkbcb"><a href="#">оплатить</a></p>
+                      </div>
+                	</div>
+                    <div class="shcabrlinksd"></div>
+                </div>
+                <div class="cl"></div>
 			</div>
 			<div class="shopcarlesimgs">
 				<p class="scligb">

@@ -87,8 +87,7 @@
 								<div class="tjsl">&nbsp;&nbsp;品牌 :</div>
 								<ul>
 									<c:forEach items="${brands }" var="brand">
-										<li><input name="searchBrand" type="checkbox"
-											onclick="searchs('${brand.brandID }','brand');"
+										<li><input name="searchBrand" type="checkbox" onclick="searchs('${brand.brandID }','brand');"
 											value="${brand.brandID }" />${brand.brandName }</li>
 									</c:forEach>
 								</ul>
@@ -184,7 +183,7 @@
 									</c:otherwise>
 								</c:choose>
 						</ul>
-						<div class="gd">更多...</div>
+							<div class="gd">更多...</div>
 						</li>
 						</c:forEach>
 						<li class="tjcm">
@@ -205,18 +204,17 @@
 							rel="nofollow" class="black" title="700以上"
 							onclick="searchs('700@%','money');">700以上</a> <input
 							style="width: 30px; margin-left: 10px;" id="money1" type="text" />
-							- <input id="money2" style="width: 30px;" type="text" /> <input
-							style="width: 40px; margin-left: 10px;" type="button"
-							onclick="searchMoney();" value="确定" />
+							- <input id="money2" style="width: 30px;" type="text"  /> <input
+							style="width: 40px; margin-left: 10px;" type="button" onclick="searchMoney();" value="确定" />
 						</li>
 					</div>
 					<div style="clear: both;"></div>
 				</div>
 			</div>
-			<form action="./searchShopComm" id="paramForm" method="post">
+			<form action="./searchShopComm" id="paramForm" method="post" >
 				<input id="params" name="params" type="hidden" value="${params }" />
-				<input id="id" name="id" type="hidden" value="${id }" /> <input
-					id="page" name="page" type="hidden" value="${page }" />
+				<input id="id" name="id" type="hidden" value="${id }" />
+				<input id="page" name="page" type="hidden" value="${page }" />
 			</form>
 			<div class="rightcon">
 				<script type="text/javascript">
@@ -394,8 +392,7 @@
 				<div class="fzcon">
 					<ul>
 						<c:forEach items="${list }" var="commShop">
-							<li><a
-								href="../proscenium/shopItem?commID=${commShop.commCode }&category=${id }&shopID=${commShop.belongTo.id }&commoName=${commShop.commoidtyName }"><img
+							<li><a href="../proscenium/shopItem?commID=${commShop.commCode }&category=${id }&shopID=${commShop.belongTo.id }&commoName=${commShop.commoidtyName }"><img
 									src="..${commShop.shopCommImages[0].imagePath }" /></a> <h>
 								<dl>
 									<dt>
@@ -412,10 +409,9 @@
 									</dt>
 									<dd>
 										<span class="red">$ ${commShop.unitPrice }</span><span
-											class="p1"><a
-											href="../proscenium/shopItem?commID=${commShop.commCode }&category=${id }&shopID=${commShop.belongTo.id }&commoName=${commShop.commoidtyName }">
-												<img src="../content/static/images/con_10.png" />
-										</a></span><span class="p2"><a href="#"><img
+											class="p1"><a href="../proscenium/shopItem?commID=${commShop.commCode }&category=${id }&shopID=${commShop.belongTo.id }&commoName=${commShop.commoidtyName }">
+											<img src="../content/static/images/con_10.png" /></a></span><span
+											class="p2"><a href="#"><img
 												src="../content/static/images/con_11.png" /></a></span>
 									</dd>
 									<dd>

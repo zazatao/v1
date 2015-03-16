@@ -65,13 +65,14 @@
 								placeholder="货物组号">
 						</div>
 						<div class="col-sm-2">
-							<select class="form-control" id="transit" name="transit">
-								<option value="">-----------选择中转地-----------
-								<option value="beijing">北京
-							</select>
+						<select class="form-control" id="transit"  name="transit">
+							<option value="">-----------选择中转地-----------
+							<option value="beijing">北京
+						</select>
 						</div>
 						<div class="col-sm-2">
-							<select class="form-control" name="delivery" id="delivery">
+							<select class="form-control" name="delivery"
+								id="delivery">
 								<option value="">-------------运输方式-------------
 								<option value="EMS">EMS
 							</select>

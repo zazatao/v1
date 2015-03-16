@@ -49,7 +49,7 @@
 							<div class="tab-content">
 								<div class="tab-pane active" id="panel-707179">
 									<div class="col-md-12 column">
-										<br>
+									<br>
 										<form action="enterStoreRoom" method="POST">
 											<div class="form-group">
 												<label for="inputEmail3" class="col-sm-2 control-label">条形码</label>
@@ -79,13 +79,9 @@
 											</div>
 											<div class="form-group">
 												<label for="inputEmail3" class="col-sm-12 control-label">&nbsp;&nbsp;&nbsp;&nbsp;<input
-													type="checkbox" checked="checked" />自动打印条码
-												</label>
+													type="checkbox" checked="checked" />自动打印条码</label>
 											</div>
-											<br>
-											<br>
-											<br>
-											<br>
+											<br><br><br><br>
 											<div class="form-group">
 												<div class="col-sm-offset-2 col-sm-10"
 													style="text-align: center;">
@@ -100,65 +96,57 @@
 								</div>
 								<div class="tab-pane" id="panel-181560">
 									<div class="col-md-12 column">
-										<br>
+									<br>
 										<form action="saveUnKnownCommodity" method="POST">
 											<div class="form-group">
 												<label for="inputEmail3" class="col-sm-2 control-label">代码</label>
 												<div class="col-sm-10">
-													<input type="text" name="code" class="form-control"
-														readonly="readonly" value="${unKnownComm.code }"><br>
+													<input type="text" name="code" class="form-control" readonly="readonly" value="${unKnownComm.code }"><br>
 												</div>
 											</div>
 											<div class="form-group">
 												<label for="inputEmail3" class="col-sm-2 control-label">操作员</label>
 												<div class="col-sm-10">
-													<input type="text" name="operatorUser" class="form-control"
-														readonly="readonly"
-														value="<%=((Personnel) request.getSession().getAttribute("loginPersonnle")).getUserName()%>"><br>
+													<input type="text" name="operatorUser" class="form-control" readonly="readonly" value="<%=((Personnel) request.getSession().getAttribute("loginPersonnle")).getUserName()%>"><br>
 												</div>
 											</div>
 											<div class="form-group">
 												<label for="inputEmail3" class="col-sm-2 control-label">数量</label>
 												<div class="col-sm-10">
-													<input type="text" name="amountNum" class="form-control"
-														value="${unKnownComm.amountNum }"><br>
+													<input type="text" name="amountNum"
+														class="form-control" value="${unKnownComm.amountNum }"><br>
 												</div>
 											</div>
 											<div class="form-group">
 												<label for="inputEmail3" class="col-sm-2 control-label">
 													类别</label>
 												<div class="col-sm-10">
-													<input type="text" name="category" class="form-control"
-														value="${unKnownComm.category }"><br>
+													<input type="text" name="category" class="form-control" value="${unKnownComm.category }"><br>
 												</div>
 											</div>
 											<div class="form-group">
 												<label for="inputEmail3" class="col-sm-2 control-label">
 													评论</label>
 												<div class="col-sm-10">
-													<textarea rows="2" cols="10" name="comment"
-														class="form-control">${unKnownComm.comment }</textarea>
+													<textarea rows="2" cols="10" name="comment" class="form-control">${unKnownComm.comment }</textarea>
 												</div>
 											</div>
 											<c:if test="${images !=null}">
-												<div class="form-group">
-													<div class="col-sm-12">
-														<c:forEach items="${images }" var="image">
-															<img src="..${image.path}" width="100px;" height="100px;">
-														</c:forEach>
-													</div>
+											<div class="form-group">
+												<div class="col-sm-12">
+													<c:forEach items="${images }" var="image">
+														<img src="..${image.path}" width="100px;" height="100px;">
+													</c:forEach>
 												</div>
+											</div>
 											</c:if>
 											<div class="form-group">
 												<div class="col-sm-offset-2 col-sm-10"
 													style="text-align: center;">
-													<button type="button" class="btn btn-default"
-														onclick="saveUnknow();">创建</button>
+													<button type="button" class="btn btn-default" onclick="saveUnknow();">创建</button>
 													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													<button type="button" class="btn btn-default"
-														onclick="popupwindow('../warehouse/imageUplode');">照片上传</button>
-													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													<button type="button" class="btn btn-default">删除</button>
+													<button type="button" class="btn btn-default" onclick="popupwindow('../warehouse/imageUplode');">照片上传</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<button type="button" class="btn btn-default" >删除</button>
 												</div>
 											</div>
 										</form>

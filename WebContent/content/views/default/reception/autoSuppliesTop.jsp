@@ -1,53 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!------cont_head start-------->
-<div class="cont_head">
-	<div class="cont_head_left">
-		<dl>
-			<dt>汽车配件</dt>
-			<dd>
-				<img src="../content/static/images/small/s_1.png" /><a
-					href="gr_list.html">汽车电子产品</a>
-			</dd>
-			<dd>
-				<img src="../content/static/images/small/s_2.png" /><a
-					href="gr_list.html">汽车照明</a>
-			</dd>
-			<dd>
-				<img src="../content/static/images/small/s_3.png" /><a
-					href="gr_list.html">GPS导航<br />DVD播放器
-				</a>
-			</dd>
-			<dd>
-				<img src="../content/static/images/small/s_4.png" /><a
-					href="gr_list.html">汽车保养<br />自动吸尘器
-				</a>
-			</dd>
-			<dd>
-				<img src="../content/static/images/small/s_5.png" /><a
-					href="gr_list.html">汽配 <br /> 油
-				</a>
-			</dd>
-			<dd>
-				<img src="../content/static/images/small/s_6.png" /><a
-					href="gr_list.html">工具 <br /> 车库用品
-				</a>
-			</dd>
-			<dd>
-				<img src="../content/static/images/small/s_7.png" /><a
-					href="gr_list.html">汽车配件</a>
-			</dd>
-			<dd style="border-bottom: none;">
-				<img src="../content/static/images/small/s_8.png" /><a
-					href="gr_list.html">摩托车用品</a>
-			</dd>
-		</dl>
-	</div>
-	<div class="cont_head_center">
-		<script type="text/javascript">
+	<div class="cont_head">
+    	<div class="cont_head_left">
+        	<dl>
+            	<dt>汽车配件</dt>
+                <dd><img src="../content/static/images/small/s_1.png" /><a href="gr_list.html">汽车电子产品</a></dd>
+                <dd><img src="../content/static/images/small/s_2.png" /><a href="gr_list.html">汽车照明</a></dd>
+                <dd><img src="../content/static/images/small/s_3.png" /><a href="gr_list.html">GPS导航<br />DVD播放器</a></dd>
+                <dd><img src="../content/static/images/small/s_4.png" /><a href="gr_list.html">汽车保养<br />自动吸尘器</a> </dd>
+                <dd><img src="../content/static/images/small/s_5.png" /><a href="gr_list.html">汽配 <br /> 油 </a></dd>
+                <dd><img src="../content/static/images/small/s_6.png" /><a href="gr_list.html">工具 <br />  车库用品</a></dd>
+                <dd><img src="../content/static/images/small/s_7.png" /><a href="gr_list.html">汽车配件</a></dd>
+                <dd style="border-bottom:none;"><img src="../content/static/images/small/s_8.png" /><a href="gr_list.html">摩托车用品</a></dd>
+            </dl>
+        </div>
+        <div class="cont_head_center">
+			<script type="text/javascript">
             $(function() {
                 var sWidth = $(".banner").width(); //获取焦点图的宽度（显示面积）
                 var len = $(".banner ul li").length; //获取焦点图个数
@@ -114,32 +86,31 @@
             });
             
             </script>
-		<div class="banner">
-			<ul>
-				<li><a href="gr_list.html"><img
-						src="../content/static/images/dq/banner01.jpg" /></a></li>
-				<li><a href="gr_list.html"><img
-						src="../content/static/images/dq/banner02.jpg" /></a></li>
-				<li><a href="gr_list.html"><img
-						src="../content/static/images/dq/banner03.jpg" /></a></li>
-				<li><a href="gr_list.html"><img
-						src="../content/static/images/dq/banner01.jpg" /></a></li>
-			</ul>
-		</div>
-		<div class="smallbox_2">
-			<a href="gr_list.html"><img
-				src="../content/static/images/dq/img_16.jpg" /></a> <a
-				href="gr_list.html"><img
-				src="../content/static/images/dq/img_17.jpg" /></a> <a
-				href="gr_list.html"><img
-				src="../content/static/images/dq/img_18.jpg" /></a>
-		</div>
-	</div>
-	<div class="cont_head_right">
-		<span class="sp_top"><a href="yl_list_detail.html"><img
-				src="../content/static/images/dq/img_19.jpg" /></a></span> <span><a
-			href="yl_list_detail.html"><img
-				src="../content/static/images/dq/img_20.jpg" /></a></span>
-	</div>
-</div>
-<!------cont_head over-------->
+        	<div class="banner">
+              <ul>
+                <li>
+                   <a href="gr_list.html"><img src="../content/static/images/dq/banner01.jpg" /></a>
+                </li>
+                <li>
+                   <a href="gr_list.html"><img src="../content/static/images/dq/banner02.jpg" /></a>
+                </li>
+                <li>
+                  <a href="gr_list.html"><img src="../content/static/images/dq/banner03.jpg" /></a>
+                </li>
+                <li>
+                   <a href="gr_list.html"><img src="../content/static/images/dq/banner01.jpg" /></a>
+                </li>
+              </ul>
+            </div>
+            <div class="smallbox_2">
+            	<a href="gr_list.html"><img src="../content/static/images/dq/img_16.jpg" /></a>
+                <a href="gr_list.html"><img src="../content/static/images/dq/img_17.jpg" /></a>
+                <a href="gr_list.html"><img src="../content/static/images/dq/img_18.jpg" /></a>
+            </div>
+        </div>
+        <div class="cont_head_right">
+        	<span class="sp_top"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_19.jpg" /></a></span>	
+            <span><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_20.jpg" /></a></span>		
+        </div>
+    </div>
+    <!------cont_head over-------->

@@ -122,10 +122,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -136,10 +137,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -150,10 +152,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -164,10 +167,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -178,10 +182,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -199,10 +204,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -213,10 +219,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -227,10 +234,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -241,10 +249,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -255,10 +264,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -273,10 +283,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -287,10 +298,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -301,10 +313,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -315,10 +328,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -329,10 +343,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -352,10 +367,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -366,10 +382,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -380,10 +397,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -394,10 +412,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -408,10 +427,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -427,10 +447,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -441,10 +462,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -455,10 +477,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -469,10 +492,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -483,10 +507,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -504,10 +529,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -518,10 +544,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -532,10 +559,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -546,10 +574,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -560,10 +589,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -578,10 +608,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -592,10 +623,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -606,10 +638,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -620,10 +653,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -634,10 +668,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -657,10 +692,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -671,10 +707,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -685,10 +722,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -699,10 +737,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -713,10 +752,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -732,10 +772,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -746,10 +787,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -760,10 +802,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -774,10 +817,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -788,10 +832,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -809,10 +854,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -823,10 +869,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -837,10 +884,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -851,10 +899,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -865,10 +914,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -883,10 +933,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -897,10 +948,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -911,10 +963,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -925,10 +978,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -939,10 +993,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -962,10 +1017,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -976,10 +1032,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -990,10 +1047,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -1004,10 +1062,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -1018,10 +1077,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -1037,10 +1097,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -1051,10 +1112,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -1065,10 +1127,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -1079,10 +1142,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -1093,10 +1157,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -1114,10 +1179,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -1128,10 +1194,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -1142,10 +1209,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -1156,10 +1224,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -1170,10 +1239,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -1188,10 +1258,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -1202,10 +1273,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -1216,10 +1288,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -1230,10 +1303,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -1244,10 +1318,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -1267,10 +1342,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -1281,10 +1357,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -1295,10 +1372,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -1309,10 +1387,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -1323,10 +1402,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -1342,10 +1422,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -1356,10 +1437,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -1370,10 +1452,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -1384,10 +1467,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -1398,10 +1482,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -1419,10 +1504,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -1433,10 +1519,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -1447,10 +1534,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -1461,10 +1549,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -1475,10 +1564,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -1493,10 +1583,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -1507,10 +1598,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -1521,10 +1613,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -1535,10 +1628,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -1549,10 +1643,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -1572,10 +1667,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -1586,10 +1682,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -1600,10 +1697,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -1614,10 +1712,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -1628,10 +1727,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -1647,10 +1747,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -1661,10 +1762,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -1675,10 +1777,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -1689,10 +1792,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -1703,10 +1807,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -1724,10 +1829,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -1738,10 +1844,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -1752,10 +1859,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -1766,10 +1874,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -1780,10 +1889,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -1798,10 +1908,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -1812,10 +1923,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -1826,10 +1938,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -1840,10 +1953,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -1854,10 +1968,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -1877,10 +1992,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -1891,10 +2007,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -1905,10 +2022,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -1919,10 +2037,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -1933,10 +2052,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -1952,10 +2072,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -1966,10 +2087,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -1980,10 +2102,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -1994,10 +2117,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -2008,10 +2132,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -2029,10 +2154,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -2043,10 +2169,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -2057,10 +2184,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -2071,10 +2199,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -2085,10 +2214,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -2103,10 +2233,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -2117,10 +2248,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -2131,10 +2263,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -2145,10 +2278,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -2159,10 +2293,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -2182,10 +2317,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -2196,10 +2332,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -2210,10 +2347,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -2224,10 +2362,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -2238,10 +2377,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -2257,10 +2397,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -2271,10 +2412,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -2285,10 +2427,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -2299,10 +2442,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -2313,10 +2457,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -2334,10 +2479,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -2348,10 +2494,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -2362,10 +2509,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -2376,10 +2524,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -2390,10 +2539,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -2408,10 +2558,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -2422,10 +2573,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -2436,10 +2588,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -2450,10 +2603,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -2464,10 +2618,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -2487,10 +2642,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -2501,10 +2657,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -2515,10 +2672,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -2529,10 +2687,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -2543,10 +2702,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -2562,10 +2722,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -2576,10 +2737,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -2590,10 +2752,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -2604,10 +2767,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -2618,10 +2782,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -2639,10 +2804,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -2653,10 +2819,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -2667,10 +2834,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -2681,10 +2849,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -2695,10 +2864,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>
@@ -2713,10 +2883,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_red">
@@ -2727,10 +2898,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_green">
@@ -2741,10 +2913,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_gray">
@@ -2755,10 +2928,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 					<dl class="border_yellow">
@@ -2769,10 +2943,11 @@
 						<dd>
 							<a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/l_7.png">
-								<div class="gr3bordino" style="display: none;">关注</div></a>
+							<div class="gr3bordino" style="display: none;">关注</div></a>
 						</dd>
 						<dd>
-							炫动瞬间潮流<br /> <em>22222人捧场</em>
+							炫动瞬间潮流<br />
+							<em>22222人捧场</em>
 						</dd>
 					</dl>
 				</div>

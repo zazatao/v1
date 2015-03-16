@@ -55,13 +55,12 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="col-md-12 column">
-				<form class="form-horizontal" action="./searchWeighing"
-					method="POST">
+				<form class="form-horizontal"
+					action="./searchWeighing" method="POST">
 					<div class="form-group">
 						<div class="col-sm-1">
 							<input type="text" name="transNumForTaobao" placeholder="淘宝ID"
-								class="form-control" id="transNumForTaobao"
-								onblur="checkvalue(this)">
+								class="form-control" id="transNumForTaobao" onblur="checkvalue(this)">
 						</div>
 						<div class="col-sm-1">
 							<input type="text" name="seller" placeholder="卖家"
@@ -73,8 +72,8 @@
 								onclick="dateInfoxxx('sellerDate')">
 						</div>
 						<div class="col-sm-1">
-							<select class="form-control" name="disposeStatus"
-								id="disposeStatus" placeholder="状态">
+							<select class="form-control" name="disposeStatus" id="disposeStatus"
+								placeholder="状态">
 								<option value="">-----状态-----
 								<option value="process">正在处理
 								<option value="shortage">商品现货不足
@@ -112,13 +111,13 @@
 									<c:otherwise>
 										<tr class="success">
 									</c:otherwise>
-								</c:choose>
-								<td><a href="./orderItem?id=${commodity.commodityID}"
-									onclick="orderItem(${commodity.commodityID});">${commodity.commodityID }</a></td>
+								</c:choose>				  
+								<td><a href="./orderItem?id=${commodity.commodityID}" onclick="orderItem(${commodity.commodityID});">${commodity.commodityID }</a></td>
 								<td>${commodity.transNumForTaobao }</td>
 								<td>${commodity.seller}</td>
 								<td>${commodity.sellerDate}</td>
-								<td><c:if test="${commodity.disposeStatus == 'process' }">正在处理</c:if>
+								<td>
+									<c:if test="${commodity.disposeStatus == 'process' }">正在处理</c:if>
 									<c:if test="${commodity.disposeStatus == 'shortage' }">商品现货不足</c:if>
 									<c:if test="${commodity.disposeStatus == 'commodityAds' }">产品广告</c:if>
 									<c:if test="${commodity.disposeStatus == 'waiting' }">等候</c:if>
@@ -145,13 +144,13 @@
 					location.href ='./getOrder?page=weighing&id='+num;
 			}
 			</script>
-
+			
 			<!-- rightmain -->
 			<div class="col-md-8 column" style="height: 100%">
 				<!-- 
 				<div class="panel panel-default">
 				 -->
-				<div class="container row">
+				 <div class="container row">
 					<div class="panel-heading">
 						<h3 class="panel-title">订单/卖家</h3>
 					</div>
@@ -159,72 +158,99 @@
 						<div class="container-fluid">
 							<div class="row-fluid">
 								<div class="span12">
-									<div class="list-group-item" style="">
+									<div class="list-group-item" style="400px">
 										<p class="list-group-item-text">
 										<form class="form-horizontal" action="" method="POST">
 											<!-- 表格 -->
 											<table class="table table-hover table-striped">
-												<tr>
-													<th>淘宝ID: <label>${dispose.transNumForTaobao }</label>
-													</th>
-													<th>卖家付款: <label>${dispose.sellerDate}</label>
-													</th>
-													<th>卖家: <label>${dispose.seller }</label>
-													</th>
-													<th></th>
-												</tr>
-												<tr>
-													<th>产品名称: ${dispose.nameOfGoods }</th>
-													<th>付款: ${dispose.money }</th>
-													<th></th>
-													<th></th>
-												</tr>
-												<tr>
-													<th>选项:</th>
-													<th></th>
-													<th></th>
-													<th></th>
-												</tr>
-												<tr>
-													<th>数量: <label>${dispose.quantity}</label>
-													</th>
-													<th>价格: <label>${dispose.price}</label>
-													</th>
-													<th>金额: <label>${dispose.money}</label>
-													</th>
-													<th>付款: <label>1212</label>
-													</th>
-												</tr>
-												<tr>
-													<th>改变状态: <input type="radio" name="dispose" value="">手动处理
-														<input type="radio" name="dispose" value="">处理中 <input
-														type="radio" name="dispose" value="">剩余商品
-													</th>
-													<th>剩余商品: <input type="text"
-														value="${dispose.quantity}">
-													</th>
-													<th></th>
-													<th></th>
-												</tr>
-												<tr>
-													<th>追踪号: <input type="text" value="${dispose.tpek}">
-													</th>
-													<th>&nbsp&nbsp&nbsp交易码: <input type="text"
-														value="${dispose.tradingCode}">
-													</th>
-													<th>
-														<button type="button" class="btn btn-primary">处理</button>
-													</th>
-													<th></th>
-												</tr>
+													<tr>
+														<th>
+															淘宝ID:
+															<label>${dispose.transNumForTaobao }</label>
+														</th>
+														<th>
+															卖家付款:
+															<label>${dispose.sellerDate}</label>
+														</th>
+														<th>
+															卖家:
+															<label>${dispose.seller }</label>
+														</th>
+														<th></th>
+													</tr>
+													<tr>
+														<th>
+															产品名称:
+															${dispose.nameOfGoods }
+														</th>
+														<th>
+															付款:
+															${dispose.money }
+														</th>
+														<th></th>
+														<th></th>
+													</tr>
+													<tr>
+														<th>
+															选项:
+														</th>
+														<th></th>
+														<th></th>
+														<th></th>
+													</tr>
+													<tr>
+														<th>
+															数量:
+															<label>${dispose.quantity}</label>
+														</th>
+														<th>
+															价格:
+															<label>${dispose.price}</label>
+														</th>
+														<th>
+															金额:
+															<label>${dispose.money}</label>
+														</th>
+														<th>
+															付款:
+															<label>1212</label>
+														</th>
+													</tr>
+													<tr>
+														<th>
+															改变状态:
+															<input type="radio" name="dispose"value="">手动处理 
+															<input type="radio" name="dispose"value="">处理中
+															<input type="radio" name="dispose"value="">剩余商品
+														</th>
+														<th>
+															剩余商品:
+															<input type="text" value="${dispose.quantity}">
+														</th>
+														<th></th>
+														<th></th>
+													</tr>
+													<tr>
+														<th>
+															追踪号:
+															<input type="text" value="${dispose.tpek}">
+														</th>
+														<th>
+															&nbsp&nbsp&nbsp交易码:
+															<input type="text" value="${dispose.tradingCode}">
+														</th>
+														<th>
+															<button type="button" class="btn btn-primary">处理</button>
+														</th>
+														<th></th>
+													</tr>
 											</table>
 											<!-- /表格 -->
-
+											
 											<div>
-												<img src="../content/static/img/favicon.jpeg"
-													alt="Responsive image" class="img-thumbnail img-responsive">
+												<img src="../content/static/img/favicon.jpeg" alt="Responsive image" class="img-thumbnail img-responsive">
 											</div>
-
+											
 											</p>
 										</form>
 									</div>

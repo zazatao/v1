@@ -22,7 +22,8 @@
 		<div class="top_tel">
 			<img src="../content/static/images/top_sj.png" />
 			<p>
-				全球统一客服电话<br /> <span class="red">152386895258</span>
+				全球统一客服电话<br />
+				<span class="red">152386895258</span>
 			</p>
 		</div>
 		<div class="gwctb">
@@ -79,7 +80,7 @@
 						test="${shopCategory.level == 1 && shopCategory.category != '汽车用具' && shopCategory.category != '电子产品' }">
 						<li><a
 							href="../proscenium/categoryOne?id=${shopCategory.categoryID}">${shopCategory.category }</a>
-							<div>
+						<div>
 								<c:forEach items="${shopCategory.children }" var="shopCategory2">
 									<c:if test="${shopCategory2.level == 2  }">
 										<div class="nav-column">
@@ -159,7 +160,6 @@
 								}
 							}
 						});
-<<<<<<< HEAD
 						jQuery
 								.ajax({
 									type : 'GET',
@@ -199,32 +199,6 @@
 										$('#navShopCaegory2').append($guige2);
 									}
 								});
-=======
-						jQuery.ajax({
-							type : 'GET',
-							contentType : 'application/json',
-							url : '../getShopCategory/shopCategoryBrand',
-							dataType : 'json',
-							success : function(data) {
-								var $guige2 = "";
-								if (data && data.success == "true") {
-									$guige2 = $guige2 + "<li><a href='../proscenium/categoryLei?id=-1&page=brand'>名品街</a><div>";
-									$.each(data.shopCategories,function(i, brandCategory) {
-										$guige2 = $guige2 + "<div class='nav-column'><h3>"+brandCategory.category+"</h3><ul>";
-										var strs = brandCategory.brandStr.split("|");
-											for (var i = 0; i < strs.length; i++) {
-												$guige2 = $guige2 + "<li><a href='../proscenium/shopCommItem?id="+strs[i].split('-')[0]+"&page=brand'>"+ strs[i].split('-')[1] +"</a></li>";
-											}
-											$guige2 = $guige2 + "</ul></div>";
-									});
-									$guige2 = $guige2 + "</div></li>";
-								}else{
-									var $guige2 = "<li><a href='../proscenium/categoryLei?id=-1&page=brand'>名品街</a><div></div></li>";
-								}
-								$('#navShopCaegory2').append($guige2);
-							}
-						});
->>>>>>> branch 'master' of https://github.com/zazatao/v1
 						jQuery
 								.ajax({
 									type : 'GET',

@@ -441,72 +441,69 @@ public class ShopTwoController {
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("loginUser");
 		Address address = addressService.findById(addID);
-		if (address != null) {
-			List<BuyCat> list = buyCatService.getBuyCatByUser(user.getId());
-			Map<Integer, List<BuyCat>> map = new HashMap<Integer, List<BuyCat>>();
-			 List<BuyCat> buycates =null;
-			for (int i = 0; i < list.size(); i++) {
-				if (i==0) {
+		List<BuyCat> list = buyCatService.getBuyCatByUser(user.getId());
+		Map<Integer, List<BuyCat>> map = new HashMap<Integer, List<BuyCat>>();
+		 List<BuyCat> buycates =null;
+		for (int i = 0; i < list.size(); i++) {
+			if (i==0) {
+				buycates = new ArrayList<BuyCat>();
+				buycates.add(list.get(i));
+				map.put(list.get(i).getShopCommoidty().getBelongTo().getId(), buycates);
+			}else{
+				boolean isok = true;
+				for (Integer key : map.keySet()) {
+					if (list.get(i).getShopCommoidty().getBelongTo().getId() == key ) {
+						map.get(key).add(list.get(i));
+						isok = false;
+					}
+				}
+				if (isok) {
 					buycates = new ArrayList<BuyCat>();
 					buycates.add(list.get(i));
 					map.put(list.get(i).getShopCommoidty().getBelongTo().getId(), buycates);
-				}else{
-					boolean isok = true;
-					for (Integer key : map.keySet()) {
-						if (list.get(i).getShopCommoidty().getBelongTo().getId() == key ) {
-							map.get(key).add(list.get(i));
-							isok = false;
-						}
-					}
-					if (isok) {
-						buycates = new ArrayList<BuyCat>();
-						buycates.add(list.get(i));
-						map.put(list.get(i).getShopCommoidty().getBelongTo().getId(), buycates);
-					}
 				}
 			}
-			Commodity commodity = null;
-			OrderForm orderform = null;
-			for (Integer key : map.keySet()) {
-				buycates = map.get(key);
-				if (buycates != null && buycates.size()>0) {
-					orderform = new OrderForm();
-					orderform.setAddress(address);
-					orderform.setChangeStatusDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-					orderform.setDelivery(Delivery.valueOf(deliveryComm));
-					orderform.setOrderDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-					orderform.setOrderTime(new SimpleDateFormat("HH:mm:ss").format(new Date()));
-					orderform.setOrderstatus(OrderStatus.waitDelivery);
-					orderform.setOrderUser(user);
-					orderform.setPaymentDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-					orderform.setPaymentTime(new SimpleDateFormat("HH:mm:ss").format(new Date()));
-					orderform.setDeliveryMoney(deliveryMoney);
-					orderform = formService.save(orderform);
-					for (BuyCat buyCat : buycates) {
-						commodity = new Commodity();
-						commodity.setCommItem(buyCat.getShopCommoidty().getCommItem());
-						commodity.setQuantity(buyCat.getBuyAmount());
-						commodity.setWeight(buyCat.getShopCommoidty().getProbablyWeight());
-						commodity.setNameOfGoods(buyCat.getShopCommoidty().getCommoidtyName());
-						commodity.setPrice(buyCat.getShopCommoidty().getUnitPrice() * buyCat.getShopCommoidty().getSpecial());
-						commodity.setMoney(buyCat.getShopCommoidty().getUnitPrice() * buyCat.getShopCommoidty().getSpecial() * buyCat.getBuyAmount());
-						commodity.setCurrency(buyCat.getShopCommoidty().getCurrency());
-						commodity.setCommSpec(buyCat.getSpecs());
-						commodity.setShopcategory(buyCat.getShopCommoidty().getShopCategory());
-						commodity.setSeller(buyCat.getShopCommoidty().getBelongTo());
-//						commodity.setSellerDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));//买家付款日期
-						commodity.setStatus(CommoidityStatus.paid);
-						commodity.setDisposeStatus(DisposeStatus.process);
-						commodity.setOrderNumber(orderform);
-						Commodity comm = commodityService.save(commodity);
-						for (ShopCommImage imagePath : buyCat.getShopCommoidty().getShopCommImages()) {
-							ImagePath image = new ImagePath();
-							image.setCommodity(comm);
-							image.setOrderform(orderform);
-							image.setPath(imagePath.getImagePath());
-							imagePathService.save(image);
-						}
-						buyCatService.delete(buyCat.getCatID());
+		}
+		Commodity commodity = null;
+		OrderForm orderform = null;
+		for (Integer key : map.keySet()) {
+			buycates = map.get(key);
+			if (buycates != null && buycates.size()>0) {
+				orderform = new OrderForm();
+				orderform.setAddress(address);
+				orderform.setChangeStatusDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+				orderform.setDelivery(Delivery.valueOf(deliveryComm));
+				orderform.setOrderDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+				orderform.setOrderTime(new SimpleDateFormat("HH:mm:ss").format(new Date()));
+				orderform.setOrderstatus(OrderStatus.waitDelivery);
+				orderform.setOrderUser(user);
+				orderform.setPaymentDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+				orderform.setPaymentTime(new SimpleDateFormat("HH:mm:ss").format(new Date()));
+				orderform.setDeliveryMoney(deliveryMoney);
+				orderform = formService.save(orderform);
+				for (BuyCat buyCat : buycates) {
+					commodity = new Commodity();
+					commodity.setCommItem(buyCat.getShopCommoidty().getCommItem());
+					commodity.setQuantity(buyCat.getBuyAmount());
+					commodity.setWeight(buyCat.getShopCommoidty().getProbablyWeight());
+					commodity.setNameOfGoods(buyCat.getShopCommoidty().getCommoidtyName());
+					commodity.setPrice(buyCat.getShopCommoidty().getUnitPrice() * buyCat.getShopCommoidty().getSpecial());
+					commodity.setMoney(buyCat.getShopCommoidty().getUnitPrice() * buyCat.getShopCommoidty().getSpecial() * buyCat.getBuyAmount());
+					commodity.setCurrency(buyCat.getShopCommoidty().getCurrency());
+					commodity.setCommSpec(buyCat.getSpecs());
+					commodity.setShopcategory(buyCat.getShopCommoidty().getShopCategory());
+					commodity.setSeller(buyCat.getShopCommoidty().getBelongTo());
+//					commodity.setSellerDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));//买家付款日期
+					commodity.setStatus(CommoidityStatus.paid);
+					commodity.setDisposeStatus(DisposeStatus.process);
+					commodity.setOrderNumber(orderform);
+					Commodity comm = commodityService.save(commodity);
+					for (ShopCommImage imagePath : buyCat.getShopCommoidty().getShopCommImages()) {
+						ImagePath image = new ImagePath();
+						image.setCommodity(comm);
+						image.setOrderform(orderform);
+						image.setPath(imagePath.getImagePath());
+						imagePathService.save(image);
 					}
 				}
 			}

@@ -53,17 +53,18 @@
 					</p>
 					<form action="./regist" method="post">
 						<ul>
-							<li>选择登录名<span class="red"> *</span><br /> <input
-								class="zc_input" type="text" name="loginName" id="loginName" /></li>
+							<li>选择登录名<span class="red"> *</span><br />
+							<input class="zc_input" type="text" name="loginName" id="loginName" /></li>
 
-							<li>密码 <span class="red"> *</span><br /> <input
-								class="zc_input" type="password" name="password" id="password" /></li>
+							<li>密码 <span class="red"> *</span><br />
+							<input class="zc_input" type="password" name="password"
+								id="password" /></li>
 
 							<li><input type="checkbox" class="checkbox_2"
 								checked="checked" /><span class="gray">显示密码</span></li>
 
-							<li>确认密码<span class="red"> *</span><br /> <input
-								class="zc_input" type="text" name="password1" id="password" /></li>
+							<li>确认密码<span class="red"> *</span><br />
+							<input class="zc_input" type="text" name="password1" id="password" /></li>
 
 							<li>输入电话号码<span class="red"> *</span><br /> <select
 								class="zc_input_2"><option>选择国家</option>
@@ -74,15 +75,15 @@
 								class="zc_input_2" type="text" name="phone" id="phone" /><span
 								class="red">или</span></li>
 
-							<li>输入电邮地址<span class="red"> *</span><br /> <input
-								class="zc_input" type="text" name="email" id="email" /></li>
+							<li>输入电邮地址<span class="red"> *</span><br />
+							<input class="zc_input" type="text" name="email" id="email" /></li>
 
 							<li>短信代码<input class="zc_input_2" type="text" value="" /><input
 								class="sub_3" type="submit" value="发送代码" /></li>
 							<li><p>您的性别</p></li>
-							<li><a class="green" name="Male" id="Male" value="Male"
-								type="radio">男士 </a> <a class="red" name="Female" id="Female"
-								type="radio" value="Female">女士</a></li>
+							<li>
+								<a class="green" name="Male" id="Male" value="Male"type="radio">男士 </a>
+								<a class="red" name="Female" id="Female" type="radio" value="Female">女士</a></li>
 							<li>我有代码可以邀请朋友<input class="zc_input_2" type="text" value="" /></li>
 							<li><input type="checkbox" class="checkbox_2"
 								checked="checked" /><span class="gray">接受用户协议条款</span></li>
@@ -98,19 +99,20 @@
 				<h1>定于组织</h1>
 				<div class="zc_cent_cont">
 					<ul>
-						<li>代表组织名称<br /> <input class="zc_input" type="text"
-							value="" /><br /> <em>例子<br />-OOO有限公司<br />-阿斯塔纳责任有限公司<br />-"РосСТРАХ"
+						<li>代表组织名称<br />
+						<input class="zc_input" type="text" value="" /><br /> <em>例子<br />-OOO有限公司<br />-阿斯塔纳责任有限公司<br />-"РосСТРАХ"
 								喀山公司
 						</em>
 						</li>
 
-						<li>收货人名称 <br /> <input class="zc_input" type="password"
-							value="" /></li>
+						<li>收货人名称 <br />
+						<input class="zc_input" type="password" value="" /></li>
 
-						<li>法定地址<br /> <input class="zc_input" type="text" value="" /></li>
+						<li>法定地址<br />
+						<input class="zc_input" type="text" value="" /></li>
 
-						<li>实际地址&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;符合法律<br /> <input
-							class="zc_input" type="text" value="" /></li>
+						<li>实际地址&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;符合法律<br />
+						<input class="zc_input" type="text" value="" /></li>
 
 						<li>输入电话号码<span class="red"> *</span><br /> <select
 							class="zc_input_2"><option>选择国家</option>
@@ -126,7 +128,8 @@
 						<li><span>NHH</span><input class="zc_input_2" type="text"
 							value="43334434" /></li>
 
-						<li>银行名称<br /> <input class="zc_input" type="text" value="" /></li>
+						<li>银行名称<br />
+						<input class="zc_input" type="text" value="" /></li>
 
 						<li><span>银行的分类</span><input class="zc_input_3 zc_input_2"
 							type="text" value="" /></li>

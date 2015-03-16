@@ -51,8 +51,7 @@ th {
 	<br>
 	<br>
 	<br>
-	<form class="form-horizontal"
-		action="./editShopOrder?id=${orderform.orderFormID}" method="POST">
+	<form class="form-horizontal" action="./editShopOrder?id=${orderform.orderFormID}" method="POST">
 		<div class="form-group" style="text-align: center;">
 			<label><font style="font-size: 40px;">订单修改</font> </label> <br>
 			<br>
@@ -61,68 +60,56 @@ th {
 			<label for="inputEmail3" class="col-sm-2 control-label"><a
 				class="frred">*</a><font style="font-size: 18px;">编号</font></label>
 			<div class="col-sm-8">
-				<input type="text" name="orderFormID" class="form-control"
-					id="inputEmail3" value="${orderform.orderFormID}"
-					readonly="readonly">
+				<input type="text" name="orderFormID" class="form-control" id="inputEmail3" value="${orderform.orderFormID}" readonly="readonly">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="inputEmail3" class="col-sm-2 control-label"><a
 				class="frred">*</a><font style="font-size: 18px;">货号</font></label>
 			<div class="col-sm-8">
-				<input type="text" name="commItem" class="form-control"
-					id="inputEmail3" value="${commodity.commItem }" readonly="readonly">
+				<input type="text" name="commItem" class="form-control" id="inputEmail3" value="${commodity.commItem }" readonly="readonly">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="inputEmail3" class="col-sm-2 control-label"><a
 				class="frred">*</a><font style="font-size: 18px;">买方</font></label>
 			<div class="col-sm-8">
-				<input type="text" name="customer" class="form-control"
-					id="inputEmail3"
-					value="${commodity.orderNumber.orderUser.userName }">
+				<input type="text" name="customer" class="form-control" id="inputEmail3" value="${commodity.orderNumber.orderUser.userName }">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="inputEmail3" class="col-sm-2 control-label"><a
 				class="frred">*</a><font style="font-size: 18px;">电话</font></label>
 			<div class="col-sm-8">
-				<input type="text" name="phone" class="form-control"
-					id="inputEmail3" value="${commodity.orderNumber.orderUser.phone }">
+				<input type="text" name="phone" class="form-control" id="inputEmail3" value="${commodity.orderNumber.orderUser.phone }">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="inputEmail3" class="col-sm-2 control-label"> <font
-				style="font-size: 18px;">邮箱</font></label>
+			<label for="inputEmail3" class="col-sm-2 control-label">
+				<font style="font-size: 18px;">邮箱</font></label>
 			<div class="col-sm-8">
-				<input type="text" name="email" class="form-control"
-					id="inputEmail3" value="${commodity.orderNumber.orderUser.email }">
+				<input type="text" name="email" class="form-control" id="inputEmail3" value="${commodity.orderNumber.orderUser.email }">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="inputEmail3" class="col-sm-2 control-label"> <font
-				style="font-size: 18px;">状态</font></label>
+			<label for="inputEmail3" class="col-sm-2 control-label">
+				<font style="font-size: 18px;">状态</font></label>
 			<div class="col-sm-8">
-				<select class="form-control" name="orderstatus" id="orderstatus"
-					value="${orderform.orderstatus}" placeholder="状态">
+				<select class="form-control" name="orderstatus" id="orderstatus" value="${orderform.orderstatus}"
+					placeholder="状态">
 					<option value="">-----状态-----
-					<option value="waitAcceptance" name="waitAcceptance">等待验收
-					
-					<option value="waitPayment" name="waitPayment">等待支付
-					<option value="inForwarding" name="inForwarding">在线转发
-					<option value="waitDelivery" name="waitDelivery">等待发货
-					<option value="transitGoods" name="transitGoods">在途货物
-					<option value="consigneeSigning" name="consigneeSigning">收货人签单
-					
-					<option value="completionTransaction" name="completionTransaction">完成交易
-					
-					<option value="closeTransaction" name="closeTransaction">关闭交易
-					
-					<option value="autoCloseTransaction" name="autoCloseTransaction">自动关闭交易
-					
+					<option value="waitAcceptance" name = "waitAcceptance">等待验收
+					<option value="waitPayment" name = "waitPayment">等待支付
+					<option value="inForwarding" name = "inForwarding">在线转发
+					<option value="waitDelivery" name = "waitDelivery">等待发货
+					<option value="transitGoods" name = "transitGoods">在途货物
+					<option value="consigneeSigning" name = "consigneeSigning">收货人签单
+					<option value="completionTransaction" name = "completionTransaction">完成交易
+					<option value="closeTransaction" name = "closeTransaction">关闭交易
+					<option value="autoCloseTransaction" name = "autoCloseTransaction">自动关闭交易
 				</select>
 			</div>
-		</div>
+			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-sm-12" style="text-align: center;">

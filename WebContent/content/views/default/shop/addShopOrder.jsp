@@ -51,17 +51,15 @@ th {
 	<div class="panel panel-default" style="padding: 0; margin-top: 32px;">
 		<div class="panel-heading">
 			<h3 class="panel-title">
-				<a href="./insertShopOrder" style="font-size: 18px;">商品</a> <span
-					class="divider"><font style="font-size: 18px;">/</font></span> <font
-					style="font-size: 18px;">订单</font> <a href="#"
-					style="font-size: 18px;" id="add"> <span
-					class="badge navbar-right">添加&nbsp;+</span></a>
+				<a href="./insertShopOrder" style="font-size: 18px;">商品</a> <span class="divider"><font
+					style="font-size: 18px;">/</font></span> <font style="font-size: 18px;">订单</font>
+					<a href="#" style="font-size: 18px;" id="add">
+					<span class="badge navbar-right">添加&nbsp;+</span></a>
 			</h3>
 		</div>
 	</div>
-
-	<form action="./addShopOrder" method="POST" class="form-horizontal"
-		role="from">
+	
+	<form action="./addShopOrder" method="POST" class="form-horizontal" role="from">
 		<div class="form-group">
 			<label class="col-md-3 control-label">货号(淘宝ID)</label>
 			<div class="col-md-6">
@@ -77,8 +75,7 @@ th {
 		<div class="form-group">
 			<label class="col-md-3 control-label">买方</label>
 			<div class="col-md-6">
-				<input type="text" class="form-control" name="orderUser"
-					value="${orderUser.userName }" readonly="readonly">
+				<input type="text" class="form-control" name="orderUser" value="${orderUser.userName }" readonly="readonly">
 			</div>
 		</div>
 		<div class="form-group">
@@ -127,44 +124,38 @@ th {
 			<label class="col-md-3 control-label">状态</label>
 			<div class="col-md-6">
 
-				<select class="form-control" name="orderstatus" id="orderstatus"
-					placeholder="状态">
-					<option value="">-----状态-----
-					<option value="waitAcceptance" name="waitAcceptance">等待验收
-					
-					<option value="waitPayment" name="waitPayment">等待支付
-					<option value="inForwarding" name="inForwarding">在线转发
-					<option value="waitDelivery" name="waitDelivery">等待发货
-					<option value="transitGoods" name="transitGoods">在途货物
-					<option value="consigneeSigning" name="consigneeSigning">收货人签单
-					
-					<option value="completionTransaction" name="completionTransaction">完成交易
-					
-					<option value="closeTransaction" name="closeTransaction">关闭交易
-					
-					<option value="autoCloseTransaction" name="autoCloseTransaction">自动关闭交易
-					
-				</select>
+			<select class="form-control" name="orderstatus" id="orderstatus"
+				placeholder="状态">
+				<option value="">-----状态-----
+					<option value="waitAcceptance" name = "waitAcceptance">等待验收
+					<option value="waitPayment" name = "waitPayment">等待支付
+					<option value="inForwarding" name = "inForwarding">在线转发
+					<option value="waitDelivery" name = "waitDelivery">等待发货
+					<option value="transitGoods" name = "transitGoods">在途货物
+					<option value="consigneeSigning" name = "consigneeSigning">收货人签单
+					<option value="completionTransaction" name = "completionTransaction">完成交易
+					<option value="closeTransaction" name = "closeTransaction">关闭交易
+					<option value="autoCloseTransaction" name = "autoCloseTransaction">自动关闭交易
+			</select>	
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-md-3 control-label">操作员</label>
 			<div class="col-md-6">
 				<input type="text" class="form-control" name="personnel"
-					placeholder="手机号、座机号" value="${personel.userName }"
-					readonly="readonly">
+				 placeholder="手机号、座机号" value="${personel.userName }" readonly="readonly">
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-md-2 col-md-offset-3">
-				<button type="submit" class="form-control btn-primary">提交</button>
+				<button type="submit" class="form-control btn-primary" >提交</button>
 			</div>
 			<div class="col-md-2 col-md-offset-1">
 				<button type="reset" class="form-control btn-warning">重置</button>
 			</div>
 		</div>
 	</form>
-
+	
 
 	<jsp:include page="../common/delModelBox.jsp"></jsp:include>
 

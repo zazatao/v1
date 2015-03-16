@@ -38,8 +38,7 @@
 		<div class="perterrtab perterrtab_2">
 			<h3>
 				发布商品：<span><a href="../proscenium/releaseCommoidty">新增&nbsp;&nbsp;/&nbsp;&nbsp;</a><a
-					href="#">修改&nbsp;&nbsp;/&nbsp;&nbsp;</a><a href="#"
-					onclick="deleteShopComm();">删除&nbsp;&nbsp;/&nbsp;&nbsp;</a><a
+					href="#">修改&nbsp;&nbsp;/&nbsp;&nbsp;</a><a href="#" onclick="deleteShopComm();">删除&nbsp;&nbsp;/&nbsp;&nbsp;</a><a
 					href="#" onclick="checkAll();">全选</a></span>
 			</h3>
 			<div>
@@ -61,21 +60,10 @@
 							<td>${shopComm.commoidtyName }</td>
 							<td><img src="..${shopComm.shopCommImages[0].imagePath }" /></td>
 							<td>￥${shopComm.unitPrice }</td>
-							<td><button
-									onclick="zhekou1(${shopComm.auction},${shopComm.commCode },${shopComm.shelves });">
-									<c:if test="${shopComm.auction}">拍卖中</c:if>
-									<c:if test="${!shopComm.auction}">下拍</c:if>
-								</button></td>
-							<td><button
-									onclick="zhekou(${shopComm.isSpecial},${shopComm.commCode },${shopComm.shelves });">
-									<c:if test="${shopComm.isSpecial}">已加入</c:if>
-									<c:if test="${!shopComm.isSpecial}">不加入</c:if>
-								</button></td>
-							<td><span class="red">￥<fmt:formatNumber
-										value="${shopComm.unitPrice * shopComm.special }"
-										pattern="##.##" minFractionDigits="2"></fmt:formatNumber></span></td>
-							<td><input type="checkbox" name="commID"
-								value="${shopComm.commCode}" /></td>
+							<td><button onclick="zhekou1(${shopComm.auction},${shopComm.commCode },${shopComm.shelves });"><c:if test="${shopComm.auction}">拍卖中</c:if><c:if test="${!shopComm.auction}">下拍</c:if></button></td>
+							<td><button onclick="zhekou(${shopComm.isSpecial},${shopComm.commCode },${shopComm.shelves });"><c:if test="${shopComm.isSpecial}">已加入</c:if><c:if test="${!shopComm.isSpecial}">不加入</c:if></button></td>
+							<td><span class="red">￥<fmt:formatNumber value="${shopComm.unitPrice * shopComm.special }" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber></span></td>
+							<td><input type="checkbox" name="commID" value="${shopComm.commCode}"/></td>
 						</tr>
 					</c:forEach>
 				</table>

@@ -52,34 +52,30 @@ th {
 		<div class="panel-heading">
 			<h3 class="panel-title">
 				<a href="#" style="font-size: 18px;">员工注册</a> <span class="divider"><font
-					style="font-size: 18px;"></font></span> <a href="#"
-					style="font-size: 18px;" id="add"> <span
-					class="badge navbar-right">添加&nbsp;+</span></a>
+					style="font-size: 18px;"></font></span>
+					<a href="#" style="font-size: 18px;" id="add">
+					<span class="badge navbar-right">添加&nbsp;+</span></a>
 			</h3>
 		</div>
 	</div>
-
-	<form action="./addPersonnel" method="POST" class="form-horizontal"
-		role="from">
+	
+	<form action="./addPersonnel" method="POST" class="form-horizontal" role="from">
 		<div class="form-group">
 			<label class="col-md-3 control-label">用户名</label>
 			<div class="col-md-6">
-				<input type="text" class="form-control" name="name"
-					style="width: 300px; height: 30px;">
+				<input type="text" class="form-control" name="name" style="width:300px;height:30px;">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-md-3 control-label">密码</label>
 			<div class="col-md-6">
-				<input type="text" class="form-control" name="password"
-					style="width: 300px; height: 30px;">
+				<input type="text" class="form-control" name="password" style="width:300px;height:30px;">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-md-3 control-label">部门</label>
 			<div class="col-md-6">
-				<select name="orderUser" id="orderUser"
-					style="width: 300px; height: 30px;">
+				<select name="orderUser" id="orderUser" style="width:300px;height:30px;">
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -89,8 +85,7 @@ th {
 		<div class="form-group">
 			<label class="col-md-3 control-label">职位</label>
 			<div class="col-md-6">
-				<select name="orderUser" id="orderUser"
-					style="width: 300px; height: 30px;">
+				<select name="orderUser" id="orderUser" style="width:300px;height:30px;">
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -99,14 +94,14 @@ th {
 		</div>
 		<div class="form-group">
 			<div class="col-md-2 col-md-offset-3">
-				<button type="submit" class="form-control btn-primary">提交</button>
+				<button type="submit" class="form-control btn-primary" >提交</button>
 			</div>
 			<div class="col-md-2 col-md-offset-1">
 				<button type="reset" class="form-control btn-warning">重置</button>
 			</div>
 		</div>
 	</form>
-
+	
 
 	<jsp:include page="../common/delModelBox.jsp"></jsp:include>
 
