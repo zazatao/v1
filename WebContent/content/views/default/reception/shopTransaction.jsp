@@ -781,6 +781,7 @@
 			</script>
 		</div>
 	</div>
+	</div>
 	<div class="clear"></div>
 	<jsp:include page="../common/foot.jsp"></jsp:include>
 </body>

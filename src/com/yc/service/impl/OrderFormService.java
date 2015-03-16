@@ -57,24 +57,36 @@ public class OrderFormService extends GenericService<OrderForm> implements IOrde
 		return orderFormDao.find(hql, null, null);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<OrderForm> getOrderFormByParameters(Map<String, Object> map) {
-		StringBuffer hql = new StringBuffer(" from OrderForm o left join o.commodities com  where (? is null or o.orderstatus = ?) and (? is null or o.orderDate like ?) and (? is null or o.storeOperator.userName = ?)");
-		hql.append(" and (? is null or o.paymentDate like ?) and (? is null or com.tpek = ?) and (? is null or o.orderUser.userName like ?)");
-		Object[] paramete = new Object[12];
-		paramete[0] = map.get("orderstatus");
-		paramete[1] = map.get("orderstatus");
-		paramete[2] = map.get("orderDate"); 
-		paramete[3] = "%"+map.get("orderDate")+"%";
-		paramete[4] = map.get("storeOperator");
-		paramete[5] = map.get("storeOperator");
-		paramete[6] = map.get("paymentDate"); 
-		paramete[7] = "%"+map.get("paymentDate")+"%";
-		paramete[8] = map.get("tpek");
-		paramete[9] = map.get("tpek");
-		paramete[10] = map.get("orderUser"); 
-		paramete[11] = "%"+map.get("orderUser")+"%";
-		return orderFormDao.find(hql.toString(), paramete, -1, -1);
+		StringBuffer hql = new StringBuffer("select DISTINCT o.* from OrderForm o left join User u on o.user_id = u.id left join Commodity com on o.orderFormID = com.orderform_id"
+				+ " left join Personnel per on o.store_user = per.id OR per.id = o.purchase_user left join Shop shop on shop.id = com.seller_name where 1=1 ");
+		if (map.get("orderstatus") !=null) {
+			hql.append(" and o.orderstatus = '"+map.get("orderstatus")+"'");
+		}
+		if (map.get("orderID") !=null) {
+			hql.append(" and o.orderFormID = '"+map.get("orderID")+"'");
+		}
+		if (map.get("shopName") !=null) {
+			hql.append(" and shop.shopName like '%"+map.get("shopName")+"%'");
+		}
+		if (map.get("orderDate") !=null) {
+			hql.append(" and o.orderDate like '%"+map.get("orderDate")+"%'");
+		}
+		if (map.get("storeOperator") !=null) {
+			hql.append(" and per.userName like '%"+map.get("storeOperator")+"%'");
+		}
+		if (map.get("paymentDate") !=null) {
+			hql.append(" and o.paymentDate like '%"+map.get("paymentDate")+"%'");
+		}
+		if (map.get("tpek") !=null) {
+			hql.append(" and com.tpek = '"+map.get("tpek")+"'");
+		}
+		if (map.get("orderUser") !=null) {
+			hql.append(" and u.userName like '%"+map.get("orderUser")+"%'");
+		}
+		return orderFormDao.getEntityManager().createNativeQuery(hql.toString(), OrderForm.class).getResultList();
 	}
 
 	@Override
