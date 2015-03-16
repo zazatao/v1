@@ -216,7 +216,7 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 	//热销商品查询
 	@Override
 	public List<Products> getAllByCommdityID(Integer id) {
-		StringBuffer hql = new StringBuffer("SELECT SUM(quantity) sums,c.transNumForTaobao,s.categoryID,c.seller,c.nameOfGoods,i.path FROM commodity c RIGHT JOIN shopcategory s ON s.categoryID = c.shopcategory LEFT JOIN  ImagePath i  on c.commodityID = i.from_commodity WHERE  c.shopcategory = "+id+" GROUP BY c.shopcategory ORDER BY sums DESC LIMIT 7");
+		StringBuffer hql = new StringBuffer("SELECT SUM(quantity) sums,c.transNumForTaobao,s.categoryID,c.seller_name,c.nameOfGoods,i.path FROM commodity c RIGHT JOIN shopcategory s ON s.categoryID = c.shopcategory LEFT JOIN  ImagePath i  on c.commodityID = i.from_commodity WHERE  c.shopcategory = "+id+" GROUP BY c.shopcategory ORDER BY sums DESC LIMIT 7");
 		Query query = commodityDao.getEntityManager().createNativeQuery(hql.toString());
 		@SuppressWarnings("rawtypes")
 		List objecArraytList = query.getResultList();  
