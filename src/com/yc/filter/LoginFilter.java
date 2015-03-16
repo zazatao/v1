@@ -45,9 +45,9 @@ public class LoginFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         String url = request.getRequestURI();
         HttpSession session = request.getSession();
-        if (url.contains("warehouse/") || url.contains("/forwarding/") || url.contains("/management/") 
+        if (url.contains("/warehouse/") || url.contains("/forwarding/") || url.contains("/management/") 
         		|| url.contains("/orderprocessing/") || url.contains("/overall/") || url.contains("/shop/") || url.contains("/statistics/")) {
-        	if (session.getAttribute("/loginPersonnle") == null && needLogin(request)) {
+        	if (session.getAttribute("loginPersonnle") == null && needLogin(request)) {
         		HttpServletResponse response = (HttpServletResponse) rsp;
         		response.sendRedirect(request.getContextPath()+"/homePage");
         		return;

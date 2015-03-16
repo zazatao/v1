@@ -86,6 +86,21 @@ public class ShopOrderController {
 		}else{
 			map.put("transNumForTaobao", request.getParameter("transNumForTaobao"));
 		}
+		if (request.getParameter("paymentDate").trim().equals("")) {
+			map.put("paymentDate", null);
+		}else{
+			map.put("paymentDate", request.getParameter("paymentDate"));
+		}
+		if (request.getParameter("tpek").trim().equals("")) {
+			map.put("tpek", null);
+		}else{
+			map.put("tpek", request.getParameter("tpek"));
+		}
+		if (request.getParameter("orderUser").trim().equals("")) {
+			map.put("orderUser", null);
+		}else{
+			map.put("orderUser", request.getParameter("orderUser"));
+		}
 		List<OrderForm> list = orderFormService.getOrderFormByParameters(map);
 		ModelMap mode = new ModelMap();
     	mode.put("list", list);
@@ -100,14 +115,18 @@ public class ShopOrderController {
     @RequestMapping(value = "deleteShopOrder", method = RequestMethod.GET)
     public String deleteShopOrder(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	OrderForm comm =  orderFormService.findById(id);
-    	List<ImagePath> comms = comm.getImagePaths();
-    	if (comms.size()>0) {
-    		boolean isok = imagePathService.deleteByComm(id);
-    		if (isok != true) {
-    			orderFormService.delete(id);
+    	if (comm != null ) {
+    		for (Commodity commodity : comm.getCommodities()) {
+    			if (commodity != null) {
+    				for (ImagePath image : commodity.getImagePaths()) {
+    					if (image != null) {
+    						imagePathService.delete(image.getImageId());
+    					}		
+    				}
+    				commodityService.delete(commodity.getCommodityID());
+    			}
     		}
-		}else{
-			orderFormService.delete(id);
+    		orderFormService.delete(id);
 		}
     	return "redirect:/shop/shopOrder";
     }

@@ -76,9 +76,6 @@
 						<div id="guige"></div>
 						<input type='hidden' id='guize' name="guige" value="" />
 						<dd>
-							<span>供应商(商品链接)</span><input type="text" value="" name="supplier" />
-						</dd>
-						<dd>
 							<span>库存数量</span><input type="text" style="width: 100px;"
 								value="" name="stock" onblur="checkvalue(this);" /><span>显示比例</span><input
 								type="text" style="width: 100px;" value="" name="proportion"
@@ -137,6 +134,7 @@
 				</form>
 			</div>
 		</div>
+	</div>
 	</div>
 	<script type="text/javascript">
 		j = 1;

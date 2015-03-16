@@ -318,7 +318,6 @@ public class ShopThreeController {
 				strs.add(list.get(i).replace(",", "@"));
 			}
 		}
-		list.add("ddddd");
 		mode.put("mySpeces", strs);
 		mode.put("elemnt", speces);
 		return mode;

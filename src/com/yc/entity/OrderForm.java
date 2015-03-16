@@ -38,7 +38,7 @@ public class OrderForm {
 
 	@OneToOne
 	@JoinColumn(name = "address_id")
-	private DeliveryAddress address;
+	private DeliveryAddress address;//交付地址
 
 	@Column
 	@Enumerated(EnumType.STRING)
