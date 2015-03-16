@@ -224,6 +224,7 @@
 												<img src="../content/static/img/favicon.jpeg"
 													alt="Responsive image" class="img-thumbnail img-responsive">
 											</div>
+
 											</p>
 										</form>
 									</div>

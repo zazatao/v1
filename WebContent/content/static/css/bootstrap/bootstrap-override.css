@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-
-
-.container.container-override {
-    margin-right: 15px;
-    margin-left: 15px;
-}
-
-.panel-group .panel + .panel {
-    margin-top: 0px;
-=======
 .container.container-override {
 	margin-right: 15px;
 	margin-left: 15px;
@@ -16,5 +5,4 @@
 
 .panel-group .panel+.panel {
 	margin-top: 0px;
->>>>>>> branch 'master' of https://github.com/zazatao/v1.git
 }

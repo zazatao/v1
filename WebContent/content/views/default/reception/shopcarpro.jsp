@@ -429,7 +429,7 @@
 			</div>
 			<div class="cl"></div>
 		</div>
-	</div>
 		<jsp:include page="../common/foot.jsp"></jsp:include>
+	</div>
 </body>
 </html>

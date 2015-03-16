@@ -127,6 +127,7 @@
 							value="43334434" /></li>
 
 						<li>银行名称<br /> <input class="zc_input" type="text" value="" /></li>
+
 						<li><span>银行的分类</span><input class="zc_input_3 zc_input_2"
 							type="text" value="" /></li>
 						<li><span>计算账户</span><input class="zc_input_3 zc_input_2"

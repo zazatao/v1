@@ -180,12 +180,13 @@ th {
 										onclick="updateShopOrder(${orderform.orderFormID});">修改</button>&nbsp;&nbsp;
 									<button class="btn btn-default" id="del"
 										onclick="deleteShopOrder(${orderform.orderFormID});">删除</button></td>
+								<!-- 									<button class="btn btn-default" onclick="#" id="del">删除</button> -->
 							</tr>
 							<tr>
 								<td rowspan="5" height="140px;" width="140px;">
-																		<c:if test="${orderform.imagePaths[0].path !=null}">
-									 										<img height="140px;" width="140px;"	src="..${orderform.imagePaths[0].path}">
-																		</c:if>
+									<%-- 									<c:if --%> <%-- 										test="${orderform.imagePaths[0].path !=null}"> --%>
+									<!-- 										<img height="140px;" width="140px;" --> <%-- 											src="..${orderform.imagePaths[0].path}"> --%>
+									<%-- 									</c:if> --%>
 								</td>
 								<td colspan="16">颜色：&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;尺码：&nbsp;</td>
