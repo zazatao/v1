@@ -99,7 +99,7 @@
             <div class="flzs">
             	<div class="flan">
                 	<ul>
-                    	<li><a href="shopCommItems?id=5"><img src="content/static/images/at/zxj.jpg" big="content/static/images/zxj.jpg" mid="content/static/images/at/zxj.jpg" width="67" height="64" /></a></li>
+                    	<li><a href="shopCommItems?id=30"><img src="content/static/images/at/zxj.jpg" big="content/static/images/zxj.jpg" mid="content/static/images/at/zxj.jpg" width="67" height="64" /></a></li>
                         <li><a href="#"><img src="content/static/images/cf.jpg" big="content/static/images/cf.jpg" mid="content/static/images/at/cf.jpg" width="67" height="64" /></a></li>
                         <li><a href="#"><img src="content/static/images/gwb.jpg" big="content/static/images/gwb.jpg" mid="content/static/images/at/gwb.jpg" width="67" height="64" /></a></li>
                         <li><a href="#"><img src="content/static/images/dj.jpg" big="content/static/images/dj.jpg" mid="content/static/images/at/dj.jpg" width="67" height="64" /></a></li>
