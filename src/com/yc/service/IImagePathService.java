@@ -6,6 +6,4 @@ import com.yc.entity.ImagePath;
 
 public interface IImagePathService extends IGenericService<ImagePath> {
 	public List<ImagePath> getImageByUnkownComm(int parseInt);
-
-	public boolean deleteByComm(Integer id);
 }

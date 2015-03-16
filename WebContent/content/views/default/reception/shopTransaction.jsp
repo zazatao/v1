@@ -27,20 +27,6 @@
 	src="../content/static/js/reception/js.js"></script>
 <SCRIPT src="../content/static/js/reception/ScrollPic.js"
 	type=text/javascript></SCRIPT>
-<link href="../content/static/css/bootstrap/bootstrap.css"
-	rel="stylesheet" />
-<link href="../content/static/css/datetime/jquery-clockpicker.min.css"
-	rel="stylesheet" />
-<link href="../content/static/css/datetime/jquery.datetimepicker.css"
-	rel="stylesheet" />
-<script type="text/javascript"
-	src="../content/static/js/lib/jquery.min.js"></script>
-<script type="text/javascript"
-	src="../content/static/js/lib/bootstrap.min.js"></script>
-<script type="text/javascript"
-	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
-<script type="text/javascript"
-	src="../content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
 </head>
 
 <body>

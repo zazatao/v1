@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.yc.entity.Commodity;
 import com.yc.entity.ShopCategory;
 import com.yc.entity.ShopCommoidty;
+import com.yc.entity.user.Personnel;
 import com.yc.model.CommdityModel;
 import com.yc.model.Products;
 import com.yc.service.ICommodityService;
@@ -121,11 +122,16 @@ public class IndexController {
 //	}
  	@RequestMapping(value = "homePage", method = RequestMethod.GET)
     public ModelAndView homePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        return new ModelAndView("homePage", null);
+ 		Personnel personnel = (Personnel)request.getSession().getAttribute("loginPersonnle");
+ 		if (personnel != null) {
+ 			return new ModelAndView("homePage", null);
+		}else{
+			return new ModelAndView("personnel/login", null);
+		}
     }
     
     @RequestMapping(value = "personnel", method = RequestMethod.GET)
     public ModelAndView personnel(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         return new ModelAndView("personnel", null);
-    }
+    } 
 }

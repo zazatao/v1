@@ -11,6 +11,10 @@
 <link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
 <link href="../content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
+<link href="../content/static/css/datetime/jquery-clockpicker.min.css"
+	rel="stylesheet">
+<link href="../content/static/css/datetime/jquery.datetimepicker.css"
+	rel="stylesheet">
 <script src="../content/static/js/echart/ie-emulation-modes-warning.js"></script>
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
 	href="../content/static/img/apple-touch-icon-144-precomposed.png">
@@ -26,18 +30,14 @@
 	src="../content/static/js/lib/jquery.min.js"></script>
 <script type="text/javascript"
 	src="../content/static/js/lib/bootstrap.min.js"></script>
-<script type="text/javascript" src="./content/static/js/lib/scripts.js"></script>
 
 <script type="text/javascript"
 	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
-<link href="../content/static/css/datetime/jquery-clockpicker.min.css"
-	rel="stylesheet">
-<link href="../content/static/css/datetime/jquery.datetimepicker.css"
-	rel="stylesheet">
 <script type="text/javascript"
 	src="../content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
 <script type="text/javascript"
 	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
+<script type="text/javascript" src="../content/static/js/lib/scripts.js"></script>
 </head>
 <style type="text/css">
 th {
@@ -73,10 +73,6 @@ th {
 						<div class="col-sm-1">
 							<input type="text" name="orderUser" placeholder="买方"
 								class="form-control" id="orderUser">
-						</div>
-						<div class="col-sm-1">
-							<input type="text" name="packageCode" placeholder="包裹"
-								class="form-control" id="packageCode">
 						</div>
 						<div class="col-sm-1">
 							<input type="text" name="storeOperator" placeholder="操作员"
@@ -116,25 +112,22 @@ th {
 						</div>
 					</div>
 				</form>
-				<table class="table table-bordered table-hover table-condensed">
+				<table id="yourTableID" class="table table-bordered table-hover table-condensed">
 					<thead>
 						<tr>
-							<th>编号</th>
-							<th>货号(淘宝ID)</th>
+							<th>订单号</th>
 							<th>买方</th>
-							<th>E-mail</th>
+							<th>下单时间</th>
+							<th>付款时间</th>
+							<th>收件人</th>
 							<th>电话</th>
-							<th>追踪</th>
-							<th>数量</th>
-							<th>支付金额</th>
-							<th>交易金额</th>
-							<th>币种</th>
-							<th>创建日期</th>
-							<th>付款日期</th>
-							<th>状态</th>
-							<th>包裹</th>
-							<th>完成订单个数</th>
-							<th>操作员</th>
+							<th>邮件</th>
+							<th>接收地址</th>
+							<th>转交地址</th>
+							<th>交付方式</th>
+							<th>运输费</th>
+							<th>最后状态改变日期</th>
+							<th>订单状态</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -142,17 +135,17 @@ th {
 						<tbody>
 							<tr class="success">
 								<td align="center">${orderform.orderFormID }</td>
-								<td></td>
 								<td>${orderform.orderUser.userName }</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>${orderform.orderDate }</td>
-								<td></td>
+								<td>${orderform.orderDate }<br>${orderform.orderTime }</td>
+								<td>${orderform.paymentDate }<br>${orderform.paymentTime }</td>
+								<td>${orderform.address.toName }</td>
+								<td>${orderform.address.phone }</td>
+								<td>${orderform.address.toEmail }</td>
+								<td>${orderform.address.country }${orderform.address.provience }${orderform.address.city }${orderform.address.district }${orderform.address.street }${orderform.address.orther }</td>
+								<td>${orderform.address.handedAddress }</td>
+								<td  align="center"><c:if test="${orderform.delivery == 'EMS'}">Ems</c:if></td>
+								<td>${orderform.deliveryMoney }</td>
+								<td>${orderform.changeStatusDate }</td>
 								<td><c:choose>
 										<c:when test="${orderform.orderstatus =='waitAcceptance'}">等待验收</c:when>
 										<c:when test="${orderform.orderstatus =='waitPayment'}">等待支付</c:when>
@@ -162,38 +155,75 @@ th {
 										<c:when test="${orderform.orderstatus =='consigneeSigning'}">收货人签单</c:when>
 										<c:when test="${orderform.orderstatus =='completionTransaction'}">完成交易</c:when>
 										<c:when test="${orderform.orderstatus =='closeTransaction'}">关闭交易</c:when>
-										<c:when test="${orderform.orderstatus =='autoCloseTransaction'}">自动关闭交易</c:when>
-									</c:choose>
-								</td>
-								<td>${orderform.packAge.packageCode }</td>
-								<td>${orderform.purchase.accomplishNum }</td>
-								<td>${orderform.storeOperator.userName }</td>
-								<td><button class="btn btn-default" data-toggle="modal" data-target="#detailModal" onclick="updateShopOrder(${orderform.orderFormID});">修改</button>&nbsp;&nbsp;
-									<button class="btn btn-default" id="del" onclick="deleteShopOrder(${orderform.orderFormID});">删除</button></td>
-<!-- 									<button class="btn btn-default" onclick="#" id="del">删除</button> -->
+										<c:when
+											test="${orderform.orderstatus =='autoCloseTransaction'}">自动关闭交易</c:when>
+									</c:choose></td>
+								<td><button class="btn btn-default" data-toggle="modal"
+										data-target="#detailModal"
+										onclick="updateShopOrder(${orderform.orderFormID});">修改</button>&nbsp;&nbsp;
+									<button class="btn btn-default" id="del"
+										onclick="deleteShopOrder(${orderform.orderFormID});">删除</button></td>
+								<!-- 									<button class="btn btn-default" onclick="#" id="del">删除</button> -->
 							</tr>
-							<tr>
-								<td rowspan="5" height="140px;" width="140px;">
-<%-- 									<c:if --%>
-<%-- 										test="${orderform.imagePaths[0].path !=null}"> --%>
-<!-- 										<img height="140px;" width="140px;" -->
-<%-- 											src="..${orderform.imagePaths[0].path}"> --%>
-<%-- 									</c:if> --%>
-								</td>
-								<td colspan="16">颜色：&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;尺码：&nbsp;</td>
-							</tr>
-							<tr>
-								<td colspan="16">操作员：&nbsp;${orderform.storeOperator.userName }</td>
-							</tr>
-							<tr>
-								<td colspan="16">采购：&nbsp;${orderform.purchase.userName }</td>
-							</tr>
-							<tr>
-								<td colspan="16">重量：&nbsp;</td>
-							</tr>	
-							<tr>
-								<td colspan="16">评论：&nbsp;</td>
-							</tr>
+							<c:forEach items="${orderform.commodities }" var="commodity" >
+								<c:set var="commSpecs" value="${commodity.commSpec }"></c:set>
+								<c:set var="commSpec" value="${fn:split(commSpecs,',') }"></c:set>
+								<tr>
+									<c:forEach var="spec" items="${commSpec }">
+										<c:if test="${fn:contains(spec,'颜色')}">
+											<td rowspan="5" height="140px;" width="140px;">
+												 <img height="140px;" width="140px;" src="..${fn:substring(spec,fn:indexOf(spec,'$')+1,fn:length(spec))}">
+											</td>
+											<c:set value="${fn:substring(spec,0,fn:indexOf(spec,'$'))}" var="ys"></c:set>
+											<c:set value="${spec }" var="orther"></c:set>
+										</c:if>
+									</c:forEach>
+										<td colspan="3">商品：${commodity.nameOfGoods }</td>
+										<td colspan="3">卖家：${commodity.seller.shopName }</td>
+										<c:set var="ortherSpec" value="${fn:replace(commSpecs,orther,'')}"></c:set>
+										<td colspan="7">规格：${ys}&nbsp;${fn:replace(ortherSpec,',','&nbsp;')}</td>
+								</tr>
+								<tr>
+									<td colspan="2">单价：&nbsp;${commodity.price }</td>
+									<td colspan="2">数量：&nbsp;${commodity.quantity }</td>
+									<td colspan="2">金额：&nbsp;${commodity.money }</td>
+									<td >重量：&nbsp;${commodity.weight }</td>
+									<td colspan="6">目前货品状态：&nbsp;
+										<c:choose>
+												<c:when test="${commodity.status =='unchanged'}">没有变化</c:when>
+												<c:when test="${commodity.status =='cancel'}">取消交易</c:when>
+												<c:when test="${commodity.status =='delete'}">删除</c:when>
+												<c:when test="${commodity.status =='senToWarehouse'}">送往库房</c:when>
+												<c:when test="${commodity.status =='refuse'}">拒绝入库</c:when>
+												<c:when test="${commodity.status =='lose'}">丢失</c:when>
+												<c:when test="${commodity.status =='inWarehouse'}">在库房中</c:when>
+												<c:when test="${commodity.status =='marriage'}">交易中</c:when>
+												<c:when test="${commodity.status =='lack'}">缺少货品</c:when>
+												<c:when test="${commodity.status =='inAuctionlose'}">下单</c:when>
+												<c:when test="${commodity.status =='delivery'}">交付</c:when>
+												<c:when test="${commodity.status =='support'}">支持</c:when>
+												<c:when test="${commodity.status =='sendOut'}">派送</c:when>
+												<c:when test="${commodity.status =='buyerNotPay'}">买方没有支付</c:when>
+												<c:when test="${commodity.status =='inCell'}">在格子</c:when>
+												<c:when test="${commodity.status =='manualProcessing'}">手工加工</c:when>
+												<c:when test="${commodity.status =='inForwarding'}">转发中</c:when>
+												<c:when test="${commodity.status =='packing'}">打包</c:when>
+												<c:when test="${commodity.status =='paid'}">已付</c:when>
+												<c:when test="${commodity.status =='apiProcessing'}">API处理</c:when>
+												<c:when test="${commodity.status =='waitingForTracking'}">等待的追踪</c:when>
+											</c:choose>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="6">采购员：&nbsp;${orderform.purchase.userName }</td>
+									<td colspan="7">操作员：&nbsp;${orderform.storeOperator.userName }</td>
+								</tr>
+								<tr>
+									<td  rowspan="2" colspan="13">评论：&nbsp;</td>
+								</tr>
+								<tr>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</c:forEach>
 				</table>

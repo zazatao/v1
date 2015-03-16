@@ -10,4 +10,6 @@ public interface IStoreRoomService extends IGenericService<StoreRoom>{
 
 	List<StoreRoom> getCellForFalse();
 
+	StoreRoom getStoreRoomByIsInCell(boolean b);
+
 }

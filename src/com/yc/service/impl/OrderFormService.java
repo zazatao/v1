@@ -59,15 +59,21 @@ public class OrderFormService extends GenericService<OrderForm> implements IOrde
 
 	@Override
 	public List<OrderForm> getOrderFormByParameters(Map<String, Object> map) {
-		StringBuffer hql = new StringBuffer(" from OrderForm o where (? is null or o.orderstatus = ?) and (? is null or o.orderDate like ?) and (? is null or o.storeOperator.userName = ?)");
-		Object[] paramete = new Object[6];
+		StringBuffer hql = new StringBuffer(" from OrderForm o left join o.commodities com  where (? is null or o.orderstatus = ?) and (? is null or o.orderDate like ?) and (? is null or o.storeOperator.userName = ?)");
+		hql.append(" and (? is null or o.paymentDate like ?) and (? is null or com.tpek = ?) and (? is null or o.orderUser.userName like ?)");
+		Object[] paramete = new Object[12];
 		paramete[0] = map.get("orderstatus");
 		paramete[1] = map.get("orderstatus");
 		paramete[2] = map.get("orderDate"); 
 		paramete[3] = "%"+map.get("orderDate")+"%";
 		paramete[4] = map.get("storeOperator");
 		paramete[5] = map.get("storeOperator");
-
+		paramete[6] = map.get("paymentDate"); 
+		paramete[7] = "%"+map.get("paymentDate")+"%";
+		paramete[8] = map.get("tpek");
+		paramete[9] = map.get("tpek");
+		paramete[10] = map.get("orderUser"); 
+		paramete[11] = "%"+map.get("orderUser")+"%";
 		return orderFormDao.find(hql.toString(), paramete, -1, -1);
 	}
 

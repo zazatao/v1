@@ -29,4 +29,10 @@ public class StoreRoomService extends GenericService<StoreRoom> implements IStor
 	public List<StoreRoom> getCellForFalse() {
 		return storeRoomDao.getBy("isInCell", 0);
 	}
+
+	@Override
+	public StoreRoom getStoreRoomByIsInCell(boolean b) {
+		return storeRoomDao.getFirstRecord("isInCell", b?1:0);
+	}
+
 }
