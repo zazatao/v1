@@ -110,5 +110,4 @@ public class GenericDaoConfig {
 	public GenericDao<DeliveryAddress> getDeliveryAddressDao() {
 		return new GenericDaoSupport<DeliveryAddress>(DeliveryAddress.class);	
 	}
-	
 }

@@ -18,6 +18,7 @@
 		<property name="prefix" value="/content/views/default/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="20971520" /> <!-- 20MB -->

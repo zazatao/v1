@@ -170,6 +170,7 @@ th {
 										onclick="updateShopOrder(${orderform.orderFormID});">修改</button>&nbsp;&nbsp;
 									<button class="btn btn-default" id="del"
 										onclick="deleteShopOrder(${orderform.orderFormID});">删除</button></td>
+								<!-- 									<button class="btn btn-default" onclick="#" id="del">删除</button> -->
 							</tr>
 							<c:forEach items="${orderform.commodities }" var="commodity" >
 								<c:set var="commSpecs" value="${commodity.commSpec }"></c:set>
