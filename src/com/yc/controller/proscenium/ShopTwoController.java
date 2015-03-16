@@ -462,28 +462,26 @@ public class ShopTwoController {
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("loginUser");
 		Address address = addressService.findById(addID);
-		if (address != null) {
-			List<BuyCat> list = buyCatService.getBuyCatByUser(user.getId());
-			Map<Integer, List<BuyCat>> map = new HashMap<Integer, List<BuyCat>>();
-			 List<BuyCat> buycates =null;
-			for (int i = 0; i < list.size(); i++) {
-				if (i==0) {
+		List<BuyCat> list = buyCatService.getBuyCatByUser(user.getId());
+		Map<Integer, List<BuyCat>> map = new HashMap<Integer, List<BuyCat>>();
+		 List<BuyCat> buycates =null;
+		for (int i = 0; i < list.size(); i++) {
+			if (i==0) {
+				buycates = new ArrayList<BuyCat>();
+				buycates.add(list.get(i));
+				map.put(list.get(i).getShopCommoidty().getBelongTo().getId(), buycates);
+			}else{
+				boolean isok = true;
+				for (Integer key : map.keySet()) {
+					if (list.get(i).getShopCommoidty().getBelongTo().getId() == key ) {
+						map.get(key).add(list.get(i));
+						isok = false;
+					}
+				}
+				if (isok) {
 					buycates = new ArrayList<BuyCat>();
 					buycates.add(list.get(i));
 					map.put(list.get(i).getShopCommoidty().getBelongTo().getId(), buycates);
-				}else{
-					boolean isok = true;
-					for (Integer key : map.keySet()) {
-						if (list.get(i).getShopCommoidty().getBelongTo().getId() == key ) {
-							map.get(key).add(list.get(i));
-							isok = false;
-						}
-					}
-					if (isok) {
-						buycates = new ArrayList<BuyCat>();
-						buycates.add(list.get(i));
-						map.put(list.get(i).getShopCommoidty().getBelongTo().getId(), buycates);
-					}
 				}
 			}
 			Commodity commodity = null;

@@ -51,22 +51,22 @@ th {
 	<div class="panel panel-default" style="padding: 0; margin-top: 32px;">
 		<div class="panel-heading">
 			<h3 class="panel-title">
-				<a href="./insertPackage" style="font-size: 18px;">商品</a> <span
-					class="divider"><font style="font-size: 18px;">/</font></span> <font
-					style="font-size: 18px;">包裹</font><a href="./toAddPackage"
-					style="font-size: 18px;"><span class="badge navbar-right">添加&nbsp;+</span></a>
+				<a href="./insertPackage" style="font-size: 18px;">商品</a> <span class="divider"><font
+					style="font-size: 18px;">/</font></span> <font style="font-size: 18px;">包裹</font><a
+					href="./toAddPackage" style="font-size: 18px;"><span
+					class="badge navbar-right">添加&nbsp;+</span></a>
 			</h3>
 		</div>
 	</div>
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="span12">
-				<form class="form-horizontal" action="./searchPackage" method="POST">
+				<form class="form-horizontal" action="./searchPackage"
+					method="POST">
 					<div class="form-group">
 						<div class="col-sm-1">
 							<input type="text" name="transNumForTaobao" placeholder="货号"
-								class="form-control" id="transNumForTaobao"
-								onblur="checkvalue(this);">
+								class="form-control" id="transNumForTaobao" onblur="checkvalue(this);">
 						</div>
 						<div class="col-sm-1">
 							<input type="text" name="userName" placeholder="买方"
@@ -98,20 +98,15 @@ th {
 							<select class="form-control" name="orderstatus" id="orderstatus"
 								placeholder="状态">
 								<option value="">-----状态-----
-								<option value="waitAcceptance" name="waitAcceptance">等待验收
-								
-								<option value="waitPayment" name="waitPayment">等待支付
-								<option value="inForwarding" name="inForwarding">在线转发
-								<option value="waitDelivery" name="waitDelivery">等待发货
-								<option value="transitGoods" name="transitGoods">在途货物
-								<option value="consigneeSigning" name="consigneeSigning">收货人签单
-								
-								<option value="completionTransaction"
-									name="completionTransaction">完成交易
-								<option value="closeTransaction" name="closeTransaction">关闭交易
-								
-								<option value="autoCloseTransaction" name="autoCloseTransaction">自动关闭交易
-								
+								<option value="waitAcceptance" name = "waitAcceptance">等待验收
+								<option value="waitPayment" name = "waitPayment">等待支付
+								<option value="inForwarding" name = "inForwarding">在线转发
+								<option value="waitDelivery" name = "waitDelivery">等待发货
+								<option value="transitGoods" name = "transitGoods">在途货物
+								<option value="consigneeSigning" name = "consigneeSigning">收货人签单
+								<option value="completionTransaction" name = "completionTransaction">完成交易
+								<option value="closeTransaction" name = "closeTransaction">关闭交易
+								<option value="autoCloseTransaction" name = "autoCloseTransaction">自动关闭交易
 							</select>
 						</div>
 						<div class="col-sm-1">
@@ -149,25 +144,27 @@ th {
 								<td></td>
 								<td></td>
 								<td></td>
-								<td align="center"><c:choose>
+								<td align="center">
+									<c:choose>
 										<c:when test="${package.transport =='ems'}">EMS</c:when>
 										<c:when test="${package.transport =='sf'}">顺风</c:when>
-									</c:choose></td>
+									</c:choose>
+								</td>
 								<td></td>
 								<td></td>
-								<td><c:choose>
+								<td>
+									<c:choose>
 										<c:when test="${commodity.status =='unchanged'}">没有变化</c:when>
 										<c:when test="${commodity.status =='senToWarehouse'}">送往库房</c:when>
 										<c:when test="${commodity.status =='refuse'}">拒绝入库</c:when>
 										<c:when test="${commodity.status =='lose'}">丢失</c:when>
 										<c:when test="${commodity.status =='inWarehouse'}">在库房中</c:when>
 										<c:when test="${commodity.status =='marriage'}">交易中</c:when>
-									</c:choose></td>
+									</c:choose>
+								</td>
 								<td>${package.storeOperator.userName}</td>
-								<td><button class="btn btn-default"
-										onclick="updateShopOrder(${package.packageID});">修改</button>&nbsp;&nbsp;
-									<button class="btn btn-default"
-										onclick="deleteShopOrder(${package.packageID});">删除</button></td>
+								<td><button class="btn btn-default" onclick="updateShopOrder(${package.packageID});">修改</button>&nbsp;&nbsp;
+									<button class="btn btn-default" onclick="deleteShopOrder(${package.packageID});">删除</button></td>
 							</tr>
 						</tbody>
 					</c:forEach>

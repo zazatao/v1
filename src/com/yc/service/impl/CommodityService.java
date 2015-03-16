@@ -12,6 +12,7 @@ import com.yc.entity.CommoidityStatus;
 import com.yc.entity.Shop;
 import com.yc.entity.StoreRoom;
 import com.yc.model.CommdityModel;
+import com.yc.model.Products;
 import com.yc.service.ICommodityService;
 
 import java.util.Map;
@@ -190,9 +191,10 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 		return commodityDao.find(hql.toString(), paramete, -1, -1);
 	}
 	
+	//分类查询
 	@Override
 	public List<CommdityModel> getAllByShopCategoryID(Integer id) {
-		StringBuffer hql = new StringBuffer("select SUM(quantity) sums,s.categoryID categoryID,s.category category from commodity c right join shopcategory s on s.categoryID = c.shopcategory where  c.shopcategory in (select sc.categoryID from shopcategory sc where sc.parentLevel in (select cat.categoryID from shopcategory cat where cat.parentLevel = "+id+"))group by s.parentLevel order by sums desc");
+		StringBuffer hql = new StringBuffer("select SUM(quantity) sums,s.categoryID categoryID,s.category category from commodity c right join shopcategory s on s.categoryID = c.shopcategory where  c.shopcategory in (select sc.categoryID from shopcategory sc where sc.parentLevel in (select cat.categoryID from shopcategory cat where cat.parentLevel = "+id+"))group by s.parentLevel order by sums desc limit 7");
 		Query query = commodityDao.getEntityManager().createNativeQuery(hql.toString());
 		@SuppressWarnings("rawtypes")
 		List objecArraytList = query.getResultList();  
@@ -209,5 +211,30 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 	        } 
 		}
 		return list;
+	}
+	
+	//热销商品查询
+	@Override
+	public List<Products> getAllByCommdityID(Integer id) {
+		StringBuffer hql = new StringBuffer("SELECT SUM(quantity) sums,c.transNumForTaobao,s.categoryID,c.seller,c.nameOfGoods,i.path FROM commodity c RIGHT JOIN shopcategory s ON s.categoryID = c.shopcategory LEFT JOIN  ImagePath i  on c.commodityID = i.from_commodity WHERE  c.shopcategory = "+id+" GROUP BY c.shopcategory ORDER BY sums DESC LIMIT 7");
+		Query query = commodityDao.getEntityManager().createNativeQuery(hql.toString());
+		@SuppressWarnings("rawtypes")
+		List objecArraytList = query.getResultList();  
+//		List<CommdityModel> listone = new ArrayList<CommdityModel>();
+		List<Products> pr = new ArrayList<Products>();
+		Products mode = null;
+		if (objecArraytList != null && objecArraytList.size()>0) {
+			for(int i=0;i<objecArraytList.size();i++) {   
+				mode = new Products();
+	            Object[] obj = (Object[]) objecArraytList.get(i); 
+	            mode.setTransNumForTaobao(Integer.parseInt(obj[1].toString()));
+	            mode.setShopcategory(Integer.parseInt(obj[2].toString()));
+	            mode.setSeller(obj[3].toString());
+	            mode.setNameOfGoods(obj[4].toString());
+	            mode.setPath(obj[5].toString());
+	            pr.add(mode);
+	        } 
+		}
+		return pr;
 	}
 }

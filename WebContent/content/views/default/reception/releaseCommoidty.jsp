@@ -36,7 +36,9 @@
 		<jsp:include page="left.jsp"></jsp:include>
 		<!---------------   right   ------------->
 		<div class="perterrtab perterrtab_2">
-			<h3>商品新增：</h3>
+			<h3>
+				商品新增：
+			</h3>
 			<div class="kd_yz_cont">
 				<form action="./saveCommoidty" enctype="multipart/form-data"
 					method="post">
@@ -77,24 +79,22 @@
 						<input type='hidden' id='guize' name="guige" value="" />
 						<dd>
 							<span>库存数量</span><input type="text" style="width: 100px;"
-								value="" name="stock" onblur="checkvalue(this);" /><span>显示比例</span><input
-								type="text" style="width: 100px;" value="" name="proportion"
-								onblur="checkvalue(this);" />
+								value="" name="stock" onblur="checkvalue(this);" /><span>显示比例</span><input type="text"
+								style="width: 100px;" value="" name="proportion" onblur="checkvalue(this);"/>
 						</dd>
 						<dd>
 							<span>单价</span><input type="text" style="width: 100px;" value=""
-								name="unitPrice" onblur="checkvalue(this);" /><span>大概重量</span><input
-								type="text" style="width: 100px;" value="" name="probablyWeight"
-								onblur="checkvalue(this);" />
+								name="unitPrice"  onblur="checkvalue(this);"/><span>大概重量</span><input type="text"
+								style="width: 100px;" value="" name="probablyWeight"  onblur="checkvalue(this);"/>
 						</dd>
 						<dd>
 							<span>是否上架</span><input type="radio"
 								style="width: 15px; height: 15px;" value="true" name="shelves"
-								checked="checked" id="shelvesTrue" />上架&nbsp;&nbsp;&nbsp;&nbsp;<input
+								checked="checked" id="shelvesTrue"/>上架&nbsp;&nbsp;&nbsp;&nbsp;<input
 								style="width: 15px; height: 15px;" type="radio" value="false"
-								name="shelves" id="shelvesFalse" />暂不上架 <span>是否精品</span><input
-								type="radio" style="width: 15px; height: 15px;" value="true"
-								name="iscChoice" checked="checked" />精品&nbsp;&nbsp;&nbsp;&nbsp;<input
+								name="shelves" id="shelvesFalse" />暂不上架 <span>是否精品</span><input type="radio"
+								style="width: 15px; height: 15px;" value="true" name="iscChoice"
+								checked="checked" />精品&nbsp;&nbsp;&nbsp;&nbsp;<input
 								style="width: 15px; height: 15px;" type="radio" value="false"
 								name="iscChoice" checked="checked" />普通
 						</dd>
@@ -104,13 +104,11 @@
 								checked="checked" />拍卖&nbsp;&nbsp;&nbsp;&nbsp;<input
 								style="width: 15px; height: 15px;" type="radio" value="false"
 								name="auction" checked="checked" />不拍卖&nbsp;&nbsp;&nbsp;&nbsp;
-							<span>是否折扣</span><input style="width: 15px; height: 15px;"
-								type="radio" value="false" name="isSpecial" checked="checked"
-								id="noIsSpecial" />不折扣<input type="radio"
-								style="width: 15px; height: 15px;" value="true" name="isSpecial"
-								id="isSpecial" />折扣<input type="text"
-								style="width: 100px; display: none;" value="" name="special"
-								id="special" onblur="checkvalue(this);" />
+								<span>是否折扣</span><input style="width: 15px; height: 15px;" type="radio" value="false"
+								name="isSpecial" checked="checked" id="noIsSpecial"/>不折扣<input
+								type="radio" style="width: 15px; height: 15px;" value="true"
+								name="isSpecial" id="isSpecial"/>折扣<input type="text" style="width: 100px; display: none;"
+								value="" name="special" id="special" onblur="checkvalue(this);"/>
 						</dd>
 						<dd>
 							<span>所属品牌</span> <select name="brandid" id="brand"

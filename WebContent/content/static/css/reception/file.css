@@ -1,363 +1,81 @@
 @charset "utf-8";
 /* CSS Document */
 /*------------------------通用-----------------------------*/
-body {
-	margin: 0;
-	padding: 0;
-	font-family: Arial, Gadget, sans-serif;
-	font-size: 13px;
-	line-height: 24px;
-}
+body {margin:0; padding:0; font-family:  Arial, Gadget, sans-serif; font-size:13px; line-height:24px;}
 
-* {
-	margin: 0px;
-	padding: 0px;
-}
+*{ margin:0px; padding:0px;}
+ol, ul ,li{list-style: none; margin:0px; padding:0px}
+img,ol, ul ,li{ border:none;}
+div{ margin:0 0; padding:0 0}
+img{ border:none;padding:0;margin:0;}
+a.red{ color:#f00;}
 
-ol, ul, li {
-	list-style: none;
-	margin: 0px;
-	padding: 0px
-}
-
-img, ol, ul, li {
-	border: none;
-}
-
-div {
-	margin: 0 0;
-	padding: 0 0
-}
-
-img {
-	border: none;
-	padding: 0;
-	margin: 0;
-}
-
-a.red {
-	color: #f00;
-}
-
-.left {
-	float: left;
-}
-
-.right {
-	float: right;
-}
-
-.cl {
-	clear: both;
-}
-
-#cl {
-	clear: both;
-}
-
-.red {
-	color: #c00;
-}
-
-.grean {
-	color: #ff6600;
-}
-
-.blon {
-	color: #2c4b8c;
-}
+.left{ float:left;}
+.right{ float:right;}
+.cl{ clear:both;}
+#cl{ clear:both;}
+.red{ color:#c00;}
+.grean{ color:#ff6600;}
+.blon{ color:#2c4b8c;}
 
 /*------------------------头部通用-----------------------------*/
-.filelef {
-	float: left;
-	width: 240px;
-	border-right: 1px solid #c00;
-	margin-right: 20px;
-}
 
-.filelef ul {
-	float: left;
-}
+.filelef{ float:left; width:240px; border-right:1px solid #c00; margin-right:20px;}
+.filelef ul{ float:left;}
+.filelef li{ line-height:40px;}
+.filelef li a{ display:inline-block; font-size:10px;}
+.filelef li span img{border-bottom:1px solid #91a4ab; display:inline-block; line-height:40px; vertical-align:middle; margin-right:3px;}
+.filelef_2 li a{ font-size:12px;}
+.filelef_3 li{ padding-bottom:10px;}
+.filelef_3 li span img{ width:30px; height:35px;}
 
-.filelef li {
-	line-height: 40px;
-}
 
-.filelef li a {
-	display: inline-block;
-	font-size: 10px;
-}
+.flrtopl{ width:450px; float:left;}
+.flrtopr{ width:300px; float:left;}
+.flrtopl p{ line-height:40px; height:40px; padding:30px 10px 10px;}
+.flrtopl p img{ line-height:40px;  vertical-align:middle; border-bottom:1px solid #91a4ab;}
+.flrtopl .flrtoplb{font-weight:bold; padding:5px; height:30px; line-height:15px;}
+.flrtopr li{ line-height:14px; font-size:12px; padding:2px 0 2px 8px; background:url(../images/brand/filelic.png) no-repeat left center;}
+.flrtoprt{ text-align:right;text-decoration: underline; padding:0 2px;}
 
-.filelef li span img {
-	border-bottom: 1px solid #91a4ab;
-	display: inline-block;
-	line-height: 40px;
-	vertical-align: middle;
-	margin-right: 3px;
-}
 
-.filelef_2 li a {
-	font-size: 12px;
-}
 
-.filelef_3 li {
-	padding-bottom: 10px;
-}
+.flrtopl2{ width:400px; float:left;}
+.flrtopr2{ width:300px; float:left; border-left:1px dotted #eee; padding-left:20px;}
+.flrtopl2 p{ line-height:40px; height:40px; padding:30px 10px 10px;}
+.flrtopl2 p img{ line-height:40px;  vertical-align:middle; border-bottom:1px solid #91a4ab;}
+.flrtopl2 .flrtoplb{font-weight:bold; padding:5px; height:30px; line-height:15px;}
+.flrtopr2 li{ line-height:14px; height:14px; font-size:12px; padding:2px 0 2px 8px; background:url(../images/brand/filelic.png) no-repeat left center;}
+.flrtoprt2{ text-align:left;text-decoration: underline; padding:0 2px;}
 
-.filelef_3 li span img {
-	width: 30px;
-	height: 35px;
-}
 
-.flrtopl {
-	width: 450px;
-	float: left;
-}
 
-.flrtopr {
-	width: 300px;
-	float: left;
-}
+.flrtopl3{ width:400px; float:left;}
+.flrtopr3{ width:300px; float:left; border-left:1px dotted #eee; padding-left:20px;}
+.flrtopl3 p{ line-height:40px; height:40px; padding:30px 10px 10px;}
+.flrtopl3 p img{ line-height:40px;  vertical-align:middle; border-bottom:1px solid #91a4ab;}
+.flrtopl3 .flrtoplb{font-weight:bold; padding:5px; height:30px; line-height:15px;}
+.flrtopr3 li{ line-height:14px; height:14px; font-size:12px; padding:2px 0 2px 8px; background:url(../images/brand/filelic.png) no-repeat left center;}
+.flrtoprt3{ text-align:right;text-decoration: underline; padding:0 2px;}
 
-.flrtopl p {
-	line-height: 40px;
-	height: 40px;
-	padding: 30px 10px 10px;
-}
+.filerigh{ float:left; width:760px;}
+.filerls{ border-top:1px solid #c00;}
+.filelst{ padding:10px 5px; font-weight:bold; cursor:pointer;}
+.filelst span{ float:right; margin-right:10px;}
+.baktop{ text-align:center; padding:10px;}
 
-.flrtopl p img {
-	line-height: 40px;
-	vertical-align: middle;
-	border-bottom: 1px solid #91a4ab;
-}
-
-.flrtopl .flrtoplb {
-	font-weight: bold;
-	padding: 5px;
-	height: 30px;
-	line-height: 15px;
-}
-
-.flrtopr li {
-	line-height: 14px;
-	font-size: 12px;
-	padding: 2px 0 2px 8px;
-	background: url(../images/brand/filelic.png) no-repeat left center;
-}
-
-.flrtoprt {
-	text-align: right;
-	text-decoration: underline;
-	padding: 0 2px;
-}
-
-.flrtopl2 {
-	width: 400px;
-	float: left;
-}
-
-.flrtopr2 {
-	width: 300px;
-	float: left;
-	border-left: 1px dotted #eee;
-	padding-left: 20px;
-}
-
-.flrtopl2 p {
-	line-height: 40px;
-	height: 40px;
-	padding: 30px 10px 10px;
-}
-
-.flrtopl2 p img {
-	line-height: 40px;
-	vertical-align: middle;
-	border-bottom: 1px solid #91a4ab;
-}
-
-.flrtopl2 .flrtoplb {
-	font-weight: bold;
-	padding: 5px;
-	height: 30px;
-	line-height: 15px;
-}
-
-.flrtopr2 li {
-	line-height: 14px;
-	height: 14px;
-	font-size: 12px;
-	padding: 2px 0 2px 8px;
-	background: url(../images/brand/filelic.png) no-repeat left center;
-}
-
-.flrtoprt2 {
-	text-align: left;
-	text-decoration: underline;
-	padding: 0 2px;
-}
-
-.flrtopl3 {
-	width: 400px;
-	float: left;
-}
-
-.flrtopr3 {
-	width: 300px;
-	float: left;
-	border-left: 1px dotted #eee;
-	padding-left: 20px;
-}
-
-.flrtopl3 p {
-	line-height: 40px;
-	height: 40px;
-	padding: 30px 10px 10px;
-}
-
-.flrtopl3 p img {
-	line-height: 40px;
-	vertical-align: middle;
-	border-bottom: 1px solid #91a4ab;
-}
-
-.flrtopl3 .flrtoplb {
-	font-weight: bold;
-	padding: 5px;
-	height: 30px;
-	line-height: 15px;
-}
-
-.flrtopr3 li {
-	line-height: 14px;
-	height: 14px;
-	font-size: 12px;
-	padding: 2px 0 2px 8px;
-	background: url(../images/brand/filelic.png) no-repeat left center;
-}
-
-.flrtoprt3 {
-	text-align: right;
-	text-decoration: underline;
-	padding: 0 2px;
-}
-
-.filerigh {
-	float: left;
-	width: 760px;
-}
-
-.filerls {
-	border-top: 1px solid #c00;
-}
-
-.filelst {
-	padding: 10px 5px;
-	font-weight: bold;
-	cursor: pointer;
-}
-
-.filelst span {
-	float: right;
-	margin-right: 10px;
-}
-
-.baktop {
-	text-align: center;
-	padding: 10px;
-}
-
-.file {
-	width: 365px;
-	height: 200px;
-	overflow: hidden;
-	float: left;
-	border-left: 1px solid #d0d0d0;
-	border-right: 1px solid #d0d0d0;
-	border-bottom: 1px solid #d0d0d0;
-	margin-bottom: 15px;
-}
-
-.file .tit_file {
-	font-size: 14px;
-	display: block;
-	width: 365px;
-	text-align: center;
-	font-weight: bold;
-	height: 30px;
-	line-height: 30px;
-}
-
-.file ul {
-	margin: 10px;
-	width: 325px;
-	height: 130px;
-	overflow: hidden;
-}
-
-.file ul li {
-	background: url(../images/jiantou3.png) no-repeat left 7px;
-	padding-left: 20px;
-	width: 325px;
-	word-wrap: break-word;
-}
-
-.file ul li a {
-	font-size: 12px;
-}
-
-.file .more {
-	float: right;
-	margin-top: -20px;
-	margin-right: 20px;
-}
-
-.file_1, .file_3, .file_5, .file_7 {
-	margin-right: 20px;
-}
-
-.file_1 .tit_file_1 {
-	background: #e6e6e6;
-	border-top: 5px solid #fadb1c;
-}
-
-.file_2 .tit_file_2 {
-	background: #e6e6e6;
-	border-top: 5px solid #b92525;
-}
-
-.file_3 .tit_file_3 {
-	background: #c82119;
-	height: 35px;
-	line-height: 35px;
-	color: #fff;
-}
-
-.file_4 .tit_file_4 {
-	background: #666666;
-	height: 35px;
-	line-height: 35px;
-	color: #fff;
-}
-
-.file_5 .tit_file_5 {
-	background: #e6e6e6;
-	border-top: 5px solid #45a94f;
-}
-
-.file_6 .tit_file_6 {
-	background: #e6e6e6;
-	border-top: 5px solid #f8de18;
-}
-
-.file_7 .tit_file_7 {
-	background: #45a94f;
-	height: 35px;
-	line-height: 35px;
-	color: #fff;
-}
-
-.file_8 .tit_file_8 {
-	background: #f8de18;
-	height: 35px;
-	line-height: 35px;
-}
+.file{width:365px; height:200px; overflow:hidden; float:left; border-left:1px solid #d0d0d0; border-right:1px solid #d0d0d0; border-bottom:1px solid #d0d0d0; margin-bottom:15px;}
+.file .tit_file{ font-size:14px; display:block; width:365px;text-align:center; font-weight:bold;height:30px; line-height:30px;}
+.file ul{ margin:10px; width:325px; height:130px; overflow:hidden;}
+.file ul li{ background: url(../images/jiantou3.png) no-repeat left 7px; padding-left:20px; width:325px;word-wrap:break-word;}
+.file ul li a{ font-size:12px;}
+.file .more{ float:right; margin-top:-20px; margin-right:20px;}
+.file_1,.file_3,.file_5,.file_7{ margin-right:20px;}
+.file_1 .tit_file_1{ background:#e6e6e6; border-top:5px solid #fadb1c; }
+.file_2 .tit_file_2{background:#e6e6e6;  border-top:5px solid #b92525; }
+.file_3 .tit_file_3{ background:#c82119; height:35px; line-height:35px; color:#fff;}
+.file_4 .tit_file_4{background:#666666;   height:35px; line-height:35px; color:#fff; }
+.file_5 .tit_file_5{ background:#e6e6e6; border-top:5px solid #45a94f; }
+.file_6 .tit_file_6{background:#e6e6e6;  border-top:5px solid #f8de18; }
+.file_7 .tit_file_7{ background:#45a94f; height:35px; line-height:35px; color:#fff;}
+.file_8 .tit_file_8{background:#f8de18;   height:35px; line-height:35px;}

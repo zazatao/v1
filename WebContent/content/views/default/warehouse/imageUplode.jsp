@@ -40,8 +40,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10" style="text-align: center;">
-					<button type="button" class="btn btn-default"
-						onclick="saveImage();">保存</button>
+				<button type="button" class="btn btn-default" onclick="saveImage();">保存</button>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<button type="button" class="btn btn-default" onclick="onSave()">取消</button>
 				</div>

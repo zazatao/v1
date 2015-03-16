@@ -22,7 +22,8 @@
 		<div class="top_tel">
 			<img src="../content/static/images/top_sj.png" />
 			<p>
-				全球统一客服电话<br /> <span class="red">152386895258</span>
+				全球统一客服电话<br />
+				<span class="red">152386895258</span>
 			</p>
 		</div>
 		<div class="gwctb">
@@ -79,7 +80,7 @@
 						test="${shopCategory.level == 1 && shopCategory.category != '汽车用具' && shopCategory.category != '电子产品' }">
 						<li><a
 							href="../proscenium/categoryOne?id=${shopCategory.categoryID}">${shopCategory.category }</a>
-							<div>
+						<div>
 								<c:forEach items="${shopCategory.children }" var="shopCategory2">
 									<c:if test="${shopCategory2.level == 2  }">
 										<div class="nav-column">

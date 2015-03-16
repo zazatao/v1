@@ -29,7 +29,7 @@
 
 <script type="text/javascript"
 	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
-
+	
 <link href="../content/static/css/datetime/jquery-clockpicker.min.css"
 	rel="stylesheet">
 <link href="../content/static/css/datetime/jquery.datetimepicker.css"
@@ -44,7 +44,7 @@
 
 	<!-- Static navbar -->
 	<jsp:include page="../common/navbar.jsp"></jsp:include>
-	<div class="container-fluid" style="padding: 0; margin-top: 32px;">
+	<div class="container-fluid"  style="padding:0;margin-top:32px;">
 		<div class="row-fluid">
 			<div class="span12">
 				<ul class="breadcrumb">
@@ -65,7 +65,8 @@
 					<div class="container-fluid">
 						<div class="row-fluid">
 							<div class="span12">
-								<form class="form-horizontal" action="" method="POST">
+								<form class="form-horizontal" action=""
+									method="POST">
 									<div class="form-group">
 										<label for="inputEmail3" class="col-sm-2 control-label">追踪号</label>
 										<div class="col-sm-3">
@@ -113,8 +114,7 @@
 						</div>
 						<div class="col-sm-1">
 							<input type="text" name="sendDate" placeholder="发货日期"
-								class="form-control" id="sendDate"
-								onclick="dateInfoxxx('sendDate')">
+								class="form-control" id="sendDate" onclick="dateInfoxxx('sendDate')">
 						</div>
 						<div class="col-sm-1">
 							<input type="submit" value="搜索" class="btn btn-default">

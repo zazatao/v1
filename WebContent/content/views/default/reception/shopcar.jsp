@@ -40,7 +40,7 @@
 					<li><a href="shopcardelv"><img
 							src="../content/static/images/brand/shcanum_2.png" />交付</a></li>
 					<li><img src="../content/static/images/brand/shcatoplis.png" /></li>
-					<li><a href="#"><img
+					<li><a href="#" ><img
 							src="../content/static/images/brand/shcanum_3.png" />付款</a></li>
 					<li><img src="../content/static/images/brand/shcatoplis.png" /></li>
 					<li><a href="#"><img
@@ -68,106 +68,87 @@
 					</div>
 					<c:set var="sum" value="0"></c:set>
 					<c:forEach items="${list }" var="shopCar">
-						<div class="shcatbtis">
-							<div class="shctlink"></div>
-							<div class="sctbldsc">
-								<p>
-									<span><a href="./deleteShopCar?id=${shopCar.catID }">从购物车里删除</a></span>
-								</p>
-								<div>
-									<c:set value="${fn:split(shopCar.specs,',')}" var="spec"></c:set>
-									<c:forEach items="${spec }" var="sp">
-										<p class="sctbldscl">
-											<c:if
-												test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '颜色'}">
-												<img
-													src="..${fn:substring(sp, fn:indexOf(sp, '$')+1, fn:length(sp)) }" />
-											</c:if>
-										</p>
-									</c:forEach>
+					<div class="shcatbtis">
+						<div class="shctlink"></div>
+						<div class="sctbldsc">
+							<p>
+								<span><a href="./deleteShopCar?id=${shopCar.catID }">从购物车里删除</a></span>
+							</p>
+							<div>
+								<c:set value="${fn:split(shopCar.specs,',')}" var="spec"></c:set>
+								<c:forEach items="${spec }" var="sp">
+									<p class="sctbldscl">
+										<c:if test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '颜色'}">
+											<img src="..${fn:substring(sp, fn:indexOf(sp, '$')+1, fn:length(sp)) }" />
+										</c:if>
+									</p>
+								</c:forEach>
 									<div class="sctbldscr">
 										<p>${shopCar.shopCommoidty.commoidtyName }</p>
 										<ul>
 											<c:forEach items="${spec }" var="sp">
-												<c:if
-													test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '颜色'}">
-													<li><span>颜色:</span> ${fn:substring(sp,fn:indexOf(sp, '-') +1, fn:indexOf(sp, '$') )}
-													</li>
-												</c:if>
-												<c:if
-													test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '尺寸'}">
-													<li><span>尺寸</span> ${fn:substring(sp,fn:indexOf(sp, '-') +1, fn:length(sp) )}
-													</li>
-												</c:if>
-												<c:if
-													test="${fn:substring(sp,0,fn:indexOf(sp, '-')) != '尺寸' && fn:substring(sp,0,fn:indexOf(sp, '-')) != '颜色'}">
-													<li class="sctbldscrlb"><span>${fn:substring(sp,0,fn:indexOf(sp, '-'))}</span>
-														${fn:substring(sp,fn:indexOf(sp, '-') +1, fn:length(sp) )}
-													</li>
-												</c:if>
+													<c:if test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '颜色'}">
+														<li><span>颜色:</span>
+															${fn:substring(sp,fn:indexOf(sp, '-') +1, fn:indexOf(sp, '$') )}
+														</li>
+													</c:if>
+													<c:if test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '尺寸'}">
+														<li><span>尺寸</span>
+																${fn:substring(sp,fn:indexOf(sp, '-') +1, fn:length(sp) )}
+														</li>
+													</c:if>
+													<c:if test="${fn:substring(sp,0,fn:indexOf(sp, '-')) != '尺寸' && fn:substring(sp,0,fn:indexOf(sp, '-')) != '颜色'}">
+														<li class="sctbldscrlb"><span>${fn:substring(sp,0,fn:indexOf(sp, '-'))}</span>
+															${fn:substring(sp,fn:indexOf(sp, '-') +1, fn:length(sp) )}
+														</li>
+													</c:if>
 											</c:forEach>
 										</ul>
 										<p class="sctbldscp red">
-											库存数量：
-											<c:out
-												value="${shopCar.shopCommoidty.proportion * shopCar.shopCommoidty.stock} "></c:out>
-										</p>
+										库存数量：<c:out value="${shopCar.shopCommoidty.proportion * shopCar.shopCommoidty.stock} "></c:out></p>
 									</div>
-								</div>
-								<div class="cl"></div>
-								<div class="sctbldscb">
-									<p class="sctbldscl">产品详情</p>
-									<p class="sctbldscr"></p>
-								</div>
 							</div>
-							<div class="shctlink"></div>
-							<div class="sctblnum">
-								<div>
-									<input class="btn_prev" name="" type="button" value="-" /> <input
-										class="texnum" name="" type="text"
-										value="${shopCar.buyAmount }" /> <input class="btn_next"
-										name="" type="button" value="+" />
-								</div>
-							</div>
-							<div class="shctlink"></div>
-							<div class="sctblpri">
-								<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice }"
-									type="currency" pattern="#,###.00#" />
-								<br />
-								<c:if test="${shopCar.shopCommoidty.isSpecial }">
-									<fmt:formatNumber
-										value="${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special}"
-										type="currency" pattern="#,###.00#" />
-								</c:if>
-								<c:if test="${!shopCar.shopCommoidty.isSpecial }">
-									<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice }"
-										type="currency" pattern="#,###.00#" />
-								</c:if>
-							</div>
-							<div class="shctlink"></div>
-							<div class="sctblapw">
-								<fmt:formatNumber
-									value="${shopCar.buyAmount * shopCar.shopCommoidty.probablyWeight}"
-									type="currency" pattern="#,###.00#" />
-							</div>
-							<div class="shctlink"></div>
-							<div class="sctblamt">
-								<c:if test="${shopCar.shopCommoidty.isSpecial }">
-									<fmt:formatNumber
-										value="${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount }"
-										type="currency" pattern="#,###.00#" />
-									<c:set var="sum"
-										value="${sum + shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount}"></c:set>
-								</c:if>
-								<c:if test="${!shopCar.shopCommoidty.isSpecial }">
-									<fmt:formatNumber
-										value="${shopCar.shopCommoidty.unitPrice * shopCar.buyAmount }"
-										type="currency" pattern="#,###.00#" />
-									<c:set var="sum"
-										value="${sum + shopCar.shopCommoidty.unitPrice * shopCar.buyAmount}"></c:set>
-								</c:if>
+							<div class="cl"></div>
+							<div class="sctbldscb">
+								<p class="sctbldscl">产品详情</p>
+								<p class="sctbldscr">
+								</p>
 							</div>
 						</div>
+						<div class="shctlink"></div>
+						<div class="sctblnum">
+							<div>
+								<input class="btn_prev" name="" type="button" value="-" /> <input
+									class="texnum" name="" type="text" value="${shopCar.buyAmount }" /> <input
+									class="btn_next" name="" type="button" value="+" />
+							</div>
+						</div>
+						<div class="shctlink"></div>
+						<div class="sctblpri">
+							<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice }" type="currency" pattern="#,###.00#"/> <br />
+							<c:if test="${shopCar.shopCommoidty.isSpecial }">
+								<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special}" type="currency" pattern="#,###.00#"/> 
+							</c:if>
+							<c:if test="${!shopCar.shopCommoidty.isSpecial }">
+								<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice }" type="currency" pattern="#,###.00#"/> 
+							</c:if>
+						</div>
+						<div class="shctlink"></div>
+						<div class="sctblapw">
+							<fmt:formatNumber value="${shopCar.buyAmount * shopCar.shopCommoidty.probablyWeight}" type="currency" pattern="#,###.00#"/> 
+						</div>
+						<div class="shctlink"></div>
+						<div class="sctblamt">
+							<c:if test="${shopCar.shopCommoidty.isSpecial }">
+								<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount }" type="currency" pattern="#,###.00#"/>
+							 	<c:set var="sum" value="${sum + shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount}"></c:set>
+							</c:if>
+							<c:if test="${!shopCar.shopCommoidty.isSpecial }">
+								<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice * shopCar.buyAmount }" type="currency" pattern="#,###.00#"/>
+							 	<c:set var="sum" value="${sum + shopCar.shopCommoidty.unitPrice * shopCar.buyAmount}"></c:set>
+							</c:if>
+						</div>
+					</div>
 					</c:forEach>
 					<script>
 							$(function() {
@@ -328,9 +309,8 @@
 			</div>
 			<div class="shopcarbtns">
 				<p>
-					总支付<span class="gray"><b> <font
-							style="font-size: 18px; color: green;"><fmt:formatNumber
-									value="${sum }" type="currency" pattern="#,###.00#" /></font></b></span>
+					总支付<span class="gray"><b>
+					<font style="font-size: 18px; color: green;"><fmt:formatNumber value="${sum }" type="currency" pattern="#,###.00#"/></font></b></span>
 				</p>
 				<p>
 					<a href="./shopcardelv" class="scbtonc">继续订购>></a>

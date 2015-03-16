@@ -760,50 +760,31 @@ public class ShopOneController {
 		mode.put("shopCategories", shopcategories);
 		mode.put("nvabar", strs.substring(0, strs.length() - 1));
 		ShopCommoidty shopCommoidty = shopCommService.findById(commID);
+		List<ShopCommoidty> list =shopCommService.getAllByNameAndShop(commoName,shopID);
 		Map<String, List<String>> map = new HashMap<String, List<String>>();
 		List<String> specStrs = null;
-			for (ShopCommoidtySpecs spe : shopCommoidty.getCommsPecs()) {
+		for (ShopCommoidty comm : list) {
+			for (ShopCommoidtySpecs spe : comm.getCommsPecs()) {
 			String spec = spe.getCommSpec();
 			String[] specs = spec.split(",");
 			if (specs.length>0) {
 				for (int i = 0; i < specs.length; i++) {
 					if (!specs[i].equals("")) {
 						if (map.containsKey(specs[i].split("-")[0])) {
-								specStrs = map.get(specs[i].split("-")[0]);
-								if (specs[i].split("-")[0].equals("颜色")) {
-									boolean isok = true;
-									for (String str : specStrs) {
-										if (str.contains(specs[i].split("-")[1].substring(0,specs[i].split("-")[1].indexOf("$")))) {
-											isok = false;
-										}
-									}
-									if (isok) {
-										specStrs.add(specs[i].split("-")[1]);
-									}
-								}else{
-									boolean isok = true;
-									for (String str : specStrs) {
-										System.out.println(str+"   dd  "+specs[i].split("-")[1]+"   "+str.equals(specs[i].split("-")[1]));
-										if (str.equals(specs[i].split("-")[1])) {
-											isok = false;
-										}
-									}
-									if (isok) {
-										specStrs.add(specs[i].split("-")[1]);
-									}
+							specStrs = map.get(specs[i].split("-")[0]);
+								if (!specStrs.contains(specs[i].split("-")[1])) {
+								specStrs.add(specs[i].split("-")[1]);
 								}
-								map.put(specs[i].split("-")[0], specStrs);
 							}else{
 								specStrs = new ArrayList<String>();
-								if (!specStrs.contains(specs[i].split("-")[1])) {
-									specStrs.add(specs[i].split("-")[1]);
-								}
+								specStrs.add(specs[i].split("-")[1]);
 								map.put(specs[i].split("-")[0], specStrs);
 							}
 						}
 					}
 				}
 			}
+		}
 		mode.put("shopCommoidty", shopCommoidty);
 		mode.put("map", map);
 		User user = (User)request.getSession().getAttribute("loginUser");

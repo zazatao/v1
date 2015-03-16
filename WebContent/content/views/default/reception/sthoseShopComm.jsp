@@ -37,8 +37,8 @@
 
 		<div class="perterrtab perterrtab_2">
 			<h3>
-				仓库商品：<span><a href="#">修改&nbsp;&nbsp;/&nbsp;&nbsp;</a><a
-					href="#" onclick="deleteShopComm();">删除&nbsp;&nbsp;/&nbsp;&nbsp;</a><a
+				仓库商品：<span><a
+					href="#">修改&nbsp;&nbsp;/&nbsp;&nbsp;</a><a href="#" onclick="deleteShopComm();">删除&nbsp;&nbsp;/&nbsp;&nbsp;</a><a
 					href="#" onclick="checkAll();">全选</a></span>
 			</h3>
 			<div>
@@ -59,13 +59,8 @@
 							<td>${shopComm.commoidtyName }</td>
 							<td><img src="..${shopComm.shopCommImages[0].imagePath }" /></td>
 							<td>￥${shopComm.unitPrice }</td>
-							<td><button
-									onclick="zhekou(${shopComm.shelves},${shopComm.commCode });">
-									<c:if test="${shopComm.shelves}">已上架</c:if>
-									<c:if test="${!shopComm.shelves}">下架</c:if>
-								</button></td>
-							<td><input type="checkbox" name="commID"
-								value="${shopComm.commCode}" /></td>
+							<td><button onclick="zhekou(${shopComm.shelves},${shopComm.commCode });"><c:if test="${shopComm.shelves}">已上架</c:if><c:if test="${!shopComm.shelves}">下架</c:if></button></td>
+							<td><input type="checkbox" name="commID" value="${shopComm.commCode}"/></td>
 						</tr>
 					</c:forEach>
 				</table>

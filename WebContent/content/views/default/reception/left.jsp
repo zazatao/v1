@@ -20,26 +20,26 @@
 				<li><a href="../proscenium/returnGoods">买家退款退货</a></li>
 				<li><a href="#">结算管理</a></li>
 				<li><a href="../proscenium/shopEvaluation">评价管理</a></li>
-				<!-- 				<li><a href="#">交易货款结算<span class="red">(新)</span></a></li> -->
-				<!-- 				<li><a href="#">代金卷结算</a></li> -->
+<!-- 				<li><a href="#">交易货款结算<span class="red">(新)</span></a></li> -->
+<!-- 				<li><a href="#">代金卷结算</a></li> -->
 			</ul>
 		</div>
-		<!-- 		<div> -->
-		<!-- 			<p>营销管理</p> -->
-		<!-- 			<ul> -->
-		<!-- 				<li><a href="#">营销管理报名</a></li> -->
-		<!-- 				<li><a href="#">营销应用集合</a></li> -->
-		<!-- 				<li><a href="#">客户通CRM<span class="red">(新)</span></a></li> -->
-		<!-- 			</ul> -->
-		<!-- 		</div> -->
-		<!-- 		<div> -->
-		<!-- 			<p>店铺管理</p> -->
-		<!-- 			<ul> -->
-		<!-- 				<li><a href="#">查看我的店铺</a></li> -->
-		<!-- 				<li><a href="#">子账号管理<span class="red">(新)</span></a></li> -->
-		<!-- 				<li><a href="#">店铺管理</a></li> -->
-		<!-- 			</ul> -->
-		<!-- 		</div> -->
+<!-- 		<div> -->
+<!-- 			<p>营销管理</p> -->
+<!-- 			<ul> -->
+<!-- 				<li><a href="#">营销管理报名</a></li> -->
+<!-- 				<li><a href="#">营销应用集合</a></li> -->
+<!-- 				<li><a href="#">客户通CRM<span class="red">(新)</span></a></li> -->
+<!-- 			</ul> -->
+<!-- 		</div> -->
+<!-- 		<div> -->
+<!-- 			<p>店铺管理</p> -->
+<!-- 			<ul> -->
+<!-- 				<li><a href="#">查看我的店铺</a></li> -->
+<!-- 				<li><a href="#">子账号管理<span class="red">(新)</span></a></li> -->
+<!-- 				<li><a href="#">店铺管理</a></li> -->
+<!-- 			</ul> -->
+<!-- 		</div> -->
 	</div>
 </div>
 	<div class="perterr">

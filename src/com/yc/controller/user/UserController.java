@@ -183,8 +183,7 @@ public class UserController {
 	@RequestMapping(value = "editUserpwd", method = RequestMethod.POST)
 	public String editUserpwd(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = userService.findById(id);
-		String password1 = request.getParameter("password1");
-		System.out.println(password1 +"user.getPassword() "+user.getPassword());
+		String password1 = request.getParameter("password1");	
 		if (password1.equals(user.getPassword())) {
 			String pwd = request.getParameter("password");
 			user.setPassword(pwd);
@@ -223,7 +222,9 @@ public class UserController {
 
 	// 地址添加
 	@RequestMapping(value = "Address", method = RequestMethod.POST)
-	public String Address(Address address, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String Address(Integer num,Address address,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Boolean theDefault = false;
+		User user =(User)request.getSession().getAttribute("loginUser");
 		Address as = new Address();
 		String toName = request.getParameter("toName");
 		as.setToName(toName);
@@ -243,33 +244,41 @@ public class UserController {
 		as.setHandedAddress(handedAddress);
 		String indexNum = request.getParameter("indexNum");
 		as.setIndexNum(indexNum);
-		as.setUser((User)request.getSession().getAttribute("loginUser"));
-		addressService.save(as);
+		as.setUser(user);
+		if(num == 0){ theDefault = false; } else { theDefault = true; }
+		as.setTheDefault(theDefault);
+		Address address1 =  addressService.save(as);
+		user.getAddresses().add(address1);
+		userService.update(user);
 		return "redirect:/user/introduction";
 	}
 
 	// 修改地址
 	@RequestMapping(value = "editaddress", method = RequestMethod.POST)
-	public String editaddress(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String editaddress(Integer id,Integer num,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Boolean theDefault = false;
 		Address ad = addressService.findById(id);
-		String toName = request.getParameter("toName");
+		String toName = request.getParameter("toNamea");
 		ad.setToName(toName);
-		String toEmail = request.getParameter("toEmail");
+		String toEmail = request.getParameter("toEmaila");
 		ad.setToEmail(toEmail);
-		String phone = request.getParameter("phone");
+		String phone = request.getParameter("phonea");
 		ad.setPhone(phone);
-		String country = request.getParameter("country");
+		String country = request.getParameter("countrya");
 		ad.setCountry(country);
-		String city = request.getParameter("city");
+		String provience = request.getParameter("proviencea");
+		ad.setProvience(provience);
+		String city = request.getParameter("citya");
 		ad.setCity(city);
-		String street = request.getParameter("street");
+		String street = request.getParameter("streeta");
 		ad.setStreet(street);
-		String district = request.getParameter("district");
+		String district = request.getParameter("districta");
 		ad.setDistrict(district);
-		String handedAddress = request.getParameter("handedAddress");
+		String handedAddress = request.getParameter("handedAddressa");
 		ad.setHandedAddress(handedAddress);
-		String indexNum = request.getParameter("indexNum");
+		String indexNum = request.getParameter("indexNuma");
 		ad.setIndexNum(indexNum);
+		if(num == 0){ theDefault = false; } else { theDefault = true; }
 		addressService.update(ad);
 		return "redirect:/user/introduction";
 	}
@@ -277,15 +286,16 @@ public class UserController {
 	// 删除地址
 	@RequestMapping(value = "deleteaddress", method = RequestMethod.POST)
 	public String deleteaddress(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		User ad = userService.findById(id);
-		List<Address> as = ad.getAddresses();
+		User ad = (User) request.getSession().getAttribute("loginUser");
+		ad = userService.findById(id);
+		List<Address> as = ad.getAddresses();//error
 		if (as.size() > 0) {
 			boolean isok = addressService.deleteByadd(id);
-			if (isok != true) {
+			if (isok != false) {
 				addressService.delete(id);
 			}
 		} else {
-			addressService.delete(id);
+				addressService.delete(id);
 		}
 		return "redirect:/user/introduction";
 	}
@@ -326,5 +336,5 @@ public class UserController {
 			mode.put("orderStatus", orderStatus);
 			return new ModelAndView("reception/perscentBonuses",mode);
 		}
-	}	
+	}
 }

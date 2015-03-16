@@ -28,7 +28,7 @@
 <script type="text/javascript" src="./content/static/js/lib/scripts.js"></script>
 
 <script type="text/javascript"
-	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
+	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>	
 <link href="../content/static/css/datetime/jquery-clockpicker.min.css"
 	rel="stylesheet">
 <link href="../content/static/css/datetime/jquery.datetimepicker.css"
@@ -41,7 +41,7 @@
 <body>
 	<!-- Static navbar -->
 	<jsp:include page="../common/navbar.jsp"></jsp:include>
-	<div class="container-fluid" style="padding: 0; margin-top: 32px;">
+	<div class="container-fluid"  style="padding:0;margin-top:32px;">
 		<div class="row-fluid">
 			<div class="span12">
 				<ul class="breadcrumb">
@@ -54,33 +54,33 @@
 	</div>
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<form class="form-horizontal"
-				action="./searchFreight?page=batchShipments" method="POST">
-				<div class="form-group">
-					<div class="col-sm-1">
-						<input type="text" name="packageCode" placeholder="包裹编号"
-							class="form-control" id="packageCode" onblur="checkvalue(this)">
+		<form class="form-horizontal" action="./searchFreight?page=batchShipments"
+					method="POST">
+					<div class="form-group">
+						<div class="col-sm-1">
+							<input type="text" name="packageCode" placeholder="包裹编号"
+								class="form-control" id="packageCode" onblur="checkvalue(this)">
+						</div>
+						<div class="col-sm-1">
+							<input type="text" name="userName" placeholder="收货人姓名"
+								class="form-control" id="userName">
+						</div>
+						<div class="col-sm-2">
+							<select class="form-control" name="formDelivery"
+								id="formDelivery">
+								<option value="">-------------运输方式-------------
+								<option value="EMS">EMS
+							</select>
+						</div>
+						<div class="col-sm-1">
+							<input type="text" name="sendDate" placeholder="发货日期"
+								class="form-control" id="sendDate" onclick="dateInfoxxx('sendDate')">
+						</div>
+						<div class="col-sm-1">
+							<input type="submit" value="搜索" class="btn btn-default">
+						</div>
 					</div>
-					<div class="col-sm-1">
-						<input type="text" name="userName" placeholder="收货人姓名"
-							class="form-control" id="userName">
-					</div>
-					<div class="col-sm-2">
-						<select class="form-control" name="formDelivery" id="formDelivery">
-							<option value="">-------------运输方式-------------
-							<option value="EMS">EMS
-						</select>
-					</div>
-					<div class="col-sm-1">
-						<input type="text" name="sendDate" placeholder="发货日期"
-							class="form-control" id="sendDate"
-							onclick="dateInfoxxx('sendDate')">
-					</div>
-					<div class="col-sm-1">
-						<input type="submit" value="搜索" class="btn btn-default">
-					</div>
-				</div>
-			</form>
+				</form>
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">包裹</h3>
@@ -115,9 +115,7 @@
 								<td></td>
 								<td>${orders.grossWeight }</td>
 								<td>${orders.transportFee }</td>
-								<td><c:if
-										test="${orders.orderForms[0].orderstatus == 'initializa' }">初始化</c:if>
-									<%-- 									<c:if test="${orders.inForwarding == 'inForwarding' }">在转发</c:if> --%>
+								<td><c:if test="${orders.orderForms[0].orderstatus == 'initializa' }">初始化</c:if> <%-- 									<c:if test="${orders.inForwarding == 'inForwarding' }">在转发</c:if> --%>
 									<%-- 									<c:if test="${orders.senToWarehouse == 'senToWarehouse' }">送货到仓库</c:if> --%>
 									<%-- 									<c:if test="${orders.packing == 'packing' }"> 打包</c:if> --%>
 								</td>
