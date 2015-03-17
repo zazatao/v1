@@ -25,12 +25,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Address;
 import com.yc.entity.BuyCat;
+import com.yc.entity.CarCommoidty;
 import com.yc.entity.Commodity;
 import com.yc.entity.CommoidityStatus;
 import com.yc.entity.Delivery;
 import com.yc.entity.DeliveryAddress;
 import com.yc.entity.DisposeStatus;
-import com.yc.entity.ImagePath;
 import com.yc.entity.OrderForm;
 import com.yc.entity.OrderStatus;
 import com.yc.entity.ShopCategory;
@@ -43,6 +43,7 @@ import com.yc.model.BuyCatSession;
 import com.yc.service.IAddressService;
 import com.yc.service.IBrandService;
 import com.yc.service.IBuyCatService;
+import com.yc.service.ICarCommoidtyService;
 import com.yc.service.ICommodityService;
 import com.yc.service.IDeliveryAddressService;
 import com.yc.service.IImagePathService;
@@ -109,6 +110,9 @@ public class ShopTwoController {
 	@Autowired
 	IUserService userService;
 	
+	@Autowired
+	ICarCommoidtyService carCommoidtyService;
+	
 	//类别查找
 	@RequestMapping(value = "categoryOne", method = RequestMethod.GET)
 	public ModelAndView categoryOne(Integer id ,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -156,92 +160,114 @@ public class ShopTwoController {
 		ModelMap mode = new ModelMap();
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("loginUser");
-		ShopCommoidty commoidty = shopCommService.findById(commID);
-		if (user == null) {
-			BuyCatSession buyCat = new BuyCatSession();
-			buyCat.setBuyAmount(buyAmount);
-			buyCat.setShopCommoidty(commoidty);
-			buyCat.setSpecs(params+",");
-			List<BuyCatSession> list = (List<BuyCatSession>)session.getAttribute("buyCates");
-			if (list != null ) {
-				for (BuyCatSession buyCatSession : list) {
-					boolean isok = true;
-					if (buyCatSession.getShopCommoidty().getCommoidtyName().equals(commoidty.getCommoidtyName())) {
-						String[] buycat1 = buyCatSession.getSpecs().split(",");
-						String[] guige = new String[buycat1.length];
-						String[] buycat2 = params.split(",");
-						for (int i = 0; i < buycat1.length; i++) {
-							for (int j = 0; j < buycat2.length; j++) {
-								if (buycat1[i].equals(buycat2[j])) {
-									guige[i] = "t";
+		ShopCommoidty comm = shopCommService.findById(commID);
+		if (comm != null) {
+			CarCommoidty carcomm = new CarCommoidty();
+			carcomm.setCommCode(comm.getCommCode());
+			carcomm.setCommoidtyName(comm.getCommoidtyName());
+			carcomm.setCommItem(comm.getCommItem());
+			carcomm.setSupplier(comm.getSupplier());
+			carcomm.setProportion(comm.getProportion());
+			carcomm.setUnitPrice(comm.getUnitPrice());
+			carcomm.setStock(comm.getStock());
+			carcomm.setProbablyWeight(comm.getProbablyWeight());
+			carcomm.setShelves(comm.getShelves());
+			carcomm.setIsSpecial(comm.getIsSpecial());
+			carcomm.setSpecial(comm.getSpecial());
+			carcomm.setCurrency(comm.getCurrency());
+			carcomm.setIscChoice(comm.getIscChoice());
+			carcomm.setAuction(comm.getAuction());
+			carcomm.setCarCategory(comm.getShopCategory());
+			carcomm.setBrand(comm.getBrand());
+			carcomm.setCarbelongTo(comm.getBelongTo());
+			carcomm = carCommoidtyService.save(carcomm);
+			if (user == null) {
+				BuyCatSession buyCat = new BuyCatSession();
+				buyCat.setBuyAmount(buyAmount);
+				buyCat.setShopCommoidty(carcomm);
+				buyCat.setSpecs(params+",");
+				List<BuyCatSession> list = (List<BuyCatSession>)session.getAttribute("buyCates");
+				if (list != null ) {
+					for (BuyCatSession buyCatSession : list) {
+						boolean isok = true;
+						if (buyCatSession.getShopCommoidty().getCommoidtyName().equals(carcomm.getCommoidtyName())) {
+							String[] buycat1 = buyCatSession.getSpecs().split(",");
+							String[] guige = new String[buycat1.length];
+							String[] buycat2 = params.split(",");
+							for (int i = 0; i < buycat1.length; i++) {
+								for (int j = 0; j < buycat2.length; j++) {
+									if (buycat1[i].equals(buycat2[j])) {
+										guige[i] = "t";
+									}
+								}
+								if (guige[i] == null ||guige[i].equals("")) {
+									guige[i] = "f";
 								}
 							}
-							if (guige[i] == null ||guige[i].equals("")) {
-								guige[i] = "f";
+							for (int i = 0; i < guige.length; i++) {
+								if (guige[i].equals("f")) {
+									isok = false;
+								}
 							}
+						}else{
+							isok = false;
 						}
-						for (int i = 0; i < guige.length; i++) {
-							if (guige[i].equals("f")) {
-								isok = false;
-							}
+						if (isok) {
+							buyCat.setBuyAmount(buyCatSession.getBuyAmount()+buyAmount);
 						}
-					}else{
-						isok = false;
 					}
-					if (isok) {
-						buyCat.setBuyAmount(buyCatSession.getBuyAmount()+buyAmount);
-					}
+					list.add(buyCat);
+				}else{
+					list = new ArrayList<BuyCatSession>();
+					list.add(buyCat);
 				}
-				list.add(buyCat);
+				session.setAttribute("buyCates", list);
 			}else{
-				list = new ArrayList<BuyCatSession>();
-				list.add(buyCat);
-			}
-			session.setAttribute("buyCates", list);
-		}else{
-			BuyCat cat = new BuyCat();
-			cat.setBuyAmount(buyAmount);
-			cat.setCatUser(user);
-			cat.setShopCommoidty(commoidty);
-			cat.setSpecs(params+",");
-			List<BuyCat> list = buyCatService.getBuyCatByUser(user.getId());
-			boolean bool = true;
-			if (list !=null && list.size()>0) {
-				for (BuyCat buyCat : list) {
-					boolean isok = true;
-					if (buyCat.getShopCommoidty().getCommoidtyName().equals(commoidty.getCommoidtyName())) {
-						String[] buycat1 = buyCat.getSpecs().split(",");
-						String[] guige = new String[buycat1.length];
-						String[] buycat2 = params.split(",");
-						for (int i = 0; i < buycat1.length; i++) {
-							for (int j = 0; j < buycat2.length; j++) {
-								if (buycat1[i].equals(buycat2[j])) {
-									guige[i] = "t";
+				System.out.println("  carcomm =="+carcomm);
+				BuyCat cat = new BuyCat();
+				cat.setBuyAmount(buyAmount);
+				cat.setCatUser(user);
+				cat.setShopCommoidty(carcomm);
+				cat.setSpecs(params+",");
+				List<BuyCat> list = buyCatService.getBuyCatByUser(user.getId());
+				boolean bool = true;
+				if (list !=null && list.size()>0) {
+					for (BuyCat buyCat : list) {
+						boolean isok = true;
+						if (buyCat.getShopCommoidty().getCommoidtyName().equals(carcomm.getCommoidtyName())) {
+							String[] buycat1 = buyCat.getSpecs().split(",");
+							String[] guige = new String[buycat1.length];
+							String[] buycat2 = params.split(",");
+							for (int i = 0; i < buycat1.length; i++) {
+								for (int j = 0; j < buycat2.length; j++) {
+									if (buycat1[i].equals(buycat2[j])) {
+										guige[i] = "t";
+									}
+								}
+								if (guige[i] == null ||guige[i].equals("")) {
+									guige[i] = "f";
 								}
 							}
-							if (guige[i] == null ||guige[i].equals("")) {
-								guige[i] = "f";
+							for (int i = 0; i < guige.length; i++) {
+								if (guige[i].equals("f")) {
+									isok = false;
+								}
 							}
+						}else{
+							isok = false;
 						}
-						for (int i = 0; i < guige.length; i++) {
-							if (guige[i].equals("f")) {
-								isok = false;
-							}
+						if (isok) {
+							buyCat.setBuyAmount(buyCat.getBuyAmount()+buyAmount);
+							buyCatService.update(buyCat);
+							bool = false;
 						}
-					}else{
-						isok = false;
 					}
-					if (isok) {
-						buyCat.setBuyAmount(buyCat.getBuyAmount()+buyAmount);
-						buyCatService.update(buyCat);
-						bool = false;
+					if (bool) {
+						buyCatService.save(cat);
 					}
-				}
-				if (bool) {
+				}else{
 					buyCatService.save(cat);
 				}
-			}else{
-				buyCatService.save(cat);
 			}
 		}
 		mode.put("success", "true");
@@ -266,6 +292,8 @@ public class ShopTwoController {
 				for (BuyCatSession buyCatSession : buycats) {
 					boolean bool = true;
 					for (BuyCat buyCat : list) {
+						System.out.println("buyCatSession.getShopCommoidty()===="+buyCatSession.getShopCommoidty());
+						System.out.println("buyCat.getShopCommoidty()===="+buyCat.getShopCommoidty());
 						boolean isok = true;
 						if (buyCatSession.getShopCommoidty().getCommoidtyName().equals(buyCat.getShopCommoidty().getCommoidtyName())) {
 							String[] buycat1 = buyCatSession.getSpecs().split(",");
@@ -316,6 +344,10 @@ public class ShopTwoController {
 	@RequestMapping(value = "deleteShopCar", method = RequestMethod.GET)
 	public String deleteShopCar(Integer id,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (id != null && !id.equals("")) {
+			BuyCat car = buyCatService.findById(id);
+			if (car != null && car.getShopCommoidty() != null) {
+				carCommoidtyService.delete(car.getShopCommoidty().getId());
+			}
 			buyCatService.delete(id);
 		}
 		return "redirect:/proscenium/shopcar";
@@ -469,11 +501,11 @@ public class ShopTwoController {
 			if (i==0) {
 				buycates = new ArrayList<BuyCat>();
 				buycates.add(list.get(i));
-				map.put(list.get(i).getShopCommoidty().getBelongTo().getId(), buycates);
+				map.put(list.get(i).getShopCommoidty().getCarbelongTo().getId(), buycates);
 			}else{
 				boolean isok = true;
 				for (Integer key : map.keySet()) {
-					if (list.get(i).getShopCommoidty().getBelongTo().getId() == key ) {
+					if (list.get(i).getShopCommoidty().getCarbelongTo().getId() == key ) {
 						map.get(key).add(list.get(i));
 						isok = false;
 					}
@@ -481,7 +513,7 @@ public class ShopTwoController {
 				if (isok) {
 					buycates = new ArrayList<BuyCat>();
 					buycates.add(list.get(i));
-					map.put(list.get(i).getShopCommoidty().getBelongTo().getId(), buycates);
+					map.put(list.get(i).getShopCommoidty().getCarbelongTo().getId(), buycates);
 				}
 			}
 			Commodity commodity = null;
@@ -506,31 +538,34 @@ public class ShopTwoController {
 					orderform.setDeliveryMoney(deliveryMoney);
 					orderform = formService.save(orderform);
 					for (BuyCat buyCat : buycates) {
-						commodity = new Commodity();
-						commodity.setTransNumForTaobao(buyCat.getShopCommoidty().getCommCode());
-						commodity.setCommItem(buyCat.getShopCommoidty().getCommItem());
-						commodity.setQuantity(buyCat.getBuyAmount());
-						commodity.setWeight(buyCat.getShopCommoidty().getProbablyWeight());
-						commodity.setNameOfGoods(buyCat.getShopCommoidty().getCommoidtyName());
-						commodity.setPrice(buyCat.getShopCommoidty().getUnitPrice() * buyCat.getShopCommoidty().getSpecial());
-						commodity.setMoney(buyCat.getShopCommoidty().getUnitPrice() * buyCat.getShopCommoidty().getSpecial() * buyCat.getBuyAmount());
-						commodity.setCurrency(buyCat.getShopCommoidty().getCurrency());
-						commodity.setCommSpec(buyCat.getSpecs());
-						commodity.setShopcategory(buyCat.getShopCommoidty().getShopCategory());
-						commodity.setSeller(buyCat.getShopCommoidty().getBelongTo());
-//						commodity.setSellerDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));//买家付款日期
-						commodity.setStatus(CommoidityStatus.paid);
-						commodity.setDisposeStatus(DisposeStatus.process);
-						commodity.setOrderNumber(orderform);
-						Commodity comm = commodityService.save(commodity);
-						for (ShopCommImage imagePath : buyCat.getShopCommoidty().getShopCommImages()) {
-							ImagePath image = new ImagePath();
-							image.setCommodity(comm);
-							image.setOrderform(orderform);
-							image.setPath(imagePath.getImagePath());
-							imagePathService.save(image);
+						if (buyCat != null) {
+							commodity = new Commodity();
+							commodity.setTransNumForTaobao(buyCat.getShopCommoidty().getCommCode());
+							commodity.setCommItem(buyCat.getShopCommoidty().getCommItem());
+							commodity.setQuantity(buyCat.getBuyAmount());
+							commodity.setWeight(buyCat.getShopCommoidty().getProbablyWeight());
+							commodity.setNameOfGoods(buyCat.getShopCommoidty().getCommoidtyName());
+							commodity.setPrice(buyCat.getShopCommoidty().getUnitPrice() * buyCat.getShopCommoidty().getSpecial());
+							commodity.setMoney(buyCat.getShopCommoidty().getUnitPrice() * buyCat.getShopCommoidty().getSpecial() * buyCat.getBuyAmount());
+							commodity.setCurrency(buyCat.getShopCommoidty().getCurrency());
+							commodity.setCommSpec(buyCat.getSpecs());
+							commodity.setShopcategory(buyCat.getShopCommoidty().getCarCategory());
+							commodity.setSeller(buyCat.getShopCommoidty().getCarbelongTo());
+	//						commodity.setSellerDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));//买家付款日期
+							ShopCommoidty comm = shopCommService.findById(buyCat.getShopCommoidty().getCommCode());
+							if (comm == null) {
+								commodity.setStatus(CommoidityStatus.support);
+							}else{
+								commodity.setStatus(CommoidityStatus.paid);
+							}
+							commodity.setDisposeStatus(DisposeStatus.process);
+							commodity.setOrderNumber(orderform);
+							commodityService.save(commodity);
+							if (buyCat.getShopCommoidty() != null) {
+								buyCatService.delete(buyCat.getCatID());
+								carCommoidtyService.delete(buyCat.getShopCommoidty().getId());
+							}
 						}
-						buyCatService.delete(buyCat.getCatID());
 					}
 					if (orderform != null) {
 						if (user.getStoreRoom() == null) {

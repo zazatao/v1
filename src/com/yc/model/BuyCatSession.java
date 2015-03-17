@@ -1,12 +1,13 @@
 package com.yc.model;
 
+import com.yc.entity.CarCommoidty;
 import com.yc.entity.ShopCommoidty;
 
 public class BuyCatSession {
 
 	private Integer catID;
 	
-	private ShopCommoidty shopCommoidty;
+	private CarCommoidty shopCommoidty;
 	
 	private String specs;
 	
@@ -20,11 +21,11 @@ public class BuyCatSession {
 		this.catID = catID;
 	}
 
-	public ShopCommoidty getShopCommoidty() {
+	public CarCommoidty getShopCommoidty() {
 		return shopCommoidty;
 	}
 
-	public void setShopCommoidty(ShopCommoidty shopCommoidty) {
+	public void setShopCommoidty(CarCommoidty shopCommoidty) {
 		this.shopCommoidty = shopCommoidty;
 	}
 

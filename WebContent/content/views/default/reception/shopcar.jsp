@@ -96,7 +96,7 @@
 													</c:if>
 													<c:if test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '尺寸'}">
 														<li><span>尺寸</span>
-																${fn:substring(sp,fn:indexOf(sp, '-') +1, fn:length(sp) )}
+															${fn:substring(sp,fn:indexOf(sp, '-') +1, fn:length(sp) )}
 														</li>
 													</c:if>
 													<c:if test="${fn:substring(sp,0,fn:indexOf(sp, '-')) != '尺寸' && fn:substring(sp,0,fn:indexOf(sp, '-')) != '颜色'}">

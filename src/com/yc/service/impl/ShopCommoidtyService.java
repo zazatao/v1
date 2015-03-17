@@ -125,7 +125,6 @@ public class ShopCommoidtyService extends GenericService<ShopCommoidty> implemen
 		List<String> list = new ArrayList<String>();
 		for (Object object : objecArraytList) {
 			list.add(object.toString());
-			System.out.println("fff ==   "+object.toString());
 		}
 		return list;
 	}

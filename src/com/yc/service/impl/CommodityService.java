@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import com.yc.dao.orm.commons.GenericDao;
 import com.yc.entity.Commodity;
 import com.yc.entity.CommoidityStatus;
+import com.yc.entity.OrderStatus;
 import com.yc.entity.Shop;
 import com.yc.entity.StoreRoom;
 import com.yc.model.CommdityModel;
@@ -236,5 +237,12 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 	        } 
 		}
 		return pr;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Commodity> getAllByCommStatusAndOrderStatus(CommoidityStatus support, OrderStatus waitdelivery) {
+		StringBuffer hql = new StringBuffer("select DISTINCT comm.* from Commodity comm left join OrderForm orders on orders.orderFormID = comm.orderform_id where comm.status = '"+support+"' and orders.orderstatus = '"+waitdelivery+"'");
+		return commodityDao.getEntityManager().createNativeQuery(hql.toString(), Commodity.class).getResultList();
 	}
 }
