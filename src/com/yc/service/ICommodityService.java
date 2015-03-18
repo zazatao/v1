@@ -40,4 +40,8 @@ public interface ICommodityService extends IGenericService<Commodity> {
 	//订单状态和商品状态
 	List<Commodity> getAllByCommStatusAndOrderStatus(CommoidityStatus support, OrderStatus waitdelivery);
 
+	List<Commodity> getOrderPollByParam(Map<String, Object> map);
+
+	Commodity getCommByOrderIDAndCommCode(Integer orderid, Integer commCode);
+
 }

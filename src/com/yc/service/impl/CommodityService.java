@@ -242,7 +242,37 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Commodity> getAllByCommStatusAndOrderStatus(CommoidityStatus support, OrderStatus waitdelivery) {
-		StringBuffer hql = new StringBuffer("select DISTINCT comm.* from Commodity comm left join OrderForm orders on orders.orderFormID = comm.orderform_id where comm.status = '"+support+"' and orders.orderstatus = '"+waitdelivery+"'");
+		StringBuffer hql = new StringBuffer("select DISTINCT comm.* from Commodity comm left join OrderForm orders on orders.orderFormID = comm.orderform_id where comm.status = '"+support+"' and orders.orderstatus = '"+waitdelivery+"' and comm.seller_name = 1");
 		return commodityDao.getEntityManager().createNativeQuery(hql.toString(), Commodity.class).getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Commodity> getOrderPollByParam(Map<String, Object> map) {
+		StringBuffer hql = new StringBuffer("select DISTINCT comm.* from Commodity comm left join OrderForm orders on orders.orderFormID = comm.orderform_id left join User u on u.id = orders.user_id where comm.seller_name = 1 " );
+		if (map.get("transNumForTaobao") !=null) {
+			hql.append(" and comm.transNumForTaobao = "+map.get("transNumForTaobao"));
+		}
+		if (map.get("orderUserName") != null) {
+			hql.append(" and u.userName like '%"+map.get("orderUserName")+"%'");
+		}
+		if (map.get("paymentDate") != null) {
+			hql.append(" and orders.paymentDate like '%"+map.get("paymentDate")+"%'");
+		}
+		if (map.get("disposeStatus") != null) {
+			hql.append(" and comm.disposeStatus = '"+map.get("disposeStatus")+"'");
+		}
+		return commodityDao.getEntityManager().createNativeQuery(hql.toString(), Commodity.class).getResultList();
+	}
+	
+	@Override
+	public Commodity getCommByOrderIDAndCommCode(Integer orderid, Integer commCode) {
+		List<String> keys = new ArrayList<String>();
+        keys.add("orderNumber.orderFormID");
+        keys.add("transNumForTaobao");
+        List<Object> values = new ArrayList<Object>();
+        values.add(orderid);
+        values.add(commCode);
+		return commodityDao.getFirstRecord(keys, values);
 	}
 }
