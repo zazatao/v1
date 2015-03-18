@@ -1,9 +1,7 @@
 package com.yc.entity;
 
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -47,6 +45,9 @@ public class ShopCategory {
 	
 	@OneToMany(mappedBy = "shopCategory")
 	private List<ShopCommoidty>  shopCommoidties;//商品
+	
+	@OneToMany(mappedBy = "carCategory")
+	private List<CarCommoidty>  carCommoidties;//商品
 
 	@OneToMany(mappedBy = "shopCateg")
 	private List<Brand> brands;//品牌
@@ -56,6 +57,14 @@ public class ShopCategory {
 	
 	@ManyToMany(mappedBy = "shopCategories")
 	private List<Specifications> specifications;//规格
+
+	public List<CarCommoidty> getCarCommoidties() {
+		return carCommoidties;
+	}
+
+	public void setCarCommoidties(List<CarCommoidty> carCommoidties) {
+		this.carCommoidties = carCommoidties;
+	}
 
 	public List<ShopCategory> getChildren() {
 		return children;

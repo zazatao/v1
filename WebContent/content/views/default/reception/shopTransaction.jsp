@@ -373,8 +373,7 @@
 															<td><div align="center">${order.orderUser.userName }</div></td>
 															<td><div align="center">
 																	<c:choose>
-																		<c:when
-																			test="${order.orderstatus == 'waitAcceptance' }">等待验收</c:when>
+																		<c:when test="${order.orderstatus == 'waitAcceptance' }">等待验收</c:when>
 																		<c:when test="${order.orderstatus == 'waitPayment' }">等待支付</c:when>
 																		<c:when test="${order.orderstatus == 'inForwarding' }">在转发</c:when>
 																		<c:when test="${order.orderstatus == 'waitDelivery' }">等待发货</c:when>
@@ -771,6 +770,7 @@
 				}
 			</script>
 		</div>
+	</div>
 	</div>
 	<div class="clear"></div>
 	<jsp:include page="../common/foot.jsp"></jsp:include>

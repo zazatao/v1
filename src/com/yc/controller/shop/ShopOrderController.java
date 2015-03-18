@@ -71,6 +71,11 @@ public class ShopOrderController {
 		}else{
 			map.put("orderDate", request.getParameter("orderDate"));
 		}
+		if (request.getParameter("shopName").trim().equals("")) {
+			map.put("shopName", null);
+		}else{
+			map.put("shopName", request.getParameter("shopName"));
+		}
 		if (request.getParameter("orderstatus").trim().equals("")) {
 			map.put("orderstatus", null);
 		}else{
@@ -81,10 +86,10 @@ public class ShopOrderController {
 		}else{
 			map.put("storeOperator", request.getParameter("storeOperator"));
 		}
-		if (request.getParameter("transNumForTaobao").trim().equals("")) {
-			map.put("transNumForTaobao", null);
+		if (request.getParameter("orderID").trim().equals("")) {
+			map.put("orderID", null);
 		}else{
-			map.put("transNumForTaobao", request.getParameter("transNumForTaobao"));
+			map.put("orderID", request.getParameter("orderID"));
 		}
 		if (request.getParameter("paymentDate").trim().equals("")) {
 			map.put("paymentDate", null);

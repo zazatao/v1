@@ -10,8 +10,7 @@
 				<li><a href="../proscenium/storehouseShopComm">仓库中的商品</a></li>
 				<li><a href="../proscenium/soldShopComm">出售中的商品</a></li>
 				<li><a href="../proscenium/auctionShopComm">拍卖的商品</a></li>
-				<li><a href="#">商品促销</a></li>
-				<li><a href="#">商品留言回复</a></li>
+				<li><a href="../proscenium/specialShopComm">商品促销</a></li>
 			</ul>
 		</div>
 		<div>
@@ -43,7 +42,7 @@
 <!-- 		</div> -->
 	</div>
 </div>
-<div class="perterr">
+	<div class="perterr">
     	<div>
         	<div class="pertertil">
                 <div>

@@ -110,4 +110,8 @@ public class GenericDaoConfig {
 	public GenericDao<DeliveryAddress> getDeliveryAddressDao() {
 		return new GenericDaoSupport<DeliveryAddress>(DeliveryAddress.class);	
 	}
+	@Bean
+	public GenericDao<CarCommoidty> getCarCommoidtyDao() {
+		return new GenericDaoSupport<CarCommoidty>(CarCommoidty.class);	
+	}
 }

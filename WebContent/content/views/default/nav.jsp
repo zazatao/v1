@@ -20,7 +20,7 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">订单处理 <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">正在处理</a></li>
+						<li><a href="./orderprocessing/orderPool">订单池</a></li>
 						<li><a href="./orderprocessing/orderGroup">订单组</a></li>
 						<li><a href="./orderprocessing/dispose">处理</a></li>
 						<li><a href="#">统计</a></li>

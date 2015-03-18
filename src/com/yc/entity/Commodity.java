@@ -56,7 +56,7 @@ public class Commodity {
 	@JoinColumn(name = "seller_name")
 	private Shop seller;// 卖家
 	@Column
-	private String sellerDate;// 卖家付款日期
+	private String sellerDate;// zazatao付款日期
 	@Column
 	private String tradingCode;// 交易码
 	@Column

@@ -25,6 +25,7 @@ import com.yc.entity.OrderForm;
 import com.yc.entity.OrderStatus;
 import com.yc.entity.Shop;
 import com.yc.entity.ShopCategory;
+import com.yc.entity.ShopCommoidty;
 import com.yc.entity.user.User;
 import com.yc.model.ShopOrderSearch;
 import com.yc.service.IAddressService;
@@ -282,6 +283,27 @@ public class ShopThreeController {
 		}
 	}
 	
+	@RequestMapping(value = "specialShopComm", method = RequestMethod.GET)
+	public ModelAndView specialShopComm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		User user = (User) request.getSession().getAttribute("loginUser");
+		ModelMap mode = new ModelMap();
+		List<ShopCategory> shopCategories = shopCategService.getAll();
+		mode.put("shopCategories", shopCategories);
+		if (user != null) {
+			Shop shop = shopService.getShopByUser(user.getId());
+			if (shop != null && shop.getIsPermit()) {
+				List<ShopCommoidty> list = shopCommService.getAllByCondition("isSpecial", true, shop.getId());
+				mode.put("shopComms", list);
+				mode.put("shop", shop);
+				return new ModelAndView("reception/specialShopComm", mode);
+			} else {
+				return new ModelAndView("reception/setUpShop", mode);
+			}
+		} else {
+			return new ModelAndView("user/login", mode);
+		}
+	}
+
 	@RequestMapping(value = "getShopCommSpeces", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> getShopCommSpeces(Integer id ,String speces) throws ServletException, IOException {

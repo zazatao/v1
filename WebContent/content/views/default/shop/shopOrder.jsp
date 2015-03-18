@@ -67,8 +67,13 @@ th {
 					method="POST">
 					<div class="form-group">
 						<div class="col-sm-1">
-							<input type="text" name="transNumForTaobao" placeholder="货号"
-								class="form-control" id="transNumForTaobao" onblur="checkvalue(this);">
+							<input type="text" name="orderID" placeholder="订单编号"
+								class="form-control" id="orderID"
+								onblur="checkvalue(this);">
+						</div>
+						<div class="col-sm-1">
+							<input type="text" name="shopName" placeholder="店家名称"
+								class="form-control" id="shopName">
 						</div>
 						<div class="col-sm-1">
 							<input type="text" name="orderUser" placeholder="买方"
@@ -89,7 +94,7 @@ th {
 								onclick="dateInfoxxx('paymentDate')">
 						</div>
 						<div class="col-sm-1">
-							<input type="text" name="tpek" placeholder="追踪"
+							<input type="text" name="tpek" placeholder="二维码"
 								class="form-control" id="tpek">
 						</div>
 						<div class="col-sm-1">
@@ -141,12 +146,12 @@ th {
 								<td>${orderform.address.toName }</td>
 								<td>${orderform.address.phone }</td>
 								<td>${orderform.address.toEmail }</td>
-								<td>${orderform.address.country }${orderform.address.provience }${orderform.address.city }${orderform.address.district }${orderform.address.street }${orderform.address.orther }</td>
+								<td><font style="color: blue;">${orderform.address.country }${orderform.address.provience }${orderform.address.city }${orderform.address.district }${orderform.address.street }${orderform.address.orther }</font></td>
 								<td>${orderform.address.handedAddress }</td>
 								<td  align="center"><c:if test="${orderform.delivery == 'EMS'}">Ems</c:if></td>
 								<td>${orderform.deliveryMoney }</td>
 								<td>${orderform.changeStatusDate }</td>
-								<td><c:choose>
+								<td><font style="color: red;"><c:choose>
 										<c:when test="${orderform.orderstatus =='waitAcceptance'}">等待验收</c:when>
 										<c:when test="${orderform.orderstatus =='waitPayment'}">等待支付</c:when>
 										<c:when test="${orderform.orderstatus =='inForwarding'}">在线转发</c:when>
@@ -157,7 +162,7 @@ th {
 										<c:when test="${orderform.orderstatus =='closeTransaction'}">关闭交易</c:when>
 										<c:when
 											test="${orderform.orderstatus =='autoCloseTransaction'}">自动关闭交易</c:when>
-									</c:choose></td>
+									</c:choose></font></td>
 								<td><button class="btn btn-default" data-toggle="modal"
 										data-target="#detailModal"
 										onclick="updateShopOrder(${orderform.orderFormID});">修改</button>&nbsp;&nbsp;
@@ -178,8 +183,8 @@ th {
 											<c:set value="${spec }" var="orther"></c:set>
 										</c:if>
 									</c:forEach>
-										<td colspan="3">商品：${commodity.nameOfGoods }</td>
-										<td colspan="3">卖家：${commodity.seller.shopName }</td>
+										<td colspan="3">商品：<font style="color: blue;">${commodity.nameOfGoods }</font></td>
+										<td colspan="3">卖家：<font style="color:red;">${commodity.seller.shopName }</font></td>
 										<c:set var="ortherSpec" value="${fn:replace(commSpecs,orther,'')}"></c:set>
 										<td colspan="7">规格：${ys}&nbsp;${fn:replace(ortherSpec,',','&nbsp;')}</td>
 								</tr>

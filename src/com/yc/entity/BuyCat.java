@@ -25,7 +25,7 @@ public class BuyCat {
 	
 	@ManyToOne
 	@JoinColumn(name = "shopCommoidty_id")
-	private ShopCommoidty shopCommoidty;
+	private CarCommoidty shopCommoidty;
 	
 	@Column
 	private String deliveryComm;
@@ -79,11 +79,11 @@ public class BuyCat {
 		this.catUser = catUser;
 	}
 
-	public ShopCommoidty getShopCommoidty() {
+	public CarCommoidty getShopCommoidty() {
 		return shopCommoidty;
 	}
 
-	public void setShopCommoidty(ShopCommoidty shopCommoidty) {
+	public void setShopCommoidty(CarCommoidty shopCommoidty) {
 		this.shopCommoidty = shopCommoidty;
 	}
 

@@ -18,11 +18,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yc.entity.BuyCat;
+import com.yc.entity.CarCommoidty;
 import com.yc.entity.ShopCategory;
 import com.yc.entity.user.User;
 import com.yc.model.BrandCategory;
 import com.yc.model.BuyCatSession;
 import com.yc.service.IBuyCatService;
+import com.yc.service.ICarCommoidtyService;
 import com.yc.service.IShopCategoryService;
 
 @Controller
@@ -34,6 +36,9 @@ public class GetShopCategory {
 	
 	@Autowired
 	IBuyCatService buyCatService;
+	
+	@Autowired
+	ICarCommoidtyService carCommoidtyService;
 	
 	@RequestMapping(value = "shopCategoryAll", method = RequestMethod.GET)
 	@ResponseBody
@@ -163,7 +168,9 @@ public class GetShopCategory {
 						BuyCat buyCat = new BuyCat();
 						buyCat.setBuyAmount(buyCatSession.getBuyAmount());
 						buyCat.setCatUser(user);
-						buyCat.setShopCommoidty(buyCatSession.getShopCommoidty());
+						CarCommoidty carCommoidty = carCommoidtyService.save(buyCatSession.getShopCommoidty());
+						System.out.println("buyCatSession.getShopCommoidty().id---===="+carCommoidty.getId());
+						buyCat.setShopCommoidty(carCommoidty);
 						buyCat.setSpecs(buyCatSession.getSpecs());
 						buyCatService.save(buyCat);
 					}

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import com.yc.dao.orm.commons.GenericDao;
 import com.yc.entity.Commodity;
 import com.yc.entity.CommoidityStatus;
+import com.yc.entity.OrderStatus;
 import com.yc.entity.Shop;
 import com.yc.entity.StoreRoom;
 import com.yc.model.CommdityModel;
@@ -216,7 +217,7 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 	//热销商品查询
 	@Override
 	public List<Products> getAllByCommdityID(Integer id) {
-		StringBuffer hql = new StringBuffer("SELECT SUM(quantity) sums,c.transNumForTaobao,s.categoryID,c.seller,c.nameOfGoods,i.path FROM commodity c RIGHT JOIN shopcategory s ON s.categoryID = c.shopcategory LEFT JOIN  ImagePath i  on c.commodityID = i.from_commodity WHERE  c.shopcategory = "+id+" GROUP BY c.shopcategory ORDER BY sums DESC LIMIT 7");
+		StringBuffer hql = new StringBuffer("SELECT SUM(quantity) sums,c.transNumForTaobao,s.categoryID,c.seller_name,c.nameOfGoods,i.path FROM commodity c RIGHT JOIN shopcategory s ON s.categoryID = c.shopcategory LEFT JOIN  ImagePath i  on c.commodityID = i.from_commodity WHERE  c.shopcategory = "+id+" GROUP BY c.shopcategory ORDER BY sums DESC LIMIT 7");
 		Query query = commodityDao.getEntityManager().createNativeQuery(hql.toString());
 		@SuppressWarnings("rawtypes")
 		List objecArraytList = query.getResultList();  
@@ -236,27 +237,41 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 		}
 		return pr;
 	}
-//	//更多内容查询
-//		@Override
-//		public List<Products> getAllByCommdityProducts(Integer id，String page) {
-//			StringBuffer hql = new StringBuffer("SELECT SUM(quantity) sums,c.transNumForTaobao,s.categoryID,c.seller,c.nameOfGoods,i.path FROM commodity c RIGHT JOIN shopcategory s ON s.categoryID = c.shopcategory LEFT JOIN  ImagePath i  on c.commodityID = i.from_commodity WHERE  c.shopcategory = "+id+" GROUP BY c.shopcategory ORDER BY sums DESC LIMIT 7");
-//			Query query = commodityDao.getEntityManager().createNativeQuery(hql.toString());
-//			@SuppressWarnings("rawtypes")
-//			List objecArraytList = query.getResultList();  
-//			List<Products> pr = new ArrayList<Products>();
-//			Products mode = null;
-//			if (objecArraytList != null && objecArraytList.size()>0) {
-//				for(int i=0;i<objecArraytList.size();i++) {   
-//					mode = new Products();
-//		            Object[] obj = (Object[]) objecArraytList.get(i); 
-//		            mode.setTransNumForTaobao(Integer.parseInt(obj[1].toString()));
-//		            mode.setShopcategory(Integer.parseInt(obj[2].toString()));
-//		            mode.setSeller(obj[3].toString());
-//		            mode.setNameOfGoods(obj[4].toString());
-//		            mode.setPath(obj[5].toString());
-//		            pr.add(mode);
-//		        } 
-//			}
-//			return pr;
-//		}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Commodity> getAllByCommStatusAndOrderStatus(CommoidityStatus support, OrderStatus waitdelivery) {
+		StringBuffer hql = new StringBuffer("select DISTINCT comm.* from Commodity comm left join OrderForm orders on orders.orderFormID = comm.orderform_id where comm.status = '"+support+"' and orders.orderstatus = '"+waitdelivery+"' and comm.seller_name = 1");
+		return commodityDao.getEntityManager().createNativeQuery(hql.toString(), Commodity.class).getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Commodity> getOrderPollByParam(Map<String, Object> map) {
+		StringBuffer hql = new StringBuffer("select DISTINCT comm.* from Commodity comm left join OrderForm orders on orders.orderFormID = comm.orderform_id left join User u on u.id = orders.user_id where comm.seller_name = 1 " );
+		if (map.get("transNumForTaobao") !=null) {
+			hql.append(" and comm.transNumForTaobao = "+map.get("transNumForTaobao"));
+		}
+		if (map.get("orderUserName") != null) {
+			hql.append(" and u.userName like '%"+map.get("orderUserName")+"%'");
+		}
+		if (map.get("paymentDate") != null) {
+			hql.append(" and orders.paymentDate like '%"+map.get("paymentDate")+"%'");
+		}
+		if (map.get("disposeStatus") != null) {
+			hql.append(" and comm.disposeStatus = '"+map.get("disposeStatus")+"'");
+		}
+		return commodityDao.getEntityManager().createNativeQuery(hql.toString(), Commodity.class).getResultList();
+	}
+	
+	@Override
+	public Commodity getCommByOrderIDAndCommCode(Integer orderid, Integer commCode) {
+		List<String> keys = new ArrayList<String>();
+        keys.add("orderNumber.orderFormID");
+        keys.add("transNumForTaobao");
+        List<Object> values = new ArrayList<Object>();
+        values.add(orderid);
+        values.add(commCode);
+		return commodityDao.getFirstRecord(keys, values);
+	}
 }

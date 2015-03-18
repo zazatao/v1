@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yc.entity.Commodity;
 import com.yc.entity.CommoidityStatus;
+import com.yc.entity.OrderStatus;
 import com.yc.entity.Shop;
 
 import java.util.Map;
@@ -35,5 +36,12 @@ public interface ICommodityService extends IGenericService<Commodity> {
 	
 	//状态订单商品状态查询
 	List<Commodity> getShopCommodityByStatus(CommoidityStatus commoidStatus, CommoidityStatus cancel, CommoidityStatus delete, CommoidityStatus marriage, Shop shop);
+
+	//订单状态和商品状态
+	List<Commodity> getAllByCommStatusAndOrderStatus(CommoidityStatus support, OrderStatus waitdelivery);
+
+	List<Commodity> getOrderPollByParam(Map<String, Object> map);
+
+	Commodity getCommByOrderIDAndCommCode(Integer orderid, Integer commCode);
 
 }

@@ -76,9 +76,20 @@ public class Shop {
 	@OneToMany(mappedBy = "belongTo")
 	private List<ShopCommoidty> shopCommoidties;//店铺商品
 	
+	@OneToMany(mappedBy = "carbelongTo")
+	private List<CarCommoidty> carCommoidties;//店铺商品
+	
 	@OneToOne(mappedBy = "shop")
 	private User user;
 	
+	public List<CarCommoidty> getCarCommoidties() {
+		return carCommoidties;
+	}
+
+	public void setCarCommoidties(List<CarCommoidty> carCommoidties) {
+		this.carCommoidties = carCommoidties;
+	}
+
 	public String getMoney() {
 		return money;
 	}
