@@ -204,8 +204,6 @@
 															<label>${commodity.money}</label>
 														</th>
 														<th>
-															付款:
-															<label>1212</label>
 														</th>
 													</tr>
 													<c:set value="${fn:split(commodity.commSpec,',')}" var="spec"></c:set>
@@ -277,30 +275,14 @@
 															$('#quantity').attr("readonly","readonly")
 														}
 													});
-// 													$('input[name="dispose"]').each(function(){
-// 													   alert(this.value);
-// 													});
 													</script>
-													<tr>
-														<th>
-															条形码:
-															<input type="text" value="${commodity.tpek}">
-														</th>
-														<th>
-															交易码:&nbsp;&nbsp;&nbsp;&nbsp;
-															<input type="text" value="${commodity.tradingCode}">
-														</th>
-														<th>
-														</th>
-														<th></th>
-													</tr>
 													<tr>
 														<th></th>
 														<th></th>
 														<th>
 															<button type="button" class="btn btn-primary">稍后处理</button>
 														</th>
-														<th><button type="button" class="btn btn-primary">现在处理</button></th>
+														<th><button type="button" onclick="" class="btn btn-primary">现在处理</button></th>
 													</tr>
 											</table>
 											<!-- /表格 -->

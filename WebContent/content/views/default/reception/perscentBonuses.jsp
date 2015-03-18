@@ -84,8 +84,21 @@
 						<div class="ordcontil">
 							<p>${orderForm.orderFormID }</p>
 							<div class="octd">
-								<span class="octdw" style="margin-left: 362px;">运费：${orderForm.deliveryMoney }</span>
+								<span class="octdw" style="margin-left: 520px;">运费：${orderForm.deliveryMoney }</span>
+								<span class="octdw" style="margin-left: 200px;"><c:choose>
+										<c:when test="${orderForm.orderstatus =='waitAcceptance'}">等待验收</c:when>
+										<c:when test="${orderForm.orderstatus =='waitPayment'}">等待支付</c:when>
+										<c:when test="${orderForm.orderstatus =='inForwarding'}">在线转发</c:when>
+										<c:when test="${orderForm.orderstatus =='waitDelivery'}">等待发货</c:when>
+										<c:when test="${orderForm.orderstatus =='transitGoods'}">在途货物</c:when>
+										<c:when test="${orderForm.orderstatus =='consigneeSigning'}">收货人签单</c:when>
+										<c:when test="${orderForm.orderstatus =='completionTransaction'}">完成交易</c:when>
+										<c:when test="${orderForm.orderstatus =='closeTransaction'}">关闭交易</c:when>
+										<c:when
+											test="${orderform.orderstatus =='autoCloseTransaction'}">自动关闭交易</c:when>
+									</c:choose></span>
 							</div>
+							
 						</div>
 						<div class="ordconpic">
 							<c:forEach items="${orderForm.commodities }" var="commodity">
@@ -103,29 +116,7 @@
 									<li class="ordersli5"><div class="midl">${commodity.price }</div></li>
 									<li class="ordersli6"><div class="midl">${commodity.money }</div></li>
 									<li class="ordersli7"><div class="midl">
-											<c:choose>
-												<c:when test="${commodity.status == 'unchanged'}">没有变化</c:when>
-												<c:when test="${commodity.status =='cancel'}">取消交易</c:when>
-												<c:when test="${commodity.status =='delete'}">删除</c:when>
-												<c:when test="${commodity.status =='senToWarehouse'}">送往库房</c:when>
-												<c:when test="${commodity.status =='refuse'}">拒绝入库</c:when>
-												<c:when test="${commodity.status =='lose'}">丢失</c:when>
-												<c:when test="${commodity.status =='inWarehouse'}">在库房中</c:when>
-												<c:when test="${commodity.status =='marriage'}">交易中</c:when>
-												<c:when test="${commodity.status =='lack'}">缺少货品</c:when>
-												<c:when test="${commodity.status =='inAuctionlose'}">下单</c:when>
-												<c:when test="${commodity.status =='delivery'}">交付</c:when>
-												<c:when test="${commodity.status =='support'}">支持</c:when>
-												<c:when test="${commodity.status =='sendOut'}">派送</c:when>
-												<c:when test="${commodity.status =='buyerNotPay'}">买方没有支付</c:when>
-												<c:when test="${commodity.status =='inCell'}">在格子</c:when>
-												<c:when test="${commodity.status =='manualProcessing'}">手工加工</c:when>
-												<c:when test="${commodity.status =='inForwarding'}">转发中</c:when>
-												<c:when test="${commodity.status =='packing'}">打包</c:when>
-												<c:when test="${commodity.status =='paid'}">已付</c:when>
-												<c:when test="${commodity.status =='apiProcessing'}">API处理</c:when>
-												<c:when test="${commodity.status =='waitingForTracking'}">等待的追踪</c:when>
-											</c:choose>
+											
 										</div></li>
 								</ul>
 							</c:forEach>
