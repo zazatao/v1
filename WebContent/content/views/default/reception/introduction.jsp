@@ -119,7 +119,7 @@
 						<li>邀请你的朋友和我们一起赚钱</li>
 					</ul>
 				</div>
-				<div class="setcan" style="display: block" id="t1">
+				<div class="setcan">
 					<h3>我的信息</h3>
 					<p>更新您的个人信息和发照片到您的个人资料</p>
 					<div>

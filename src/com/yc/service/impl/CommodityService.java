@@ -221,7 +221,6 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 		Query query = commodityDao.getEntityManager().createNativeQuery(hql.toString());
 		@SuppressWarnings("rawtypes")
 		List objecArraytList = query.getResultList();  
-//		List<CommdityModel> listone = new ArrayList<CommdityModel>();
 		List<Products> pr = new ArrayList<Products>();
 		Products mode = null;
 		if (objecArraytList != null && objecArraytList.size()>0) {
