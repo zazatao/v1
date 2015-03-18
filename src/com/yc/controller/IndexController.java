@@ -106,20 +106,12 @@ public class IndexController {
 		mode.put("page", "page");
 		mode.put("id", id);
 		mode.put("nvabar", strs.substring(0, strs.length() - 1));
-		List<ShopCommoidty> list = shopCommService.getAllByShopCategoryID(id,"page");
+		List<Products> list = commodityService.getAllByCommdityID(id);
 		mode.put("list", list);
   		return new ModelAndView("reception/searchList", mode);
   	}
- // // 热销产品查询
-//	@RequestMapping(value = "shopComm", method = RequestMethod.GET)
-//	public ModelAndView shopComm(Integer id,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		ModelMap mode = new ModelMap();
-//		List<ShopCategory> shopcates = shopCategService.getAll();
-//		List<Products> list = commodityService.getAllByCommdityID(id);
-//		mode.put("list2", list);
-//		mode.put("shopCategories", shopcates);
-//		return new ModelAndView("index", mode);
-//	}
+  	
+  	
  	@RequestMapping(value = "homePage", method = RequestMethod.GET)
     public ModelAndView homePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
  		Personnel personnel = (Personnel)request.getSession().getAttribute("loginPersonnle");
@@ -133,5 +125,37 @@ public class IndexController {
     @RequestMapping(value = "personnel", method = RequestMethod.GET)
     public ModelAndView personnel(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         return new ModelAndView("personnel", null);
-    } 
+    }
+    
+ // 产品展示
+   	@RequestMapping(value = "CommItem", method = RequestMethod.GET)
+   	public ModelAndView CommItem(Integer id,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+   		ModelMap mode = new ModelMap();
+ 		ShopCategory cate = shopCategService.findById(id);
+ 		List<ShopCategory> shopcates = new ArrayList<ShopCategory>();
+ 		mode.put("brands", cate.getBrands());
+ 		mode.put("specifications", cate.getSpecifications());
+ 		String strs = "";
+ 		shopcates.add(cate);
+ 		while (cate.getParentLevel() != null) {
+ 			cate = shopCategService.findById(cate.getParentLevel().getCategoryID());
+ 			if (cate != null) {
+ 				shopcates.add(cate);
+ 			}
+ 		}
+ 		for (int i = shopcates.size() - 1; i >= 0; i--) {
+ 			if (i == shopcates.size() - 1) {
+ 				cate = shopcates.get(i);
+ 			}
+ 			strs = strs + shopcates.get(i).getCategoryID() + "-" + shopcates.get(i).getCategory() + "|";
+ 		}
+ 		shopcates = shopCategService.getAll();
+ 		mode.put("shopCategories", shopcates);
+ 		mode.put("cate", cate);
+ 		mode.put("id", id);
+ 		mode.put("nvabar", strs.substring(0, strs.length() - 1));
+ 		List<Products> list = commodityService.getAllByCommdityID(id);
+ 		mode.put("list", list);
+   		return new ModelAndView("reception/searchList", mode);
+   	}
 }

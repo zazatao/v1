@@ -220,7 +220,6 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 		Query query = commodityDao.getEntityManager().createNativeQuery(hql.toString());
 		@SuppressWarnings("rawtypes")
 		List objecArraytList = query.getResultList();  
-//		List<CommdityModel> listone = new ArrayList<CommdityModel>();
 		List<Products> pr = new ArrayList<Products>();
 		Products mode = null;
 		if (objecArraytList != null && objecArraytList.size()>0) {
@@ -237,4 +236,27 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 		}
 		return pr;
 	}
+//	//更多内容查询
+//		@Override
+//		public List<Products> getAllByCommdityProducts(Integer id，String page) {
+//			StringBuffer hql = new StringBuffer("SELECT SUM(quantity) sums,c.transNumForTaobao,s.categoryID,c.seller,c.nameOfGoods,i.path FROM commodity c RIGHT JOIN shopcategory s ON s.categoryID = c.shopcategory LEFT JOIN  ImagePath i  on c.commodityID = i.from_commodity WHERE  c.shopcategory = "+id+" GROUP BY c.shopcategory ORDER BY sums DESC LIMIT 7");
+//			Query query = commodityDao.getEntityManager().createNativeQuery(hql.toString());
+//			@SuppressWarnings("rawtypes")
+//			List objecArraytList = query.getResultList();  
+//			List<Products> pr = new ArrayList<Products>();
+//			Products mode = null;
+//			if (objecArraytList != null && objecArraytList.size()>0) {
+//				for(int i=0;i<objecArraytList.size();i++) {   
+//					mode = new Products();
+//		            Object[] obj = (Object[]) objecArraytList.get(i); 
+//		            mode.setTransNumForTaobao(Integer.parseInt(obj[1].toString()));
+//		            mode.setShopcategory(Integer.parseInt(obj[2].toString()));
+//		            mode.setSeller(obj[3].toString());
+//		            mode.setNameOfGoods(obj[4].toString());
+//		            mode.setPath(obj[5].toString());
+//		            pr.add(mode);
+//		        } 
+//			}
+//			return pr;
+//		}
 }

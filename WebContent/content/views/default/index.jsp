@@ -70,7 +70,6 @@
             <div class="fenlei" id="fl1">
             	 <c:forEach items="${list}" var="Comm">
             	 	<a href="#"  onclick='Search(${Comm.categoryID});'><span class="f1" ><div style="background:#fbd70c;"></div>${fn:substring(Comm.category, 0, 4)}</span></a>
-<%--             	 	<a><span class="f1" onclick="shopComm?id=${Comm.categoryID}"><div style="background:#fbd70c;"></div>${fn:substring(Comm.category, 0, 4)}</span></a> --%>
               	</c:forEach> 
              </div>
             <div class="fenlei">
@@ -125,7 +124,6 @@
                         </div>
                         <div class="fltpf" id="buyCatNum">
                             <ul id="img5">
-                            	
 <!--                             		<li><a href="#"></a></li> -->
                             	<li>
                             	 <div>
