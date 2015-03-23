@@ -51,7 +51,7 @@ th {
 	<div class="panel panel-default" style="padding: 0; margin-top: 32px;">
 		<div class="panel-heading">
 			<h3 class="panel-title">
-				<a href="./insertShopOrder" style="font-size: 18px;">商品</a> <span class="divider"><font
+				<a href="#" style="font-size: 18px;">商品</a> <span class="divider"><font
 					style="font-size: 18px;">/</font></span> <font style="font-size: 18px;">订单</font>
 					<a href="./toAddShopOrder" style="font-size: 18px;">
 					<span class="badge navbar-right">添加&nbsp;+</span></a>
@@ -168,7 +168,6 @@ th {
 										onclick="updateShopOrder(${orderform.orderFormID});">修改</button>&nbsp;&nbsp;
 									<button class="btn btn-default" id="del"
 										onclick="deleteShopOrder(${orderform.orderFormID});">删除</button></td>
-								<!-- 									<button class="btn btn-default" onclick="#" id="del">删除</button> -->
 							</tr>
 							<c:forEach items="${orderform.commodities }" var="commodity" >
 								<c:set var="commSpecs" value="${commodity.commSpec }"></c:set>
@@ -220,8 +219,8 @@ th {
 									</td>
 								</tr>
 								<tr>
-									<td colspan="6">采购员：&nbsp;${orderform.purchase.userName }</td>
-									<td colspan="7">操作员：&nbsp;${orderform.storeOperator.userName }</td>
+									<td colspan="6">采购员：&nbsp;${commodity.purchase.userName }</td>
+									<td colspan="7">操作员：&nbsp;${commodity.storeOperator.userName }</td>
 								</tr>
 								<tr>
 									<td  rowspan="2" colspan="13">评论：&nbsp;</td>

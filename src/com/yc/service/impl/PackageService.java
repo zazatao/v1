@@ -41,7 +41,7 @@ public class PackageService extends GenericService<Package> implements IPackageS
 	@Override
 	public List<Package> getPackAgeByParameters(Map<String, Object> map) {
 		StringBuffer hql = new StringBuffer(" from Package p where (? is null or p.packageCode = ?) and (? is null or p.delivery = ?)");
-		Object[] paramete =  new Object[8];
+		Object[] paramete =  new Object[4];
 		paramete[0] = map.get("packageCode");
 		paramete[1] = map.get("packageCode");
 		paramete[2] = map.get("formDelivery");

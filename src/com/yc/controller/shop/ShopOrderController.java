@@ -203,7 +203,7 @@ public class ShopOrderController {
 		c.setOrderNumber(of);
 		orderFormService.save(of);
 		personnelService.save(person);
-		of.setStoreOperator(person);
+		c.setStoreOperator(person);
 		commodityService.save(c);
     	return shopOrder(request, response);
     }

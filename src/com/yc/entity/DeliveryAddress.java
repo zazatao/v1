@@ -2,6 +2,8 @@ package com.yc.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,7 +33,14 @@ public class DeliveryAddress {
 	@Column
 	private String orther ;// 其它
 	@Column
-	private String handedAddress ;// 转交地址
+	@Enumerated(EnumType.STRING)
+	private Transit handedAddress ;//中转地
+	public Transit getHandedAddress() {
+		return handedAddress;
+	}
+	public void setHandedAddress(Transit handedAddress) {
+		this.handedAddress = handedAddress;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -91,12 +100,6 @@ public class DeliveryAddress {
 	}
 	public void setOrther(String orther) {
 		this.orther = orther;
-	}
-	public String getHandedAddress() {
-		return handedAddress;
-	}
-	public void setHandedAddress(String handedAddress) {
-		this.handedAddress = handedAddress;
 	}
 	
 }

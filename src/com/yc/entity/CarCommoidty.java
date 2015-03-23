@@ -69,6 +69,17 @@ public class CarCommoidty {
 	@ManyToOne
 	@JoinColumn(name = "shop_id")
 	private Shop carbelongTo;//商品所属店面
+	
+	@Column
+	private String describes;//描述
+
+	public String getDescribes() {
+		return describes;
+	}
+
+	public void setDescribes(String describes) {
+		this.describes = describes;
+	}
 
 	public Integer getId() {
 		return id;

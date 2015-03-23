@@ -15,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -71,14 +70,6 @@ public class OrderForm {
 	@Column
 	private String paymentTime;// 付款时间
 
-	@ManyToOne
-	@JoinColumn(name = "store_user")
-	private Personnel storeOperator;// 库房操作员
-	
-	@ManyToOne
-	@JoinColumn(name = "purchase_user")
-	private Personnel purchase;// 采购员
-	
 	@OneToMany(mappedBy = "orderform")
 	private List<ImagePath> imagePaths;
 	
@@ -107,22 +98,6 @@ public class OrderForm {
 
 	public void setDeliveryMoney(Float deliveryMoney) {
 		this.deliveryMoney = deliveryMoney;
-	}
-
-	public Personnel getStoreOperator() {
-		return storeOperator;
-	}
-
-	public void setStoreOperator(Personnel storeOperator) {
-		this.storeOperator = storeOperator;
-	}
-
-	public Personnel getPurchase() {
-		return purchase;
-	}
-
-	public void setPurchase(Personnel purchase) {
-		this.purchase = purchase;
 	}
 
 	public OrderStatus getOrderstatus() {

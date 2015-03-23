@@ -62,11 +62,11 @@
 							</select>
 						</div>
 						<div class="col-sm-1">
-							<input type="text" name="userName" placeholder="买方"
+							<input type="text" name="userName" placeholder="客户"
 								class="form-control" id="userName">
 						</div>
 						<div class="col-sm-1">
-							<input type="submit" value="搜索" class="btn btn-default">
+							<input type="submit" value="搜索&添加" class="btn btn-default">
 						</div>
 					</div>
 				</form>
@@ -82,7 +82,7 @@
 							<tr class="">
 								<th>包裹编号</th>
 								<th>交货方式</th>
-								<th>买主</th>
+								<th>客户</th>
 								<th>总重量</th>
 							</tr>
 							<c:forEach var="pack" items="${list }" varStatus="loop">
@@ -142,92 +142,15 @@
 											<div class="col-sm-2">
 												<select class="form-control">
 													<option value="600x500x400">600&nbsp;x&nbsp;500&nbsp;x&nbsp;400
-
-
-
-													
 													<option value="530x290x370">530&nbsp;x&nbsp;290&nbsp;x&nbsp;370
-
-
-
-
-
-													
 													<option value="530x230x290">530&nbsp;x&nbsp;230&nbsp;x&nbsp;290
-
-
-
-
-
-													
 													<option value="430x210x270">430&nbsp;x&nbsp;210&nbsp;x&nbsp;270
-
-
-
-
-
-													
 													<option value="350x190x230">350&nbsp;x&nbsp;190&nbsp;x&nbsp;230
-
-
-
-
-
-
-													
 													<option value="290x170x190">290&nbsp;x&nbsp;170&nbsp;x&nbsp;190
-
-
-
-
-
-
-
-													
 													<option value="260x150x180">260&nbsp;x&nbsp;150&nbsp;x&nbsp;180
-
-
-
-
-
-
-
-
-
-
-
-													
 													<option value="230x130x160">230&nbsp;x&nbsp;130&nbsp;x&nbsp;160
-
-
-
-
-
-
-
-
-
-
-
-													
 													<option value="210x110x140">210&nbsp;x&nbsp;110&nbsp;x&nbsp;140
-
-
-
-
-
-
-
-
-
-
-
-													
 													<option value="195x105x135">195&nbsp;x&nbsp;105&nbsp;x1&nbsp;35
-
-
-
-													
 													<option value="other">其它
 												</select>
 											</div>
@@ -237,8 +160,7 @@
 													value="${hospital.hospitalDesignation }">
 											</div>
 											<div class="col-sm-1">
-
-												<input type="text" name="hospitalDesignation"
+ 												<input type="text" name="hospitalDesignation"
 													class="form-control" id="inputEmail3"
 													value="${hospital.hospitalDesignation }">
 											</div>

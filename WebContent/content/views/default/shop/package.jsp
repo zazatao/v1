@@ -51,7 +51,7 @@ th {
 	<div class="panel panel-default" style="padding: 0; margin-top: 32px;">
 		<div class="panel-heading">
 			<h3 class="panel-title">
-				<a href="./insertPackage" style="font-size: 18px;">商品</a> <span class="divider"><font
+				<a href="#" style="font-size: 18px;">商品</a> <span class="divider"><font
 					style="font-size: 18px;">/</font></span> <font style="font-size: 18px;">包裹</font><a
 					href="./toAddPackage" style="font-size: 18px;"><span
 					class="badge navbar-right">添加&nbsp;+</span></a>

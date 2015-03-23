@@ -104,12 +104,12 @@ public class PackageController {
 		pk.setTraffic(traffic);
 		Integer orderformid = Integer.parseInt(request.getParameter("orderFormID"));
 		of.setOrderFormID(orderformid);
-		of.setStoreOperator(person);
 		orderFormService.save(of);
 		 personnelService.save(person);
 		packageService.save(pk);
 		of.setOrderUser(new User());
 		c.setOrderNumber(of);
+		c.setStoreOperator(person);
 		commodityService.save(c);
     	return packages(request, response);
     }

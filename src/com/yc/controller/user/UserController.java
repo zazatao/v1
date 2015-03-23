@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.yc.entity.Address;
 import com.yc.entity.OrderForm;
 import com.yc.entity.ShopCategory;
+import com.yc.entity.Transit;
 import com.yc.entity.user.Sex;
 import com.yc.entity.user.User;
 import com.yc.service.IAddressService;
@@ -241,7 +242,7 @@ public class UserController {
 		String district = request.getParameter("district");
 		as.setDistrict(district);
 		String handedAddress = request.getParameter("handedAddress");
-		as.setHandedAddress(handedAddress);
+		as.setHandedAddress(Transit.valueOf(handedAddress));
 		String indexNum = request.getParameter("indexNum");
 		as.setIndexNum(indexNum);
 		as.setUser(user);
@@ -275,7 +276,7 @@ public class UserController {
 		String district = request.getParameter("districta");
 		ad.setDistrict(district);
 		String handedAddress = request.getParameter("handedAddressa");
-		ad.setHandedAddress(handedAddress);
+		ad.setHandedAddress(Transit.valueOf(handedAddress));
 		String indexNum = request.getParameter("indexNuma");
 		ad.setIndexNum(indexNum);
 		if(num == 0){ theDefault = false; } else { theDefault = true; }

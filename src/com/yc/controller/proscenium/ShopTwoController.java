@@ -38,6 +38,7 @@ import com.yc.entity.ShopCommImage;
 import com.yc.entity.ShopCommoidty;
 import com.yc.entity.ShopCommoidtySpecs;
 import com.yc.entity.StoreRoom;
+import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
 import com.yc.model.BuyCatSession;
 import com.yc.service.IAddressService;
@@ -48,6 +49,7 @@ import com.yc.service.ICommodityService;
 import com.yc.service.IDeliveryAddressService;
 import com.yc.service.IImagePathService;
 import com.yc.service.IOrderFormService;
+import com.yc.service.IPersonnelService;
 import com.yc.service.IShopCategoryService;
 import com.yc.service.IShopCommImageService;
 import com.yc.service.IShopCommoidtyService;
@@ -112,6 +114,9 @@ public class ShopTwoController {
 	
 	@Autowired
 	ICarCommoidtyService carCommoidtyService;
+	
+	@Autowired
+	IPersonnelService personnelService;
 	
 	//类别查找
 	@RequestMapping(value = "categoryOne", method = RequestMethod.GET)
@@ -180,6 +185,7 @@ public class ShopTwoController {
 			carcomm.setCarCategory(comm.getShopCategory());
 			carcomm.setBrand(comm.getBrand());
 			carcomm.setCarbelongTo(comm.getBelongTo());
+			carcomm.setDescribes(comm.getDescribes());
 			carcomm = carCommoidtyService.save(carcomm);
 			if (user == null) {
 				BuyCatSession buyCat = new BuyCatSession();
@@ -292,8 +298,6 @@ public class ShopTwoController {
 				for (BuyCatSession buyCatSession : buycats) {
 					boolean bool = true;
 					for (BuyCat buyCat : list) {
-						System.out.println("buyCatSession.getShopCommoidty()===="+buyCatSession.getShopCommoidty());
-						System.out.println("buyCat.getShopCommoidty()===="+buyCat.getShopCommoidty());
 						boolean isok = true;
 						if (buyCatSession.getShopCommoidty().getCommoidtyName().equals(buyCat.getShopCommoidty().getCommoidtyName())) {
 							String[] buycat1 = buyCatSession.getSpecs().split(",");
@@ -485,10 +489,27 @@ public class ShopTwoController {
 			Address address = addressService.findById(addID);
 			mode.put("address", address);
 			mode.put("list", list);
+			//付款后订单分配
+			shareOrder(user);
 		}
 		return  new ModelAndView("reception/shopcarpro",mode);
 	}
-	
+
+	private void shareOrder(User user) {
+		List<Personnel> list =personnelService.getPurchaseByUser(user);
+		if (list != null && list.size()>0) {
+			List<Commodity> commodities = commodityService.getOrderByPurchaseAndUser(user);
+			if (commodities != null && commodities.size()>0) {
+				for (Commodity comm : commodities) {
+					if (comm.getStatus() == CommoidityStatus.support && comm.getSeller().getId() == 1) {
+						comm.setPurchase(list.get(0));
+						commodityService.update(comm);
+					}
+				}
+			}
+		}
+	}
+
 	//订单生成
 	private void saveOrderForm (Integer addID,String deliveryComm, Float deliveryMoney, HttpServletRequest request){
 		HttpSession session = request.getSession();
@@ -560,6 +581,7 @@ public class ShopTwoController {
 							}
 							commodity.setDisposeStatus(DisposeStatus.process);
 							commodity.setOrderNumber(orderform);
+							commodity.setDescribes(buyCat.getShopCommoidty().getDescribes());
 							commodityService.save(commodity);
 							if (buyCat.getShopCommoidty() != null) {
 								buyCatService.delete(buyCat.getCatID());

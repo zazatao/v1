@@ -17,6 +17,7 @@ import com.yc.dao.orm.commons.GenericDao;
 import com.yc.entity.OrderForm;
 import com.yc.entity.OrderStatus;
 import com.yc.entity.Shop;
+import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
 import com.yc.service.IOrderFormService;
 
@@ -221,7 +222,6 @@ public class OrderFormService extends GenericService<OrderForm> implements IOrde
 		if (map.get("paymentDateLeft") != null && map.get("paymentDateRight") == null) {
 			Calendar cal = Calendar.getInstance();
 			Date d1 = new Date();
-			System.out.println("paymentDateLeft===="+map.get("paymentDateLeft").toString());
 			Date dd = sdf.parse(map.get("paymentDateLeft").toString());
 			cal.setTime(new Date(dd.getTime() - 24 * 60 * 60 * 1000));
 			Date d2 = cal.getTime();
@@ -243,7 +243,6 @@ public class OrderFormService extends GenericService<OrderForm> implements IOrde
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(sdf.parse(map.get("paymentDateRight").toString()));
 			Date d1 = cal.getTime();
-			System.out.println("paymentDateLeft===="+map.get("paymentDateLeft").toString());
 			Date dd = sdf.parse(map.get("paymentDateLeft").toString());
 			cal.setTime(new Date(dd.getTime() - 24 * 60 * 60 * 1000));
 			Date d2 = cal.getTime();
@@ -262,6 +261,24 @@ public class OrderFormService extends GenericService<OrderForm> implements IOrde
 			        }
 			    hql.append(" and o.orderDate in ("+takeDates.toString()+")"); 
 			}
+		}
+		orderFormDao.getEntityManager().clear();
+		Query query = orderFormDao.getEntityManager().createNativeQuery(hql.toString(), OrderForm.class);
+		@SuppressWarnings("unchecked")
+		List<OrderForm> list =  query.getResultList();
+		return list;
+	}
+	
+	@Override
+	public List<OrderForm> getOrderByStatusAndName(Map<String, Object> map) {
+		StringBuffer hql = new StringBuffer("SELECT DISTINCT o.* FROM OrderForm o LEFT JOIN commodity com "
+				+ " ON o.orderFormID = com.orderform_id LEFT JOIN USER u ON u.id = o.user_id WHERE o.orderstatus "
+				+ " = 'transitGoods' AND com.status IN ('inWarehouse','senToWarehouse') AND o.package_id IS  NULL");
+		if (map.get("formDelivery") != null) {
+			hql.append(" and o.delivery = '"+map.get("formDelivery")+"'");
+		}
+		if (map.get("userName") != null) {
+			hql.append(" and u.userName like '%"+map.get("userName")+"%'");
 		}
 		orderFormDao.getEntityManager().clear();
 		Query query = orderFormDao.getEntityManager().createNativeQuery(hql.toString(), OrderForm.class);

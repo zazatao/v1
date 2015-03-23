@@ -21,86 +21,86 @@
 <link rel="apple-touch-icon-precomposed"
 	href="../content/static/img/apple-touch-icon-57-precomposed.png">
 <link rel="shortcut icon" href="../content/static/img/favicon.png">
-<script type="text/javascript"
+<script TYPE="text/javascript"
 	src="../content/static/js/lib/jquery.min.js"></script>
-<script type="text/javascript"
+<script TYPE="text/javascript"
 	src="../content/static/js/lib/bootstrap.min.js"></script>
-<script type="text/javascript" src="./content/static/js/lib/scripts.js"></script>
+<script TYPE="text/javascript" src="./content/static/js/lib/scripts.js"></script>
 
-<script type="text/javascript"
+<script TYPE="text/javascript"
 	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
 <link href="../content/static/css/datetime/jquery-clockpicker.min.css"
 	rel="stylesheet">
 <link href="../content/static/css/datetime/jquery.datetimepicker.css"
 	rel="stylesheet">
-<script type="text/javascript"
+<script TYPE="text/javascript"
 	src="../content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
-<script type="text/javascript"
+<script TYPE="text/javascript"
 	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
 </head>
 <body>
 	<!-- Static navbar -->
 	<jsp:include page="../common/navbar.jsp"></jsp:include>
-	<div class="container-fluid" style="padding: 0; margin-top: 32px;">
-		<div class="row-fluid">
-			<div class="span12">
+	<DIV class="container-fluid" style="padding: 0; margin-top: 32px;">
+		<DIV class="row-fluid">
+			<DIV class="span12">
 				<ul class="breadcrumb">
 					<li><a href="#" style="font-size: 18px;">订单处理</a></li>
 					<span class="divider"><font style="font-size: 18px;">/</font></span>
 					<li><font style="font-size: 18px;">处理</font>
 				</ul>
-			</div>
-		</div>
-	</div>
-	<div class="container-fluid">
-		<div class="row-fluid">
-			<div class="col-md-12 column">
+			</DIV>
+		</DIV>
+	</DIV>
+	<DIV class="container-fluid">
+		<DIV class="row-fluid">
+			<DIV class="col-md-12 column">
 				<form class="form-horizontal"
-					action="./searchWeighing" method="POST">
-					<div class="form-group">
-						<div class="col-sm-1">
-							<input type="text" name="transNumForTaobao" placeholder="淘宝ID"
+					ACTION="./searchWeighing" method="POST">
+					<DIV class="form-group">
+						<DIV class="col-sm-1">
+							<input TYPE="text" NAME="transNumForTaobao" placeholder="货品编号"
 								class="form-control" id="transNumForTaobao" onblur="checkvalue(this)">
-						</div>
-						<div class="col-sm-1">
-							<input type="text" name="seller" placeholder="卖家"
-								class="form-control" id="seller">
-						</div>
-						<div class="col-sm-1">
-							<input type="text" name="sellerDate" placeholder="卖家付款"
-								class="form-control" id="sellerDate"
-								onclick="dateInfoxxx('sellerDate')">
-						</div>
-						<div class="col-sm-1">
-							<select class="form-control" name="disposeStatus" id="disposeStatus"
+						</DIV>
+						<DIV class="col-sm-1">
+							<input TYPE="text" NAME="orderUserName" placeholder="买家"
+								class="form-control" id="orderUserName">
+						</DIV>
+						<DIV class="col-sm-1">
+							<input TYPE="text" NAME="paymentDate" placeholder="付款日期"
+								class="form-control" id="paymentDate"
+								onclick="dateInfoxxx('paymentDate')">
+						</DIV>
+						<DIV class="col-sm-2">
+							<SELECT class="form-control" NAME="disposeStatus" id="disposeStatus"
 								placeholder="状态">
-								<option value="">-----状态-----
-								<option value="process">正在处理
-								<option value="shortage">商品现货不足
-								<option value="commodityAds">产品广告
-								<option value="waiting">等候
-								<option value="manualProcessing">手动处理
-							</select>
-						</div>
-						<div class="col-sm-1">
-							<input type="submit" value="搜索" class="btn btn-default">
-						</div>
-					</div>
+								<OPTION VALUE="">--------买家界面显示状态--------
+								<OPTION VALUE="process">正在处理
+								<OPTION VALUE="shortage">商品现货不足
+								<OPTION VALUE="commodityAds">产品广告
+								<OPTION VALUE="waiting">等候
+								<OPTION VALUE="manualProcessing">手动处理
+							</SELECT>
+						</DIV>
+						<DIV class="col-sm-1">
+							<input TYPE="submit" VALUE="搜索" class="btn btn-default">
+						</DIV>
+					</DIV>
 				</form>
-			</div>
-			<div class="col-md-4 column">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">订单</h3>
-					</div>
-					<div class="list-group-item">
+			</DIV>
+			<DIV class="col-md-4 column">
+				<DIV class="panel panel-default">
+					<DIV class="panel-heading">
+						<h3 class="panel-title">领取的处理订单</h3>
+					</DIV>
+					<DIV class="list-group-item">
 						<p class="list-group-item-text">
-						<table class="table table-striped">
+						<TABLE class="table table-striped">
 							<tr class="">
-								<th>编号</th>
-								<th>淘宝ID</th>
-								<th>卖家</th>
-								<th>卖家付款</th>
+								<th>订单编号</th>
+								<th>货品编号</th>
+								<th>买家</th>
+								<th>付款日期</th>
 								<th>状态</th>
 							</tr>
 							<c:forEach var="commodity" items="${list }" varStatus="loop">
@@ -112,10 +112,10 @@
 										<tr class="success">
 									</c:otherwise>
 								</c:choose>				  
-								<td><a href="./orderItem?id=${commodity.commodityID}" onclick="orderItem(${commodity.commodityID});">${commodity.commodityID }</a></td>
+								<td><a href="./orderItem?id=${commodity.commodityID }&orderid=${commodity.orderNumber.orderFormID }" >${commodity.orderNumber.orderFormID }</a></td>
 								<td>${commodity.transNumForTaobao }</td>
-								<td>${commodity.seller}</td>
-								<td>${commodity.sellerDate}</td>
+								<td>${commodity.orderNumber.orderUser.userName}</td>
+								<td>${commodity.orderNumber.paymentDate}</td>
 								<td>
 									<c:if test="${commodity.disposeStatus == 'process' }">正在处理</c:if>
 									<c:if test="${commodity.disposeStatus == 'shortage' }">商品现货不足</c:if>
@@ -125,18 +125,18 @@
 								</td>
 								</tr>
 							</c:forEach>
-						</table>
+						</TABLE>
 						</p>
-					</div>
-				</div>
-			</div>
-			<script type="text/javascript">
+					</DIV>
+				</DIV>
+			</DIV>
+			<script TYPE="text/javascript">
 			function dateInfoxxx(obj) {
-				var date = obj;
-				$('#' + date).datetimepicker({
+				var DATE = obj;
+				$('#' + DATE).datetimepicker({
 					lang : 'ch',
-					timepicker : false,
-					format : 'Y-m-d',
+					timepicker : FALSE,
+					FORMAT : 'Y-m-d',
 					formatDate : 'Y-m-d',
 				});
 			}
@@ -146,86 +146,121 @@
 			</script>
 			
 			<!-- rightmain -->
-			<div class="col-md-8 column" style="height: 100%">
+			<DIV class="col-md-8 column" style="height: 100%">
 				<!-- 
-				<div class="panel panel-default">
+				<DIV class="panel panel-default">
 				 -->
-				 <div class="container row">
-					<div class="panel-heading">
+				 <DIV class="container row">
+					<DIV class="panel-heading">
 						<h3 class="panel-title">订单/卖家</h3>
-					</div>
-					<div class="list-group-item">
-						<div class="container-fluid">
-							<div class="row-fluid">
-								<div class="span12">
-									<div class="list-group-item" style="400px">
+					</DIV>
+					<DIV class="list-group-item">
+						<DIV class="container-fluid">
+							<DIV class="row-fluid">
+								<DIV class="span12">
+									<DIV class="list-group-item" style="400px">
 										<p class="list-group-item-text">
-										<form class="form-horizontal" action="" method="POST">
+										<form class="form-horizontal" ACTION="" method="POST">
 											<!-- 表格 -->
-											<table class="table table-hover table-striped">
+											<TABLE class="table table-hover table-striped">
 													<tr>
 														<th>
-															淘宝ID:
-															<label>${dispose.transNumForTaobao }</label>
+															订单编号:
+															<label>${commodity.orderNumber.orderFormID}</label>
 														</th>
 														<th>
-															卖家付款:
-															<label>${dispose.sellerDate}</label>
+															产品编号:
+															<label>${commodity.transNumForTaobao }</label>
 														</th>
 														<th>
 															卖家:
-															<label>${dispose.seller }</label>
+															<label>${commodity.seller.shopName }</label>
 														</th>
 														<th></th>
 													</tr>
 													<tr>
 														<th>
 															产品名称:
-															${dispose.nameOfGoods }
+															${commodity.nameOfGoods }
 														</th>
 														<th>
-															付款:
-															${dispose.money }
+															付款日期:&nbsp;&nbsp;&nbsp;&nbsp;
+															<font color="blue">${commodity.orderNumber.paymentDate }&nbsp;${commodity.orderNumber.paymentTime }</font>
 														</th>
-														<th></th>
-														<th></th>
-													</tr>
-													<tr>
-														<th>
-															选项:
-														</th>
-														<th></th>
 														<th></th>
 														<th></th>
 													</tr>
 													<tr>
 														<th>
 															数量:
-															<label>${dispose.quantity}</label>
+															<label>${commodity.quantity}</label>
 														</th>
 														<th>
 															价格:
-															<label>${dispose.price}</label>
+															<label>${commodity.price}</label>
 														</th>
 														<th>
 															金额:
-															<label>${dispose.money}</label>
+															<label>${commodity.money}</label>
 														</th>
 														<th>
-															付款:
-															<label>1212</label>
+														</th>
+													</tr>
+													<c:set value="${fn:split(commodity.commSpec,',')}" var="spec"></c:set>
+													<tr>
+														<th colspan="4">
+															<DIV>
+																<DIV class="sctbldscr">
+																	<DIV style="width: 30%; float: left;">
+																	规格：
+																		<ul>
+																			<c:forEach items="${spec }" var="sp">
+																				<c:if
+																					test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '颜色'}">
+																					<li><span>颜色:</span>
+																						${fn:substring(sp,fn:indexOf(sp, '-') +1, fn:indexOf(sp, '$') )}
+																					</li>
+																				</c:if>
+																				<c:if
+																					test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '尺寸'}">
+																					<li><span>尺寸:</span>
+																						${fn:substring(sp,fn:indexOf(sp, '-') +1, fn:length(sp) )}
+																					</li>
+																				</c:if>
+																				<c:if
+																					test="${fn:substring(sp,0,fn:indexOf(sp, '-')) != '尺寸' && fn:substring(sp,0,fn:indexOf(sp, '-')) != '颜色'}">
+																					<li class="sctbldscrlb"><span>${fn:substring(sp,0,fn:indexOf(sp, '-'))}:</span>
+																						${fn:substring(sp,fn:indexOf(sp, '-') +1, fn:length(sp) )}
+																					</li>
+																				</c:if>
+																			</c:forEach>
+																		</ul>
+																	</DIV>
+																	<DIV>
+																		<c:forEach items="${spec }" var="sp">
+																			<p class="sctbldscl">
+																				<c:if
+																					test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '颜色'}">
+																					<img
+																						src="..${fn:substring(sp, fn:indexOf(sp, '$')+1, fn:length(sp)) }" />
+																				</c:if>
+																			</p>
+																		</c:forEach>
+																	</DIV>
+																</DIV>
+															</DIV>
 														</th>
 													</tr>
 													<tr>
 														<th>
 															改变状态:
-															<input type="radio" name="dispose"value="">手动处理 
-															<input type="radio" name="dispose"value="">处理中
-															<input type="radio" name="dispose"value="">剩余商品
+															<input TYPE="radio" NAME="dispose" VALUE="manualProcessing" <c:if test="${commodity.disposeStatus == 'manualProcessing'}">checked</c:if>>手动处理 
+															<input TYPE="radio" NAME="dispose" VALUE="process" <c:if test="${commodity.disposeStatus == 'process'}">checked</c:if>>处理中
+															<input TYPE="radio" NAME="dispose" VALUE="quantity">剩余商品
 														</th>
 														<th>
 															剩余商品:
-															<input type="text" value="${dispose.quantity}">
+															<input TYPE="text" NAME="quantity" id="quantity" readonly="readonly" VALUE="${commodity.quantity}" onblur="checkvalue(this)">
 														</th>
 														<th></th>
 														<th></th>
@@ -233,67 +268,66 @@
 													<tr>
 														<th>
 															追踪号:
-															<input type="text" value="${dispose.tpek}">
+															<input TYPE="text" NAME="tpek" VALUE="${commodity.tpek}">
 														</th>
 														<th>
-															&nbsp&nbsp&nbsp交易码:
-															<input type="text" value="${dispose.tradingCode}">
-														</th>
-														<th>
-															<button type="button" class="btn btn-primary">处理</button>
+															交易码:&nbsp;&nbsp;&nbsp;&nbsp;
+															<input TYPE="text" NAME="tradingCode" value="${commodity.tradingCode}" >
 														</th>
 														<th></th>
+														<th></th>
 													</tr>
-											</table>
+													<tr>
+														<th></th>
+														<th></th>
+														<th>
+															<button TYPE="button" class="btn btn-primary">稍后处理</button>
+														</th>
+														<th><button TYPE="button" onclick="onProcessing(${commodity.orderNumber.orderFormID},${commodity.commodityID });" class="btn btn-primary">现在处理</button></th>
+													</tr>
+											</TABLE>
+											<script type="text/javascript">
+											function onProcessing(orderID,commID){
+												var num = $('#quantity').val();
+												var dispoce = $('input[name="dispose"]:checked').val();
+												location.href ='./onProcessing?dispose='+dispoce+'&num='+num+'&orderID='+orderID +'&commID='+commID;			
+											}
+											</script>
 											<!-- /表格 -->
-											
-											<div>
-												<img src="../content/static/img/favicon.jpeg" alt="Responsive image" class="img-thumbnail img-responsive">
-											</div>
-											
-											</p>
 										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="list-group-item">
-						<div class="container-fluid">
-							<div class="row-fluid">
-								<div class="span12">
-									<div class="tabbable" id="tabs-294834">
+									</DIV>
+								</DIV>
+							</DIV>
+						</DIV>
+					</DIV>
+											<script TYPE="text/javascript">
+													var num = $('#quantity').val();
+													$("input:radio[name='dispose']").change(function (){ //拨通
+														IF(this.value == 'quantity'){
+															$('#quantity').removeAttr("readonly");
+														}ELSE{
+															$('#quantity').val(num);
+															$('#quantity').attr("readonly","readonly")
+														}
+													});
+											</script>
+					<DIV class="list-group-item">
+						<DIV class="container-fluid">
+							<DIV class="row-fluid">
+								<DIV class="span12">
+									<DIV class="tabbable" id="tabs-294834">
 										<ul class="nav nav-tabs">
 											<li class="active"><a href="#panel-700079"
-												data-toggle="tab">与买家联系</a></li>
-											<li><a href="#panel-520562" data-toggle="tab">内部</a></li>
+												DATA-toggle="tab">与买家联系</a></li>
+											<li><a href="#panel-520562" DATA-toggle="tab">内部</a></li>
 										</ul>
-										<div class="tab-content">
-											<div class="tab-pane active" id="panel-700079">
-												<!-- 
-												<div class="panel-heading">
-													<h3 class="panel-title">
-														<span class="badge navbar-right">订单号：<input
-															type="text">
-															<button onclick="">查询</button>
-														</span>
-													</h3>
-												</div>
-												 -->
+										<DIV class="tab-content">
+											<DIV class="tab-pane active" id="panel-700079">
 												<br>
-												<div class="list-group-item">
+												<DIV class="list-group-item">
 													<p class="list-group-item-text">
-													<table class="table table-hover table-striped">
+													<TABLE class="table table-hover table-striped">
 														<tr class="">
-															<!-- 
-															<th>日期</th>
-															<th>订单号</th>
-															<th>数量</th>
-															<th>货号(淘宝ID)</th>
-															<th>操作</th>
-															<th>快捷</th>
-															<th>实现</th>
-															 -->
 															<th>内容</th>
 															<th>日期</th>
 														</tr>
@@ -319,37 +353,16 @@
 																</tr>
 															</c:forEach>
 														</c:forEach>
-													</table>
+													</TABLE>
 													</p>
-												</div>
-											</div>
-											<div class="tab-pane" id="panel-520562">
-												<!-- 
-												<div class="panel-heading">
-													<h3 class="panel-title">
-														<span class="badge navbar-right">订单号：<input
-															type="text">
-															<button onclick="">查询</button>
-														</span>
-													</h3>
-												</div>
-												 -->
+												</DIV>
+											</DIV>
+											<DIV class="tab-pane" id="panel-520562">
 												<br>
-												<div class="list-group-item">
+												<DIV class="list-group-item">
 													<p class="list-group-item-text">
-													<table class="table table-hover table-striped">
+													<TABLE class="table table-hover table-striped">
 														<tr class="">
-															<!-- 
-															<th>订单号</th>
-															<th>格子</th>
-															<th>货号(淘宝ID)</th>
-															<th>卖方追踪</th>
-															<th>数量</th>
-															<th>重量</th>
-															<th>名称</th>
-															<th>便利</th>
-															<th>状态</th>
-															 -->
 															<th>内容</th>
 															<th>日期</th>
 														</tr>
@@ -377,30 +390,30 @@
 																</tr>
 															</c:forEach>
 														</c:forEach>
-													</table>
+													</TABLE>
 													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+												</DIV>
+											</DIV>
+										</DIV>
+									</DIV>
+								</DIV>
+							</DIV>
+						</DIV>
+					</DIV>
+				</DIV>
+			</DIV>
 			<!-- /rightmain -->
-		</div>
-	</div>
+		</DIV>
+	</DIV>
 	</ul>
-	<script type="text/javascript">
-	function checkvalue(obj) {
-		if (!/^[+|-]?\d+\.?\d*$/.test(obj.value) && obj.value != '') {
-			alert('你输入的不是数字，或关闭输入法后再输入');
-			obj.select();
+	<script TYPE="text/javascript">
+		function checkvalue(obj) {
+			IF (!/^[+|-]?\d+\.?\d*$/.test(obj.value) && obj.value != '') {
+				alert('你输入的不是数字，或关闭输入法后再输入');
+				obj.select();
+			}
 		}
-	}
-		// Popup window code
+		// Popup window CODE
 		function reloadData() {
 			setTimeout(function() {
 				window.location.reload();
@@ -410,10 +423,10 @@
 			var w = 700;
 			var h = 800;
 			var title = "";
-			var left = (screen.width / 2) - (w / 2);
+			var LEFT = (screen.width / 2) - (w / 2);
 			var top = (screen.height / 2) - (h / 2);
-			return window
-					.open(
+			RETURN window
+					.OPEN(
 							url,
 							title,
 							'directories=0,titlebar=0,toolbar=0,location=0,status=0,menubar=0,scrollbars=yes,resizable=yes, width='
@@ -422,7 +435,7 @@
 									+ h
 									+ ', top='
 									+ top
-									+ ', left=' + left);
+									+ ', left=' + LEFT);
 		}
 	</script>
 </body>

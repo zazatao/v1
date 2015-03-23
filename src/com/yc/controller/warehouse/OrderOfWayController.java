@@ -44,14 +44,10 @@ public class OrderOfWayController {
 	
 	@RequestMapping(value = "orderOfWay", method = RequestMethod.GET)
 	public ModelAndView orderOfWay(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		List<StoreRoom> rooms = storeRoomService.getCellForFalse();
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<Commodity> list = commodityService.getAllByParametersForOrder(map);
 		ModelMap mode = new ModelMap();
-		for (StoreRoom storeRoom : rooms) {
-			List<Commodity> list = commodityService.getCommodityByRoom(storeRoom);
-			if (list.size()>0) {
-				mode.put("commodity", list);
-			}
-		}
+		mode.put("commodity", list);
 		return new ModelAndView("warehouse/orderOfWay", mode);
 	}
 	

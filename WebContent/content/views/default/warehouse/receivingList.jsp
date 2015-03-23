@@ -78,54 +78,90 @@ th {
 											<th>订单</th>
 											<th>货号(淘宝ID)</th>
 											<th>买方</th>
-											<th>追踪</th>
+											<th>二维码</th>
 											<th>数量</th>
 											<th>重量</th>
-											<th>状态</th>
 											<th></th>
 										</tr>
 									</thead>
-									<c:forEach var="value" items="${list }" varStatus="loop">
+									<c:forEach var="commodity" items="${list }" varStatus="loop">
 										<tbody>
 											<tr class="success">
-												<td>${value.orderNumber.orderFormID }</td>
-												<td>${value.commItem }</td>
-												<td>${value.orderNumber.orderUser.userName }</td>
-												<td>${value.tpek }</td>
-												<td>${value.quantity }</td>
-												<td>${value.weight }</td>
-												<td><c:choose>
-														<c:when test="${value.status =='unchanged'}">没有变化</c:when>
-														<c:when test="${value.status =='senToWarehouse'}">送往库房</c:when>
-														<c:when test="${value.status =='refuse'}">拒绝入库</c:when>
-														<c:when test="${value.status =='lose'}">丢失</c:when>
-														<c:when test="${value.status =='inWarehouse'}">在库房中</c:when>
-														<c:when test="${value.status =='marriage'}">瑕疵品</c:when>
-													</c:choose></td>
+												<td>${commodity.orderNumber.orderFormID }</td>
+												<td>${commodity.commItem }</td>
+												<td>${commodity.orderNumber.orderUser.userName }</td>
+												<td>${commodity.tpek }</td>
+												<td>${commodity.quantity }</td>
+												<td>${commodity.weight }</td>
 												<td>
-													<button class="btn btn-large btn-success" type="button"
-														onclick="checkData(${value.commodityID});">入库</button>
+													<select onchange="checkData(this,${commodity.commodityID});">
+														<option value="">----选择操作----
+														<option value="senToWarehouse" <c:if test="${commodity.status =='senToWarehouse'}">selected</c:if>>送往库房
+														<option value="refuse" <c:if test="${commodity.status =='refuse'}">selected</c:if>>拒绝入库
+														<option value="lose" <c:if test="${commodity.status =='lose'}">selected</c:if>>丢失
+														<option value="marriage" <c:if test="${commodity.status =='marriage'}">selected</c:if>>瑕疵品
+													</select>
+												</td>
+											</tr>
+											<c:set var="commSpecs" value="${commodity.commSpec }"></c:set>
+											<c:set var="commSpec" value="${fn:split(commSpecs,',') }"></c:set>
+											<tr>
+												<c:forEach var="spec" items="${commSpec }">
+													<c:if test="${fn:contains(spec,'颜色')}">
+														<td rowspan="5" height="140px;" width="140px;"><img
+															height="140px;" width="140px;"
+															src="..${fn:substring(spec,fn:indexOf(spec,'$')+1,fn:length(spec))}">
+														</td>
+														<c:set
+															value="${fn:substring(spec,0,fn:indexOf(spec,'$'))}"
+															var="ys"></c:set>
+														<c:set value="${spec }" var="orther"></c:set>
+													</c:if>
+												</c:forEach>
+												<td colspan="1">商品：<font style="color: blue;">${commodity.nameOfGoods }</font></td>
+												<td colspan="1">卖家：<font style="color: red;">${commodity.seller.shopName }</font></td>
+												<c:set var="ortherSpec"
+													value="${fn:replace(commSpecs,orther,'')}"></c:set>
+												<td colspan="4">规格：${ys}&nbsp;${fn:replace(ortherSpec,',','&nbsp;')}</td>
+											</tr>
+											<tr>
+												<td colspan="1">单价：&nbsp;${commodity.price }</td>
+												<td colspan="1">数量：&nbsp;${commodity.quantity }</td>
+												<td colspan="1">金额：&nbsp;${commodity.money }</td>
+												<td>重量：&nbsp;${commodity.weight }</td>
+												<td colspan="2">目前货品状态：&nbsp; <c:choose>
+														<c:when test="${commodity.status =='unchanged'}">没有变化</c:when>
+														<c:when test="${commodity.status =='cancel'}">取消交易</c:when>
+														<c:when test="${commodity.status =='delete'}">删除</c:when>
+														<c:when test="${commodity.status =='senToWarehouse'}">送往库房</c:when>
+														<c:when test="${commodity.status =='refuse'}">拒绝入库</c:when>
+														<c:when test="${commodity.status =='lose'}">丢失</c:when>
+														<c:when test="${commodity.status =='inWarehouse'}">在库房中</c:when>
+														<c:when test="${commodity.status =='marriage'}">交易中</c:when>
+														<c:when test="${commodity.status =='lack'}">缺少货品</c:when>
+														<c:when test="${commodity.status =='inAuctionlose'}">下单</c:when>
+														<c:when test="${commodity.status =='delivery'}">交付</c:when>
+														<c:when test="${commodity.status =='support'}">支持</c:when>
+														<c:when test="${commodity.status =='sendOut'}">派送</c:when>
+														<c:when test="${commodity.status =='buyerNotPay'}">买方没有支付</c:when>
+														<c:when test="${commodity.status =='inCell'}">在格子</c:when>
+														<c:when test="${commodity.status =='manualProcessing'}">手工加工</c:when>
+														<c:when test="${commodity.status =='inForwarding'}">转发中</c:when>
+														<c:when test="${commodity.status =='packing'}">打包</c:when>
+														<c:when test="${commodity.status =='paid'}">已付</c:when>
+														<c:when test="${commodity.status =='apiProcessing'}">API处理</c:when>
+														<c:when test="${commodity.status =='waitingForTracking'}">等待的追踪</c:when>
+													</c:choose>
 												</td>
 											</tr>
 											<tr>
-												<td rowspan="5" height="140px;" width="140px;"><c:if
-														test="${value.imagePaths[0].path !=null}">
-														<img height="140px;" width="140px;"
-															src="..${value.imagePaths[0].path}">
-													</c:if></td>
-												<td colspan="12">颜色：&nbsp;${value.color }&nbsp;&nbsp;&nbsp;&nbsp;尺码：&nbsp;${value.size }</td>
+												<td colspan="2">采购员：&nbsp;${commodity.purchase.userName }</td>
+												<td colspan="4">操作员：&nbsp;${commodity.storeOperator.userName }</td>
 											</tr>
 											<tr>
-												<td colspan="12">操作员：&nbsp;${value.orderNumber.storeOperator.userName }</td>
+												<td rowspan="2" colspan="6">评论：&nbsp;</td>
 											</tr>
 											<tr>
-												<td colspan="12">采购：&nbsp;${value.orderNumber.purchase.userName }</td>
-											</tr>
-											<tr>
-												<td colspan="12">重量：&nbsp;${value.weight }</td>
-											</tr>
-											<tr>
-												<td colspan="12">评论：&nbsp;${value.comment  }</td>
 											</tr>
 										</tbody>
 									</c:forEach>
@@ -147,9 +183,11 @@ th {
 				formatDate : 'Y-m-d',
 			});
 		}
-		function checkData(id){
-			if( confirm('您确定要将该货品入库吗？') ){
-				location.href ='../warehouse/working?commodityID='+id;
+		function checkData(obj,id){
+			if (obj.value != '') {
+				if(confirm('您确定要如此操作么？') ){
+					location.href ='../warehouse/working?commodityID='+id+'&status='+obj.value;
+				}
 			}
 		}
 		function checkvalue(obj) {

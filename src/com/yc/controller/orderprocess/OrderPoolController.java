@@ -20,8 +20,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.yc.entity.Commodity;
 import com.yc.entity.CommoidityStatus;
 import com.yc.entity.DisposeStatus;
+import com.yc.entity.OrderForm;
 import com.yc.entity.OrderStatus;
+import com.yc.entity.user.Personnel;
+import com.yc.entity.user.User;
 import com.yc.service.ICommodityService;
+import com.yc.service.IOrderFormService;
+import com.yc.service.IPersonnelService;
 
 //订单处理  订单池
 @Controller
@@ -33,6 +38,12 @@ public class OrderPoolController {
 	
 	@Autowired
 	ICommodityService commodityService;
+	
+	@Autowired
+	IOrderFormService formService;
+	
+	@Autowired
+	IPersonnelService personnelService;
 	
 	@RequestMapping(value = "orderPool", method = RequestMethod.GET)
     public ModelAndView orderPool(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -83,5 +94,30 @@ public class OrderPoolController {
 		Commodity commodity = commodityService.getCommByOrderIDAndCommCode(orderid,commCode);
 		map.put("commodity", commodity);
 		return new ModelAndView("orderprocessing/orderPool",map);
+	}
+	
+	@RequestMapping(value = "processing", method = RequestMethod.GET)
+    public String processing(String dispose,Integer num,Integer orderID,Integer commID, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Commodity commodity = commodityService.getCommByOrderIDAndCommCode(orderID,commID);
+		if (commodity != null) {
+			Personnel purchase = (Personnel)request.getSession().getAttribute("loginPersonnle");
+			commodity.setPurchase(purchase);
+			commodity = commodityService.update(commodity);
+			//付款后订单分配
+			shareOrder(commodity.getOrderNumber().getOrderUser(),purchase);
+		}
+		return "redirect:/orderprocessing/orderItem?id="+commodity.getTransNumForTaobao()+"&orderid="+commodity.getOrderNumber().getOrderFormID();
+	}
+	
+	private void shareOrder(User user,Personnel purchase) {
+		List<Commodity> commodities = commodityService.getOrderByPurchaseAndUser(user);
+		if (commodities != null && commodities.size()>0) {
+			for (Commodity comm : commodities) {
+				if (comm.getStatus() == CommoidityStatus.support && comm.getSeller().getId() == 1) {
+					comm.setPurchase(purchase);
+					commodityService.update(comm);
+				}
+			}
+		}
 	}
 }

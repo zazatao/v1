@@ -112,7 +112,7 @@
 										<tr class="success">
 									</c:otherwise>
 								</c:choose>				  
-								<td><a href="./orderPoolItem?orderid=${commodity.orderNumber.orderFormID }&commCode=${commodity.transNumForTaobao}" >${commodity.orderNumber.orderFormID }</a></td>
+								<td><a href="./orderPoolItem?orderid=${commodity.orderNumber.orderFormID }&commCode=${commodity.commodityID}" >${commodity.orderNumber.orderFormID }</a></td>
 								<td>${commodity.transNumForTaobao }</td>
 								<td>${commodity.orderNumber.orderUser.userName}</td>
 								<td>${commodity.orderNumber.paymentDate}</td>
@@ -280,9 +280,8 @@
 														<th></th>
 														<th></th>
 														<th>
-															<button type="button" class="btn btn-primary">稍后处理</button>
 														</th>
-														<th><button type="button" onclick="" class="btn btn-primary">现在处理</button></th>
+														<th><button type="button" onclick="onProcessing(${commodity.orderNumber.orderFormID},${commodity.commodityID });" class="btn btn-primary">领取处理订单</button></th>
 													</tr>
 											</table>
 											<!-- /表格 -->
@@ -299,12 +298,17 @@
 	</div>
 	</ul>
 	<script type="text/javascript">
-	function checkvalue(obj) {
-		if (!/^[+|-]?\d+\.?\d*$/.test(obj.value) && obj.value != '') {
-			alert('你输入的不是数字，或关闭输入法后再输入');
-			obj.select();
+		function onProcessing(orderID,commID){
+			var num = $('#quantity').val();
+			var dispoce = $('input[name="dispose"]:checked').val();
+			location.href ='./processing?dispose='+dispoce+'&num='+num+'&orderID='+orderID +'&commID='+commID;			
 		}
-	}
+		function checkvalue(obj) {
+			if (!/^[+|-]?\d+\.?\d*$/.test(obj.value) && obj.value != '') {
+				alert('你输入的不是数字，或关闭输入法后再输入');
+				obj.select();
+			}
+		}
 		// Popup window code
 		function reloadData() {
 			setTimeout(function() {

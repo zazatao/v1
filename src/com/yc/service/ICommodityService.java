@@ -10,6 +10,8 @@ import com.yc.entity.Shop;
 import java.util.Map;
 
 import com.yc.entity.StoreRoom;
+import com.yc.entity.user.Personnel;
+import com.yc.entity.user.User;
 import com.yc.model.CommdityModel;
 import com.yc.model.Products;
 
@@ -43,5 +45,15 @@ public interface ICommodityService extends IGenericService<Commodity> {
 	List<Commodity> getOrderPollByParam(Map<String, Object> map);
 
 	Commodity getCommByOrderIDAndCommCode(Integer orderid, Integer commCode);
+
+	List<Commodity> getCommodityByPurchase(Personnel personnel);
+
+	List<Commodity> getCommodityByBillPay();
+
+	List<Commodity> getOrderByPurchaseAndUser(User user);
+
+	List<Commodity> getCommodityByParam(Map<String, Object> map);
+
+	List<Commodity> getAccountBook();
 
 }

@@ -1,5 +1,7 @@
 package com.yc.controller.warehouse;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.yc.entity.Commodity;
 import com.yc.entity.CommoidityStatus;
 import com.yc.entity.StoreRoom;
+import com.yc.entity.user.Personnel;
 import com.yc.service.ICommodityService;
 import com.yc.service.IOrderFormService;
 import com.yc.service.IStoreRoomService;
@@ -116,5 +119,40 @@ public class InspectionController {
 		ModelMap mode = new ModelMap();
 		mode.put("commodity", maps);
 		return new ModelAndView("warehouse/inspection", mode);
+	}
+	
+	@RequestMapping(value = "updateInspection", method = RequestMethod.GET)
+	public ModelAndView updateInspection(String page,Integer commodityID ,String status, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Commodity commod = commodityService.findById(commodityID);
+		if (commod != null) {
+			if (!status.trim().equals("")) {
+				commod.setStatus(CommoidityStatus.valueOf(status));
+				if (commod.getStatus() == CommoidityStatus.inWarehouse) {
+					commod.setCellDate((new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date()));
+				}
+				commodityService.update(commod);
+			}
+		}
+		List<StoreRoom> rooms = storeRoomService.getCellForTrue();
+		Map<String, List<Commodity>> map = new HashMap<String, List<Commodity>>();
+		List<Commodity> list = null;
+		for (StoreRoom storeRoom : rooms) {
+			if (page.equals("inspection")) {
+				list = commodityService.getAllByRoomForHave(storeRoom.getCellID(),true);
+			}
+			if (page.equals("reclaimStation")) {
+				list = commodityService.getAllByRoomForHave(storeRoom.getCellID(),false);
+			}
+			if (list != null && list.size()>0) {
+				map.put(storeRoom.getCellStr(), list);
+			}
+		}
+		ModelMap mode = new ModelMap();
+		mode.put("commodity", map);
+		if (page.equals("inspection")) {
+			return new ModelAndView("warehouse/inspection", mode);
+		}else{
+			return new ModelAndView("warehouse/reclaimStation", mode);
+		}
 	}
 }

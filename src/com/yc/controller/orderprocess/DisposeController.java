@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Commodity;
+import com.yc.entity.CommoidityStatus;
 import com.yc.entity.DisposeStatus;
+import com.yc.entity.user.Personnel;
 import com.yc.service.ICommodityService;
 
 //订单处理  处理
@@ -34,7 +36,8 @@ public class DisposeController {
 	
 	@RequestMapping(value = "dispose", method = RequestMethod.GET)
     public ModelAndView dispose(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Commodity> list = commodityService.getAll();
+		Personnel personnel =(Personnel)request.getSession().getAttribute("loginPersonnle");
+		List<Commodity> list = commodityService.getCommodityByPurchase(personnel);
 		ModelMap map = new ModelMap();
 		map.put("list", list);
 		return new ModelAndView("orderprocessing/dispose",map);
@@ -48,21 +51,23 @@ public class DisposeController {
 		}else{
 			map.put("transNumForTaobao", Integer.parseInt(request.getParameter("transNumForTaobao")));
 		}
-		if (request.getParameter("seller").trim().equals("")) {
-			map.put("seller", null);
+		if (request.getParameter("orderUserName").trim().equals("")) {
+			map.put("orderUserName", null);
 		} else {
-			map.put("seller", request.getParameter("seller"));
+			map.put("orderUserName", request.getParameter("orderUserName"));
 		}
-		if (request.getParameter("sellerDate").trim().equals("")) {
-			map.put("sellerDate", null);
+		if (request.getParameter("paymentDate").trim().equals("")) {
+			map.put("paymentDate", null);
 		} else {
-			map.put("sellerDate", request.getParameter("sellerDate"));
+			map.put("paymentDate", request.getParameter("paymentDate"));
 		}
 		if (request.getParameter("disposeStatus").trim().equals("")) {
 			map.put("disposeStatus", null);
 		} else {
 			map.put("disposeStatus", DisposeStatus.valueOf(request.getParameter("disposeStatus")));
 		}
+		Personnel personnel =(Personnel)request.getSession().getAttribute("loginPersonnle");
+		map.put("personnel", personnel.getId());
 		List<Commodity> list = commodityService.getDisposeByParameters(map);
 		ModelMap mode = new ModelMap();
 		mode.put("list", list);
@@ -70,13 +75,29 @@ public class DisposeController {
 	}
 	
 	@RequestMapping(value = "orderItem", method = RequestMethod.GET)
-	public ModelAndView orderItem(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Commodity> list = commodityService.getAll();
+	public ModelAndView orderItem(Integer orderid, Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Personnel personnel =(Personnel)request.getSession().getAttribute("loginPersonnle");
+		List<Commodity> list = commodityService.getCommodityByPurchase(personnel);
 		ModelMap map = new ModelMap();
 		map.put("list", list);
-		Commodity comm =  commodityService.findById(id);
-		map.put("dispose", comm);
+		Commodity commodity = commodityService.getCommByOrderIDAndCommCode(orderid,id);
+		map.put("commodity", commodity);
     	return new ModelAndView("orderprocessing/dispose",map);
+	}
+	
+	@RequestMapping(value = "onProcessing", method = RequestMethod.GET)
+	public ModelAndView onProcessing(String dispose,Integer num,Integer orderID,Integer commID, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ModelMap map = new ModelMap();
+		Commodity commodity = commodityService.getCommByOrderIDAndCommCode(orderID,commID);
+		commodity.setStatus(CommoidityStatus.inAuctionlose);
+		if (!dispose.equals("quantity")) {
+			commodity.setDisposeStatus(DisposeStatus.valueOf(dispose));
+		}
+		commodityService.update(commodity);
+		Personnel personnel =(Personnel)request.getSession().getAttribute("loginPersonnle");
+		List<Commodity> list = commodityService.getCommodityByPurchase(personnel);
+		map.put("list", list);
+		return  new ModelAndView("orderprocessing/dispose",map);
 	}
 	
 }

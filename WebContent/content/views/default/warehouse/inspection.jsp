@@ -162,64 +162,77 @@ th {
 											<thead>
 												<tr>
 													<th>格子</th>
-													<th>包裹</th>
 													<th>订单</th>
+													<th>包裹</th>
 													<th>货号(淘宝ID)</th>
-													<th>买方</th>
+													<th>客户</th>
 													<th>条形码</th>
 													<th>数量</th>
 													<th>价格</th>
 													<th>金额</th>
 													<th>重量</th>
-													<th>在格子</th>
+													<th>入格子时间</th>
 													<th>进入仓库</th>
 													<th>状态</th>
 												</tr>
 											</thead>
-											<c:forEach var="value" items="${comm.value }"
+											<c:forEach var="commodity" items="${comm.value }"
 												varStatus="loop">
 												<tbody>
 													<tr class="success">
-														<td align="center">${value.orderNumber.orderUser.storeRoom.cellStr }</td>
-														<td>${value.orderNumber.packAge.packageCode }</td>
-														<td>${value.orderNumber.orderFormID }</td>
-														<td>${value.commItem }</td>
-														<td>${value.orderNumber.orderUser.userName }</td>
-														<td>${value.tpek }</td>
-														<td>${value.quantity }</td>
-														<td>${value.price }</td>
-														<td>${value.money }</td>
-														<td>${value.weight }</td>
-														<td>${value.cellDate }</td>
-														<td>${value.inStoreRoomDate }</td>
-														<td><c:choose>
-																<c:when test="${value.status =='unchanged'}">没有变化</c:when>
-																<c:when test="${value.status =='senToWarehouse'}">送往库房</c:when>
-																<c:when test="${value.status =='refuse'}">拒绝入库</c:when>
-																<c:when test="${value.status =='lose'}">丢失</c:when>
-																<c:when test="${value.status =='inWarehouse'}">在库房中</c:when>
-																<c:when test="${value.status =='marriage'}">瑕疵品</c:when>
-															</c:choose></td>
+														<td align="center">${commodity.orderNumber.orderUser.storeRoom.cellStr }</td>
+														<td  align="center">${commodity.orderNumber.orderFormID }</td>
+														<td>${commodity.orderNumber.packAge.packageCode }</td>
+														<td>${commodity.commItem }</td>
+														<td>${commodity.orderNumber.orderUser.userName }</td>
+														<td>${commodity.tpek }</td>
+														<td>${commodity.quantity }</td>
+														<td>${commodity.price }</td>
+														<td>${commodity.money }</td>
+														<td>${commodity.weight }</td>
+														<td>${commodity.cellDate }</td>
+														<td>${commodity.inStoreRoomDate }</td>
+														<td>
+															<select onchange="checkData(this,${commodity.commodityID});">
+																<option value="">----选择操作----
+																<option value="senToWarehouse" <c:if test="${commodity.status =='senToWarehouse'}">selected</c:if>>送往库房
+																<option value="inWarehouse" <c:if test="${commodity.status =='inWarehouse'}">selected</c:if>>放入格子里
+																<option value="lose" <c:if test="${commodity.status =='lose'}">selected</c:if>>丢失
+															</select>
+														</td>
+													</tr>
+													<c:set var="commSpecs" value="${commodity.commSpec }"></c:set>
+											<c:set var="commSpec" value="${fn:split(commSpecs,',') }"></c:set>
+											<tr>
+												<c:forEach var="spec" items="${commSpec }">
+													<c:if test="${fn:contains(spec,'颜色')}">
+														<td rowspan="5" height="140px;" width="140px;"><img
+															height="140px;" width="140px;"
+															src="..${fn:substring(spec,fn:indexOf(spec,'$')+1,fn:length(spec))}">
+														</td>
+														<c:set
+															value="${fn:substring(spec,0,fn:indexOf(spec,'$'))}"
+															var="ys"></c:set>
+														<c:set value="${spec }" var="orther"></c:set>
+													</c:if>
+												</c:forEach>
+												<td colspan="1">商品：<font style="color: blue;">${commodity.nameOfGoods }</font></td>
+												<td colspan="1">卖家：<font style="color: red;">${commodity.seller.shopName }</font></td>
+												<c:set var="ortherSpec"
+													value="${fn:replace(commSpecs,orther,'')}"></c:set>
+												<td colspan="10">规格：${ys}&nbsp;${fn:replace(ortherSpec,',','&nbsp;')}</td>
+											</tr>
+													<tr>
+														<td colspan="3">操作员：&nbsp;${commodity.storeOperator.userName }</td>
+														<td colspan="9">采购：&nbsp;${commodity.purchase.userName }</td>
 													</tr>
 													<tr>
-														<td rowspan="5" height="140px;" width="140px;"><c:if
-																test="${value.imagePaths[0].path !=null}">
-																<img height="140px;" width="140px;"
-																	src="..${value.imagePaths[0].path}">
-															</c:if></td>
-														<td colspan="12">颜色：&nbsp;${value.color }&nbsp;&nbsp;&nbsp;&nbsp;尺码：&nbsp;${value.size }</td>
+														<td colspan="12">重量：&nbsp;${commodity.weight }</td>
 													</tr>
 													<tr>
-														<td colspan="12">操作员：&nbsp;${value.orderNumber.storeOperator.userName }</td>
+														<td colspan="12" rowspan="2">评论：&nbsp;${commodity.comment  }</td>
 													</tr>
 													<tr>
-														<td colspan="12">采购：&nbsp;${value.orderNumber.purchase.userName }</td>
-													</tr>
-													<tr>
-														<td colspan="12">重量：&nbsp;${value.weight }</td>
-													</tr>
-													<tr>
-														<td colspan="12">评论：&nbsp;${value.comment  }</td>
 													</tr>
 												</tbody>
 											</c:forEach>
@@ -230,12 +243,18 @@ th {
 						</div>
 					</div>
 				</c:forEach>
-
 			</div>
 		</div>
 	</div>
 
 	<script type="text/javascript">
+		function checkData(obj,id){
+			if (obj.value != '') {
+				if(confirm('您确定要如此操作么？') ){
+					location.href ='../warehouse/updateInspection?page=inspection&commodityID='+id+'&status='+obj.value;
+				}
+			}
+		}
 		function dateInfoxxx(obj) {
 			var date = obj;
 			$('#' + date).datetimepicker({

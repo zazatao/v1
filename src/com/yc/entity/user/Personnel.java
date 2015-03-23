@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.yc.entity.Commodity;
 import com.yc.entity.OrderForm;
 import com.yc.entity.UnKnownCommodity;
 
@@ -53,17 +54,24 @@ public class Personnel {
 	private Integer accomplishNum;//完成订单数
 	
 	@OneToMany(mappedBy = "storeOperator")
-    private List<OrderForm> commOperators ;//仓库接收订单
+    private List<Commodity> commOperators ;//仓库接收订单
 	
     @OneToMany(mappedBy = "operator")
     private List<UnKnownCommodity> unCommOperators ;
     
     @OneToMany(mappedBy = "purchase")
-    private List<OrderForm> purchases ;//采购接收订单
+    private List<Commodity> purchases ;//采购接收订单
     
     @OneToMany(mappedBy = "orderUser")
 	private List<OrderForm> orderForms;//用户订单
-    
+
+	public void setCommOperators(List<Commodity> commOperators) {
+		this.commOperators = commOperators;
+	}
+
+	public void setPurchases(List<Commodity> purchases) {
+		this.purchases = purchases;
+	}
 
 	public Department getDepartment() {
 		return department;
@@ -145,28 +153,12 @@ public class Personnel {
 		this.accomplishNum = accomplishNum;
 	}
 
-	public List<OrderForm> getCommOperators() {
-		return commOperators;
-	}
-
-	public void setCommOperators(List<OrderForm> commOperators) {
-		this.commOperators = commOperators;
-	}
-
 	public List<UnKnownCommodity> getUnCommOperators() {
 		return unCommOperators;
 	}
 
 	public void setUnCommOperators(List<UnKnownCommodity> unCommOperators) {
 		this.unCommOperators = unCommOperators;
-	}
-
-	public List<OrderForm> getPurchases() {
-		return purchases;
-	}
-
-	public void setPurchases(List<OrderForm> purchases) {
-		this.purchases = purchases;
 	}
 
 	public List<OrderForm> getOrderForms() {

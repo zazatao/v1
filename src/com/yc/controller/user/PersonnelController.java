@@ -129,9 +129,9 @@ public class PersonnelController {
 		person.setSex(sex);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		of.setOrderDate(sdf.format(new Date()));
-		of.setStoreOperator(person);
+		c.setStoreOperator(person);
 		Personnel p = personnelService.save(person);
-		of.setPurchase(p);
+		c.setPurchase(p);
 		c.setOrderNumber(of);
 		return "redirect:/index";
     }

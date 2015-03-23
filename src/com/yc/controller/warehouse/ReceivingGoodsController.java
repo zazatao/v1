@@ -150,54 +150,41 @@ public class ReceivingGoodsController {
 	@RequestMapping(value = "enterStoreRoom", method = RequestMethod.POST)
 	public ModelAndView enterStoreRoom( HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
+		boolean isok = false;
 		if (request.getParameter("orderNum").trim().equals("")) {
 			map.put("orderNum", null);
 		}else{
+			isok = true;
 			map.put("orderNum", Integer.parseInt(request.getParameter("orderNum")));
 		}
 		if (request.getParameter("tpek").trim().equals("")) {
 			map.put("tpek", null);
 		}else{
+			isok = true;
 			map.put("tpek", request.getParameter("tpek").trim());
 		}
 		if (request.getParameter("transNumForTaobao").trim().equals("")) {
 			map.put("transNumForTaobao", null);
 		}else{
+			isok = true;
 			map.put("transNumForTaobao", Integer.parseInt(request.getParameter("transNumForTaobao").trim()));
 		}
 		if (request.getParameter("commItem").trim().equals("")) {
 			map.put("commItem", null);
 		}else{
+			isok = true;
 			map.put("commItem", request.getParameter("commItem").trim());
 		}
 		map.put("formStatus", CommoidityStatus.valueOf("paid"));
-		List<Commodity> commods = commodityService.getAllByParameters(map);
-		Personnel personnel = (Personnel)request.getSession().getAttribute("loginUser");
-		Integer num = personnel.getAccomplishNum();
-		String msg ="";
+		List<Commodity> commods = null;
+		if (isok) {
+			commods = commodityService.getAllByParameters(map);
+		}
 		ModelMap mode = new ModelMap();
-		if (commods.size()>0) {
-			if (commods.size() == 1) {
-				for (Commodity commod : commods) {
-					commod.setStatus(CommoidityStatus.senToWarehouse);
-					commod.getOrderNumber().setStoreOperator(personnel);
-					commod.setInStoreRoomDate((new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date()));
-					commodityService.update(commod);
-					msg = "已经查找到货号："+commod.getCommItem()+"，请将它入库！";
-				}
-				if (num ==null) {
-					personnel.setAccomplishNum(1);
-				}else{
-					personnel.setAccomplishNum(num + 1);
-				}
-				personnelService.update(personnel);
-				mode.put("msg", msg);
-				return new ModelAndView("warehouse/jobAction",mode);
-			}else{
-				mode.put("list", commods);
-				request.getSession().setAttribute("map", map);
-				return new ModelAndView("warehouse/receivingList",mode);
-			}
+		if (commods != null && commods.size()>0) {
+			mode.put("list", commods);
+			request.getSession().setAttribute("map", map);
+			return new ModelAndView("warehouse/receivingList",mode);
 		}else{
 			return new ModelAndView("warehouse/jobAction",null);
 		}
@@ -206,18 +193,20 @@ public class ReceivingGoodsController {
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "working", method = RequestMethod.GET)
-	public ModelAndView working(Integer commodityID , HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView working(Integer commodityID ,String status, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Commodity commod = commodityService.findById(commodityID);
 		String msg ="";
 		Personnel personnel = null;
 		ModelMap mode = null;
 		if (commod != null) {
-			commod.setStatus(CommoidityStatus.senToWarehouse);
-			personnel = (Personnel)request.getSession().getAttribute("loginUser");
-			commod.getOrderNumber().setStoreOperator(personnel);
+			if (!status.trim().equals("")) {
+				commod.setStatus(CommoidityStatus.valueOf(status));
+			}
+			personnel = (Personnel)request.getSession().getAttribute("loginPersonnle");
+			commod.setStoreOperator(personnel);
 			commod.setInStoreRoomDate((new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date()));
 			commodityService.update(commod);
-			msg = "已经查找到货号："+commod.getCommItem()+"，请将它入库！";
+			msg = "货品："+commod.getNameOfGoods()+",操作成功了！";
 			mode =  new ModelMap();
 			Integer num = personnel.getAccomplishNum();
 			if (num ==null) {

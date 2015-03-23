@@ -76,6 +76,17 @@ public class ShopCommoidty {
 	@OneToMany(mappedBy = "shopCommoidty")
 	private List<ShopCommImage> shopCommImages;//商品照片
 	
+	@Column
+	private String describes;//描述
+
+	public String getDescribes() {
+		return describes;
+	}
+
+	public void setDescribes(String describes) {
+		this.describes = describes;
+	}
+
 	public Integer getStock() {
 		return stock;
 	}

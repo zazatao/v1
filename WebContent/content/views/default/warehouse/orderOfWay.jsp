@@ -72,15 +72,15 @@ th {
 						</div>
 						<div class="col-sm-1">
 							<input type="text" name="transNumForTaobao"
-								placeholder="货号（淘宝ID）" class="form-control"
+								placeholder="货品编码" class="form-control"
 								id="transNumForTaobao" onblur="checkvalue(this)">
 						</div>
 						<div class="col-sm-1">
-							<input type="text" name="userName" placeholder="买方"
+							<input type="text" name="userName" placeholder="客户"
 								class="form-control" id="userName">
 						</div>
 						<div class="col-sm-1">
-							<input type="text" name="tpek" placeholder="追踪"
+							<input type="text" name="tpek" placeholder="条形码"
 								class="form-control" id="tpek">
 						</div>
 						<div class="col-sm-1">
@@ -125,15 +125,17 @@ th {
 								<thead>
 									<tr>
 										<th>订单</th>
-										<th>货号（淘宝ID）</th>
-										<th>买方</th>
-										<th>追踪</th>
+										<th>货品编码</th>
+										<th>客户</th>
+										<th>地址</th>
+										<th>条形码</th>
 										<th>数量</th>
 										<th>价格</th>
 										<th>金额</th>
 										<th>重量</th>
 										<th>改变时间</th>
-										<th>状态</th>
+										<th>订单状态</th>
+										<th>货品状态</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -149,12 +151,14 @@ th {
 										<td>${value.orderNumber.orderFormID }</td>
 										<td>${value.transNumForTaobao }</td>
 										<td>${value.orderNumber.orderUser.userName }</td>
+										<td align="center"><font style="color: blue;">${value.orderNumber.address.country }${value.orderNumber.address.provience }${value.orderNumber.address.city }${value.orderNumber.address.district }${value.orderNumber.address.street }${value.orderNumber.address.orther }</font></td>
 										<td>${value.tpek }</td>
 										<td>${value.quantity }</td>
 										<td>${value.price }</td>
 										<td>${value.money }</td>
 										<td>${value.weight }</td>
 										<td>${value.orderNumber.changeStatusDate }</td>
+										<td><c:if test="${value.orderNumber.orderstatus == 'transitGoods'}">订单在途</c:if></td>
 										<td><c:choose>
 												<c:when test="${value.status =='unchanged'}">没有变化</c:when>
 												<c:when test="${value.status =='cancel'}">取消交易</c:when>

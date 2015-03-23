@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+import com.yc.entity.user.Personnel;
+
 @Entity
 @DiscriminatorValue("commodity")
 @JsonIgnoreProperties(value = { "purchase", "storeRoom", "orderNumber", "imagePaths" ,})
@@ -79,6 +81,74 @@ public class Commodity {
 	private String cellDate;// 入单元格时间
 	@Column
 	private String inStoreRoomDate;// 入库房时间
+	
+	@Column
+	private String describes;//描述
+	
+	@Column
+	private String zazataoPayDate;//zazatao付款日期
+	
+	@Column
+	private String zazataoPayTime;//zazatao付款时间
+	
+	@ManyToOne
+	@JoinColumn(name = "store_user")
+	private Personnel storeOperator;// 库房操作员
+	
+	@ManyToOne
+	@JoinColumn(name = "purchase_user")
+	private Personnel purchase;// 采购员
+	
+	@Column
+	private String notes;
+	
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
+	public String getZazataoPayDate() {
+		return zazataoPayDate;
+	}
+
+	public void setZazataoPayDate(String zazataoPayDate) {
+		this.zazataoPayDate = zazataoPayDate;
+	}
+
+	public String getZazataoPayTime() {
+		return zazataoPayTime;
+	}
+
+	public void setZazataoPayTime(String zazataoPayTime) {
+		this.zazataoPayTime = zazataoPayTime;
+	}
+
+	public Personnel getStoreOperator() {
+		return storeOperator;
+	}
+
+	public void setStoreOperator(Personnel storeOperator) {
+		this.storeOperator = storeOperator;
+	}
+
+	public Personnel getPurchase() {
+		return purchase;
+	}
+
+	public void setPurchase(Personnel purchase) {
+		this.purchase = purchase;
+	}
+
+	public String getDescribes() {
+		return describes;
+	}
+
+	public void setDescribes(String describes) {
+		this.describes = describes;
+	}
 
 	public String getCellDate() {
 		return cellDate;
