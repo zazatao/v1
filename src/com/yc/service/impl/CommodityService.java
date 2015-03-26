@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import com.yc.dao.orm.commons.GenericDao;
 import com.yc.entity.Commodity;
 import com.yc.entity.CommoidityStatus;
-import com.yc.entity.OrderForm;
 import com.yc.entity.OrderStatus;
 import com.yc.entity.Shop;
 import com.yc.entity.StoreRoom;
@@ -38,7 +37,7 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 	public List<Commodity> getAllByRoomForHave(Integer cellID, boolean b) {
 		StringBuffer hql = new StringBuffer(" from Commodity c where c.orderNumber.orderUser.storeRoom.cellID = " + cellID);
 		if (b) {
-			hql.append(" and c.status in ('lose','inWarehouse','senToWarehouse')");
+			hql.append(" and c.status in ('lose','inWarehouse','senToWarehouse','packing')");
 		} else {
 			hql.append(" and c.status in ('marriage','cancel','delete','marriage','refuse')");
 		}
@@ -64,14 +63,14 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 		Object[] paramete = null;
 		if (map.get("formStatus") == null && map.get("packageCode") == null) {
 			if (b) {
-				hql.append(" and c.status in ('lose','inWarehouse','senToWarehouse')");
+				hql.append(" and c.status in ('lose','inWarehouse','senToWarehouse','packing')");
 			} else {
 				hql.append(" and c.status in ('marriage','cancel','delete','marriage','refuse')");
 			}
 			paramete = new Object[12];
 		} else if (map.get("formStatus") == null && map.get("packageCode") != null) {
 			if (b) {
-				hql.append(" and c.status in ('lose','inWarehouse','senToWarehouse')");
+				hql.append(" and c.status in ('lose','inWarehouse','senToWarehouse','packing')");
 			} else {
 				hql.append(" and c.status in ('marriage','cancel','delete','marriage','refuse')");
 			}
@@ -314,7 +313,7 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 
 	@Override
 	public List<Commodity> getCommodityByParam(Map<String, Object> map) {
-		StringBuffer hql = new StringBuffer("SELECT DISTINCT comm.* FROM Commodity comm LEFT JOIN " + "orderform orders ON orders.orderFormID = comm.orderform_id left join User u on u.id = orders.user_id " + "left join Personnel per on per.id = comm.purchase_user  WHERE " + " comm.purchase_user IS NOT NULL AND comm.seller_name = 1 "
+		StringBuffer hql = new StringBuffer("SELECT DISTINCT comm.* FROM Commodity comm LEFT JOIN " + "orderform orders ON orders.orderFormID = comm.orderform_id left join User u on u.id = orders.user_id " + "left join Personnel per on per.id = comm.purchase_user  WHERE comm.purchase_user IS NOT NULL AND comm.seller_name = 1 "
 				+ "AND comm.disposeStatus NOT IN ('shortage','commodityAds','waiting') " + "and (" + map.get("orderID") + " is null or orders.orderFormID =  " + map.get("orderID") + ")  ");
 		if (map.get("orderUser") != null) {
 			hql.append(" and u.userName like '%" + map.get("orderUser") + "%'");

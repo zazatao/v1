@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Commodity;
+import com.yc.entity.Delivery;
 import com.yc.entity.OrderForm;
 import com.yc.entity.CommoidityStatus;
 import com.yc.entity.user.Personnel;
@@ -75,7 +76,7 @@ public class PackageController {
 		}else{
 			map.put("orderstatus", CommoidityStatus.valueOf(request.getParameter("orderstatus")));
 		}
-		List<Package> list = packageService.getPackAgeByParameters(map);
+		List<Package> list = packageService.getPackAgeByParameters(map,0);
 		ModelMap mode = new ModelMap();
     	mode.put("list", list);
         return new ModelAndView("shop/package", mode);
@@ -95,7 +96,7 @@ public class PackageController {
 		Personnel person = new Personnel(); 
 		Package pk= new Package();
 		String transport =request.getParameter("transport");
-		pk.setTransport(transport);
+		pk.setDelivery(Delivery.valueOf(transport));
 		String personnel = request.getParameter("personnel");
 		person.setUserName(personnel);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

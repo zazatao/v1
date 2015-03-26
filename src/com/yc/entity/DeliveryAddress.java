@@ -35,6 +35,7 @@ public class DeliveryAddress {
 	@Column
 	@Enumerated(EnumType.STRING)
 	private Transit handedAddress ;//中转地
+	
 	public Transit getHandedAddress() {
 		return handedAddress;
 	}

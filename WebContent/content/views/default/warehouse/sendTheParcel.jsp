@@ -54,7 +54,7 @@
 					<div class="form-group">
 						<div class="col-sm-1">
 							<input type="text" name="packageCode" placeholder="包裹编号"
-								class="form-control" id="packageCode" onblur="checkvalue(this)">
+								class="form-control" id="packageCode" >
 						</div>
 						<div class="col-sm-2">
 							<select class="form-control" name="formDelivery"
@@ -83,9 +83,11 @@
 						<table class="table table-striped">
 							<tr class="">
 								<th>包裹编号</th>
-								<th>买主</th>
+								<th>客户</th>
+								<th>总重</th>
 								<th>毛重</th>
 								<th>运输方式</th>
+								<th>运费</th>
 							</tr>
 							<c:forEach var="pack" items="${list }" varStatus="loop">
 								<c:choose>
@@ -98,8 +100,10 @@
 								</c:choose>
 								<td><a href="#" onclick="packNum(${pack.packageID});">${pack.packageCode }</a></td>
 								<td>${pack.orderForms[0].orderUser.userName}</td>
+								<td>${pack.totalWeight}</td>
 								<td>${pack.grossWeight}</td>
 								<td>${pack.orderForms[0].delivery }</td>
+								<td>${pack.transportFee }</td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -109,7 +113,7 @@
 			</div>
 			<script type="text/javascript">
 				function packNum(num){
-						location.href ='./getOrder?page=sendTheParcel&id='+num;
+					location.href ='./getOrder?page=sendTheParcel&id='+num;
 				}
 			</script>
 			<div class="col-md-8 column" style="height: 100%">
@@ -126,13 +130,13 @@
 										<div class="form-group">
 											<label for="inputEmail3" class="col-sm-2 control-label">追踪号</label>
 											<div class="col-sm-3">
-												<input type="text" name="tpek" class="form-control"
-													id="tpek" value="">
+												<input type="text" name="packAgeTpek" class="form-control"
+													id="packAgeTpek" value="${packs.packAgeTpek }" readonly="readonly">
 											</div>
-											<label for="inputEmail3" class="col-sm-2 control-label">订单金额</label>
+											<label for="inputEmail3" class="col-sm-2 control-label">订单总金额</label>
 											<div class="col-sm-3">
-												<input type="text" name="tpek" class="form-control"
-													id="tpek" value="">
+												<input type="text" name="money" class="form-control"
+													id="money" value="" readonly="readonly">
 											</div>
 										</div>
 										<div class="form-group">
@@ -148,7 +152,7 @@
 												<button type="button" class="btn btn-default">打印发票</button>
 											</div>
 											<div class="col-sm-4" style="text-align: right;">
-												<button type="button" class="btn btn-default">发送包裹</button>
+												<button type="button" onclick="sendPackwww('${packs.packAgeTpek }');" class="btn btn-default">发送包裹</button>
 											</div>
 										</div>
 									</form>
@@ -167,13 +171,14 @@
 									<tr class="">
 										<th>订单号</th>
 										<th>格子</th>
-										<th>货号(淘宝ID)</th>
-										<th>卖方追踪</th>
+										<th>货品编码</th>
+										<th>名称</th>
 										<th>数量</th>
 										<th>重量</th>
-										<th>名称</th>
+										<th>金额</th>
 										<th>状态</th>
 									</tr>
+									<c:set var="fee" value="0"></c:set>
 									<c:forEach var="orderF" items="${packs.orderForms }">
 										<c:set var="orders" value="${orderF }"></c:set>
 										<c:forEach var="commo" items="${orderF.commodities }"
@@ -187,13 +192,16 @@
 												</c:otherwise>
 											</c:choose>
 											<td>${orders.orderFormID }</td>
-											<td>${commo.storeRoom.cellStr }</td>
-											<td>${commo.transNumForTaobao }</td>
-											<td>${commo.tpek }</td>
+											<td>${commo.orderNumber.orderUser.storeRoom.cellStr }</td>
+											<td>${commo.commodityID }</td>
+											<td>${commo.nameOfGoods }</td>
 											<td>${commo.quantity }</td>
 											<td>${commo.weight }</td>
-											<td>${commo.nameOfGoods }</td>
-											<td></td>
+											<td>${commo.money }</td>
+											<c:set var="fee" value="${fee + commo.money }"></c:set>
+											<td>
+												<c:if test="${packs.isFee }">运费已付</c:if>
+											</td>
 											</tr>
 										</c:forEach>
 									</c:forEach>
@@ -208,12 +216,17 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-	function checkvalue(obj) {
-		if (!/^[+|-]?\d+\.?\d*$/.test(obj.value) && obj.value != '') {
-			alert('你输入的不是数字，或关闭输入法后再输入');
-			obj.select();
+		$('#money').val('${fee}');
+		function sendPackwww(obj){
+			alert(11);
+			location.href ='./sendPack?&id='+obj;
 		}
-	}
+		function checkvalue(obj) {
+			if (!/^[+|-]?\d+\.?\d*$/.test(obj.value) && obj.value != '') {
+				alert('你输入的不是数字，或关闭输入法后再输入');
+				obj.select();
+			}
+		}
 		// Popup window code
 		function reloadData() {
 			setTimeout(function() {

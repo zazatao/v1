@@ -146,8 +146,8 @@ th {
 								<td></td>
 								<td align="center">
 									<c:choose>
-										<c:when test="${package.transport =='ems'}">EMS</c:when>
-										<c:when test="${package.transport =='sf'}">顺风</c:when>
+										<c:when test="${package.delivery =='EMS'}">EMS</c:when>
+										<c:when test="${package.delivery =='sf'}">顺风</c:when>
 									</c:choose>
 								</td>
 								<td></td>

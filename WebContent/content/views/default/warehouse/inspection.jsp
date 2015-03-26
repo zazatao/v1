@@ -193,12 +193,15 @@ th {
 														<td>${commodity.cellDate }</td>
 														<td>${commodity.inStoreRoomDate }</td>
 														<td>
+														<c:if test="${commodity.status !='packing'}">
 															<select onchange="checkData(this,${commodity.commodityID});">
 																<option value="">----选择操作----
 																<option value="senToWarehouse" <c:if test="${commodity.status =='senToWarehouse'}">selected</c:if>>送往库房
 																<option value="inWarehouse" <c:if test="${commodity.status =='inWarehouse'}">selected</c:if>>放入格子里
 																<option value="lose" <c:if test="${commodity.status =='lose'}">selected</c:if>>丢失
 															</select>
+														</c:if>
+														<c:if test="${commodity.status =='packing'}">已经打包</c:if>
 														</td>
 													</tr>
 													<c:set var="commSpecs" value="${commodity.commSpec }"></c:set>

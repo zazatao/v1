@@ -1,12 +1,14 @@
 package com.yc.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
@@ -20,26 +22,25 @@ public class PackageSize {
 	private Integer sizeID;
 	
 	@Column
-	private String size;
+	private String genre;
 	
-	@Column
-	private Double l;//长
+	@OneToMany(mappedBy = "packageSize")
+	private List<PackageGenre> packageGenres;
 	
-	@Column
-	private Double w;//宽
-	
-	@Column
-	private Double h;//高
-	
-	@OneToOne(mappedBy = "packageSize")
-	private Package packAge;
-
-	public Package getPackAge() {
-		return packAge;
+	public List<PackageGenre> getPackageGenres() {
+		return packageGenres;
 	}
 
-	public void setPackAge(Package packAge) {
-		this.packAge = packAge;
+	public void setPackageGenres(List<PackageGenre> packageGenres) {
+		this.packageGenres = packageGenres;
+	}
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
 	}
 
 	public Integer getSizeID() {
@@ -50,35 +51,4 @@ public class PackageSize {
 		this.sizeID = sizeID;
 	}
 
-	public String getSize() {
-		return size;
-	}
-
-	public void setSize(String size) {
-		this.size = size;
-	}
-
-	public Double getL() {
-		return l;
-	}
-
-	public void setL(Double l) {
-		this.l = l;
-	}
-
-	public Double getW() {
-		return w;
-	}
-
-	public void setW(Double w) {
-		this.w = w;
-	}
-
-	public Double getH() {
-		return h;
-	}
-
-	public void setH(Double h) {
-		this.h = h;
-	}
 }

@@ -59,15 +59,16 @@
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="span12">
-					<form class="form-horizontal" action=""
+					<form class="form-horizontal" action="./sendOrReceive"
 						method="POST">
+						<font style="font-size: 16px; color: blue;">${msg }</font>
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-3 control-label">
 								<font color="green" style="font-size: 18px;">包裹:</font>
 							</label>
 							<div class="col-sm-6">
-								<input type="text" name="hospitalDesignation"
-									class="form-control" id="inputEmail3">
+								<input type="text" name="Tpek"
+									class="form-control" id="Tpek">
 							</div>
 						</div>
 						<div class="form-group">
@@ -83,7 +84,7 @@
 						<div class="form-group">
 							<div class="col-sm-7">
 							<br>
-								<button class="btn btn-large btn-success" type="button">&nbsp;&nbsp;处&nbsp;&nbsp;理&nbsp;&nbsp;</button>
+								<button class="btn btn-large btn-success" type="submit">&nbsp;&nbsp;处&nbsp;&nbsp;理&nbsp;&nbsp;</button>
 							</div>
 						</div>
 					</form>

@@ -564,7 +564,7 @@ public class ShopTwoController {
 							commodity.setTransNumForTaobao(buyCat.getShopCommoidty().getCommCode());
 							commodity.setCommItem(buyCat.getShopCommoidty().getCommItem());
 							commodity.setQuantity(buyCat.getBuyAmount());
-							commodity.setWeight(buyCat.getShopCommoidty().getProbablyWeight());
+							commodity.setWeight(buyCat.getShopCommoidty().getProbablyWeight() * buyCat.getBuyAmount());
 							commodity.setNameOfGoods(buyCat.getShopCommoidty().getCommoidtyName());
 							commodity.setPrice(buyCat.getShopCommoidty().getUnitPrice() * buyCat.getShopCommoidty().getSpecial());
 							commodity.setMoney(buyCat.getShopCommoidty().getUnitPrice() * buyCat.getShopCommoidty().getSpecial() * buyCat.getBuyAmount());

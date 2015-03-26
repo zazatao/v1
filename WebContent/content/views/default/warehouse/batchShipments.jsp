@@ -58,8 +58,8 @@
 					method="POST">
 					<div class="form-group">
 						<div class="col-sm-1">
-							<input type="text" name="packageCode" placeholder="包裹编号"
-								class="form-control" id="packageCode" onblur="checkvalue(this)">
+							<input type="text" name="packageCode" placeholder="包裹追踪号"
+								class="form-control" id="packageCode" >
 						</div>
 						<div class="col-sm-1">
 							<input type="text" name="userName" placeholder="收货人姓名"
@@ -92,12 +92,10 @@
 							<tr class="">
 								<th>包裹号</th>
 								<th>追踪号</th>
-								<th>邮戳</th>
+								<th>收件人</th>
 								<th>运输方式</th>
-								<th>用户的格子</th>
-								<th>毛重</th>
+								<th>总重量</th>
 								<th>支付运费</th>
-								<th>状态</th>
 							</tr>
 							<c:forEach var="orders" items="${list }" varStatus="loop">
 								<c:choose>
@@ -110,15 +108,12 @@
 								</c:choose>
 								<td><a href="#" onclick="haveOrder(${orders.packageID });">${orders.packageCode }</a></td>
 								<td>${orders.packAgeTpek }</td>
-								<td></td>
-								<td><c:if test="${orders.delivery=='EMS' }">EMS</c:if></td>
-								<td></td>
-								<td>${orders.grossWeight }</td>
-								<td>${orders.transportFee }</td>
-								<td><c:if test="${orders.orderForms[0].orderstatus == 'initializa' }">初始化</c:if> <%-- 									<c:if test="${orders.inForwarding == 'inForwarding' }">在转发</c:if> --%>
-									<%-- 									<c:if test="${orders.senToWarehouse == 'senToWarehouse' }">送货到仓库</c:if> --%>
-									<%-- 									<c:if test="${orders.packing == 'packing' }"> 打包</c:if> --%>
+								<td>${orders.orderForms[0].orderUser.userName }</td>
+								<td><c:if test="${orders.delivery=='EMS' }">EMS</c:if>
+								<c:if test="${orders.delivery=='sf' }">顺风</c:if>
 								</td>
+								<td>${orders.totalWeight }</td>
+								<td>${orders.transportFee }</td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -135,11 +130,10 @@
 							<tr class="">
 								<th>订单号</th>
 								<th>格子</th>
-								<th>淘宝ID</th>
-								<th>卖家追踪号</th>
+								<th>货品编号</th>
+								<th>产品名称</th>
 								<th>数量</th>
 								<th>重量</th>
-								<th>产品名称</th>
 								<th>状态</th>
 							</tr>
 							<c:forEach var="order" items="${orders }" varStatus="loop">
@@ -152,13 +146,36 @@
 									</c:otherwise>
 								</c:choose>
 								<td>${order.orderFormID }</td>
-								<td>${order.commodities[0].storeRoom.cellStr }</td>
+								<td>${order.orderUser.storeRoom.cellStr }</td>
 								<td>${order.commodities[0].transNumForTaobao }</td>
-								<td>${order.commodities[0].tpek }</td>
+								<td>${order.commodities[0].nameOfGoods }</td>
 								<td>${fn:length(order.commodities) }</td>
 								<td>${order.commodities[0].weight }</td>
-								<td>${order.commodities[0].nameOfGoods }</td>
-								<td>${order.commodities[0].status}</td>
+								<td>
+								<c:choose>
+																	<c:when test="${order.commodities[0].status =='unchanged'}">没有变化</c:when>
+																	<c:when test="${order.commodities[0].status =='cancel'}">取消交易</c:when>
+																	<c:when test="${order.commodities[0].status =='delete'}">删除</c:when>
+																	<c:when test="${order.commodities[0].status =='senToWarehouse'}">送往库房</c:when>
+																	<c:when test="${order.commodities[0].status =='refuse'}">拒绝入库</c:when>
+																	<c:when test="${order.commodities[0].status =='lose'}">丢失</c:when>
+																	<c:when test="${order.commodities[0].status =='inWarehouse'}">在库房中</c:when>
+																	<c:when test="${order.commodities[0].status =='marriage'}">交易中</c:when>
+																	<c:when test="${order.commodities[0].status =='lack'}">缺少货品</c:when>
+																	<c:when test="${order.commodities[0].status =='inAuctionlose'}">下单</c:when>
+																	<c:when test="${order.commodities[0].status =='delivery'}">交付</c:when>
+																	<c:when test="${order.commodities[0].status =='support'}">支持</c:when>
+																	<c:when test="${order.commodities[0].status =='sendOut'}">派送</c:when>
+																	<c:when test="${order.commodities[0].status =='buyerNotPay'}">买方没有支付</c:when>
+																	<c:when test="${order.commodities[0].status =='inCell'}">在格子</c:when>
+																	<c:when test="${order.commodities[0].status =='manualProcessing'}">手工加工</c:when>
+																	<c:when test="${order.commodities[0].status =='inForwarding'}">转发中</c:when>
+																	<c:when test="${order.commodities[0].status =='packing'}">打包</c:when>
+																	<c:when test="${order.commodities[0].status =='paid'}">已付</c:when>
+																	<c:when test="${order.commodities[0].status =='apiProcessing'}">API处理</c:when>
+																	<c:when test="${order.commodities[0].status =='waitingForTracking'}">等待的追踪</c:when>
+																</c:choose>
+								</td>
 								</tr>
 							</c:forEach>
 						</table>

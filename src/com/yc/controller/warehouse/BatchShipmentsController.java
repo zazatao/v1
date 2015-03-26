@@ -49,20 +49,7 @@ public class BatchShipmentsController {
 		Map<String, Object> map = (Map<String, Object>)request.getSession().getAttribute("packageMap");
 		List<Package> list =null;
 		if (map!=null) {
-			list = packageService.getPackAgeByParameters(map);
-			if (map.get("userName")!=null) {
-				List<Package> packages = new ArrayList<Package>();
-				if (list.size()>0) {
-					for (Package package1 : list) {
-						for (OrderForm order : package1.getOrderForms()) {
-							if (order.getOrderUser().getUserName().contains(map.get("userName").toString())) {
-								packages.add(package1);
-							}
-						}
-					}
-					list = packages;
-				}
-			}
+			list = packageService.getPackAgesByBatchShipments(map);
 		}else{
 			list = packageService.getAll();
 		}

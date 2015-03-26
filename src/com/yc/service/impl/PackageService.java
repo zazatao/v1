@@ -1,6 +1,5 @@
 package com.yc.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.yc.dao.orm.commons.GenericDao;
 import com.yc.entity.Package;
+import com.yc.entity.user.Personnel;
 import com.yc.service.IPackageService;
 
 @Component
@@ -27,25 +27,90 @@ public class PackageService extends GenericService<Package> implements IPackageS
 		return packAgeDao.getBy("cargoGroup.cargoGroupID", id);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Package> getAllByTransitAndDelivery(String transit, String delivery) {
-		List<String> names = new ArrayList<String>();
-		names.add("transit");
-		names.add("delivery");
-		List<Object> values = new ArrayList<Object>();
-		values.add(transit);
-		values.add(delivery);
-		return packAgeDao.getBy(names, values);
+		StringBuffer hql = new StringBuffer("select DISTINCT p.* from Package p left join OrderForm o on o.package_id = p.packageID left join User u "
+						+ " on u.id = o.user_id  LEFT JOIN Commodity comm  ON comm.orderform_id = o.orderFormID  "
+						+ " where p.transit = '"+transit+"' and p.delivery = '"+delivery+"' and p.isFee = 1 and comm.status = 'packing' and p.from_cargoGroup is null");
+		return packAgeDao.getEntityManager().createNativeQuery(hql.toString(), Package.class).getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<Package> getPackAgeByParameters(Map<String, Object> map) {
-		StringBuffer hql = new StringBuffer(" from Package p where (? is null or p.packageCode = ?) and (? is null or p.delivery = ?)");
-		Object[] paramete =  new Object[4];
-		paramete[0] = map.get("packageCode");
-		paramete[1] = map.get("packageCode");
-		paramete[2] = map.get("formDelivery");
-		paramete[3] = map.get("formDelivery");
-		return packAgeDao.find(hql.toString(), paramete, -1,-1);
+	public List<Package> getPackAgeByParameters(Map<String, Object> map,int i) {
+		StringBuffer hql = new StringBuffer("select DISTINCT p.* from Package p left join OrderForm o on o.package_id = p.packageID left join User u "
+				+ " on u.id = o.user_id  LEFT JOIN Commodity comm  ON comm.orderform_id = o.orderFormID  where comm.status NOT IN('inForwarding') and p.isFee = "+i);
+		if (map.get("packageCode")!=null) {
+			hql.append(" and p.packageCode = '"+map.get("packageCode")+"'");
+		}
+		if (map.get("formDelivery") != null) {
+			hql.append(" and p.delivery = '"+map.get("formDelivery")+"'");
+		}
+		if (map.get("userName") != null) {
+			hql.append(" and u.userName like '%"+map.get("userName")+"%'");
+		}
+		if (map.get("sendDate") != null) {
+			hql.append(" and p.sendDate = '"+map.get("sendDate")+"'");
+		}
+		return packAgeDao.getEntityManager().createNativeQuery(hql.toString(), Package.class).getResultList();
+	}
+	
+	@Override
+	public Package getPackAgeByTpek(String packAgeTpek) {
+		return packAgeDao.getFirstRecord("packAgeTpek", packAgeTpek);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Package> getPackagesByIsFee() {
+		StringBuffer hql = new StringBuffer("select DISTINCT p.* from Package p left join OrderForm o "
+				+ "on o.package_id = p.packageID left join User u on u.id = o.user_id left join Commodity comm "
+				+ "on comm.orderform_id = o.orderFormID where p.from_cargoGroup is null and p.isFee = 1 and comm.status not in('inForwarding') ");
+		return packAgeDao.getEntityManager().createNativeQuery(hql.toString(), Package.class).getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Package> getPackages() {
+		StringBuffer hql = new StringBuffer("select DISTINCT p.* from Package p left join OrderForm o "
+				+ "on o.package_id = p.packageID left join User u on u.id = o.user_id left join Commodity comm "
+				+ "on comm.orderform_id = o.orderFormID where comm.status = 'packing'");
+		return packAgeDao.getEntityManager().createNativeQuery(hql.toString(), Package.class).getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Package> getWeighing() {
+		StringBuffer hql = new StringBuffer("select DISTINCT p.* from Package p left join OrderForm o "
+				+ "on o.package_id = p.packageID left join User u on u.id = o.user_id left join Commodity comm "
+				+ "on comm.orderform_id = o.orderFormID where comm.status not in('inForwarding')");
+		return packAgeDao.getEntityManager().createNativeQuery(hql.toString(), Package.class).getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Package> getPackAgesByBatchShipments(Map<String, Object> map) {
+		StringBuffer hql = new StringBuffer("select DISTINCT p.* from Package p left join OrderForm o on o.package_id = p.packageID left join User u "
+				+ " on u.id = o.user_id  LEFT JOIN Commodity comm  ON comm.orderform_id = o.orderFormID  where comm.status IN('inForwarding','sendOut') and p.isFee = 1");
+		if (map.get("packageCode")!=null) {
+			hql.append(" and p.packAgeTpek = '"+map.get("packageCode")+"'");
+		}
+		if (map.get("formDelivery") != null) {
+			hql.append(" and p.delivery = '"+map.get("formDelivery")+"'");
+		}
+		if (map.get("userName") != null) {
+			hql.append(" and u.userName like '%"+map.get("userName")+"%'");
+		}
+		if (map.get("sendDate") != null) {
+			hql.append(" and p.sendDate = '"+map.get("sendDate")+"'");
+		}
+		return packAgeDao.getEntityManager().createNativeQuery(hql.toString(), Package.class).getResultList();
+	}
+	
+	@Override
+	public List<Package> getPackAgesForTransit(Personnel personnel) {
+		StringBuffer hql = new StringBuffer(" from Package pack where pack.transitSte.personnel.id = "+personnel.getId()+" and pack.transitSte.sendDate is null ");
+		return packAgeDao.find(hql.toString(), null, null);
 	}
 }

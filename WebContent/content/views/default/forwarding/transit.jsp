@@ -41,7 +41,7 @@
 <body>
 	<!-- Static navbar -->
 	<jsp:include page="../common/navbar.jsp"></jsp:include>
-	
+
 	<div class="container-fluid" style="padding: 0; margin-top: 32px;">
 		<div class="row-fluid">
 			<div class="span12">
@@ -53,133 +53,152 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="col-md-6 column" style="height: 100%">
+		<form class="form-horizontal" action="./searchTransit" method="POST">
+			<div class="form-group">
+				<div class="col-sm-2">
+					<input type="text" name="tpekCargoGroup" class="form-control"
+						id="tpekCargoGroup" value="" placeholder="包裹追踪号" >
+				</div>
+				<div class="col-sm-2">
+					<input type="text" name="receiveDate" class="form-control"
+						id="receiveDate" value="" placeholder="接收日起"
+						 onclick="dateInfoxxx('receiveDate')" >
+				</div>
+				<div class="col-sm-4">
+					<select class="form-control" name="formDelivery" id="formDelivery">
+						<option value="">-------------物流方式-------------
+						<option value="EMS">EMS
+						<option value="sf">顺风
+					</select>
+				</div>
+				<div class="col-sm-2">
+					<button type="submit" class="btn btn-default">查询</button>
+				</div>
+			</div>
+		</form>
+		<div class="list-group-item">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						包裹组<span class="badge navbar-right" id="yunfei"></span>
+					</h3>
+				</div>
+				<div class="list-group-item">
+					<p class="list-group-item-text">
+					<table class="table table-striped">
+						<tr class="">
+							<th>编号</th>
+							<th>总重量</th>
+							<th>包裹追踪号</th>
+							<th>中转地</th>
+							<th>接收日期</th>
+							<th>运输方式</th>
+							<th>操作</th>
+						</tr>
+						<c:forEach var="cargoGroup" items="${list }" varStatus="loop">
+							<c:choose>
+								<c:when test="${loop.index%2==0 }">
+									<tr>
+								</c:when>
+								<c:otherwise>
+									<tr class="success">
+								</c:otherwise>
+							</c:choose>
+							<td><a href="#"
+								onclick="packNum('${cargoGroup.cargoGroupID }');">${cargoGroup.cargoGroupID }</a></td>
+							<td>${cargoGroup.totalWeight}</td>
+							<td>${cargoGroup.tpekCargoGroup}</td>
+							<td><c:if test="${cargoGroup.transit=='beijing' }">北京</c:if>
+								<c:if test="${cargoGroup.transit=='wlmq' }">乌鲁木齐</c:if></td>
+							<td>${cargoGroup.transitSte.receiveDate }</td>
+							<td><c:if test="${cargoGroup.delivery == 'EMS'}">EMS</c:if>
+							<c:if test="${cargoGroup.delivery == 'sf'}">顺风</c:if>
+							</td>
+							<td><button onclick="continuess('${cargoGroup.transitSte.transitSiteID}');">继续转发</button></td>
+							</tr>
+						</c:forEach>
+					</table>
+					</p>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">包裹</h3>
+				</div>
+				<div class="list-group-item">
+					<p class="list-group-item-text">
+					<table class="table table-striped">
+						<tr class="">
+							<th>包裹编号</th>
+							<th>追踪号</th>
+							<th>总重量</th>
+							<th>运费</th>
+							<th>订单数量</th>
+							<th>发货方式</th>
+							<th></th>
+						</tr>
+						<c:set value="0" var="fee"></c:set>
+						<c:forEach items="${cargoGroup.packAges }" var="pack">
+							<tr class="warning">
+								<td><a href="#"
+									onclick="packOrder('${cargoGroup.cargoGroupID}','${pack.packageID}');">${pack.packageCode }</a></td>
+								<td>${pack.packAgeTpek}</td>
+								<td>${pack.totalWeight}</td>
+								<td>${pack.transportFee}</td>
+								<c:set var="fee" value="${fee + pack.transportFee }"></c:set>
+								<td>${fn:length(pack.orderForms)}</td>
+								<td>${pack.delivery }</td>
+								<td></td>
+							</tr>
+						</c:forEach>
+						<c:forEach var="pack" items="${packAges }" varStatus="loop">
+							<c:choose>
+								<c:when test="${loop.index%2==0 }">
+									<tr>
+								</c:when>
+								<c:otherwise>
+									<tr class="success">
+								</c:otherwise>
+							</c:choose>
+							<td><a href="#"
+								onclick="packOrder('${pack.cargoGroup.cargoGroupID}','${pack.packageID}');">${pack.packageCode }</a></td>
+							<td>${pack.packAgeTpek}</td>
+							<td>${pack.totalWeight}</td>
+							<td>${pack.transportFee}</td>
+							<c:set var="fee" value="${fee + pack.transportFee }"></c:set>
+							<td>${fn:length(pack.orderForms)}</td>
+							<td>${pack.delivery }</td>
+							<td></td>
+							</tr>
+						</c:forEach>
+					</table>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<div class="col-md-12 column">
-				<div class="form-group">
-					<div class="col-sm-1">
-						<select class="form-control" name="formDelivery" id="formDelivery">
-							<option value="">中转地
-							<option value="beijing">北京
-						</select>
-					</div>
-					<div class="col-sm-1">
-						<input type="submit" value="收货" class="btn btn-default">&nbsp;&nbsp;&nbsp;
-						<input type="submit" value="发送" class="btn btn-default">
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 column">
-				<br>
-				<form class="form-horizontal" action="./searchTransit" method="POST">
-					<div class="form-group">
-						<div class="col-sm-2">
-							<input type="text" name="packageCode" class="form-control"
-								id="packageCode" value="" placeholder="包裹编号"  onblur="checkvalue(this)">
-						</div>
-						<div class="col-sm-4">
-							<select class="form-control" name="formDelivery"
-								id="formDelivery">
-								<option value="">-------------运输方式-------------
-								<option value="EMS">EMS
-							</select>
-						</div>
-						<div class="col-sm-4">
-							<select class="form-control" name="formStatus" id="formStatus">
-								<option value="">-------------状态-------------
-								<option value="unchanged">没有变化
-								<option value="refuse">拒绝接受货物
-								<option value="lack">缺乏
-								<option value="inWarehouse">在仓库
-								<option value="inAuctionlose">下拍
-								<option value="cancel">取消
-								<option value="delivery">交付
-								<option value="support">支持
-								<option value="sendOut">派送
-								<option value="buyerNotPay">买方没有支付
-								<option value="inCell">在格子
-								<option value="lose">丢失
-								<option value="manualProcessing">手工加工
-								<option value="inForwarding">在转发
-								<option value="senToWarehouse">送货到仓库
-								<option value="packing">打包
-								<option value="paid">已付
-								<option value="apiProcessing">API处理
-								<option value="delete">删除
-								<option value="waitingForTracking">等待的追踪
-							</select>
-						</div>
-						<div class="col-sm-2">
-							<button type="submit" class="btn btn-default">查询</button>
-						</div>
-					</div>
-				</form>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">包裹</h3>
-					</div>
-					<div class="list-group-item">
-						<p class="list-group-item-text">
-						<table class="table table-striped">
-							<thead>
-								<tr class="">
-									<th>型号</th>
-									<th>总重量</th>
-									<th>包裹</th>
-									<th>运输方式</th>
-									<th>状态</th>
-									<th>发送</th>
-								</tr>
-							</thead>
-							<c:forEach var="pack" items="${list }" varStatus="loop">
-								<c:choose>
-									<c:when test="${loop.index%2==0 }">
-										<tr>
-									</c:when>
-									<c:otherwise>
-										<tr class="success">
-									</c:otherwise>
-								</c:choose>
-								<td>${pack.packageSize.size }</td>
-								<td>${pack.totalWeight}</td>
-								<td><a href="#" onclick="packNum(${pack.packageID});">${pack.packageCode }</a></td>
-								<td>${pack.delivery }</td>
-								<td>
-								<c:choose>
-								<c:when test="${pack.orderForms[0].orderstatus =='initializa'}">初始化</c:when>
-<%-- 										<c:when test="${pack.status =='unchanged'}">没有变化</c:when> --%>
-<%-- 										<c:when test="${pack.status =='cancel'}">取消交易</c:when> --%>
-<%-- 										<c:when test="${pack.status =='delete'}">删除</c:when> --%>
-<%-- 										<c:when test="${pack.status =='senToWarehouse'}">送往库房</c:when> --%>
-<%-- 										<c:when test="${pack.status =='refuse'}">拒绝入库</c:when> --%>
-<%-- 										<c:when test="${pack.status =='lose'}">丢失</c:when> --%>
-<%-- 										<c:when test="${pack.status =='inWarehouse'}">在库房中</c:when> --%>
-<%-- 										<c:when test="${pack.status =='marriage'}">交易中</c:when> --%>
-<%-- 										<c:when test="${pack.status =='lack'}">缺少货品</c:when> --%>
-<%-- 										<c:when test="${pack.status =='inAuctionlose'}">下单</c:when> --%>
-<%-- 										<c:when test="${pack.status =='delivery'}">交付</c:when> --%>
-<%-- 										<c:when test="${pack.status =='support'}">支持</c:when> --%>
-<%-- 										<c:when test="${pack.status =='sendOut'}">派送</c:when> --%>
-<%-- 										<c:when test="${pack.status =='buyerNotPay'}">买方没有支付</c:when> --%>
-<%-- 										<c:when test="${pack.status =='inCell'}">在格子</c:when> --%>
-<%-- 										<c:when test="${pack.status =='manualProcessing'}">手工加工</c:when> --%>
-<%-- 										<c:when test="${pack.status =='inForwarding'}">转发中</c:when> --%>
-<%-- 										<c:when test="${pack.status =='packing'}">打包</c:when> --%>
-<%-- 										<c:when test="${pack.status =='paid'}">已付</c:when> --%>
-<%-- 										<c:when test="${pack.status =='apiProcessing'}">API处理</c:when> --%>
-<%-- 										<c:when test="${pack.status =='waitingForTracking'}">等待的追踪</c:when> --%>
-									</c:choose>
-									</td>
-								<td></td>
-								</tr>
-							</c:forEach>
-						</table>
-					</div>
-				</div>
-			</div>
 			<script type="text/javascript">
+			function continuess(id){
+				location.href ='./sendCargoGroup?transitID='+id;
+			}
+			function packOrder(cargoGroupID,packageID){
+				location.href ='./packOrder?cargoGroupID='+cargoGroupID+'&packageID='+packageID;
+			}
+			function dateInfoxxx(obj) {
+				var date = obj;
+				$('#' + date).datetimepicker({
+					lang : 'ch',
+					timepicker : false,
+					format : 'Y-m-d',
+					formatDate : 'Y-m-d',
+				});
+			}
 			function packNum(num){
-				location.href ='./getOrder?id='+num;
+				location.href ='./getPackAge?id='+num;
 			}
 			function checkvalue(obj) {
 				if (!/^[+|-]?\d+\.?\d*$/.test(obj.value) && obj.value != '') {
@@ -187,11 +206,14 @@
 					obj.select();
 				}
 			}
+			function distributed(packid){
+				location.href ='./distributedPackAge?id='+packid;
+			}
 			</script>
 			<div class="col-md-6 column" style="height: 100%">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">中转包裹</h3>
+						<h3 class="panel-title">分发包裹</h3>
 					</div>
 					<div class="list-group-item">
 						<div class="container-fluid">
@@ -201,29 +223,30 @@
 										method="POST">
 										<div class="form-group">
 											<label for="inputEmail3" class="col-sm-2 control-label">地址：</label>
-											<label for="inputEmail3" class="col-sm-8 control-label"></label>
+											<label for="inputEmail3" class="col-sm-8 control-label">${pack.orderForms[0].address.country }
+											${pack.orderForms[0].address.provience }${pack.orderForms[0].address.city }${pack.orderForms[0].address.district }
+											${pack.orderForms[0].address.street }${pack.orderForms[0].address.orther }
+											</label>
 										</div>
 										<hr>
 										<div class="form-group">
-											<label for="inputEmail3" class="col-sm-2 control-label">编号：</label>
+											<label for="inputEmail3" class="col-sm-2 control-label">收货人：</label>
 											<div class="col-sm-3">
-												<input type="text" name="grossWeight" class="form-control"
-													id="grossWeight" value="">
+												<label class=" control-label">${pack.orderForms[0].address.toName }</label>
 											</div>
-											<label for="inputEmail3" class="col-sm-2 control-label">总运费：</label>
+											<label for="inputEmail3" class="col-sm-2 control-label">电话</label>
 											<div class="col-sm-3">
-												<input type="text" name="grossWeight" class="form-control"
-													id="grossWeight" value="">
+												<label class="col-sm-3 control-label">${pack.orderForms[0].address.phone }</label>
 											</div>
 										</div>
 										<hr>
 										<div class="form-group">
 											<label for="inputEmail3" class="col-sm-8 control-label"></label>
 											<div class="col-sm-2">
-												<button type="button" class="btn btn-default">？？？？</button>
+												
 											</div>
 											<div class="col-sm-1">
-												<button type="button" class="btn btn-default">发送包裹</button>
+												<button type="button" class="btn btn-default" onclick="distributed('${pack.packageID}');">发送包裹</button>
 											</div>
 										</div>
 									</form>
@@ -248,57 +271,60 @@
 												<div class="list-group-item">
 													<p class="list-group-item-text"></p>
 													<table class="table table-striped">
-														<tbody>
-															<tr class="">
-																<th>订单编号</th>
-																<th>单元格</th>
-																<th>货号</th>
-																<th>卖家</th>
-																<th>数量</th>
-																<th>名称</th>
-																<th>订单状态</th>
-															</tr>
-															<c:forEach var="order" items="${orders }"
+														<tr class="">
+															<th>订单号</th>
+															<th>格子</th>
+															<th>货物编码</th>
+															<th>货品名称</th>
+															<th>数量</th>
+															<th>重量</th>
+															<th>价值</th>
+															<th>状态</th>
+														</tr>
+														<c:forEach var="orderF" items="${pack.orderForms }">
+															<c:forEach var="commo" items="${orderF.commodities }"
 																varStatus="loop">
 																<c:choose>
 																	<c:when test="${loop.index%2==0 }">
-																		<tr class="success">
+																		<tr>
 																	</c:when>
 																	<c:otherwise>
-																		<tr>
+																		<tr class="success">
 																	</c:otherwise>
 																</c:choose>
-																<td>${order.orderFormID }</td>
-																<td></td>
-																<td>${order.packAge.packageCode }</td>
-																<td>${order.orderUser.userName }</td>
-																<td>${fn:length(order.commodities )}</td>
-																<td>${order.commodities[0].nameOfGoods }</td>
+																<td>${orderF.orderFormID }</td>
+																<td>${orderF.orderUser.storeRoom.cellStr }</td>
+																<td>${commo.commodityID }</td>
+																<td>${commo.nameOfGoods }</td>
+																<td>${commo.quantity }</td>
+																<td>${commo.weight }</td>
+																<td>${commo.money }</td>
 																<td><c:choose>
-																		<c:when test="${order.packAge.status =='unchanged'}">没有变化</c:when>
-																		<c:when test="${order.packAge.status =='cancel'}">取消交易</c:when>
-																		<c:when test="${order.packAge.status =='delete'}">删除</c:when>
-																		<c:when test="${order.packAge.status =='senToWarehouse'}">送往库房</c:when>
-																		<c:when test="${order.packAge.status =='refuse'}">拒绝入库</c:when>
-																		<c:when test="${order.packAge.status =='lose'}">丢失</c:when>
-																		<c:when test="${order.packAge.status =='inWarehouse'}">在库房中</c:when>
-																		<c:when test="${order.packAge.status =='marriage'}">交易中</c:when>
-																		<c:when test="${order.packAge.status =='lack'}">缺少货品</c:when>
-																		<c:when test="${order.packAge.status =='inAuctionlose'}">下单</c:when>
-																		<c:when test="${order.packAge.status =='delivery'}">交付</c:when>
-																		<c:when test="${order.packAge.status =='support'}">支持</c:when>
-																		<c:when test="${order.packAge.status =='sendOut'}">派送</c:when>
-																		<c:when test="${order.packAge.status =='buyerNotPay'}">买方没有支付</c:when>
-																		<c:when test="${order.packAge.status =='inCell'}">在格子</c:when>
-																		<c:when test="${order.packAge.status =='manualProcessing'}">手工加工</c:when>
-																		<c:when test="${order.packAge.status =='inForwarding'}">转发中</c:when>
-																		<c:when test="${order.packAge.status =='packing'}">打包</c:when>
-																		<c:when test="${order.packAge.status =='paid'}">已付</c:when>
-																		<c:when test="${order.packAge.status =='apiProcessing'}">API处理</c:when>
-																		<c:when test="${order.packAge.status =='waitingForTracking'}">等待的追踪</c:when>
+																		<c:when test="${commo.status =='unchanged'}">没有变化</c:when>
+																		<c:when test="${commo.status =='cancel'}">取消交易</c:when>
+																		<c:when test="${commo.status =='delete'}">删除</c:when>
+																		<c:when test="${commo.status =='senToWarehouse'}">送往库房</c:when>
+																		<c:when test="${commo.status =='refuse'}">拒绝入库</c:when>
+																		<c:when test="${commo.status =='lose'}">丢失</c:when>
+																		<c:when test="${commo.status =='inWarehouse'}">在库房中</c:when>
+																		<c:when test="${commo.status =='marriage'}">交易中</c:when>
+																		<c:when test="${commo.status =='lack'}">缺少货品</c:when>
+																		<c:when test="${commo.status =='inAuctionlose'}">下单</c:when>
+																		<c:when test="${commo.status =='delivery'}">交付</c:when>
+																		<c:when test="${commo.status =='support'}">支持</c:when>
+																		<c:when test="${commo.status =='sendOut'}">派送</c:when>
+																		<c:when test="${commo.status =='buyerNotPay'}">买方没有支付</c:when>
+																		<c:when test="${commo.status =='inCell'}">在格子</c:when>
+																		<c:when test="${commo.status =='manualProcessing'}">手工加工</c:when>
+																		<c:when test="${commo.status =='inForwarding'}">转发中</c:when>
+																		<c:when test="${commo.status =='packing'}">打包</c:when>
+																		<c:when test="${commo.status =='paid'}">已付</c:when>
+																		<c:when test="${commo.status =='apiProcessing'}">API处理</c:when>
+																		<c:when test="${commo.status =='waitingForTracking'}">等待的追踪</c:when>
 																	</c:choose></td>
+																</tr>
 															</c:forEach>
-														</tbody>
+														</c:forEach>
 													</table>
 												</div>
 											</div>

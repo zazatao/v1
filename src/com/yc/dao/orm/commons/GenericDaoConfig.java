@@ -114,4 +114,16 @@ public class GenericDaoConfig {
 	public GenericDao<CarCommoidty> getCarCommoidtyDao() {
 		return new GenericDaoSupport<CarCommoidty>(CarCommoidty.class);	
 	}
+	@Bean
+	public GenericDao<PackageSize> getPackageSizeDao() {
+		return new GenericDaoSupport<PackageSize>(PackageSize.class);	
+	}
+	@Bean
+	public GenericDao<PackageGenre> getPackageGenreDao() {
+		return new GenericDaoSupport<PackageGenre>(PackageGenre.class);	
+	}
+	@Bean
+	public GenericDao<TransitSite> getTransitSiteDao() {
+		return new GenericDaoSupport<TransitSite>(TransitSite.class);	
+	}
 }

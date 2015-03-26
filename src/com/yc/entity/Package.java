@@ -13,11 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-
-import com.yc.entity.user.User;
 
 @Entity
 @DiscriminatorValue("package")
@@ -34,7 +31,7 @@ public class Package {
 	@Enumerated(EnumType.STRING)
 	private Delivery delivery;
 	
-	@Column
+	@Column(unique=true)
 	private String packAgeTpek;
 	
 	@Column
@@ -46,10 +43,6 @@ public class Package {
 	@OneToMany(mappedBy = "packAge")
 	private List<OrderForm> orderForms;
 	
-	@OneToOne
-    @JoinColumn(name = "packageSize_id")
-    private PackageSize packageSize;
-	
 	@Column
 	private String sendDate;//发货日期
 	
@@ -58,9 +51,6 @@ public class Package {
 	
 	@Column
 	private Float transportFee;//运输费
-	
-	@Column
-	private String transport;//运输方式
 	
 	@Column
 	private String traffic;//交通方式
@@ -74,9 +64,39 @@ public class Package {
 	private CargoGroup cargoGroup;
 	
 	@ManyToOne
-	@JoinColumn(name= "store_name")
-	private User storeOperator;
+	@JoinColumn(name = "transitSiteID")
+	private TransitSite transitSte;
 	
+	@Column
+	private Boolean isClearing = false;//是否结算
+	
+	@Column
+	private Boolean isFee = false;//运费已付
+
+	public TransitSite getTransitSte() {
+		return transitSte;
+	}
+
+	public void setTransitSte(TransitSite transitSte) {
+		this.transitSte = transitSte;
+	}
+
+	public Boolean getIsClearing() {
+		return isClearing;
+	}
+
+	public void setIsClearing(Boolean isClearing) {
+		this.isClearing = isClearing;
+	}
+
+	public Boolean getIsFee() {
+		return isFee;
+	}
+
+	public void setIsFee(Boolean isFee) {
+		this.isFee = isFee;
+	}
+
 	public Transit getTransit() {
 		return transit;
 	}
@@ -149,14 +169,6 @@ public class Package {
 		this.grossWeight = grossWeight;
 	}
 
-	public PackageSize getPackageSize() {
-		return packageSize;
-	}
-
-	public void setPackageSize(PackageSize packageSize) {
-		this.packageSize = packageSize;
-	}
-
 	public String getPackageCode() {
 		return packageCode;
 	}
@@ -176,13 +188,6 @@ public class Package {
 	public List<OrderForm> getOrderForms() {
 		return orderForms;
 	}
-	public String getTransport() {
-		return transport;
-	}
-
-	public void setTransport(String transport) {
-		this.transport = transport;
-	}
 
 	public void setOrderForms(List<OrderForm> orderForms) {
 		this.orderForms = orderForms;
@@ -196,12 +201,4 @@ public class Package {
 		this.traffic = traffic;
 	}
 
-	public User getStoreOperator() {
-		return storeOperator;
-	}
-
-	public void setStoreOperator(User storeOperator) {
-		this.storeOperator = storeOperator;
-	}
-	
 }

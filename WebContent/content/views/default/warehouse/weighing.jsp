@@ -39,7 +39,7 @@
 				<ul class="breadcrumb">
 					<li><a href="#" style="font-size: 18px;">仓库</a></li>
 					<span class="divider"><font style="font-size: 18px;">/</font></span>
-					<li><font style="font-size: 18px;">称量</font>
+					<li><font style="font-size: 18px;">称量&打包</font>
 				</ul>
 			</div>
 		</div>
@@ -52,7 +52,7 @@
 					<div class="form-group">
 						<div class="col-sm-1">
 							<input type="text" name="packageCode" placeholder="包裹编号"
-								class="form-control" id="packageCode" onblur="checkvalue(this)">
+								class="form-control" id="packageCode" >
 						</div>
 						<div class="col-sm-2">
 							<select class="form-control" name="formDelivery"
@@ -107,7 +107,7 @@
 			</div>
 			<script type="text/javascript">
 				function packNum(num){
-						location.href ='./getOrder?page=weighing&id='+num;
+					location.href ='./getOrder?page=weighing&id='+num;
 				}
 			</script>
 			<div class="col-md-8 column" style="height: 100%">
@@ -122,71 +122,68 @@
 									<form class="form-horizontal" action="./addHospital"
 										method="POST">
 										<div class="form-group">
-											<label for="inputEmail3" class="col-sm-2 control-label">总重量</label>
+											<label for="inputEmail3" class="col-sm-2 control-label">净重</label>
 											<div class="col-sm-3">
-												<input type="text" name="totalWeight" class="form-control"
-													id="totalWeight" value="${packs.totalWeight }">
+												<input type="text" name="weightText" class="form-control"
+													id="weightText" readonly="readonly">
 											</div>
-											<label for="inputEmail3" class="col-sm-2 control-label">毛重量</label>
+											<label for="inputEmail3" class="col-sm-2 control-label">皮重</label>
 											<div class="col-sm-3">
-												<input type="text" name="grossWeight" class="form-control"
-													id="grossWeight" value="${packs.grossWeight }"> <span
-													class="badge navbar-right"><font
+													<c:if test="${packs.grossWeight == null}">
+														<input type="text" name="grossWeight" class="form-control"
+															id="grossWeight" value="1">
+													</c:if>
+													<c:if test="${packs.grossWeight != null}">
+														<input type="text" name="grossWeight" class="form-control"
+															id="grossWeight" value="${packs.grossWeight }">
+													</c:if>
+												<span
+													class="badge navbar-right" id="btn_prev" style="cursor: pointer;"><font
 													style="font-size: 15px;">-</font></span>&nbsp;&nbsp;<span
-													class="badge navbar-right"><font
+													class="badge navbar-right"  id="btn_next" style="cursor: pointer;"><font
 													style="font-size: 16px;">+</font></span>
 											</div>
 										</div>
 										<div class="form-group">
 											<label for="inputEmail3" class="col-sm-1 control-label">尺寸</label>
-											<div class="col-sm-2">
-												<select class="form-control">
-													<option value="600x500x400">600&nbsp;x&nbsp;500&nbsp;x&nbsp;400
-													<option value="530x290x370">530&nbsp;x&nbsp;290&nbsp;x&nbsp;370
-													<option value="530x230x290">530&nbsp;x&nbsp;230&nbsp;x&nbsp;290
-													<option value="430x210x270">430&nbsp;x&nbsp;210&nbsp;x&nbsp;270
-													<option value="350x190x230">350&nbsp;x&nbsp;190&nbsp;x&nbsp;230
-													<option value="290x170x190">290&nbsp;x&nbsp;170&nbsp;x&nbsp;190
-													<option value="260x150x180">260&nbsp;x&nbsp;150&nbsp;x&nbsp;180
-													<option value="230x130x160">230&nbsp;x&nbsp;130&nbsp;x&nbsp;160
-													<option value="210x110x140">210&nbsp;x&nbsp;110&nbsp;x&nbsp;140
-													<option value="195x105x135">195&nbsp;x&nbsp;105&nbsp;x1&nbsp;35
-													<option value="other">其它
+											<div class="col-sm-2"> 
+												<select class="form-control" onchange="packageGenre(this);" id="genre">
+														<option value="">---选择尺寸---</option>
+													<c:forEach items="${size.packageGenres }" var="packageGenre">
+														<option value="${packageGenre.id }">${packageGenre.attribute }</option>
+													</c:forEach>
 												</select>
 											</div>
 											<div class="col-sm-1">
-												<input type="text" name="hospitalDesignation"
-													class="form-control" id="inputEmail3"
-													value="${hospital.hospitalDesignation }">
+												<input type="text" name="l"
+													class="form-control" id="l"
+													value="" placeholder="长" style="font-size: 12px;">
 											</div>
 											<div class="col-sm-1">
- 												<input type="text" name="hospitalDesignation"
-													class="form-control" id="inputEmail3"
-													value="${hospital.hospitalDesignation }">
+ 												<input type="text" name="w"
+													class="form-control" id="w"
+													value="" placeholder="宽" style="font-size: 12px;">
 											</div>
 											<div class="col-sm-1">
-												<input type="text" name="hospitalDesignation"
-													class="form-control" id="inputEmail3"
-													value="${hospital.hospitalDesignation }">
+												<input type="text" name="h"
+													class="form-control" id="h"
+													value="" placeholder="高" style="font-size: 12px;">
 											</div>
 										</div>
 										<hr>
 										<div class="form-group">
 											<label for="inputEmail3" class="col-sm-8 control-label"
-												style="text-align: right;">清除多余的包装</label>
+												style="text-align: right;"></label>
 											<div class="col-sm-1">
-												<input type="checkbox" name="hospitalDesignation"
-													class="btn checkbox" id="inputEmail3"
-													value="${hospital.hospitalDesignation }">
 											</div>
 											<div class="col-sm-1">
 												<button type="button" class="btn btn-default">打印发票</button>
 											</div>
 											<div class="col-sm-1">
-												<button type="button" class="btn btn-default">&nbsp;&nbsp;&nbsp;条&nbsp;&nbsp;码&nbsp;&nbsp;&nbsp;</button>
+												<button type="button" class="btn btn-default">打印条码</button>
 											</div>
 											<div class="col-sm-1">
-												<button type="button" class="btn btn-default">称量包裹</button>
+												<button type="button" class="btn btn-default" onclick="packageIng(${packs.packageID});">打包</button>
 											</div>
 										</div>
 									</form>
@@ -219,13 +216,11 @@
 													<p class="list-group-item-text">
 													<table class="table table-striped">
 														<tr class="">
-															<th>日期</th>
-															<th>订单号</th>
+															<th>付款日期</th>
+															<th>订单编号</th>
+															<th>产品编号</th>
+															<th>产品名称</th>
 															<th>数量</th>
-															<th>货号(淘宝ID)</th>
-															<th>操作</th>
-															<th>快捷</th>
-															<th>实现</th>
 														</tr>
 														<c:forEach var="orderForm" items="${packs.orderForms }">
 															<c:set var="order" value="${orderForm }"></c:set>
@@ -239,13 +234,11 @@
 																		<tr class="success">
 																	</c:otherwise>
 																</c:choose>
-																<td>${order.orderDate }</td>
+																<td>${order.paymentDate }&nbsp;${order.paymentTime }</td>
 																<td>${order.orderFormID }</td>
+																<td>${comm.commodityID }</td>
+																<td>${comm.nameOfGoods }</td>
 																<td>${comm.quantity}</td>
-																<td>${comm.commItem}</td>
-																<td></td>
-																<td></td>
-																<td></td>
 																</tr>
 															</c:forEach>
 														</c:forEach>
@@ -269,14 +262,14 @@
 														<tr class="">
 															<th>订单号</th>
 															<th>格子</th>
-															<th>货号(淘宝ID)</th>
-															<th>卖方追踪</th>
+															<th>产品编号</th>
+															<th>产品名称</th>
+															<th>条形码</th>
 															<th>数量</th>
 															<th>重量</th>
-															<th>名称</th>
-															<th>便利</th>
 															<th>状态</th>
 														</tr>
+														<c:set var="grossWeight" value="0"></c:set>
 														<c:forEach var="orderF" items="${packs.orderForms }">
 															<c:set var="orders" value="${orderF }"></c:set>
 															<c:forEach var="commo" items="${orderF.commodities }"
@@ -290,14 +283,38 @@
 																	</c:otherwise>
 																</c:choose>
 																<td>${orders.orderFormID }</td>
-																<td>${commo.storeRoom.cellStr }</td>
-																<td>${commo.transNumForTaobao }</td>
+																<td>${orders.orderUser.storeRoom.cellStr }</td>
+																<td>${commo.commodityID }</td>
+																<td>${commo.nameOfGoods }</td>
 																<td>${commo.tpek }</td>
 																<td>${commo.quantity }</td>
 																<td>${commo.weight }</td>
-																<td>${commo.nameOfGoods }</td>
-																<td></td>
-																<td></td>
+																<c:set var="grossWeight" value="${grossWeight+commo.weight}"></c:set>
+																<td>
+																<c:choose>
+																	<c:when test="${commo.status =='unchanged'}">没有变化</c:when>
+																	<c:when test="${commo.status =='cancel'}">取消交易</c:when>
+																	<c:when test="${commo.status =='delete'}">删除</c:when>
+																	<c:when test="${commo.status =='senToWarehouse'}">送往库房</c:when>
+																	<c:when test="${commo.status =='refuse'}">拒绝入库</c:when>
+																	<c:when test="${commo.status =='lose'}">丢失</c:when>
+																	<c:when test="${commo.status =='inWarehouse'}">在库房中</c:when>
+																	<c:when test="${commo.status =='marriage'}">交易中</c:when>
+																	<c:when test="${commo.status =='lack'}">缺少货品</c:when>
+																	<c:when test="${commo.status =='inAuctionlose'}">下单</c:when>
+																	<c:when test="${commo.status =='delivery'}">交付</c:when>
+																	<c:when test="${commo.status =='support'}">支持</c:when>
+																	<c:when test="${commo.status =='sendOut'}">派送</c:when>
+																	<c:when test="${commo.status =='buyerNotPay'}">买方没有支付</c:when>
+																	<c:when test="${commo.status =='inCell'}">在格子</c:when>
+																	<c:when test="${commo.status =='manualProcessing'}">手工加工</c:when>
+																	<c:when test="${commo.status =='inForwarding'}">转发中</c:when>
+																	<c:when test="${commo.status =='packing'}">打包</c:when>
+																	<c:when test="${commo.status =='paid'}">已付</c:when>
+																	<c:when test="${commo.status =='apiProcessing'}">API处理</c:when>
+																	<c:when test="${commo.status =='waitingForTracking'}">等待的追踪</c:when>
+																</c:choose>
+																</td>
 																</tr>
 															</c:forEach>
 														</c:forEach>
@@ -317,6 +334,52 @@
 	</div>
 	</ul>
 	<script type="text/javascript">
+	function packageIng(id){
+		var genre = $('#genre').val();
+		var weight = $('#weightText').val();
+		var grossWeight = $('#grossWeight').val();
+		if (genre == '') {
+			alert('请选择外包装！！！');
+		}else{
+			location.href ='./updatePacke?id='+id+"&genre="+genre+"&weight="+weight+"&grossWeight="+grossWeight;
+		}
+	}
+	function packageGenre(obj){
+		var item = obj.options[obj.selectedIndex].text.split("x");
+		 for (i=0;i<item.length ;i++ )   
+		 {   
+			 $('#l').val(item[0]+"cm");
+			 $('#w').val(item[1]+"cm");
+			 $('#h').val(item[2]+"cm");
+		 }   
+	}
+	$(document).ready(function(){
+	   if ($('#weightText').val() == '') {
+		   $('#weightText').val('${grossWeight}');
+		}
+	});
+	$(function() {
+		//获得文本框对象
+		//数量增加操作
+		$("#btn_next").click(
+				function() {
+					var t = $(this).siblings('#grossWeight');
+					t.val(parseInt(t.val()) + 1)
+					if (parseInt(t.val()) > 1) {
+						$(this).siblings('#btn_prev').attr(
+								'disabled', false);
+					}
+				})
+		//数量减少操作
+		$("#btn_prev").click(function() {
+			var t = $(this).siblings('#grossWeight');
+			t.val(parseInt(t.val()) - 1);
+			if (parseInt(t.val()) <= 1) {
+				$("#grossWeight").val(1);
+			}
+		})
+
+	})
 	function checkvalue(obj) {
 		if (!/^[+|-]?\d+\.?\d*$/.test(obj.value) && obj.value != '') {
 			alert('你输入的不是数字，或关闭输入法后再输入');

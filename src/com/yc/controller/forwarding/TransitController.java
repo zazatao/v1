@@ -1,6 +1,8 @@
 package com.yc.controller.forwarding;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,12 +19,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yc.entity.CargoGroup;
 import com.yc.entity.Delivery;
-import com.yc.entity.OrderForm;
-import com.yc.entity.CommoidityStatus;
 import com.yc.entity.Package;
+import com.yc.entity.TransitSite;
+import com.yc.entity.user.Personnel;
+import com.yc.service.ICargoGroupService;
 import com.yc.service.IOrderFormService;
 import com.yc.service.IPackageService;
+import com.yc.service.ITransitSiteService;
 
 //中转接收和发送
 @Controller
@@ -37,58 +42,117 @@ public class TransitController {
 	@Autowired
 	IOrderFormService orderService;
 	
+	@Autowired
+	ICargoGroupService cargoGroupService;
+	
+	@Autowired
+	ITransitSiteService transitSiteService;
+	
 	@RequestMapping(value = "transit", method = RequestMethod.GET)
 	public ModelAndView transit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().removeAttribute("packageMap");
-		List<Package> list = packageService.getAll();
+		request.getSession().removeAttribute("cargoGroupID");
+		Personnel personnel = (Personnel)request.getSession().getAttribute("loginPersonnle");
+		List<CargoGroup> list = cargoGroupService.getCargoGroupByForTransit(personnel);
+		List<Package> packages = packageService.getPackAgesForTransit(personnel);
 		ModelMap mode = new ModelMap();
+		mode.put("packAges", packages);
 		mode.put("list", list);
 	    return new ModelAndView("forwarding/transit", mode);
 	}
 	
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "getOrder", method = RequestMethod.GET)
+	@RequestMapping(value = "getPackAge", method = RequestMethod.GET)
 	public ModelAndView getOrder(Integer id ,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().removeAttribute("cargoGroupID");
 		Map<String, Object> map = (Map<String, Object>)request.getSession().getAttribute("packageMap");
-		List<Package> list =null;
-		if (map!=null) {
-			 list = packageService.getPackAgeByParameters(map);
+		Personnel personnel = (Personnel)request.getSession().getAttribute("loginPersonnle");
+		List<Package> packages = packageService.getPackAgesForTransit(personnel);
+		List<CargoGroup> list = null;
+		if (map != null) {
+			list = cargoGroupService.getCargoGroupParameters(map,personnel);
 		}else{
-			list = packageService.getAll();
+			list = cargoGroupService.getCargoGroupByForTransit(personnel);
 		}
-		List<OrderForm> orders =  orderService.findByPackAgeID(id);
+		CargoGroup cargoGroup = cargoGroupService.findById(id);
+		request.getSession().setAttribute("cargoGroupID", id);
 		ModelMap mode = new ModelMap();
+		mode.put("packAges", packages);
 		mode.put("list", list);
-		mode.put("orders", orders);
+		mode.put("cargoGroup", cargoGroup);
 	    return new ModelAndView("forwarding/transit", mode);
 	}
 	
 	@RequestMapping(value = "searchTransit", method = RequestMethod.POST)
 	public ModelAndView searchTransit(Integer id ,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String packageCode = request.getParameter("packageCode");
+		String tpekCargoGroup = request.getParameter("tpekCargoGroup");
 		String formDelivery = request.getParameter("formDelivery");
-		String formStatus = request.getParameter("formStatus");
+		String receiveDate = request.getParameter("receiveDate");
+		Personnel personnel = (Personnel)request.getSession().getAttribute("loginPersonnle");
 		Map<String, Object> map = new HashMap<String, Object>();
-		if (packageCode.trim().equals("")) {
-			map.put("packageCode", null);
+		if (tpekCargoGroup.trim().equals("")) {
+			map.put("tpekCargoGroup", null);
 		}else{
-			map.put("packageCode", packageCode);
+			map.put("tpekCargoGroup", tpekCargoGroup);
 		}
 		if (formDelivery.trim().equals("")) {
 			map.put("formDelivery", null);
 		}else{
 			map.put("formDelivery", Delivery.valueOf(formDelivery));
 		}
-		if (formStatus.trim().equals("")) {
-			map.put("formStatus", null);
+		if (receiveDate.trim().equals("")) {
+			map.put("receiveDate", null);
 		}else{
-			map.put("formStatus", CommoidityStatus.valueOf(formStatus));
+			map.put("receiveDate", receiveDate);
 		}
-		List<Package> list = packageService.getPackAgeByParameters(map);
+		List<CargoGroup> list = cargoGroupService.getCargoGroupParameters(map,personnel);
 		request.getSession().setAttribute("packageMap", map);
+		List<Package> packages = packageService.getPackAgesForTransit(personnel);
 		ModelMap mode = new ModelMap();
 		mode.put("list", list);
+		mode.put("packAges", packages);
 	    return new ModelAndView("forwarding/transit", mode);
 	}
 	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "packOrder", method = RequestMethod.GET)
+	public ModelAndView packOrder(Integer cargoGroupID, Integer packageID, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Map<String, Object> map = (Map<String, Object>)request.getSession().getAttribute("packageMap");
+		Personnel personnel = (Personnel)request.getSession().getAttribute("loginPersonnle");
+		List<Package> packages = packageService.getPackAgesForTransit(personnel);
+		List<CargoGroup> list = null;
+		if (map != null) {
+			list = cargoGroupService.getCargoGroupParameters(map,personnel);
+		}else{
+			list = cargoGroupService.getCargoGroupByForTransit(personnel);
+		}
+		if (cargoGroupID == null && request.getSession().getAttribute("cargoGroupID") != null ) {
+			cargoGroupID = Integer.parseInt(request.getSession().getAttribute("cargoGroupID").toString());
+		}
+		CargoGroup cargoGroup = cargoGroupService.findById(cargoGroupID);
+		Package pack = packageService.findById(packageID);
+		ModelMap mode = new ModelMap();
+		mode.put("packAges", packages);
+		mode.put("list", list);
+		mode.put("cargoGroup", cargoGroup);
+		mode.put("pack", pack);
+		return  new ModelAndView("forwarding/transit", mode);
+	}
+	
+	@RequestMapping(value = "sendCargoGroup", method = RequestMethod.GET)
+	public String sendCargoGroup(Integer transitID, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		TransitSite transitSite =  transitSiteService.findById(transitID);
+		transitSite.setSendDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));;
+		transitSiteService.update(transitSite);
+		return "redirect:/forwarding/transit";
+	}
+	
+	@RequestMapping(value = "sendCargoGroup", method = RequestMethod.GET)
+	public String distributedPackAge(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Package pack = packageService.findById(id);
+		if (pack.getTransitSte() == null) {
+			
+		}
+		return null;
+	}
 }

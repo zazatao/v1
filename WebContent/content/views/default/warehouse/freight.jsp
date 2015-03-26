@@ -71,21 +71,22 @@
 										<label for="inputEmail3" class="col-sm-2 control-label">追踪号</label>
 										<div class="col-sm-3">
 											<input type="text" name="packAgeTpek" class="form-control"
-												id="packAgeTpek">
+												id="packAgeTpek" readonly="readonly">
 										</div>
 										<label for="inputEmail3" class="col-sm-2 control-label">运费</label>
 										<div class="col-sm-3">
 											<input type="text" name="transportFee" class="form-control"
-												id="transportFee"> <span class="badge navbar-right"><font
-												style="font-size: 15px;">-</font></span>&nbsp;&nbsp;<span
-												class="badge navbar-right"><font
-												style="font-size: 16px;">+</font></span>
+												id="transportFee"><span
+													class="badge navbar-right" id="btn_prev" style="cursor: pointer;"><font
+													style="font-size: 15px;">-</font></span>&nbsp;&nbsp;<span
+													class="badge navbar-right"  id="btn_next" style="cursor: pointer;"><font
+													style="font-size: 16px;">+</font></span>
 										</div>
 									</div>
 									<hr>
 									<div class="form-group">
 										<div class="col-sm-11" style="text-align: right;">
-											<button type="button" class="btn btn-default">发送包裹</button>
+											<button type="button" class="btn btn-default" onclick="transportFeeJie();">运费结算</button>
 										</div>
 									</div>
 								</form>
@@ -102,7 +103,7 @@
 								class="form-control" id="packageCode" onblur="checkvalue(this)">
 						</div>
 						<div class="col-sm-1">
-							<input type="text" name="userName" placeholder="收货人姓名"
+							<input type="text" name="userName" placeholder="客户"
 								class="form-control" id="userName">
 						</div>
 						<div class="col-sm-2">
@@ -130,15 +131,16 @@
 						<table class="table table-striped">
 							<tr class="">
 								<th>包裹号</th>
-								<th>买家</th>
+								<th>客户</th>
 								<th>收货人姓名</th>
 								<th>追踪号</th>
 								<th>总重量</th>
+								<th>毛重</th>
 								<th>运输方式</th>
-								<th>追踪日期</th>
-								<th>发货日期</th>
+								<th>当前状态</th>
 							</tr>
 							<c:forEach var="orders" items="${list }" varStatus="loop">
+								<c:set var="transportFee" value="0"></c:set>
 								<c:choose>
 									<c:when test="${loop.index%2==0 }">
 										<tr>
@@ -147,30 +149,77 @@
 										<tr class="success">
 									</c:otherwise>
 								</c:choose>
+								<c:forEach items="${orders.orderForms }" var="order">
+									<c:set var="transportFee" value="${transportFee + order.deliveryMoney }"></c:set>
+								</c:forEach>
+								<input type="hidden" id="orderFee${loop.index }" value="${transportFee }">
 								<td><a href="#"
-									onclick="haveTpek('${orders.packAgeTpek }','${orders.transportFee }');">${orders.packageCode }</a></td>
-								<td>${orders.orderForms[0].orderUser.loginName }</td>
+									onclick="haveTpek('${orders.packAgeTpek }','${orders.transportFee }','${loop.index }');">${orders.packageCode }</a></td>
 								<td>${orders.orderForms[0].orderUser.userName }</td>
-								<td>${orders.orderForms[0].commodities[0].tpek }</td>
-								<td>${orders.orderForms[0].commodities[0].weight }</td>
-								<td>${orders.orderForms[0].delivery }</td>
-								<td>${orders.tpekDate }</td>
-								<td>${orders.sendDate }</td>
+								<td>${orders.orderForms[0].address.toName }</td>
+								<td>${orders.packAgeTpek }</td>
+								<td>${orders.totalWeight }</td>
+								<td>${orders.grossWeight }</td>
+								<td>
+								<c:choose>
+										<c:when test="${orders.delivery =='EMS'}">EMS</c:when>
+										<c:when test="${orders.delivery =='sf'}">顺风</c:when>
+									</c:choose>
+								</td>
+								<td>
+									<c:if test="${orders.isClearing }">
+										已经结算
+									</c:if>
+									<c:if test="${!orders.isClearing }">
+										打包
+									</c:if>
+								</td>
 								</tr>
 							</c:forEach>
 						</table>
 						</p>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
 	<script type="text/javascript">
-		function haveTpek(tpek, fee) {
-			$('#transportFee').val(fee);
+		function haveTpek(tpek, fee,id) {
+			if (fee == '') {
+				var ss= $('#orderFee'+id).val();
+				$('#transportFee').val(ss);
+			}else{
+				$('#transportFee').val(fee);
+			}
 			$('#packAgeTpek').val(tpek);
 		}
+		function transportFeeJie(){
+			var packAgeTpek = $('#packAgeTpek').val();
+			var transportFee = $('#transportFee').val();
+			location.href ='./updateTransportFee?packAgeTpek='+packAgeTpek+"&transportFee="+transportFee;
+		}
+		$(function() {
+			//获得文本框对象
+			//数量增加操作
+			$("#btn_next").click(
+					function() {
+						var t = $(this).siblings('#transportFee');
+						t.val(parseInt(t.val()) + 1)
+						if (parseInt(t.val()) > 1) {
+							$(this).siblings('#btn_prev').attr(
+									'disabled', false);
+						}
+					})
+			//数量减少操作
+			$("#btn_prev").click(function() {
+				var t = $(this).siblings('#transportFee');
+				t.val(parseInt(t.val()) - 1);
+				if (parseInt(t.val()) <= 1) {
+					$("#transportFee").val(1);
+				}
+			})
+
+		})
 		function checkvalue(obj) {
 			if (!/^[+|-]?\d+\.?\d*$/.test(obj.value) && obj.value != '') {
 				alert('你输入的不是数字，或关闭输入法后再输入');

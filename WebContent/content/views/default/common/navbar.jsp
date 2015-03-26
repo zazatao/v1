@@ -37,7 +37,7 @@
 						<li><a href="../warehouse/freight">运费</a></li>
 						<li><a href="../warehouse/sendTheParcel">发送包裹</a></li>
 						<li><a href="../warehouse/cargoGroup">货物组</a></li>
-						<li><a href="../warehouse/batchShipments">成批发货</a></li>
+						<li><a href="../warehouse/batchShipments">出货查询</a></li>
 						<li><a href="../warehouse/statistical">统计发货人情况</a></li>
 					</ul></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"

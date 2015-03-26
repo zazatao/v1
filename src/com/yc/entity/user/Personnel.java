@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 
 import com.yc.entity.Commodity;
 import com.yc.entity.OrderForm;
+import com.yc.entity.TransitSite;
 import com.yc.entity.UnKnownCommodity;
 
 @Entity
@@ -64,6 +65,25 @@ public class Personnel {
     
     @OneToMany(mappedBy = "orderUser")
 	private List<OrderForm> orderForms;//用户订单
+    
+    @OneToMany(mappedBy = "personnel")
+    private List<TransitSite> transitSites;
+
+	public List<TransitSite> getTransitSites() {
+		return transitSites;
+	}
+
+	public void setTransitSites(List<TransitSite> transitSites) {
+		this.transitSites = transitSites;
+	}
+
+	public List<Commodity> getCommOperators() {
+		return commOperators;
+	}
+
+	public List<Commodity> getPurchases() {
+		return purchases;
+	}
 
 	public void setCommOperators(List<Commodity> commOperators) {
 		this.commOperators = commOperators;

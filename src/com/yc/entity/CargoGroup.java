@@ -10,6 +10,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -18,9 +20,16 @@ public class CargoGroup {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer cargoGroupID;
+	
+	@Column
+	private String tpekCargoGroup; 
 
 	@OneToMany(mappedBy = "cargoGroup")
 	private List<Package> packAges;
+	
+	@ManyToOne
+	@JoinColumn(name = "transitSiteID")
+	private TransitSite transitSte;
 	
 	@Column
 	private Double totalWeight;
@@ -51,7 +60,23 @@ public class CargoGroup {
 	
 	@Column
 	private Float compensation;//赔付金额
-	
+
+	public TransitSite getTransitSte() {
+		return transitSte;
+	}
+
+	public void setTransitSte(TransitSite transitSte) {
+		this.transitSte = transitSte;
+	}
+
+	public String getTpekCargoGroup() {
+		return tpekCargoGroup;
+	}
+
+	public void setTpekCargoGroup(String tpekCargoGroup) {
+		this.tpekCargoGroup = tpekCargoGroup;
+	}
+
 	public String getCreateDate() {
 		return createDate;
 	}

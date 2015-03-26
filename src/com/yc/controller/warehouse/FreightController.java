@@ -1,7 +1,6 @@
 package com.yc.controller.warehouse;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Delivery;
-import com.yc.entity.OrderForm;
 import com.yc.entity.Package;
 import com.yc.service.IPackageService;
 
@@ -34,7 +32,7 @@ public class FreightController {
 
 	@RequestMapping(value = "freight", method = RequestMethod.GET)
 	public ModelAndView freight(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Package> list = packageService.getAll();
+		List<Package> list = packageService.getPackages();
 		ModelMap map = new ModelMap();
 		map.put("list", list);
 		return new ModelAndView("warehouse/freight", map);
@@ -63,30 +61,30 @@ public class FreightController {
 		}else{
 			map.put("sendDate", request.getParameter("sendDate"));
 		}
-		List<Package> list = packageService.getPackAgeByParameters(map);
-		if (map.get("userName")!=null) {
-			List<Package> packages = new ArrayList<Package>();
-			if (list.size()>0) {
-				for (Package package1 : list) {
-					for (OrderForm order : package1.getOrderForms()) {
-						if (order.getOrderUser().getUserName().contains(map.get("userName").toString())) {
-							packages.add(package1);
-						}
-					}
-				}
-				list = packages;
-			}
-		}
 		ModelMap mode = new ModelMap();
-		mode.put("list", list);
 		request.getSession().setAttribute("packageMap", map);
 		if (page.equals("freight")) {
+			List<Package> list = packageService.getPackAgeByParameters(map,0);
+			mode.put("list", list);
 			return new ModelAndView("warehouse/freight", mode);
 		}else if (page.equals("batchShipments")) {
+			List<Package> list = packageService.getPackAgesByBatchShipments(map);
+			mode.put("list", list);
 			return new ModelAndView("warehouse/batchShipments", mode);
 		}else{
 			return null;
 		}
-		
+	}
+	
+	@RequestMapping(value = "updateTransportFee", method = RequestMethod.GET)
+	public String updateTransportFee(String packAgeTpek,Float transportFee, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Package pack = packageService.getPackAgeByTpek(packAgeTpek);
+		pack.setTransportFee(transportFee);
+		if (pack.getIsFee()==null) {
+			pack.setIsFee(false);
+		}
+		pack.setIsClearing(true);
+		packageService.update(pack);
+		return "redirect:/warehouse/freight";
 	}
 }

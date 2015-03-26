@@ -273,7 +273,7 @@ public class OrderFormService extends GenericService<OrderForm> implements IOrde
 	public List<OrderForm> getOrderByStatusAndName(Map<String, Object> map) {
 		StringBuffer hql = new StringBuffer("SELECT DISTINCT o.* FROM OrderForm o LEFT JOIN commodity com "
 				+ " ON o.orderFormID = com.orderform_id LEFT JOIN USER u ON u.id = o.user_id WHERE o.orderstatus "
-				+ " = 'transitGoods' AND com.status IN ('inWarehouse','senToWarehouse') AND o.package_id IS  NULL");
+				+ " = 'transitGoods' AND com.status IN ('inWarehouse','senToWarehouse','packing') AND o.package_id IS  NULL");
 		if (map.get("formDelivery") != null) {
 			hql.append(" and o.delivery = '"+map.get("formDelivery")+"'");
 		}
