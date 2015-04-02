@@ -48,17 +48,25 @@ public class CargoGroupService extends GenericService<CargoGroup> implements ICa
 		return cargoGroupDao.getFirstRecord("tpekCargoGroup", tpek);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<CargoGroup> getCargoGroupByForTransit(Personnel personnel) {
-		StringBuffer hql = new StringBuffer(" from CargoGroup cargo where cargo.transitSte.personnel.id = "+personnel.getId()+" and cargo.transitSte.sendDate is null");
-		return cargoGroupDao.find(hql.toString(), null, null);
+		StringBuffer hql = new StringBuffer("SELECT DISTINCT cargo.* FROM CargoGroup cargo LEFT JOIN TransitSite tran "
+				+ "ON tran.transitSiteID = cargo.transitSiteID LEFT JOIN  Package pack ON pack.from_cargoGroup = cargo.cargoGroupID"
+				+ " LEFT JOIN  OrderForm orders ON pack.packageID = orders.package_id LEFT JOIN Commodity comm ON"
+				+ " comm.orderform_id = orders.orderFormID LEFT JOIN Personnel per ON tran.store_user = per.id where "
+				+ " per.id = "+personnel.getId()+" and tran.sendDate is null and comm.status = 'inForwarding'");
+		return cargoGroupDao.getEntityManager().createNativeQuery(hql.toString(), CargoGroup.class).getResultList();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<CargoGroup> getCargoGroupParameters(Map<String, Object> map, Personnel personnel) {
-		StringBuffer hql = new StringBuffer("select DISTINCT cargo.* from CargoGroup cargo left join TransitSite tran on tran.transitSiteID = cargo.transitSiteID "
-				+ " where tran.sendDate is null and tran.store_user = "+personnel.getId());
+		StringBuffer hql = new StringBuffer("SELECT DISTINCT cargo.* FROM CargoGroup cargo LEFT JOIN TransitSite tran "
+				+ "ON tran.transitSiteID = cargo.transitSiteID LEFT JOIN  Package pack ON pack.from_cargoGroup = cargo.cargoGroupID"
+				+ " LEFT JOIN  OrderForm orders ON pack.packageID = orders.package_id LEFT JOIN Commodity comm ON"
+				+ " comm.orderform_id = orders.orderFormID LEFT JOIN Personnel per ON tran.store_user = per.id where "
+				+ " per.id = "+personnel.getId()+" and tran.sendDate is null and comm.status = 'inForwarding'");
 		if (map.get("tpekCargoGroup") != null) {
 			hql.append(" and cargo.tpekCargoGroup = '"+map.get("tpekCargoGroup")+"'");
 		}

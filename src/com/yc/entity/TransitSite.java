@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.yc.entity.user.Personnel;
-
+//中转站
 @Entity
 @DiscriminatorValue("transitSite")
 public class TransitSite {

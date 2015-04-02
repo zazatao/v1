@@ -1,7 +1,13 @@
 package com.yc.service;
 
-import com.yc.entity.user.Position;
+import java.util.List;
 
-public interface IPositionService extends IGenericService<Position> {
+import com.yc.entity.user.Positions;
+
+public interface IPositionService extends IGenericService<Positions> {
+
+	List<Positions> getPositionByParent();
+
+	boolean deleteForTree(Positions positions);
 
 }

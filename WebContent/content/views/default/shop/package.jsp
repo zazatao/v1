@@ -117,55 +117,71 @@ th {
 				<table class="table table-bordered table-hover table-condensed">
 					<thead>
 						<tr>
-							<th>编号</th>
+							<th>包裹编号</th>
 							<th>订单编号</th>
-							<th>组货</th>
-							<th>追踪</th>
-							<th>创建日期</th>
-							<th>付款日期</th>
-							<th>发货日期</th>
+							<th>包裹组追踪号</th>
+							<th>包裹追踪</th>
+							<th>下单时间</th>
+							<th>付款时间</th>
+							<th>包裹发货时间</th>
 							<th>地区</th>
 							<th>运输方式</th>
-							<th>实际用费(人民币)</th>
-							<th>订单成本</th>
-							<th>状态</th>
+							<th>中转地</th>
+							<th>实际运费(人民币)</th>
+							<th>订单状态</th>
 							<th>操作员</th>
 							<th></th>
 						</tr>
 					</thead>
 					<c:forEach var="package" items="${list }" varStatus="loop">
 						<tbody>
-							<tr class="success">
-								<td align="center">${package.packageID }</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td align="center">
+							<c:forEach items="${package.orderForms }" var="order" varStatus="ll" >
 									<c:choose>
-										<c:when test="${package.delivery =='EMS'}">EMS</c:when>
-										<c:when test="${package.delivery =='sf'}">顺风</c:when>
+										<c:when test="${ll.index%2==0 }">
+											<tr>
+										</c:when>
+										<c:otherwise>
+											<tr class="success">
+										</c:otherwise>
 									</c:choose>
-								</td>
-								<td></td>
-								<td></td>
-								<td>
-									<c:choose>
-										<c:when test="${commodity.status =='unchanged'}">没有变化</c:when>
-										<c:when test="${commodity.status =='senToWarehouse'}">送往库房</c:when>
-										<c:when test="${commodity.status =='refuse'}">拒绝入库</c:when>
-										<c:when test="${commodity.status =='lose'}">丢失</c:when>
-										<c:when test="${commodity.status =='inWarehouse'}">在库房中</c:when>
-										<c:when test="${commodity.status =='marriage'}">交易中</c:when>
+									<td align="center">${package.packageID }</td>
+									<td align="center">${order.orderFormID }</td>
+									<td>${package.cargoGroup.tpekCargoGroup }</td>
+									<td>${package.packAgeTpek }</td>
+									<td>${order.orderDate }&nbsp;${order.orderTime }</td>
+									<td>${order.paymentDate }&nbsp;${order.paymentTime }</td>
+									<td>${package.sendDate }</td>
+									<td>${order.address.country }${order.address.provience }${order.address.city }${order.address.district }</td>
+									<td align="center">
+										<c:choose>
+											<c:when test="${package.delivery =='EMS'}">EMS</c:when>
+											<c:when test="${package.delivery =='sf'}">顺风</c:when>
+										</c:choose>
+									</td>
+									<td align="center">
+										<c:if test="${package.transit == 'beijing'}">北京</c:if>
+										<c:if test="${package.transit == 'wlmq'}">乌鲁木齐</c:if>
+									</td>
+									<td align="center">${package.transportFee }</td>
+									<td>
+										<c:choose>
+											<c:when test="${order.orderstatus =='waitAcceptance'}">等待验收</c:when>
+											<c:when test="${order.orderstatus =='waitPayment'}">等待支付</c:when>
+											<c:when test="${order.orderstatus =='inForwarding'}">在线转发</c:when>
+											<c:when test="${order.orderstatus =='waitDelivery'}">等待发货</c:when>
+											<c:when test="${order.orderstatus =='transitGoods'}">在途货物</c:when>
+											<c:when test="${order.orderstatus =='consigneeSigning'}">收货人签单</c:when>
+											<c:when test="${order.orderstatus =='completionTransaction'}">完成交易</c:when>
+											<c:when test="${order.orderstatus =='closeTransaction'}">关闭交易</c:when>
+											<c:when
+												test="${order.orderstatus =='autoCloseTransaction'}">自动关闭交易</c:when>
 									</c:choose>
-								</td>
-								<td>${package.storeOperator.userName}</td>
-								<td><button class="btn btn-default" onclick="updateShopOrder(${package.packageID});">修改</button>&nbsp;&nbsp;
-									<button class="btn btn-default" onclick="deleteShopOrder(${package.packageID});">删除</button></td>
-							</tr>
+									</td>
+									<td>${order.commodities[0].storeOperator.userName}</td>
+									<td><button class="btn btn-default" onclick="updateShopOrder(${package.packageID});">修改</button>&nbsp;&nbsp;
+										<button class="btn btn-default" onclick="deleteShopOrder(${package.packageID});">删除</button></td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</c:forEach>
 				</table>

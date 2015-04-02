@@ -137,41 +137,49 @@
 							<th>运费</th>
 							<th>订单数量</th>
 							<th>发货方式</th>
-							<th></th>
+							<th>状态</th>
 						</tr>
 						<c:set value="0" var="fee"></c:set>
 						<c:forEach items="${cargoGroup.packAges }" var="pack">
-							<tr class="warning">
+							<c:if test="${pack.problemPack == null }">
+								<tr class="warning">
+									<td><a href="#"
+										onclick="packOrder('${cargoGroup.cargoGroupID}','${pack.packageID}');">${pack.packageCode }</a></td>
+									<td>${pack.packAgeTpek}</td>
+									<td>${pack.totalWeight}</td>
+									<td>${pack.transportFee}</td>
+									<c:set var="fee" value="${fee + pack.transportFee }"></c:set>
+									<td>${fn:length(pack.orderForms)}</td>
+									<td>${pack.delivery }</td>
+									<td><c:if test="${pack.orderForms[0].commodities[0].status == 'inForwarding' }">等待派发</c:if>
+									<c:if test="${pack.orderForms[0].commodities[0].status == 'sendOut' }">已经派发</c:if></td>
+								</tr>
+							</c:if>
+						</c:forEach>
+						<c:forEach var="pack" items="${packAges }" varStatus="loop">
+							<c:if test="${pack.problemPack == null }">
+								<c:choose>
+									<c:when test="${loop.index%2==0 }">
+										<tr>
+									</c:when>
+									<c:otherwise>
+										<tr class="success">
+									</c:otherwise>
+								</c:choose>
 								<td><a href="#"
-									onclick="packOrder('${cargoGroup.cargoGroupID}','${pack.packageID}');">${pack.packageCode }</a></td>
+									onclick="packOrder('${pack.cargoGroup.cargoGroupID}','${pack.packageID}');">${pack.packageCode }</a></td>
 								<td>${pack.packAgeTpek}</td>
 								<td>${pack.totalWeight}</td>
 								<td>${pack.transportFee}</td>
 								<c:set var="fee" value="${fee + pack.transportFee }"></c:set>
 								<td>${fn:length(pack.orderForms)}</td>
 								<td>${pack.delivery }</td>
-								<td></td>
-							</tr>
-						</c:forEach>
-						<c:forEach var="pack" items="${packAges }" varStatus="loop">
-							<c:choose>
-								<c:when test="${loop.index%2==0 }">
-									<tr>
-								</c:when>
-								<c:otherwise>
-									<tr class="success">
-								</c:otherwise>
-							</c:choose>
-							<td><a href="#"
-								onclick="packOrder('${pack.cargoGroup.cargoGroupID}','${pack.packageID}');">${pack.packageCode }</a></td>
-							<td>${pack.packAgeTpek}</td>
-							<td>${pack.totalWeight}</td>
-							<td>${pack.transportFee}</td>
-							<c:set var="fee" value="${fee + pack.transportFee }"></c:set>
-							<td>${fn:length(pack.orderForms)}</td>
-							<td>${pack.delivery }</td>
-							<td></td>
-							</tr>
+								<td>
+									<c:if test="${pack.orderForms[0].commodities[0].status == 'inForwarding' }">等待派发</c:if>
+									<c:if test="${pack.orderForms[0].commodities[0].status == 'sendOut' }">已经派发</c:if>
+								</td>
+								</tr>
+							</c:if>
 						</c:forEach>
 					</table>
 					</p>
@@ -184,6 +192,9 @@
 			<script type="text/javascript">
 			function continuess(id){
 				location.href ='./sendCargoGroup?transitID='+id;
+			}
+			function problem(id){
+				location.href ='./problemPack?packID='+id;
 			}
 			function packOrder(cargoGroupID,packageID){
 				location.href ='./packOrder?cargoGroupID='+cargoGroupID+'&packageID='+packageID;
@@ -234,7 +245,7 @@
 											<div class="col-sm-3">
 												<label class=" control-label">${pack.orderForms[0].address.toName }</label>
 											</div>
-											<label for="inputEmail3" class="col-sm-2 control-label">电话</label>
+											<label for="inputEmail3" class="col-sm-2 control-label">电话:</label>
 											<div class="col-sm-3">
 												<label class="col-sm-3 control-label">${pack.orderForms[0].address.phone }</label>
 											</div>
@@ -243,7 +254,7 @@
 										<div class="form-group">
 											<label for="inputEmail3" class="col-sm-8 control-label"></label>
 											<div class="col-sm-2">
-												
+												<button type="button" class="btn btn-error" onclick="problem('${pack.packageID}');">问题包裹</button>
 											</div>
 											<div class="col-sm-1">
 												<button type="button" class="btn btn-default" onclick="distributed('${pack.packageID}');">发送包裹</button>
@@ -261,7 +272,7 @@
 									<div id="tabs-294834" class="tabbable">
 										<ul class="nav nav-tabs">
 											<li class="active"><a data-toggle="tab"
-												href="#panel-700079">订单</a></li>
+												href="#panel-700079">订单货品</a></li>
 											<li><a data-toggle="tab" href="#panel-520562">内部聊天</a></li>
 											<li><a data-toggle="tab" href="#panel-520522">联系买家</a></li>
 										</ul>
@@ -279,7 +290,6 @@
 															<th>数量</th>
 															<th>重量</th>
 															<th>价值</th>
-															<th>状态</th>
 														</tr>
 														<c:forEach var="orderF" items="${pack.orderForms }">
 															<c:forEach var="commo" items="${orderF.commodities }"
@@ -299,29 +309,6 @@
 																<td>${commo.quantity }</td>
 																<td>${commo.weight }</td>
 																<td>${commo.money }</td>
-																<td><c:choose>
-																		<c:when test="${commo.status =='unchanged'}">没有变化</c:when>
-																		<c:when test="${commo.status =='cancel'}">取消交易</c:when>
-																		<c:when test="${commo.status =='delete'}">删除</c:when>
-																		<c:when test="${commo.status =='senToWarehouse'}">送往库房</c:when>
-																		<c:when test="${commo.status =='refuse'}">拒绝入库</c:when>
-																		<c:when test="${commo.status =='lose'}">丢失</c:when>
-																		<c:when test="${commo.status =='inWarehouse'}">在库房中</c:when>
-																		<c:when test="${commo.status =='marriage'}">交易中</c:when>
-																		<c:when test="${commo.status =='lack'}">缺少货品</c:when>
-																		<c:when test="${commo.status =='inAuctionlose'}">下单</c:when>
-																		<c:when test="${commo.status =='delivery'}">交付</c:when>
-																		<c:when test="${commo.status =='support'}">支持</c:when>
-																		<c:when test="${commo.status =='sendOut'}">派送</c:when>
-																		<c:when test="${commo.status =='buyerNotPay'}">买方没有支付</c:when>
-																		<c:when test="${commo.status =='inCell'}">在格子</c:when>
-																		<c:when test="${commo.status =='manualProcessing'}">手工加工</c:when>
-																		<c:when test="${commo.status =='inForwarding'}">转发中</c:when>
-																		<c:when test="${commo.status =='packing'}">打包</c:when>
-																		<c:when test="${commo.status =='paid'}">已付</c:when>
-																		<c:when test="${commo.status =='apiProcessing'}">API处理</c:when>
-																		<c:when test="${commo.status =='waitingForTracking'}">等待的追踪</c:when>
-																	</c:choose></td>
 																</tr>
 															</c:forEach>
 														</c:forEach>
@@ -337,7 +324,6 @@
 																<th class="col-sm-8 ">正文</th>
 																<th class="col-sm-4 ">日期</th>
 															</tr>
-
 														</tbody>
 													</table>
 													<p></p>

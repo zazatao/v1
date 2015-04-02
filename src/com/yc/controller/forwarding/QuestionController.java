@@ -19,58 +19,60 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.controller.warehouse.WeighingController;
 import com.yc.entity.OrderForm;
+import com.yc.entity.ProblemPack;
 import com.yc.entity.user.User;
 import com.yc.service.IOrderFormService;
+import com.yc.service.IProblemPackService;
 import com.yc.service.IUserService;
 
 //中转问题
 @Controller
 @RequestMapping("/forwarding")
 public class QuestionController {
-	
+
 	private static final Logger LOG = Logger.getLogger(QuestionController.class);
-	
-	@Autowired
-	IOrderFormService orderService;
-	
+
 	@Autowired
 	IUserService personnelService;
-	
+
+	@Autowired
+	IProblemPackService problemPackService;
+
 	@RequestMapping(value = "question", method = RequestMethod.GET)
 	public ModelAndView question(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<User> list = personnelService.getAll();
+		List<User> user = personnelService.getUserForProblemPack();
 		ModelMap mode = new ModelMap();
-		mode.put("list", list);
+		mode.put("users", user);
 		return new ModelAndView("forwarding/question", mode);
 	}
-	
+
 	@RequestMapping(value = "searchQuestion", method = RequestMethod.POST)
-	public ModelAndView searchQuestion(String loginName ,String userName,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<User> list = personnelService.getUsersByParameters(loginName,userName);
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("loginName", loginName);
+	public ModelAndView searchQuestion(String phone, String userName, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("phone", phone);
 		map.put("userName", userName);
+		List<User> list = personnelService.getUsersByParameters(map);
 		request.getSession().setAttribute("para", map);
 		ModelMap mode = new ModelMap();
-		mode.put("list", list);
+		mode.put("users", list);
 		return new ModelAndView("forwarding/question", mode);
 	}
-	
-	@SuppressWarnings("unused")
-	@RequestMapping(value = "getOrders", method = RequestMethod.GET)
-	public ModelAndView getOrders(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Map<String, String> map = (Map<String, String>)request.getSession().getAttribute("para");
+
+	@SuppressWarnings({ "unchecked" })
+	@RequestMapping(value = "getProblemPackByUser", method = RequestMethod.GET)
+	public ModelAndView getProblemPackByUser(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Map<String, Object> map = (Map<String, Object>) request.getSession().getAttribute("para");
 		List<User> list = null;
-		if (map !=null) {
-			list = personnelService.getUsersByParameters(map.get("loginName"),map.get("userName"));
-		}else{
-			list = personnelService.getAll();
+		if (map != null) {
+			list = personnelService.getUsersByParameters(map);
+		} else {
+			list = personnelService.getUserForProblemPack();
 		}
-		List<OrderForm> orders = orderService.findByUserID(id);
+		List<ProblemPack> problemPacks = problemPackService.getProblemPackByUser(id);
 		ModelMap mode = new ModelMap();
-		mode.put("orders", orders);	
-		mode.put("list", list);
+		mode.put("problemPacks", problemPacks);
+		mode.put("users", list);
 		return new ModelAndView("forwarding/question", mode);
 	}
-	
+
 }

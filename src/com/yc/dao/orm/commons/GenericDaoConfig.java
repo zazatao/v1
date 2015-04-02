@@ -7,7 +7,7 @@ import com.yc.entity.Package;
 import com.yc.entity.user.Department;
 import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
-import com.yc.entity.user.Position;
+import com.yc.entity.user.Positions;
 
 @Configuration
 public class GenericDaoConfig {
@@ -62,8 +62,8 @@ public class GenericDaoConfig {
 		return new GenericDaoSupport<OrderGroup>(OrderGroup.class);
 	}
 	@Bean
-	public GenericDao<Position> getPositionDao() {
-		return new GenericDaoSupport<Position>(Position.class);
+	public GenericDao<Positions> getPositionDao() {
+		return new GenericDaoSupport<Positions>(Positions.class);
 	}
 
 	@Bean
@@ -126,4 +126,9 @@ public class GenericDaoConfig {
 	public GenericDao<TransitSite> getTransitSiteDao() {
 		return new GenericDaoSupport<TransitSite>(TransitSite.class);	
 	}
+	@Bean
+	public GenericDao<ProblemPack> getProblemPackDao() {
+		return new GenericDaoSupport<ProblemPack>(ProblemPack.class);	
+	}
+	
 }

@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
@@ -72,6 +73,17 @@ public class Package {
 	
 	@Column
 	private Boolean isFee = false;//运费已付
+	
+	@OneToOne(mappedBy = "package1")
+	private ProblemPack problemPack;
+
+	public ProblemPack getProblemPack() {
+		return problemPack;
+	}
+
+	public void setProblemPack(ProblemPack problemPack) {
+		this.problemPack = problemPack;
+	}
 
 	public TransitSite getTransitSte() {
 		return transitSte;

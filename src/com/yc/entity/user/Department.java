@@ -1,47 +1,91 @@
 package com.yc.entity.user;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+//部门
 @Entity
-@DiscriminatorValue("department")//部门
+@DiscriminatorValue("department")
 public class Department {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer departmentID;// 部门ID
+
+	@Column(length = 32)
+	private String departmentname;// 部门名称
+
+	@Column
+	private String describes; // 描述
+
+	@OneToMany(mappedBy = "department")
+	private List<Positions> positions;
 	
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;//部门ID
-    
-    @Column(length=32)
-	private String departmentname;//部门名称
-    
-    @OneToMany(mappedBy = "department")
-    private List<Position> positions; 
-    
-	public List<Position> getPositions() {
-		return positions;
+	@ManyToOne(cascade = {CascadeType.MERGE,CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REFRESH}, fetch = FetchType.EAGER)
+	@JoinColumn(name = "parentLevel")
+	private Department parentLevel;//父节点；
+	
+	@OneToMany(mappedBy = "parentLevel",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	private List<Department> children = new ArrayList<Department>();
+
+	public Department getParentLevel() {
+		return parentLevel;
 	}
-	public void setPositions(List<Position> positions) {
-		this.positions = positions;
+
+	public void setParentLevel(Department parentLevel) {
+		this.parentLevel = parentLevel;
 	}
-	public Integer getId() {
-		return id;
+
+	public List<Department> getChildren() {
+		return children;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+
+	public void setChildren(List<Department> children) {
+		this.children = children;
 	}
+
+	public Integer getDepartmentID() {
+		return departmentID;
+	}
+
+	public void setDepartmentID(Integer departmentID) {
+		this.departmentID = departmentID;
+	}
+
 	public String getDepartmentname() {
 		return departmentname;
 	}
+
 	public void setDepartmentname(String departmentname) {
 		this.departmentname = departmentname;
 	}
 
+	public String getDescribes() {
+		return describes;
+	}
+
+	public void setDescribes(String describes) {
+		this.describes = describes;
+	}
+
+	public List<Positions> getPositions() {
+		return positions;
+	}
+
+	public void setPositions(List<Positions> positions) {
+		this.positions = positions;
+	}
 
 }

@@ -45,9 +45,9 @@
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="./forwarding/sendAndReceive">接收/发送</a></li>
 						<li><a href="./forwarding/transit">中转</a></li>
+						<li><a href="./forwarding/transportLate">运期</a></li>
 						<li><a href="./forwarding/question">问题</a></li>
 						<li><a href="#">计算统计</a></li>
-						<li><a href="./forwarding/transportLate">运期</a></li>
 					</ul></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">商店 <span class="caret"></span></a>
@@ -77,7 +77,7 @@
 						<li class="dropdown-submenu"><a href="#">设置</a>
 							<ul class="dropdown-menu">
 								<li><a href="#">币种</a></li>
-								<li><a href="#">币种汇率</a></li>
+<!-- 								<li><a href="#">币种汇率</a></li> -->
 								<li><a href="#">附加费</a></li>
 								<li><a href="#">操作员工作完成情况</a></li>
 								<li><a href="#">栏目类型</a></li>
@@ -87,18 +87,18 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">管理 <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li class="dropdown-submenu"><a href="#">诊断</a>
-							<ul class="dropdown-menu">
-								<li><a href="#">状态</a></li>
-								<li><a href="#">高峰期</a></li>
-								<li><a href="#">PHP信息</a></li>
-								<li><a href="#">Apache错误</a></li>
-								<li><a href="#">Apache状态</a></li>
-								<li><a href="#">统计AWStats软件</a></li>
-								<li><a href="#">Cacti柱状图</a></li>
-								<li><a href="#">计数器</a></li>
-								<li><a href="#">测试</a></li>
-							</ul></li>
+<!-- 						<li class="dropdown-submenu"><a href="#">诊断</a> -->
+<!-- 							<ul class="dropdown-menu"> -->
+<!-- 								<li><a href="#">状态</a></li> -->
+<!-- 								<li><a href="#">高峰期</a></li> -->
+<!-- 								<li><a href="#">PHP信息</a></li> -->
+<!-- 								<li><a href="#">Apache错误</a></li> -->
+<!-- 								<li><a href="#">Apache状态</a></li> -->
+<!-- 								<li><a href="#">统计AWStats软件</a></li> -->
+<!-- 								<li><a href="#">Cacti柱状图</a></li> -->
+<!-- 								<li><a href="#">计数器</a></li> -->
+<!-- 								<li><a href="#">测试</a></li> -->
+<!-- 							</ul></li> -->
 						<li class="dropdown-submenu"><a href="#">运输</a>
 							<ul class="dropdown-menu">
 								<li><a href="#">运输方式</a></li>
@@ -114,18 +114,18 @@
 							</ul></li>
 						<li class="dropdown-submenu"><a href="#">管理</a>
 							<ul class="dropdown-menu">
-								<li><a href="#">权限管理</a></li>
-								<li><a href="#">权限分配</a></li>
-								<li><a href="#">角色管理</a></li>
+								<li><a href="./management/department">部门管理</a></li>
+								<li><a href="#">部门分配</a></li>
+								<li><a href="./management/position">角色管理</a></li>
 								<li><a href="#">角色分配</a></li>
 							</ul></li>
 						<li class="dropdown-submenu"><a href="#">其它</a>
 							<ul class="dropdown-menu">
-								<li><a href="#">设置</a></li>
+<!-- 								<li><a href="#">设置</a></li> -->
 								<li><a href="#">淘宝账户</a></li>
-								<li><a href="#">语言</a></li>
-								<li><a href="#">国家</a></li>
-								<li><a href="#">时区</a></li>
+<!-- 								<li><a href="#">语言</a></li> -->
+<!-- 								<li><a href="#">国家</a></li> -->
+<!-- 								<li><a href="#">时区</a></li> -->
 								<li><a href="#">票的类型</a></li>
 								<li><a href="#">票的状态</a></li>
 								<li><a href="#">职位</a></li>
@@ -174,7 +174,7 @@
 								<li><a href="#">销售黑名单</a></li>
 								<li><a href="#">商品黑名单</a></li>
 							</ul></li>
-						<li><a href="#">客户</a></li>
+						<li><a href="#">入驻商家</a></li>
 						<li class="dropdown-submenu"><a href="./personnel/personnel">员工</a>
 							<ul class="dropdown-menu">
 								<li><a href="#">操作员</a></li>
@@ -197,11 +197,6 @@
 						<li><a href="#">积极员工</a></li>
 						<li><a href="#">发现者</a></li>
 						<li><a href="#">促销码</a></li>
-						<li class="dropdown-submenu"><a href="#">设置</a>
-							<ul class="dropdown-menu">
-								<li><a href="#">数据库</a></li>
-								<li><a href="#">数据库类型</a></li>
-							</ul></li>
 					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">

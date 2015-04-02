@@ -32,15 +32,17 @@ public class UserService extends GenericService<User> implements IUserService {
 		return userDao.getFirstRecord("user.id", id);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> getUsersByParameters(String loginName, String userName) {
-		StringBuffer hql = new StringBuffer(" from User u where (? is null or u.loginName like ?) and (? is null or u.userName like ?)");
-		Object[] paramete =  new Object[4];
-		paramete[0] = loginName ;
-		paramete[1] = "%"+loginName +"%";
-		paramete[2] = userName ;
-		paramete[3] = "%"+userName +"%";
-		return userDao.find(hql.toString(), paramete, -1,-1);
+	public List<User> getUsersByParameters(Map<String, Object> map) {
+		StringBuffer hql = new StringBuffer("select DISTINCT u.* from User u RIGHT join ProblemPack problem on problem.user_id = u.id where 1=1 ");
+		if (map.get("userName") !=null) {
+			hql.append(" and u.userName like '%"+map.get("userName") +"%'");
+		}
+		if (map.get("phone") !=null) {
+			hql.append(" and u.phone = '"+map.get("phone") +"'");
+		}
+		return userDao.getEntityManager().createNativeQuery(hql.toString(), User.class).getResultList();
 	}
 
 	public List<User> getAllByParameters(Map<String, Object> map) {
@@ -56,6 +58,13 @@ public class UserService extends GenericService<User> implements IUserService {
 		paramete[6] = map.get("country");
 		paramete[7] = "%" +map.get("country")+"%";
 		return userDao.find(hql.toString(), paramete, -1, -1);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> getUserForProblemPack() {
+		StringBuffer hql = new StringBuffer("select DISTINCT u.* from User u RIGHT join ProblemPack problem on problem.user_id = u.id ");
+		return userDao.getEntityManager().createNativeQuery(hql.toString(), User.class).getResultList();
 	}
 	
 }

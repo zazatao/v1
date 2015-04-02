@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>XX问题</title>
+<title>中转问题</title>
 
 <link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
 <link href="../content/static/css/bootstrap/bootstrap.min.css"
@@ -60,12 +60,12 @@
 					method="POST">
 					<div class="form-group">
 						<div class="col-sm-4">
-							<input type="text" name="loginName" class="form-control"
-								id="loginName" value="" placeholder="用户">
-						</div>
-						<div class="col-sm-4">
 							<input type="text" name="userName" class="form-control"
 								id="userName" value="" placeholder="姓名">
+						</div>
+						<div class="col-sm-4">
+							<input type="text" name="phone" class="form-control"
+								id="phone" value="" placeholder="电话">
 						</div>
 						<div class="col-sm-2">
 							<button type="submit" class="btn btn-default">查询</button>
@@ -79,13 +79,12 @@
 							<thead>
 								<tr>
 									<th>用户</th>
-									<th>名字</th>
+									<th>电话</th>
 									<th>E-mail</th>
-									<th>???</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="user" items="${list }" varStatus="loop">
+								<c:forEach var="user" items="${users }" varStatus="loop">
 									<c:choose>
 										<c:when test="${loop.index%2==0 }">
 											<tr>
@@ -94,10 +93,9 @@
 											<tr class="success">
 										</c:otherwise>
 									</c:choose>
-									<td><a href="./getOrders?id=${id }">${user.loginName}</a></td>
-									<td>${user.userName }</td>
+									<td><a href="./getProblemPackByUser?id=${user.id }">${user.userName}</a></td>
+									<td>${user.phone }</td>
 									<td>${user.email }</td>
-									<td></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -115,26 +113,28 @@
 										<thead>
 											<tr class="info">
 												<th>订单号</th>
-												<th>货物详情编号</th>
-												<th>数量</th>
+												<th>货物编号</th>
+												<th>货品种类数量</th>
 												<th>结算重量</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="order" items="${orders }" varStatus="loop">
-												<c:choose>
-													<c:when test="${loop.index%2==0 }">
-														<tr>
-													</c:when>
-													<c:otherwise>
-														<tr class="success">
-													</c:otherwise>
-												</c:choose>
-												<td>${order.orderFormID}</td>
-												<td>${order.commodities[0].commItem }</td>
-												<td>${fn:length(order.commodities) }</td>
-												<td>${order.commodities[0].weight}</td>
-												</tr>
+											<c:forEach var="problem" items="${problemPacks }" varStatus="loop">
+												<c:forEach items="${problem.package1.orderForms }" var="order">
+														<c:choose>
+															<c:when test="${loop.index%2==0 }">
+																<tr>
+															</c:when>
+															<c:otherwise>
+																<tr class="success">
+															</c:otherwise>
+														</c:choose>
+														<td>${order.orderFormID}</td>
+														<td>${problem.package1.packAgeTpek }</td>
+														<td>${fn:length(order.commodities) }</td>
+														<td>${problem.package1.totalWeight}</td>
+														</tr>
+												</c:forEach>
 											</c:forEach>
 										</tbody>
 									</table>

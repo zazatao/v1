@@ -65,7 +65,6 @@
 	 }
 	 function deleteaddress(num)
 	 {
-		 alert(num);
 		 document.form.action='./deleteaddress?id='+num;
 		 document.form.submit();
 	 }
@@ -288,28 +287,28 @@
                 <p class="setcanbon"><a href="#" onclick="address();">添加新地址</a></p>
              </div>
              <c:forEach var="address" items="${user.addresses}" varStatus="vs">
-        	<div class="setaddalls setaddallsfs" id="upaddress">
-                <h3>通讯录</h3>
-                <p class="setaddl">保存收货地址，使得采购更加快捷方便，“快速购买”也是在“我的账户”结算信息保存到下单，只需点击一次。填写资料时候，只能使用字母</p>
-                <p class="setaddls">详细运输资料</p>
-                <p class="setalip"><span>姓名* </span><span>电话*</span></p>
-                <p class="setalip"><span><input name="toNamea" type="text" value="${address.toName}"/></span><span><input name="phonea" type="text" value="${address.phone}"/></span></p>
-                <p class="setalip"><span>邮箱:</span><span>国家 *</span></p>
-                <p class="setalip"><span><input name="toEmaila" type="text" value="${address.toEmail}"/></span><span><input name="countrya" type="text" value="${address.country}"/></span></p>
-                <p class="setaddlinks"></p>
-                <p class="setalip"><span>省 *</span><span>城市 *</span></p>
-                <p class="setalip"><span><input name="proviencea" type="text" value="${address.provience}"/></span><span><input name="citya" type="text" value="${address.city}"/></span></p>
-                <p class="setalip"><span>地区 *</span><span>地址*</span></p>
-                <p class="setalip"><span><input name="districta" type="text" value="${address.district}"/></span><span><input name="streeta" type="text" value="${address.street}"/></span></p>
-                <p class="setalip"><span>转交地址</span><span>指数*</span></p>
-                <p class="setalip"><span><input name="handedAddressa" type="text" value="${address.handedAddress}"/></span><span><input name="indexNuma" type="text" value="${address.indexNum}"/></span></p>
-                <p class="setaddlinks"></p>
-                <p class="setalckl"><label><span><input name="theDefault" id="theDefault1" type="checkbox" value=""  onchange="check(${address.theDefault})"/></span>默认送货地址</label></p>
-                <p class="setalckl"><label><span><input name="" type="checkbox" value="" /></span>默认情况下，按以前的地址</label></p>
-                <p class="setalckl">您输入的个人信息将用于ZAZATAO结算，ZAZATAO会保证您数据的安全性。详情请参阅我们的隐私保障</p>
-                <div class="cl"></div>
-                <p class="setcanbon setcanbontw"><a href="#" onclick="edit(${address.id});">确认</a></p>
-             </div>
+	        	<div class="setaddalls setaddallsfs" id="upaddress">
+	                <h3>通讯录</h3>
+	                <p class="setaddl">保存收货地址，使得采购更加快捷方便，“快速购买”也是在“我的账户”结算信息保存到下单，只需点击一次。填写资料时候，只能使用字母</p>
+	                <p class="setaddls">详细运输资料</p>
+	                <p class="setalip"><span>姓名* </span><span>电话*</span></p>
+	                <p class="setalip"><span><input name="toNamea" type="text" value="${address.toName}"/></span><span><input name="phonea" type="text" value="${address.phone}"/></span></p>
+	                <p class="setalip"><span>邮箱:</span><span>国家 *</span></p>
+	                <p class="setalip"><span><input name="toEmaila" type="text" value="${address.toEmail}"/></span><span><input name="countrya" type="text" value="${address.country}"/></span></p>
+	                <p class="setaddlinks"></p>
+	                <p class="setalip"><span>省 *</span><span>城市 *</span></p>
+	                <p class="setalip"><span><input name="proviencea" type="text" value="${address.provience}"/></span><span><input name="citya" type="text" value="${address.city}"/></span></p>
+	                <p class="setalip"><span>地区 *</span><span>地址*</span></p>
+	                <p class="setalip"><span><input name="districta" type="text" value="${address.district}"/></span><span><input name="streeta" type="text" value="${address.street}"/></span></p>
+	                <p class="setalip"><span>转交地址</span><span>指数*</span></p>
+	                <p class="setalip"><span><input name="handedAddressa" type="text" value="${address.handedAddress}"/></span><span><input name="indexNuma" type="text" value="${address.indexNum}"/></span></p>
+	                <p class="setaddlinks"></p>
+	                <p class="setalckl"><label><span><input name="theDefault" id="theDefault1" type="checkbox" value=""  onchange="check(${address.theDefault})"/></span>默认送货地址</label></p>
+	                <p class="setalckl"><label><span><input name="" type="checkbox" value="" /></span>默认情况下，按以前的地址</label></p>
+	                <p class="setalckl">您输入的个人信息将用于ZAZATAO结算，ZAZATAO会保证您数据的安全性。详情请参阅我们的隐私保障</p>
+	                <div class="cl"></div>
+	                <p class="setcanbon setcanbontw"><a href="#" onclick="edit(${address.id});">确认</a></p>
+	             </div>
              </c:forEach>
         	<div class="setaddalls setaddallstw" id="address">
                 <h3>通讯录</h3>
