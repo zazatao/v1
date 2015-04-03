@@ -114,7 +114,7 @@
 	</div>
 	<script type="text/javascript">
 		function onclickID(id) {
-			location.href = './getPosition?positionID=' + id;
+			location.href = './getPosition?positionID=' + id+"&page=position";
 		}
 		function updateDepartmen(){
 			location.href = "./updatePosition?positionID="+$('#positionID').val();

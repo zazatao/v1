@@ -1,6 +1,7 @@
 package com.yc.controller.management;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -16,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.user.Department;
+import com.yc.entity.user.Personnel;
 import com.yc.entity.user.Positions;
 import com.yc.service.IDepartmentService;
+import com.yc.service.IPersonnelService;
 import com.yc.service.IPositionService;
 
 //管理
@@ -33,36 +36,52 @@ public class ManagementIndexController {
 	@Autowired
 	IPositionService positionService;
 
+	@Autowired
+	IPersonnelService personnelService;
+
+	// 部门管理
 	@RequestMapping(value = "department", method = RequestMethod.GET)
 	public ModelAndView department(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Department> list = departmentService.getDepartmentByParent();
 		ModelMap mode = new ModelMap();
-		mode.put("treeList", list);
+		mode.put("treeList1", list);
 		return new ModelAndView("management/department", mode);
 	}
 
 	@RequestMapping(value = "getDepartment", method = RequestMethod.GET)
-	public ModelAndView getDepartment(Integer departmentId, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ModelAndView getDepartment(Integer departmentId, String page, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Department department = departmentService.findById(departmentId);
 		List<Department> list = departmentService.getDepartmentByParent();
 		ModelMap mode = new ModelMap();
 		mode.put("department", department);
-		mode.put("treeList", list);
-		return new ModelAndView("management/department", mode);
+		mode.put("treeList1", list);
+		if (page.equals("department")) {
+			return new ModelAndView("management/department", mode);
+		} else if (page.equals("posDivide")) {
+			List<Positions> positions = department.getPositions();
+			mode.put("treeList2", positions);
+			List<Personnel> personnels = personnelService.getAll();
+			mode.put("personnels", personnels);
+			return new ModelAndView("management/posDivide", mode);
+		} else {
+			List<Positions> positions = positionService.getPositionByParent();
+			mode.put("treeList2", positions);
+			return new ModelAndView("management/deparDivide", mode);
+		}
 	}
 
 	@RequestMapping(value = "addOrUpdateDep", method = RequestMethod.POST)
 	public String addOrUpdateDep(Integer departmentID, String departmentname, String describes, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Department department = departmentService.findById(departmentID);
 		Department depart = addDepartment(department, departmentname, describes);
-		return "redirect:/management/getDepartment?departmentId=" + depart.getDepartmentID();
+		return "redirect:/management/getDepartment?departmentId=" + depart.getDepartmentID()+"&page=department";
 	}
 
 	@RequestMapping(value = "updateDepartmen", method = RequestMethod.POST)
 	public String updateDepartmen(Integer departmentId, String departmentname, String describes, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Department department = departmentService.findById(departmentId);
 		Department depart = updateDepartment(department, departmentname, describes);
-		return "redirect:/management/getDepartment?departmentId=" + depart.getDepartmentID();
+		return "redirect:/management/getDepartment?departmentId=" + depart.getDepartmentID()+"&page=department";
 	}
 
 	@RequestMapping(value = "deleteDepartmen", method = RequestMethod.POST)
@@ -76,7 +95,7 @@ public class ManagementIndexController {
 		List<Department> list = department.getChildren();
 		if (list != null && list.size() > 0) {
 			for (int i = 0; i < list.size(); i++) {
-				if (list.get(i).getChildren() != null && list.get(i).getChildren().size()>0) {
+				if (list.get(i).getChildren() != null && list.get(i).getChildren().size() > 0) {
 					getNode(list.get(i));
 				}
 				departmentService.deleteForTree(list.get(i));
@@ -105,36 +124,43 @@ public class ManagementIndexController {
 		return department;
 	}
 
+	// 角色管理
 	@RequestMapping(value = "position", method = RequestMethod.GET)
 	public ModelAndView position(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Positions> list = positionService.getPositionByParent();
 		ModelMap mode = new ModelMap();
-		mode.put("treeList", list);
+		mode.put("treeList2", list);
 		return new ModelAndView("management/position", mode);
 	}
 
 	@RequestMapping(value = "getPosition", method = RequestMethod.GET)
-	public ModelAndView getPosition(Integer positionID, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ModelAndView getPosition(Integer positionID, String page, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Positions position = positionService.findById(positionID);
 		List<Positions> list = positionService.getPositionByParent();
 		ModelMap mode = new ModelMap();
 		mode.put("position", position);
-		mode.put("treeList", list);
-		return new ModelAndView("management/position", mode);
+		mode.put("treeList2", list);
+		if (page.equals("position")) {
+			return new ModelAndView("management/position", mode);
+		} else {
+			List<Department> departments = departmentService.getDepartmentByParent();
+			mode.put("treeList1", departments);
+			return new ModelAndView("management/deparDivide", mode);
+		}
 	}
 
 	@RequestMapping(value = "addPosition", method = RequestMethod.POST)
 	public String addPosition(Integer positionID, String positionname, String significance, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Positions position = positionService.findById(positionID);
 		Positions pos = addPosition(position, positionname, significance);
-		return "redirect:/management/getPosition?positionID=" + pos.getPositionid();
+		return "redirect:/management/getPosition?positionID=" + pos.getPositionid()+"&page=position";
 	}
 
 	@RequestMapping(value = "updatePosition", method = RequestMethod.GET)
 	public String updatePosition(Integer positionID, String positionname, String significance, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Positions position = positionService.findById(positionID);
 		Positions depart = updatePosition(position, positionname, significance);
-		return "redirect:/management/getPosition?positionID=" + depart.getPositionid();
+		return "redirect:/management/getPosition?positionID=" + depart.getPositionid()+"&page=position";
 	}
 
 	@RequestMapping(value = "deletePosition", method = RequestMethod.GET)
@@ -148,7 +174,7 @@ public class ManagementIndexController {
 		List<Positions> list = position.getChildren();
 		if (list != null && list.size() > 0) {
 			for (int i = 0; i < list.size(); i++) {
-				if (list.get(i).getChildren() != null && list.get(i).getChildren().size()>0) {
+				if (list.get(i).getChildren() != null && list.get(i).getChildren().size() > 0) {
 					getNodes(list.get(i));
 				}
 				positionService.deleteForTree(list.get(i));
@@ -175,5 +201,86 @@ public class ManagementIndexController {
 			positionService.update(parentPosition);
 		}
 		return position;
+	}
+
+	// 部门角色分配
+	@RequestMapping(value = "deparDivide", method = RequestMethod.GET)
+	public ModelAndView deparDivide(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Department> list = departmentService.getDepartmentByParent();
+		ModelMap mode = new ModelMap();
+		mode.put("treeList1", list);
+		List<Positions> positions = positionService.getPositionByParent();
+		mode.put("treeList2", positions);
+		return new ModelAndView("management/deparDivide", mode);
+	}
+
+	@RequestMapping(value = "divideRole", method = RequestMethod.POST)
+	public String divideRole(Integer departmentID, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Department department = departmentService.findById(departmentID);
+		List<Positions> list = null;
+		String[] ids = request.getParameterValues("positionCheck");
+		if (department != null) {
+			list = new ArrayList<Positions>();
+			if (department.getPositions() != null && department.getPositions().size() > 0) {
+				for (int j = 0; j < department.getPositions().size(); j++) {
+					Positions positions = department.getPositions().get(j);
+					boolean isok = true;
+					for (String id : ids) {
+						if (positions.getPositionid() == Integer.parseInt(id)) {
+							isok = false;
+						}
+					}
+					if (isok) {
+						Personnel personnel = null;
+						for (int i = 0; i < positions.getPersonnels().size(); i++) {
+							personnel = positions.getPersonnels().get(i);
+							if (personnel != null) {
+								personnel.getPositions().remove(positions);
+								personnelService.update(personnel);
+								positions.getPersonnels().remove(personnel);
+								positionService.update(positions);
+							}
+						}
+						department.getPositions().remove(positions);
+						departmentService.update(department);
+						positions.getDepartments().remove(department);
+						personnelService.update(personnel);
+					}
+				}
+				for (int i = 0; i < ids.length; i++) {
+					boolean isok = true;
+					for (Positions positions : department.getPositions()) {
+						if (Integer.parseInt(ids[i]) == positions.getPositionid()) {
+							list.add(positions);
+							isok = false;
+						}
+					}
+					if (isok) {
+						Positions post = positionService.findById(Integer.parseInt(ids[i]));
+						list.add(post);
+					}
+				}
+				department.setPositions(list);
+				departmentService.update(department);
+			} else {
+				for (int i = 0; i < ids.length; i++) {
+					Positions post = positionService.findById(Integer.parseInt(ids[i]));
+					list.add(post);
+				}
+				department.setPositions(list);
+				departmentService.save(department);
+			}
+		}
+		return "redirect:/management/deparDivide";
+	}
+
+	@RequestMapping(value = "posDivide", method = RequestMethod.GET)
+	public ModelAndView posDivide(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Department> list = departmentService.getDepartmentByParent();
+		ModelMap mode = new ModelMap();
+		mode.put("treeList1", list);
+		List<Personnel> personnels = personnelService.getAll();
+		mode.put("personnels", personnels);
+		return new ModelAndView("management/posDivide", mode);
 	}
 }

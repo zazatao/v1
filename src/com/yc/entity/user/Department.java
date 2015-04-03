@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -30,8 +31,11 @@ public class Department {
 	@Column
 	private String describes; // 描述
 
+	@ManyToMany(cascade = CascadeType.REFRESH)
+	private List<Positions> positions;//部门角色
+	
 	@OneToMany(mappedBy = "department")
-	private List<Positions> positions;
+	private List<Personnel> personnels;//部门员工
 	
 	@ManyToOne(cascade = {CascadeType.MERGE,CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REFRESH}, fetch = FetchType.EAGER)
 	@JoinColumn(name = "parentLevel")
@@ -39,6 +43,14 @@ public class Department {
 	
 	@OneToMany(mappedBy = "parentLevel",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private List<Department> children = new ArrayList<Department>();
+
+	public List<Personnel> getPersonnels() {
+		return personnels;
+	}
+
+	public void setPersonnels(List<Personnel> personnels) {
+		this.personnels = personnels;
+	}
 
 	public Department getParentLevel() {
 		return parentLevel;

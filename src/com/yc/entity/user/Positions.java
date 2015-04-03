@@ -27,9 +27,8 @@ public class Positions {
 	@Column(length = 32)
 	private String positionname;// 职位名称；
 
-	@ManyToOne
-	@JoinColumn(name = "department_id")
-	private Department department;
+	@ManyToMany(mappedBy = "positions")
+	private List<Department> departments;
 
 	@Column
 	private String significance;
@@ -76,12 +75,12 @@ public class Positions {
 		this.personnels = personnels;
 	}
 
-	public Department getDepartment() {
-		return department;
+	public List<Department> getDepartments() {
+		return departments;
 	}
 
-	public void setDepartment(Department department) {
-		this.department = department;
+	public void setDepartments(List<Department> departments) {
+		this.departments = departments;
 	}
 
 	public Integer getPositionid() {

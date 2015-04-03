@@ -41,7 +41,7 @@
 				<ul class="breadcrumb">
 					<li><a href="#" style="font-size: 18px;">管理</a></li>
 					<span class="divider"><font style="font-size: 18px;">/</font></span>
-					<li><font style="font-size: 18px;">部门管理</font>
+					<li><font style="font-size: 18px;">机构角色分配</font>
 				</ul>
 			</div>
 		</div>
@@ -49,9 +49,7 @@
 	<div class="col-md-5 column">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">
-					部门
-				</h3>
+				<h3 class="panel-title">机构角色分配</h3>
 			</div>
 			<div class="tree well">
 				<c:set var="index" value="0" scope="request" />
@@ -70,57 +68,72 @@
 			<div class="list-group-item">
 				<p class="list-group-item-text">
 					<br>
-					<form class="form-horizontal" action="./addOrUpdateDep"  id="form" name="form" 
-						method="POST">
-						<div class="form-group">
-							<label class="col-sm-2 control-label">上级部门:</label>
-							<c:if test="${department.parentLevel != null }">
-								<label class="col-sm-2 control-label">${department.parentLevel.departmentname }</label>
-							</c:if>
+				<form class="form-horizontal" action="./divideRole" id="form"
+					name="form" method="POST">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">上级部门:</label>
+						<c:if test="${department.parentLevel != null }">
+							<label class="col-sm-2 control-label">${department.parentLevel.departmentname }</label>
+						</c:if>
+						<br>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">部门名称:</label>
+						<div class="col-sm-8">
+							<input id="departmentID" name="departmentID"
+								value="${department.departmentID }" type="hidden"> <label
+								class="col-sm-2 control-label">${department.departmentname }</label>
 							<br>
 						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label">部门名称:</label> 
-							<div class="col-sm-8">
-							<input id="departmentID" name="departmentID" value="${department.departmentID }" type="hidden">
-								<input name="departmentname" class="form-control"
-									value="${department.departmentname }"> <br>
-							</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">
+							部门描述:</label>
+						<div class="col-sm-8">
+							<textarea rows="2" name="describes" id="describes"
+								class="form-control" readonly="readonly">${department.describes }</textarea>
+							<br>
 						</div>
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label">
-								部门描述:</label>
-							<div class="col-sm-8">
-								<textarea rows="2" name="describes" id="describes"
-									class="form-control">${department.describes }</textarea>
-								<br>
-							</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">
+							勾选角色:</label>
+						<div class="tree well col-sm-8">
+							<c:set var="index" value="0" scope="request" />
+							<!-- 自增序号，注意scope-->
+							<c:set var="level" value="0" scope="request" />
+							<!-- 记录树的层次，注意scope-->
+							<c:import url="__ssignment.jsp" />
 						</div>
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-8" style="text-align: center;">
-								<button type="submit" class="btn btn-default">添加下级部门</button>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<button type="button" class="btn btn-default" onclick="updateDepartmen();">修改本部门内容</button>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<button type="button" class="btn btn-default" onclick="deleteDepartmen();">删除本部门</button>
-							</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-8" style="text-align: center;">
+							<button type="submit" class="btn btn-default">分配角色</button>
 						</div>
-					</form>
+					</div>
+				</form>
 				</P>
 			</div>
+
 		</div>
 	</div>
 	<script type="text/javascript">
+		$(document).ready(function() {
+			$("input[name='positionCheck']").each(function() {
+				<c:forEach items="${department.positions }" var="position">
+				if (this.value == '${position.positionid}') {
+					$(this).attr("checked", "checked");
+				}
+				</c:forEach>
+			});
+		})
 		function onclickID(id) {
-			location.href = './getDepartment?departmentId=' + id+"&page=department";
+			location.href = './getDepartment?departmentId=' + id
+					+ "&page=deparDivide";
 		}
-		function updateDepartmen(){
-			document.form.action="./updateDepartmen?departmentId="+$('#departmentID').val();
-			document.form.submit();
-		}
-		function deleteDepartmen(){
-			document.form.action="./deleteDepartmen?departmentId="+$('#departmentID').val();
-			document.form.submit();
+		function updateDepartmen() {
+			// 			document.form.action="./updateDepartmen?departmentId="+$('#departmentID').val();
+			// 			document.form.submit();
 		}
 		$(function() {
 			$('.tree li:has(ul)').addClass('parent_li').find(' > span').attr(

@@ -114,10 +114,10 @@
 							</ul></li>
 						<li class="dropdown-submenu"><a href="#">管理</a>
 							<ul class="dropdown-menu">
-								<li><a href="./management/department">部门管理</a></li>
-								<li><a href="#">部门分配</a></li>
-								<li><a href="./management/position">角色管理</a></li>
-								<li><a href="#">角色分配</a></li>
+								<li><a href="./management/department">组织机构</a></li>
+								<li><a href="./management/position">职位角色</a></li>
+								<li><a href="./management/deparDivide">机构角色分配</a></li>
+								<li><a href="./management/posDivide">角色员工分配</a></li>
 							</ul></li>
 						<li class="dropdown-submenu"><a href="#">其它</a>
 							<ul class="dropdown-menu">

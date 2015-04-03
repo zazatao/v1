@@ -41,17 +41,16 @@
 				<ul class="breadcrumb">
 					<li><a href="#" style="font-size: 18px;">管理</a></li>
 					<span class="divider"><font style="font-size: 18px;">/</font></span>
-					<li><font style="font-size: 18px;">部门管理</font>
+					<li><font style="font-size: 18px;">角色员工分配</font>
 				</ul>
 			</div>
 		</div>
 	</div>
+	<form action="./posRoleDivide" method="post">
 	<div class="col-md-5 column">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">
-					部门
-				</h3>
+				<h3 class="panel-title">组织机构</h3>
 			</div>
 			<div class="tree well">
 				<c:set var="index" value="0" scope="request" />
@@ -60,67 +59,69 @@
 				<!-- 记录树的层次，注意scope-->
 				<c:import url="__department.jsp" />
 			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">机构角色</h3>
+				</div>
+				<div style="padding-top: 28px; padding-bottom: 28px;">
+					<label for="inputSex" class="col-sm-2 control-label">选择角色</label>
+					<c:forEach items="${treeList2 }" var="pos">
+						<input type="radio" style="width: 18px;" name="pos"
+							value="${pos.positionid }">${pos.positionname }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</c:forEach>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="col-md-7 column">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">操作</h3>
+				<h3 class="panel-title">
+					操作
+					<button type="submit" class="badge navbar-right">变更职位</button>
+				</h3>
 			</div>
 			<div class="list-group-item">
 				<p class="list-group-item-text">
-					<br>
-					<form class="form-horizontal" action="./addOrUpdateDep"  id="form" name="form" 
-						method="POST">
-						<div class="form-group">
-							<label class="col-sm-2 control-label">上级部门:</label>
-							<c:if test="${department.parentLevel != null }">
-								<label class="col-sm-2 control-label">${department.parentLevel.departmentname }</label>
-							</c:if>
-							<br>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label">部门名称:</label> 
-							<div class="col-sm-8">
-							<input id="departmentID" name="departmentID" value="${department.departmentID }" type="hidden">
-								<input name="departmentname" class="form-control"
-									value="${department.departmentname }"> <br>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label">
-								部门描述:</label>
-							<div class="col-sm-8">
-								<textarea rows="2" name="describes" id="describes"
-									class="form-control">${department.describes }</textarea>
-								<br>
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-8" style="text-align: center;">
-								<button type="submit" class="btn btn-default">添加下级部门</button>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<button type="button" class="btn btn-default" onclick="updateDepartmen();">修改本部门内容</button>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<button type="button" class="btn btn-default" onclick="deleteDepartmen();">删除本部门</button>
-							</div>
-						</div>
-					</form>
+					<table class="table table-striped"><tr>
+						<th>选择</th>
+						<th>员工姓名</th>
+						<th>所属部门</th>
+						<th>职位角色</th>
+						<th>电话</th>
+					</tr>
+					
+					<c:forEach var="personnel" items="${personnels }" varStatus="loop">
+						<c:choose>
+							<c:when test="${loop.index%2==0 }">
+								<tr>
+							</c:when>
+							<c:otherwise>
+								<tr class="success">
+							</c:otherwise>
+						</c:choose>
+							<td><input value="${personnel.id }" type="checkbox" name="checkID"></td>
+							<td>${personnel.userName }</td>
+							<td>${personnel.department.departmentname }</td>
+							<td>
+								<input type="hidden" name="departID" value="${department.departmentID }">
+								<c:forEach items="${personnel.positions }" var="pos">
+									${pos.positionname }&nbsp;&nbsp;
+								</c:forEach>
+							</td>
+							<td>${personnel.phone }</td>
+						</tr>
+						</c:forEach>
+					</table>
 				</P>
 			</div>
 		</div>
 	</div>
+	</form>
 	<script type="text/javascript">
 		function onclickID(id) {
-			location.href = './getDepartment?departmentId=' + id+"&page=department";
-		}
-		function updateDepartmen(){
-			document.form.action="./updateDepartmen?departmentId="+$('#departmentID').val();
-			document.form.submit();
-		}
-		function deleteDepartmen(){
-			document.form.action="./deleteDepartmen?departmentId="+$('#departmentID').val();
-			document.form.submit();
+			location.href = './getDepartment?departmentId=' + id
+					+ "&page=posDivide";
 		}
 		$(function() {
 			$('.tree li:has(ul)').addClass('parent_li').find(' > span').attr(

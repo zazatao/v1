@@ -9,7 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.yc.entity.Commodity;
@@ -43,6 +45,10 @@ public class Personnel {
 	@Column
 	private String phone;
 	
+	@ManyToOne
+	@JoinColumn(name = "departmentID")
+	private Department department;//部门
+	
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Positions> positions;//职位；
 
@@ -63,6 +69,14 @@ public class Personnel {
     
     @OneToMany(mappedBy = "personnel")
     private List<TransitSite> transitSites;
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
 
 	public List<TransitSite> getTransitSites() {
 		return transitSites;
