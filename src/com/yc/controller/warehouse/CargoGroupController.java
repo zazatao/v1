@@ -138,7 +138,7 @@ public class CargoGroupController {
 		return new ModelAndView("warehouse/cargoGroup", mode);
 	}
 	
-	@SuppressWarnings({ "unused", "unchecked" })
+	@SuppressWarnings({ "unchecked" })
 	private ModelMap getSearch ( HttpServletRequest request){
 		Map<String, Object> map = (Map<String, Object>)request.getSession().getAttribute("packageMap");
 		List<CargoGroup> list =null;

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>角色管理</title>
+<title>职位员工分配</title>
 <link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
 <link href="../content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
@@ -117,7 +117,8 @@
 			location.href = './getPosition?positionID=' + id+"&page=position";
 		}
 		function updateDepartmen(){
-			location.href = "./updatePosition?positionID="+$('#positionID').val();
+			document.form.action="./updatePosition?positionID="+$('#positionID').val();
+			document.form.submit();
 		}
 		function deleteDepartmen(){
 			location.href = "./deletePosition?positionID="+$('#positionID').val();

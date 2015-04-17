@@ -33,11 +33,11 @@ public class ShopCategory {
 	@Column
 	private Integer level;//节点级别
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = {CascadeType.MERGE,CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REFRESH}, fetch = FetchType.EAGER)
 	@JoinColumn(name = "parentLevel")
 	private ShopCategory parentLevel;//父节点；
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "parentLevel", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "parentLevel",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private List<ShopCategory> children = new ArrayList<ShopCategory>();
 	
 	@OneToMany(mappedBy = "shopCat")

@@ -22,6 +22,7 @@ public abstract class GenericService<T> implements IGenericService<T> {
 
     @Override
     public T update(T t) {
+    	System.out.println("t========"+t);
         getDao().update(t);
         return t;
     }

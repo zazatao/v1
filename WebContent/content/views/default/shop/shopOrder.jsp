@@ -193,6 +193,7 @@ th {
 									<td colspan="2">金额：&nbsp;${commodity.money }</td>
 									<td >重量：&nbsp;${commodity.weight }</td>
 									<td colspan="6">目前货品状态：&nbsp;
+									<font color="red">
 										<c:choose>
 												<c:when test="${commodity.status =='unchanged'}">没有变化</c:when>
 												<c:when test="${commodity.status =='cancel'}">取消交易</c:when>
@@ -203,7 +204,7 @@ th {
 												<c:when test="${commodity.status =='inWarehouse'}">在库房中</c:when>
 												<c:when test="${commodity.status =='marriage'}">交易中</c:when>
 												<c:when test="${commodity.status =='lack'}">缺少货品</c:when>
-												<c:when test="${commodity.status =='inAuctionlose'}">下单</c:when>
+												<c:when test="${commodity.status =='inAuctionlose'}">已下单需付款</c:when>
 												<c:when test="${commodity.status =='delivery'}">交付</c:when>
 												<c:when test="${commodity.status =='support'}">支持</c:when>
 												<c:when test="${commodity.status =='sendOut'}">派送</c:when>
@@ -216,6 +217,7 @@ th {
 												<c:when test="${commodity.status =='apiProcessing'}">API处理</c:when>
 												<c:when test="${commodity.status =='waitingForTracking'}">等待的追踪</c:when>
 											</c:choose>
+										</font>
 									</td>
 								</tr>
 								<tr>

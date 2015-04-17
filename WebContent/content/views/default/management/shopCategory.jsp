@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>部门角色分配</title>
+<title>部门管理</title>
 <link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
 <link href="../content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
@@ -41,122 +41,79 @@
 				<ul class="breadcrumb">
 					<li><a href="#" style="font-size: 18px;">管理</a></li>
 					<span class="divider"><font style="font-size: 18px;">/</font></span>
-					<li><font style="font-size: 18px;">角色员工分配</font>
+					<li><a href="#" style="font-size: 18px;"><font style="font-size: 18px;">商品</font></a></li>
+					<span class="divider"><font style="font-size: 18px;">/</font></span>
+					<li><font style="font-size: 18px;">商品分类</font></li>
 				</ul>
 			</div>
 		</div>
 	</div>
-	<form action="./posRoleDivide" method="post">
 	<div class="col-md-5 column">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">组织机构</h3>
+				<h3 class="panel-title">
+					商品分类
+				</h3>
 			</div>
 			<div class="tree well">
 				<c:set var="index" value="0" scope="request" />
 				<!-- 自增序号，注意scope-->
 				<c:set var="level" value="0" scope="request" />
 				<!-- 记录树的层次，注意scope-->
-				<c:import url="__department.jsp" />
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">机构角色</h3>
-				</div>
-				<div style="padding-top: 28px; padding-bottom: 28px;">
-					<label for="inputSex" class="col-sm-2 control-label">选择角色</label>
-					<input value="${department.departmentID }" type="hidden" name="departID">
-					<c:forEach items="${treeList2 }" var="pos">
-						<input type="radio" style="width: 18px;" name="pos"
-							value="${pos.positionid }">${pos.positionname }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					</c:forEach>
-				</div>
+				<c:import url="__shopCategory.jsp" />
 			</div>
 		</div>
 	</div>
 	<div class="col-md-7 column">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">
-					操作
-					<button type="submit" class="badge navbar-right">变更职位</button>
-				</h3>
+				<h3 class="panel-title">操作&nbsp;>&nbsp;<a href="#">${category.category }</a></h3>
 			</div>
-			<br>
-			<div class="form-group">
-				<div class="col-sm-2">
-					<input type="text" id="userName" class="form-control"
-						id="userName" value="" placeholder="用工姓名" >
-				</div>
-				<div class="col-sm-3">
-					<select id="departmentName"  class="form-control">
-						<option value="">------组织机构------
-						<c:forEach items="${departments }" var="department">
-							<option value="${department.departmentID }">${department.departmentname }
-						</c:forEach>
-					</select>
-				</div>
-				<div class="col-sm-3">
-					<select  name="positions" id="positions" class="form-control">
-						<option value="">------职位角色------
-						<c:forEach items="${positions }" var="position">
-							<option value="${position.positionid }">${position.positionname }
-						</c:forEach>
-					</select>
-				</div>
-				<div class="col-sm-2">
-					<button type="button" class="btn btn-default" onclick="onPositions();">查询</button>
-				</div>
-			</div>
-		<br>
-		<br>
 			<div class="list-group-item">
 				<p class="list-group-item-text">
-					<table class="table table-striped"><tr>
-						<th>选择</th>
-						<th>员工姓名</th>
-						<th>性别</th>
-						<th>电话</th>
-						<th>所属部门</th>
-						<th>职位角色</th>
-					</tr>
-					<c:forEach var="personnel" items="${personnels }" varStatus="loop">
-						<c:choose>
-							<c:when test="${loop.index%2==0 }">
-								<tr>
-							</c:when>
-							<c:otherwise>
-								<tr class="success">
-							</c:otherwise>
-						</c:choose>
-							<td><input value="${personnel.id }" type="checkbox" name="checkID"></td>
-							<td>${personnel.userName }</td>
-							<td><c:if test="${personnel.sex == 'Male'}">男</c:if><c:if test="${personnel.sex == 'Female'}">女</c:if></td>
-							<td>${personnel.phone }</td>
-							<td>${personnel.department.departmentname }</td>
-							<td>
-								<input type="hidden" name="departID" value="${department.departmentID }">
-								${personnel.positions.positionname }
-							</td>
-						</tr>
-						</c:forEach>
-					</table>
+					<br>
+					<form class="form-horizontal" action="./addOrUpdateCate"  id="form" name="form" 
+						method="POST">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">上级商品类别:</label>
+							<c:if test="${category.level != null }">
+								<label class="col-sm-2 control-label">${category.parentLevel.category }</label>
+							</c:if>
+							<br>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">商品类别名称:</label> 
+							<div class="col-sm-8">
+							<input id="categoryID" name="categoryID" value="${category.categoryID }" type="hidden">
+								<input name="category" class="form-control"
+									value="${category.category }"> <br>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-8" style="text-align: center;">
+								<button type="submit" class="btn btn-default">添加下级商品类别</button>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<button type="button" class="btn btn-default" onclick="updateDepartmen();">修改本级商品类别</button>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<button type="button" class="btn btn-default" onclick="deleteDepartmen();">删除本级商品类别</button>
+							</div>
+						</div>
+					</form>
 				</P>
 			</div>
 		</div>
 	</div>
-	</form>
 	<script type="text/javascript">
-		function onPositions(){
-			var userName = $('#userName').val();
-			var departmentName = $('#departmentName').val();
-			var positions = $('#positions').val();
-			location.href = './searchPersonnel?userName=' + userName
-			+ "&departmentName="+departmentName + "&positions="+positions;
-		}
 		function onclickID(id) {
-			location.href = './getDepartment?departmentId=' + id
-					+ "&page=posDivide";
+			location.href = './getShopCategory?categoryID=' + id;
+		}
+		function updateDepartmen(){
+			document.form.action="./updateShopCategory?categoryID="+$('#categoryID').val();
+			document.form.submit();
+		}
+		function deleteDepartmen(){
+			document.form.action="./deleteShopCategory?categoryID="+$('#categoryID').val();
+			document.form.submit();
 		}
 		$(function() {
 			$('.tree li:has(ul)').addClass('parent_li').find(' > span').attr(

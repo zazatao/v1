@@ -31,7 +31,7 @@ public class Department {
 	@Column
 	private String describes; // 描述
 
-	@ManyToMany(cascade = CascadeType.REFRESH)
+	@ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
 	private List<Positions> positions;//部门角色
 	
 	@OneToMany(mappedBy = "department")

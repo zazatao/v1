@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Commodity;
 import com.yc.entity.CommoidityStatus;
-import com.yc.entity.StoreRoom;
 import com.yc.service.ICommodityService;
 import com.yc.service.IOrderFormService;
 import com.yc.service.IStoreRoomService;

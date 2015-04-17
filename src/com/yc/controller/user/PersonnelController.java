@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.yc.entity.Commodity;
 import com.yc.entity.OrderForm;
 import com.yc.entity.user.Personnel;
+import com.yc.entity.user.Sex;
 import com.yc.service.IPersonnelService;
 
 @Controller
@@ -126,7 +127,7 @@ public class PersonnelController {
 		String email = request.getParameter("email");
 		person.setEmail(email);
 		String sex = request.getParameter("sex");
-		person.setSex(sex);
+		person.setSex(Sex.valueOf(sex));
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		of.setOrderDate(sdf.format(new Date()));
 		c.setStoreOperator(person);

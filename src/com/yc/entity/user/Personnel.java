@@ -2,15 +2,15 @@ package com.yc.entity.user;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -40,7 +40,8 @@ public class Personnel {
 	private String email;
 	
 	@Column
-	private String sex;
+	@Enumerated(EnumType.STRING)
+	private Sex sex;
 
 	@Column
 	private String phone;
@@ -49,8 +50,9 @@ public class Personnel {
 	@JoinColumn(name = "departmentID")
 	private Department department;//部门
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Positions> positions;//职位；
+	@ManyToOne
+	@JoinColumn(name = "positionsID")
+	private Positions positions;//职位；
 
 	@Column
 	private Integer accomplishNum;//完成订单数
@@ -102,11 +104,11 @@ public class Personnel {
 		this.purchases = purchases;
 	}
 
-	public List<Positions> getPositions() {
+	public Positions getPositions() {
 		return positions;
 	}
 
-	public void setPositions(List<Positions> positions) {
+	public void setPositions(Positions positions) {
 		this.positions = positions;
 	}
 
@@ -150,11 +152,11 @@ public class Personnel {
 		this.email = email;
 	}
 
-	public String getSex() {
+	public Sex getSex() {
 		return sex;
 	}
 
-	public void setSex(String sex) {
+	public void setSex(Sex sex) {
 		this.sex = sex;
 	}
 

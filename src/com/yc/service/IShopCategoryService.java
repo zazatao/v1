@@ -16,4 +16,6 @@ public interface IShopCategoryService extends IGenericService<ShopCategory> {
 	
 	List<ShopCategory> getAllParentLevel();
 
+	boolean deleteShopCategory(Integer categoryID);
+
 }

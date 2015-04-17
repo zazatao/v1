@@ -134,7 +134,15 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Commodity> getDisposeByParameters(Map<String, Object> map) {
-		StringBuffer hql = new StringBuffer("select DISTINCT comm.* from Commodity comm  " + "left join OrderForm orders on orders.orderFormID = comm.orderform_id  " + "left join User u on u.id = orders.user_id  " + "where comm.seller_name = 1  and orders.purchase_user = " + map.get("personnel"));
+		StringBuffer hql = new StringBuffer("select DISTINCT comm.* from Commodity comm  " 
+					+ "left join OrderForm orders on orders.orderFormID = comm.orderform_id  " 
+					+ "left join User u on u.id = orders.user_id  "
+					+ "where comm.seller_name = 1 ");
+		if (map.get("personnel").equals("总经理")) {
+			hql.append("and orders.purchase_user is not null ");
+		}else{
+			hql.append("and orders.purchase_user in ("+map.get("personnel")+")");
+		}
 		if (map.get("transNumForTaobao") != null) {
 			hql.append(" and comm.transNumForTaobao = " + map.get("transNumForTaobao"));
 		}
@@ -290,11 +298,18 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Commodity> getCommodityByPurchase(Personnel personnel) {
-		StringBuffer hql = new StringBuffer("SELECT DISTINCT comm.* FROM Commodity comm LEFT JOIN OrderForm orders ON orders.orderFormID = comm.orderform_id " + "LEFT JOIN Personnel per ON per.id = comm.purchase_user WHERE comm.status = 'support' AND orders.orderstatus = 'waitDelivery' AND comm.seller_name = 1  AND comm.purchase_user = " + personnel.getId());
+	public List<Commodity> getCommodityByPurchase(String personnel) {
+		StringBuffer hql = new StringBuffer("SELECT DISTINCT comm.* FROM Commodity comm LEFT JOIN OrderForm orders ON orders.orderFormID = comm.orderform_id " + "LEFT JOIN Personnel per ON per.id = comm.purchase_user WHERE comm.status = 'support' AND orders.orderstatus = 'waitDelivery' AND comm.seller_name = 1  AND comm.purchase_user in (" + personnel+")");
 		return commodityDao.getEntityManager().createNativeQuery(hql.toString(), Commodity.class).getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Commodity> getAllByPurchase() {
+		StringBuffer hql = new StringBuffer("SELECT DISTINCT comm.* FROM Commodity comm LEFT JOIN OrderForm orders ON orders.orderFormID = comm.orderform_id " + "LEFT JOIN Personnel per ON per.id = comm.purchase_user WHERE comm.status = 'support' AND orders.orderstatus = 'waitDelivery' AND comm.seller_name = 1  AND comm.purchase_user is not null");
+		return commodityDao.getEntityManager().createNativeQuery(hql.toString(), Commodity.class).getResultList();
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Commodity> getCommodityByBillPay() {

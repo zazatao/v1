@@ -87,6 +87,7 @@ public class OrderFormService extends GenericService<OrderForm> implements IOrde
 		if (map.get("orderUser") !=null) {
 			hql.append(" and u.userName like '%"+map.get("orderUser")+"%'");
 		}
+		hql.append(" order by o.orderFormID desc");
 		return orderFormDao.getEntityManager().createNativeQuery(hql.toString(), OrderForm.class).getResultList();
 	}
 

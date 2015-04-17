@@ -1,6 +1,8 @@
 package com.yc.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Query;
 
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.yc.dao.orm.commons.GenericDao;
+import com.yc.entity.user.Department;
 import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
 import com.yc.service.IPersonnelService;
@@ -52,4 +55,27 @@ public class PersonnelService extends GenericService<Personnel> implements IPers
 		return list;
 	}
 
+	@Override
+	public List<Personnel> getAllByParametersForManage(Map<String, Object> map) {
+		StringBuffer hql = new StringBuffer(" from Personnel u where (? is null or u.department.departmentID = ?) and (? is null or u.userName like ?) and (? is null or u.positions.positionid = ?)");
+		Object[] paramete =  new Object[6];
+		paramete[0] = map.get("departmentName") ;
+		paramete[1] = map.get("departmentName");
+		paramete[2] = map.get("userName") ;
+		paramete[3] = "%"+map.get("userName") +"%";
+		paramete[4] = map.get("positions") ;
+		paramete[5] = map.get("positions");
+		return personnelDao.find(hql.toString(), paramete, -1,-1);
+	}
+
+	@Override
+	public List<Personnel> getPersonnelByDepAndPos(Department department, Integer positionid) {
+		List<String> keys = new ArrayList<String>();
+        keys.add("department.departmentID");
+        keys.add("positions.positionid");
+        List<Object> values = new ArrayList<Object>();
+        values.add(department.getDepartmentID());
+        values.add(positionid);
+		return personnelDao.getBy(keys,values );
+	}
 }

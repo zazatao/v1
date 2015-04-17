@@ -46,7 +46,7 @@ public interface ICommodityService extends IGenericService<Commodity> {
 
 	Commodity getCommByOrderIDAndCommCode(Integer orderid, Integer commCode);
 
-	List<Commodity> getCommodityByPurchase(Personnel personnel);
+	List<Commodity> getCommodityByPurchase(String ids);
 
 	List<Commodity> getCommodityByBillPay();
 
@@ -55,5 +55,7 @@ public interface ICommodityService extends IGenericService<Commodity> {
 	List<Commodity> getCommodityByParam(Map<String, Object> map);
 
 	List<Commodity> getAccountBook();
+
+	List<Commodity> getAllByPurchase();
 
 }

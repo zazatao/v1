@@ -27,13 +27,13 @@ public class Positions {
 	@Column(length = 32)
 	private String positionname;// 职位名称；
 
-	@ManyToMany(mappedBy = "positions")
+	@ManyToMany(mappedBy = "positions", fetch = FetchType.EAGER)
 	private List<Department> departments;
 
 	@Column
 	private String significance;
 
-	@ManyToMany(mappedBy = "positions")
+	@OneToMany(mappedBy = "positions")
 	private List<Personnel> personnels;
 	
 	@ManyToOne(cascade = {CascadeType.MERGE,CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REFRESH}, fetch = FetchType.EAGER)

@@ -20,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.yc.entity.Commodity;
 import com.yc.entity.CommoidityStatus;
 import com.yc.entity.DisposeStatus;
-import com.yc.entity.OrderForm;
 import com.yc.entity.OrderStatus;
 import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
@@ -50,6 +49,8 @@ public class OrderPoolController {
 		List<Commodity> list = commodityService.getAllByCommStatusAndOrderStatus(CommoidityStatus.support,OrderStatus.waitDelivery);
 		ModelMap map = new ModelMap();
 		map.put("list", list);
+		Personnel personnel =(Personnel) request.getSession().getAttribute("loginPersonnle");
+		map.put("personnel", personnel);
 		return new ModelAndView("orderprocessing/orderPool",map);
 	}
 	

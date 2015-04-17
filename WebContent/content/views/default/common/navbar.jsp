@@ -1,7 +1,9 @@
 <%@page import="com.yc.entity.user.Personnel"%>
-<%@page import="com.yc.entity.user.User"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<c:set var="personnel" value='<%=(Personnel)request.getSession().getAttribute("loginPersonnle") %>'></c:set>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container-fluid">
 		<div id="navbar" class="navbar-collapse collapse">
@@ -9,37 +11,53 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">总览<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">客户沟通</a></li>
-						<li><a href="#">聊天</a></li>
-						<li><a href="#">聊天中心</a></li>
+						<c:if test="${personnel.department.departmentID == 27 || personnel.department.departmentID == 1}">
+							<li><a href="#">客户沟通</a></li>
+							<li><a href="#">聊天</a></li>
+							<li><a href="#">聊天中心</a></li>
+						</c:if>
 						<li><a href="#">不明订单</a></li>
 						<li><a href="#">未完成订单</a></li>
 						<li><a href="#">订单问题</a></li>
-						<li><a href="#">技术统计</a></li>
 					</ul></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">订单处理 <span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="../orderprocessing/orderPool">订单池</a></li>
-						<li><a href="../orderprocessing/orderGroup">订单组</a></li>
-						<li><a href="../orderprocessing/dispose">处理</a></li>
-						<li><a href="#">统计</a></li>
-						<li><a href="#">操作员订单完成统计</a></li>
-					</ul></li>
+				<c:if test="${personnel.department.departmentID == 2 || personnel.department.departmentID == 1}">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">订单处理 <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="../orderprocessing/orderPool">订单池</a></li>
+							<li><a href="../orderprocessing/orderGroup">订单组</a></li>
+							<li><a href="../orderprocessing/dispose">处理</a></li>
+							<c:if test="${personnel.positions.positionid != 33 }">
+								<li><a href="#">统计</a></li>
+								<li><a href="#">操作员订单完成统计</a></li>
+							</c:if>
+						</ul></li>
+				</c:if>
+				<c:if test="${personnel.department.departmentID == 22 || personnel.department.departmentID == 23  || personnel.department.departmentID == 24 || personnel.department.departmentID == 1 }">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">仓库 <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="../warehouse/receiving">收货</a></li>
-						<li><a href="../warehouse/inspection">验货入库</a></li>
-						<li><a href="../warehouse/reclaimStation">回收站</a></li>
-						<li><a href="../warehouse/orderOfWay">在途订单</a></li>
-						<li><a href="../warehouse/weighing">称量打包</a></li>
-						<li><a href="../warehouse/freight">运费</a></li>
-						<li><a href="../warehouse/sendTheParcel">发送包裹</a></li>
-						<li><a href="../warehouse/cargoGroup">货物组</a></li>
-						<li><a href="../warehouse/batchShipments">出货查询</a></li>
-						<li><a href="../warehouse/statistical">统计发货人情况</a></li>
+						<c:if test="${personnel.department.departmentID == 22 || personnel.department.departmentID == 23 || personnel.department.departmentID == 1}">
+							<li><a href="../warehouse/receiving">收货</a></li>
+							<li><a href="../warehouse/inspection">验货入库</a></li>
+							<li><a href="../warehouse/reclaimStation">回收站</a></li>
+						</c:if>
+						<c:if test="${personnel.department.departmentID == 22 || personnel.department.departmentID == 23 || personnel.department.departmentID == 24 || personnel.department.departmentID == 1 }">
+							<li><a href="../warehouse/orderOfWay">在途订单</a></li>
+						</c:if>
+						<c:if test="${personnel.department.departmentID == 22 || personnel.department.departmentID == 24 || personnel.department.departmentID == 1}">
+							<li><a href="../warehouse/weighing">称量打包</a></li>
+							<li><a href="../warehouse/freight">运费</a></li>
+							<li><a href="../warehouse/sendTheParcel">发送包裹</a></li>
+							<li><a href="../warehouse/cargoGroup">货物组</a></li>
+							<li><a href="../warehouse/batchShipments">出货查询</a></li>
+						</c:if>
+						<c:if test="${personnel.positions.positionid != 33 }">
+							<li><a href="../warehouse/statistical">统计发货人情况</a></li>
+						</c:if>
 					</ul></li>
+				</c:if>
+				<c:if test="${personnel.department.departmentID == 4 || personnel.department.departmentID == 1}">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">中转 <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
@@ -47,8 +65,12 @@
 						<li><a href="../forwarding/transit">中转</a></li>
 						<li><a href="../forwarding/transportLate">运期</a></li>
 						<li><a href="../forwarding/question">问题</a></li>
-						<li><a href="#">计算统计</a></li>
+						<c:if test="${personnel.positions.positionid != 33 }">
+							<li><a href="#">运期统计</a></li>
+						</c:if>
 					</ul></li>
+				</c:if>
+				<c:if test="${personnel.department.departmentID == 25 || personnel.department.departmentID == 1}">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">商店 <span class="caret"></span></a>
 					<ul class="dropdown-menu menu-top" role="menu">
@@ -84,6 +106,8 @@
 								<li><a href="#">调整原因</a></li>
 							</ul></li>
 					</ul></li>
+				</c:if>
+				<c:if test="${personnel.department.departmentID == 26 || personnel.department.departmentID == 1 }">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">管理 <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
@@ -156,8 +180,7 @@
 							</ul></li>
 						<li class="dropdown-submenu"><a href="#">商品</a>
 							<ul class="dropdown-menu">
-								<li><a href="#">分类</a></li>
-								<li><a href="#">确认</a></li>
+								<li><a href="../management/shopCategory">商品分类</a></li>
 								<li><a href="#">成批商品</a></li>
 								<li><a href="#">首页商品</a></li>
 							</ul></li>
@@ -185,22 +208,25 @@
 							</ul></li>
 						<li><a href="#">用户</a></li>
 					</ul></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">统计 <span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">表格报表</a></li>
-						<li><a href="#">折线报表</a></li>
-						<li><a href="#">订单</a></li>
-						<li><a href="#">技术支持</a></li>
-						<li><a href="#">财务</a></li>
-						<li><a href="#">员工</a></li>
-						<li><a href="#">积极员工</a></li>
-						<li><a href="#">发现者</a></li>
-						<li><a href="#">促销码</a></li>
-					</ul></li>
+				</c:if>
+				<c:if test="${personnel.department.departmentID == 1 }">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">统计 <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">表格报表</a></li>
+							<li><a href="#">折线报表</a></li>
+							<li><a href="#">订单</a></li>
+							<li><a href="#">技术支持</a></li>
+							<li><a href="#">财务</a></li>
+							<li><a href="#">员工</a></li>
+							<li><a href="#">积极员工</a></li>
+							<li><a href="#">发现者</a></li>
+							<li><a href="#">促销码</a></li>
+						</ul></li>
+				</c:if>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><%=((Personnel) request.getSession().getAttribute("loginPersonnle")).getUserName()%></a></li>
+				<li><a href="#"><c:out value="${personnel.userName }"></c:out></a></li>
 				<li><a href="../personnel/logout">退出</a></li>
 			</ul>
 		</div>

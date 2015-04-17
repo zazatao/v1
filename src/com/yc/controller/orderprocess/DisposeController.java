@@ -1,6 +1,7 @@
 package com.yc.controller.orderprocess;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +22,9 @@ import com.yc.entity.Commodity;
 import com.yc.entity.CommoidityStatus;
 import com.yc.entity.DisposeStatus;
 import com.yc.entity.user.Personnel;
+import com.yc.entity.user.Positions;
 import com.yc.service.ICommodityService;
+import com.yc.service.IPersonnelService;
 
 //订单处理  处理
 @Controller
@@ -34,12 +37,41 @@ public class DisposeController {
 	@Autowired
 	ICommodityService commodityService;
 	
+	@Autowired
+	IPersonnelService personnelService;
+	
 	@RequestMapping(value = "dispose", method = RequestMethod.GET)
     public ModelAndView dispose(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Personnel personnel =(Personnel)request.getSession().getAttribute("loginPersonnle");
-		List<Commodity> list = commodityService.getCommodityByPurchase(personnel);
 		ModelMap map = new ModelMap();
-		map.put("list", list);
+		if (personnel.getDepartment() !=null) {
+			if (personnel.getDepartment().getDepartmentID() == 2) {
+				if (personnel.getPositions() != null) {
+					List<Personnel> personnels = new ArrayList<Personnel>();
+					List<Positions> positions =  personnel.getPositions().getChildren();
+					List<Positions> pons = personnel.getDepartment().getPositions();
+					for (Positions post : positions) {
+						for (Positions pon : pons) {
+							if (post.getPositionid() == pon.getPositionid()) {
+								List<Personnel> personne = personnelService.getPersonnelByDepAndPos(personnel.getDepartment(),post.getPositionid());
+								personnels.addAll(personne);
+							}
+						}
+					}
+					personnels.add(personnel);
+					String ids = "";
+					for (Personnel person : personnels) {
+						ids = ids + person.getId() + ",";
+					}
+					ids = ids.substring(0, ids.length()-1);
+					List<Commodity> list = commodityService.getCommodityByPurchase(ids);
+					map.put("list", list);
+				}
+			}else{
+				List<Commodity> list = commodityService.getAllByPurchase();
+				map.put("list", list);
+			}
+		}
 		return new ModelAndView("orderprocessing/dispose",map);
 	}
 	
@@ -67,7 +99,32 @@ public class DisposeController {
 			map.put("disposeStatus", DisposeStatus.valueOf(request.getParameter("disposeStatus")));
 		}
 		Personnel personnel =(Personnel)request.getSession().getAttribute("loginPersonnle");
-		map.put("personnel", personnel.getId());
+		if (personnel.getDepartment() !=null) {
+			if (personnel.getDepartment().getDepartmentID() == 2) {
+				if (personnel.getPositions() != null) {
+					List<Personnel> personnels = new ArrayList<Personnel>();
+					List<Positions> positions =  personnel.getPositions().getChildren();
+					List<Positions> pons = personnel.getDepartment().getPositions();
+					for (Positions post : positions) {
+						for (Positions pon : pons) {
+							if (post.getPositionid() == pon.getPositionid()) {
+								List<Personnel> personne = personnelService.getPersonnelByDepAndPos(personnel.getDepartment(),post.getPositionid());
+								personnels.addAll(personne);
+							}
+						}
+					}
+					personnels.add(personnel);
+					String ids = "";
+					for (Personnel person : personnels) {
+						ids = ids + person.getId() + ",";
+					}
+					ids = ids.substring(0, ids.length()-1);
+					map.put("personnel", personnel.getId());
+				}
+			}else{
+				map.put("personnel", "总经理");
+			}
+		}
 		List<Commodity> list = commodityService.getDisposeByParameters(map);
 		ModelMap mode = new ModelMap();
 		mode.put("list", list);
@@ -77,9 +134,35 @@ public class DisposeController {
 	@RequestMapping(value = "orderItem", method = RequestMethod.GET)
 	public ModelAndView orderItem(Integer orderid, Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Personnel personnel =(Personnel)request.getSession().getAttribute("loginPersonnle");
-		List<Commodity> list = commodityService.getCommodityByPurchase(personnel);
 		ModelMap map = new ModelMap();
-		map.put("list", list);
+		if (personnel.getDepartment() !=null) {
+			if (personnel.getDepartment().getDepartmentID() == 2) {
+				if (personnel.getPositions() != null) {
+					List<Personnel> personnels = new ArrayList<Personnel>();
+					List<Positions> positions =  personnel.getPositions().getChildren();
+					List<Positions> pons = personnel.getDepartment().getPositions();
+					for (Positions post : positions) {
+						for (Positions pon : pons) {
+							if (post.getPositionid() == pon.getPositionid()) {
+								List<Personnel> personne = personnelService.getPersonnelByDepAndPos(personnel.getDepartment(),post.getPositionid());
+								personnels.addAll(personne);
+							}
+						}
+					}
+					personnels.add(personnel);
+					String ids = "";
+					for (Personnel person : personnels) {
+						ids = ids + person.getId() + ",";
+					}
+					ids = ids.substring(0, ids.length()-1);
+					List<Commodity> list = commodityService.getCommodityByPurchase(ids);
+					map.put("list", list);
+				}
+			}else{
+				List<Commodity> list = commodityService.getAllByPurchase();
+				map.put("list", list);
+			}
+		}
 		Commodity commodity = commodityService.getCommByOrderIDAndCommCode(orderid,id);
 		map.put("commodity", commodity);
     	return new ModelAndView("orderprocessing/dispose",map);
@@ -95,8 +178,34 @@ public class DisposeController {
 		}
 		commodityService.update(commodity);
 		Personnel personnel =(Personnel)request.getSession().getAttribute("loginPersonnle");
-		List<Commodity> list = commodityService.getCommodityByPurchase(personnel);
-		map.put("list", list);
+		if (personnel.getDepartment() !=null) {
+			if (personnel.getDepartment().getDepartmentID() == 2) {
+				if (personnel.getPositions() != null) {
+					List<Personnel> personnels = new ArrayList<Personnel>();
+					List<Positions> positions =  personnel.getPositions().getChildren();
+					List<Positions> pons = personnel.getDepartment().getPositions();
+					for (Positions post : positions) {
+						for (Positions pon : pons) {
+							if (post.getPositionid() == pon.getPositionid()) {
+								List<Personnel> personne = personnelService.getPersonnelByDepAndPos(personnel.getDepartment(),post.getPositionid());
+								personnels.addAll(personne);
+							}
+						}
+					}
+					personnels.add(personnel);
+					String ids = "";
+					for (Personnel person : personnels) {
+						ids = ids + person.getId() + ",";
+					}
+					ids = ids.substring(0, ids.length()-1);
+					List<Commodity> list = commodityService.getCommodityByPurchase(ids);
+					map.put("list", list);
+				}
+			}else{
+				List<Commodity> list = commodityService.getAllByPurchase();
+				map.put("list", list);
+			}
+		}
 		return  new ModelAndView("orderprocessing/dispose",map);
 	}
 	

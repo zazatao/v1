@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.yc.entity.CargoGroup;
 import com.yc.entity.Delivery;
 import com.yc.entity.Transit;
 import com.yc.entity.TransitSite;

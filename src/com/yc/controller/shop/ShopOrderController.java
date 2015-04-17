@@ -57,7 +57,8 @@ public class ShopOrderController {
 	
     @RequestMapping(value = "shopOrder", method = RequestMethod.GET)
     public ModelAndView shopOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	List<OrderForm> list = orderFormService.getAll();
+    	Map<String, Object> map = new HashMap<String, Object>();
+    	List<OrderForm> list = orderFormService.getOrderFormByParameters(map);
     	ModelMap mode = new ModelMap();
     	mode.put("list", list);
         return new ModelAndView("shop/shopOrder", mode);

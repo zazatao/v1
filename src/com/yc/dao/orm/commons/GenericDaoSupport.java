@@ -48,14 +48,13 @@ public class GenericDaoSupport<T> implements GenericDao<T> {
         if (id == null)
             throw new java.lang.IllegalArgumentException("id not exists");
         T object = this.findById(id);
-        System.out.println("object============"+object);
         if (object != null) {
             try {
-
                 if (!em.getTransaction().isActive()) {
                     em.getTransaction().begin();
                 }
                 em.remove(object);
+                System.out.println("object============"+object);
                 em.getTransaction().commit();
                 return true;
             } catch (Exception e) {

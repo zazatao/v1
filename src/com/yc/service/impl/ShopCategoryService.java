@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.yc.dao.orm.commons.GenericDao;
 import com.yc.entity.ShopCategory;
+import com.yc.entity.user.Positions;
 import com.yc.service.IShopCategoryService;
 @Component
 public class ShopCategoryService extends GenericService<ShopCategory> implements IShopCategoryService {
@@ -45,5 +46,15 @@ public class ShopCategoryService extends GenericService<ShopCategory> implements
 	public List<ShopCategory> getAllParentLevel(){
 		String hql = "select distinct c from commodity c right join  shopcategory s on c.shopcategory = s.categoryID  where s.`level` and s.parentLevel GROUP BY quantity desc  top 7";
 		return shopCategoryDao.find(hql, null, -1, -1);	
+	}
+	
+	@Override
+	public boolean deleteShopCategory(Integer categoryID) {
+		StringBuffer hql = new StringBuffer("DELETE FROM ShopCategory WHERE categoryID = "+categoryID);
+		shopCategoryDao.getEntityManager().getTransaction().begin();
+		boolean isok = shopCategoryDao.getEntityManager().createNativeQuery(hql.toString(), Positions.class).executeUpdate()>0;
+		shopCategoryDao.getEntityManager().getTransaction().commit();
+		shopCategoryDao.getEntityManager().clear();
+		return isok;
 	}
 }

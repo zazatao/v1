@@ -29,7 +29,6 @@ public class DepartmentService extends GenericService<Department> implements IDe
 	@Override
 	public boolean deleteForTree(Department department) {
 		StringBuffer hql = new StringBuffer("DELETE FROM Department WHERE departmentID = "+department.getDepartmentID());
-		System.out.println("hql============"+hql.toString());
 		departmentDao.getEntityManager().getTransaction().begin();
 		boolean isok = departmentDao.getEntityManager().createNativeQuery(hql.toString(), Department.class).executeUpdate()>0;
 		departmentDao.getEntityManager().getTransaction().commit();
