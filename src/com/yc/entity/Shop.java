@@ -82,6 +82,18 @@ public class Shop {
 	@OneToOne(mappedBy = "shop")
 	private User user;
 	
+	@OneToOne
+	@JoinColumn(name = "blacklist_id")
+	private Blacklist blacklist;
+	
+	public Blacklist getBlacklist() {
+		return blacklist;
+	}
+
+	public void setBlacklist(Blacklist blacklist) {
+		this.blacklist = blacklist;
+	}
+
 	public List<CarCommoidty> getCarCommoidties() {
 		return carCommoidties;
 	}

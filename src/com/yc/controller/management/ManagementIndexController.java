@@ -394,18 +394,17 @@ public class ManagementIndexController {
 	@RequestMapping(value = "addOrUpdateCate", method = RequestMethod.POST)
 	public ModelAndView addOrUpdateCate(Integer categoryID, String category,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ShopCategory shopCategory = shopCategoryService.findById(categoryID);
+		System.out.println("categoryID============"+shopCategory);
 		ModelMap mode = new ModelMap();
 		if (shopCategory == null) {
 			List<ShopCategory> list =  shopCategoryService.getAllByLevel(1);
-			if (list.size()<7) {
+			if (list.size()<9) {
 				ShopCategory shopCate = new ShopCategory();
 				shopCate.setParentLevel(shopCategory);
 				shopCate.setCategory(category);
 				shopCate.setLevel(1);
 				shopCate = shopCategoryService.save(shopCate);
-				shopCategory.getChildren().add(shopCate);
-				shopCategoryService.update(shopCategory);
-				mode.put("category", shopCate);
+				System.out.println("shopCate========="+shopCate.getCategory());
 			}
 		}else{
 			ShopCategory shopCate = new ShopCategory();

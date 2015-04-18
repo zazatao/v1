@@ -130,5 +130,8 @@ public class GenericDaoConfig {
 	public GenericDao<ProblemPack> getProblemPackDao() {
 		return new GenericDaoSupport<ProblemPack>(ProblemPack.class);	
 	}
-	
+	@Bean
+	public GenericDao<Blacklist> getBlacklistDao() {
+		return new GenericDaoSupport<Blacklist>(Blacklist.class);	
+	}
 }

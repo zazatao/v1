@@ -88,7 +88,6 @@ public class ShopCommoidtyService extends GenericService<ShopCommoidty> implemen
 		if (map.get("brand") != null && !map.get("brand").equals("")) {
 			hql = hql.append(" and (shc.brand_id in "+map.get("brand")+")");
 		}
-		System.out.println("hql===========   "+hql.toString());
 		Query query = shopCommoidtyDao.getEntityManager().createNativeQuery(hql.toString(), ShopCommoidty.class);
 		List<ShopCommoidty> list = query.getResultList();
 		return list;

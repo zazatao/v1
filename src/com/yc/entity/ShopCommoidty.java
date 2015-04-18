@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 @DiscriminatorValue("shopCommoidty")//商品表
@@ -78,6 +79,18 @@ public class ShopCommoidty {
 	
 	@Column
 	private String describes;//描述
+
+	@OneToOne
+	@JoinColumn(name = "blacklist_id")
+	private Blacklist blacklist;
+	
+	public Blacklist getBlacklist() {
+		return blacklist;
+	}
+
+	public void setBlacklist(Blacklist blacklist) {
+		this.blacklist = blacklist;
+	}
 
 	public String getDescribes() {
 		return describes;

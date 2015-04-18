@@ -195,7 +195,7 @@
 							</ul></li>
 						<li class="dropdown-submenu"><a href="#">黑名单</a>
 							<ul class="dropdown-menu">
-								<li><a href="#">销售黑名单</a></li>
+								<li><a href="./management/blacklistStores">店家黑名单</a></li>
 								<li><a href="#">商品黑名单</a></li>
 							</ul></li>
 						<li><a href="#">入驻商家</a></li>
