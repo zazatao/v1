@@ -27,7 +27,13 @@
 
 <body>
 	<jsp:include page="../common/prosceniumNav.jsp"></jsp:include>
-<div class="con">
+	<div class="con">
+	<c:if test="${shop.blacklist != null }">
+		<br /><br /><br />
+		<center><font color="red" size="+3">该店铺已入黑名单！</font></center>
+		<br /><br /><br />
+	</c:if>
+	<c:if test="${shop.blacklist == null }">
 
 	<!---------------   left   ----------------------->
     <jsp:include page="left.jsp"></jsp:include>
@@ -202,6 +208,7 @@
             </p>
             <span><img src="../content/static/images/brand/perterrcont3.jpg"/><img src="../content/static/images/brand/perterrcont2.jpg"/></span>
         </div>
+	</c:if>
     </div>
     
 </div>

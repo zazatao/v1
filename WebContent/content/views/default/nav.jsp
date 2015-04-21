@@ -196,9 +196,9 @@
 						<li class="dropdown-submenu"><a href="#">黑名单</a>
 							<ul class="dropdown-menu">
 								<li><a href="./management/blacklistStores">店家黑名单</a></li>
-								<li><a href="#">商品黑名单</a></li>
+								<li><a href="./management/blacklistGoods">商品黑名单</a></li>
 							</ul></li>
-						<li><a href="#">入驻商家</a></li>
+						<li><a href="./management/merchantsSettled">入驻商家</a></li>
 						<li class="dropdown-submenu"><a href="./personnel/personnel">员工</a>
 							<ul class="dropdown-menu">
 								<li><a href="#">操作员</a></li>
@@ -207,7 +207,7 @@
 								<li><a href="#">技术员</a></li>
 								<li><a href="#">总经理</a></li>
 							</ul></li>
-						<li><a href="#">用户</a></li>
+						<li><a href="./management/user">用户</a></li>
 					</ul></li>
 					</c:if>
 				<c:if test="${personnel.department.departmentID == 1 }">

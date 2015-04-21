@@ -38,4 +38,10 @@ public class ShopService extends GenericService<Shop> implements IShopService {
 		paramete[5] = map.get("phone");
 		return shopDao.find(hql.toString(), paramete, -1,-1);
 	}
+	
+	@Override
+	public List<Shop> getShopForManage() {
+		String hql = " from Shop where isPermit = 1";
+		return shopDao.find(hql.toString(), null, null);
+	}
 }

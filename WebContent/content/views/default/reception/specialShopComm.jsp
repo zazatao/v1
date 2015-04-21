@@ -30,41 +30,57 @@
 <body>
 	<jsp:include page="../common/prosceniumNav.jsp"></jsp:include>
 	<div class="con">
+		<c:if test="${shop.blacklist != null }">
+			<br />
+			<br />
+			<br />
+			<center>
+				<font color="red" size="+3">该店铺已入黑名单！</font>
+			</center>
+			<br />
+			<br />
+			<br />
+		</c:if>
+		<c:if test="${shop.blacklist == null }">
+			<!---------------   left   ----------------------->
+			<jsp:include page="left.jsp"></jsp:include>
+			<!---------------   right   ------------->
 
-		<!---------------   left   ----------------------->
-		<jsp:include page="left.jsp"></jsp:include>
-		<!---------------   right   ------------->
-
-		<div class="perterrtab perterrtab_2">
-			<h3>
-				发布商品：<span></a><a
-					href="#">修改&nbsp;&nbsp;/&nbsp;&nbsp;</a><a href="#" onclick="deleteShopComm();">删除&nbsp;&nbsp;/&nbsp;&nbsp;</a><a
-					href="#" onclick="checkAll();">全选</a></span>
-			</h3>
-			<div>
-				<table class="tab_1">
-					<tr class="tit_tr">
-						<td width="97">商品编号</td>
-						<td width="119">商品分类</td>
-						<td width="220">商品名称</td>
-						<td width="122">商品图片</td>
-						<td width="58">商品价格</td>
-						<td width="51">加入促销</td>
-						<td width="28"></td>
-					</tr>
-					<c:forEach var="shopComm" items="${shopComms }" varStatus="loop">
-						<tr>
-							<td>${shopComm.commCode }</td>
-							<td>${shopComm.shopCategory.category }</td>
-							<td>${shopComm.commoidtyName }</td>
-							<td><img src="..${shopComm.shopCommImages[0].imagePath }" /></td>
-							<td>￥${shopComm.unitPrice }</td>
-							<td><button onclick="zhekou(${shopComm.isSpecial},${shopComm.commCode },${shopComm.shelves });"><c:if test="${shopComm.isSpecial}">折扣促销</c:if><c:if test="${!shopComm.isSpecial}">取消促销</c:if></button></td>
-							<td><input type="checkbox" name="commID" value="${shopComm.commCode}"/></td>
+			<div class="perterrtab perterrtab_2">
+				<h3>
+					发布商品：<span></a><a href="#">修改&nbsp;&nbsp;/&nbsp;&nbsp;</a><a
+						href="#" onclick="deleteShopComm();">删除&nbsp;&nbsp;/&nbsp;&nbsp;</a><a
+						href="#" onclick="checkAll();">全选</a></span>
+				</h3>
+				<div>
+					<table class="tab_1">
+						<tr class="tit_tr">
+							<td width="97">商品编号</td>
+							<td width="119">商品分类</td>
+							<td width="220">商品名称</td>
+							<td width="122">商品图片</td>
+							<td width="58">商品价格</td>
+							<td width="51">加入促销</td>
+							<td width="28"></td>
 						</tr>
-					</c:forEach>
-				</table>
-				<script>
+						<c:forEach var="shopComm" items="${shopComms }" varStatus="loop">
+							<tr>
+								<td>${shopComm.commCode }</td>
+								<td>${shopComm.shopCategory.category }</td>
+								<td>${shopComm.commoidtyName }</td>
+								<td><img src="..${shopComm.shopCommImages[0].imagePath }" /></td>
+								<td>￥${shopComm.unitPrice }</td>
+								<td><button
+										onclick="zhekou(${shopComm.isSpecial},${shopComm.commCode },${shopComm.shelves });">
+										<c:if test="${shopComm.isSpecial}">折扣促销</c:if>
+										<c:if test="${!shopComm.isSpecial}">取消促销</c:if>
+									</button></td>
+								<td><input type="checkbox" name="commID"
+									value="${shopComm.commCode}" /></td>
+							</tr>
+						</c:forEach>
+					</table>
+					<script>
 					var check = false;
 					function deleteShopComm(){
 						var ids = "";
@@ -112,9 +128,10 @@
 								"#e5e5e5");
 					});
 				</script>
+				</div>
 			</div>
-			</div>
-		</div>
+		</c:if>
+	</div>
 	</div>
 	<div class="clear"></div>
 	<jsp:include page="../common/foot.jsp"></jsp:include>

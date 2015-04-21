@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -42,7 +44,18 @@
 <body>
 	<jsp:include page="../common/prosceniumNav.jsp"></jsp:include>
 	<div class="con">
-
+		<c:if test="${shop.blacklist != null }">
+			<br />
+			<br />
+			<br />
+			<center>
+				<font color="red" size="+3">该店铺已入黑名单！</font>
+			</center>
+			<br />
+			<br />
+			<br />
+		</c:if>
+		<c:if test="${shop.blacklist == null }">
 		<!---------------   left   ----------------------->
 		<jsp:include page="left.jsp"></jsp:include>
 		<div class="Pingjia">
@@ -565,6 +578,7 @@ function nTabs(thisObj, Num,Value) {
     }
 }
             </script>
+        </c:if>
 	</div>
 	</div>
 	<div class="clear"></div>

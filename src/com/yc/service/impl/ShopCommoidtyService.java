@@ -41,13 +41,14 @@ public class ShopCommoidtyService extends GenericService<ShopCommoidty> implemen
 
 	@Override
 	public List<ShopCommoidty> getAllByShopCategoryID(Integer id,String page) {
-		StringBuffer hql = new StringBuffer("select shc.* from ShopCommoidty shc where shc.shelves = 1 and shc.shop_id is not null and shopCategory_id = "+id);
+		StringBuffer hql = new StringBuffer("SELECT shc.* FROM ShopCommoidty shc JOIN Shop shop ON shop.id = shc.shop_id WHERE (shc.blacklist_id IS NULL AND shop.blacklist_id IS NULL AND shc.shelves = 1 ) AND shc.shop_id IS NOT NULL AND shc.shopCategory_id ="+id);
 		if (page.equals("brand")) {
 			hql.append(" and shc.brand_id is not null");
 		}
 		if (page.equals("special")) {
 			hql.append(" and shc.isSpecial = 1");
 		}
+		System.out.println("hql==============="+hql.toString());
 		Query query = shopCommoidtyDao.getEntityManager().createNativeQuery(hql.toString(), ShopCommoidty.class);
 		List<ShopCommoidty> list = query.getResultList();
 		return list;
@@ -56,7 +57,7 @@ public class ShopCommoidtyService extends GenericService<ShopCommoidty> implemen
 	//Integer id, String brand, String specs, String money
 	@Override
 	public List<ShopCommoidty> getAllByParams(Map<String, Object> map,String page ) {
-		StringBuffer hql = new StringBuffer("select shc.* from ShopCommoidty shc right join ShopCommoidtySpecs sp on shc.commCode = sp.shopComm_id where shc.shop_id is not null and shc.shelves = 1 ");
+		StringBuffer hql = new StringBuffer("select shc.* from ShopCommoidty shc JOIN Shop shop ON shop.id = shc.shop_id right join ShopCommoidtySpecs sp on shc.commCode = sp.shopComm_id where (shc.blacklist_id IS NULL AND shop.blacklist_id IS NULL AND shc.shelves = 1 ) and shc.shelves = 1 ");
 		if (page.equals("special")) {
 			hql.append(" and shc.isSpecial = 1");
 		}
@@ -117,7 +118,7 @@ public class ShopCommoidtyService extends GenericService<ShopCommoidty> implemen
 
 	@Override
 	public List<String> getShopCommBySpecesAndCommID(Integer id, String speces) {
-		StringBuffer hql = new StringBuffer("select sp.commSpec from ShopCommoidty sc join ShopCommoidtySpecs sp on sp.shopComm_id = sc.commCode where sp.commSpec  LIKE '%,"+speces+"%'");
+		StringBuffer hql = new StringBuffer("select sp.commSpec from ShopCommoidty sc join ShopCommoidtySpecs sp on sp.shopComm_id = sc.commCode where sc.blacklist_id is null and sp.commSpec  LIKE '%,"+speces+"%'");
 		Query query = shopCommoidtyDao.getEntityManager().createNativeQuery(hql.toString());
 		@SuppressWarnings("rawtypes")
 		List objecArraytList = query.getResultList(); 
@@ -128,4 +129,16 @@ public class ShopCommoidtyService extends GenericService<ShopCommoidty> implemen
 		return list;
 	}
 
+	@Override
+	public List<ShopCommoidty> getAllByParamsForBlack(Map<String, Object> map) {
+		StringBuffer hql = new StringBuffer(" from ShopCommoidty comm where (? is null or comm.commoidtyName like ?) and (? is null or comm.commItem = ?) and (? is null or comm.commCode = ?)");
+		Object[] paramete = new Object[6];
+		paramete[0] = map.get("commoidtyName");
+		paramete[1] = "%"+map.get("commoidtyName")+"%";
+		paramete[2] = map.get("commItem");
+		paramete[3] = map.get("commItem");
+		paramete[4] = map.get("commCode");
+		paramete[5] = map.get("commCode");
+		return shopCommoidtyDao.find(hql.toString(), paramete, -1,-1);
+	}
 }

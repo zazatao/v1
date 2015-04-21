@@ -11,4 +11,5 @@ public interface IShopService extends IGenericService<Shop> {
 
 	List<Shop> getShopByParam(Map<String, Object> map);
 
+	List<Shop> getShopForManage();
 }

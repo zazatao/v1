@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>搜索店家</title>
+<title>商品黑名单</title>
 
 <link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
 <link href="../content/static/css/bootstrap/bootstrap.min.css"
@@ -40,61 +40,59 @@
 <script type="text/javascript"
 	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
 </head>
-<body>
+<body >
+	<!-- Static navbar -->
+	<jsp:include page="../common/navbar.jsp"></jsp:include>
+
+	<div class="container-fluid" style="padding: 0; margin-top: 32px;">
+		<div class="row-fluid">
+			<div class="span12">
+				<ul class="breadcrumb">
+					<li><a href="#" style="font-size: 18px;">管理</a></li>
+					<span class="divider"><font style="font-size: 18px;">/</font></span>
+					<li><a href="#"><font style="font-size: 18px;">黑名单</font></a></li>
+					<span class="divider"><font style="font-size: 18px;">/</font></span>
+					<li><font style="font-size: 18px;">店家黑名单</font></li>
+				</ul>
+			</div>
+		</div>
+	</div>
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="col-md-12 column">
-			<form class="form-horizontal" action="./searchShop" method="POST">
-			<div class="form-group">
-				<div class="col-sm-2">
-					<input type="text" name="shopName" class="form-control"
-						id="shopName" value="" placeholder="店铺名称" >
-				</div>
-				<div class="col-sm-2">
-					<input type="text" name="juridicalPerson" class="form-control"
-						id="juridicalPerson" value="" placeholder="法人代表" >
-				</div>
-				<div class="col-sm-4">
-					<input type="text" name="phone" class="form-control"
-						id="phone" value="" placeholder="电话" >
-				</div>
-				<div class="col-sm-2">
-					<button type="submit" class="btn btn-default">查询</button>
-				</div>
-			</div>
-		</form>
 				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							商品黑名单<a href="#" onclick="popupwindow('./addGoodsBlackList');"><span class="badge navbar-right" id="yunfei"><font size="3px;">添加&nbsp;&nbsp;+</font></span></a>
+						</h3>
+					</div>
 					<div class="list-group-item">
 						<p class="list-group-item-text">
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<th>店家</th>
-									<th>法人</th>
-									<th>电话</th>
-									<th>开店日期</th>
+									<th>商品名称</th>
+									<th>原因</th>
+									<th>添加日期</th>
 									<th></th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="shop" items="${list }" varStatus="pool">
-									<c:if test="${shop.blacklist == null }">
-										<c:choose>
-											<c:when test="${loop.index%2==0 }">
-												<tr>
-											</c:when>
-											<c:otherwise>
-												<tr class="success">
-											</c:otherwise>
-										</c:choose>
-										<td>${shop.shopName}</td>
-										<td>${shop.juridicalPerson}</td>
-										<td>${shop.phone}</td>
-										<td>${shop.createDate}</td>
-										<td>
-											<button onclick="popupwindow('addBlack?id=${shop.id}&mathed=add&page=shop');">加入黑名单</button></td>
-										</tr>
-									</c:if>
+								<c:forEach var="blacklist" items="${list }" varStatus="pool">
+									<c:choose>
+										<c:when test="${loop.index%2==0 }">
+											<tr>
+										</c:when>
+										<c:otherwise>
+											<tr class="success">
+										</c:otherwise>
+									</c:choose>
+									<td>${blacklist.commoidty.commoidtyName}</td>
+									<td>${blacklist.reasons}</td>
+									<td>${blacklist.addDate}</td>
+									<td><button class="btn btn-default" onclick="popupwindow('addBlackForGoods?id=${blacklist.id}&mathed=update');">修改原因</button>
+										<button class="btn btn-default" onclick="deleteBlack('${blacklist.id}');" >删除</button></td>
+									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
@@ -104,6 +102,9 @@
 		</div>
 	</div>
 	<script type="text/javascript">
+		function deleteBlack(obj){
+			location.href = "deleteBlack?id="+obj;
+		}
 		window.onunload = refreshParent;
 		function refreshParent() {
 			window.opener.location.reload();
@@ -155,12 +156,13 @@
 			}
 		}
 		function popupwindow(url) {
-			var w = 700;
+			var w = 1200;
 			var h = 800;
 			var title = "";
 			var left = (screen.width / 2) - (w / 2);
 			var top = (screen.height / 2) - (h / 2);
-			return window.open(
+			return window
+					.open(
 							url,
 							title,
 							'directories=0,titlebar=0,toolbar=0,location=0,status=0,menubar=0,scrollbars=yes,resizable=yes, width='

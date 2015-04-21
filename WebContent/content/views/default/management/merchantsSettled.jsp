@@ -1,15 +1,13 @@
-<%@page import="java.util.Date"%>
+<%@page import="com.yc.entity.user.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<!DOCTYPE html >
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>添加黑名单</title>
-
+<title>用户</title>
 <link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
 <link href="../content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
@@ -23,14 +21,15 @@
 <link rel="apple-touch-icon-precomposed"
 	href="../content/static/img/apple-touch-icon-57-precomposed.png">
 <link rel="shortcut icon" href="../content/static/img/favicon.png">
+
 <script type="text/javascript"
 	src="../content/static/js/lib/jquery.min.js"></script>
 <script type="text/javascript"
 	src="../content/static/js/lib/bootstrap.min.js"></script>
+<script type="text/javascript" src="./content/static/js/lib/scripts.js"></script>
 
 <script type="text/javascript"
 	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
-
 <link href="../content/static/css/datetime/jquery-clockpicker.min.css"
 	rel="stylesheet">
 <link href="../content/static/css/datetime/jquery.datetimepicker.css"
@@ -40,49 +39,75 @@
 <script type="text/javascript"
 	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
 </head>
+<style type="text/css">
+th {
+	text-align: center;
+}
+</style>
 <body>
+
+	<!-- Static navbar -->
+	<jsp:include page="../common/navbar.jsp"></jsp:include>
+	<div class="panel panel-default" style="padding: 0; margin-top: 32px;">
+		<div class="panel-heading">
+			<h3 class="panel-title">
+				<a href="#" style="font-size: 18px;">管理</a> <span class="divider"><font
+					style="font-size: 18px;">/</font></span><a
+					href="#" style="font-size: 18px;">入驻商家<span
+					class="badge navbar-right"></span></a>
+			</h3>
+		</div>
+	</div>
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<div class="col-md-12 column">
-				<form class="form-horizontal"  id="form" name="form" method="POST">
-					<div class="form-group">
-						<c:if test="${mathed == 'update'}">
-							<label for="inputEmail3" class="col-sm-2 control-label">修改原因</label>
-							<input type="hidden" name="id" value="${blacklist.id }">
-						</c:if>
-						<c:if test="${mathed == 'add'}">
-							<label for="inputEmail3" class="col-sm-2 control-label">填写原因</label>
-							<input type="hidden" name="id" value="${id }">
-						</c:if>
-						<div class="col-sm-10">
-							<textarea rows="3" cols="1000" name="reasons">${blacklist.reasons }</textarea>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10" style="text-align: center;">
-							<button type="button" class="btn btn-default" onclick="add('${mathed}');"><c:if test="${mathed == 'add'}">加入黑名单</c:if>
-							<c:if test="${mathed == 'update'}">修改黑名单</c:if>
-							</button>
-						</div>
-					</div>
-				</form>
+			<div class="span12">
+				<table class="table table-bordered table-hover table-condensed">
+					<thead>
+						<tr>
+							<th>店名</th>
+							<th>法人</th>
+							<th>店铺性质</th>
+							<th>所属地</th>
+							<th>电话号码</th>
+							<th>开店日期</th>			
+							<th></th>			
+						</tr>
+					</thead>
+<%-- 					<c:forEach var="personnel" items="${list }" varStatus="loop"> --%>
+						<c:forEach var="shop" items="${list }" varStatus="loop">
+						<tbody>
+							<c:choose>
+										<c:when test="${loop.index%2==0 }">
+											<tr>
+										</c:when>
+										<c:otherwise>
+											<tr class="success">
+										</c:otherwise>
+									</c:choose>
+								<td align="center">${shop.shopName }</td>
+								<td>${shop.juridicalPerson }</td>
+								<td><c:if test="${shop.shopType == 'individual' }">个人开店</c:if><c:if test="${shop.shopType == 'company' }">企业开店</c:if></td>
+								<td><c:if test="${shop.possession == 'HongKongAndMacao'}">香港/澳门</c:if>
+								<c:if test="${shop.possession == 'Taiwan'}">台湾</c:if>
+								<c:if test="${shop.possession == 'mainlandcChina'}">中国大陆</c:if>
+								<c:if test="${shop.possession == 'Overseas'}">海外</c:if>
+								</td>
+								<td>${shop.phone }</td>
+								<td>${shop.createDate }</td>	
+								<td><button onclick="popupwindow('addBlack?id=${shop.id}&mathed=add&page=shop');">加入黑名单</button></td>	
+							</tr>
+						</tbody>
+					</c:forEach>
+<%-- 					</c:forEach> --%>
+				</table>
 			</div>
 		</div>
 	</div>
+
 	<script type="text/javascript">
-		window.onunload = refreshParent;
-		function refreshParent() {
-			window.opener.location.reload();
-		}
-		function add(obj){
-			document.form.action="./addBlacklistForShop?page=${page}&mathed="+obj;
-			document.form.submit();
-			return closeAndRefresh();
-		}
-		function closeAndRefresh() {
-			window.onunload = refreshParent;
-			self.close();
-			return true;
+		function changeIsPermit(obj,id){
+			var num = obj.value;
+			location.href =	'./updateIsPermit?id='+id+'&isPermit='+num;
 		}
 		function dateInfoxxx(obj) {
 			var date = obj;
@@ -93,37 +118,16 @@
 				formatDate : 'Y-m-d',
 			});
 		}
-		$(document).ready(function() {
-			var len = "${count}" + "${count1}";
-			for (var i = 0; i < len; i++) {
-				var sendDate = "";
-				if ($('#sendDate' + i).val() == '') {
-					sendDate = new Date();
-				} else {
-					sendDate = getDate($('#sendDate' + i).val());
-					sendDate = sendDate.valueOf();
-					sendDate = new Date(sendDate);
-				}
-				var receiveDate = getDate($('#receiveDate' + i).val());
-				receiveDate = receiveDate.valueOf();
-				receiveDate = new Date(receiveDate);
-				var a = (sendDate - receiveDate)
-				var b = 24 * 60 * 60 * 1000;
-				$('#reduce' + i).html(Math.ceil(a / b) + "天");
-			}
-		})
-		function getDate(strDate) {
-			var date = eval('new Date('
-					+ strDate.replace(/\d+(?=-[^-]+$)/, function(a) {
-						return parseInt(a, 10) - 1;
-					}).match(/\d+/g) + ')');
-			return date;
-		}
 		function checkvalue(obj) {
 			if (!/^[+|-]?\d+\.?\d*$/.test(obj.value) && obj.value != '') {
 				alert('你输入的不是数字，或关闭输入法后再输入');
 				obj.select();
 			}
+		}
+		function reloadData() {
+			setTimeout(function() {
+				window.location.reload();
+			}, 1000);
 		}
 		function popupwindow(url) {
 			var w = 700;

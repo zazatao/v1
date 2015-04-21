@@ -90,8 +90,9 @@
 									<td>${blacklist.shop.shopName}</td>
 									<td>${blacklist.reasons}</td>
 									<td>${blacklist.addDate}</td>
-									<td><button>修改</button>
-										<button>删除</button></td>
+									<td><button class="btn btn-default" onclick="popupwindow('addBlack?id=${blacklist.id}&mathed=update');">修改原因</button>
+										<button class="btn btn-default"  onclick="deleteBlack('${blacklist.id}');" >删除</button>
+										</td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -102,15 +103,18 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-	window.onunload = refreshParent;
-	function refreshParent() {
-		window.opener.location.reload();
-	}
-	function reloadData() {
-		setTimeout(function() {
-			window.location.reload();
-		}, 1000);
-	}
+		function deleteBlack(obj){
+			location.href = "deleteBlack?id="+obj;
+		}
+		window.onunload = refreshParent;
+		function refreshParent() {
+			window.opener.location.reload();
+		}
+		function reloadData() {
+			setTimeout(function() {
+				window.location.reload();
+			}, 1000);
+		}
 		function dateInfoxxx(obj) {
 			var date = obj;
 			$('#' + date).datetimepicker({

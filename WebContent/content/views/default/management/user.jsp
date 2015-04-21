@@ -1,15 +1,13 @@
-<%@page import="java.util.Date"%>
+<%@page import="com.yc.entity.user.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<!DOCTYPE html >
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>搜索店家</title>
-
+<title>用户</title>
 <link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
 <link href="../content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
@@ -23,14 +21,15 @@
 <link rel="apple-touch-icon-precomposed"
 	href="../content/static/img/apple-touch-icon-57-precomposed.png">
 <link rel="shortcut icon" href="../content/static/img/favicon.png">
+
 <script type="text/javascript"
 	src="../content/static/js/lib/jquery.min.js"></script>
 <script type="text/javascript"
 	src="../content/static/js/lib/bootstrap.min.js"></script>
+<script type="text/javascript" src="./content/static/js/lib/scripts.js"></script>
 
 <script type="text/javascript"
 	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
-
 <link href="../content/static/css/datetime/jquery-clockpicker.min.css"
 	rel="stylesheet">
 <link href="../content/static/css/datetime/jquery.datetimepicker.css"
@@ -40,63 +39,73 @@
 <script type="text/javascript"
 	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
 </head>
+<style type="text/css">
+th {
+	text-align: center;
+}
+</style>
 <body>
+
+	<!-- Static navbar -->
+	<jsp:include page="../common/navbar.jsp"></jsp:include>
+	<div class="panel panel-default" style="padding: 0; margin-top: 32px;">
+		<div class="panel-heading">
+			<h3 class="panel-title">
+				<a href="#" style="font-size: 18px;">管理</a> <span class="divider"><font
+					style="font-size: 18px;">/</font></span><a href="#"
+					style="font-size: 18px;">用户<span class="badge navbar-right"></span></a>
+			</h3>
+		</div>
+	</div>
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="col-md-12 column">
-			<form class="form-horizontal" action="./searchShop" method="POST">
-			<div class="form-group">
-				<div class="col-sm-2">
-					<input type="text" name="shopName" class="form-control"
-						id="shopName" value="" placeholder="店铺名称" >
-				</div>
-				<div class="col-sm-2">
-					<input type="text" name="juridicalPerson" class="form-control"
-						id="juridicalPerson" value="" placeholder="法人代表" >
-				</div>
-				<div class="col-sm-4">
-					<input type="text" name="phone" class="form-control"
-						id="phone" value="" placeholder="电话" >
-				</div>
-				<div class="col-sm-2">
-					<button type="submit" class="btn btn-default">查询</button>
-				</div>
-			</div>
-		</form>
 				<div class="panel panel-default">
 					<div class="list-group-item">
 						<p class="list-group-item-text">
-						<table class="table table-striped">
+						<table  class="table table-striped">
 							<thead>
 								<tr>
-									<th>店家</th>
-									<th>法人</th>
-									<th>电话</th>
+									<th>登录名</th>
+									<th>真实姓名</th>
+									<th>邮箱</th>
+									<th>性别</th>
+									<th>电话号码</th>
+									<th>店名</th>
 									<th>开店日期</th>
-									<th></th>
+									<th>是否允许开店</th>
 								</tr>
 							</thead>
-							<tbody>
-								<c:forEach var="shop" items="${list }" varStatus="pool">
-									<c:if test="${shop.blacklist == null }">
-										<c:choose>
-											<c:when test="${loop.index%2==0 }">
-												<tr>
-											</c:when>
-											<c:otherwise>
-												<tr class="success">
-											</c:otherwise>
-										</c:choose>
-										<td>${shop.shopName}</td>
-										<td>${shop.juridicalPerson}</td>
-										<td>${shop.phone}</td>
-										<td>${shop.createDate}</td>
-										<td>
-											<button onclick="popupwindow('addBlack?id=${shop.id}&mathed=add&page=shop');">加入黑名单</button></td>
-										</tr>
-									</c:if>
-								</c:forEach>
-							</tbody>
+							<c:forEach var="user" items="${list }" varStatus="loop">
+								<tbody>
+									<c:choose>
+										<c:when test="${loop.index%2==0 }">
+											<tr>
+										</c:when>
+										<c:otherwise>
+											<tr class="success">
+										</c:otherwise>
+									</c:choose>
+									<td align="center">${user.id }</td>
+									<td>${user.userName }</td>
+									<td>${user.email }</td>
+									<td>${user.sex }</td>
+									<td>${user.phone }</td>
+									<td>${user.shop.shopName }</td>
+									<td>${user.shop.createDate }</td>
+									<td><c:if test="${user.shop.isPermit == true }">已经开店</c:if>
+										<c:if test="${user.shop.isPermit == false }">
+											<select id="code" name="plugin" class="form-control"
+												style="width: 200px;"
+												onchange="changeIsPermit(this,'${user.id }')">
+												<option value="true">已经开店</option>
+												<option value="false"
+													<c:if test="${user.shop.isPermit == false }">selected</c:if>>申请开店</option>
+											</select>
+										</c:if></td>
+									</tr>
+								</tbody>
+							</c:forEach>
 						</table>
 					</div>
 				</div>
@@ -104,14 +113,9 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-		window.onunload = refreshParent;
-		function refreshParent() {
-			window.opener.location.reload();
-		}
-		function reloadData() {
-			setTimeout(function() {
-				window.location.reload();
-			}, 1000);
+		function changeIsPermit(obj, id) {
+			var num = obj.value;
+			location.href = './updateIsPermit?id=' + id + '&isPermit=' + num;
 		}
 		function dateInfoxxx(obj) {
 			var date = obj;
@@ -122,37 +126,16 @@
 				formatDate : 'Y-m-d',
 			});
 		}
-		$(document).ready(function() {
-			var len = "${count}" + "${count1}";
-			for (var i = 0; i < len; i++) {
-				var sendDate = "";
-				if ($('#sendDate' + i).val() == '') {
-					sendDate = new Date();
-				} else {
-					sendDate = getDate($('#sendDate' + i).val());
-					sendDate = sendDate.valueOf();
-					sendDate = new Date(sendDate);
-				}
-				var receiveDate = getDate($('#receiveDate' + i).val());
-				receiveDate = receiveDate.valueOf();
-				receiveDate = new Date(receiveDate);
-				var a = (sendDate - receiveDate)
-				var b = 24 * 60 * 60 * 1000;
-				$('#reduce' + i).html(Math.ceil(a / b) + "天");
-			}
-		})
-		function getDate(strDate) {
-			var date = eval('new Date('
-					+ strDate.replace(/\d+(?=-[^-]+$)/, function(a) {
-						return parseInt(a, 10) - 1;
-					}).match(/\d+/g) + ')');
-			return date;
-		}
 		function checkvalue(obj) {
 			if (!/^[+|-]?\d+\.?\d*$/.test(obj.value) && obj.value != '') {
 				alert('你输入的不是数字，或关闭输入法后再输入');
 				obj.select();
 			}
+		}
+		function reloadData() {
+			setTimeout(function() {
+				window.location.reload();
+			}, 1000);
 		}
 		function popupwindow(url) {
 			var w = 700;
@@ -160,7 +143,8 @@
 			var title = "";
 			var left = (screen.width / 2) - (w / 2);
 			var top = (screen.height / 2) - (h / 2);
-			return window.open(
+			return window
+					.open(
 							url,
 							title,
 							'directories=0,titlebar=0,toolbar=0,location=0,status=0,menubar=0,scrollbars=yes,resizable=yes, width='

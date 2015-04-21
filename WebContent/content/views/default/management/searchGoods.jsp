@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>搜索店家</title>
+<title>搜索商品</title>
 
 <link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
 <link href="../content/static/css/bootstrap/bootstrap.min.css"
@@ -44,19 +44,19 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="col-md-12 column">
-			<form class="form-horizontal" action="./searchShop" method="POST">
+			<form class="form-horizontal" action="./searchGoods" method="POST">
 			<div class="form-group">
-				<div class="col-sm-2">
-					<input type="text" name="shopName" class="form-control"
-						id="shopName" value="" placeholder="店铺名称" >
-				</div>
-				<div class="col-sm-2">
-					<input type="text" name="juridicalPerson" class="form-control"
-						id="juridicalPerson" value="" placeholder="法人代表" >
-				</div>
 				<div class="col-sm-4">
-					<input type="text" name="phone" class="form-control"
-						id="phone" value="" placeholder="电话" >
+					<input type="text" name="commCode" class="form-control"
+						id="commCode" value="" placeholder="商品编码" >
+				</div>
+				<div class="col-sm-2">
+					<input type="text" name="commoidtyName" class="form-control"
+						id="commoidtyName" value="" placeholder="商品名称" >
+				</div>
+				<div class="col-sm-2">
+					<input type="text" name="commItem" class="form-control"
+						id="commItem" value="" placeholder="货号" >
 				</div>
 				<div class="col-sm-2">
 					<button type="submit" class="btn btn-default">查询</button>
@@ -69,16 +69,16 @@
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<th>店家</th>
-									<th>法人</th>
-									<th>电话</th>
-									<th>开店日期</th>
+									<th>商品编码</th>
+									<th>商品名称</th>
+									<th>货号</th>
+									<th>商品所属店家</th>
 									<th></th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="shop" items="${list }" varStatus="pool">
-									<c:if test="${shop.blacklist == null }">
+								<c:forEach var="comm" items="${list }" varStatus="pool">
+									<c:if test="${comm.blacklist == null }">
 										<c:choose>
 											<c:when test="${loop.index%2==0 }">
 												<tr>
@@ -87,12 +87,12 @@
 												<tr class="success">
 											</c:otherwise>
 										</c:choose>
-										<td>${shop.shopName}</td>
-										<td>${shop.juridicalPerson}</td>
-										<td>${shop.phone}</td>
-										<td>${shop.createDate}</td>
+										<td>${comm.commCode}</td>
+										<td>${comm.commoidtyName}</td>
+										<td>${comm.commItem}</td>
+										<td>${comm.belongTo.shopName }</td>
 										<td>
-											<button onclick="popupwindow('addBlack?id=${shop.id}&mathed=add&page=shop');">加入黑名单</button></td>
+											<button onclick="popupwindow('addBlackForGoods?id=${comm.commCode }&mathed=add&page=goods');">加入黑名单</button></td>
 										</tr>
 									</c:if>
 								</c:forEach>
