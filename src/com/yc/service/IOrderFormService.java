@@ -30,4 +30,6 @@ public interface IOrderFormService extends IGenericService<OrderForm>{
 	List<OrderForm> getShopOrderByParam(Map<String, Object> map, Shop shop) throws ParseException ;
 
 	List<OrderForm> getOrderByStatusAndName(Map<String, Object> map);
+
+	List<OrderForm> getAllByStatus();
 }

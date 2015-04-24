@@ -47,12 +47,8 @@ public class Personnel {
 	private String phone;
 	
 	@ManyToOne
-	@JoinColumn(name = "departmentID")
-	private Department department;//部门
-	
-	@ManyToOne
-	@JoinColumn(name = "positionsID")
-	private Positions positions;//职位；
+	@JoinColumn(name = "depAndPos_id")
+	private DepartAndPositions departAndPositions;//部门
 
 	@Column
 	private Integer accomplishNum;//完成订单数
@@ -72,12 +68,12 @@ public class Personnel {
     @OneToMany(mappedBy = "personnel")
     private List<TransitSite> transitSites;
 
-	public Department getDepartment() {
-		return department;
+	public DepartAndPositions getDepartAndPositions() {
+		return departAndPositions;
 	}
 
-	public void setDepartment(Department department) {
-		this.department = department;
+	public void setDepartAndPositions(DepartAndPositions departAndPositions) {
+		this.departAndPositions = departAndPositions;
 	}
 
 	public List<TransitSite> getTransitSites() {
@@ -102,14 +98,6 @@ public class Personnel {
 
 	public void setPurchases(List<Commodity> purchases) {
 		this.purchases = purchases;
-	}
-
-	public Positions getPositions() {
-		return positions;
-	}
-
-	public void setPositions(Positions positions) {
-		this.positions = positions;
 	}
 
 	public Integer getId() {

@@ -1,7 +1,7 @@
 package com.yc.entity.user;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,9 +12,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
 //职位
 @Entity
 @DiscriminatorValue("position")
@@ -27,21 +27,26 @@ public class Positions {
 	@Column(length = 32)
 	private String positionname;// 职位名称；
 
-	@ManyToMany(mappedBy = "positions", fetch = FetchType.EAGER)
-	private List<Department> departments;
-
+	@OneToMany(mappedBy = "positions")
+	private Set<DepartAndPositions> DepartAndPositions;
+	
 	@Column
 	private String significance;
-
-	@OneToMany(mappedBy = "positions")
-	private List<Personnel> personnels;
 	
 	@ManyToOne(cascade = {CascadeType.MERGE,CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REFRESH}, fetch = FetchType.EAGER)
 	@JoinColumn(name = "parentLevel")
 	private Positions parentLevel;//父节点；
 	
 	@OneToMany(mappedBy = "parentLevel",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<Positions> children = new ArrayList<Positions>();
+	private Set<Positions> children = new HashSet<Positions>();
+
+	public Set<DepartAndPositions> getDepartAndPositions() {
+		return DepartAndPositions;
+	}
+
+	public void setDepartAndPositions(Set<DepartAndPositions> departAndPositions) {
+		DepartAndPositions = departAndPositions;
+	}
 
 	public Positions getParentLevel() {
 		return parentLevel;
@@ -51,11 +56,11 @@ public class Positions {
 		this.parentLevel = parentLevel;
 	}
 
-	public List<Positions> getChildren() {
+	public Set<Positions> getChildren() {
 		return children;
 	}
 
-	public void setChildren(List<Positions> children) {
+	public void setChildren(Set<Positions> children) {
 		this.children = children;
 	}
 
@@ -65,22 +70,6 @@ public class Positions {
 
 	public void setSignificance(String significance) {
 		this.significance = significance;
-	}
-
-	public List<Personnel> getPersonnels() {
-		return personnels;
-	}
-
-	public void setPersonnels(List<Personnel> personnels) {
-		this.personnels = personnels;
-	}
-
-	public List<Department> getDepartments() {
-		return departments;
-	}
-
-	public void setDepartments(List<Department> departments) {
-		this.departments = departments;
 	}
 
 	public Integer getPositionid() {

@@ -17,7 +17,6 @@ import com.yc.dao.orm.commons.GenericDao;
 import com.yc.entity.OrderForm;
 import com.yc.entity.OrderStatus;
 import com.yc.entity.Shop;
-import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
 import com.yc.service.IOrderFormService;
 
@@ -282,6 +281,17 @@ public class OrderFormService extends GenericService<OrderForm> implements IOrde
 			hql.append(" and u.userName like '%"+map.get("userName")+"%'");
 		}
 		orderFormDao.getEntityManager().clear();
+		Query query = orderFormDao.getEntityManager().createNativeQuery(hql.toString(), OrderForm.class);
+		@SuppressWarnings("unchecked")
+		List<OrderForm> list =  query.getResultList();
+		return list;
+	}
+
+	@Override
+	public List<OrderForm> getAllByStatus() {
+		StringBuffer hql = new StringBuffer("select orders.* from OrderForm orders join Commodity comm "
+				+ " on comm.orderform_id = orders.orderFormID where orders.orderstatus not in"
+				+ " ('completionTransaction','closeTransaction','autoCloseTransaction', 'autoCloseTransaction')");
 		Query query = orderFormDao.getEntityManager().createNativeQuery(hql.toString(), OrderForm.class);
 		@SuppressWarnings("unchecked")
 		List<OrderForm> list =  query.getResultList();

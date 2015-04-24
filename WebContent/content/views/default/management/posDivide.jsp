@@ -61,14 +61,14 @@
 			</div>
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">机构角色</h3>
+					<h3 class="panel-title"><font color="red">${department.departmentname }</font>机构角色</h3>
 				</div>
 				<div style="padding-top: 28px; padding-bottom: 28px;">
 					<label for="inputSex" class="col-sm-2 control-label">选择角色</label>
 					<input value="${department.departmentID }" type="hidden" name="departID">
 					<c:forEach items="${treeList2 }" var="pos">
 						<input type="radio" style="width: 18px;" name="pos"
-							value="${pos.positionid }">${pos.positionname }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							value="${pos.positions.positionid }">${pos.positions.positionname }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					</c:forEach>
 				</div>
 			</div>
@@ -133,10 +133,10 @@
 							<td>${personnel.userName }</td>
 							<td><c:if test="${personnel.sex == 'Male'}">男</c:if><c:if test="${personnel.sex == 'Female'}">女</c:if></td>
 							<td>${personnel.phone }</td>
-							<td>${personnel.department.departmentname }</td>
+							<td>${personnel.departAndPositions.department.departmentname }</td>
 							<td>
 								<input type="hidden" name="departID" value="${department.departmentID }">
-								${personnel.positions.positionname }
+								${personnel.departAndPositions.positions.positionname }
 							</td>
 						</tr>
 						</c:forEach>

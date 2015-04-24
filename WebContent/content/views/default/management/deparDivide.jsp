@@ -120,10 +120,10 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$("input[name='positionCheck']").each(function() {
-				<c:forEach items="${department.positions }" var="position">
-				if (this.value == '${position.positionid}') {
-					$(this).attr("checked", "checked");
-				}
+				<c:forEach items="${depAndPos }" var="dap">
+					if (this.value == '${dap.positions.positionid}') {
+						$(this).attr("checked", "checked");
+					}
 				</c:forEach>
 			});
 		})

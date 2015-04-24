@@ -1,7 +1,7 @@
 package com.yc.entity.user;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -30,27 +29,16 @@ public class Department {
 
 	@Column
 	private String describes; // 描述
-
-	@ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-	private List<Positions> positions;//部门角色
 	
 	@OneToMany(mappedBy = "department")
-	private List<Personnel> personnels;//部门员工
+	private Set<DepartAndPositions> departAndPositions;
 	
 	@ManyToOne(cascade = {CascadeType.MERGE,CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REFRESH}, fetch = FetchType.EAGER)
 	@JoinColumn(name = "parentLevel")
 	private Department parentLevel;//父节点；
 	
 	@OneToMany(mappedBy = "parentLevel",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	private List<Department> children = new ArrayList<Department>();
-
-	public List<Personnel> getPersonnels() {
-		return personnels;
-	}
-
-	public void setPersonnels(List<Personnel> personnels) {
-		this.personnels = personnels;
-	}
+	private Set<Department> children = new HashSet<Department>();
 
 	public Department getParentLevel() {
 		return parentLevel;
@@ -60,11 +48,11 @@ public class Department {
 		this.parentLevel = parentLevel;
 	}
 
-	public List<Department> getChildren() {
+	public Set<Department> getChildren() {
 		return children;
 	}
 
-	public void setChildren(List<Department> children) {
+	public void setChildren(Set<Department> children) {
 		this.children = children;
 	}
 
@@ -92,12 +80,12 @@ public class Department {
 		this.describes = describes;
 	}
 
-	public List<Positions> getPositions() {
-		return positions;
+	public Set<DepartAndPositions> getDepartAndPositions() {
+		return departAndPositions;
 	}
 
-	public void setPositions(List<Positions> positions) {
-		this.positions = positions;
+	public void setDepartAndPositions(Set<DepartAndPositions> departAndPositions) {
+		this.departAndPositions = departAndPositions;
 	}
 
 }

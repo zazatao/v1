@@ -21,12 +21,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Blacklist;
 import com.yc.entity.BlacklistType;
+import com.yc.entity.PromotionCode;
 import com.yc.entity.Shop;
 import com.yc.entity.ShopCommoidty;
+import com.yc.entity.Ticket;
+import com.yc.entity.user.DepartAndPositions;
 import com.yc.entity.user.User;
 import com.yc.service.IBlacklistService;
+import com.yc.service.IDepartAndPositionsService;
+import com.yc.service.IPromotionCodeService;
 import com.yc.service.IShopCommoidtyService;
 import com.yc.service.IShopService;
+import com.yc.service.ITicketService;
 import com.yc.service.IUserService;
 
 //管理
@@ -35,86 +41,95 @@ import com.yc.service.IUserService;
 public class ManagementTwoController {
 
 	private static final Logger LOG = Logger.getLogger(ManagementTwoController.class);
-	
+
 	@Autowired
 	IBlacklistService blacklistService;
-	
+
 	@Autowired
 	IShopService shopService;
-	
+
 	@Autowired
 	IShopCommoidtyService commoidtyService;
-	
+
 	@Autowired
 	IUserService userService;
-	
+
+	@Autowired
+	ITicketService ticketService;
+
+	@Autowired
+	IDepartAndPositionsService departAndPositionsService;
+
+	@Autowired
+	IPromotionCodeService promotionCodeService;
+
 	@RequestMapping(value = "blacklistStores", method = RequestMethod.GET)
 	public ModelAndView blacklist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Blacklist> list = blacklistService.getBlacklistByBlacklistType(BlacklistType.stores);
 		ModelMap mode = new ModelMap();
 		mode.put("list", list);
-		return new ModelAndView("management/blacklistStores",mode);
+		return new ModelAndView("management/blacklistStores", mode);
 	}
-	
+
 	@RequestMapping(value = "addShopBlackList", method = RequestMethod.GET)
 	public ModelAndView addShopBlackList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		return new ModelAndView("management/searchShop");
 	}
-	
+
 	@RequestMapping(value = "searchShop", method = RequestMethod.POST)
-	public ModelAndView searchShop(String shopName,String juridicalPerson,String phone,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ModelAndView searchShop(String shopName, String juridicalPerson, String phone, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String, Object> map = new HashMap<String, Object>();
 		if (shopName.equals("")) {
 			map.put("shopName", null);
-		}else{
+		} else {
 			map.put("shopName", shopName);
 		}
 		if (juridicalPerson.equals("")) {
 			map.put("juridicalPerson", null);
-		}else{
+		} else {
 			map.put("juridicalPerson", juridicalPerson);
 		}
 		if (phone.equals("")) {
 			map.put("phone", null);
-		}else{
+		} else {
 			map.put("phone", phone);
 		}
 		List<Shop> list = shopService.getShopByParam(map);
 		ModelMap mode = new ModelMap();
 		mode.put("list", list);
-		return new ModelAndView("management/searchShop",mode);
+		return new ModelAndView("management/searchShop", mode);
 	}
-	
+
 	@RequestMapping(value = "addBlack", method = RequestMethod.GET)
-	public ModelAndView addBlack(Integer id,String mathed,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ModelAndView addBlack(Integer id, String mathed, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ModelMap mode = new ModelMap();
- 		if (mathed.equals("add")) {
+		if (mathed.equals("add")) {
 			if (!id.equals("")) {
 				mode.put("id", id);
 				mode.put("mathed", "add");
 				mode.put("page", "shop");
-				return new ModelAndView("management/addBlack",mode);
-			}else{
+				return new ModelAndView("management/addBlack", mode);
+			} else {
 				Map<String, Object> map = new HashMap<String, Object>();
 				List<Shop> list = shopService.getShopByParam(map);
 				mode.put("list", list);
-				return new ModelAndView("management/searchShop",mode);
+				return new ModelAndView("management/searchShop", mode);
 			}
-		}else{
+		} else {
 			Blacklist blacklist = blacklistService.findById(id);
 			mode.put("blacklist", blacklist);
 			mode.put("mathed", "update");
 			mode.put("page", "shop");
-			return  new ModelAndView("management/addBlack",mode);
+			return new ModelAndView("management/addBlack", mode);
 		}
 	}
-	
+
 	@RequestMapping(value = "addBlacklistForShop", method = RequestMethod.POST)
-	public String addBlacklistForShop(Integer id,String reasons,String mathed,String page,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String addBlacklistForShop(Integer id, String reasons, String mathed, String page, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (mathed.equals("add")) {
 			if (page.equals("shop")) {
-				Shop shop =  shopService.findById(id);
-				if (shop != null ) {
+				Shop shop = shopService.findById(id);
+				if (shop != null) {
 					Blacklist black = new Blacklist();
 					black.setReasons(reasons);
 					black.setBlacklistType(BlacklistType.stores);
@@ -124,7 +139,7 @@ public class ManagementTwoController {
 					shop.setBlacklist(black);
 					shopService.update(shop);
 				}
-			}else{
+			} else {
 				ShopCommoidty commoidty = commoidtyService.findById(id);
 				if (commoidty != null) {
 					Blacklist black = new Blacklist();
@@ -137,89 +152,89 @@ public class ManagementTwoController {
 					commoidtyService.update(commoidty);
 				}
 			}
-		}else{
+		} else {
 			Blacklist blacks = blacklistService.findById(id);
 			blacks.setReasons(reasons);
 			blacklistService.update(blacks);
 		}
 		return "redirect:/management/searchShop";
 	}
-	
+
 	@RequestMapping(value = "blacklistGoods", method = RequestMethod.GET)
 	public ModelAndView blacklistGoods(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Blacklist> list = blacklistService.getBlacklistByBlacklistType(BlacklistType.goods);
 		ModelMap mode = new ModelMap();
 		mode.put("list", list);
-		return new ModelAndView("management/blacklistGoods",mode);
+		return new ModelAndView("management/blacklistGoods", mode);
 	}
-	
+
 	@RequestMapping(value = "addGoodsBlackList", method = RequestMethod.GET)
 	public ModelAndView addGoodsBlackList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		return new ModelAndView("management/searchGoods");
 	}
-	
+
 	@RequestMapping(value = "searchGoods", method = RequestMethod.POST)
-	public ModelAndView searchGoods(String commoidtyName, String commItem, String commCode,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ModelAndView searchGoods(String commoidtyName, String commItem, String commCode, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String, Object> map = new HashMap<String, Object>();
 		if (commoidtyName.equals("")) {
 			map.put("commoidtyName", null);
-		}else{
+		} else {
 			map.put("commoidtyName", commoidtyName);
 		}
 		if (commItem.equals("")) {
 			map.put("commItem", null);
-		}else{
+		} else {
 			map.put("commItem", commItem);
 		}
 		if (commCode.equals("")) {
 			map.put("commCode", null);
-		}else{
+		} else {
 			map.put("commCode", Integer.parseInt(commCode));
 		}
 		List<ShopCommoidty> list = commoidtyService.getAllByParamsForBlack(map);
 		ModelMap mode = new ModelMap();
 		mode.put("list", list);
-		return new ModelAndView("management/searchGoods",mode);
+		return new ModelAndView("management/searchGoods", mode);
 	}
-	
+
 	@RequestMapping(value = "addBlackForGoods", method = RequestMethod.GET)
-	public ModelAndView addBlackForGoods(Integer id,String mathed,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ModelAndView addBlackForGoods(Integer id, String mathed, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ModelMap mode = new ModelMap();
- 		if (mathed.equals("add")) {
+		if (mathed.equals("add")) {
 			if (!id.equals("")) {
 				mode.put("id", id);
 				mode.put("mathed", "add");
-				mode.put("page", "goods");		
-				return new ModelAndView("management/addBlack",mode);
-			}else{
+				mode.put("page", "goods");
+				return new ModelAndView("management/addBlack", mode);
+			} else {
 				Map<String, Object> map = new HashMap<String, Object>();
 				List<ShopCommoidty> list = commoidtyService.getAllByParamsForBlack(map);
 				mode.put("list", list);
-				return new ModelAndView("management/searchShop",mode);
+				return new ModelAndView("management/searchShop", mode);
 			}
-		}else{
+		} else {
 			Blacklist blacklist = blacklistService.findById(id);
 			mode.put("blacklist", blacklist);
 			mode.put("mathed", "update");
 			mode.put("page", "goods");
-			return  new ModelAndView("management/addBlack",mode);
+			return new ModelAndView("management/addBlack", mode);
 		}
 	}
-	
+
 	@RequestMapping(value = "deleteBlack", method = RequestMethod.GET)
-	public String deleteBlack(Integer id,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String deleteBlack(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Blacklist blacklist = blacklistService.findById(id);
 		if (blacklist.getBlacklistType() == BlacklistType.stores) {
 			Shop shop = blacklist.getShop();
-			if (shop != null ) {
+			if (shop != null) {
 				shop.setBlacklist(null);
 				shopService.update(shop);
 			}
 			blacklistService.delete(blacklist.getId());
 			return "redirect:/management/blacklistStores";
-		}else{
-			ShopCommoidty commoid =  blacklist.getCommoidty();
-			if (commoid != null ) {
+		} else {
+			ShopCommoidty commoid = blacklist.getCommoidty();
+			if (commoid != null) {
 				commoid.setBlacklist(null);
 				commoidtyService.update(commoid);
 			}
@@ -227,19 +242,19 @@ public class ManagementTwoController {
 			return "redirect:/management/blacklistGoods";
 		}
 	}
-	
+
 	@RequestMapping(value = "user", method = RequestMethod.GET)
-    public ModelAndView user(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	public ModelAndView user(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<User> list = userService.getAll();
 		ModelMap map = new ModelMap();
 		map.put("list", list);
-    	return new ModelAndView("management/user", map);
-    }
-    
+		return new ModelAndView("management/user", map);
+	}
+
 	@RequestMapping(value = "updateIsPermit", method = RequestMethod.GET)
-    public String updateIsPermit(Integer id,String isPermit, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	public String updateIsPermit(Integer id, String isPermit, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = userService.findById(id);
-		if (user.getShop() != null ) {
+		if (user.getShop() != null) {
 			Shop shop = user.getShop();
 			shop.setIsPermit(Boolean.valueOf(isPermit));
 			shop = shopService.update(shop);
@@ -247,13 +262,128 @@ public class ManagementTwoController {
 			userService.update(user);
 		}
 		return "redirect:/management/user";
-    }
+	}
 
 	@RequestMapping(value = "merchantsSettled", method = RequestMethod.GET)
-    public ModelAndView merchantsSettled(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	public ModelAndView merchantsSettled(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Shop> list = shopService.getShopForManage();
 		ModelMap map = new ModelMap();
 		map.put("list", list);
-    	return new ModelAndView("management/merchantsSettled",map );
-    }
+		return new ModelAndView("management/merchantsSettled", map);
+	}
+
+	@RequestMapping(value = "ticket", method = RequestMethod.GET)
+	public ModelAndView ticket(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Ticket> list = ticketService.getAll();
+		ModelMap map = new ModelMap();
+		map.put("list", list);
+		return new ModelAndView("management/ticket", map);
+	}
+
+	@RequestMapping(value = "updateTicket", method = RequestMethod.GET)
+	public ModelAndView updateTicket(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Ticket ticket = ticketService.findById(id);
+		ModelMap map = new ModelMap();
+		map.put("ticket", ticket);
+		return new ModelAndView("management/updateTicket", map);
+	}
+
+	@RequestMapping(value = "addTicket", method = RequestMethod.GET)
+	public ModelAndView addTicket(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		return new ModelAndView("management/updateTicket");
+	}
+
+	@RequestMapping(value = "addOrUpTicket", method = RequestMethod.POST)
+	public String addOrUpTicket(Integer id, String ticketName, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if (id != null && id.equals("")) {
+			Ticket ticket = ticketService.findById(id);
+			ticket.setTicketName(ticketName);
+			ticketService.update(ticket);
+		} else {
+			if (!ticketName.equals("")) {
+				Ticket ticket = new Ticket();
+				ticket.setTicketName(ticketName);
+				ticketService.save(ticket);
+			}
+		}
+		return "redirect:/management/ticket";
+	}
+
+	@RequestMapping(value = "posAndTicket", method = RequestMethod.GET)
+	public ModelAndView posAndTicket(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<DepartAndPositions> list = departAndPositionsService.getAll();
+		ModelMap mode = new ModelMap();
+		mode.put("list", list);
+		return new ModelAndView("management/posAndTicket",mode);
+	}
+
+	@RequestMapping(value = "promotionCode", method = RequestMethod.GET)
+	public ModelAndView getAllPromotionCode() throws ServletException, IOException {
+		ModelMap mode = new ModelMap();
+		List<PromotionCode> promotionCodeList = promotionCodeService.getAll();
+		mode.put("promotioncodelist", promotionCodeList);
+		return new ModelAndView("management/promotionCode", mode);
+	}
+
+	@RequestMapping(value = "addPromotionCode", method = RequestMethod.GET)
+	public ModelAndView addPromotionCode(Integer id, String mathed, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ModelMap mode = new ModelMap();
+		if (mathed.equals("add")) {
+			if (id != null) {
+				mode.put("id", id);
+				mode.put("mathed", "add");
+				mode.put("page", "promotionCode");
+				return new ModelAndView("management/addPromotionCode", mode);
+			} else {
+				mode.put("mathed", "add");
+				mode.put("page", "promotionCode");
+				return new ModelAndView("management/addPromotionCode", mode);
+			}
+		} else {
+			PromotionCode promotionCode = promotionCodeService.findById(id);
+			mode.put("promotionCode", promotionCode);
+			mode.put("mathed", "update");
+			mode.put("page", "promotionCode");
+			return new ModelAndView("management/addPromotionCode", mode);
+		}
+	}
+
+	@RequestMapping(value = "addPromotionCodeList", method = RequestMethod.POST)
+	public String addPromotionCodeList(Integer id, String code, String description, String mathed, String page, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if (mathed.equals("add")) {
+			if (page.equals("promotionCode")) {
+				PromotionCode promotionCode = new PromotionCode();
+				promotionCode.setCode(code);
+				promotionCode.setDescription(description);
+				promotionCode = promotionCodeService.save(promotionCode);
+			}
+		} else {
+			PromotionCode promotionCode = promotionCodeService.findById(id);
+			promotionCode.setDescription(description);
+			promotionCodeService.update(promotionCode);
+		}
+		return "redirect:/management/promotionCode";
+	}
+
+	@RequestMapping(value = "deletePromotionCode", method = RequestMethod.GET)
+	public String deletePromotionCode(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		promotionCodeService.delete(id);
+		return "redirect:/management/promotionCode";
+	}
+
+	@RequestMapping(value = "searchPromotionCodeResult", method = RequestMethod.POST)
+	public ModelAndView searchPromotionCodeResult(String code, String use, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Map<String, String> map = new HashMap<String, String>();
+		if (code.equals("")) {
+			map.put("code", null);
+		} else {
+			map.put("code", code);
+		}
+		map.put("use", use);
+
+		List<PromotionCode> list = promotionCodeService.getUseInfo(map);
+		ModelMap mode = new ModelMap();
+		mode.put("promotioncodelist", list);
+		return new ModelAndView("management/promotionCode", mode);
+	}
 }

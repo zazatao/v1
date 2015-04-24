@@ -54,7 +54,6 @@ public class GenericDaoSupport<T> implements GenericDao<T> {
                     em.getTransaction().begin();
                 }
                 em.remove(object);
-                System.out.println("object============"+object);
                 em.getTransaction().commit();
                 return true;
             } catch (Exception e) {

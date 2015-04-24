@@ -4,6 +4,7 @@ import org.springframework.context.annotation.*;
 
 import com.yc.entity.*;
 import com.yc.entity.Package;
+import com.yc.entity.user.DepartAndPositions;
 import com.yc.entity.user.Department;
 import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
@@ -134,4 +135,17 @@ public class GenericDaoConfig {
 	public GenericDao<Blacklist> getBlacklistDao() {
 		return new GenericDaoSupport<Blacklist>(Blacklist.class);	
 	}
+	@Bean
+	public GenericDao<Ticket> getTicketDao() {
+		return new GenericDaoSupport<Ticket>(Ticket.class);	
+	}
+	@Bean
+	public GenericDao<DepartAndPositions> getDepartAndPositionsDao() {
+		return new GenericDaoSupport<DepartAndPositions>(DepartAndPositions.class);	
+	}
+	@Bean
+	public GenericDao<PromotionCode> getPromotionCodeDao() {
+		return new GenericDaoSupport<PromotionCode>(PromotionCode.class);	
+	}
+	
 }

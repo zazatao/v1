@@ -3,8 +3,10 @@ package com.yc.controller.management;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,9 +22,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.ShopCategory;
 import com.yc.entity.ShopCommoidty;
+import com.yc.entity.user.DepartAndPositions;
 import com.yc.entity.user.Department;
 import com.yc.entity.user.Personnel;
 import com.yc.entity.user.Positions;
+import com.yc.service.IDepartAndPositionsService;
 import com.yc.service.IDepartmentService;
 import com.yc.service.IPersonnelService;
 import com.yc.service.IPositionService;
@@ -50,6 +54,9 @@ public class ManagementIndexController {
 	
 	@Autowired
 	IShopCommoidtyService shopCommoidtyService;
+	
+	@Autowired
+	IDepartAndPositionsService depAndPosService;
 
 	// 部门管理
 	@RequestMapping(value = "department", method = RequestMethod.GET)
@@ -70,13 +77,16 @@ public class ManagementIndexController {
 		if (page.equals("department")) {
 			return new ModelAndView("management/department", mode);
 		} else if (page.equals("posDivide")) {
-			List<Positions> positions = department.getPositions();
-			mode.put("treeList2", positions);
+			List<DepartAndPositions> depAndPoses =depAndPosService.findDepAndPosByDep(department);
+			mode.put("treeList2", depAndPoses);
 			List<Personnel> personnels = personnelService.getAll();
 			mode.put("personnels", personnels);
 			return new ModelAndView("management/posDivide", mode);
 		} else {
 			List<Positions> positions = positionService.getPositionByParent();
+			List<DepartAndPositions> depAndPos = depAndPosService.findDepAndPosByDep(department);
+			System.out.println("depAndPos====================="+depAndPos.size());
+			mode.put("depAndPos", depAndPos);
 			mode.put("treeList2", positions);
 			return new ModelAndView("management/deparDivide", mode);
 		}
@@ -104,24 +114,48 @@ public class ManagementIndexController {
 	}
 
 	private void getNode(Department department) {
-		List<Department> list = department.getChildren();
+		Set<Department> list = department.getChildren();
 		if (list != null && list.size() > 0) {
-			for (int i = 0; i < list.size(); i++) {
-				if (list.get(i).getChildren() != null && list.get(i).getChildren().size() > 0) {
-					getNode(list.get(i));
+			Iterator<Department> iter = list.iterator();
+			while(iter.hasNext()){
+				Department dep = iter.next();
+				if (dep.getChildren() != null && dep.getChildren().size() > 0) {
+					getNode(dep);
 				}
-				List<Positions> positions = list.get(i).getPositions();
-				if (positions != null && positions.size()>0) {
-					list.get(i).getPositions().removeAll(positions);
-					departmentService.update(list.get(i));
+				Set<DepartAndPositions> depAndPos = dep.getDepartAndPositions();
+				if (depAndPos !=null && depAndPos.size()>0) {
+					Iterator<DepartAndPositions> iterator = depAndPos.iterator();
+					while (iterator.hasNext()) {
+						DepartAndPositions depAndPoss = iterator.next();
+						List<Personnel> personnels = depAndPoss.getPersonnels();
+						if (personnels != null && personnels.size()>0) {
+							for (int k = 0; k < personnels.size(); k++) {
+								Personnel personnel = personnels.get(k);
+								personnel.setDepartAndPositions(null);
+								personnelService.update(personnel);
+							}
+						}
+						depAndPosService.delete(depAndPoss.getId());
+					}
 				}
-				departmentService.deleteForTree(list.get(i));
+				departmentService.deleteForTree(dep);
 			}
 		}
-		List<Positions> poss = department.getPositions();
-		if (poss != null && poss.size()>0) {
-			department.getPositions().removeAll(poss);
-			department = departmentService.update(department);
+		Set<DepartAndPositions> depAndPos = department.getDepartAndPositions();
+		if (depAndPos !=null && depAndPos.size()>0) {
+			Iterator<DepartAndPositions> iterator = depAndPos.iterator();
+			while (iterator.hasNext()) {
+				DepartAndPositions depAndPoss = iterator.next();
+				List<Personnel> personnels = depAndPoss.getPersonnels();
+				if (personnels != null && personnels.size()>0) {
+					for (int g = 0; g < personnels.size(); g++) {
+						Personnel personnel = personnels.get(g);
+						personnel.setDepartAndPositions(null);
+						personnelService.update(personnel);
+					}
+				}
+				depAndPosService.delete(iterator.next().getId());
+			}
 		}
 		departmentService.deleteForTree(department);
 	}
@@ -193,26 +227,47 @@ public class ManagementIndexController {
 	}
 
 	private void getNodes(Positions position) {
-		List<Positions> list = position.getChildren();
+		Set<Positions> list = position.getChildren();
+		Iterator<Positions> iter = list.iterator();
 		if (list != null && list.size() > 0) {
-			for (int i = 0; i < list.size(); i++) {
-				if (list.get(i).getChildren() != null && list.get(i).getChildren().size() > 0) {
-					getNodes(list.get(i));
+			while(iter.hasNext()){
+				Positions pos = iter.next();
+				if (pos.getChildren() != null && pos.getChildren().size() > 0) {
+					getNodes(pos);
 				}
-				List<Department> deps = list.get(i).getDepartments();
-				if (deps != null && deps.size()>0) {
-					list.get(i).getDepartments().removeAll(deps);
-					positionService.update(list.get(i));
+				Set<DepartAndPositions> depAndPos = pos.getDepartAndPositions();
+				if (depAndPos !=null && depAndPos.size()>0) {
+					Iterator<DepartAndPositions> iterator = depAndPos.iterator();
+					while (iterator.hasNext()) {
+						DepartAndPositions depAndPoss = iterator.next();
+						List<Personnel> personnels = depAndPoss.getPersonnels();
+						if (personnels != null && personnels.size()>0) {
+							for (int k = 0; k < personnels.size(); k++) {
+								Personnel personnel = personnels.get(k);
+								personnel.setDepartAndPositions(null);
+								personnelService.update(personnel);
+							}
+						}
+						depAndPosService.delete(iterator.next().getId());
+					}
 				}
-				positionService.deleteForTree(list.get(i));
+				positionService.deleteForTree(pos);
 			}
 		}
-		List<Department> depps = position.getDepartments();
-		if (depps != null && depps.size()>0) {
-			for (int i = 0; i < depps.size(); i++) {
-				Department de = depps.get(i);
-				de.getPositions().remove(position);
-				departmentService.update(de);
+		Set<DepartAndPositions> depAndPos = position.getDepartAndPositions();
+		if (depAndPos !=null && depAndPos.size()>0) {
+			Iterator<DepartAndPositions> iterator = depAndPos.iterator();
+			while (iterator.hasNext()) {
+				DepartAndPositions depAndPoss = iterator.next();
+				List<Personnel> personnels = depAndPoss.getPersonnels();
+				if (personnels != null && personnels.size()>0) {
+					for (int g = 0; g < personnels.size(); g++) {
+						Personnel personnel = personnels.get(g);
+						personnel.setDepartAndPositions(null);
+						personnelService.update(personnel);
+					}
+				}
+				depAndPosService.delete(iterator.next().getId());
 			}
 		}
 		positionService.deleteForTree(position);
@@ -256,37 +311,35 @@ public class ManagementIndexController {
 		String[] ids = request.getParameterValues("positionCheck");
 		if (department != null) {
 			list = new ArrayList<Positions>();
-			if (department.getPositions() != null && department.getPositions().size() > 0) {
-				for (int j = 0; j < department.getPositions().size(); j++) {
-					Positions positions = department.getPositions().get(j);
-					boolean isok = true;
+			List<DepartAndPositions> depss = depAndPosService.findDepAndPosByDep(department);
+			if (depss != null && depss.size() > 0) {
+				for (int i = 0; i < depss.size(); i++) {
+					DepartAndPositions positions = depss.get(i);
+					boolean isoks = true;
 					for (String id : ids) {
-						if (positions.getPositionid() == Integer.parseInt(id)) {
-							isok = false;
+						if (positions.getPositions().getPositionid() == Integer.parseInt(id)) {
+							isoks = false;
 						}
 					}
-					if (isok) {
-						Personnel personnel = null;
-						for (int i = 0; i < positions.getPersonnels().size(); i++) {
-							personnel = positions.getPersonnels().get(i);
-							if (personnel != null) {
-								personnel.setPositions(null);
+					if (isoks) {
+						List<Personnel> pers = positions.getPersonnels();
+						if (pers != null && pers.size()>0) {
+							for (int j = 0; j < pers.size(); j++) {
+								Personnel personnel = positions.getPersonnels().get(j);
+								personnel.setDepartAndPositions(null);
 								personnelService.update(personnel);
-								positions.getPersonnels().remove(personnel);
-								positionService.update(positions);
 							}
 						}
-						department.getPositions().remove(positions);
-						departmentService.update(department);
-						positions.getDepartments().remove(department);
-						personnelService.update(personnel);
+						 depAndPosService.deleteDepAndPosByID(positions.getId());
 					}
 				}
 				for (int i = 0; i < ids.length; i++) {
 					boolean isok = true;
-					for (Positions positions : department.getPositions()) {
+					List<DepartAndPositions> deps = depAndPosService.findDepAndPosByDep(department);
+					for (int j = 0; j < deps.size(); j++) {
+						DepartAndPositions depAndPos = deps.get(j);
+						Positions positions = depAndPos.getPositions();
 						if (Integer.parseInt(ids[i]) == positions.getPositionid()) {
-							list.add(positions);
 							isok = false;
 						}
 					}
@@ -295,15 +348,22 @@ public class ManagementIndexController {
 						list.add(post);
 					}
 				}
-				department.setPositions(list);
-				departmentService.update(department);
+				for (int i = 0; i < list.size(); i++) {
+					DepartAndPositions depAndPos = new DepartAndPositions();
+					depAndPos.setDepartment(department);
+					depAndPos.setTicket(null);
+					depAndPos.setPositions(list.get(i));
+					depAndPosService.save(depAndPos);
+				}
 			} else {
 				for (int i = 0; i < ids.length; i++) {
 					Positions post = positionService.findById(Integer.parseInt(ids[i]));
-					list.add(post);
+					DepartAndPositions depAndPos = new DepartAndPositions();
+					depAndPos.setDepartment(department);
+					depAndPos.setTicket(null);
+					depAndPos.setPositions(post);
+					depAndPosService.save(depAndPos);
 				}
-				department.setPositions(list);
-				departmentService.save(department);
 			}
 		}
 		return "redirect:/management/deparDivide";
@@ -327,20 +387,43 @@ public class ManagementIndexController {
 	@RequestMapping(value = "posRoleDivide", method = RequestMethod.POST)
 	public String posRoleDivide(Integer departID, Integer pos, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String[] checkIDs = request.getParameterValues("checkID");
-		if (departID != null && pos != null && checkIDs != null) {
-			Positions positions = positionService.findById(pos);
+		Positions positions = positionService.findById(pos);
+		Department department = departmentService.findById(departID);
+		if (positions != null && department != null && checkIDs != null && checkIDs.length>0) {
 			for (int i = 0; i < checkIDs.length; i++) {
 				Integer checkID = Integer.parseInt(checkIDs[i]);
 				Personnel personnel = personnelService.findById(checkID);
-				Department department = departmentService.findById(departID);
 				if (personnel != null) {
-					personnel.setDepartment(department);
-					personnel.setPositions(positions);
-					personnelService.update(personnel);
+					DepartAndPositions depAndPos = personnel.getDepartAndPositions();
+					if (depAndPos != null) {
+						if (depAndPos.getDepartment() == department) {
+							if (depAndPos.getPositions() != positions) {
+								DepartAndPositions dep = depAndPosService.getAllByDepAndPos(department,positions);
+								personnel.setDepartAndPositions(dep);
+								personnel = personnelService.update(personnel);
+								dep.getPersonnels().add(personnel);
+								depAndPosService.update(dep);
+							}
+						}else{
+							DepartAndPositions dep = depAndPosService.getAllByDepAndPos(department,positions);
+							personnel.setDepartAndPositions(dep);
+							personnel = personnelService.update(personnel);
+							dep.getPersonnels().add(personnel);
+							depAndPosService.update(dep);
+						}
+					}else{
+						System.out.println("department====="+department.getDepartmentname()+"positions======"+positions.getPositionname());
+						DepartAndPositions dep = depAndPosService.getAllByDepAndPos(department,positions);
+						System.out.println("dep=========="+dep);
+						personnel.setDepartAndPositions(dep);
+						personnel = personnelService.update(personnel);
+						dep.getPersonnels().add(personnel);
+						depAndPosService.update(dep);
+					}
 				}
 			}
 		}
-		return "redirect:/management/posDivide";
+		return "redirect:/management/getDepartment?departmentId="+departID+"&page=posDivide";
 	}
 	
 	@RequestMapping(value = "searchPersonnel", method = RequestMethod.GET)
