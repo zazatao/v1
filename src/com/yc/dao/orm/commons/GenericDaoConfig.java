@@ -147,5 +147,9 @@ public class GenericDaoConfig {
 	public GenericDao<PromotionCode> getPromotionCodeDao() {
 		return new GenericDaoSupport<PromotionCode>(PromotionCode.class);	
 	}
+	@Bean
+	public GenericDao<MissionPlan> getMissionPlanDao() {
+		return new GenericDaoSupport<MissionPlan>(MissionPlan.class);	
+	}
 	
 }

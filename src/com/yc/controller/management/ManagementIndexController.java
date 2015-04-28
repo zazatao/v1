@@ -398,23 +398,21 @@ public class ManagementIndexController {
 					if (depAndPos != null) {
 						if (depAndPos.getDepartment() == department) {
 							if (depAndPos.getPositions() != positions) {
-								DepartAndPositions dep = depAndPosService.getAllByDepAndPos(department,positions);
+								DepartAndPositions dep = depAndPosService.getAllByDepAndPos(department.getDepartmentID(),positions.getPositionid());
 								personnel.setDepartAndPositions(dep);
 								personnel = personnelService.update(personnel);
 								dep.getPersonnels().add(personnel);
 								depAndPosService.update(dep);
 							}
 						}else{
-							DepartAndPositions dep = depAndPosService.getAllByDepAndPos(department,positions);
+							DepartAndPositions dep = depAndPosService.getAllByDepAndPos(department.getDepartmentID(),positions.getPositionid());
 							personnel.setDepartAndPositions(dep);
 							personnel = personnelService.update(personnel);
 							dep.getPersonnels().add(personnel);
 							depAndPosService.update(dep);
 						}
 					}else{
-						System.out.println("department====="+department.getDepartmentname()+"positions======"+positions.getPositionname());
-						DepartAndPositions dep = depAndPosService.getAllByDepAndPos(department,positions);
-						System.out.println("dep=========="+dep);
+						DepartAndPositions dep = depAndPosService.getAllByDepAndPos(department.getDepartmentID(),positions.getPositionid());
 						personnel.setDepartAndPositions(dep);
 						personnel = personnelService.update(personnel);
 						dep.getPersonnels().add(personnel);

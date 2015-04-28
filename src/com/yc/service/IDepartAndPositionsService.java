@@ -12,6 +12,8 @@ public interface IDepartAndPositionsService extends IGenericService<DepartAndPos
 
 	List<DepartAndPositions> findDepAndPosByDep(Department department);
 
-	DepartAndPositions getAllByDepAndPos(Department department, Positions positions);
+	DepartAndPositions getAllByDepAndPos(Integer depID, Integer posID);
+
+	List<DepartAndPositions> getDepByDepID(Integer depID);
 
 }

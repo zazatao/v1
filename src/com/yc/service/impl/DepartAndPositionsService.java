@@ -41,14 +41,20 @@ public class DepartAndPositionsService extends GenericService<DepartAndPositions
 	}
 	
 	@Override
-	public DepartAndPositions getAllByDepAndPos(Department department, Positions positions) {
+	public DepartAndPositions getAllByDepAndPos(Integer department, Integer positions) {
 		List<String> keys = new ArrayList<String>();
 		keys.add("department.departmentID");
 		keys.add("positions.positionid");
 		List<Object> values = new ArrayList<Object>();
-		values.add(department.getDepartmentID());
-		values.add(positions.getPositionid());
+		values.add(department);
+		values.add(positions);
 		return depAndPosDao.getFirstRecord(keys, values);
+	}
+	
+	@Override
+	public List<DepartAndPositions> getDepByDepID(Integer depID) {
+		StringBuffer hql = new StringBuffer(" from DepartAndPositions depAndPos where depAndPos.department.departmentID = "+depID);
+		return depAndPosDao.find(hql.toString(), null, null);
 	}
 
 }

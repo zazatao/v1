@@ -130,12 +130,8 @@
 								<li><a href="#">部门格子</a></li>
 								<li><a href="#">包装盒</a></li>
 							</ul></li>
-						<li class="dropdown-submenu"><a href="#">任务计划</a>
-							<ul class="dropdown-menu">
-								<li><a href="#">任务计划</a></li>
-								<li><a href="#">任务状态</a></li>
-								<li><a href="#">任务时刻表</a></li>
-							</ul></li>
+						<li><a href="../management/missionPlan">任务计划</a>
+							</li>
 						<li class="dropdown-submenu"><a href="#">管理</a>
 							<ul class="dropdown-menu">
 								<li><a href="../management/department">组织机构</a></li>

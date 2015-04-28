@@ -26,7 +26,7 @@ public class Commodity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer commodityID;
 	@Column(unique = true)
-	private Integer transNumForTaobao;// 淘宝id
+	private Integer transNumForTaobao;// shopCommodity   ID
 	@Column
 	private String commItem;// 货号
 	@Column

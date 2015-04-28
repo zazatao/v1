@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import com.yc.entity.Commodity;
 import com.yc.entity.OrderForm;
 import com.yc.entity.TransitSite;
@@ -21,6 +23,7 @@ import com.yc.entity.UnKnownCommodity;
 
 @Entity
 @DiscriminatorValue("personnel")//员工
+@JsonIgnoreProperties(value = { "unCommOperators", "commOperators", "purchases", "orderForms","address","transitSites" })
 public class Personnel {
 
 	@Id

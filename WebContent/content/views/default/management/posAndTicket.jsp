@@ -63,7 +63,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">
-							职位与票<a href="#" onclick="popupwindow('./addPosAndTicket');"><span class="badge navbar-right" id="yunfei"><font size="3px;">添加&nbsp;&nbsp;+</font></span></a>
+							职位与票
 						</h3>
 					</div>
 					<div class="list-group-item">
@@ -98,8 +98,7 @@
 									<td>${posAndDep.wage}</td>
 									<td>${posAndDep.rules}</td>
 									<td>${posAndDep.saleCut}</td>
-									<td><button class="btn btn-default" onclick="popupwindow('updatePosAndDep?id=${posAndDep.id}');">修改规则和票</button>
-										<button class="btn btn-default" onclick="deletePosAndDep('${blacklist.id}');" >删除</button></td>
+									<td><button class="btn btn-default" onclick="popupwindow('updatePosAndTicket?id=${posAndDep.id}');">修改规则和票</button>
 									</tr>
 								</c:forEach>
 							</tbody>

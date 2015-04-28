@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import com.yc.entity.user.DepartAndPositions;
 
 @Entity
@@ -40,11 +42,11 @@ public class Ticket {
 	public void setTicketName(String ticketName) {
 		this.ticketName = ticketName;
 	}
-
+	@JsonIgnore
 	public DepartAndPositions getDepartAndPositions() {
 		return departAndPositions;
 	}
-
+	@JsonIgnore
 	public void setDepartAndPositions(DepartAndPositions departAndPositions) {
 		this.departAndPositions = departAndPositions;
 	}

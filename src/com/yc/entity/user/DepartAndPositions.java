@@ -13,10 +13,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import com.yc.entity.Ticket;
 
 @Entity
 @DiscriminatorValue("departAndPositions")
+@JsonIgnoreProperties(value = { "personnels" })
 public class DepartAndPositions {
 
 	@Id
@@ -42,7 +45,7 @@ public class DepartAndPositions {
 	private Integer rules;// 规则
 	
 	@Column
-	private Integer saleCut;// 提成
+	private Double saleCut;// 提成
 	
 	@OneToMany(mappedBy = "departAndPositions")
 	private List<Personnel> personnels;
@@ -63,11 +66,11 @@ public class DepartAndPositions {
 		this.rules = rules;
 	}
 
-	public Integer getSaleCut() {
+	public Double getSaleCut() {
 		return saleCut;
 	}
 
-	public void setSaleCut(Integer saleCut) {
+	public void setSaleCut(Double saleCut) {
 		this.saleCut = saleCut;
 	}
 

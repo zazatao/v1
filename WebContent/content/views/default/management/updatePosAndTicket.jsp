@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>票</title>
+<title>修改票</title>
 
 <link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
 <link href="../content/static/css/bootstrap/bootstrap.min.css"
@@ -40,77 +40,76 @@
 <script type="text/javascript"
 	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
 </head>
-<body >
-	<!-- Static navbar -->
-	<jsp:include page="../common/navbar.jsp"></jsp:include>
-
-	<div class="container-fluid" style="padding: 0; margin-top: 32px;">
-		<div class="row-fluid">
-			<div class="span12">
-				<ul class="breadcrumb">
-					<li><a href="#" style="font-size: 18px;">管理</a></li>
-					<span class="divider"><font style="font-size: 18px;">/</font></span>
-					<li><a href="#"><font style="font-size: 18px;">其它</font></a></li>
-					<span class="divider"><font style="font-size: 18px;">/</font></span>
-					<li><font style="font-size: 18px;">票的类型</font></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+<body>
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="col-md-12 column">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">
-							票的类型<a href="#" onclick="popupwindow('./addTicket');"><span class="badge navbar-right" id="yunfei"><font size="3px;">添加&nbsp;&nbsp;+</font></span></a>
-						</h3>
+				<form class="form-horizontal"  id="form" name="form" method="POST">
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">部门：</label>
+							<input type="hidden" name="id" value="${depAndPos.id }">
+						<div class="col-sm-10">
+							<label for="inputEmail3" class="col-sm-2 control-label">${depAndPos.department.departmentname }</label>
+						</div>
 					</div>
-					<div class="list-group-item">
-						<p class="list-group-item-text">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th>编号</th>
-									<th>名称</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="ticket" items="${list }" varStatus="pool">
-									<c:choose>
-										<c:when test="${loop.index%2==0 }">
-											<tr>
-										</c:when>
-										<c:otherwise>
-											<tr class="success">
-										</c:otherwise>
-									</c:choose>
-									<td>${ticket.brandID}</td>
-									<td>${ticket.ticketName}</td>
-									<td><button class="btn btn-default" onclick="popupwindow('updateTicket?id=${ticket.brandID}');">修改名称</button>
-										<button class="btn btn-default" onclick="deleteBlack('${blacklist.id}');" >删除</button></td>
-									</tr>
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">职位：</label>
+						<div class="col-sm-10">
+							<label for="inputEmail3" class="col-sm-2 control-label">${depAndPos.positions.positionname }</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">选择票：</label>
+						<div class="col-sm-3" >
+							<select class="form-control" name="ticketID">
+								<c:forEach items="${list }" var="ticket">
+									<option value="${ticket.brandID }">${ticket.ticketName }
 								</c:forEach>
-							</tbody>
-						</table>
+							</select>
+						</div>
 					</div>
-				</div>
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">工资：</label>
+						<div class="col-sm-3" >
+							<input type="text" name="wage" value="${depAndPos.wage }"  class="form-control">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">规则：</label>
+						<div class="col-sm-3" >
+							<input type="text" name="rules" value="${depAndPos.rules }"  class="form-control">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">提成：</label>
+						<div class="col-sm-3" >
+							<input type="text" name="saleCut" value="${depAndPos.saleCut }"  class="form-control">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10" >
+							<button type="button" class="btn btn-default" onclick="return add();">确认提交
+							</button>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
 	<script type="text/javascript">
-		function deleteBlack(obj){
-			location.href = "deleteTicket?id="+obj;
-		}
 		window.onunload = refreshParent;
 		function refreshParent() {
 			window.opener.location.reload();
 		}
-		function reloadData() {
-			setTimeout(function() {
-				window.location.reload();
-			}, 1000);
+		function add(){
+			document.form.action="./addPosAndTicket";
+			document.form.submit();
+			return closeAndRefresh();
+		}
+		function closeAndRefresh() {
+			window.onunload = refreshParent;
+			self.close();
+			return true;
 		}
 		function dateInfoxxx(obj) {
 			var date = obj;
@@ -154,7 +153,7 @@
 			}
 		}
 		function popupwindow(url) {
-			var w = 1200;
+			var w = 700;
 			var h = 800;
 			var title = "";
 			var left = (screen.width / 2) - (w / 2);

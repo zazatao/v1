@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.yc.dao.orm.commons.GenericDao;
+import com.yc.entity.user.DepartAndPositions;
 import com.yc.entity.user.Department;
 import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
@@ -77,5 +78,10 @@ public class PersonnelService extends GenericService<Personnel> implements IPers
         values.add(department.getDepartmentID());
         values.add(positionid);
 		return personnelDao.getBy(keys,values );
+	}
+	
+	@Override
+	public List<Personnel> getAllByDepAndPos(DepartAndPositions depAndPos) {
+		return personnelDao.getBy("departAndPositions.id", depAndPos.getId());
 	}
 }

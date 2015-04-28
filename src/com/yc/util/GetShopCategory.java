@@ -20,11 +20,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.yc.entity.BuyCat;
 import com.yc.entity.CarCommoidty;
 import com.yc.entity.ShopCategory;
+import com.yc.entity.user.DepartAndPositions;
+import com.yc.entity.user.Personnel;
+import com.yc.entity.user.Positions;
 import com.yc.entity.user.User;
 import com.yc.model.BrandCategory;
 import com.yc.model.BuyCatSession;
 import com.yc.service.IBuyCatService;
 import com.yc.service.ICarCommoidtyService;
+import com.yc.service.IDepartAndPositionsService;
+import com.yc.service.IPersonnelService;
 import com.yc.service.IShopCategoryService;
 
 @Controller
@@ -39,6 +44,12 @@ public class GetShopCategory {
 	
 	@Autowired
 	ICarCommoidtyService carCommoidtyService;
+	
+	@Autowired
+	IDepartAndPositionsService departAndPositionsService;
+	
+	@Autowired
+	IPersonnelService personnelService;
 	
 	@RequestMapping(value = "shopCategoryAll", method = RequestMethod.GET)
 	@ResponseBody
@@ -190,6 +201,31 @@ public class GetShopCategory {
 			}
 		}
     	mode.put("success", "true");
+    	return mode;
+    }
+    
+    @RequestMapping(value = "getPositions", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getPositions(Integer depID, HttpServletRequest request) throws ServletException, IOException {
+    	ModelMap mode = new ModelMap();
+        List<DepartAndPositions> list =	departAndPositionsService.getDepByDepID(depID);
+        List<Positions> positions = new ArrayList<Positions>();
+        for (DepartAndPositions depAndPos : list) {
+        	positions.add(depAndPos.getPositions());
+		}
+    	mode.put("success", "true");
+    	mode.put("list", positions);
+    	return mode;
+    }
+    
+    @RequestMapping(value = "getPersonnel", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getPersonnel(Integer depID, Integer posID, HttpServletRequest request) throws ServletException, IOException {
+    	ModelMap mode = new ModelMap();
+    	DepartAndPositions depAndPos =  departAndPositionsService.getAllByDepAndPos(depID, posID);
+    	List<Personnel> list = personnelService.getAllByDepAndPos(depAndPos);
+    	System.out.println("list.size==============="+list.size());
+    	mode.put("list", list);
     	return mode;
     }
 }

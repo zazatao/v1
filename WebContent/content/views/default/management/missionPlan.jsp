@@ -1,3 +1,4 @@
+<%@page import="com.yc.entity.user.Personnel"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -8,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>票</title>
+<title>任务计划</title>
 
 <link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
 <link href="../content/static/css/bootstrap/bootstrap.min.css"
@@ -50,20 +51,22 @@
 				<ul class="breadcrumb">
 					<li><a href="#" style="font-size: 18px;">管理</a></li>
 					<span class="divider"><font style="font-size: 18px;">/</font></span>
-					<li><a href="#"><font style="font-size: 18px;">其它</font></a></li>
-					<span class="divider"><font style="font-size: 18px;">/</font></span>
-					<li><font style="font-size: 18px;">票的类型</font></li>
+					<li><font style="font-size: 18px;">任务计划</font></li>
 				</ul>
 			</div>
 		</div>
 	</div>
+	<c:set var="personnel" value='<%=(Personnel)request.getSession().getAttribute("loginPersonnle") %>'></c:set>
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="col-md-12 column">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">
-							票的类型<a href="#" onclick="popupwindow('./addTicket');"><span class="badge navbar-right" id="yunfei"><font size="3px;">添加&nbsp;&nbsp;+</font></span></a>
+							任务计划
+							<c:if test="${personnel.departAndPositions.positions.positionid !=33 }">
+								<a href="#" onclick="popupwindow('./addMissionPlan');"><span class="badge navbar-right" id="yunfei"><font size="3px;">添加&nbsp;&nbsp;+</font></span></a>
+							</c:if>
 						</h3>
 					</div>
 					<div class="list-group-item">
@@ -71,13 +74,22 @@
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<th>编号</th>
-									<th>名称</th>
+									<th>任务编号</th>
+									<th>任务名称</th>
+									<th>任务发布者</th>
+									<th>任务执行者</th>
+									<th>任务用时</th>
+									<th>截至日期</th>
+									<th>任务完成度</th>
+									<th>任务状态</th>
+									<th>加速</th>
+									<th>积极否</th>
+									<th>备注</th>
 									<th></th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="ticket" items="${list }" varStatus="pool">
+								<c:forEach var="missionPlan" items="${list }" varStatus="pool">
 									<c:choose>
 										<c:when test="${loop.index%2==0 }">
 											<tr>
@@ -86,10 +98,36 @@
 											<tr class="success">
 										</c:otherwise>
 									</c:choose>
-									<td>${ticket.brandID}</td>
-									<td>${ticket.ticketName}</td>
-									<td><button class="btn btn-default" onclick="popupwindow('updateTicket?id=${ticket.brandID}');">修改名称</button>
-										<button class="btn btn-default" onclick="deleteBlack('${blacklist.id}');" >删除</button></td>
+									<td>${missionPlan.id}</td>
+									<td>${missionPlan.missionName}</td>
+									<td>${missionPlan.fromPer.userName}</td>
+									<td>${missionPlan.toPer.userName}</td>
+									<td>${missionPlan.usingTime}
+										<c:if test="${missionPlan.period == 'Minute'}">分钟</c:if>
+										<c:if test="${missionPlan.period == 'Hours'}">小时</c:if>
+										<c:if test="${missionPlan.period == 'Days'}">天</c:if>
+										<c:if test="${missionPlan.period == 'Weeks'}">周</c:if>
+										<c:if test="${missionPlan.period == 'Months'}">月</c:if>
+									</td>
+									<td>${missionPlan.endDate}</td>
+									<td>${missionPlan.CompLine}%</td>
+									<td>
+										<c:if test="${missionPlan.advState =='Finished' }">完成</c:if>
+										<c:if test="${missionPlan.advState =='Unfinished' }">未完成</c:if>
+									</td>
+									<td>
+										<input type="checkbox" name="accelerate" <c:if test="${missionPlan.accelerate == true }">checked</c:if>>
+									</td>
+									<td>
+										<input type="checkbox" name="positiveOrNo" value="${missionPlan.positiveOrNo }" <c:if test="${missionPlan.positiveOrNo == 'Positive' }">checked</c:if>>
+									</td>
+									<td>
+										${missionPlan.remarks }
+									</td>
+									<td>
+										<button class="btn btn-default" onclick="popupwindow('updatePosAndTicket?id=${posAndDep.id}');">修改</button>
+										<button class="btn btn-default" onclick="popupwindow('updatePosAndTicket?id=${posAndDep.id}');">删除</button>
+									</td>
 									</tr>
 								</c:forEach>
 							</tbody>

@@ -15,9 +15,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 //部门
 @Entity
 @DiscriminatorValue("department")
+@JsonIgnoreProperties(value = { "departAndPositions","children" })
 public class Department {
 
 	@Id

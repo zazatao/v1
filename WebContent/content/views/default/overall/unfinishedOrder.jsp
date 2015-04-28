@@ -61,7 +61,7 @@ th {
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="span12">
-				<form class="form-horizontal" action="./searchShopOrder"
+				<form class="form-horizontal" action="./searchShopOrder?page=overAll"
 					method="POST">
 					<div class="form-group">
 						<div class="col-sm-1">
@@ -105,9 +105,6 @@ th {
 								<option value="waitDelivery" name = "waitDelivery">等待发货
 								<option value="transitGoods" name = "transitGoods">在途货物
 								<option value="consigneeSigning" name = "consigneeSigning">收货人签单
-								<option value="completionTransaction" name = "completionTransaction">完成交易
-								<option value="closeTransaction" name = "closeTransaction">关闭交易
-								<option value="autoCloseTransaction" name = "autoCloseTransaction">自动关闭交易
 							</select>															
 						</div>
 						<div class="col-sm-1">

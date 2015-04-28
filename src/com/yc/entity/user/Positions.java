@@ -15,9 +15,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 //职位
 @Entity
 @DiscriminatorValue("position")
+@JsonIgnoreProperties(value = {"DepartAndPositions","children" })
 public class Positions {
 
 	@Id
@@ -39,11 +43,13 @@ public class Positions {
 	
 	@OneToMany(mappedBy = "parentLevel",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Positions> children = new HashSet<Positions>();
-
+	
+	@JsonIgnore
 	public Set<DepartAndPositions> getDepartAndPositions() {
 		return DepartAndPositions;
 	}
 
+	@JsonIgnore
 	public void setDepartAndPositions(Set<DepartAndPositions> departAndPositions) {
 		DepartAndPositions = departAndPositions;
 	}

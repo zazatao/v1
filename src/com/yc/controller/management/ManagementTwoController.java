@@ -295,10 +295,10 @@ public class ManagementTwoController {
 
 	@RequestMapping(value = "addOrUpTicket", method = RequestMethod.POST)
 	public String addOrUpTicket(Integer id, String ticketName, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (id != null && id.equals("")) {
+		if (id != null && !id.equals("")) {
 			Ticket ticket = ticketService.findById(id);
 			ticket.setTicketName(ticketName);
-			ticketService.update(ticket);
+			ticket = ticketService.update(ticket);
 		} else {
 			if (!ticketName.equals("")) {
 				Ticket ticket = new Ticket();
@@ -316,7 +316,31 @@ public class ManagementTwoController {
 		mode.put("list", list);
 		return new ModelAndView("management/posAndTicket",mode);
 	}
-
+	
+	@RequestMapping(value = "updatePosAndTicket", method = RequestMethod.GET)
+	public ModelAndView updatePosAndTicket(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		DepartAndPositions depAndPos = departAndPositionsService.findById(id);
+		List<Ticket> list = ticketService.getAll();
+		ModelMap mode = new ModelMap();
+		mode.put("depAndPos", depAndPos);
+		mode.put("list", list);
+		return  new ModelAndView("management/updatePosAndTicket",mode);
+	}
+	
+	@RequestMapping(value = "addPosAndTicket", method = RequestMethod.POST)
+	public ModelAndView addPosAndTicket(Integer id,Integer ticketID,Double wage,Integer rules,Double saleCut, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		DepartAndPositions depAndPos = departAndPositionsService.findById(id);
+		Ticket ticket = ticketService.findById(ticketID);
+		if (ticket != null ) {
+			depAndPos.setWage(wage);
+			depAndPos.setTicket(ticket);
+			depAndPos.setRules(rules);
+			depAndPos.setSaleCut(saleCut);
+			departAndPositionsService.update(depAndPos);
+		}
+		return null;
+	}
+	
 	@RequestMapping(value = "promotionCode", method = RequestMethod.GET)
 	public ModelAndView getAllPromotionCode() throws ServletException, IOException {
 		ModelMap mode = new ModelMap();
@@ -386,4 +410,5 @@ public class ManagementTwoController {
 		mode.put("promotioncodelist", list);
 		return new ModelAndView("management/promotionCode", mode);
 	}
+	
 }
