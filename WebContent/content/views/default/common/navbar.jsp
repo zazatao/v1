@@ -206,7 +206,7 @@
 								</ul></li>
 							<li><a href="../management/merchantsSettled">入驻商家</a></li>
 							<li><a
-								href="../personnel/personnel">员工</a></li>
+								href="../management/personnel">员工</a></li>
 							<li><a href="../management/user">用户</a></li>
 						</c:if>
 					</ul></li>
