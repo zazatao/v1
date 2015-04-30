@@ -24,10 +24,12 @@ import com.yc.entity.CommoidityStatus;
 import com.yc.entity.Currency;
 import com.yc.entity.PackageGenre;
 import com.yc.entity.PackageSize;
+import com.yc.entity.Surcharges;
 import com.yc.service.ICommodityService;
 import com.yc.service.ICurrencyService;
 import com.yc.service.IPackageGenreService;
 import com.yc.service.IPackageSizeService;
+import com.yc.service.ISurchargesService;
 
 //商店财务
 @Controller
@@ -48,6 +50,9 @@ public class FinanceController {
 	
 	@Autowired
 	ICurrencyService currencyService;
+	
+	@Autowired
+	ISurchargesService surchargesService;
 
 	// 付账
 	@RequestMapping(value = "billPay", method = RequestMethod.GET)
@@ -323,7 +328,44 @@ public class FinanceController {
 	
 	@RequestMapping(value = "surcharges", method = RequestMethod.GET)
 	public ModelAndView surcharges(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		return null;
+		List<Surcharges> list = surchargesService.getAll();
+		ModelMap mode = new ModelMap();
+		mode.put("list", list);
+		return new ModelAndView("shop/surcharges", mode);
 	}
+	
+	@RequestMapping(value = "addSurcharges", method = RequestMethod.GET)
+	public ModelAndView addSurcharges(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("id======================"+id);
+		if(id != null){
+			Surcharges sur = surchargesService.findById(id);
+			ModelMap mode = new ModelMap();
+			mode.put("suercharges", sur);
+			return new ModelAndView("shop/addSurcharges",mode);
+		}else{
+			return new ModelAndView("shop/addSurcharges");
+		}
+	}
+	
+	@RequestMapping(value = "addSuercharges", method = RequestMethod.POST)
+	public ModelAndView addSuerchargesP(Integer id,Double fare, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("id============="+id);
+		if (id != null && !id.equals("")) {
+			Surcharges sur = surchargesService.findById(id);
+			sur.setFare(fare);
+			surchargesService.update(sur);
+		}else{
+			Surcharges surs = new Surcharges();
+			surs.setFare(fare);
+			surchargesService.save(surs);
+		}
+		return new ModelAndView("management/success");
+	}
+	
+	@RequestMapping(value = "deleteSurchargesById", method = RequestMethod.GET)
+	public String deleteSurchargesById(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		surchargesService.delete(id);
+		return "redirect:/shop/surcharges";
+	}
+	
 }
