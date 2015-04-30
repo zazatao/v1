@@ -48,11 +48,11 @@
 					<div class="form-group">
 						<c:if test="${mathed == 'add'}">
 							<label for="inputEmail3" class="col-sm-2 control-label">添加类型</label>
-							<input type="hidden" name="id" value="${id }">						
+							<input type="hidden" name="id" value="${id }">	
+							<div class="col-sm-8">
+								<input id="type" class="form-control" name="type" value="${currency.type}">
+							</div>					
 						</c:if>
-						<div class="col-sm-8">
-							<input id="type" class="form-control" name="type" value="${currency.type}">
-						</div>
 					</div>
 				
 					<div class="form-group">
@@ -102,9 +102,8 @@
 		}
 		
 		function addCurrency(obj){
-			document.form.action="./addCurrencyList?id=${material.id}&page=${page}&mathed="+obj;
+			document.form.action="./addCurrencyList?id=${currency.id}&page=${page}&mathed="+obj;
 			document.form.submit();
-			alert(document.form.action);
 			return closeAndRefresh();
 		}
 		function closeAndRefresh() {

@@ -193,14 +193,7 @@
 								<li><a href="./management/blacklistGoods">商品黑名单</a></li>
 							</ul></li>
 						<li><a href="./management/merchantsSettled">入驻商家</a></li>
-						<li class="dropdown-submenu"><a href="./management/personnel">员工</a>
-							<ul class="dropdown-menu">
-								<li><a href="#">操作员</a></li>
-								<li><a href="#">发货员</a></li>
-								<li><a href="#">经理</a></li>
-								<li><a href="#">技术员</a></li>
-								<li><a href="#">总经理</a></li>
-							</ul></li>
+						<li><a href="./management/personnel">员工</a></li>
 						<li><a href="./management/user">用户</a></li>
 					</ul></li>
 <%-- 					</c:if> --%>
