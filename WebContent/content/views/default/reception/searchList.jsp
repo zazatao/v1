@@ -408,7 +408,7 @@
 										<div class="slidernumb" style="display: none;">0</div>
 									</dt>
 									<dd>
-										<span class="red">$ ${commShop.unitPrice }</span><span
+										<span class="red">$ <c:out value="${commShop.unitPrice +surs[0].fare}"></c:out></span><span
 											class="p1"><a href="../proscenium/shopItem?commID=${commShop.commCode }&category=${id }&shopID=${commShop.belongTo.id }&commoName=${commShop.commoidtyName }">
 											<img src="../content/static/images/con_10.png" /></a></span><span
 											class="p2"><a href="#"><img

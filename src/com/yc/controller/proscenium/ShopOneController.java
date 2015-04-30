@@ -38,6 +38,7 @@ import com.yc.entity.ShopCommoidty;
 import com.yc.entity.ShopCommoidtySpecs;
 import com.yc.entity.ShopType;
 import com.yc.entity.Specifications;
+import com.yc.entity.Surcharges;
 import com.yc.entity.user.User;
 import com.yc.service.IBrandService;
 import com.yc.service.IBuyCatService;
@@ -47,6 +48,7 @@ import com.yc.service.IShopCommoidtyService;
 import com.yc.service.IShopCommoidtySpecsService;
 import com.yc.service.IShopService;
 import com.yc.service.ISpecificationsService;
+import com.yc.service.ISurchargesService;
 import com.yc.service.IUserService;
 
 //前台
@@ -80,6 +82,9 @@ public class ShopOneController {
 	
 	@Autowired
 	IUserService userService;
+	
+	@Autowired
+	ISurchargesService surchargesService;
 	
 	@Autowired
 	IBuyCatService buyCatService;
@@ -638,6 +643,8 @@ public class ShopOneController {
 		mode.put("id", id);
 		mode.put("nvabar", strs.substring(0, strs.length() - 1));
 		List<ShopCommoidty> list = shopCommService.getAllByShopCategoryID(id,page);
+		List<Surcharges> surs = surchargesService.getAll();
+		mode.put("surs", surs);
 		mode.put("list", list);
 		if (page.equals("page")) {
 			return new ModelAndView("reception/searchList", mode);
@@ -727,6 +734,8 @@ public class ShopOneController {
 		}
 		List<ShopCommoidty> list = shopCommService.getAllByParams(map,page);
 		mode.put("list", list);
+		List<Surcharges> surs = surchargesService.getAll();
+		mode.put("surs", surs);
 		if (page.equals("page")) {
 			return new ModelAndView("reception/searchList", mode);
 		} else if (page.equals("brand")) {
