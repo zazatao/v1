@@ -99,7 +99,7 @@
 							</ul></li>
 						<li class="dropdown-submenu"><a href="#">设置</a>
 							<ul class="dropdown-menu">
-								<li><a href="#">币种</a></li>
+								<li><a href="./shop/currency">币种</a></li>
 <!-- 								<li><a href="#">币种汇率</a></li> -->
 								<li><a href="#">附加费</a></li>
 								<li><a href="#">操作员工作完成情况</a></li>

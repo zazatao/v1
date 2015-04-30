@@ -82,43 +82,42 @@
 							</c:if>
 						</ul></li>
 				</c:if>
-				<c:if
-					test="${personnel.departAndPositions.department.departmentID == 25 || personnel.departAndPositions.department.departmentID == 1}">
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">商店 <span class="caret"></span></a>
-						<ul class="dropdown-menu menu-top" role="menu">
-							<li><a href="../shop/shopOrder">订单</a></li>
-							<li><a href="../shop/package">包裹</a></li>
-							<li class="dropdown-submenu"><a href="#">财务</a>
-								<ul class="dropdown-menu">
-									<li><a href="../shop/accountBook">zazatao账本</a></li>
-									<li><a href="../shop/billPay">账单支付</a></li>
-									<li><a href="#">用户结算</a></li>
-									<li><a href="#">资金冻结</a></li>
-									<li><a href="#">调整</a></li>
-									<li><a href="#">会计</a></li>
-								</ul></li>
-							<li class="dropdown-submenu"><a href="#">经济核算</a>
-								<ul class="dropdown-menu">
-									<li><a href="#">操作</a></li>
-									<li><a href="#">账单计划</a></li>
-									<li><a href="#">操作计划</a></li>
-									<li><a href="#">账户计算</a></li>
-									<li><a href="#">材料</a></li>
-									<li><a href="#">基础操作</a></li>
-									<li><a href="#">保存地</a></li>
-									<li><a href="#">承包商</a></li>
-								</ul></li>
-							<li class="dropdown-submenu"><a href="#">设置</a>
-								<ul class="dropdown-menu">
-									<li><a href="#">币种</a></li>
-									<!-- 								<li><a href="#">币种汇率</a></li> -->
-									<li><a href="#">附加费</a></li>
-									<li><a href="#">操作员工作完成情况</a></li>
-									<li><a href="#">栏目类型</a></li>
-									<li><a href="#">调整原因</a></li>
-								</ul></li>
-						</ul></li>
+				<c:if test="${personnel.departAndPositions.department.departmentID == 25 || personnel.departAndPositions.department.departmentID == 1}">
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">商店 <span class="caret"></span></a>
+					<ul class="dropdown-menu menu-top" role="menu">
+						<li><a href="../shop/shopOrder">订单</a></li>
+						<li><a href="../shop/package">包裹</a></li>
+						<li class="dropdown-submenu"><a href="#">财务</a>
+							<ul class="dropdown-menu">
+								<li><a href="../shop/accountBook">zazatao账本</a></li>
+								<li><a href="../shop/billPay">账单支付</a></li>
+								<li><a href="#">用户结算</a></li>
+								<li><a href="#">资金冻结</a></li>
+								<li><a href="#">调整</a></li>
+								<li><a href="#">会计</a></li>
+							</ul></li>
+						<li class="dropdown-submenu"><a href="#">经济核算</a>
+							<ul class="dropdown-menu">
+								<li><a href="#">操作</a></li>
+								<li><a href="#">账单计划</a></li>
+								<li><a href="#">操作计划</a></li>
+								<li><a href="#">账户计算</a></li>
+								<li><a href="../shop/material">材料</a></li>
+								<li><a href="#">基础操作</a></li>
+								<li><a href="#">保存地</a></li>
+								<li><a href="#">承包商</a></li>
+							</ul></li>
+						<li class="dropdown-submenu"><a href="#">设置</a>
+							<ul class="dropdown-menu">
+								<li><a href="../shop/currency">币种</a></li>
+<!-- 								<li><a href="#">币种汇率</a></li> -->
+								<li><a href="#">附加费</a></li>
+								<li><a href="#">操作员工作完成情况</a></li>
+								<li><a href="#">栏目类型</a></li>
+								<li><a href="#">调整原因</a></li>
+							</ul></li>
+					</ul></li>
 				</c:if>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">管理 <span class="caret"></span></a>
