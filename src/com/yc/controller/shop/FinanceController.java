@@ -173,4 +173,10 @@ public class FinanceController {
 		return  new ModelAndView("shop/finance/accountBook", mode);
 	}
 	
+	@RequestMapping(value = "surcharges", method = RequestMethod.GET)
+	public ModelAndView surcharges(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		return null;
+	}
+	
 }

@@ -151,5 +151,9 @@ public class GenericDaoConfig {
 	public GenericDao<MissionPlan> getMissionPlanDao() {
 		return new GenericDaoSupport<MissionPlan>(MissionPlan.class);	
 	}
+	@Bean
+	public GenericDao<Surcharges> getSurchargesDao() {
+		return new GenericDaoSupport<Surcharges>(Surcharges.class);	
+	}
 	
 }
