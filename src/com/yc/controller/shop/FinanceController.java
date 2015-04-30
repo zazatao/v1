@@ -21,9 +21,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Commodity;
 import com.yc.entity.CommoidityStatus;
+import com.yc.entity.Currency;
 import com.yc.entity.PackageGenre;
 import com.yc.entity.PackageSize;
 import com.yc.service.ICommodityService;
+import com.yc.service.ICurrencyService;
 import com.yc.service.IPackageGenreService;
 import com.yc.service.IPackageSizeService;
 
@@ -43,6 +45,9 @@ public class FinanceController {
 	
 	@Autowired
 	IPackageSizeService packageSizeService;
+	
+	@Autowired
+	ICurrencyService currencyService;
 
 	// 付账
 	@RequestMapping(value = "billPay", method = RequestMethod.GET)
@@ -231,8 +236,7 @@ public class FinanceController {
 	@RequestMapping(value = "addMaterialList", method = RequestMethod.POST)
 	public String addMaterialList(Integer id, String attribute, Integer num, Integer price, Integer packageSize_id,
 			String mathed, String page, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("packageSize_id___________________"+packageSize_id);
-		System.out.println("id___________________"+id);
+
 		if (mathed.equals("add")) {
 			if (page.equals("material")) {
 				PackageSize size = packageSizeService.findById(packageSize_id);
@@ -252,7 +256,90 @@ public class FinanceController {
 			material.setAttribute(attribute);
 			packageGenreService.update(material);
 		}
-		return "redirect:/shop/packageGenre";
+		return "redirect:/shop/material";
+	}
+	
+	//获得所有币种
+	@RequestMapping(value = "currency", method = RequestMethod.GET)
+	public ModelAndView getAllCurrency(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Currency> currencyList = currencyService.getAll();
+		ModelMap mode = new ModelMap();
+		mode.put("currencylist", currencyList);
+		return new ModelAndView("shop/currency", mode);
+	}
+				
+	//删除币种
+	@RequestMapping(value = "deleteCurrency", method = RequestMethod.GET)
+	public String deleteCurrency(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		currencyService.delete(id);
+		return "redirect:/shop/currency";
+	}
+				
+	//添加或更新币种
+	@RequestMapping(value = "addCurrency", method = RequestMethod.GET)
+	public ModelAndView addCurrency(Integer id, String mathed, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ModelMap mode = new ModelMap();
+		if (mathed.equals("add")) {
+			if (id != null) {
+				mode.put("id", id);
+				mode.put("mathed", "add");
+				mode.put("page", "currency");
+				return new ModelAndView("shop/addCurrency", mode);
+			} else {
+				mode.put("mathed", "add");
+				mode.put("page", "currency");
+				return new ModelAndView("shop/addCurrency", mode);
+			}
+		} else {
+			Currency currency = currencyService.findById(id);
+			mode.put("currency", currency);
+			mode.put("mathed", "update");
+			mode.put("page", "currency");
+			return new ModelAndView("shop/addCurrency", mode);
+		}
+	}
+
+	//添加或更新币种
+	/*@RequestMapping(value = "addCurrencyList", method = RequestMethod.POST)
+	public String addCurrencyList(Currency postCurrency,String mathed, String page, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if (mathed.equals("add")) {
+			if (page.equals("currency")) {
+				System.out.println("enter add____________________________");
+				Currency currency = new Currency();
+				currency.setType(postCurrency.getType());
+				currency.setAbbreviation(postCurrency.getAbbreviation());
+				currency.setSymbol(postCurrency.getSymbol());
+				currency = currencyService.save(currency);
+			}
+		} 
+					
+		else {
+			Currency currency = currencyService.findById(postCurrency.getId());
+			currency.setAbbreviation(postCurrency.getAbbreviation());
+			currency.setSymbol(postCurrency.getSymbol());
+			currencyService.update(currency);
+		}
+		return "redirect:/shop/currency";
+	}*/
+	@RequestMapping(value = "addCurrencyList", method = RequestMethod.POST)
+	public String addCurrencyList(Integer id, String type, String abbreviation, String symbol, String mathed, String page, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if (mathed.equals("add")) {
+			if (page.equals("currency")) {
+				Currency currency = new Currency();
+				currency.setType(type);
+				currency.setAbbreviation(abbreviation);
+				currency.setSymbol(symbol);
+				currency = currencyService.save(currency);
+			}
+		} 
+					
+		else {
+			Currency currency = currencyService.findById(id);
+			currency.setAbbreviation(abbreviation);
+			currency.setSymbol(symbol);
+			currencyService.update(currency);
+		}
+		return "redirect:/shop/currency";
 	}
 	
 	@RequestMapping(value = "surcharges", method = RequestMethod.GET)
