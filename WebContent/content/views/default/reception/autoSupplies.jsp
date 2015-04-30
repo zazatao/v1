@@ -68,6 +68,7 @@
                 <dd><span class="red">￥：1180</span></dd>
             </dl>
         </div>
+        </div>
      </div>
      <div class="clear"></div>
 	<jsp:include page="../common/foot.jsp"></jsp:include>
