@@ -62,7 +62,15 @@
 							<td>￥${shopComm.unitPrice }</td>
 							<td><button onclick="zhekou1(${shopComm.auction},${shopComm.commCode },${shopComm.shelves });"><c:if test="${shopComm.auction}">拍卖中</c:if><c:if test="${!shopComm.auction}">下拍</c:if></button></td>
 							<td><button onclick="zhekou(${shopComm.isSpecial},${shopComm.commCode },${shopComm.shelves });"><c:if test="${shopComm.isSpecial}">已加入</c:if><c:if test="${!shopComm.isSpecial}">不加入</c:if></button></td>
-							<td><span class="red">￥<fmt:formatNumber value="${shopComm.unitPrice * shopComm.special }" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber></span></td>
+							<td><span class="red">
+							<!-- ￥ -->
+								<select name="currency">
+									<c:forEach var="currency" items="${shopComm.currency }" >
+										<option value="${currency.symbol}">${currency.symbol}</option>
+									</c:forEach>
+								</select>
+								<fmt:formatNumber value="${shopComm.unitPrice * shopComm.special }" pattern="##.##" minFractionDigits="2" ></fmt:formatNumber></span>
+							</td>
 							<td><input type="checkbox" name="commID" value="${shopComm.commCode}"/></td>
 						</tr>
 					</c:forEach>

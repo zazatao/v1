@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
@@ -43,8 +44,10 @@ public class Commodity {
 	private Float price;// 价格
 	@Column
 	private Float money;// 金额
-	@Column
-	private String currency;// 币种
+
+	@OneToOne(mappedBy = "commodity")
+	private Currency currency;// 币种
+	
 	@Column
 	private String comment;// 评论
 	@Column
@@ -166,11 +169,11 @@ public class Commodity {
 		this.inStoreRoomDate = inStoreRoomDate;
 	}
 
-	public String getCurrency() {
+	public Currency getCurrency() {
 		return currency;
 	}
 
-	public void setCurrency(String currency) {
+	public void setCurrency(Currency currency) {
 		this.currency = currency;
 	}
 
