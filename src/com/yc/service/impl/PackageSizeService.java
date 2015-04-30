@@ -16,5 +16,4 @@ public class PackageSizeService extends GenericService<PackageSize> implements I
 	GenericDao<PackageSize> getDao() {
 		return packageSizeDao;
 	}
-
 }

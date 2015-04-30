@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<font color="blue">${msage }</font>
+<font color="blue">${msage }</font>
 </body>
 </html>

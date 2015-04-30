@@ -30,67 +30,66 @@
 <div class="nyright nyrightls">
     	<div class="rightl">
         	<ul>
-            	<div class="righttop"><img src="../content/static/images/erj1.jpg" />
+<!--             	<div class="righttop"><img src="../content/static/images/erj1.jpg" /> -->
             		
-				</div>
+<!-- 				</div> -->
             	<li style="float:left"><a href="yl_list_detail.html"><img src="../content/static/images/dz/013.jpg" /></a></li>
                 <li style="float:right"><a href="yl_list_detail.html"><img src="../content/static/images/nz/e2.jpg" /></a></li>
-                <li style="float:left"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a3.jpg" /></a></li>
-                <li style="float:right"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a4.jpg" /></a></li>
+<!--                 <li style="float:left"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a3.jpg" /></a></li> -->
+<!--                 <li style="float:right"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a4.jpg" /></a></li> -->
                 <div class="clear"></div>
             </ul>
-            <ul>
-            	<div class="righttop"><img src="../content/static/images/erj1.jpg" />ЖЕНСКАЯ ОДЕЖДА</div>
-            	<li style="float:left"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a9.jpg" /></a></li>
-                <li style="float:right"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a10.jpg" /></a></li>
-                <li style="float:right"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a12.jpg" /></a></li>
-                <li style="float:left"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a11.jpg" /></a></li>
-                <div class="clear"></div>
-            </ul>
-            <ul>
-            	<div class="righttop"><img src="images/erj1.jpg" />ЖЕНСКАЯ ОДЕЖДА</div>
-            	<li style="float:left"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a17.jpg" /></a></li>
-                <li style="float:right"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a19.jpg" /></a></li>
-                <li style="float:left"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a20.jpg" /></a></li>
-                <li style="float:right"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a18.jpg" /></a></li>
-                <div class="clear"></div>
-            </ul>
-            <ul>
-            	<div class="righttop"><img src="../content/static/images/erj1.jpg" />ЖЕНСКАЯ ОДЕЖДА</div>
-                <a href="yl_list_detail.html"><img src="../content/static/images/nz/a25.jpg" width="361" height="351" /></a>
-            </ul>
+<!--             <ul> -->
+<!--             	<div class="righttop"><img src="../content/static/images/erj1.jpg" />ЖЕНСКАЯ ОДЕЖДА</div> -->
+<!--             	<li style="float:left"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a9.jpg" /></a></li> -->
+<!--                 <li style="float:right"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a10.jpg" /></a></li> -->
+<!--                 <li style="float:right"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a12.jpg" /></a></li> -->
+<!--                 <li style="float:left"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a11.jpg" /></a></li> -->
+<!--                 <div class="clear"></div> -->
+<!--             </ul> -->
+<!--             <ul> -->
+<!--             	<div class="righttop"><img src="images/erj1.jpg" />ЖЕНСКАЯ ОДЕЖДА</div> -->
+<!--             	<li style="float:left"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a17.jpg" /></a></li> -->
+<!--                 <li style="float:right"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a19.jpg" /></a></li> -->
+<!--                 <li style="float:left"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a20.jpg" /></a></li> -->
+<!--                 <li style="float:right"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a18.jpg" /></a></li> -->
+<!--                 <div class="clear"></div> -->
+<!--             </ul> -->
+<!--             <ul> -->
+<!--             	<div class="righttop"><img src="../content/static/images/erj1.jpg" />ЖЕНСКАЯ ОДЕЖДА</div> -->
+<!--                 <a href="yl_list_detail.html"><img src="../content/static/images/nz/a25.jpg" width="361" height="351" /></a> -->
+<!--             </ul> -->
+<!--         </div> -->
+<!--         <div class="rightl"> -->
+<!--         	<ul> -->
+<!--             	<div class="righttop"><img src="../content/static/images/erj1.jpg" />ЖЕНСКАЯ ОДЕЖДА</div> -->
+<!--             	<li style="float:left"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a1.jpg" /></a></li> -->
+<!--                 <li style="float:right"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a2.jpg" /></a></li> -->
+<!--                 <li style="float:left"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a3.jpg" /></a></li> -->
+<!--                 <li style="float:right"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a4.jpg" /></a></li> -->
+<!--                 <div class="clear"></div> -->
+<!--             </ul> -->
+<!--             <ul> -->
+<!--             	<div class="righttop"><img src="../content/static/images/erj1.jpg" />ЖЕНСКАЯ ОДЕЖДА</div> -->
+<!--             	<li style="float:left"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a9.jpg" /></a></li> -->
+<!--                 <li style="float:right"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a10.jpg" /></a></li> -->
+<!--                 <li style="float:right"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a12.jpg" /></a></li> -->
+<!--                 <li style="float:left"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a11.jpg" /></a></li> -->
+<!--                 <div class="clear"></div> -->
+<!--             </ul> -->
+<!--             <ul> -->
+<!--             	<div class="righttop"><img src="images/erj1.jpg" />ЖЕНСКАЯ ОДЕЖДА</div> -->
+<!--             	<li style="float:left"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a17.jpg" /></a></li> -->
+<!--                 <li style="float:right"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a19.jpg" /></a></li> -->
+<!--                 <li style="float:left"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a20.jpg" /></a></li> -->
+<!--                 <li style="float:right"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a18.jpg" /></a></li> -->
+<!--                 <div class="clear"></div> -->
+<!--             </ul> -->
+<!--             <ul> -->
+<!--             	<div class="righttop"><img src="../content/static/images/erj1.jpg" />ЖЕНСКАЯ ОДЕЖДА</div> -->
+<!--                 <a href="yl_list_detail.html"><img src="../content/static/images/nz/a25.jpg" width="361" height="351" /></a> -->
+<!--             </ul> -->
         </div>
-        <div class="rightl">
-        	<ul>
-            	<div class="righttop"><img src="../content/static/images/erj1.jpg" />ЖЕНСКАЯ ОДЕЖДА</div>
-            	<li style="float:left"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a1.jpg" /></a></li>
-                <li style="float:right"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a2.jpg" /></a></li>
-                <li style="float:left"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a3.jpg" /></a></li>
-                <li style="float:right"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a4.jpg" /></a></li>
-                <div class="clear"></div>
-            </ul>
-            <ul>
-            	<div class="righttop"><img src="../content/static/images/erj1.jpg" />ЖЕНСКАЯ ОДЕЖДА</div>
-            	<li style="float:left"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a9.jpg" /></a></li>
-                <li style="float:right"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a10.jpg" /></a></li>
-                <li style="float:right"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a12.jpg" /></a></li>
-                <li style="float:left"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a11.jpg" /></a></li>
-                <div class="clear"></div>
-            </ul>
-            <ul>
-            	<div class="righttop"><img src="images/erj1.jpg" />ЖЕНСКАЯ ОДЕЖДА</div>
-            	<li style="float:left"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a17.jpg" /></a></li>
-                <li style="float:right"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a19.jpg" /></a></li>
-                <li style="float:left"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a20.jpg" /></a></li>
-                <li style="float:right"><a href="yl_list_detail.html"><img src="../content/static/images/nz/a18.jpg" /></a></li>
-                <div class="clear"></div>
-            </ul>
-            <ul>
-            	<div class="righttop"><img src="../content/static/images/erj1.jpg" />ЖЕНСКАЯ ОДЕЖДА</div>
-                <a href="yl_list_detail.html"><img src="../content/static/images/nz/a25.jpg" width="361" height="351" /></a>
-            </ul>
-        </div>
-    </div>
     </div>
     <div class="clear"></div>
     <jsp:include page="../common/foot.jsp"></jsp:include>

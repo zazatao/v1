@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <style type="text/css">
+        <style type="text/css">
 
 #big {
 	display: none;
@@ -100,23 +100,22 @@
         <div class="bqsy"><a href="#"><img src="content/static/images/bqsy.jpg" width="192" height="31" /></a></div>
     </div>
     <div class="zxzx"  onmousemove="show()"><a href="#"><img src="content/static/images/zxzx.png" /></a></div><!---------------   右侧浮动   ----------------------->
-    <div class="fdan">
-    	<ul>
-        	<li><a href="#"><img src="content/static/images/mfsh.png" width="109" height="55" /></a></li>
-            <li><a href="#"><img src="content/static/images/rhdg.png" width="109" height="55" /></a></li>
-            <li><a href="#"><img src="content/static/images/ysfs.png" width="109" height="55" /></a></li>
-            <li><a href="#"><img src="content/static/images/zftk.png" width="109" height="55" /></a></li>
-        </ul>
-    </div>
+     <div class="fdan">
+     	<ul>
+         	<li><a href="#"><img src="content/static/images/mfsh.png" width="109" height="55" /></a></li>
+             <li><a href="#"><img src="content/static/images/ysfs.png" width="109" height="55" /></a></li>
+             <li><a href="#"><img src="content/static/images/zftk.png" width="109" height="55" /></a></li>
+         </ul>
+   </div>
     <div id="big" onmouseout="f2()">
- <img src="content/static/img/tu1.png" />
+<img src="content/static/img/tu1.png" />
   <div id="za">
   <a href="index"><font style="font-size:20px; text-decoration:none;">zazatao.com</font></a>
   </div>
 <div id="iconDivMain"> <img id="ib_img" border="0" style="cursor:pointer" onclick="ib_wopen();" src="content/static/img/toux.jpg"></img>
   <div id="zi">有问题找我</div>
   </div>
-  
+ 
 </div>
  <script type="text/javascript">
  	var div=document.getElementById("big");
@@ -130,6 +129,6 @@
 		d1.style.display="none";
 		}
 </script>
- <script type="text/javascript">
+<script type="text/javascript">
 	window.log=function(s){};ib_={bu:'http://b.ibangkf.com/i',fu:'http://f.ibangkf.com/i',tu:'http://t.ibangkf.com/i',aspid:44490,l:'qwerty123456',online:3,vmx:251,asplogined:1,img_hide:0,img_mode:1,img_off:'http://f.ibangkf.com/i/img/1_.gif',img_W:110,img_H:60,img_toright:0,img_offsetH:-220,img_offsetW:20,acc_zdyivt:0,acc_W:0,acc_H:0,acc_middle:0,acc_lr:1,acc_left:280,acc_tb:1,acc_top:230,acc_freeze:0,acc_title:'zazatao&#22312;&#32447;&#21672;&#35810;',acc_content:'&#26377;&#20160;&#20040;&#21487;&#20197;&#24110;&#21161;&#24744;&#30340;&#21527;?',acc_effect:0,acc_auto:1,acc_tpl:1,acc_pop_pagenum:1,acc_pop_totalnum:3,acc_reinvite:1,acc_reauto_time:60};if(location.href.indexOf('kf=0')<0){if(document.cookie.indexOf('kf=0')<0){document.write("<scr"+"ipt src='"+ib_.fu+"/js/f.js?20140417' type='text/javascript'></scr"+"ipt>");}}else{document.cookie='ibangkf=0';}
 </script>

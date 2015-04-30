@@ -99,24 +99,23 @@
 		<div class="fkfs"><a href="#"><img src="../content/static/images/fkfs.jpg" width="1200" height="110" /></a></div>
         <div class="bqsy"><a href="#"><img src="../content/static/images/bqsy.jpg" width="192" height="31" /></a></div>
     </div>
-    <div class="zxzx"  onmousemove="show()"><a href="#"><img src="../content/static/images/zxzx.png" /></a></div><!---------------   右侧浮动   ----------------------->
-    <div class="fdan">
-    	<ul>
-        	<li><a href="#"><img src="../content/static/images/mfsh.png" width="109" height="55" /></a></li>
-            <li><a href="#"><img src="../content/static/images/rhdg.png" width="109" height="55" /></a></li>
-            <li><a href="#"><img src="../content/static/images/ysfs.png" width="109" height="55" /></a></li>
-            <li><a href="#"><img src="../content/static/images/zftk.png" width="109" height="55" /></a></li>
-        </ul>
-    </div>
+   <div class="zxzx"  onmousemove="show()"><a href="#"><img src="../content/static/images/zxzx.png" /></a></div><!---------------   右侧浮动   ----------------------->
+     <div class="fdan">
+     	<ul>
+         	<li><a href="#"><img src="../content/static/images/mfsh.png" width="109" height="55" /></a></li>
+             <li><a href="#"><img src="../content/static/images/ysfs.png" width="109" height="55" /></a></li>
+             <li><a href="#"><img src="../content/static/images/zftk.png" width="109" height="55" /></a></li>
+         </ul>
+   </div>
     <div id="big" onmouseout="f2()">
- <img src="../content/static/img/tu1.png" />
+<img src="../content/static/img/tu1.png" />
   <div id="za">
   <a href="index"><font style="font-size:20px; text-decoration:none;">zazatao.com</font></a>
   </div>
 <div id="iconDivMain"> <img id="ib_img" border="0" style="cursor:pointer" onclick="ib_wopen();" src="../content/static/img/toux.jpg"></img>
   <div id="zi">有问题找我</div>
   </div>
-  
+ 
 </div>
  <script type="text/javascript">
  	var div=document.getElementById("big");
