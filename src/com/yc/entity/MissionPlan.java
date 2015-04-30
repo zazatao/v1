@@ -48,7 +48,7 @@ public class MissionPlan {
 	private AdvState advState;//状态
 	
 	@Column
-	private String CompLine;//完成度
+	private String compLine;//完成度
 	
 	@Column
 	private PositiveOrNo  positiveOrNo;//积极否
@@ -124,11 +124,11 @@ public class MissionPlan {
 	}
 
 	public String getCompLine() {
-		return CompLine;
+		return compLine;
 	}
 
 	public void setCompLine(String compLine) {
-		CompLine = compLine;
+		this.compLine = compLine;
 	}
 
 	public PositiveOrNo getPositiveOrNo() {

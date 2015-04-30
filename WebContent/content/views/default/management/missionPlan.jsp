@@ -110,10 +110,11 @@
 										<c:if test="${missionPlan.period == 'Months'}">月</c:if>
 									</td>
 									<td>${missionPlan.endDate}</td>
-									<td>${missionPlan.CompLine}%</td>
+									<td>${missionPlan.compLine}%</td>
 									<td>
 										<c:if test="${missionPlan.advState =='Finished' }">完成</c:if>
-										<c:if test="${missionPlan.advState =='Unfinished' }">未完成</c:if>
+										<c:if test="${missionPlan.advState =='InProgress' }">进行中</c:if>
+										<font color="red"><c:if test="${missionPlan.advState =='Unfinished' }">未完成</c:if></font>
 									</td>
 									<td>
 										<input type="checkbox" name="accelerate" <c:if test="${missionPlan.accelerate == true }">checked</c:if>>
@@ -125,8 +126,8 @@
 										${missionPlan.remarks }
 									</td>
 									<td>
-										<button class="btn btn-default" onclick="popupwindow('updatePosAndTicket?id=${posAndDep.id}');">修改</button>
-										<button class="btn btn-default" onclick="popupwindow('updatePosAndTicket?id=${posAndDep.id}');">删除</button>
+										<button class="btn btn-default" onclick="popupwindow('updateMissionPlan?id=${missionPlan.id}');">修改</button>
+										<button class="btn btn-default" onclick="deletePlan('deleteMissionPlan?id=${missionPlan.id}')">删除</button>
 									</td>
 									</tr>
 								</c:forEach>
@@ -140,6 +141,9 @@
 	<script type="text/javascript">
 		function deleteBlack(obj){
 			location.href = "deleteTicket?id="+obj;
+		}
+		function deletePlan(obj){
+			location.href = obj;
 		}
 		window.onunload = refreshParent;
 		function refreshParent() {

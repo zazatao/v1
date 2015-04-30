@@ -9,4 +9,6 @@ public interface IMissionPlanService extends IGenericService<MissionPlan> {
 
 	List<MissionPlan> getAllByPer(Personnel personnel);
 
+	List<MissionPlan> getAllByToPer(Personnel personnel);
+
 }

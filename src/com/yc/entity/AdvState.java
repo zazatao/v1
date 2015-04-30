@@ -1,5 +1,5 @@
 package com.yc.entity;
 
 public enum AdvState {
-	 Finished,Unfinished
+	 Finished,Unfinished,InProgress
 }
