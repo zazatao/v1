@@ -48,6 +48,8 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<ul class="breadcrumb">
+					<li><a href="#" style="font-size: 18px;">管理</a></li>
+					<span class="divider"><font style="font-size: 18px;">/</font></span>
 					<li><font style="font-size: 18px;">员工</font></li>
 				</ul>
 			</div>
@@ -140,7 +142,10 @@
 									<td>${personnel.loginName}</td>
 									<td>${personnel.password}</td>
 									<td>${personnel.userName}</td>	
-									<td>${personnel.sex}</td>
+									<td>
+									<c:if test="${personnel.sex == 'Female'}">女</c:if>
+									<c:if test="${personnel.sex == 'Male'}">男</c:if>
+									</td>
 									<td>${personnel.departAndPositions.positions.positionname}</td>
 									<td>${personnel.departAndPositions.department.departmentname}</td>	
 									<td>${personnel.phone}</td>

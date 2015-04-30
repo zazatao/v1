@@ -300,27 +300,6 @@ public class FinanceController {
 	}
 
 	//添加或更新币种
-	/*@RequestMapping(value = "addCurrencyList", method = RequestMethod.POST)
-	public String addCurrencyList(Currency postCurrency,String mathed, String page, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (mathed.equals("add")) {
-			if (page.equals("currency")) {
-				System.out.println("enter add____________________________");
-				Currency currency = new Currency();
-				currency.setType(postCurrency.getType());
-				currency.setAbbreviation(postCurrency.getAbbreviation());
-				currency.setSymbol(postCurrency.getSymbol());
-				currency = currencyService.save(currency);
-			}
-		} 
-					
-		else {
-			Currency currency = currencyService.findById(postCurrency.getId());
-			currency.setAbbreviation(postCurrency.getAbbreviation());
-			currency.setSymbol(postCurrency.getSymbol());
-			currencyService.update(currency);
-		}
-		return "redirect:/shop/currency";
-	}*/
 	@RequestMapping(value = "addCurrencyList", method = RequestMethod.POST)
 	public String addCurrencyList(Integer id, String type, String abbreviation, String symbol, String mathed, String page, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (mathed.equals("add")) {

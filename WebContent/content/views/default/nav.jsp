@@ -92,14 +92,14 @@
 								<li><a href="#">账单计划</a></li>
 								<li><a href="#">操作计划</a></li>
 								<li><a href="#">账户计算</a></li>
-								<li><a href="#">材料</a></li>
+								<li><a href="./shop/material">材料</a></li>
 								<li><a href="#">基础操作</a></li>
 								<li><a href="#">保存地</a></li>
 								<li><a href="#">承包商</a></li>
 							</ul></li>
 						<li class="dropdown-submenu"><a href="#">设置</a>
 							<ul class="dropdown-menu">
-								<li><a href="#">币种</a></li>
+								<li><a href="./shop/currency">币种</a></li>
 <!-- 								<li><a href="#">币种汇率</a></li> -->
 								<li><a href="#">附加费</a></li>
 								<li><a href="#">操作员工作完成情况</a></li>
