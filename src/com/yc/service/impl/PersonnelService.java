@@ -1,6 +1,7 @@
 package com.yc.service.impl;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -58,15 +59,41 @@ public class PersonnelService extends GenericService<Personnel> implements IPers
 
 	@Override
 	public List<Personnel> getAllByParametersForManage(Map<String, Object> map) {
-		StringBuffer hql = new StringBuffer(" from Personnel u where (? is null or u.department.departmentID = ?) and (? is null or u.userName like ?) and (? is null or u.positions.positionid = ?)");
+		StringBuffer hql = new StringBuffer(" from Personnel u where (? is null or u.departAndPositions.department.departmentID = ?) and (? is null or u.userName like ?) and (? is null or u.departAndPositions.positions.positionid = ?)");
 		Object[] paramete =  new Object[6];
-		paramete[0] = map.get("departmentName") ;
-		paramete[1] = map.get("departmentName");
+		paramete[0] = map.get("departmentID") ;
+		paramete[1] = map.get("departmentID");
 		paramete[2] = map.get("userName") ;
 		paramete[3] = "%"+map.get("userName") +"%";
-		paramete[4] = map.get("positions") ;
-		paramete[5] = map.get("positions");
-		return personnelDao.find(hql.toString(), paramete, -1,-1);
+		paramete[4] = map.get("positionid") ;
+		paramete[5] = map.get("positionid");
+
+		List<Personnel> list = personnelDao.find(hql.toString(), paramete, -1,-1);
+		
+		if ( map.get("forbidden") != null)
+		{
+			List<Personnel> list2 = new LinkedList<Personnel>();
+			for ( int i = 0; i < list.size(); i++ )
+			{
+				if ( map.get("forbidden").equals("no")) 
+				{
+					if ( list.get(i).getForbidden() == null )
+					{									
+						list2.add(list.get(i));
+					}
+				}
+				
+				else
+				{
+					if ( list.get(i).getForbidden() != null )
+					{
+						list2.add(list.get(i));
+					}
+				}
+			}
+			return list2;
+		}
+		return list;
 	}
 
 	@Override

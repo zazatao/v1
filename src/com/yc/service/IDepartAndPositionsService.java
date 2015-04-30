@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.yc.entity.user.DepartAndPositions;
 import com.yc.entity.user.Department;
-import com.yc.entity.user.Positions;
 
 public interface IDepartAndPositionsService extends IGenericService<DepartAndPositions> {
 

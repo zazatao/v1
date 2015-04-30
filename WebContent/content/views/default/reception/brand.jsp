@@ -2975,7 +2975,6 @@
 
 			</ul>
 		</div>
-		</div>
 		<!-------------page over------------------------->
 		<div class="clear"></div>
 		<jsp:include page="../common/foot.jsp"></jsp:include>

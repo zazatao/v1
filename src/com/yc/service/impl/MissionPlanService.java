@@ -26,10 +26,4 @@ public class MissionPlanService  extends GenericService<MissionPlan>  implements
 		StringBuffer hql = new StringBuffer(" from MissionPlan  misPlan where misPlan.fromPer.id = "+personnel.getId()+" or misPlan.toPer.id = "+personnel.getId()+" order by id desc");
 		return missionPlanDao.find(hql.toString(), null, null);
 	}
-	
-	@Override
-	public List<MissionPlan> getAllByToPer(Personnel personnel) {
-		StringBuffer hql = new StringBuffer("  from MissionPlan  misPlan where misPlan.toPer.id = "+personnel.getId() + " and misPlan.advState = 'InProgress'");
-		return  missionPlanDao.find(hql.toString(), null, null);
-	}
 }

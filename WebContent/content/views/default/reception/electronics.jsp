@@ -438,7 +438,6 @@
                     
                 </ul>
         </div>
-        </div>
         <!---right_cen_3 over---->
     </div>
     <div class="clear"></div>

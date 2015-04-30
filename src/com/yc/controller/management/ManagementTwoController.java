@@ -26,16 +26,21 @@ import com.yc.entity.Shop;
 import com.yc.entity.ShopCommoidty;
 import com.yc.entity.Ticket;
 import com.yc.entity.user.DepartAndPositions;
+import com.yc.entity.user.Department;
+import com.yc.entity.user.Personnel;
+import com.yc.entity.user.Sex;
 import com.yc.entity.user.User;
 import com.yc.service.IBlacklistService;
 import com.yc.service.IDepartAndPositionsService;
+import com.yc.service.IDepartmentService;
+import com.yc.service.IPersonnelService;
 import com.yc.service.IPromotionCodeService;
 import com.yc.service.IShopCommoidtyService;
 import com.yc.service.IShopService;
 import com.yc.service.ITicketService;
 import com.yc.service.IUserService;
 
-//管理
+//绠＄悊
 @Controller
 @RequestMapping("/management")
 public class ManagementTwoController {
@@ -63,6 +68,16 @@ public class ManagementTwoController {
 	@Autowired
 	IPromotionCodeService promotionCodeService;
 
+	@Autowired
+	IPersonnelService personnelService;
+	
+	@Autowired
+	IDepartAndPositionsService depAndPosService;
+	
+	@Autowired
+	IDepartmentService departmentService;
+	
+	
 	@RequestMapping(value = "blacklistStores", method = RequestMethod.GET)
 	public ModelAndView blacklist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Blacklist> list = blacklistService.getBlacklistByBlacklistType(BlacklistType.stores);
@@ -411,4 +426,133 @@ public class ManagementTwoController {
 		return new ModelAndView("management/promotionCode", mode);
 	}
 	
+	@RequestMapping(value = "personnel", method = RequestMethod.GET)
+	public ModelAndView getAllPersonnel() throws ServletException, IOException {
+		ModelMap mode = new ModelMap();
+		List<Personnel> personnelList = personnelService.getAll();
+		List<Department> departmentList = departmentService.getAll();
+		mode.put("departmentlist", departmentList);
+		mode.put("personnellist", personnelList);
+
+		return new ModelAndView("management/personnel", mode);
+	}
+	
+	@RequestMapping(value = "addPersonnel", method = RequestMethod.GET)
+	public ModelAndView addPersonnel(Integer id,String mathed,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ModelMap mode = new ModelMap();
+		List<Department> departmentList = departmentService.getAll();
+ 		if (mathed.equals("add")) {		
+			if (id != null) {
+				mode.put("id", id);
+				mode.put("mathed", "add");
+				mode.put("page", "personnel");	
+				mode.put("departmentlist", departmentList);
+				return new ModelAndView("management/addPersonnel",mode);
+			}else{
+				mode.put("mathed", "add");
+				mode.put("page", "personnel");	
+				mode.put("departmentlist", departmentList);
+				return new ModelAndView("management/addPersonnel",mode);
+			}
+		}else{
+			Personnel personnel = personnelService.findById(id);
+			mode.put("personnel", personnel);
+			mode.put("mathed", "update");
+			mode.put("page", "personnel");
+			mode.put("departmentlist", departmentList);
+			return  new ModelAndView("management/addPersonnel",mode);
+		}
+	}
+	
+	@RequestMapping(value = "addPersonnelList", method = RequestMethod.POST)
+	public String addPersonnelList(Integer id,String loginName, String password, String sex, String userName,Integer position_id, 
+			Integer department_id,String phone, String email, Integer accomplishNum, String mathed,String page,
+			HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Sex sex1 = null;
+		if (sex != null)
+		{
+			if (sex.equals("女"))
+				sex1 = Sex.Female;
+			else
+				sex1 = Sex.Male;
+		}
+		
+		if (mathed.equals("add")) {
+			if (page.equals("personnel")) {
+				DepartAndPositions depAndPos = depAndPosService.getAllByDepAndPos(department_id, position_id);
+				Personnel personnel = new Personnel();
+				personnel.setLoginName(loginName);
+				personnel.setPassword(password);
+				personnel.setUserName(userName);
+				personnel.setSex(sex1);
+				personnel.setPhone(phone);
+				personnel.setEmail(email);
+				personnel.setAccomplishNum(accomplishNum);			
+				personnel.setDepartAndPositions(depAndPos);
+				personnelService.save(personnel);
+			}
+		}else{
+			DepartAndPositions depAndPos = depAndPosService.getAllByDepAndPos(department_id, position_id);
+			Personnel personnel = personnelService.findById(id);
+			personnel.setPhone(phone);
+			personnel.setEmail(email);
+			personnel.setAccomplishNum(accomplishNum);
+			personnel.setDepartAndPositions(depAndPos);
+			personnelService.update(personnel);	
+		}
+		return "redirect:/management/personnel";
+	}
+	@RequestMapping(value = "forbiddenPersonnel", method = RequestMethod.GET)
+	public String forbiddenPersonnel(Integer id,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Personnel personnel = personnelService.findById(id);
+		if( personnel.getForbidden() != null )
+		{
+			personnel.setForbidden(null);
+		}
+		
+		else
+		{
+			personnel.setForbidden("已禁用");
+		}
+		personnelService.update(personnel);
+		return "redirect:/management/personnel";
+	}
+	
+	@RequestMapping(value = "searchPersonnelResult", method = RequestMethod.POST)
+	public ModelAndView searchPersonnelResult(String userName,Integer position_id,Integer department_id,
+				String forbidden, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (userName.equals("")) {
+			map.put("userName", null);
+		}else{
+			map.put("userName", userName);
+		}
+		
+		if (position_id == 0 ) {
+			map.put("positionid", null);
+		} else {
+			map.put("positionid", position_id);
+		}
+		
+		if (department_id == 0 ) {
+			map.put("departmentID", null);
+		} else {
+			map.put("departmentID", department_id);
+		}
+		
+		if ( forbidden.equals("info") ) {
+			map.put("forbidden", null);
+		} else {
+			map.put("forbidden", forbidden);
+		}
+		
+		List<Personnel> list = personnelService.getAllByParametersForManage(map);	
+		List<Department> departmentList = departmentService.getAll();
+		
+		ModelMap mode = new ModelMap();
+		mode.put("personnellist", list);
+		mode.put("departmentlist", departmentList);
+		return new ModelAndView("management/personnel",mode);
+	}
 }

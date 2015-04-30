@@ -14,8 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-
 import com.yc.entity.Commodity;
 import com.yc.entity.OrderForm;
 import com.yc.entity.TransitSite;
@@ -23,7 +21,6 @@ import com.yc.entity.UnKnownCommodity;
 
 @Entity
 @DiscriminatorValue("personnel")//员工
-@JsonIgnoreProperties(value = { "unCommOperators", "commOperators", "purchases", "orderForms","address","transitSites" })
 public class Personnel {
 
 	@Id
@@ -56,6 +53,9 @@ public class Personnel {
 	@Column
 	private Integer accomplishNum;//完成订单数
 	
+	@Column
+	private String forbidden;
+
 	@OneToMany(mappedBy = "storeOperator")
     private List<Commodity> commOperators ;//仓库接收订单
 	
@@ -181,6 +181,14 @@ public class Personnel {
 
 	public void setOrderForms(List<OrderForm> orderForms) {
 		this.orderForms = orderForms;
+	}
+
+	public String getForbidden() {
+		return forbidden;
+	}
+
+	public void setForbidden(String forbidden) {
+		this.forbidden = forbidden;
 	}
 	
 }

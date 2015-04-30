@@ -18,11 +18,14 @@ public class PackageGenre {
 	private Integer id;
 
 	@Column
-	private String attribute;
+	private String attribute;//,xx-xx,,体积-7*8*7,
 	
 	@Column
 	private Integer num;
 	
+	@Column
+	private Integer price;
+
 	@ManyToOne
 	@JoinColumn(name = "packageSize_id")
 	private PackageSize packageSize;
@@ -57,6 +60,14 @@ public class PackageGenre {
 
 	public void setPackageSize(PackageSize packageSize) {
 		this.packageSize = packageSize;
+	}
+	
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
 	}
 	
 }

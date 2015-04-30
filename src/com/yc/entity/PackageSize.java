@@ -10,11 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-
 @Entity
 @DiscriminatorValue("packageSize")
-@JsonIgnoreProperties(value={"packAge"})
 public class PackageSize {
 
 	@Id

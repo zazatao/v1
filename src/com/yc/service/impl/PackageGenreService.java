@@ -16,5 +16,4 @@ public class PackageGenreService extends GenericService<PackageGenre> implements
 	GenericDao<PackageGenre> getDao() {
 		return genericDao;
 	}
-
 }

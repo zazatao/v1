@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yc.entity.BuyCat;
 import com.yc.entity.CarCommoidty;
-import com.yc.entity.MissionPlan;
 import com.yc.entity.ShopCategory;
 import com.yc.entity.user.DepartAndPositions;
 import com.yc.entity.user.Personnel;
@@ -30,7 +29,6 @@ import com.yc.model.BuyCatSession;
 import com.yc.service.IBuyCatService;
 import com.yc.service.ICarCommoidtyService;
 import com.yc.service.IDepartAndPositionsService;
-import com.yc.service.IMissionPlanService;
 import com.yc.service.IPersonnelService;
 import com.yc.service.IShopCategoryService;
 
@@ -52,9 +50,6 @@ public class GetShopCategory {
 	
 	@Autowired
 	IPersonnelService personnelService;
-	
-	@Autowired
-	IMissionPlanService planService;
 	
 	@RequestMapping(value = "shopCategoryAll", method = RequestMethod.GET)
 	@ResponseBody
@@ -229,25 +224,8 @@ public class GetShopCategory {
     	ModelMap mode = new ModelMap();
     	DepartAndPositions depAndPos =  departAndPositionsService.getAllByDepAndPos(depID, posID);
     	List<Personnel> list = personnelService.getAllByDepAndPos(depAndPos);
-    	mode.put("personnels", list);
-    	mode.put("success", "true");
+    	System.out.println("list.size==============="+list.size());
+    	mode.put("list", list);
     	return mode;
     }
-    
-    @RequestMapping(value = "getPlanNum", method = RequestMethod.GET)
-    @ResponseBody
-    public Map<String, Object> getPlanNum( HttpServletRequest request) throws ServletException, IOException {
-    	ModelMap mode = new ModelMap();
-    	Personnel personnel = (Personnel)request.getSession().getAttribute("loginPersonnle");
-    	List<MissionPlan> list = planService.getAllByToPer(personnel);
-    	if (list != null && list.size()>0) {
-			Integer num = list.size();
-			mode.put("num", num);
-		}else{
-			mode.put("num", 0);
-		}
-    	mode.put("success", "true");
-    	return mode;
-    }
-    
 }

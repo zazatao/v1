@@ -144,16 +144,43 @@
 													style="font-size: 16px;">+</font></span>
 											</div>
 										</div>
+										
 										<div class="form-group">
 											<label for="inputEmail3" class="col-sm-1 control-label">尺寸</label>
 											<div class="col-sm-2"> 
 												<select class="form-control" onchange="packageGenre(this);" id="genre">
 														<option value="">---选择尺寸---</option>
-													<c:forEach items="${size.packageGenres }" var="packageGenre">
-														<option value="${packageGenre.id }">${packageGenre.attribute }</option>
-													</c:forEach>
 												</select>
-											</div>
+										</div>
+											
+										<script type="text/javascript">
+											$(document).ready(function(){
+												var pos = document.getElementById('genre');
+												var numd = pos.options.length;
+												for (i = numd - 1; i >= 0; i--) {
+													pos.remove(i);
+												}
+												var objOption = new Option("---选择尺寸---", "");
+												pos.options[pos.options.length] = objOption;
+												<c:forEach items="${size.packageGenres }" var="packageGenre">
+													var item = '${packageGenre.attribute}'.split(',');
+													var volume = "";
+													for (i=0;i<item.length ;i++ )   
+													 {   
+														 if( item[i] != '' && item[i].indexOf("体积") >= 0 )
+														 {
+															 volume = item[i].split("-")[1];
+															 break;
+														 }
+													 }
+													
+													var objOption = new Option(volume ,
+															"${packageGenre.id }");
+													pos.options[pos.options.length] = objOption;
+												</c:forEach>
+											});
+										</script>
+										
 											<div class="col-sm-1">
 												<input type="text" name="l"
 													class="form-control" id="l"
@@ -344,14 +371,29 @@
 			location.href ='./updatePacke?id='+id+"&genre="+genre+"&weight="+weight+"&grossWeight="+grossWeight;
 		}
 	}
+	function getVolumn(){
+		alert(1111);
+		/* var item = obj.split(",");
+		for (i=0;i<item.length ;i++ )   
+		 {   
+			 if( item[i].indexOf("体积") > 0 )
+			 {
+				 break;
+			 }
+		 } 		 
+		 var volume = item[i].split("-");
+		 document.getElementById("genre").o
+		 alert(volumn); */
+	}
+	
 	function packageGenre(obj){
-		var item = obj.options[obj.selectedIndex].text.split("x");
+		 var item = obj.options[obj.selectedIndex].text.split("x");
 		 for (i=0;i<item.length ;i++ )   
 		 {   
 			 $('#l').val(item[0]+"cm");
 			 $('#w').val(item[1]+"cm");
 			 $('#h').val(item[2]+"cm");
-		 }   
+		 }  
 	}
 	$(document).ready(function(){
 	   if ($('#weightText').val() == '') {

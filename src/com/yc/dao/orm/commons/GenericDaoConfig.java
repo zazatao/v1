@@ -143,13 +143,24 @@ public class GenericDaoConfig {
 	public GenericDao<DepartAndPositions> getDepartAndPositionsDao() {
 		return new GenericDaoSupport<DepartAndPositions>(DepartAndPositions.class);	
 	}
+	
 	@Bean
 	public GenericDao<PromotionCode> getPromotionCodeDao() {
 		return new GenericDaoSupport<PromotionCode>(PromotionCode.class);	
 	}
+	
 	@Bean
 	public GenericDao<MissionPlan> getMissionPlanDao() {
 		return new GenericDaoSupport<MissionPlan>(MissionPlan.class);	
 	}
 	
+	@Bean
+	public GenericDao<Material> getMaterialDao() {
+		return new GenericDaoSupport<Material>(Material.class);	
+	}
+	
+	@Bean
+	public GenericDao<Currency> getCurrencyDao() {
+		return new GenericDaoSupport<Currency>(Currency.class);	
+	}
 }

@@ -92,7 +92,7 @@
 								<li><a href="#">账单计划</a></li>
 								<li><a href="#">操作计划</a></li>
 								<li><a href="#">账户计算</a></li>
-								<li><a href="#">材料</a></li>
+								<li><a href="./shop/material">材料</a></li>
 								<li><a href="#">基础操作</a></li>
 								<li><a href="#">保存地</a></li>
 								<li><a href="#">承包商</a></li>
@@ -108,13 +108,11 @@
 							</ul></li>
 					</ul></li>
 					</c:if>
+<%-- 					<c:if test="${personnel.departAndPositions.department.departmentID == 26 || personnel.departAndPositions.department.departmentID == 1 }"> --%>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">管理 <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-					<li><a href="./management/missionPlan">任务计划</a>
-							</li>
-					<c:if test="${personnel.departAndPositions.department.departmentID == 26 || personnel.departAndPositions.department.departmentID == 1 }">
-						<!-- 						<li class="dropdown-submenu"><a href="#">诊断</a> -->
+<!-- 						<li class="dropdown-submenu"><a href="#">诊断</a> -->
 <!-- 							<ul class="dropdown-menu"> -->
 <!-- 								<li><a href="#">状态</a></li> -->
 <!-- 								<li><a href="#">高峰期</a></li> -->
@@ -133,6 +131,8 @@
 								<li><a href="#">部门格子</a></li>
 								<li><a href="#">包装盒</a></li>
 							</ul></li>
+						<li><a href="./management/missionPlan">任务计划</a>
+							</li>
 						<li class="dropdown-submenu"><a href="#">管理</a>
 							<ul class="dropdown-menu">
 								<li><a href="./management/department">组织机构</a></li>
@@ -193,7 +193,7 @@
 								<li><a href="./management/blacklistGoods">商品黑名单</a></li>
 							</ul></li>
 						<li><a href="./management/merchantsSettled">入驻商家</a></li>
-						<li class="dropdown-submenu"><a href="./personnel/personnel">员工</a>
+						<li class="dropdown-submenu"><a href="./management/personnel">员工</a>
 							<ul class="dropdown-menu">
 								<li><a href="#">操作员</a></li>
 								<li><a href="#">发货员</a></li>
@@ -202,8 +202,8 @@
 								<li><a href="#">总经理</a></li>
 							</ul></li>
 						<li><a href="./management/user">用户</a></li>
-					</c:if>
 					</ul></li>
+<%-- 					</c:if> --%>
 				<c:if test="${personnel.departAndPositions.department.departmentID == 1 }">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">统计 <span class="caret"></span></a>
@@ -221,7 +221,6 @@
 				</c:if>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="./management/missionPlan"><font color="blue"><div id="nums"></div></font></a></li>
 				<li><a href="#"><c:out value="${personnel.userName }"></c:out></a></li>
 				<li><a href="./personnel/logout">退出</a></li>
 			</ul>
@@ -230,18 +229,3 @@
 	</div>
 	<!--/.container-fluid -->
 </nav>
-<script type="text/javascript">
-	$(document).ready(function() {
-		jQuery.ajax({
-			type : 'GET',
-			contentType : 'application/json',
-			url : './getShopCategory/getPlanNum',
-			dataType : 'json',
-			success : function(data) {
-				if (data.success == 'true') {
-					$('#nums').html("您有任务(" + data.num + ")");
-				}
-			}
-		});
-	});
-</script>
