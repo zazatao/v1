@@ -263,7 +263,7 @@
 																<td height="30" colspan="5">没有符合条件的商品，请尝试其他搜索条件。</td>
 															</c:if>
 															<td height="30"><div align="center">${comm.nameOfGoods }</div></td>
-															<td><div align="center">${comm.price }</div></td>
+															<td><div align="center">${comm.currency.symbol }${comm.price }</div></td>
 															<td><div align="center">${comm.quantity }</div></td>
 															<td><div align="center"></div></td>
 															<td><div align="center">${order.orderUser.userName }</div></td>
@@ -412,7 +412,7 @@
 														<c:forEach items="${order.commodities }" var="comm">
 															<tr>
 																<td height="30"><div align="center">${comm.nameOfGoods }</div></td>
-																<td><div align="center">${comm.price }</div></td>
+																<td><div align="center">${comm.currency.symbol }${comm.price }</div></td>
 																<td><div align="center">${comm.quantity }</div></td>
 																<td><div align="center"></div></td>
 																<td><div align="center">${order.orderUser.userName }</div></td>
@@ -515,7 +515,7 @@
 														<c:forEach items="${order.commodities }" var="comm">
 															<tr>
 																<td height="30"><div align="center">${comm.nameOfGoods }</div></td>
-																<td><div align="center">${comm.price }</div></td>
+																<td><div align="center">${comm.currency.symbol }${comm.price }</div></td>
 																<td><div align="center">${comm.quantity }</div></td>
 																<td><div align="center"></div></td>
 																<td><div align="center">${order.orderUser.userName }</div></td>
@@ -618,7 +618,7 @@
 														<c:forEach items="${order.commodities }" var="comm">
 															<tr>
 																<td height="30"><div align="center">${comm.nameOfGoods }</div></td>
-																<td><div align="center">${comm.price }</div></td>
+																<td><div align="center">${comm.currency.symbol }${comm.price }</div></td>
 																<td><div align="center">${comm.quantity }</div></td>
 																<td><div align="center"></div></td>
 																<td><div align="center">${order.orderUser.userName }</div></td>
@@ -705,7 +705,7 @@
 														<c:forEach items="${order.commodities }" var="comm">
 															<tr>
 																<td height="30"><div align="center">${comm.nameOfGoods }</div></td>
-																<td><div align="center">${comm.price }</div></td>
+																<td><div align="center">${comm.currency.symbol }${comm.price }</div></td>
 																<td><div align="center">${comm.quantity }</div></td>
 																<td><div align="center"></div></td>
 																<td><div align="center">${order.orderUser.userName }</div></td>
@@ -769,7 +769,7 @@
 														<c:forEach items="${order.commodities }" var="comm">
 															<tr>
 																<td height="30"><div align="center">${comm.nameOfGoods }</div></td>
-																<td><div align="center">${comm.price }</div></td>
+																<td><div align="center">${comm.currency.symbol }${comm.price }</div></td>
 																<td><div align="center">${comm.quantity }</div></td>
 																<td><div align="center"></div></td>
 																<td><div align="center">${order.orderUser.userName }</div></td>

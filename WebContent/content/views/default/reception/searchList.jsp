@@ -187,7 +187,7 @@
 						</li>
 						</c:forEach>
 						<li class="tjcm">
-							<div class="tjsl">价格 :</div> <a href="#" rel="nofollow"
+							<div class="tjsl">价格(元) :</div> <a href="#" rel="nofollow"
 							class="black" title="0-89" onclick="searchs('0@89','money');">0-89</a>
 							<a href="#" rel="nofollow" class="black" title="90-199"
 							onclick="searchs('90@199','money');">90-199</a> <a href="#"
@@ -408,7 +408,7 @@
 										<div class="slidernumb" style="display: none;">0</div>
 									</dt>
 									<dd>
-										<span class="red">$ <c:out value="${commShop.unitPrice +surs[0].fare}"></c:out></span><span
+										<span class="red">${commShop.currency.symbol} <c:out value="${commShop.unitPrice +surs[0].fare}"></c:out></span><span
 											class="p1"><a href="../proscenium/shopItem?commID=${commShop.commCode }&category=${id }&shopID=${commShop.belongTo.id }&commoName=${commShop.commoidtyName }">
 											<img src="../content/static/images/con_10.png" /></a></span><span
 											class="p2"><a href="#"><img

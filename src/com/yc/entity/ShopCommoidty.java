@@ -53,8 +53,9 @@ public class ShopCommoidty {
 	@Column
 	private Float  special  = 1f;//打几折
 	
-	@Column
-	private String currency;//币种
+	@OneToOne
+	@JoinColumn(name = "currency_id")
+	private Currency currency;// 币种
 	
 	@Column
 	private  Boolean iscChoice = false;//是否精品
@@ -116,11 +117,11 @@ public class ShopCommoidty {
 		this.commsPecs = commsPecs;
 	}
 
-	public String getCurrency() {
+	public Currency getCurrency() {
 		return currency;
 	}
 
-	public void setCurrency(String currency) {
+	public void setCurrency(Currency currency) {
 		this.currency = currency;
 	}
 

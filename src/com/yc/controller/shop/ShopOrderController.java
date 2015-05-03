@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Commodity;
+import com.yc.entity.Currency;
 import com.yc.entity.ImagePath;
 import com.yc.entity.OrderForm;
 import com.yc.entity.OrderStatus;
@@ -199,8 +200,8 @@ public class ShopOrderController {
 		c.setMoney(money);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		of.setOrderDate(sdf.format(new Date()));
-		String currency = request.getParameter("currency");
-		c.setCurrency(currency);
+//		String currency = request.getParameter("currency");
+//		c.setCurrency(currency);
 		c.setOrderNumber(of);
 		orderFormService.save(of);
 		personnelService.save(person);

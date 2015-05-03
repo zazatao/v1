@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 @DiscriminatorValue("carcommoidty")//购物车商品
@@ -52,8 +53,9 @@ public class CarCommoidty {
 	@Column
 	private Float  special  = 1f;//打几折
 	
-	@Column
-	private String currency;//币种
+	@OneToOne
+	@JoinColumn(name = "currency_id")
+	private Currency currency;// 币种
 	
 	@Column
 	private  Boolean iscChoice = false;//是否精品
@@ -188,11 +190,11 @@ public class CarCommoidty {
 		this.special = special;
 	}
 
-	public String getCurrency() {
+	public Currency getCurrency() {
 		return currency;
 	}
 
-	public void setCurrency(String currency) {
+	public void setCurrency(Currency currency) {
 		this.currency = currency;
 	}
 

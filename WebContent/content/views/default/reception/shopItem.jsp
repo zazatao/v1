@@ -168,19 +168,21 @@
 					<h2>
 						现价：
 						<c:if test="${shopCommoidty.isSpecial }">
-							<span class="red">￥ <fmt:formatNumber
-								value="${shopCommoidty.unitPrice * shopCommoidty.special +surs[0].fare }"
+							<span class="red">${shopCommoidty.currency.symbol } <fmt:formatNumber
+								value="${shopCommoidty.unitPrice * shopCommoidty.special  +surs[0].fare }"
 								pattern="##.##" minFractionDigits="2"></fmt:formatNumber></span>
 						</c:if>
 						<c:if test="${!shopCommoidty.isSpecial }">
-							<span class="red">￥ <fmt:formatNumber
-								value="${shopCommoidty.unitPrice + surs[0].fare}"
-								pattern="##.##" minFractionDigits="2"></fmt:formatNumber></span>
+							<span class="red">fdgfd${shopCommoidty.currency.symbol + surs[0].fare }
+							<fmt:formatNumber
+								value="${shopCommoidty.unitPrice }"
+								pattern="##.##" minFractionDigits="2">
+							</fmt:formatNumber>
+							</span>
 						</c:if>
 						<p>
-							原价：<span class="thr">￥ ${shopCommoidty.unitPrice + surs[0].fare}
-							<input type="hidden" id="fare" value="${surs[0].fare}">
-							</span>
+							原价：<span class="thr">${shopCommoidty.currency.symbol }${shopCommoidty.unitPrice + surs[0].fare}
+							<input type="hidden" id="fare" value="${surs[0].fare}"></span>
 						</p>
 					</h2>
 					<div class="th">

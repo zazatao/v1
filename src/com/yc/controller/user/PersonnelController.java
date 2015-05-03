@@ -41,19 +41,28 @@ public class PersonnelController {
         String name = request.getParameter("name");
         String pwd = request.getParameter("password");
         HttpSession session = request.getSession();
+        session.removeAttribute("message");
         Personnel personnel = personnelService.getPersonnle(name);
         if (personnel == null) {
             request.getSession().setAttribute("message", "noPersonnle");
             return "redirect:/personnel";
         } else {
-        	 if(personnel.getPassword().equals(pwd.trim())){
-        		 session.setAttribute("loginPersonnle", personnel);
-        		  return "redirect:/homePage";
-            } else {
-                System.out.println("密码错误！！");
-                request.getSession().setAttribute("message", "noPersonnle");
+        	if (personnel.getForbidden() == null) {
+        		if(personnel.getPassword().equals(pwd.trim())){    		 
+        		 	session.setAttribute("loginPersonnle", personnel);
+        		 	return "redirect:/homePage";
+        		}   else {
+                    System.out.println("密码错误！！");
+                    request.getSession().setAttribute("message", "用户名或密码错误，请重新输入您的登陆信息");
+                    return "redirect:/personnel";
+                }    		 
+            } 
+        	
+        	else {
+        		System.out.println("您已经被禁止了！");
+       		 	request.getSession().setAttribute("message", "您已经被禁止了");
                 return "redirect:/personnel";
-            }
+        	}
         }
     }
     @RequestMapping(value = "regist", method = RequestMethod.GET)

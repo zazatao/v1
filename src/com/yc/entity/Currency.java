@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 @DiscriminatorValue("currency")//鉴别字段，币种表
@@ -25,6 +26,39 @@ public class Currency {
 	//符号
 	@Column
 	private String symbol;
+	
+	@OneToOne(mappedBy = "currency")
+	private Commodity commodity;
+	
+	@OneToOne(mappedBy = "currency")
+	private CarCommoidty carcommodity;
+	
+	@OneToOne(mappedBy = "currency")
+	private ShopCommoidty shopCommoidty;
+
+	public Commodity getCommodity() {
+		return commodity;
+	}
+
+	public void setCommodity(Commodity commodity) {
+		this.commodity = commodity;
+	}
+
+	public CarCommoidty getCarcommodity() {
+		return carcommodity;
+	}
+
+	public void setCarcommodity(CarCommoidty carcommodity) {
+		this.carcommodity = carcommodity;
+	}
+
+	public ShopCommoidty getShopCommoidty() {
+		return shopCommoidty;
+	}
+
+	public void setShopCommoidty(ShopCommoidty shopCommoidty) {
+		this.shopCommoidty = shopCommoidty;
+	}
 
 	public Integer getId() {
 		return id;
