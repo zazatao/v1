@@ -169,16 +169,18 @@
 						现价：
 						<c:if test="${shopCommoidty.isSpecial }">
 							<span class="red">￥ <fmt:formatNumber
-								value="${shopCommoidty.unitPrice * shopCommoidty.special }"
+								value="${shopCommoidty.unitPrice * shopCommoidty.special +surs[0].fare }"
 								pattern="##.##" minFractionDigits="2"></fmt:formatNumber></span>
 						</c:if>
 						<c:if test="${!shopCommoidty.isSpecial }">
 							<span class="red">￥ <fmt:formatNumber
-								value="${shopCommoidty.unitPrice }"
+								value="${shopCommoidty.unitPrice + surs[0].fare}"
 								pattern="##.##" minFractionDigits="2"></fmt:formatNumber></span>
 						</c:if>
 						<p>
-							原价：<span class="thr">￥ ${shopCommoidty.unitPrice }</span>
+							原价：<span class="thr">￥ ${shopCommoidty.unitPrice + surs[0].fare}
+							<input type="hidden" id="fare" value="${surs[0].fare}">
+							</span>
 						</p>
 					</h2>
 					<div class="th">
@@ -252,11 +254,12 @@
 							var commID = $('#commID').val();
 							var params = $('#params').val();
 							var buyAmount = $('#buyAmount').val();
+							var fare = $('#fare').val();
 							if(params != ""){
 							jQuery.ajax({
 								type : 'GET',
 								contentType : 'application/json',
-								url : '../proscenium/buyCat?params='+params+'&commID='+commID+'&buyAmount='+buyAmount,
+								url : '../proscenium/buyCat?params='+params+'&commID='+commID+'&buyAmount='+buyAmount+'&fare='+fare,
 								dataType : 'json',
 								success : function(data) {
 									if(data.success == 'true'){

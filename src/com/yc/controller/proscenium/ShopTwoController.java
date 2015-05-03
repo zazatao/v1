@@ -161,7 +161,7 @@ public class ShopTwoController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "buyCat", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> buyCat(Integer commID ,String params, Integer buyAmount, HttpServletRequest request) throws ServletException, IOException {
+	public Map<String, Object> buyCat(Integer commID ,String params, Integer buyAmount,Float fare, HttpServletRequest request) throws ServletException, IOException {
 		ModelMap mode = new ModelMap();
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("loginUser");
@@ -186,6 +186,7 @@ public class ShopTwoController {
 			carcomm.setBrand(comm.getBrand());
 			carcomm.setCarbelongTo(comm.getBelongTo());
 			carcomm.setDescribes(comm.getDescribes());
+			carcomm.setFare(fare);
 			carcomm = carCommoidtyService.save(carcomm);
 			if (user == null) {
 				BuyCatSession buyCat = new BuyCatSession();
@@ -566,8 +567,8 @@ public class ShopTwoController {
 							commodity.setQuantity(buyCat.getBuyAmount());
 							commodity.setWeight(buyCat.getShopCommoidty().getProbablyWeight() * buyCat.getBuyAmount());
 							commodity.setNameOfGoods(buyCat.getShopCommoidty().getCommoidtyName());
-							commodity.setPrice(buyCat.getShopCommoidty().getUnitPrice() * buyCat.getShopCommoidty().getSpecial());
-							commodity.setMoney(buyCat.getShopCommoidty().getUnitPrice() * buyCat.getShopCommoidty().getSpecial() * buyCat.getBuyAmount());
+							commodity.setPrice(buyCat.getShopCommoidty().getUnitPrice() * buyCat.getShopCommoidty().getSpecial() +  buyCat.getShopCommoidty().getFare()* buyCat.getBuyAmount());
+							commodity.setMoney(buyCat.getShopCommoidty().getUnitPrice() * buyCat.getShopCommoidty().getSpecial() * buyCat.getBuyAmount() +  buyCat.getShopCommoidty().getFare()* buyCat.getBuyAmount());
 							commodity.setCurrency(buyCat.getShopCommoidty().getCurrency());
 							commodity.setCommSpec(buyCat.getSpecs());
 							commodity.setShopcategory(buyCat.getShopCommoidty().getCarCategory());

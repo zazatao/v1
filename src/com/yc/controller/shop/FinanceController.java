@@ -348,7 +348,7 @@ public class FinanceController {
 	}
 	
 	@RequestMapping(value = "addSuercharges", method = RequestMethod.POST)
-	public ModelAndView addSuerchargesP(Integer id,Double fare, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String addSuerchargesP(Integer id,Double fare, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("id============="+id);
 		if (id != null && !id.equals("")) {
 			Surcharges sur = surchargesService.findById(id);
@@ -359,7 +359,7 @@ public class FinanceController {
 			surs.setFare(fare);
 			surchargesService.save(surs);
 		}
-		return new ModelAndView("management/success");
+		return "redirect:/shop/surcharges";
 	}
 	
 	@RequestMapping(value = "deleteSurchargesById", method = RequestMethod.GET)

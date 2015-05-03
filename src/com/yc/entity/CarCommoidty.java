@@ -35,6 +35,9 @@ public class CarCommoidty {
 	private Float  unitPrice =0f;//单价
 	
 	@Column
+	private Float fare = 0f;//附加费
+	
+	@Column
 	private Integer stock = 1 ;//库存总数量
 	
 	@Column(nullable = true)
@@ -72,6 +75,14 @@ public class CarCommoidty {
 	
 	@Column
 	private String describes;//描述
+
+	public Float getFare() {
+		return fare;
+	}
+
+	public void setFare(Float fare) {
+		this.fare = fare;
+	}
 
 	public String getDescribes() {
 		return describes;

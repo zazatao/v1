@@ -42,6 +42,8 @@ public class Commodity {
 	@Column
 	private Float price;// 价格
 	@Column
+	private Float fare;//附加费
+	@Column
 	private Float money;// 金额
 	@Column
 	private String currency;// 币种
@@ -102,6 +104,14 @@ public class Commodity {
 	@Column
 	private String notes;
 	
+	public Float getFare() {
+		return fare;
+	}
+
+	public void setFare(Float fare) {
+		this.fare = fare;
+	}
+
 	public String getNotes() {
 		return notes;
 	}

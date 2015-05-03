@@ -794,6 +794,8 @@ public class ShopOneController {
 				}
 			}
 		}
+		List<Surcharges> surs = surchargesService.getAll();
+		mode.put("surs", surs);
 		mode.put("shopCommoidty", shopCommoidty);
 		mode.put("map", map);
 		User user = (User)request.getSession().getAttribute("loginUser");
