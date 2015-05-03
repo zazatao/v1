@@ -30,7 +30,7 @@
 					<div class="col-md-6 column">
 						<p>
 							<c:if test="${not empty message }">
-								<font color="red">用户名或密码错误，请重新输入您的登陆信息</font>
+								<font color="red">${message }</font>
 							</c:if>
 						</p>
 						<form class="form-horizontal" action="personnel/login" method="POST">

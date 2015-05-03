@@ -50,7 +50,8 @@ public class CarCommoidty {
 	@Column
 	private Float  special  = 1f;//打几折
 	
-	@OneToOne(mappedBy = "carcommodity")
+	@OneToOne
+	@JoinColumn(name = "currency_id")
 	private Currency currency;// 币种
 	
 	@Column

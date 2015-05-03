@@ -45,7 +45,8 @@ public class Commodity {
 	@Column
 	private Float money;// 金额
 
-	@OneToOne(mappedBy = "commodity")
+	@OneToOne
+	@JoinColumn(name = "currency_id")
 	private Currency currency;// 币种
 	
 	@Column

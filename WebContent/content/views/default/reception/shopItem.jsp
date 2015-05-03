@@ -168,17 +168,20 @@
 					<h2>
 						现价：
 						<c:if test="${shopCommoidty.isSpecial }">
-							<span class="red">￥ <fmt:formatNumber
+							<span class="red">${shopCommoidty.currency.symbol } <fmt:formatNumber
 								value="${shopCommoidty.unitPrice * shopCommoidty.special }"
 								pattern="##.##" minFractionDigits="2"></fmt:formatNumber></span>
 						</c:if>
 						<c:if test="${!shopCommoidty.isSpecial }">
-							<span class="red">￥ <fmt:formatNumber
+							<span class="red">fdgfd${shopCommoidty.currency.symbol }
+							<fmt:formatNumber
 								value="${shopCommoidty.unitPrice }"
-								pattern="##.##" minFractionDigits="2"></fmt:formatNumber></span>
+								pattern="##.##" minFractionDigits="2">
+							</fmt:formatNumber>
+							</span>
 						</c:if>
 						<p>
-							原价：<span class="thr">￥ ${shopCommoidty.unitPrice }</span>
+							原价：<span class="thr">${shopCommoidty.currency.symbol }${shopCommoidty.unitPrice }</span>
 						</p>
 					</h2>
 					<div class="th">

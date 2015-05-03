@@ -27,14 +27,13 @@ public class Currency {
 	@Column
 	private String symbol;
 	
-	@OneToOne
+	@OneToOne(mappedBy = "currency")
 	private Commodity commodity;
 	
-	@OneToOne
+	@OneToOne(mappedBy = "currency")
 	private CarCommoidty carcommodity;
 	
-	@OneToOne
-	//@JoinColumn(name = "currency_id")
+	@OneToOne(mappedBy = "currency")
 	private ShopCommoidty shopCommoidty;
 
 	public Commodity getCommodity() {

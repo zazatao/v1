@@ -53,7 +53,8 @@ public class ShopCommoidty {
 	@Column
 	private Float  special  = 1f;//打几折
 	
-	@OneToOne(mappedBy = "commodity")
+	@OneToOne
+	@JoinColumn(name = "currency_id")
 	private Currency currency;// 币种
 	
 	@Column

@@ -146,17 +146,17 @@
 										</dd>
 										<dd>
 										<c:if test="${shopCar.shopCommoidty.isSpecial }">
-											<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount }" type="currency" pattern="#,###.00#"/>
+											<fmt:formatNumber value="${shopCar.shopCommoidty.currency.symbol }${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount }" type="currency" pattern="#,###.00#"/>
 										</c:if>
 										<c:if test="${!shopCar.shopCommoidty.isSpecial }">
-											<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice * shopCar.buyAmount }" type="currency" pattern="#,###.00#"/>
+											<fmt:formatNumber value="${shopCar.shopCommoidty.currency.symbol }${shopCar.shopCommoidty.unitPrice * shopCar.buyAmount }" type="currency" pattern="#,###.00#"/>
 										</c:if>
 										</dd>
 										<c:if test="${shopCar.shopCommoidty.isSpecial }">
-											<c:set var="sum" value="${sum + shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount}"></c:set>
+											<c:set var="sum" value="${shopCar.shopCommoidty.currency.symbol }${sum + shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount}"></c:set>
 										</c:if>
 										<c:if test="${!shopCar.shopCommoidty.isSpecial }">
-											<c:set var="sum" value="${sum + shopCar.shopCommoidty.unitPrice * shopCar.buyAmount}"></c:set>
+											<c:set var="sum" value="${shopCar.shopCommoidty.currency.symbol }${sum + shopCar.shopCommoidty.unitPrice * shopCar.buyAmount}"></c:set>
 										</c:if>
 									</dl>
 								</li>

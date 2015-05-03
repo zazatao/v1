@@ -187,7 +187,7 @@
 						</li>
 						</c:forEach>
 						<li class="tjcm">
-							<div class="tjsl">价格 :</div> <a href="#" rel="nofollow"
+							<div class="tjsl">价格(元) :</div> <a href="#" rel="nofollow"
 							class="black" title="0-89" onclick="searchs('0@89','money');">0-89</a>
 							<a href="#" rel="nofollow" class="black" title="90-199"
 							onclick="searchs('90@199','money');">90-199</a> <a href="#"

@@ -70,7 +70,7 @@
 								<td>${shopComm.shopCategory.category }</td>
 								<td>${shopComm.commoidtyName }</td>
 								<td><img src="..${shopComm.shopCommImages[0].imagePath }" /></td>
-								<td>￥${shopComm.unitPrice }</td>
+								<td>${shopComm.currency.symbol }${shopComm.unitPrice }</td>
 								<td><button
 										onclick="zhekou(${shopComm.shelves},${shopComm.commCode });">
 										<c:if test="${shopComm.shelves}">已上架</c:if>
