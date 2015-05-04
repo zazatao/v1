@@ -286,7 +286,7 @@
                 <div class="cl"></div>
                 <p class="setcanbon"><a href="#" onclick="address();">添加新地址</a></p>
              </div>
-             <c:forEach var="address" items="${user.addresses}" varStatus="vs">
+             <c:forEach var="address" items="${user.addresses }" varStatus="vs">
 	        	<div class="setaddalls setaddallsfs" id="upaddress">
 	                <h3>通讯录</h3>
 	                <p class="setaddl">保存收货地址，使得采购更加快捷方便，“快速购买”也是在“我的账户”结算信息保存到下单，只需点击一次。填写资料时候，只能使用字母</p>

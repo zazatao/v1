@@ -90,7 +90,8 @@
 									<option value="${currency.id}">${currency.symbol}</option>
 								</c:forEach>
 							</select>
-							<span>大概重量</span><input type="text" style="width: 100px;" value="" name="probablyWeight"  onblur="checkvalue(this);"/>
+							<span>大概重量</span><input type="text"
+								style="width: 100px;" value="" name="probablyWeight"  onblur="checkvalue(this);"/>
 						</dd>
 						<dd>
 							<span>是否上架</span><input type="radio"
