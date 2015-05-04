@@ -84,7 +84,13 @@
 						</dd>
 						<dd>
 							<span>单价</span><input type="text" style="width: 100px;" value=""
-								name="unitPrice"  onblur="checkvalue(this);"/><span>大概重量</span><input type="text"
+								name="unitPrice"  onblur="checkvalue(this);"/>
+							<select name="currency_id">
+								<c:forEach var="currency" items="${currencylist }" varStatus="pool">
+									<option value="${currency.id}">${currency.symbol}</option>
+								</c:forEach>
+							</select>
+							<span>大概重量</span><input type="text"
 								style="width: 100px;" value="" name="probablyWeight"  onblur="checkvalue(this);"/>
 						</dd>
 						<dd>

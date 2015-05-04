@@ -47,6 +47,10 @@ public class Address {
 	@JoinColumn(name = "user_id")
     private User user;
 	
+	public Transit getHandedAddress() {
+		return handedAddress;
+	}
+
 	public void setHandedAddress(Transit handedAddress) {
 		this.handedAddress = handedAddress;
 	}
