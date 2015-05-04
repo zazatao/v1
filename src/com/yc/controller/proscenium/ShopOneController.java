@@ -30,6 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Brand;
 import com.yc.entity.BuyCat;
+import com.yc.entity.Currency;
 import com.yc.entity.Possession;
 import com.yc.entity.Shop;
 import com.yc.entity.ShopCategory;
@@ -42,6 +43,8 @@ import com.yc.entity.Surcharges;
 import com.yc.entity.user.User;
 import com.yc.service.IBrandService;
 import com.yc.service.IBuyCatService;
+import com.yc.service.ICollectionService;
+import com.yc.service.ICurrencyService;
 import com.yc.service.IShopCategoryService;
 import com.yc.service.IShopCommImageService;
 import com.yc.service.IShopCommoidtyService;
@@ -88,6 +91,12 @@ public class ShopOneController {
 	
 	@Autowired
 	IBuyCatService buyCatService;
+	
+	@Autowired
+	ICurrencyService currencyService;
+	
+	@Autowired
+	ICollectionService collectionService;
 
 	//开店信息填写
 	@SuppressWarnings("unused")
@@ -257,9 +266,11 @@ public class ShopOneController {
 			return new ModelAndView("user/login", mode);
 		} else {
 			Shop shop = shopService.getShopByUser(user.getId());
+			List<Currency> currencyList = currencyService.getAll();
 			if (shop != null && shop.getIsPermit()) {
 				mode.put("shopCategory", list);
 				mode.put("shop", shop);
+				mode.put("currencylist", currencyList);
 				return new ModelAndView("reception/releaseCommoidty", mode);
 			} else {
 				return setUpShop(request, response);
@@ -281,8 +292,11 @@ public class ShopOneController {
 
 	// 新商品添加保存
 	@RequestMapping(value = "saveCommoidty", method = RequestMethod.POST)
-	public String saveCommoidty(ShopCommoidty shopCommoidty, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String saveCommoidty(ShopCommoidty shopCommoidty, int currency_id,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute("loginUser");
+		Currency currency = currencyService.findById(currency_id);
+		shopCommoidty.setCurrency(currency);
+		shopCommoidty = shopCommService.update(shopCommoidty);
 		if (user != null) {
 			Shop shop = shopService.getShopByUser(user.getId());
 			if (shop != null && shop.getIsPermit()) {
@@ -800,6 +814,15 @@ public class ShopOneController {
 		mode.put("map", map);
 		User user = (User)request.getSession().getAttribute("loginUser");
 		mode.put("user", user);
+		return new ModelAndView("reception/shopItem", mode);
+	}
+	
+	//加入收藏
+	@RequestMapping(value = "addCollection", method = RequestMethod.GET)
+	public ModelAndView addCollection(Integer commID,Integer shopID,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ModelMap mode = new ModelMap();
+		ShopCommoidty shopComm = shopCommService.findById(commID);
+		
 		return new ModelAndView("reception/shopItem", mode);
 	}
 

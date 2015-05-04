@@ -408,11 +408,20 @@
 										<div class="slidernumb" style="display: none;">0</div>
 									</dt>
 									<dd>
-										<span class="red">${commShop.currency.symbol} <c:out value="${commShop.unitPrice +surs[0].fare}"></c:out></span><span
-											class="p1"><a href="../proscenium/shopItem?commID=${commShop.commCode }&category=${id }&shopID=${commShop.belongTo.id }&commoName=${commShop.commoidtyName }">
-											<img src="../content/static/images/con_10.png" /></a></span><span
-											class="p2"><a href="#"><img
-												src="../content/static/images/con_11.png" /></a></span>
+										<span class="red">${commShop.currency.symbol} 
+										<c:out value="${commShop.unitPrice +surs[0].fare}"></c:out>
+										</span>
+										<span class="p1">
+											<%-- <a href="../proscenium/shopItem?commID=${commShop.commCode }&category=${id }&shopID=${commShop.belongTo.id }&commoName=${commShop.commoidtyName }"> --%>
+											<a href="../proscenium/addCollection?commID=${commShop.commCode }&category=${id }&shopID=${commShop.belongTo.id }">
+											<img src="../content/static/images/con_10.png" />
+											</a>
+										</span>
+										<span class="p2">
+											<a href="#">
+											<img src="../content/static/images/con_11.png" />
+											</a>
+										</span>
 									</dd>
 									<dd>
 										店铺:<span class="red">${commShop.belongTo.shopName }</span>

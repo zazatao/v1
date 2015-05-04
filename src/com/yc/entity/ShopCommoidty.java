@@ -75,6 +75,10 @@ public class ShopCommoidty {
 	@JoinColumn(name = "shop_id")
 	private Shop belongTo;//商品所属店面
 	
+	@ManyToOne
+	@JoinColumn(name = "collection_id")
+	private Collection collection;
+	
 	@OneToMany(mappedBy = "shopCommoidty")
 	private List<ShopCommImage> shopCommImages;//商品照片
 	
