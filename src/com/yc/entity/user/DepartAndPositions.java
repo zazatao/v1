@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import com.yc.entity.Ticket;
@@ -105,11 +106,11 @@ public class DepartAndPositions {
 	public void setTicket(Ticket ticket) {
 		this.ticket = ticket;
 	}
-
+	@JsonIgnore
 	public List<Personnel> getPersonnels() {
 		return personnels;
 	}
-
+	@JsonIgnore
 	public void setPersonnels(List<Personnel> personnels) {
 		this.personnels = personnels;
 	}
