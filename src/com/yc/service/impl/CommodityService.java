@@ -51,8 +51,8 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 	}
 
 	@Override
-	public List<Commodity> getAllByStatus() {
-		String hql = " from Commodity c where c.status in ('packing')";
+	public List<Commodity> getAllByStatus(String status) {
+		String hql = " from Commodity c where c.status in ('" + status + "')";
 		return commodityDao.find(hql, null, null);
 	}
 
@@ -201,14 +201,11 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 	}
 
 	@Override
-	public List<Commodity> getShopCommodityByStatus(CommoidityStatus commoidStatus, CommoidityStatus cancel, CommoidityStatus delete, CommoidityStatus marriage, Shop shop) {
-		StringBuffer hql = new StringBuffer(" from Commodity c where  c.status = ? or c.status = ? or c.status = ? or c.status = ? and c.seller.id = ?");
-		Object[] paramete = new Object[5];
-		paramete[0] = commoidStatus;
-		paramete[1] = cancel;
-		paramete[2] = delete;
-		paramete[3] = marriage;
-		paramete[4] = shop.getId();
+	public List<Commodity> getShopCommodityByStatus(String status, Shop shop) {
+		StringBuffer hql = new StringBuffer(" from Commodity c where  c.status in(?) and c.seller.id = ?");
+		Object[] paramete = new Object[2];
+		paramete[0] = status;
+		paramete[1] = shop.getId();
 		return commodityDao.find(hql.toString(), paramete, -1, -1);
 	}
 

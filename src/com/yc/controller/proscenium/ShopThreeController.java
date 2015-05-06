@@ -250,7 +250,8 @@ public class ShopThreeController {
 			Shop shop = user.getShop();
 			if (shop != null && shop.getIsPermit()) {
 				mode.put("shop", shop);
-				List<Commodity> orders = commodityService.getShopCommodityByStatus(CommoidityStatus.refuse,CommoidityStatus.cancel,CommoidityStatus.delete,CommoidityStatus.marriage,shop);
+				String status = "'"+CommoidityStatus.refuse+"','"+CommoidityStatus.cancel+"','"+CommoidityStatus.delete+"','"+CommoidityStatus.marriage+"'";
+				List<Commodity> orders = commodityService.getShopCommodityByStatus(status,shop);
 				mode.put("list", orders);
 				return new ModelAndView("reception/returnGoods", mode);
 			} else {
@@ -274,7 +275,8 @@ public class ShopThreeController {
 				Commodity comm = commodityService.findById(id);
 				comm.setStatus(CommoidityStatus.valueOf(status));
 				commodityService.update(comm);
-				List<Commodity> orders = commodityService.getShopCommodityByStatus(CommoidityStatus.refuse,CommoidityStatus.cancel,CommoidityStatus.delete,CommoidityStatus.marriage,shop);
+				String status1 = "'"+CommoidityStatus.refuse+"','"+CommoidityStatus.cancel+"','"+CommoidityStatus.delete+"','"+CommoidityStatus.marriage+"'";
+				List<Commodity> orders = commodityService.getShopCommodityByStatus(status1,shop);
 				mode.put("list", orders);
 				return new ModelAndView("reception/returnGoods", mode);
 			} else {

@@ -30,6 +30,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Brand;
 import com.yc.entity.BuyCat;
+import com.yc.entity.Commodity;
+import com.yc.entity.CommoidityStatus;
 import com.yc.entity.Currency;
 import com.yc.entity.Possession;
 import com.yc.entity.Shop;
@@ -43,6 +45,7 @@ import com.yc.entity.Surcharges;
 import com.yc.entity.user.User;
 import com.yc.service.IBrandService;
 import com.yc.service.IBuyCatService;
+import com.yc.service.ICommodityService;
 import com.yc.service.ICurrencyService;
 import com.yc.service.IShopCategoryService;
 import com.yc.service.IShopCommImageService;
@@ -94,8 +97,10 @@ public class ShopOneController {
 	@Autowired
 	ICurrencyService currencyService;
 	
+	@Autowired
+	ICommodityService commodityService;
+	
 	//开店信息填写
-	@SuppressWarnings("unused")
 	@RequestMapping(value = "setUpShop", method = RequestMethod.GET)
 	public ModelAndView setUpShop(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute("loginUser");
@@ -112,7 +117,19 @@ public class ShopOneController {
 					shop.setShopName(shopName);
 					shopService.update(shop);
 				}
+				
 				if (shop.getIsPermit()) {
+					Integer marriageCount = commodityService.getShopCommodityByStatus("'marriage'", shop).size();
+					Integer lackCount = commodityService.getShopCommodityByStatus("'lack'", shop).size();
+					//Integer inAuctionloseCount = commodityService.getShopCommodityByStatus("'inAuctionlose'", shop).size();
+					Integer inWarehouseCount = commodityService.getShopCommodityByStatus("'inWarehouse'", shop).size();
+					Integer buyerNotPayCount = commodityService.getShopCommodityByStatus("'buyerNotPay'", shop).size();
+					Integer refuseCount = commodityService.getShopCommodityByStatus("'refuse'", shop).size();
+					Integer sendOutCount = commodityService.getShopCommodityByStatus("'sendOut'", shop).size();
+					Integer lackCount = commodityService.getShopCommodityByStatus("'lack'", shop).size();
+					mode.put("marriage", "'marriage'");
+					mode.put("lack", "'lack'");
+					mode.put
 					mode.put("shop", shop);
 					return new ModelAndView("reception/myShop", mode);
 				}
@@ -278,7 +295,7 @@ public class ShopOneController {
 	@RequestMapping(value = "getSpecific", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> getSpecific(@RequestParam(value = "ids", required = true) Integer ids) throws ServletException, IOException {
-		ShopCategory shopCate = shopCategService.findById(ids);
+		//ShopCategory shopCate = shopCategService.findById(ids);
 		List<Specifications> spec = specificationService.getAllByShopCateg(ids);
 		ModelMap mode = new ModelMap();
 		mode.put("spec", spec);

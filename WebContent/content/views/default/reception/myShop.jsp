@@ -44,7 +44,6 @@
                 <ul>
                   <li><a href="#">问题商品<span class="gay">(0)</span></a></li>
                   <li><a href="#">已售完<span class="gay">(0)</span></a></li>
-                  <li><a href="#">到期下架<span class="gay">(0)</span></a></li>
                   <li><a href="#">留言/回复<span class="gay">(0)</span></a></li>
                   <li><a href="#">出售中<span class="gay">(0)</span></a></li>
                   <li><a href="#">仓库中<span class="gay">(0)</span></a></li>
@@ -55,8 +54,7 @@
             	<p>交易</p>
                 <ul>
                   <li><a href="#">待买家付款<span class="gay">(0)</span></a></li>
-                  <li><a href="#">待发货<span class="gay">(0)</span></a></li>
-                  <!-- <li><a class="grean" href="#">待评价<span class="gay">(0)</span></a></li> -->
+                  <li><a href="#">待发货<span class="gay">(0)</span></a></li>                 
                   <li><a href="#">留言/回复<span class="gay">(0)</span></a></li>
                   <li><a href="#">待买家收货<span class="gay">(0)</span></a></li>
                   <li><a href="#">退货退款<span class="gay">(0)</span></a></li>

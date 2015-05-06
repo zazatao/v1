@@ -79,6 +79,9 @@ public class Shop {
 	@OneToMany(mappedBy = "carbelongTo")
 	private List<CarCommoidty> carCommoidties;//店铺商品
 	
+	@OneToMany(mappedBy = "commbelongTo")
+	private List<Commodity> commodities;//商品
+	
 	@OneToOne(mappedBy = "shop")
 	private User user;
 	
@@ -236,6 +239,14 @@ public class Shop {
 
 	public void setIsPermit(Boolean isPermit) {
 		this.isPermit = isPermit;
+	}
+
+	public List<Commodity> getCommodities() {
+		return commodities;
+	}
+
+	public void setCommodities(List<Commodity> commodities) {
+		this.commodities = commodities;
 	}
 
 }
