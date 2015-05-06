@@ -97,17 +97,6 @@ public class PersonnelService extends GenericService<Personnel> implements IPers
 	}
 
 	@Override
-	public List<Personnel> getPersonnelByDepAndPos(Department department, Integer positionid) {
-		List<String> keys = new ArrayList<String>();
-        keys.add("department.departmentID");
-        keys.add("positions.positionid");
-        List<Object> values = new ArrayList<Object>();
-        values.add(department.getDepartmentID());
-        values.add(positionid);
-		return personnelDao.getBy(keys,values );
-	}
-	
-	@Override
 	public List<Personnel> getAllByDepAndPos(DepartAndPositions depAndPos) {
 		return personnelDao.getBy("departAndPositions.id", depAndPos.getId());
 	}

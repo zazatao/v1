@@ -372,9 +372,6 @@
 			var date = obj;
 			$('#' + date).datetimepicker({
 				lang : 'ch',
-				timepicker : false,
-				format : 'Y-m-d',
-				formatDate : 'Y-m-d',
 			});
 		}
 		$(document).ready(function() {

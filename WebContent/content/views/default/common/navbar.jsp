@@ -33,8 +33,7 @@
 							<li><a href="../orderprocessing/dispose">处理</a></li>
 							<c:if
 								test="${personnel.departAndPositions.positions.positionid != 33 }">
-								<li><a href="#">统计</a></li>
-								<li><a href="#">操作员订单完成统计</a></li>
+								<li><a href="../orderprocessing/statistics">统计</a></li>
 							</c:if>
 						</ul></li>
 				</c:if>
@@ -120,6 +119,7 @@
 								</ul></li>
 						</ul></li>
 				</c:if>
+					<c:if test="${personnel.departAndPositions.department.departmentID != null }" >
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">管理 <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
@@ -210,6 +210,7 @@
 							<li><a href="../management/user">用户</a></li>
 						</c:if>
 					</ul></li>
+					</c:if>
 				<c:if
 					test="${personnel.departAndPositions.department.departmentID == 1 }">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"

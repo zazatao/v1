@@ -14,6 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import com.yc.entity.Commodity;
 import com.yc.entity.OrderForm;
 import com.yc.entity.TransitSite;
@@ -21,6 +24,7 @@ import com.yc.entity.UnKnownCommodity;
 
 @Entity
 @DiscriminatorValue("personnel")//员工
+@JsonIgnoreProperties(value = { "commOperators", "unCommOperators", "purchases", "orderForms" ,"transitSites"})
 public class Personnel {
 
 	@Id
@@ -50,8 +54,8 @@ public class Personnel {
 	@JoinColumn(name = "depAndPos_id")
 	private DepartAndPositions departAndPositions;//部门
 
-	@Column
-	private Integer accomplishNum;//完成订单数
+	@OneToMany(mappedBy = "personnel")
+	private List<AccomplishMetric> accomplishNum;//完成订单数
 	
 	@Column
 	private String forbidden;
@@ -78,27 +82,27 @@ public class Personnel {
 	public void setDepartAndPositions(DepartAndPositions departAndPositions) {
 		this.departAndPositions = departAndPositions;
 	}
-
+	@JsonIgnore
 	public List<TransitSite> getTransitSites() {
 		return transitSites;
 	}
-
+	@JsonIgnore
 	public void setTransitSites(List<TransitSite> transitSites) {
 		this.transitSites = transitSites;
 	}
-
+	@JsonIgnore
 	public List<Commodity> getCommOperators() {
 		return commOperators;
 	}
-
+	@JsonIgnore
 	public List<Commodity> getPurchases() {
 		return purchases;
 	}
-
+	@JsonIgnore
 	public void setCommOperators(List<Commodity> commOperators) {
 		this.commOperators = commOperators;
 	}
-
+	@JsonIgnore
 	public void setPurchases(List<Commodity> purchases) {
 		this.purchases = purchases;
 	}
@@ -159,26 +163,27 @@ public class Personnel {
 		this.phone = phone;
 	}
 
-	public Integer getAccomplishNum() {
+	public List<AccomplishMetric> getAccomplishNum() {
 		return accomplishNum;
 	}
 
-	public void setAccomplishNum(Integer accomplishNum) {
+	public void setAccomplishNum(List<AccomplishMetric> accomplishNum) {
 		this.accomplishNum = accomplishNum;
 	}
 
+	@JsonIgnore
 	public List<UnKnownCommodity> getUnCommOperators() {
 		return unCommOperators;
 	}
-
+	@JsonIgnore
 	public void setUnCommOperators(List<UnKnownCommodity> unCommOperators) {
 		this.unCommOperators = unCommOperators;
 	}
-
+	@JsonIgnore
 	public List<OrderForm> getOrderForms() {
 		return orderForms;
 	}
-
+	@JsonIgnore
 	public void setOrderForms(List<OrderForm> orderForms) {
 		this.orderForms = orderForms;
 	}

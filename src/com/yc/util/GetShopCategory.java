@@ -195,7 +195,6 @@ public class GetShopCategory {
 						buyCat.setBuyAmount(buyCatSession.getBuyAmount());
 						buyCat.setCatUser(user);
 						CarCommoidty carCommoidty = carCommoidtyService.save(buyCatSession.getShopCommoidty());
-						System.out.println("buyCatSession.getShopCommoidty().id---===="+carCommoidty.getId());
 						buyCat.setShopCommoidty(carCommoidty);
 						buyCat.setSpecs(buyCatSession.getSpecs());
 						buyCatService.save(buyCat);
