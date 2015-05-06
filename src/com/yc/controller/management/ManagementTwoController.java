@@ -466,7 +466,7 @@ public class ManagementTwoController {
 	
 	@RequestMapping(value = "addPersonnelList", method = RequestMethod.POST)
 	public String addPersonnelList(Integer id,String loginName, String password, String sex, String userName,Integer position_id, 
-			Integer department_id,String phone, String email, Integer accomplishNum, String mathed,String page,
+			Integer department_id,String phone, String email, String mathed,String page,
 			HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Sex sex1 = null;
@@ -488,7 +488,6 @@ public class ManagementTwoController {
 				personnel.setSex(sex1);
 				personnel.setPhone(phone);
 				personnel.setEmail(email);
-				personnel.setAccomplishNum(accomplishNum);			
 				personnel.setDepartAndPositions(depAndPos);
 				personnelService.save(personnel);
 			}
@@ -497,7 +496,6 @@ public class ManagementTwoController {
 			Personnel personnel = personnelService.findById(id);
 			personnel.setPhone(phone);
 			personnel.setEmail(email);
-			personnel.setAccomplishNum(accomplishNum);
 			personnel.setDepartAndPositions(depAndPos);
 			personnelService.update(personnel);	
 		}

@@ -139,9 +139,9 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 					+ "left join User u on u.id = orders.user_id  "
 					+ "where comm.seller_name = 1 ");
 		if (map.get("personnel").equals("总经理")) {
-			hql.append("and orders.purchase_user is not null ");
+			hql.append("and comm.purchase_user is not null ");
 		}else{
-			hql.append("and orders.purchase_user in ("+map.get("personnel")+")");
+			hql.append("and comm.purchase_user in ("+map.get("personnel")+")");
 		}
 		if (map.get("transNumForTaobao") != null) {
 			hql.append(" and comm.transNumForTaobao = " + map.get("transNumForTaobao"));

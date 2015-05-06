@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.yc.entity.user.DepartAndPositions;
-import com.yc.entity.user.Department;
 import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
 
@@ -19,8 +18,6 @@ public interface IPersonnelService  extends IGenericService<Personnel>{
 	List<Personnel> getPurchaseByUser(User user);
 
 	List<Personnel> getAllByParametersForManage(Map<String, Object> map);
-
-	List<Personnel> getPersonnelByDepAndPos(Department department, Integer positionid);
 
 	List<Personnel> getAllByDepAndPos(DepartAndPositions depAndPos);
 

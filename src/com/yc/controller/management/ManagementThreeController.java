@@ -56,7 +56,7 @@ public class ManagementThreeController {
 	public ModelAndView missionPlan(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
 		Personnel personnel = (Personnel) request.getSession().getAttribute("loginPersonnle");
 		List<MissionPlan> list = misPlanService.getAllByPer(personnel);
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		Date nowDate = new Date();
 		if (list != null && list.size()>0) {
 			for (int i = 0; i < list.size(); i++) {
@@ -88,7 +88,7 @@ public class ManagementThreeController {
 	}
 
 	@RequestMapping(value = "planAcitve", method = RequestMethod.POST)
-	public ModelAndView planAcitve(Integer id, MissionPlan plan,String advStates, String periods, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ModelAndView planAcitve(Integer id, MissionPlan plan,String advStates, String periods, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
 		String[] persNames = request.getParameterValues("persName");
 		Personnel fromPer = (Personnel)request.getSession().getAttribute("loginPersonnle");
 		String[] accelerates = request.getParameterValues("accelerate");
@@ -97,6 +97,8 @@ public class ManagementThreeController {
 			accelerate = Boolean.valueOf(accelerates[0]);
 		}
 		MissionPlan miss = null;
+		String time =plan.getEndDate().replace("/", "-");
+		System.out.println("pal============"+time);
 		ModelMap mode = new ModelMap();
 		if (id != null ) {
 			 miss = misPlanService.findById(id);
@@ -104,7 +106,7 @@ public class ManagementThreeController {
 				 if (persNames != null && persNames.length>0) {
 						for (int i = 0; i < persNames.length; i++) {
 							Personnel toPer = personnelService.findById(Integer.parseInt(persNames[i]));
-							miss.setEndDate(plan.getEndDate());
+							miss.setEndDate(time);
 							miss.setMissionName(plan.getMissionName());
 							miss.setRemarks(plan.getRemarks());
 							miss.setUsingTime(plan.getUsingTime());
@@ -131,19 +133,19 @@ public class ManagementThreeController {
 			if (persNames != null && persNames.length>0) {
 				for (int i = 0; i < persNames.length; i++) {
 					Personnel toPer = personnelService.findById(Integer.parseInt(persNames[i]));
-					miss = new MissionPlan();
-					miss.setEndDate(plan.getEndDate());
-					miss.setCompLine(plan.getCompLine());
-					miss.setMissionName(plan.getMissionName());
-					miss.setRemarks(plan.getRemarks());
-					miss.setUsingTime(plan.getUsingTime());
-					miss.setToPer(toPer);
-					miss.setFromPer(fromPer);
-					miss.setPeriod(Period.valueOf(periods));
-					miss.setAdvState(AdvState.InProgress);
-					miss.setAccelerate(accelerate);
-					miss.setCompLine("0");
-					misPlanService.save(miss);
+					MissionPlan misss = new MissionPlan();
+					misss.setEndDate(time);
+					misss.setCompLine(plan.getCompLine());
+					misss.setMissionName(plan.getMissionName());
+					misss.setRemarks(plan.getRemarks());
+					misss.setUsingTime(plan.getUsingTime());
+					misss.setToPer(toPer);
+					misss.setFromPer(fromPer);
+					misss.setPeriod(Period.valueOf(periods));
+					misss.setAdvState(AdvState.InProgress);
+					misss.setAccelerate(accelerate);
+					misss.setCompLine("0");
+					misPlanService.save(misss);
 					mode.put("msage", "计划添加成功");
 				}
 			}

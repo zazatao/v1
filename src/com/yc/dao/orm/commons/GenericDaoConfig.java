@@ -4,6 +4,7 @@ import org.springframework.context.annotation.*;
 
 import com.yc.entity.*;
 import com.yc.entity.Package;
+import com.yc.entity.user.AccomplishMetric;
 import com.yc.entity.user.DepartAndPositions;
 import com.yc.entity.user.Department;
 import com.yc.entity.user.Personnel;
@@ -162,4 +163,13 @@ public class GenericDaoConfig {
 	public GenericDao<Currency> getCurrencyDao() {
 		return new GenericDaoSupport<Currency>(Currency.class);	
 	}
+	@Bean
+	public GenericDao<Collection> getCollectionDao() {
+		return new GenericDaoSupport<Collection>(Collection.class);	
+	}
+	@Bean
+	public GenericDao<AccomplishMetric> getAccomplishMetricDao() {
+		return new GenericDaoSupport<AccomplishMetric>(AccomplishMetric.class);	
+	}
+	
 }
