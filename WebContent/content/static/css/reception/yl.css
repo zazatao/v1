@@ -21,6 +21,7 @@
 .lb_detail h2 p{ font-size:14px; color:#888; line-height:2em;}
 .lb_detail h2 p span{ text-decoration:line-through;}
 .lb_detail .th{ float:right; clear:both; margin:10px 0;vertical-align:middle; position:relative;}
+.lb_detail .tg{ top:70px;position:relative;}
 .lb_detail .th p.thts{ height:18px; line-height:18px; float:left; margin-right:10px; color:#d0d0d0;}
 .lb_detail ul{ border-top:1px solid #d0d0d0; border-bottom:1px solid #d0d0d0; float:left; clear:both;}
 .lb_detail ul li{ float:left; padding:10px 0; font-weight:bold; }

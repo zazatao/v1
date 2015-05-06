@@ -24,7 +24,6 @@ public class LoginFilter implements Filter {
 
     private boolean needLoginUser(HttpServletRequest request){
     	String uri = request.getRequestURI();
-    	
     	if (uri.contains("/setUpShop/")||uri.contains("/setUpShop/")||uri.contains("/releaseCommoidty/")||uri.contains("/storehouseShopComm/")||uri.contains("/soldShopComm/")||uri.contains("/auctionShopComm/")) {
             return true;
         }

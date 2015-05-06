@@ -18,12 +18,12 @@
 			</div>
 			<div class="znss">
 				<div class="ssk">
-					<input value="搜索" name="" type="text" onfocus="this.value=''"
-						onblur="if(this.value==''){this.value='搜索';}" />
-				</div>
-				<div class="ssan">
-					<input name="" type="button" />
-				</div>
+					<form action="/searchComm" method="post">
+						<input value="搜索" name="content" type="text" onfocus="this.value=''"
+							onblur="if(this.value==''){this.value='搜索';}" />
+						<button type="submit">搜索</button>
+					</form>
+				</div>					
 			</div>
 
 			<div class="top_tel">

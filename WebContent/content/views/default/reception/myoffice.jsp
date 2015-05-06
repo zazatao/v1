@@ -31,7 +31,7 @@
             	</dl>
                 <div class="cl"></div>
                 <div class="ordjd"><div class="ordjs"></div><p class="ordjts">33%</p></div>
-                <p class="udli"><a href="perscent_set.html">设置简介</a></p>
+                <p class="udli"><a href="./introduction">设置简介</a></p>
                 <p>您的资料已经填满100%</p>
           </div>
     	  <div>

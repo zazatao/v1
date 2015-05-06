@@ -56,7 +56,7 @@
                 <ul>
                   <li><a href="#">待买家付款<span class="gay">(0)</span></a></li>
                   <li><a href="#">待发货<span class="gay">(0)</span></a></li>
-                  <li><a class="grean" href="#">待评价<span class="gay">(0)</span></a></li>
+                  <!-- <li><a class="grean" href="#">待评价<span class="gay">(0)</span></a></li> -->
                   <li><a href="#">留言/回复<span class="gay">(0)</span></a></li>
                   <li><a href="#">待买家收货<span class="gay">(0)</span></a></li>
                   <li><a href="#">退货退款<span class="gay">(0)</span></a></li>

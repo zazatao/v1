@@ -43,7 +43,6 @@ import com.yc.entity.Surcharges;
 import com.yc.entity.user.User;
 import com.yc.service.IBrandService;
 import com.yc.service.IBuyCatService;
-import com.yc.service.ICollectionService;
 import com.yc.service.ICurrencyService;
 import com.yc.service.IShopCategoryService;
 import com.yc.service.IShopCommImageService;
@@ -95,9 +94,6 @@ public class ShopOneController {
 	@Autowired
 	ICurrencyService currencyService;
 	
-	@Autowired
-	ICollectionService collectionService;
-
 	//开店信息填写
 	@SuppressWarnings("unused")
 	@RequestMapping(value = "setUpShop", method = RequestMethod.GET)
@@ -817,13 +813,4 @@ public class ShopOneController {
 		return new ModelAndView("reception/shopItem", mode);
 	}
 	
-	//加入收藏
-	@RequestMapping(value = "addCollection", method = RequestMethod.GET)
-	public ModelAndView addCollection(Integer commID,Integer shopID,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ModelMap mode = new ModelMap();
-		ShopCommoidty shopComm = shopCommService.findById(commID);
-		
-		return new ModelAndView("reception/shopItem", mode);
-	}
-
 }

@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <div class="nyleft">
 		<div class="zdqwz">
-			<c:if test="${page != 'brand' && page != 'special'}">
+			<c:if test="${page != 'brand' && page != 'special' && page != 'search'}">
 				<img src="../content/static/images/zy.png" /> > ${cate.category }
 			</c:if>
 			<c:if test="${page == 'brand'}">
@@ -14,6 +14,10 @@
 			<c:if test="${page == 'special'}">
 				<img src="../content/static/images/zy.png" /> > 打折热卖产品 
 			</c:if>
+			<c:if test="${page == 'search'}">
+				<img src="../content/static/images/zy.png" /> > 搜索结果
+			</c:if>
+						
 		</div>
 		<div class="nyflcd">
 			<div id="my_menu" class="sdmenu">

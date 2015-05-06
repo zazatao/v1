@@ -179,12 +179,17 @@
 								pattern="##.##" minFractionDigits="2">
 							</fmt:formatNumber>
 							</span>
-						</c:if>
+						</c:if>						
 						<p>
 							原价：<span class="thr">${shopCommoidty.currency.symbol }${shopCommoidty.unitPrice + surs[0].fare}
 							<input type="hidden" id="fare" value="${surs[0].fare}"></span>
 						</p>
 					</h2>
+					<div class="tg">
+						<p><a href="#" onclick="collectionClick('../getShopCategory/addCollection?commID=${shopCommoidty.commCode }');">
+                    		<img src="../content/static/images/con_11.png"/></a></p>
+                    </div>
+					
 					<div class="th">
 						<p class="thts">大概重量&nbsp;${shopCommoidty.probablyWeight}KG</p>
 						<span class="thon"><img
@@ -696,5 +701,33 @@
 	</div>
 	<div class="clear"></div>
 	<jsp:include page="../common/foot.jsp"></jsp:include>
+	
+	<script type="text/javascript">	
+	function collectionClick(paramUrl){
+		jQuery.ajax({
+			type : 'GET',
+			contentType : 'application/json',
+			url : paramUrl,
+			dataType : 'json',
+			success : function(data) {
+				if( data.success == "true" ){
+					alert('亲，已经加入收藏夹了哦！');
+				}
+				
+				else if ( data.success == "existed" ) {
+					alert('收藏夹已经有这个宝贝了，亲是有多喜欢她啊！');
+				}
+				
+				else if ( data.success == "nouser" ) {
+					if (confirm('您还没有登录哦！')) {
+						var url="../user/login"; 
+						window.location=url;
+					} 
+				}
+			}
+		});	
+	}
+	</script>
+	
 </body>
 </html>

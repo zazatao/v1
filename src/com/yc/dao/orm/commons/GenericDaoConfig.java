@@ -162,4 +162,9 @@ public class GenericDaoConfig {
 	public GenericDao<Currency> getCurrencyDao() {
 		return new GenericDaoSupport<Currency>(Currency.class);	
 	}
+	
+	@Bean
+	public GenericDaoSupport<Collection> getCollectionDao() {
+		return new GenericDaoSupport<Collection>(Collection.class);	
+	}
 }

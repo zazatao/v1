@@ -472,9 +472,9 @@ public class ManagementTwoController {
 		Sex sex1 = null;
 		if (sex != null)
 		{
-			if (sex.equals("女"))
+			if (sex.equals("female"))
 				sex1 = Sex.Female;
-			else
+			else if ( sex.equals("male") )
 				sex1 = Sex.Male;
 		}
 		
@@ -513,7 +513,7 @@ public class ManagementTwoController {
 		
 		else
 		{
-			personnel.setForbidden("已禁用");
+			personnel.setForbidden("yes");
 		}
 		personnelService.update(personnel);
 		return "redirect:/management/personnel";

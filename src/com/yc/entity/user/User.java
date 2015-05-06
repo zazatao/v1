@@ -17,6 +17,7 @@ import javax.persistence.OneToOne;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import com.yc.entity.Address;
+import com.yc.entity.Collection;
 import com.yc.entity.ProblemPack;
 import com.yc.entity.Shop;
 import com.yc.entity.StoreRoom;
@@ -69,6 +70,17 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<ProblemPack> problemPacks; 
 	
+	@OneToMany(mappedBy = "user")
+	private List<Collection> collections; 
+	
+	public List<Collection> getCollections() {
+		return collections;
+	}
+
+	public void setCollections(List<Collection> collections) {
+		this.collections = collections;
+	}
+
 	public List<ProblemPack> getProblemPacks() {
 		return problemPacks;
 	}

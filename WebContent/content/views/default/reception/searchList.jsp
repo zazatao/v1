@@ -67,8 +67,14 @@
 												+ "</a> <div class='clear'></div>";
 									}
 								}
-								$('#navbar').append($guige);
-								$('#title').append($guige1);
+								
+								if ( '${page}'=='search') {
+									$('#navbar').append("搜索结果");
+									$('#title').append("搜索结果");
+								} else {
+									$('#navbar').append($guige);
+									$('#title').append($guige1);
+								}
 							});
 		</script>
 		<jsp:include page="searchLeft.jsp" />
@@ -392,8 +398,9 @@
 				<div class="fzcon">
 					<ul>
 						<c:forEach items="${list }" var="commShop">
-							<li><a href="../proscenium/shopItem?commID=${commShop.commCode }&category=${id }&shopID=${commShop.belongTo.id }&commoName=${commShop.commoidtyName }"><img
-									src="..${commShop.shopCommImages[0].imagePath }" /></a> <h>
+							<li>
+							<a href="../proscenium/shopItem?commID=${commShop.commCode }&category=${commShop.shopCategory.categoryID }&shopID=${commShop.belongTo.id }&commoName=${commShop.commoidtyName }">
+							<img src="..${commShop.shopCommImages[0].imagePath }" /></a> <h>
 								<dl>
 									<dt>
 										<div class="arrow-btn arrow-btnleft dasabled"></div>
@@ -408,17 +415,16 @@
 										<div class="slidernumb" style="display: none;">0</div>
 									</dt>
 									<dd>
-										<span class="red">${commShop.currency.symbol} 
+										<span class="red">${commShop.currency.symbol}
 										<c:out value="${commShop.unitPrice +surs[0].fare}"></c:out>
 										</span>
 										<span class="p1">
-											<%-- <a href="../proscenium/shopItem?commID=${commShop.commCode }&category=${id }&shopID=${commShop.belongTo.id }&commoName=${commShop.commoidtyName }"> --%>
-											<a href="../proscenium/addCollection?commID=${commShop.commCode }&category=${id }&shopID=${commShop.belongTo.id }">
+											<a href="../proscenium/shopItem?commID=${commShop.commCode }&category=${id }&shopID=${commShop.belongTo.id }&commoName=${commShop.commoidtyName }">											
 											<img src="../content/static/images/con_10.png" />
 											</a>
 										</span>
 										<span class="p2">
-											<a href="#">
+											<a href="#" onclick="collectionClick('../getShopCategory/addCollection?commID=${commShop.commCode }');">
 											<img src="../content/static/images/con_11.png" />
 											</a>
 										</span>
@@ -444,5 +450,33 @@
 		<div class="clear"></div>
 	</div>
 	<jsp:include page="../common/foot.jsp"></jsp:include>
-</body>
+	
+	<script type="text/javascript">	
+	function collectionClick(paramUrl){
+		jQuery.ajax({
+			type : 'GET',
+			contentType : 'application/json',
+			url : paramUrl,
+			dataType : 'json',
+			success : function(data) {
+				if( data.success == "true" ){
+					alert('亲，已经加入收藏夹了哦！');
+				}
+				
+				else if ( data.success == "existed" ) {
+					alert('收藏夹已经有这个宝贝了，亲是有多喜欢她啊！');
+				}
+				
+				else if ( data.success == "nouser" ) {
+					if (confirm('您还没有登录哦！')) {
+						var url="../user/login"; 
+						window.location=url;
+					} 
+				}
+			}
+		});	
+	}
+	</script>
+	
+	</body>
 </html>

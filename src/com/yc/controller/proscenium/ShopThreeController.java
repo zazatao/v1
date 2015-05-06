@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
 import com.yc.entity.Commodity;
 import com.yc.entity.CommoidityStatus;
 import com.yc.entity.OrderForm;
@@ -31,6 +32,7 @@ import com.yc.model.ShopOrderSearch;
 import com.yc.service.IAddressService;
 import com.yc.service.IBrandService;
 import com.yc.service.IBuyCatService;
+import com.yc.service.ICollectionService;
 import com.yc.service.ICommodityService;
 import com.yc.service.IImagePathService;
 import com.yc.service.IOrderFormService;
@@ -318,5 +320,6 @@ public class ShopThreeController {
 		mode.put("mySpeces", strs);
 		mode.put("elemnt", speces);
 		return mode;
-	}
+	}	
+
 }

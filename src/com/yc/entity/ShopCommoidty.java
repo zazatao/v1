@@ -75,10 +75,9 @@ public class ShopCommoidty {
 	@JoinColumn(name = "shop_id")
 	private Shop belongTo;//商品所属店面
 	
-	@ManyToOne
-	@JoinColumn(name = "collection_id")
+	@OneToOne(mappedBy = "shopCommoidty" )
 	private Collection collection;
-	
+
 	@OneToMany(mappedBy = "shopCommoidty")
 	private List<ShopCommImage> shopCommImages;//商品照片
 	
@@ -255,6 +254,14 @@ public class ShopCommoidty {
 
 	public void setIscChoice(Boolean iscChoice) {
 		this.iscChoice = iscChoice;
+	}
+	
+	public Collection getCollection() {
+		return collection;
+	}
+
+	public void setCollection(Collection collection) {
+		this.collection = collection;
 	}
 	
 }

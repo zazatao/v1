@@ -75,13 +75,15 @@
 					</div>
 
 					<div class="form-group">
+					<div class="col-sm-2 control-label">
 						<c:if test="${mathed == 'add'}">
-							<label for="inputEmail3" class="col-sm-2 control-label">填写性别</label>
-							<input type="hidden" name="id" value="${id }">	
-							<div class="col-sm-8">
-							<input id="sex" class="form-control" name="sex">${personnel.sex}
-							</div>								
+							<select name="sex" id="sex" class="form-control">
+								<option value="null">选择性别
+								<option value="female">女</option>
+								<option value="male">男</option>
+							</select>							
 						</c:if>
+						</div>
 					</div>
 				
 					<div class="form-group">
@@ -116,14 +118,10 @@
 						<c:if test="${mathed == 'update'}">
 							<label for="inputEmail3" class="col-sm-2 control-label">修改完成订单数</label>
 							<input type="hidden" name="id" value="${personnel.id }">							
-						</c:if>
-						<c:if test="${mathed == 'add'}">
-							<label for="inputEmail3" class="col-sm-2 control-label">填写完成订单数</label>
-							<input type="hidden" name="id" value="${id }">															
-						</c:if>
 						<div class="col-sm-8">
 							<input id="accomplishNum"  class="form-control" name="accomplishNum" value="${personnel.accomplishNum}">
 						</div>
+						</c:if>
 					</div>	
 						
 					<div class="form-group">

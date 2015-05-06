@@ -136,7 +136,6 @@
 	</div>
 	<script type="text/javascript">
 		function deletePromotionCodeById(obj){
-			alert(obj);
  			location.href = "deletePromotionCode?id="+obj;
 		}
 		

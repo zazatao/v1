@@ -2,6 +2,7 @@ package com.yc.controller.user;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -20,12 +21,14 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.yc.entity.Address;
+import com.yc.entity.Collection;
 import com.yc.entity.OrderForm;
 import com.yc.entity.ShopCategory;
 import com.yc.entity.Transit;
 import com.yc.entity.user.Sex;
 import com.yc.entity.user.User;
 import com.yc.service.IAddressService;
+import com.yc.service.ICollectionService;
 import com.yc.service.IOrderFormService;
 import com.yc.service.IShopCategoryService;
 import com.yc.service.IUserService;
@@ -48,7 +51,10 @@ public class UserController {
 	
 	@Autowired
 	IOrderFormService orderFormService;
-
+		
+	@Autowired
+	ICollectionService collectionService;
+	
 	@RequestMapping(value = "introductions", method = RequestMethod.GET)
 	public ModelAndView user(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<User> list = userService.getAll();
@@ -338,4 +344,39 @@ public class UserController {
 			return new ModelAndView("reception/perscentBonuses",mode);
 		}
 	}
+	
+	//所有收藏
+	@RequestMapping(value = "collection", method = RequestMethod.GET)
+	public ModelAndView getAllCollection(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		ModelMap mode = new ModelMap();
+		User user = (User) request.getSession().getAttribute("loginUser");
+		List<Collection> collections = collectionService.getAll();
+		List<ShopCategory> list = ShopCategoryService.getAll();		
+		if ( user == null ) {
+			mode.put("collections", null);
+			mode.put("user", null);
+			mode.put("shopCategories", list);
+		}
+		
+		else {
+			List<Collection> collections2 = new LinkedList<Collection>();
+			for ( int i = 0; i < collections.size(); i++ )
+			{
+				if ( collections.get(i).getUser().getLoginName().equals(user.getLoginName()) ) {
+					collections2.add(collections.get(i));
+				}
+			}
+			mode.put("collections", collections2);
+			mode.put("user", user);
+			mode.put("shopCategories", list);
+		}		
+		return new ModelAndView("reception/collection", mode);
+	}
+	
+	//删除收藏
+  	@RequestMapping(value = "deleteCollection", method = RequestMethod.GET)
+  	public String deleteCollection(Integer collectionID,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  		collectionService.delete(collectionID);
+  		return "redirect:/user/collection";
+  	}
 }

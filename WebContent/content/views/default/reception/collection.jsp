@@ -19,73 +19,26 @@
 <jsp:include page="../common/prosceniumNav.jsp"></jsp:include>
 <div class="con">
 	<jsp:include page="userTop.jsp"></jsp:include>
-    
-	<div class="dreams">
-    	<p>我的订单</p>
+	<div class="dreams" >
         <div>
-        	<div class="dreamls">
+        	<div class="dreamls" >
            	  <h3>&Phi;我喜欢的产品</h3>
-                <!-- <ul>
-                  <li class="dreamlfal">
-                    <p class="dreamlimg"><img src="images/dz/01.jpg"/></p>
-                    <p>hereshu jklfdsi</p>
-                    <p>до<span class="red">78% cdse</span></p>
-                    <p><img src="images/dreatime.png" width="17" height="16" />1day 12:21:15</p>
-                    <p class="dreamllike"><span><img src="images/drealike.png"/></span><span><img src="images/drearen.png"/></span></p>
-                  </li>
-                  <li>
-                    <p class="dreamlimg"><img src="images/dz/02.jpg"/></p>
-                    <p>hereshu jklfdsi</p>
-                    <p>до<span class="red">78% cdse</span></p>
-                    <p><img src="images/dreatime.png" width="17" height="16" />1day 12:21:15</p>
-                    <p class="dreamllike"><span><img src="images/drealike.png"/></span><span><img src="images/drearen.png"/></span></p>
-                  </li>
-                  <li>
-                    <p class="dreamlimg"><img src="images/dz/03.jpg"/></p>
-                    <p>hereshu jklfdsi</p>
-                    <p>до<span class="red">78% cdse</span></p>
-                    <p><img src="images/dreatime.png" width="17" height="16" />1day 12:21:15</p>
-                    <p class="dreamllike"><span><img src="images/drealike.png"/></span><span><img src="images/drearen.png"/></span></p>
-                  </li>
-                  <li>
-                    <p class="dreamlimg"><img src="images/dz/04.jpg"/></p>
-                    <p>hereshu jklfdsi</p>
-                    <p>до<span class="red">78% cdse</span></p>
-                    <p><img src="images/dreatime.png" width="17" height="16" />1day 12:21:15</p>
-                    <p class="dreamllike"><span><img src="images/drealike.png"/></span><span><img src="images/drearen.png"/></span></p>
-                  </li>
-                </ul>
-                <div></div>
                 <ul>
-                  <li class="dreamlfal">
-                    <p class="dreamlimg"><img src="images/dz/05.jpg"/></p>
-                    <p>hereshu jklfdsi</p>
-                    <p>до<span class="red">78% cdse</span></p>
-                    <p><img src="images/dreatime.png" width="17" height="16" />1day 12:21:15</p>
-                    <p class="dreamllike"><span><img src="images/drealike.png"/></span><span><img src="images/drearen.png"/></span></p>
-                  </li>
-                  <li>
-                    <p class="dreamlimg"><img src="images/dz/06.jpg"/></p>
-                    <p>hereshu jklfdsi</p>
-                    <p>до<span class="red">78% cdse</span></p>
-                    <p><img src="images/dreatime.png" width="17" height="16" />1day 12:21:15</p>
-                    <p class="dreamllike"><span><img src="images/drealike.png"/></span><span><img src="images/drearen.png"/></span></p>
-                  </li>
-                  <li>
-                    <p class="dreamlimg"><img src="images/dz/07.jpg"/></p>
-                    <p>hereshu jklfdsi</p>
-                    <p>до<span class="red">78% cdse</span></p>
-                    <p><img src="images/dreatime.png" width="17" height="16" />1day 12:21:15</p>
-                    <p class="dreamllike"><span><img src="images/drealike.png"/></span><span><img src="images/drearen.png"/></span></p>
-                  </li>
-                  <li>
-                    <p class="dreamlimg"><img src="images/dz/08.jpg"/></p>
-                    <p>hereshu jklfdsi</p>
-                    <p>до<span class="red">78% cdse</span></p>
-                    <p><img src="images/dreatime.png" width="17" height="16" />1day 12:21:15</p>
-                    <p class="dreamllike"><span><img src="images/drealike.png"/></span><span><img src="images/drearen.png"/></span></p>
-                  </li>
-                </ul> -->               
+                	<c:forEach var="collection" items="${collections }" varStatus="pool">               
+                  		<li class="dreamlfal" style="margin-bottom:20px">
+                  			<a href="../proscenium/shopItem?commID=${collection.shopCommoidty.commCode }&category=${collection.shopCommoidty.shopCategory.categoryID }&shopID=${collection.shopCommoidty.belongTo.id }&commoName=${collection.shopCommoidty.commoidtyName }">
+                    		<p class="dreamlimg"><img src="..${collection.shopCommoidty.shopCommImages[0].imagePath }"/></p></a>
+							<!-- <p class="dreamlimg"><img src="../content/static/images/nz.jpg"/></p></a> -->
+                    		<p>${collection.shopCommoidty.commoidtyName }</p>
+                    		<p>до<span class="red">78% cdse</span></p>
+                    		<p><img src="../content/static/images/dreatime.png" width="17" height="16" />1day 12:21:15</p>                   
+                    		<p class="dreamllike">
+                    		<a href="../user/deleteCollection?collectionID=${collection.id }">
+                    		<img src="../content/static/images/con_11.png"/></a>
+                    		<img src="../content/static/images/con_10.png"/></p>
+                  		</li>     
+                 	</c:forEach>
+                 </ul>   
             </div>
         </div>
     </div> 

@@ -104,7 +104,7 @@
 					<p class="bfb">33%</p>
 				</div>
 				<p class="udli">
-					<a href="perscent_set.html">设置简介</a>
+					<a href="./introduction">设置简介</a>
 				</p>
 				<p>您的资料已经填满100%</p>
 				<p>
@@ -118,7 +118,7 @@
 					<li class="pbeabclk"><a href="./myoffice">${user.userName }的账户</a></li>
 					<li><a href="./perscentBonuses?orderDate=volvo&orderStatus=-1">我的订单</a></li>
 					<li><a href="perscent_account.html">我的账单</a></li>
-					<li><a href="perscent_dreams.html">我喜欢的产品</a></li>
+					<li><a href="./collection">我喜欢的产品</a></li>
 					<li><a href="perscent_sup.html">引起支持呼吁</a></li>
 					<li><a href="./introduction">设置简介</a></li>
 					<li class="mr_n"><a href="perscent_size.html">我的尺寸</a></li>

@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yc.entity.BuyCat;
 import com.yc.entity.CarCommoidty;
+import com.yc.entity.Collection;
 import com.yc.entity.MissionPlan;
 import com.yc.entity.ShopCategory;
+import com.yc.entity.ShopCommoidty;
 import com.yc.entity.user.DepartAndPositions;
 import com.yc.entity.user.Personnel;
 import com.yc.entity.user.Positions;
@@ -29,14 +32,18 @@ import com.yc.model.BrandCategory;
 import com.yc.model.BuyCatSession;
 import com.yc.service.IBuyCatService;
 import com.yc.service.ICarCommoidtyService;
+import com.yc.service.ICollectionService;
 import com.yc.service.IDepartAndPositionsService;
 import com.yc.service.IMissionPlanService;
 import com.yc.service.IPersonnelService;
 import com.yc.service.IShopCategoryService;
+import com.yc.service.IShopCommoidtyService;
 
 @Controller
 @RequestMapping("/getShopCategory")
 public class GetShopCategory {
+	@Autowired
+	IShopCommoidtyService shopCommService;// 商品
 	
 	@Autowired
 	IShopCategoryService shopCategService;//类别
@@ -55,6 +62,9 @@ public class GetShopCategory {
 	
 	@Autowired
 	IMissionPlanService planService;
+	
+	@Autowired
+	ICollectionService collectionService;
 	
 	@RequestMapping(value = "shopCategoryAll", method = RequestMethod.GET)
 	@ResponseBody
@@ -249,5 +259,40 @@ public class GetShopCategory {
     	mode.put("success", "true");
     	return mode;
     }
-    
+  
+    //加入收藏
+  	@RequestMapping(value = "addCollection", method = RequestMethod.GET)
+    @ResponseBody
+  	public Map<String, Object> addCollection(Integer commID,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  		ModelMap mode = new ModelMap();
+  		User user = (User) request.getSession().getAttribute("loginUser");
+		if (user == null) {
+			mode.put("success","nouser");
+		}
+		
+		else { 		
+			ShopCommoidty shopComm = shopCommService.findById(commID);
+			List<Collection> collections = collectionService.getAll();  		
+			int i;
+			for ( i = 0; i < collections.size(); i++ )
+			{	
+				if ( collections.get(i).getShopCommoidty().getCommCode() == commID )
+				{
+					mode.put("success","existed");
+					break;
+				}
+			}
+  		
+			if ( i >= collections.size() )
+			{
+				if ( shopComm != null ) {
+					Collection collection = new Collection();
+  	  	  			collection.setShopCommoidty(shopComm);
+  	  	  			collectionService.save(collection);
+  	  	  			mode.put("success", "true");
+				}
+			}
+		}
+  		return mode;
+  	}
 }
