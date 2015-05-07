@@ -384,8 +384,8 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 	public Integer getShopCommodityByStatusAndShop(String status, Integer shop_id) {
 		StringBuffer hql = new StringBuffer("select COUNT(DISTINCT id) from Commodity c where  c.status in(" + status + ") and c.seller.id = " + shop_id);
 		Query query =  commodityDao.getEntityManager().createNativeQuery(hql.toString());
-		System.out.println("result_________________"+query.getResultList().size());
-		return query.getResultList().size();		
+		//System.out.println("result_________________"+query.getResultList().size());
+		return 1;		
 
 	}
 }

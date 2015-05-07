@@ -189,26 +189,29 @@ public class ShopThreeController {
 		}
 		
 	//后台评价管理
-	@RequestMapping(value = "shopEvaluation", method = RequestMethod.GET)
-	public ModelAndView shopEvaluation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		User user = (User) request.getSession().getAttribute("loginUser");
-		ModelMap mode = new ModelMap();
-		List<ShopCategory> shopCategories = shopCategService.getAll();
-		mode.put("shopCategories", shopCategories);
-		if (user != null) {
-			Shop shop = user.getShop();
-			if (shop != null && shop.getIsPermit()) {
-				mode.put("shop", shop);
-				return new ModelAndView("reception/shopEvaluation", mode);
+		@RequestMapping(value = "shopEvaluation", method = RequestMethod.GET)
+		public ModelAndView shopEvaluation(HttpServletRequest request,
+				HttpServletResponse response) throws ServletException, IOException {
+			User user = (User) request.getSession().getAttribute("loginUser");
+			ModelMap mode = new ModelMap();
+			List<ShopCategory> shopCategories = shopCategService.getAll();
+			mode.put("shopCategories", shopCategories);
+			if (user != null) {
+				Shop shop = user.getShop();
+				if (shop != null && shop.getIsPermit()) {
+					List<ShopReviews> reviewslist=shopReviewsService.getReviewsByShop(2);
+					mode.put("reviewslist", reviewslist);
+					mode.put("shop", shop);
+					return new ModelAndView("reception/shopEvaluation", mode);
+				} else {
+					return new ModelAndView("proscenium/setUpShop", null);
+				}
 			} else {
-				return new ModelAndView("proscenium/setUpShop",null);
+				return new ModelAndView("user/login", mode);
 			}
-		} else {
-			return new ModelAndView("user/login", mode);
 		}
-	}
 	
-	//賣家回復
+	//卖家回复
 		@RequestMapping(value = "sellerReply", method = RequestMethod.GET)
 		public ModelAndView sellerReply(HttpServletRequest request,
 				HttpServletResponse response,int id) throws ServletException, IOException {
@@ -216,7 +219,7 @@ public class ShopThreeController {
 			ModelMap mode = new ModelMap();
 			ShopReviews shopreviews=shopReviewsService.findById(id);
 			mode.put("shopreviews", shopreviews);
-			if(user!=null){
+			if(user!=null&&shopreviews!=null){
 				return new ModelAndView("reception/sellerReply", mode);
 			}else{
 			    return new ModelAndView("user/login", mode);
@@ -224,13 +227,23 @@ public class ShopThreeController {
 		};
 	     
 		//卖家回复处理
-		@RequestMapping(value = "replyManage", method = RequestMethod.GET)
-		public ModelAndView replyManage(HttpServletRequest request,
+		@RequestMapping(value = "replyManage", method = RequestMethod.POST)
+		public ModelAndView replyManage(Integer id,HttpServletRequest request,
 				HttpServletResponse response) throws ServletException, IOException {
 			User user = (User) request.getSession().getAttribute("loginUser");
 			ModelMap mode = new ModelMap();
-			
-		    return null; 
+			if(user!=null){
+				String  replycontent=request.getParameter("replycontent");
+				ShopReviews reviews = shopReviewsService.findById(id);
+				boolean flag=shopReviewsService.updateById(replycontent,id);
+				 if(flag){
+					 return new ModelAndView("reception/success", mode);
+				 }else{
+					 return new ModelAndView("reception/fail", mode);
+				 }
+			}else{
+				return new ModelAndView("user/login", mode);
+			}
 		};
 		
 	

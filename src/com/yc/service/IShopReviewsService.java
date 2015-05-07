@@ -10,5 +10,7 @@ public interface IShopReviewsService extends IGenericService<ShopReviews> {
 	public List<ShopReviews> getAllBycommCode(Integer commID);
 
 	public List<ShopReviews> getReviewsByShop(Integer id);
+
+	public boolean updateById(String content,Integer id);
               
 }

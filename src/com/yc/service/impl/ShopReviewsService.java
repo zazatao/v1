@@ -3,6 +3,7 @@ package com.yc.service.impl;
 import java.util.List;
 
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,6 +12,7 @@ import com.yc.dao.orm.commons.GenericDao;
 import com.yc.entity.OrderForm;
 import com.yc.entity.ShopCommoidty;
 import com.yc.entity.ShopReviews;
+import com.yc.entity.user.DepartAndPositions;
 import com.yc.service.IShopReviewsService;
 
 @Component
@@ -39,8 +41,7 @@ public class ShopReviewsService implements IShopReviewsService {
 
 	@Override
 	public ShopReviews findById(Object id) {
-		// TODO Auto-generated method stub
-		return null;
+		return shopReviewsDao.findById(id);
 	}
 
 	@Override
@@ -72,6 +73,16 @@ public class ShopReviewsService implements IShopReviewsService {
 		@SuppressWarnings("unchecked")
 		List<ShopReviews> list =  query.getResultList();
 		return list;
+	}
+
+	@Override
+	public boolean updateById(String content,Integer id) {
+		StringBuffer hql=new  StringBuffer("UPDATE shopreviews SET businessreply = '"+content+"' WHERE shopreviews.id="+id);
+		shopReviewsDao.getEntityManager().getTransaction().begin();
+		boolean isok = shopReviewsDao.getEntityManager().createNativeQuery(hql.toString(),ShopReviews.class).executeUpdate()>0;
+	    shopReviewsDao.getEntityManager().getTransaction().commit();
+		shopReviewsDao.getEntityManager().clear();
+	    return isok;
 	}
 
 }

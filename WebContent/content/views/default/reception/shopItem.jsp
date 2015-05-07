@@ -12,6 +12,8 @@
 	type="text/css" />
 <link href="../content/static/css/reception/yl.css" rel="stylesheet"
 	type="text/css" />
+<link href="../content/static/css/reception/persc.css" rel="stylesheet"
+	type="text/css" />
 <script type="text/javascript"
 	src="../content/static/js/reception/png.js"></script>
 <script type="text/javascript"
@@ -504,17 +506,19 @@
 				 <c:choose>	 
 				   <c:when test="${not empty reviewslist}">  
 					<ul class="ordersall">
-						<li class="ordersli1">买家</li>
-						<li class="ordersli2">商品名称</li>
-						<li class="ordersli3">评论时间</li>
-						<li class="ordersli4">评论内容</li>
+					    <li class="ordersli1">评论等级</li>
+						<li class="ordersli2">买家</li>
+						<li class="ordersli3">商品名称</li>
+						<li class="ordersli4">评论时间</li>
+						<li class="ordersli5">评论内容</li>
 					</ul>
 						<c:forEach items="${reviewslist}" var="reviews">
 						    <ul class="ordersall">
-							<li class="ordersli1"><div class="midl">${reviews.user.loginName}</div></li>
-							<li class="ordersli2"><div class="midl">${reviews.shopscommodity.commoidtyName}</div></li>
-							<li class="ordersli3"><div class="midl">${reviews.reviewsdate}</div></li>
-							<li class="ordersli4"><div class="midl">${reviews.reviews}</div></li>
+						    <li style="margin-left: 45px;"><img style="border-width: 0px;" src="..${reviews.rankImagesPath}" /></li>
+							<li class="ordersli2" style="margin-left: 50px;"><div class="midl">${reviews.user.loginName}</div></li>
+							<li class="ordersli3"><div class="midl">${reviews.shopscommodity.commoidtyName}</div></li>
+							<li class="ordersli4"><div class="midl">${reviews.reviewsdate}</div></li>
+							<li class="ordersli5"><div class="midl">${reviews.reviews}</div></li>
 							</ul>
 						</c:forEach>
 				    </c:when>
@@ -524,8 +528,8 @@
 					</c:choose>
 					    
 					</div>
-					<div id="c02">fsdfsdfs</div>
-					<div id="c03">fsdfsdfsdf</div>
+					<div id="c02" style="display: none">123456</div>
+					<div id="c03" style="display: none">456789</div>
 				</div>
 			</div>
 			<div class="left_ybottom">

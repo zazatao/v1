@@ -44,22 +44,17 @@
 					</ul>
 				</div>
 		       	<div class="ordconpic">
-					  <form method="post"  action="/proscenium/replyManage">
+					  <form method="post"  action="/proscenium/replyManage?id=${shopreviews.id}">
 						<ul class="ordersall">
-					        <li class="ordersli1"><div class="midl">${shopreviews.shopcommoidty.commoidtyName }</div></li>
+					        <li class="ordersli1"><div class="midl">${shopreviews.shopscommodity.commoidtyName }</div></li> 
 							<li class="ordersli1"><div class="midl">${shopreviews.user.loginName }</div></li>
 							<li class="ordersli3"><div class="midl"><img src="..${shopreviews.rankImagesPath}"/></div></li>
 							<li class="ordersli4"><div class="midl">${shopreviews.reviews }</div></li>
 			                </ul>
 			                <br/>
-			                <div style="margin-top:50px;margin-left: 20px;">
-						    <label><input name="rank" type="radio" value="good" /><img src="../content/static/images/pingjia/gold_icon.png" /><span style="font-size: 18px;">好评</span></label>
-						    <label><input name="rank" type="radio" value="better" /><img src="../content/static/images/pingjia/silver_icon.png" /><span style="font-size: 18px;">中评</span></label>
-						    <label><input name="rank" type="radio" value="bad" /><img src="../content/static/images/pingjia/ash_icon.png" /><span style="font-size: 18px;">差评</span></label>
-						    </div>
-						    <textarea id="text" name="reviewscontent" rows="25" cols="70" style="margin-top:10px;padding-left: 15px" onfocus="focusText()" >买家评论...</textarea>
+						    <textarea id="text" name="replycontent" rows="25" cols="70" style="margin-top:10px;padding-left: 15px" onfocus="focusText()" >卖家回复...</textarea>
 						    <br/>
-						    <input type="submit" name="reviews"  value="确认评论" style="float: right;margin-right: 200px;width:78px; height:28px;background: url(../content/static/images/pingjia/reply_btn_normal.png) no-repeat"/>
+						    <input type="submit" name="reply"  value="确认回复" style="float: right;margin-right: 200px;width:78px; height:28px;background: url(../content/static/images/pingjia/reply_btn_normal.png) no-repeat"/>
 					</form>
 				</div>
 			

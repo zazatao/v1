@@ -76,88 +76,13 @@ function popupwindow(url) {
 			<center>
 				<font color="red" size="+3">该店铺已入黑名单！</font>
 			</center>
-			<br />
+			<br />	
 			<br />
 			<br />
 		</c:if>
 		<c:if test="${shop.blacklist == null }">
 		<!---------------   left   ----------------------->
 		<jsp:include page="left.jsp"></jsp:include>
-		<div class="Pingjia">
-			<div class="biao" style=" background:url(../content/static/images/pingjia/icon01.png) no-repeat left;">店铺半年内动态评分</div>
-			<div class="nei">
-				<div class="nei01">
-					<div class="neileft">
-						<h1>商品与描述相符</h1>
-						<h2>
-							<img src="../content/static/images/pingjia/stars_press.png" /> <img
-								src="../content/static/images/pingjia/stars_press.png" /> <img
-								src="../content/static/images/pingjia/stars_normal.png" /> <img
-								src="../content/static/images/pingjia/stars_normal.png" /> <img
-								src="../content/static/images/pingjia/stars_normal.png" />
-						</h2>
-						<h3>暂无人打分</h3>
-					</div>
-					<div class="neiright">
-						<img src="../content/static/images/pingjia/progressBar.png" />
-					</div>
-				</div>
-
-				<div class="nei01">
-					<div class="neileft">
-						<h1>卖家的服务态度</h1>
-						<h2>
-							<img src="../content/static/images/pingjia/stars_press.png" /> <img
-								src="../content/static/images/pingjia/stars_press.png" /> <img
-								src="../content/static/images/pingjia/stars_normal.png" /> <img
-								src="../content/static/images/pingjia/stars_normal.png" /> <img
-								src="../content/static/images/pingjia/stars_normal.png" />
-						</h2>
-						<h3>暂无人打分</h3>
-					</div>
-					<div class="neiright">
-						<img src="../content/static/images/pingjia/progressBar.png" />
-					</div>
-				</div>
-
-				<div class="nei01">
-					<div class="neileft">
-						<h1>卖家的发货速度</h1>
-						<h2>
-							<img src="../content/static/images/pingjia/stars_press.png" /> <img
-								src="../content/static/images/pingjia/stars_press.png" /> <img
-								src="../content/static/images/pingjia/stars_normal.png" /> <img
-								src="../content/static/images/pingjia/stars_normal.png" /> <img
-								src="../content/static/images/pingjia/stars_normal.png" />
-						</h2>
-						<h3>暂无人打分</h3>
-					</div>
-					<div class="neiright">
-						<img src="../content/static/images/pingjia/progressBar.png" />
-					</div>
-				</div>
-
-				<div class="nei02">
-					<table width="320" border="0" align="right" cellpadding="0"
-						cellspacing="0">
-						<tr>
-							<td><div align="center">1分</div></td>
-							<td><div align="center">2分</div></td>
-							<td><div align="center">3分</div></td>
-							<td><div align="center">4分</div></td>
-							<td><div align="center">5分</div></td>
-						</tr>
-						<tr>
-							<td><div align="center">非常不满</div></td>
-							<td><div align="center">不满意</div></td>
-							<td><div align="center">一般</div></td>
-							<td><div align="center">满意</div></td>
-							<td><div align="center">非常满意</div></td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		</div>
 		<div class="Pingjia01">
 			<div class="biao" >
 				<h1 style="background:url(../content/static/images/pingjia/icon02.png) no-repeat left;">卖家累积信用：</h1>
@@ -261,7 +186,7 @@ function popupwindow(url) {
 											<div class="t4">商品信息</div>
 											<div class="t5">操作</div>
 										</div>
-<c:choose>
+                                           <c:choose>
 											    <c:when test="${not empty reviewslist}">
 											         <c:forEach items="${reviewslist}" var="reviews">
 											           <div class="xinxi">
