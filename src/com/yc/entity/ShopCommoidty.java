@@ -84,10 +84,24 @@ public class ShopCommoidty {
 	@Column
 	private String describes;//描述
 
+
 	@OneToOne
 	@JoinColumn(name = "blacklist_id")
 	private Blacklist blacklist;
 	
+    //评论
+	@OneToMany(mappedBy = "shopscommodity")
+	private List<ShopReviews> shopreviews;
+	
+
+	public List<ShopReviews> getShopreviews() {
+		return shopreviews;
+	}
+
+	public void setShopreviews(List<ShopReviews> shopreviews) {
+		this.shopreviews = shopreviews;
+	}
+
 	public Blacklist getBlacklist() {
 		return blacklist;
 	}

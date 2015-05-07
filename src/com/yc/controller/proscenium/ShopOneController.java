@@ -40,6 +40,7 @@ import com.yc.entity.ShopCategory;
 import com.yc.entity.ShopCommImage;
 import com.yc.entity.ShopCommoidty;
 import com.yc.entity.ShopCommoidtySpecs;
+import com.yc.entity.ShopReviews;
 import com.yc.entity.ShopType;
 import com.yc.entity.Specifications;
 import com.yc.entity.Surcharges;
@@ -52,6 +53,7 @@ import com.yc.service.IShopCategoryService;
 import com.yc.service.IShopCommImageService;
 import com.yc.service.IShopCommoidtyService;
 import com.yc.service.IShopCommoidtySpecsService;
+import com.yc.service.IShopReviewsService;
 import com.yc.service.IShopService;
 import com.yc.service.ISpecificationsService;
 import com.yc.service.ISurchargesService;
@@ -73,6 +75,9 @@ public class ShopOneController {
 	
 	@Autowired
 	IShopCommoidtySpecsService commoidtySpecsService;
+	
+	@Autowired
+	IShopReviewsService shopReviewsService;//评论
 
 	@Autowired
 	IShopCategoryService shopCategService;// 类别
@@ -785,6 +790,8 @@ public class ShopOneController {
 	public ModelAndView shopItem(Integer commID,Integer category,Integer shopID,String commoName,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ModelMap mode = new ModelMap();
 		ShopCategory cate = shopCategService.findById(category);
+		List<ShopReviews> reviewslist=shopReviewsService.getAllBycommCode(commID);
+		mode.put("reviewslist", reviewslist);
 		List<ShopCategory> shopcates = new ArrayList<ShopCategory>();
 		shopcates.add(cate);
 		mode.put("specifications", cate.getSpecifications());

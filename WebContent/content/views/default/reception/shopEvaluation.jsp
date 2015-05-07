@@ -40,6 +40,31 @@
 	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
 <script type="text/javascript"
 	src="../content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
+<script type="text/javascript">
+function popupwindow(url) {
+	var title = "";
+	 var w = 700;
+	var h = 800;	
+	var title = "";
+	var left = (screen.width / 2) - (w / 2);
+	var top = (screen.height / 2) - (h / 2); 
+	window.opener = null;
+	window.open('', '_self');
+	window.close();
+	return window
+			.open(
+					 url,
+				     title,
+					'directories=0,titlebar=0,toolbar=0,location=0,status=0,menubar=0,scrollbars=yes,resizable=yes, width='
+							+ w
+							+ ', height='
+							+ h
+							+ ', top='
+							+ top
+							+ ', left=' + left 
+				  );
+}
+</script>	
 </head>
 <body>
 	<jsp:include page="../common/prosceniumNav.jsp"></jsp:include>
@@ -211,11 +236,6 @@
 				<ul id="myTab1">
 					<li class="active1" onmouseover="nTabs(this,0,&#39;公司新品&#39;);"
 						style="top: 0; left: 0;">来自买家的评价</li>
-					<li class="normal1" onmouseover="nTabs(this,1,&#39;产品促销&#39;);"
-						style="top: 0; left: 76px;">来自卖家的评论</li>
-					<li class="normal1" onmouseover="nTabs(this,2,&#39;最新加盟&#39;);"
-						style="top: 0; left: 150px;">给他人的评论</li>
-
 				</ul>
 			</div>
 			<div style="clear: both"></div>
@@ -241,305 +261,29 @@
 											<div class="t4">商品信息</div>
 											<div class="t5">操作</div>
 										</div>
-
-										<div class="xinxi">
-											<div class="t1">
-												<img src="../content/static/images/pingjia/gold_icon.png" />
-											</div>
-											<div class="t2">
-												好评<br />2015-02-01
-											</div>
-											<div class="t3">
-												商家：<a href="#">家居专营店</a>
-											</div>
-											<div class="t4">
-												<a href="#">康巴时尚田园大褂中锋卧式客厅办公时钟静音挂表...</a><br /> <span
-													style="color: #C60">78.00 元</span>
-											</div>
-											<div class="t5">
-												<a href="#" >回复</a>还有3天可以解释
-											</div>
-										</div>
-
-										<div class="xinxi">
-											<div class="t1">
-												<img src="../content/static/images/pingjia/gold_icon.png" />
-											</div>
-											<div class="t2">
-												好评<br />2015-02-01
-											</div>
-											<div class="t3">
-												商家：<a href="#">家居专营店</a>
-											</div>
-											<div class="t4">
-												<a href="#">康巴时尚田园大褂中锋卧式客厅办公时钟静音挂表...</a><br /> <span
-													style="color: #C60">78.00 元</span>
-											</div>
-											<div class="t5">
-												<a href="#">回复</a>还有3天可以解释
-											</div>
-										</div>
-
-										<div class="xinxi">
-											<div class="t1">
-												<img src="../content/static/images/pingjia/gold_icon.png" />
-											</div>
-											<div class="t2">
-												好评<br />2015-02-01
-											</div>
-											<div class="t3">
-												商家：<a href="#">家居专营店</a>
-											</div>
-											<div class="t4">
-												<a href="#">康巴时尚田园大褂中锋卧式客厅办公时钟静音挂表...</a><br /> <span
-													style="color: #C60">78.00 元</span>
-											</div>
-											<div class="t5">
-												<a href="#">回复</a>还有3天可以解释
-											</div>
-										</div>
-
-										<div class="xinxi">
-											<div class="t1">
-												<img src="../content/static/images/pingjia/gold_icon.png" />
-											</div>
-											<div class="t2">
-												好评<br />2015-02-01
-											</div>
-											<div class="t3">
-												商家：<a href="#">家居专营店</a>
-											</div>
-											<div class="t4">
-												<a href="#">康巴时尚田园大褂中锋卧式客厅办公时钟静音挂表...</a><br /> <span
-													style="color: #C60">78.00 元</span>
-											</div>
-											<div class="t5">
-												<a href="#">回复</a>还有3天可以解释
-											</div>
-										</div>
-
-										<div class="xinxi">
-											<div class="t1">
-												<img src="../content/static/images/pingjia/gold_icon.png" />
-											</div>
-											<div class="t2">
-												好评<br />2015-02-01
-											</div>
-											<div class="t3">
-												商家：<a href="#">家居专营店</a>
-											</div>
-											<div class="t4">
-												<a href="#">康巴时尚田园大褂中锋卧式客厅办公时钟静音挂表...</a><br /> <span
-													style="color: #C60">78.00 元</span>
-											</div>
-											<div class="t5">
-												<a href="#">回复</a>还有3天可以解释
-											</div>
-										</div>
-
-										<div class="page01">
-											<a href="#">上一页</a><a href="#">1</a><a href="#">2</a><a
-												href="#">下一页</a>
-										</div>
-
-									</div>
-								</div>
-								<div class="TabContent" id="myTab1_1"
-									style="display: none; width: 780px;">
-									<div class="pro">
-										<div class="tou">
-											<div class="t1">
-												<select name="" style="margin-top: 10px">
-													<option>评价</option>
-												</select>
-											</div>
-											<div class="t2">
-												<select name="" style="margin-top: 10px">
-													<option>评论</option>
-												</select>
-											</div>
-											<div class="t3">评价人</div>
-											<div class="t4">商品信息</div>
-											<div class="t5">操作</div>
-										</div>
-
-										<div class="xinxi">
-											<div class="t1">
-												<img src="../content/static/images/pingjia/gold_icon.png" />
-											</div>
-											<div class="t2">
-												好评<br />2015-02-01
-											</div>
-											<div class="t3">
-												商家：<a href="#">春天花花专卖店</a>
-											</div>
-											<div class="t4">
-												<a href="#">康巴时尚田园大褂中锋卧式客厅办公时钟静音挂表...</a><br /> <span
-													style="color: #C60">78.00 元</span>
-											</div>
-											<div class="t5">
-												<a href="#">回复</a>还有3天可以解释
-											</div>
-										</div>
-
-										<div class="xinxi">
-											<div class="t1">
-												<img src="../content/static/images/pingjia/gold_icon.png" />
-											</div>
-											<div class="t2">
-												好评<br />2015-02-01
-											</div>
-											<div class="t3">
-												商家：<a href="#">春天花花专卖店</a>
-											</div>
-											<div class="t4">
-												<a href="#">康巴时尚田园大褂中锋卧式客厅办公时钟静音挂表...</a><br /> <span
-													style="color: #C60">78.00 元</span>
-											</div>
-											<div class="t5">
-												<a href="#">回复</a>还有3天可以解释
-											</div>
-										</div>
-
-										<div class="xinxi">
-											<div class="t1">
-												<img src="../content/static/images/pingjia/gold_icon.png" />
-											</div>
-											<div class="t2">
-												好评<br />2015-02-01
-											</div>
-											<div class="t3">
-												商家：<a href="#">春天花花专卖店</a>
-											</div>
-											<div class="t4">
-												<a href="#">康巴时尚田园大褂中锋卧式客厅办公时钟静音挂表...</a><br /> <span
-													style="color: #C60">78.00 元</span>
-											</div>
-											<div class="t5">
-												<a href="#">回复</a>还有3天可以解释
-											</div>
-										</div>
-
-										<div class="xinxi">
-											<div class="t1">
-												<img src="../content/static/images/pingjia/gold_icon.png" />
-											</div>
-											<div class="t2">
-												好评<br />2015-02-01
-											</div>
-											<div class="t3">
-												商家：<a href="#">春天花花专卖店</a>
-											</div>
-											<div class="t4">
-												<a href="#">康巴时尚田园大褂中锋卧式客厅办公时钟静音挂表...</a><br /> <span
-													style="color: #C60">78.00 元</span>
-											</div>
-											<div class="t5">
-												<a href="#">回复</a>
-											</div>
-										</div>
-
-										<div class="xinxi">
-											<div class="t1">
-												<img src="../content/static/images/pingjia/gold_icon.png" />
-											</div>
-											<div class="t2">
-												好评<br />2015-02-01
-											</div>
-											<div class="t3">
-												商家：<a href="#">春天花花专卖店</a>
-											</div>
-											<div class="t4">
-												<a href="#">康巴时尚田园大褂中锋卧式客厅办公时钟静音挂表...</a><br /> <span
-													style="color: #C60">78.00 元</span>
-											</div>
-											<div class="t5">
-												<a href="#">回复</a>
-											</div>
-										</div>
-
-										<div class="page01">
-											<a href="#">上一页</a><a href="#">1</a><a href="#">2</a><a
-												href="#">下一页</a>
-										</div>
-
-									</div>
-								</div>
-								<div class="TabContent" id="myTab1_2"
-									style="display: none; width: 780px;">
-									<div class="pro">
-										<div class="tou">
-											<div class="t1">
-												<select name="" style="margin-top: 10px">
-													<option>评价</option>
-												</select>
-											</div>
-											<div class="t2">
-												<select name="" style="margin-top: 10px">
-													<option>评论</option>
-												</select>
-											</div>
-											<div class="t3">评价人</div>
-											<div class="t4">商品信息</div>
-											<div class="t5">操作</div>
-										</div>
-
-										<div class="xinxi">
-											<div class="t1">
-												<img src="../content/static/images/pingjia/gold_icon.png" />
-											</div>
-											<div class="t2">
-												好评<br />2015-02-01
-											</div>
-											<div class="t3">
-												商家：<a href="#">时尚婚纱店</a>
-											</div>
-											<div class="t4">
-												<a href="#">康巴时尚田园大褂中锋卧式客厅办公时钟静音挂表...</a><br /> <span
-													style="color: #C60">78.00 元</span>
-											</div>
-											<div class="t5">
-												<a href="#">回复</a>还有3天可以解释
-											</div>
-										</div>
-
-										<div class="xinxi">
-											<div class="t1">
-												<img src="../content/static/images/pingjia/gold_icon.png" />
-											</div>
-											<div class="t2">
-												好评<br />2015-02-01
-											</div>
-											<div class="t3">
-												商家：<a href="#">时尚婚纱店</a>
-											</div>
-											<div class="t4">
-												<a href="#">康巴时尚田园大褂中锋卧式客厅办公时钟静音挂表...</a><br /> <span
-													style="color: #C60">78.00 元</span>
-											</div>
-											<div class="t5">
-												<a href="#">回复</a>还有3天可以解释
-											</div>
-										</div>
-
-										<div class="xinxi">
-											<div class="t1">
-												<img src="../content/static/images/pingjia/gold_icon.png" />
-											</div>
-											<div class="t2">
-												好评<br />2015-02-01
-											</div>
-											<div class="t3">
-												商家：<a href="#">时尚婚纱店</a>
-											</div>
-											<div class="t4">
-												<a href="#">康巴时尚田园大褂中锋卧式客厅办公时钟静音挂表...</a><br /> <span
-													style="color: #C60">78.00 元</span>
-											</div>
-											<div class="t5">
-												<a href="#">回复</a>还有3天可以解释
-											</div>
-										</div>
+<c:choose>
+											    <c:when test="${not empty reviewslist}">
+											         <c:forEach items="${reviewslist}" var="reviews">
+											           <div class="xinxi">
+											             <div class="t1">
+												           <img src="..${reviews.rankImagesPath}" />
+											             </div>
+											             <div class="t2">好评<br/>${reviews.reviewsdate }</div>
+											             <div class="t3">${reviews.user.loginName }</div>
+											             <div class="t4">
+											                   ${reviews.shopscommodity.commoidtyName}<br/>
+											                   <span style="color: orange">${reviews.shopscommodity.unitPrice}元</span>
+											             </div>
+											             <div class="t5">
+											                  <input type="button" name="reply" value="回复 " onclick="popupwindow('/proscenium/sellerReply?id=${reviews.id}')"/>
+											             </div>
+											             </div>
+											         </c:forEach>	
+											    </c:when>
+											    <c:otherwise>
+											             <span style="color:red;margin-left: 30px" >暂无评论</span>
+											    </c:otherwise>
+											</c:choose>
 
 										<div class="page01">
 											<a href="#">上一页</a><a href="#">1</a><a href="#">2</a><a

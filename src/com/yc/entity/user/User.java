@@ -20,6 +20,7 @@ import com.yc.entity.Address;
 import com.yc.entity.Collection;
 import com.yc.entity.ProblemPack;
 import com.yc.entity.Shop;
+import com.yc.entity.ShopReviews;
 import com.yc.entity.StoreRoom;
 
 @Entity
@@ -73,6 +74,20 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Collection> collections; 
 	
+	@OneToMany(mappedBy = "user")
+	private List<ShopReviews> shopReviews;//用户评论
+	
+	
+
+	
+	public List<ShopReviews> getShopReviews() {
+		return shopReviews;
+	}
+
+	public void setShopReviews(List<ShopReviews> shopReviews) {
+		this.shopReviews = shopReviews;
+	}
+
 	public List<Collection> getCollections() {
 		return collections;
 	}

@@ -2,7 +2,9 @@ package com.yc.controller.proscenium;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +29,8 @@ import com.yc.entity.OrderStatus;
 import com.yc.entity.Shop;
 import com.yc.entity.ShopCategory;
 import com.yc.entity.ShopCommoidty;
+import com.yc.entity.ShopReviews;
+import com.yc.entity.ReviewsRank;
 import com.yc.entity.user.User;
 import com.yc.model.ShopOrderSearch;
 import com.yc.service.IAddressService;
@@ -39,6 +43,7 @@ import com.yc.service.IOrderFormService;
 import com.yc.service.IShopCategoryService;
 import com.yc.service.IShopCommImageService;
 import com.yc.service.IShopCommoidtyService;
+import com.yc.service.IShopReviewsService;
 import com.yc.service.IShopService;
 import com.yc.service.ISpecificationsService;
 
@@ -61,9 +66,13 @@ public class ShopThreeController {
 
 	@Autowired
 	ISpecificationsService specificationService;// 货品规格
+	
+	@Autowired
+	IShopReviewsService shopReviewsService;
 
 	@Autowired
 	IBrandService brandService;// 品牌
+	
 	
 	@Autowired
 	IShopCommImageService shopCommImageService;
@@ -105,6 +114,80 @@ public class ShopThreeController {
 		}
 	}
 	
+	// 评价管理
+		@RequestMapping(value = "shopAssess", method = RequestMethod.GET)
+		public ModelAndView shopAssess(HttpServletRequest request,
+				HttpServletResponse response) throws ServletException, IOException {
+			User user = (User) request.getSession().getAttribute("loginUser");
+			ModelMap mode = new ModelMap();
+			List<ShopCategory> shopCategories = shopCategService.getAll();
+			mode.put("shopCategories", shopCategories);
+			if (user != null) {
+				List<Commodity> list = commodityService.getAllByUserAndStatus(user);
+				mode.put("list", list);
+				return new ModelAndView("reception/userEvaluate", mode);
+			} else {
+				return new ModelAndView("user/login", null);
+			}
+		}
+		
+		//评价页面
+		@RequestMapping(value = "userAssess", method = RequestMethod.GET)
+		public ModelAndView shopsreply(HttpServletRequest request,
+				HttpServletResponse response,int id) throws ServletException, IOException {
+			   User user = (User) request.getSession().getAttribute("loginUser");
+			   ModelMap mode = new ModelMap();
+			  if (user != null) { 
+				ShopCommoidty shopcommoidty  = shopCommService.IsShopCommByNumber(id);
+				if(shopcommoidty!=null){
+				  mode.put("shopcommoidty", shopcommoidty);
+				  return new ModelAndView("reception/userAssess", mode);
+				}else{
+				  return new ModelAndView("reception/unableAssess", null);
+				}
+			} else {
+				return new ModelAndView("user/login", null);
+			}
+		} 
+		
+		// 评论表管理
+		@RequestMapping(value = "userReviews", method = RequestMethod.POST)
+		public ModelAndView userReviews(int id, String reviewscontent,HttpServletRequest request,
+				HttpServletResponse response) throws ServletException, IOException {
+			       User user = (User) request.getSession().getAttribute("loginUser");
+			if(user!=null){
+				   ShopReviews shopReviews= new ShopReviews();
+				   String rank=request.getParameter("rank");
+				   if(id>=0&&rank!=null){
+				     String reviewsdate=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+				     shopReviews.setReviewsRank(ReviewsRank.valueOf(rank));
+				     if(rank.equals("good")){
+				    	 shopReviews.setRankImagesPath("/content/static/images/pingjia/gold_icon.png");
+				     }else if(rank.equals("better")){
+				    	 shopReviews.setRankImagesPath("/content/static/images/pingjia/silver_icon.png");
+				     }else if(rank.equals("bad")){
+				    	 shopReviews.setRankImagesPath("/content/static/images/pingjia/ash_icon.png");
+				     }
+				     shopReviews.setReviews(reviewscontent);
+				     shopReviews.setUser(user);
+				     ShopCommoidty shopcomm=shopCommService.findById(id);
+				     shopReviews.setShopscommodity(shopcomm);
+				     shopReviews.setReviewsdate(reviewsdate);
+				   }else{
+					  return new ModelAndView("reception/unableAssess", null);
+				   }   
+				   boolean flag=shopReviewsService.saveReviews(shopReviews);
+				   if(flag){
+					   return new ModelAndView("reception/success", null);
+				   }else{
+				       return new ModelAndView("reception/fail", null);
+				   }
+			}else{
+				return new ModelAndView("user/login", null);
+			}
+		
+		}
+		
 	//后台评价管理
 	@RequestMapping(value = "shopEvaluation", method = RequestMethod.GET)
 	public ModelAndView shopEvaluation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -124,6 +207,32 @@ public class ShopThreeController {
 			return new ModelAndView("user/login", mode);
 		}
 	}
+	
+	//賣家回復
+		@RequestMapping(value = "sellerReply", method = RequestMethod.GET)
+		public ModelAndView sellerReply(HttpServletRequest request,
+				HttpServletResponse response,int id) throws ServletException, IOException {
+			User user = (User) request.getSession().getAttribute("loginUser");
+			ModelMap mode = new ModelMap();
+			ShopReviews shopreviews=shopReviewsService.findById(id);
+			mode.put("shopreviews", shopreviews);
+			if(user!=null){
+				return new ModelAndView("reception/sellerReply", mode);
+			}else{
+			    return new ModelAndView("user/login", mode);
+			}
+		};
+	     
+		//卖家回复处理
+		@RequestMapping(value = "replyManage", method = RequestMethod.GET)
+		public ModelAndView replyManage(HttpServletRequest request,
+				HttpServletResponse response) throws ServletException, IOException {
+			User user = (User) request.getSession().getAttribute("loginUser");
+			ModelMap mode = new ModelMap();
+			
+		    return null; 
+		};
+		
 	
 	@RequestMapping(value = "payMent", method = RequestMethod.GET)
 	public ModelAndView payMent(String ids,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

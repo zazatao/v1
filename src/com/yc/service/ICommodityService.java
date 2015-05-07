@@ -6,6 +6,7 @@ import com.yc.entity.Commodity;
 import com.yc.entity.CommoidityStatus;
 import com.yc.entity.OrderStatus;
 import com.yc.entity.Shop;
+import com.yc.entity.ShopCommoidty;
 
 import java.util.Map;
 
@@ -58,5 +59,7 @@ public interface ICommodityService extends IGenericService<Commodity> {
 	List<Commodity> getAllByPurchase();
 
 	List<Commodity> getAllByOrderStatus(String string, Integer shop_id);
+	
+	List<Commodity> getAllByUserAndStatus(User user);
 
 }

@@ -371,4 +371,14 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 		List<Commodity> list = query.getResultList();
 		return list;
 	}
+	
+	@Override
+	public List<Commodity> getAllByUserAndStatus(User user) {
+		StringBuffer hql = new StringBuffer(" select com.* from commodity com LEFT JOIN orderform orders on orders.orderFormID = com.orderform_id where orders.user_id = "+user.getId()
+				+" AND orders.orderstatus IN ('consigneeSigning','completionTransaction')");
+		Query query = commodityDao.getEntityManager().createNativeQuery(hql.toString(), Commodity.class);
+		@SuppressWarnings("unchecked")
+		List<Commodity> list = query.getResultList();
+		return list;
+	}
 }
