@@ -54,16 +54,13 @@ public class PromotionCodeService extends GenericService<PromotionCode> implemen
 		if ( list1 != null ) {
 			String use = map.get("use");
 			List<PromotionCode> list2 = new LinkedList<PromotionCode>();
-			System.out.println("use______________________"+use);
 			if (use.equals("info"))
 			{
-				System.out.println("none______________________"+use);
 				list2 = list1;
 			}
 		
 			else if (use.equals("unuse"))
 			{		
-				System.out.println("unuse______________________"+use);
 				for ( int i = 0; i < list1.size(); i++ )
 				{
 					if ( list1.get(i).getUser() == null )
@@ -73,7 +70,6 @@ public class PromotionCodeService extends GenericService<PromotionCode> implemen
 		
 			else if(use.equals("use"))
 			{
-				System.out.println("use______________________");
 				for ( int i = 0; i < list1.size(); i++ )
 				{
 					if ( list1.get(i).getUser() != null )

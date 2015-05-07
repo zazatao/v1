@@ -63,6 +63,7 @@ public class Commodity {
 	@ManyToOne
 	@JoinColumn(name = "seller_name")
 	private Shop seller;// 卖家
+	
 	@Column
 	private String sellerDate;// zazatao付款日期
 	@Column

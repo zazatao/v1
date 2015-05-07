@@ -12,7 +12,6 @@ import com.yc.entity.CommoidityStatus;
 import com.yc.entity.OrderStatus;
 import com.yc.entity.Shop;
 import com.yc.entity.StoreRoom;
-import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
 import com.yc.model.CommdityModel;
 import com.yc.model.Products;
@@ -51,8 +50,8 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 	}
 
 	@Override
-	public List<Commodity> getAllByStatus() {
-		String hql = " from Commodity c where c.status in ('packing')";
+	public List<Commodity> getAllByStatus(String status) {
+		String hql = " from Commodity c where c.status in ('" + status + "')";
 		return commodityDao.find(hql, null, null);
 	}
 
@@ -201,14 +200,11 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 	}
 
 	@Override
-	public List<Commodity> getShopCommodityByStatus(CommoidityStatus commoidStatus, CommoidityStatus cancel, CommoidityStatus delete, CommoidityStatus marriage, Shop shop) {
-		StringBuffer hql = new StringBuffer(" from Commodity c where  c.status = ? or c.status = ? or c.status = ? or c.status = ? and c.seller.id = ?");
-		Object[] paramete = new Object[5];
-		paramete[0] = commoidStatus;
-		paramete[1] = cancel;
-		paramete[2] = delete;
-		paramete[3] = marriage;
-		paramete[4] = shop.getId();
+	public List<Commodity> getShopCommodityByStatus(String status, Shop shop) {
+		StringBuffer hql = new StringBuffer(" from Commodity c where  c.status in(?) and c.seller.id = ?");
+		Object[] paramete = new Object[2];
+		paramete[0] = status;
+		paramete[1] = shop.getId();
 		return commodityDao.find(hql.toString(), paramete, -1, -1);
 	}
 
@@ -263,6 +259,13 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 	@Override
 	public List<Commodity> getAllByCommStatusAndOrderStatus(CommoidityStatus support, OrderStatus waitdelivery) {
 		StringBuffer hql = new StringBuffer("select DISTINCT comm.* from Commodity comm left join OrderForm orders on orders.orderFormID = comm.orderform_id where comm.status = '" + support + "' and orders.orderstatus = '" + waitdelivery + "' and comm.seller_name = 1 and comm.purchase_user is null");
+		return commodityDao.getEntityManager().createNativeQuery(hql.toString(), Commodity.class).getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Commodity> getAllByOrderStatus(String status, Integer shop_id) {
+		StringBuffer hql = new StringBuffer("select DISTINCT comm.* from Commodity comm left join OrderForm orders on orders.orderFormID = comm.orderform_id where orders.orderstatus in (" + status + ") and comm.seller.id = '" +  shop_id + "'");
 		return commodityDao.getEntityManager().createNativeQuery(hql.toString(), Commodity.class).getResultList();
 	}
 

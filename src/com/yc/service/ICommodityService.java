@@ -10,7 +10,6 @@ import com.yc.entity.Shop;
 import java.util.Map;
 
 import com.yc.entity.StoreRoom;
-import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
 import com.yc.model.CommdityModel;
 import com.yc.model.Products;
@@ -21,7 +20,7 @@ public interface ICommodityService extends IGenericService<Commodity> {
 
 	List<Commodity> getCommodityByRoom(StoreRoom storeRoom);
 
-	List<Commodity> getAllByStatus();
+	List<Commodity> getAllByStatus(String status);
 
 	List<Commodity> getAllByParameters(Map<String, Object> map, boolean b);
 
@@ -37,7 +36,7 @@ public interface ICommodityService extends IGenericService<Commodity> {
 	List<Commodity> getAllByParameters(Map<String, Object> map);
 	
 	//状态订单商品状态查询
-	List<Commodity> getShopCommodityByStatus(CommoidityStatus commoidStatus, CommoidityStatus cancel, CommoidityStatus delete, CommoidityStatus marriage, Shop shop);
+	List<Commodity> getShopCommodityByStatus(String status,Shop shop);
 
 	//订单状态和商品状态
 	List<Commodity> getAllByCommStatusAndOrderStatus(CommoidityStatus support, OrderStatus waitdelivery);
@@ -57,5 +56,7 @@ public interface ICommodityService extends IGenericService<Commodity> {
 	List<Commodity> getAccountBook();
 
 	List<Commodity> getAllByPurchase();
+
+	List<Commodity> getAllByOrderStatus(String string, Integer shop_id);
 
 }
