@@ -12,6 +12,8 @@
 	type="text/css" />
 <link href="../content/static/css/reception/yl.css" rel="stylesheet"
 	type="text/css" />
+<link href="../content/static/css/reception/persc.css" rel="stylesheet"
+	type="text/css" />
 <script type="text/javascript"
 	src="../content/static/js/reception/png.js"></script>
 <script type="text/javascript"
@@ -388,7 +390,21 @@
 							$(".gucjmthone").click(function() {
 								$(".gucjmth").hide();
 							});
-
+							$("#m01").mouseover(function(){
+								$("#c01").css("display", "block");
+								$("#c02").hide();
+								$("#c03").hide();
+							});
+							$("#m02").mouseover(function(){
+								$("#c02").css("display", "block");
+								$("#c01").hide();
+								$("#c03").hide();
+							});
+							$("#m03").mouseover(function(){
+								$("#c03").css("display", "block");
+								$("#c01").hide();
+								$("#c02").hide();
+							});
 						});
 					</script>
 					<div class="gucjm">
@@ -481,20 +497,39 @@
 			</div>
 			<div class="scrolldoorFrame">
 				<ul class="scrollUl">
-					<li class="sd01" id="m01">wegfeagagdaaga</li>
-					<li id="m02">wegfeagagdaaga</li>
-					<li id="m03">wegfeagagdaaga</li>
+					<li class="sd01" id="m01">来自买家评论</li>
+					<li  id="m02" >商品详情<li>
+					<li  id="m03" >商品详情</li>
 				</ul>
 				<div class="bor03 cont">
 					<div id="c01">
-						<img src="../content/static/images/dz/nr_1.png" />
+				 <c:choose>	 
+				   <c:when test="${not empty reviewslist}">  
+					<ul class="ordersall">
+					    <li class="ordersli1">评论等级</li>
+						<li class="ordersli2">买家</li>
+						<li class="ordersli3">商品名称</li>
+						<li class="ordersli4">评论时间</li>
+						<li class="ordersli5">评论内容</li>
+					</ul>
+						<c:forEach items="${reviewslist}" var="reviews">
+						    <ul class="ordersall">
+						    <li style="margin-left: 45px;"><img style="border-width: 0px;" src="..${reviews.rankImagesPath}" /></li>
+							<li class="ordersli2" style="margin-left: 50px;"><div class="midl">${reviews.user.loginName}</div></li>
+							<li class="ordersli3"><div class="midl">${reviews.shopscommodity.commoidtyName}</div></li>
+							<li class="ordersli4"><div class="midl">${reviews.reviewsdate}</div></li>
+							<li class="ordersli5"><div class="midl">${reviews.reviews}</div></li>
+							</ul>
+						</c:forEach>
+				    </c:when>
+					<c:otherwise>
+					           <p style="margin-left: 40px;color:red">暂无评论</p>
+					</c:otherwise>
+					</c:choose>
+					    
 					</div>
-					<div id="c02" class="hidden">
-						<img src="../content/static/images/dz/nr_1.png" />
-					</div>
-					<div id="c03" class="hidden">
-						<img src="../content/static/images/dz/nr_1.png" />
-					</div>
+					<div id="c02" style="display: none">123456</div>
+					<div id="c03" style="display: none">456789</div>
 				</div>
 			</div>
 			<div class="left_ybottom">

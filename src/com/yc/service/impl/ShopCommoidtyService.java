@@ -141,4 +141,9 @@ public class ShopCommoidtyService extends GenericService<ShopCommoidty> implemen
 		paramete[5] = map.get("commCode");
 		return shopCommoidtyDao.find(hql.toString(), paramete, -1,-1);
 	}
+
+	@Override
+	public ShopCommoidty IsShopCommByNumber(int number) {
+		return shopCommoidtyDao.findById(number);
+	}
 }

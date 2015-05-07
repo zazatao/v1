@@ -38,7 +38,7 @@
 							<li><a href="#" onclick="onOrderStatus('wanjie');">完成</a></li>
 							<li>未兑换</li>
 							<li><a href="#" onclick="onOrderStatus('weiwanjie');">进行中</a></li>
-							<li>等待评价</li>
+							<li><a href="#" onclick="shopAssess();">等待评价</a></li>
 						</ul>
 					</div>
 					<div class="ordersclics">
@@ -66,6 +66,9 @@
 					}
 					function onOrderStatus(value){
 						location.href = "perscentBonuses?orderDate=&orderStatus="+value;
+					}
+					function shopAssess(){
+						location.href="/proscenium/shopAssess";
 					}
 				</script>
 				<div class="orderstil">
