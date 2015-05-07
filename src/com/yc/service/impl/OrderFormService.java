@@ -53,7 +53,7 @@ public class OrderFormService extends GenericService<OrderForm> implements IOrde
 	
 	@Override
 	public List<OrderForm> getAllByOrderStatus() {
-		String hql = " from OrderForm c where c.orderstatus in ('" + status + "')";
+		String hql = " from OrderForm c where c.orderstatus in ('packing')";
 		return orderFormDao.find(hql, null, null);
 	}
 
