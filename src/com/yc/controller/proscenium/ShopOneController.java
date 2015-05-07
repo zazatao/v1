@@ -33,6 +33,7 @@ import com.yc.entity.BuyCat;
 import com.yc.entity.Commodity;
 import com.yc.entity.CommoidityStatus;
 import com.yc.entity.Currency;
+import com.yc.entity.OrderStatus;
 import com.yc.entity.Possession;
 import com.yc.entity.Shop;
 import com.yc.entity.ShopCategory;
@@ -119,18 +120,23 @@ public class ShopOneController {
 				}
 				
 				if (shop.getIsPermit()) {
-					Integer marriageCount = commodityService.getShopCommodityByStatus("'marriage'", shop).size();
-					Integer lackCount = commodityService.getShopCommodityByStatus("'lack'", shop).size();
-					//Integer inAuctionloseCount = commodityService.getShopCommodityByStatus("'inAuctionlose'", shop).size();
-					Integer inWarehouseCount = commodityService.getShopCommodityByStatus("'inWarehouse'", shop).size();
-					Integer buyerNotPayCount = commodityService.getShopCommodityByStatus("'buyerNotPay'", shop).size();
-					Integer refuseCount = commodityService.getShopCommodityByStatus("'refuse'", shop).size();
-					Integer sendOutCount = commodityService.getShopCommodityByStatus("'sendOut'", shop).size();
-//					Integer lackCount = commodityService.getShopCommodityByStatus("'lack'", shop).size();
-//					mode.put("marriage", "'marriage'");
-//					mode.put("lack", "'lack'");
-//					mode.put
-//					mode.put("shop", shop);
+					Integer marriageCount = commodityService.getShopCommodityByStatus("'"+CommoidityStatus.marriage+"'", shop).size();
+					Integer lackCount = commodityService.getShopCommodityByStatus("'"+CommoidityStatus.lack+"'", shop).size();					
+					Integer inWarehouseCount = commodityService.getShopCommodityByStatus("'"+CommoidityStatus.inWarehouse+"'", shop).size();
+					Integer buyerNotPayCount = commodityService.getShopCommodityByStatus("'"+CommoidityStatus.buyerNotPay+"'", shop).size();
+					Integer refuseCount = commodityService.getShopCommodityByStatus("'"+CommoidityStatus.refuse+"'", shop).size();
+					Integer sendOutCount = commodityService.getAllByOrderStatus("'"+OrderStatus.waitDelivery+"','"+OrderStatus.transitGoods+"'",shop.getId()).size();				
+					Integer waitAcceptanceCount = commodityService.getAllByOrderStatus("'"+OrderStatus.waitAcceptance+"'",shop.getId()).size();
+					Integer waitDeliveryCount = commodityService.getAllByOrderStatus("'"+OrderStatus.waitDelivery+"'",shop.getId()).size();
+					mode.put("marriage", marriageCount);
+					mode.put("lack", lackCount);
+					mode.put("inWarehouseCount", inWarehouseCount);
+					mode.put("buyerNotPayCount", buyerNotPayCount);
+					mode.put("refuseCount", refuseCount);
+					mode.put("sendOutCount", sendOutCount);
+					mode.put("waitDeliveryCount", waitDeliveryCount);
+					mode.put("waitAcceptanceCount", waitAcceptanceCount);
+					mode.put("shop", shop);
 					return new ModelAndView("reception/myShop", mode);
 				}
 				return new ModelAndView("reception/setUpShop", mode);

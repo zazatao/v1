@@ -57,4 +57,6 @@ public interface ICommodityService extends IGenericService<Commodity> {
 
 	List<Commodity> getAllByPurchase();
 
+	List<Commodity> getAllByOrderStatus(String string, Integer shop_id);
+
 }
