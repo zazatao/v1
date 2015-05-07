@@ -201,11 +201,8 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 
 	@Override
 	public List<Commodity> getShopCommodityByStatus(String status, Shop shop) {
-		StringBuffer hql = new StringBuffer(" from Commodity c where  c.status in(?) and c.seller.id = ?");
-		Object[] paramete = new Object[2];
-		paramete[0] = status;
-		paramete[1] = shop.getId();
-		return commodityDao.find(hql.toString(), paramete, -1, -1);
+		StringBuffer hql = new StringBuffer(" from Commodity c where  c.status in("+status+") and c.seller.id = "+shop.getId());
+		return commodityDao.find(hql.toString(), null, null);
 	}
 
 	// 分类查询
@@ -380,5 +377,15 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 		@SuppressWarnings("unchecked")
 		List<Commodity> list = query.getResultList();
 		return list;
+	}
+
+	
+	@Override
+	public Integer getShopCommodityByStatusAndShop(String status, Integer shop_id) {
+		StringBuffer hql = new StringBuffer("select COUNT(DISTINCT id) from Commodity c where  c.status in(" + status + ") and c.seller.id = " + shop_id);
+		Query query =  commodityDao.getEntityManager().createNativeQuery(hql.toString());
+		System.out.println("result_________________"+query.getResultList().size());
+		return query.getResultList().size();		
+
 	}
 }

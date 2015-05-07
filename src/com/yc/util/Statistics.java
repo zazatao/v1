@@ -3,8 +3,10 @@ package com.yc.util;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.ServletException;
@@ -78,13 +80,14 @@ public class Statistics {
 				}
 			}
 			List<PersonnelStatistics> arryList = new ArrayList<PersonnelStatistics>();
-			
+			Map<String, List<PersonnelStatistics>> map  = new HashMap<String, List<PersonnelStatistics>>();
 			for (int i = 0; i < personnels.size(); i++) {
 				PersonnelStatistics comm = new PersonnelStatistics();
 				comm.setUserName(personnels.get(i).getUserName());
-//				comm.setNum(personnels.get(i).getAccomplishNum());
+				comm.setNum(personnels.get(i).getId());
 				arryList.add(comm);
 			}
+			map.put("jiangbo", arryList);
 			JSONArray json = JSONArray.fromObject(arryList, jsonConfig);
 			System.out.println(json.toString());
 			response.setContentType("application/json;charset=UTF-8");

@@ -125,22 +125,22 @@ public class ShopOneController {
 				}
 				
 				if (shop.getIsPermit()) {
-					Integer marriageCount = commodityService.getShopCommodityByStatus("'"+CommoidityStatus.marriage+"'", shop).size();
-					Integer lackCount = commodityService.getShopCommodityByStatus("'"+CommoidityStatus.lack+"'", shop).size();					
-					Integer inWarehouseCount = commodityService.getShopCommodityByStatus("'"+CommoidityStatus.inWarehouse+"'", shop).size();
-					Integer buyerNotPayCount = commodityService.getShopCommodityByStatus("'"+CommoidityStatus.buyerNotPay+"'", shop).size();
-					Integer refuseCount = commodityService.getShopCommodityByStatus("'"+CommoidityStatus.refuse+"'", shop).size();
-					Integer sendOutCount = commodityService.getAllByOrderStatus("'"+OrderStatus.waitDelivery+"','"+OrderStatus.transitGoods+"'",shop.getId()).size();				
-					Integer waitAcceptanceCount = commodityService.getAllByOrderStatus("'"+OrderStatus.waitAcceptance+"'",shop.getId()).size();
-					Integer waitDeliveryCount = commodityService.getAllByOrderStatus("'"+OrderStatus.waitDelivery+"'",shop.getId()).size();
+					Integer marriageCount = commodityService.getShopCommodityByStatusAndShop("'"+CommoidityStatus.marriage+"'", shop.getId());
+//					Integer lackCount = commodityService.getShopCommodityByStatus("'"+CommoidityStatus.lack+"'", shop).size();					
+//					Integer inWarehouseCount = commodityService.getShopCommodityByStatus("'"+CommoidityStatus.inWarehouse+"'", shop).size();
+//					Integer buyerNotPayCount = commodityService.getShopCommodityByStatus("'"+CommoidityStatus.buyerNotPay+"'", shop).size();
+//					Integer refuseCount = commodityService.getShopCommodityByStatus("'"+CommoidityStatus.refuse+"'", shop).size();
+//					Integer sendOutCount = commodityService.getAllByOrderStatus("'"+OrderStatus.waitDelivery+"','"+OrderStatus.transitGoods+"'",shop.getId()).size();				
+//					Integer waitAcceptanceCount = commodityService.getAllByOrderStatus("'"+OrderStatus.waitAcceptance+"'",shop.getId()).size();
+//					Integer waitDeliveryCount = commodityService.getAllByOrderStatus("'"+OrderStatus.waitDelivery+"'",shop.getId()).size();
 					mode.put("marriage", marriageCount);
-					mode.put("lack", lackCount);
-					mode.put("inWarehouseCount", inWarehouseCount);
-					mode.put("buyerNotPayCount", buyerNotPayCount);
-					mode.put("refuseCount", refuseCount);
-					mode.put("sendOutCount", sendOutCount);
-					mode.put("waitDeliveryCount", waitDeliveryCount);
-					mode.put("waitAcceptanceCount", waitAcceptanceCount);
+//					mode.put("lack", lackCount);
+//					mode.put("inWarehouseCount", inWarehouseCount);
+//					mode.put("buyerNotPayCount", buyerNotPayCount);
+//					mode.put("refuseCount", refuseCount);
+//					mode.put("sendOutCount", sendOutCount);
+//					mode.put("waitDeliveryCount", waitDeliveryCount);
+//					mode.put("waitAcceptanceCount", waitAcceptanceCount);
 					mode.put("shop", shop);
 					return new ModelAndView("reception/myShop", mode);
 				}

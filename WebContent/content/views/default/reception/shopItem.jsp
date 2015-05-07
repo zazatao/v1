@@ -173,9 +173,9 @@
 								pattern="##.##" minFractionDigits="2"></fmt:formatNumber></span>
 						</c:if>
 						<c:if test="${!shopCommoidty.isSpecial }">
-							<span class="red">fdgfd${shopCommoidty.currency.symbol + surs[0].fare }
+							<span class="red">${shopCommoidty.currency.symbol }
 							<fmt:formatNumber
-								value="${shopCommoidty.unitPrice }"
+								value="${shopCommoidty.unitPrice + surs[0].fare}"
 								pattern="##.##" minFractionDigits="2">
 							</fmt:formatNumber>
 							</span>
