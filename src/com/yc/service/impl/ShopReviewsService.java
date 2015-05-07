@@ -3,16 +3,12 @@ package com.yc.service.impl;
 import java.util.List;
 
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.yc.dao.orm.commons.GenericDao;
-import com.yc.entity.OrderForm;
-import com.yc.entity.ShopCommoidty;
 import com.yc.entity.ShopReviews;
-import com.yc.entity.user.DepartAndPositions;
 import com.yc.service.IShopReviewsService;
 
 @Component
@@ -84,5 +80,4 @@ public class ShopReviewsService implements IShopReviewsService {
 		shopReviewsDao.getEntityManager().clear();
 	    return isok;
 	}
-
 }

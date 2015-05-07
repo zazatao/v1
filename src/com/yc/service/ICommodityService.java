@@ -6,7 +6,6 @@ import com.yc.entity.Commodity;
 import com.yc.entity.CommoidityStatus;
 import com.yc.entity.OrderStatus;
 import com.yc.entity.Shop;
-import com.yc.entity.ShopCommoidty;
 
 import java.util.Map;
 
@@ -63,7 +62,5 @@ public interface ICommodityService extends IGenericService<Commodity> {
 	public Integer getCommodityByStatusAndShop(String status, Integer shop_id);
 	
 	List<Commodity> getAllByUserAndStatus(User user);
-	
-	public Integer getShopCommodityByStatusAndShop(String status, Integer shop_id);
 
 }

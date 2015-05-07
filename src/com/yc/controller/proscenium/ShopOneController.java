@@ -140,12 +140,13 @@ public class ShopOneController {
 						DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 						Date payDate = null;
 						try {
-							payDate = format.parse(orderForms.get(i).getOrderDate());
+							payDate = format.parse(orderForms.get(i).getPaymentDate());
 						} catch (ParseException e) {
 							e.printStackTrace();
 						}
 						Date curDate = new Date();
-						Calendar c1 = Calendar.getInstance();
+						long betweenDays = (curDate.getTime() - payDate.getTime()) / (3600 * 24 * 1000);
+						/*Calendar c1 = Calendar.getInstance();
 						Calendar c2 = Calendar.getInstance();
 						c1.setTime(payDate);
 						c2.setTime(curDate);
@@ -155,8 +156,9 @@ public class ShopOneController {
 						for(int j=0; j<betweenYears; j++) {
 							c1.set(Calendar.YEAR,(c1.get(Calendar.YEAR)+1));
 							betweenDays += c1.getMaximum(Calendar.DAY_OF_YEAR);
-						 }
+						 }*/
 
+						System.out.println("相隔多久======="+betweenDays);
 						if ( betweenDays > 15 ) {
 							count++;
 						}
@@ -164,22 +166,23 @@ public class ShopOneController {
 					
 					Integer marriageCount = commodityService.getCommodityByStatusAndShop("'"+CommoidityStatus.marriage+"'", shop.getId());
 					Integer lackCount = commodityService.getCommodityByStatusAndShop("'"+CommoidityStatus.lack+"'", shop.getId());					
-					Integer inWarehouseCount = commodityService.getCommodityByStatusAndShop("'"+CommoidityStatus.inWarehouse+"'", shop.getId());
-					//Integer buyerNotPayCount = commodityService.getCommodityByStatusAndShop("'"+CommoidityStatus.buyerNotPay+"'", shop.getId());
-					//Integer refuseCount = commodityService.getCommodityByStatusAndShop("'"+CommoidityStatus.refuse+"'", shop.getId());
+					Integer inWarehouseCount = commodityService.getCommodityByStatusAndShop("'"+CommoidityStatus.inWarehouse+"'", shop.getId());	
+					
 					Integer sendOutCount = orderFormService.getShopOrderByStatusAndShop("'"+OrderStatus.waitDelivery+"','"+OrderStatus.transitGoods+"'",shop.getId());				
 					Integer waitAcceptanceCount = orderFormService.getShopOrderByStatusAndShop("'"+OrderStatus.waitAcceptance+"'",shop.getId());
 					Integer waitDeliveryCount = orderFormService.getShopOrderByStatusAndShop("'"+OrderStatus.waitDelivery+"'",shop.getId());
 					Integer waitPaymentCount = orderFormService.getShopOrderByStatusAndShop("'"+OrderStatus.waitPayment+"'",shop.getId());
-					Integer refundOrderForm = orderFormService.getShopOrderByStatusAndShop("'"+OrderStatus.refundOrderForm+"'",shop.getId());
+					Integer refundOrderFormCount = orderFormService.getShopOrderByStatusAndShop("'"+OrderStatus.refundOrderForm+"'",shop.getId());
+					Integer reviewCount = shopReviewsService.getReviewsByShop(shop.getId()).size();
 					mode.put("marriageCount", marriageCount);
 					mode.put("lackCount", lackCount);
 					mode.put("inWarehouseCount", inWarehouseCount);
 					mode.put("waitPaymentCount", waitPaymentCount);
-					mode.put("refundOrderForm", refundOrderForm);
+					mode.put("refundOrderFormCount", refundOrderFormCount);
 					mode.put("sendOutCount", sendOutCount);
 					mode.put("waitDeliveryCount", waitDeliveryCount);
 					mode.put("waitAcceptanceCount", waitAcceptanceCount);
+					mode.put("reviewCount", reviewCount);
 					mode.put("recent", count);
 					mode.put("shop", shop);					
 					return new ModelAndView("reception/myShop", mode);
