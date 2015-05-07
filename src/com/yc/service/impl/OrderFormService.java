@@ -199,6 +199,13 @@ public class OrderFormService extends GenericService<OrderForm> implements IOrde
 		List<OrderForm> list =  query.getResultList();
 		return list;
 	}
+	
+	@Override
+	public Integer getShopOrderByStatusAndShop(String status, Integer shop_id) {
+		StringBuffer hql = new StringBuffer("select COUNT(DISTINCT orderFormID) from OrderForm o right join Commodity com on com.orderform_id = o.orderFormID  where o.orderstatus in(" + status + ") and com.seller_name = "+shop_id);
+		Query query =  orderFormDao.getEntityManager().createNativeQuery(hql.toString());
+		return Integer.parseInt(query.getSingleResult().toString());
+	}
 
 	@Override
 	public List<OrderForm> getShopOrderByParam(Map<String, Object> map, Shop shop) throws ParseException {

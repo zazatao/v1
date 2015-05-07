@@ -42,24 +42,23 @@
         	<div>
             	<p>商品</p>
                 <ul>
-                  <li><a href="#">问题商品<span class="gay">(${marriage})</span></a></li>
-                  <li><a href="#">已售完<span class="gay">(${marriage})</span></a></li>
-                  <li><a href="#">留言/回复<span class="gay">(${marriage})</span></a></li>
-                  <li><a href="#">出售中<span class="gay">(${marriage})</span></a></li>
-                  <li><a href="#">仓库中<span class="gay">(${marriage})</span></a></li>
+                  <li><a href="#">问题商品<span class="gay">(${marriageCount})</span></a></li>
+                  <li><a href="#">已售完<span class="gay">(${lackCount})</span></a></li>
+                  <li><a href="#">留言/回复<span class="gay">(${marriageCount})</span></a></li>
+                  <li><a href="#">出售中<span class="gay">(${sendOutCount})</span></a></li>
+                  <li><a href="#">仓库中<span class="gay">(${inWarehouseCount})</span></a></li>
                 </ul>
                 <span class="catelistup"></span>
             </div>
         	<div>
             	<p>交易</p>
                 <ul>
-                  <li><a href="#">待买家付款<span class="gay">(${marriage})</span></a></li>
-                  <li><a href="#">待发货<span class="gay">(${marriage})</span></a></li>                 
-                  <li><a href="#">留言/回复<span class="gay">(${marriage})</span></a></li>
-                  <li><a href="#">待买家收货<span class="gay">(${marriage})</span></a></li>
-                  <li><a href="#">退货退款<span class="gay">(${marriage})</span></a></li>
-<!--                   <li><a href="#">收到维权投诉<span class="gay">(0)</span></a></li> -->
-                  <li><a href="#">近期出售<span class="gay">(${marriage})</span></a></li>
+                  <li><a href="#">待买家付款<span class="gay">(${waitPaymentCount})</span></a></li>
+                  <li><a href="#">待发货<span class="gay">(${waitDeliveryCount})</span></a></li>                 
+                  <li><a href="#">留言/回复<span class="gay">(${marriageCount})</span></a></li>
+                  <li><a href="#">待买家收货<span class="gay">(${waitAcceptanceCount})</span></a></li>
+                  <li><a href="#">退货退款<span class="gay">(${refundOrderForm})</span></a></li>
+                  <li><a href="#">近期出售<span class="gay">(${recent})</span></a></li>
                 </ul>
                 <span class="catelistup"></span>
             </div>

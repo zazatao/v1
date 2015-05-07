@@ -362,7 +362,7 @@ public class UserController {
 			List<Collection> collections2 = new LinkedList<Collection>();
 			for ( int i = 0; i < collections.size(); i++ )
 			{
-				if ( collections.get(i).getUser().getLoginName().equals(user.getLoginName()) ) {
+				if ( collections.get(i).getUser().getId() == user.getId() ) {
 					collections2.add(collections.get(i));
 				}
 			}

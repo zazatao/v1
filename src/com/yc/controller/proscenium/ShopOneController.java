@@ -2,8 +2,11 @@ package com.yc.controller.proscenium;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -30,9 +33,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Brand;
 import com.yc.entity.BuyCat;
-import com.yc.entity.Commodity;
 import com.yc.entity.CommoidityStatus;
 import com.yc.entity.Currency;
+import com.yc.entity.OrderForm;
 import com.yc.entity.OrderStatus;
 import com.yc.entity.Possession;
 import com.yc.entity.Shop;
@@ -48,6 +51,7 @@ import com.yc.service.IBrandService;
 import com.yc.service.IBuyCatService;
 import com.yc.service.ICommodityService;
 import com.yc.service.ICurrencyService;
+import com.yc.service.IOrderFormService;
 import com.yc.service.IShopCategoryService;
 import com.yc.service.IShopCommImageService;
 import com.yc.service.IShopCommoidtyService;
@@ -101,6 +105,9 @@ public class ShopOneController {
 	@Autowired
 	ICommodityService commodityService;
 	
+	@Autowired
+	IOrderFormService orderFormService;
+	
 	//开店信息填写
 	@RequestMapping(value = "setUpShop", method = RequestMethod.GET)
 	public ModelAndView setUpShop(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -120,23 +127,56 @@ public class ShopOneController {
 				}
 				
 				if (shop.getIsPermit()) {
-					Integer marriageCount = commodityService.getShopCommodityByStatusAndShop("'"+CommoidityStatus.marriage+"'", shop.getId());
-//					Integer lackCount = commodityService.getShopCommodityByStatus("'"+CommoidityStatus.lack+"'", shop).size();					
-//					Integer inWarehouseCount = commodityService.getShopCommodityByStatus("'"+CommoidityStatus.inWarehouse+"'", shop).size();
-//					Integer buyerNotPayCount = commodityService.getShopCommodityByStatus("'"+CommoidityStatus.buyerNotPay+"'", shop).size();
-//					Integer refuseCount = commodityService.getShopCommodityByStatus("'"+CommoidityStatus.refuse+"'", shop).size();
-//					Integer sendOutCount = commodityService.getAllByOrderStatus("'"+OrderStatus.waitDelivery+"','"+OrderStatus.transitGoods+"'",shop.getId()).size();				
-//					Integer waitAcceptanceCount = commodityService.getAllByOrderStatus("'"+OrderStatus.waitAcceptance+"'",shop.getId()).size();
-//					Integer waitDeliveryCount = commodityService.getAllByOrderStatus("'"+OrderStatus.waitDelivery+"'",shop.getId()).size();
-					mode.put("marriage", marriageCount);
-//					mode.put("lack", lackCount);
-//					mode.put("inWarehouseCount", inWarehouseCount);
-//					mode.put("buyerNotPayCount", buyerNotPayCount);
-//					mode.put("refuseCount", refuseCount);
-//					mode.put("sendOutCount", sendOutCount);
-//					mode.put("waitDeliveryCount", waitDeliveryCount);
-//					mode.put("waitAcceptanceCount", waitAcceptanceCount);
-					mode.put("shop", shop);
+					
+					List<OrderForm> orderForms = orderFormService.getShopOrderByShop(shop);
+					int count = 0;
+					for ( int i = 0; i < orderForms.size(); i++ )
+					{
+						DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+						Date payDate = null;
+						try {
+							payDate = format.parse(orderForms.get(i).getOrderDate());
+						} catch (ParseException e) {
+							e.printStackTrace();
+						}
+						Date curDate = new Date();
+						Calendar c1 = Calendar.getInstance();
+						Calendar c2 = Calendar.getInstance();
+						c1.setTime(payDate);
+						c2.setTime(curDate);
+						
+						int betweenYears = c2.get(Calendar.YEAR)-c1.get(Calendar.YEAR);
+						int betweenDays = c2.get(Calendar.DAY_OF_YEAR)-c1.get(Calendar.DAY_OF_YEAR);
+						for(int j=0; j<betweenYears; j++) {
+							c1.set(Calendar.YEAR,(c1.get(Calendar.YEAR)+1));
+							betweenDays += c1.getMaximum(Calendar.DAY_OF_YEAR);
+						 }
+
+						if ( betweenDays > 15 ) {
+							count++;
+						}
+					}
+					
+					Integer marriageCount = commodityService.getCommodityByStatusAndShop("'"+CommoidityStatus.marriage+"'", shop.getId());
+					Integer lackCount = commodityService.getCommodityByStatusAndShop("'"+CommoidityStatus.lack+"'", shop.getId());					
+					Integer inWarehouseCount = commodityService.getCommodityByStatusAndShop("'"+CommoidityStatus.inWarehouse+"'", shop.getId());
+					//Integer buyerNotPayCount = commodityService.getCommodityByStatusAndShop("'"+CommoidityStatus.buyerNotPay+"'", shop.getId());
+					//Integer refuseCount = commodityService.getCommodityByStatusAndShop("'"+CommoidityStatus.refuse+"'", shop.getId());
+					Integer sendOutCount = orderFormService.getShopOrderByStatusAndShop("'"+OrderStatus.waitDelivery+"','"+OrderStatus.transitGoods+"'",shop.getId());				
+					Integer waitAcceptanceCount = orderFormService.getShopOrderByStatusAndShop("'"+OrderStatus.waitAcceptance+"'",shop.getId());
+					Integer waitDeliveryCount = orderFormService.getShopOrderByStatusAndShop("'"+OrderStatus.waitDelivery+"'",shop.getId());
+					Integer waitPaymentCount = orderFormService.getShopOrderByStatusAndShop("'"+OrderStatus.waitPayment+"'",shop.getId());
+					Integer refundOrderForm = orderFormService.getShopOrderByStatusAndShop("'"+OrderStatus.refundOrderForm+"'",shop.getId());
+					mode.put("marriageCount", marriageCount);
+					mode.put("lackCount", lackCount);
+					mode.put("inWarehouseCount", inWarehouseCount);
+					mode.put("waitPaymentCount", waitPaymentCount);
+					mode.put("refundOrderForm", refundOrderForm);
+					mode.put("sendOutCount", sendOutCount);
+					mode.put("waitDeliveryCount", waitDeliveryCount);
+					mode.put("waitAcceptanceCount", waitAcceptanceCount);
+					mode.put("recent", count);
+					mode.put("shop", shop);					
 					return new ModelAndView("reception/myShop", mode);
 				}
 				return new ModelAndView("reception/setUpShop", mode);
