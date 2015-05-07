@@ -21,7 +21,7 @@ public interface IOrderFormService extends IGenericService<OrderForm>{
 
 	List<OrderForm> getOrderFormByParameters(Map<String, Object> map);
 	
-	List<OrderForm> getAllByOrderStatus();
+	List<OrderForm> getAllByOrderStatus(String status);
 
 	List<OrderForm> getAllByParams(Map<String, Object> map, User user);
 

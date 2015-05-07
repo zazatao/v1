@@ -126,11 +126,11 @@ public class ShopOneController {
 					Integer buyerNotPayCount = commodityService.getShopCommodityByStatus("'buyerNotPay'", shop).size();
 					Integer refuseCount = commodityService.getShopCommodityByStatus("'refuse'", shop).size();
 					Integer sendOutCount = commodityService.getShopCommodityByStatus("'sendOut'", shop).size();
-					Integer lackCount = commodityService.getShopCommodityByStatus("'lack'", shop).size();
-					mode.put("marriage", "'marriage'");
-					mode.put("lack", "'lack'");
-					mode.put
-					mode.put("shop", shop);
+//					Integer lackCount = commodityService.getShopCommodityByStatus("'lack'", shop).size();
+//					mode.put("marriage", "'marriage'");
+//					mode.put("lack", "'lack'");
+//					mode.put
+//					mode.put("shop", shop);
 					return new ModelAndView("reception/myShop", mode);
 				}
 				return new ModelAndView("reception/setUpShop", mode);
