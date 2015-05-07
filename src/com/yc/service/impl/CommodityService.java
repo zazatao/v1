@@ -385,4 +385,5 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 		Query query =  commodityDao.getEntityManager().createNativeQuery(hql.toString());
 		return Integer.parseInt(query.getSingleResult().toString());
 	}
+
 }
