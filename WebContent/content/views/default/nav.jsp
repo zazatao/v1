@@ -32,10 +32,8 @@
 							<li><a href="./orderprocessing/orderPool">订单池</a></li>
 							<li><a href="./orderprocessing/orderGroup">订单组</a></li>
 							<li><a href="./orderprocessing/dispose">处理</a></li>
-							<c:if
-								test="${personnel.departAndPositions.positions.positionid != 33 }">
+							
 								<li><a href="./orderprocessing/statistics">统计</a></li>
-							</c:if>
 						</ul></li>
 				</c:if>
 				<c:if
@@ -61,10 +59,7 @@
 								<li><a href="./warehouse/cargoGroup">货物组</a></li>
 								<li><a href="./warehouse/batchShipments">出货查询</a></li>
 							</c:if>
-							<c:if
-								test="${personnel.departAndPositions.positions.positionid != 33 }">
 								<li><a href="./warehouse/statistical">统计发货人情况</a></li>
-							</c:if>
 						</ul></li>
 				</c:if>
 				<c:if
