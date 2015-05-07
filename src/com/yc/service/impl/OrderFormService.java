@@ -95,9 +95,9 @@ public class OrderFormService extends GenericService<OrderForm> implements IOrde
 		StringBuffer hql = new StringBuffer("select DISTINCT o.* from OrderForm o where o.user_id = "+user.getId());
 		if (map.get("orderStatus") != null) {
 			if (map.get("orderStatus").equals("wanjie")) {
-				hql.append(" and o.orderstatus = '"+OrderStatus.completionTransaction+"'");
+				hql.append(" and o.orderstatus in('"+OrderStatus.completionTransaction+"','"+OrderStatus.consigneeSigning+"')");
 			}else{
-				hql.append(" and o.orderstatus != '"+OrderStatus.completionTransaction+"'");
+				hql.append(" and o.orderstatus not in ('"+OrderStatus.completionTransaction+"','"+OrderStatus.consigneeSigning+"')");
 			}
 		}
 		if (map.get("orderDate") != null) {
@@ -198,6 +198,13 @@ public class OrderFormService extends GenericService<OrderForm> implements IOrde
 		@SuppressWarnings("unchecked")
 		List<OrderForm> list =  query.getResultList();
 		return list;
+	}
+	
+	@Override
+	public Integer getShopOrderByStatusAndShop(String status, Integer shop_id) {
+		StringBuffer hql = new StringBuffer("select COUNT(DISTINCT orderFormID) from OrderForm o right join Commodity com on com.orderform_id = o.orderFormID  where o.orderstatus in(" + status + ") and com.seller_name = "+shop_id);
+		Query query =  orderFormDao.getEntityManager().createNativeQuery(hql.toString());
+		return Integer.parseInt(query.getSingleResult().toString());
 	}
 
 	@Override
