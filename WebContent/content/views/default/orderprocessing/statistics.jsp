@@ -116,7 +116,7 @@
 							success : function(data) {
 								var items = data.statistics
 								for (var i = 0; i < items.length; i++) {
-									arr.push(items[i].);
+									arr.push(items[i]);
 								}
 							}
 						});
