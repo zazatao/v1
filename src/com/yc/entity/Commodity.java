@@ -83,7 +83,7 @@ public class Commodity {
 	private OrderForm orderNumber;			
 	
 	@OneToMany(mappedBy = "commodity")
-	private List<ImagePath> imagePaths;
+	private List<ImagePath> imagePaths;//照片路径
 	@Column
 	private String cellDate;// 入单元格时间
 	@Column

@@ -124,6 +124,8 @@ public class ShopTwoController {
 		ModelMap mode = new ModelMap();
 		ShopCategory cate = null;
 		List<ShopCategory> list = shopCategService.getAll();
+		List<ShopCommoidty> shopcommlist=shopCommService.getAllByShopCategoryID(id, null);
+		mode.put("shopcommlist",shopcommlist);
 		mode.put("shopCategories", list);
 		if (id != null && id >0) {
 			cate = shopCategService.findById(id);
