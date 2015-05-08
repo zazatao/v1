@@ -49,13 +49,14 @@
 					<li><a href="#" style="font-size: 18px;">订单处理</a></li>
 					<span class="divider"><font style="font-size: 18px;">/</font></span>
 					<li><font style="font-size: 18px;">统计</font>
+					
 				</ul>
 			</DIV>
 		</DIV>
 	</DIV>
 	<div class="form-group">
 			<div class="col-md-3">
-				<select class="form-control">
+				<select class="form-control" id="param">
 					<option value="week">本周
 					<option value="months">本月
 					<option value="year">本年
@@ -63,11 +64,24 @@
 				<br>
 			</div>
 		</div>
-		
 	<div id="main" style="width: 100%; height: 700px;"></div>
 </body>
 <script src="../content/static/js/echart/echarts-all.js"></script>
 <script type="text/javascript">  
+	var PATH = "../analysis/removecauses?param=week";
+	$('#param').change(function(){
+		alert(this.value);
+		PATH = "../analysis/removecauses?param="+this.value;
+		require.config({
+			paths : {
+				'echarts' : 'http://echarts.baidu.com/build/echarts',
+				'echarts/chart/line' : 'http://echarts.baidu.com/build/echarts'
+			}
+		});
+		require([ 'echarts', 'echarts/chart/line' // 使用柱状图就加载bar模块，按需加载
+  	], drewEcharts
+ 	);
+	});
 // 路径配置
 		require.config({
 			paths : {
@@ -91,30 +105,23 @@
         	        trigger: 'axis'
         	    },
         	    legend: {
-        	        data:(function(){
+        	        data: (function(){
                         var arr=[];
-                        $.ajax({
-                        type : "post",
-                        async : false, //同步执行
-                        url : "../analysis/removecauses",
-                        data : {},
-                        dataType : "json", //返回数据形式为json
-                        success : function(result) {
-                        if (result) {
-                               for(var i=0;i<result.length;i++){
-                                  console.log(result[i].userName);
-                                  arr.push(result[i].userName);
-                                }    
-                        }
-                        
-                    },
-                    error : function(errorMsg) {
-                        alert("不好意思，大爷，图表请求数据失败啦!");
-                        myChart.hideLoading();
-                    }
-                   });
+                        jQuery.ajax({
+							type : 'post',
+							async : false, //同步执行
+							dataType : 'json',
+							contentType : 'application/json',
+							url : PATH,
+							success : function(data) {
+								var items = data.statistics
+								for (var i = 0; i < items.length; i++) {
+									arr.push(items[i]);
+								}
+							}
+						});
                    return arr;
-                })() 
+                })()
         	    },
         	    toolbox: {
         	        show : true,

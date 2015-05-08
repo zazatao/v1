@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>分类页面</title>
 <link href="../content/static/css/reception/css.css" rel="stylesheet"
 	type="text/css" />
 <link href="../content/static/css/reception/qt.css" rel="stylesheet"
@@ -27,6 +27,7 @@
 <jsp:include page="../common/prosceniumNav.jsp"></jsp:include>
 <div class="con">
 <jsp:include page="categoryOneLeft.jsp"></jsp:include>
+
 <div class="nyright nyrightls">
     	<div class="rightl">
         	<ul>

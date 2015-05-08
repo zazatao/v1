@@ -15,6 +15,7 @@ import com.yc.entity.user.DepartAndPositions;
 import com.yc.entity.user.Department;
 import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
+import com.yc.model.PersonnelStatistics;
 import com.yc.service.IPersonnelService;
 
 @Component
@@ -100,4 +101,33 @@ public class PersonnelService extends GenericService<Personnel> implements IPers
 	public List<Personnel> getAllByDepAndPos(DepartAndPositions depAndPos) {
 		return personnelDao.getBy("departAndPositions.id", depAndPos.getId());
 	}
+
+	@Override
+	public List<PersonnelStatistics> getOrtherByParam(String days, Personnel personnel) {
+		StringBuffer hql = new StringBuffer("SELECT acc.accomplishNum,per.userName,acc.accomplishDate,dap.rules,dap.wage,dap.saleCut FROM personnel "
+						+ "per LEFT JOIN accomplishmetric acc ON acc.personnel_id  = per.id LEFT JOIN departandpositions dap "
+						+ "ON dap.id = per.depAndPos_id  WHERE per.id = "+personnel.getId()+" AND acc.accomplishDate IN ("+days+") "
+						+ "GROUP BY per.id,acc.accomplishDate");
+		Query query = personnelDao.getEntityManager().createNativeQuery(hql.toString());
+		@SuppressWarnings("rawtypes")
+		List objecArraytList = query.getResultList();
+		List<PersonnelStatistics> list = new ArrayList<PersonnelStatistics>();
+		PersonnelStatistics statistics = null;
+		if (objecArraytList != null && objecArraytList.size() > 0) {
+			for (int i = 0; i < objecArraytList.size(); i++) {
+				statistics = new PersonnelStatistics();
+				Object[] obj = (Object[]) objecArraytList.get(i);
+				statistics.setAccomplishNum(Integer.parseInt(obj[0].toString()));
+				statistics.setUserName(obj[1].toString());
+				statistics.setAccomplishDate(obj[2].toString());
+				statistics.setRules(Integer.parseInt(obj[3].toString()));
+				statistics.setWage(Double.parseDouble(obj[4].toString()));
+				statistics.setSaleCut(Double.parseDouble(obj[5].toString()));
+				list.add(statistics);
+			}
+		}
+		return list;
+	}
+	
+	
 }

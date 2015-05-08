@@ -287,7 +287,8 @@ public class GetShopCategory {
 				if ( shopComm != null ) {
 					Collection collection = new Collection();
   	  	  			collection.setShopCommoidty(shopComm);
-  	  	  			collectionService.save(collection);
+  	  	  			collection.setUser(user);
+  	  	  			collectionService.save(collection); 	  	  			
   	  	  			mode.put("success", "true");
 				}
 			}
