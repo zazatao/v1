@@ -38,6 +38,7 @@
 <script TYPE="text/javascript"
 	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
 <script src="../content/static/js/echart/echarts.js"></script>
+<script src="../content/static/js/json/json2.js"></script>
 </head>
 <body>
 	<!-- Static navbar -->
@@ -49,29 +50,28 @@
 					<li><a href="#" style="font-size: 18px;">订单处理</a></li>
 					<span class="divider"><font style="font-size: 18px;">/</font></span>
 					<li><font style="font-size: 18px;">统计</font>
-					
 				</ul>
 			</DIV>
 		</DIV>
 	</DIV>
+	<div id="iid"></div>
 	<div class="form-group">
-			<div class="col-md-3">
-				<select class="form-control" id="param">
-					<option value="week">本周
-					<option value="months">本月
-					<option value="year">本年
-				</select>
-				<br>
-			</div>
+		<div class="col-md-3">
+			<select class="form-control" id="param">
+				<option value="week">本周
+				<option value="months">本月
+				<option value="year">本年
+			</select> <br>
 		</div>
+	</div>
 	<div id="main" style="width: 100%; height: 700px;"></div>
 </body>
 <script src="../content/static/js/echart/echarts-all.js"></script>
-<script type="text/javascript">  
+<script type="text/javascript">
 	var PATH = "../analysis/removecauses?param=week";
-	$('#param').change(function(){
+	$('#param').change(function() {
 		alert(this.value);
-		PATH = "../analysis/removecauses?param="+this.value;
+		PATH = "../analysis/removecauses?param=" + this.value;
 		require.config({
 			paths : {
 				'echarts' : 'http://echarts.baidu.com/build/echarts',
@@ -79,96 +79,150 @@
 			}
 		});
 		require([ 'echarts', 'echarts/chart/line' // 使用柱状图就加载bar模块，按需加载
-  	], drewEcharts
- 	);
+		], drewEcharts);
 	});
-// 路径配置
-		require.config({
-			paths : {
-				'echarts' : 'http://echarts.baidu.com/build/echarts',
-				'echarts/chart/line' : 'http://echarts.baidu.com/build/echarts'
-			}
-		});
-		require([ 'echarts', 'echarts/chart/line' // 使用柱状图就加载bar模块，按需加载
-  	], drewEcharts
- 	);
+	// 路径配置
+	require.config({
+		paths : {
+			'echarts' : 'http://echarts.baidu.com/build/echarts',
+			'echarts/chart/line' : 'http://echarts.baidu.com/build/echarts'
+		}
+	});
+	require([ 'echarts', 'echarts/chart/line' // 使用柱状图就加载bar模块，按需加载
+	], drewEcharts);
 
- function drewEcharts(ec) {
-        // 基于准备好的dom，初始化echarts图表
-        myChart = ec.init(document.getElementById('main')); 
-        var option = {
-        	    title : {
-        	        text: '订单采购与工资统计表',
-        	        subtext: '折线与饼图'
-        	    },
-        	    tooltip : {
-        	        trigger: 'axis'
-        	    },
-        	    legend: {
-        	        data: (function(){
-                        var arr=[];
-                        jQuery.ajax({
-							type : 'post',
-							async : false, //同步执行
-							dataType : 'json',
-							contentType : 'application/json',
-							url : PATH,
-							success : function(data) {
-								var items = data.statistics
-								for (var i = 0; i < items.length; i++) {
-									arr.push(items[i]);
-								}
+	function drewEcharts(ec) {
+		// 基于准备好的dom，初始化echarts图表
+		myChart = ec.init(document.getElementById('main'));
+		var option = {
+			title : {
+				text : '订单采购处理统计',
+				subtext : '折线与饼图'
+			},
+			tooltip : {
+				trigger : 'axis'
+			},
+			legend : {
+				data : (function() {
+					var arr = [];
+					jQuery.ajax({
+						type : 'post',
+						async : false, //同步执行
+						dataType : 'json',
+						contentType : 'application/json',
+						url : PATH,
+						success : function(data) {
+							var items = data.userKeys;
+							for (var i = 0; i < items.length; i++) {
+								arr.push(items[i]);
 							}
-						});
-                   return arr;
-                })()
-        	    },
-        	    toolbox: {
-        	        show : true,
-        	        feature : {
-        	            mark : {show: true},
-        	            dataView : {show: true, readOnly: false},
-        	            magicType : {show: true, type: ['line', 'bar']},
-        	            restore : {show: true},
-        	            saveAsImage : {show: true}
-        	        }
-        	    },
-        	    calculable : true,
-        	    xAxis : [
-        	        {
-        	            type : 'category',
-        	            boundaryGap : false,
-        	            data : ['周一','周二','周三','周四','周五','周六','周日']
-        	        }
-        	    ],
-        	    yAxis : [
-        	        {
-        	            type : 'value',
-        	            axisLabel : {
-        	                formatter: '{value}'
-        	            }
-        	        }
-        	    ],
-        	    series : [
-        	        {
-        	            name:'最高气温',
-        	            type:'line',
-        	            data:[11, 11, 15, 13, 12, 13, 10],
-        	            markPoint : {
-        	                data : [
-        	                    {type : 'max', name: '最大值'},
-        	                    {type : 'min', name: '最小值'}
-        	                ]
-        	            },
-        	            markLine : {
-        	                data : [
-        	                    {type : 'average', name: '平均值'}
-        	                ]
-        	            }
-        	        }
-        	    ]
-        	};
-        myChart.setOption(option); 
-    }
+						}
+					});
+					return arr;
+				})()
+			},
+			toolbox : {
+				show : true,
+				feature : {
+					mark : {
+						show : true
+					},
+					dataView : {
+						show : true,
+						readOnly : false
+					},
+					magicType : {
+						show : true,
+						type : [ 'line', 'bar' ]
+					},
+					restore : {
+						show : true
+					},
+					saveAsImage : {
+						show : true
+					}
+				}
+			},
+			calculable : true,
+			xAxis : [ {
+				type : 'category',
+				boundaryGap : false,
+				data : (function() {
+					var arr = [];
+					jQuery.ajax({
+						type : 'post',
+						async : false, //同步执行
+						dataType : 'json',
+						contentType : 'application/json',
+						url : PATH,
+						success : function(data) {
+							var items = data.days;
+							var days = items.split(',');
+							for (var i = 0; i < days.length; i++) {
+								arr.push(days[i]);
+							}
+						}
+					});
+					return arr;
+				})()
+			} ],
+			yAxis : [ {
+				type : 'value',
+				axisLabel : {
+					formatter : '{value}'
+				}
+			} ],
+			series :[ eval("("
+					+ (function() {
+						var arr = "";
+						jQuery
+								.ajax({
+									type : 'post',
+									async : false, //同步执行
+									dataType : 'json',
+									contentType : 'application/json',
+									url : PATH,
+									success : function(data) {
+										var items = data.days;
+										var keys = data.userKeys;
+										var statistics = data.statistics;
+										var days = items.split(',');
+										for (var i = 0; i < keys.length; i++) {
+											var myArray = new Array();
+											for (var j = 0; j < days.length; j++) {
+												myArray[j] = days[j];
+											}
+											arr = arr + "{name:'" + keys[i]
+													+ "', type:'line', data:[";
+											for (var g = 0; g < statistics.length; g++) {
+												if (keys[i] == statistics[g].userName) {
+													var num = myArray
+															.indexOf(statistics[g].accomplishDate);
+													myArray[num] = statistics[g].accomplishNum;
+													okis = false;
+												}
+											}
+											for (var j = 0; j < days.length; j++) {
+												var number = myArray.indexOf(days[j]);
+												myArray[number] = 0;
+											}
+											for (var k = 0; k < myArray.length; k++) {
+												arr = arr + myArray[k]+",";
+											}
+											arr = arr.substring(0,
+													arr.length - 1);
+											arr = arr
+													+ "],markPoint : { data : [{type : 'max', name: '最大值'},{type : 'min', name: '最小值'} ]},markLine : {data : [  {type : 'average', name: '平均值'}  ]  }},";
+										}
+									}
+								});
+						arr = arr.substring(0, arr.length - 1);
+						alert(arr);
+						return arr;
+					})() + ")") 
+					] 
+		};
+		myChart.setOption(option);
+	}
 </script>
 </html>

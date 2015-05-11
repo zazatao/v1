@@ -56,7 +56,7 @@ public class Statistics {
 	public Map<String, Object> removecauses(String param,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Personnel personnel = (Personnel) request.getSession().getAttribute("loginPersonnle");
 		ModelMap mode = new ModelMap();
-		Map<String, List<PersonnelStatistics>> map  = new HashMap<String, List<PersonnelStatistics>>();
+		List<PersonnelStatistics> map  = new ArrayList<PersonnelStatistics>();
 		if (personnel.getDepartAndPositions() != null) {
 			List<Personnel> personnels = new ArrayList<Personnel>();
 			if (personnel.getDepartAndPositions().getDepartment().getDepartmentID() == 2) {
@@ -93,11 +93,14 @@ public class Statistics {
 			}else{
 				days = printMonths(getFirstDayOfYear(new Date()),new Date());
 			}
+			List<String> keys = new ArrayList<String>();
 			List<PersonnelStatistics> arryList = null;
 			for (int i = 0; i < personnels.size(); i++) {
+				keys.add(personnels.get(i).getUserName());
 				arryList = personnelService.getOrtherByParam(days,personnels.get(i));
-				map.put(personnels.get(i).getUserName(), arryList);
+				map.addAll(arryList);
 			}
+			mode.put("userKeys", keys);
 			mode.put("statistics", map);
 			days = days.replace("'", "");
 			mode.put("days", days);
@@ -139,7 +142,7 @@ public class Statistics {
         while (dEnd.after(calBegin.getTime())) {  
             // 根据日历的规则，为给定的日历字段添加或减去指定的时间量    
             calBegin.add(Calendar.DAY_OF_MONTH, 1);  
-            sb.append(dateFormat.format("'"+calBegin.getTime())+"',");  
+            sb.append("'"+dateFormat.format(calBegin.getTime())+"',");  
         }  
         return  sb.substring(0, sb.length()-1);
     }
