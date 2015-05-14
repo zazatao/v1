@@ -8,14 +8,14 @@
     	<div class="cont_head_left">
         	<dl>
             	<dt>汽车配件</dt>
-                <dd><img src="../content/static/images/small/s_1.png" /><a href="23"  onclick="categoryClick('shopCommItems?id=33');">汽车电子产品</a></dd>
-                <dd><img src="../content/static/images/small/s_2.png" /><a href="63"  onclick="categoryClick('shopCommItems?id=33');">汽车照明</a></dd>
-                <dd><img src="../content/static/images/small/s_3.png" /><a href="24"  onclick="categoryClick('shopCommItems?id=33');">GPS导航<br /></a></dd>
-                <dd><img src="../content/static/images/small/s_4.png" /><a href="64"  onclick="categoryClick('shopCommItems?id=33');">汽车保养<br /></a> </dd>
-                <dd><img src="../content/static/images/small/s_5.png" /><a href="65"  onclick="categoryClick('shopCommItems?id=33');">汽配 <br /></a></dd>
-                <dd><img src="../content/static/images/small/s_6.png" /><a href="66"  onclick="categoryClick('shopCommItems?id=33');">工具 <br /></a></dd>
-                <dd><img src="../content/static/images/small/s_7.png" /><a href="67"  onclick="categoryClick('shopCommItems?id=33');">汽车配件</a></dd>
-                <dd style="border-bottom:none;"><img src="../content/static/images/small/s_8.png" /><a href="68" onclick="categoryClick('shopCommItems?id=33');">摩托车用品</a></dd>
+                <dd><img src="../content/static/images/small/s_1.png" /><a href="23"  onclick="categoryClick('categoryLei?id=23&&page=autoSupplies');">汽车电子产品</a></dd>
+                <dd><img src="../content/static/images/small/s_2.png" /><a href="63"  onclick="categoryClick('categoryLei?id=63&page=autoSupplies');">汽车照明</a></dd>
+                <dd><img src="../content/static/images/small/s_3.png" /><a href="24"  onclick="categoryClick('categoryLei?id=24&page=autoSupplies');">GPS导航<br /></a></dd>
+                <dd><img src="../content/static/images/small/s_4.png" /><a href="64"  onclick="categoryClick('categoryLei?id=64&page=autoSupplies');">汽车保养<br /></a> </dd>
+                <dd><img src="../content/static/images/small/s_5.png" /><a href="65"  onclick="categoryClick('categoryLei?id=65&page=autoSupplies');">汽配 <br /></a></dd>
+                <dd><img src="../content/static/images/small/s_6.png" /><a href="66"  onclick="categoryClick('categoryLei?id=66&page=autoSupplies');">工具 <br /></a></dd>
+                <dd><img src="../content/static/images/small/s_7.png" /><a href="67"  onclick="categoryClick('categoryLei?id=67&page=autoSupplies');">汽车配件</a></dd>
+                <dd style="border-bottom:none;"><img src="../content/static/images/small/s_8.png" /><a href="68" onclick="categoryClick('categoryLei?id=68&page=autoSupplies');">摩托车用品</a></dd>
             </dl>
         </div>
         <div class="cont_head_center">
@@ -110,7 +110,7 @@
             					}
             					$('#fl1').html($cote);
             					$('#img5').html($para);
-            					$('#img5').append("<li><div><p><a href='proscenium/shopCommItem?id="+coteid+"&page=page'>更多</a></p></div><>");
+            					//$('#img5').append("<li><div><p><a href='proscenium/shopCommItem?id="+coteid+"&page=page'>更多</a></p></div><>");
             				}       
             			}
             		});	
