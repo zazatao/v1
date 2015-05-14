@@ -94,7 +94,7 @@
 					</ul>
 				</div>
 				<div class="ordconpic">
-					<c:forEach items="${list }" var="commodity">
+					<c:forEach items="${list }"  var="commodity">
 						<ul class="ordersall">
 							<li class="ordersli1"><div class="midl">
 									<img src="..${commodity.imagePaths[0].path }" /><br />${commodity.nameOfGoods }

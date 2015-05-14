@@ -65,6 +65,7 @@ import com.yc.service.IShopService;
 import com.yc.service.ISpecificationsService;
 import com.yc.service.ISurchargesService;
 import com.yc.service.IUserService;
+import com.yc.service.impl.BrandService;
 
 //前台
 @Controller
@@ -695,11 +696,27 @@ public class ShopOneController {
 
 	// 规格查询
 	@RequestMapping(value = "shopCommItem", method = RequestMethod.GET)
-	public ModelAndView shopCommItem(Integer id, String page, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ModelAndView shopCommItem(Integer id, String page,String which,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ModelMap mode = new ModelMap();
-		ShopCategory cate = shopCategService.findById(id);
+		ShopCategory cate=null;
+		System.out.print("which========="+which);
+		System.out.print("page========="+page);
+		if ( which != null  && which.equals("brand") ) {
+			         Brand brand=brandService.findById(id);
+			         cate=brand.getShopCateg();
+			         List<Brand> brands=new ArrayList<Brand>();
+			         brands.add(brand);
+			         mode.put("brands", brands);
+			         List<ShopCommoidty> list = shopCommService.getShopCommByBrandId(id);
+				     mode.put("list", list);
+		}else{
+		        cate = shopCategService.findById(id);
+		        mode.put("brands", cate.getBrands());
+		        List<ShopCommoidty> list = shopCommService.getAllByShopCategoryID(id,page);
+		        mode.put("list", list);
+		        mode.put("id", id);
+		}
 		List<ShopCategory> shopcates = new ArrayList<ShopCategory>();
-		mode.put("brands", cate.getBrands());
 		mode.put("specifications", cate.getSpecifications());
 		String strs = "";
 		shopcates.add(cate);
@@ -717,15 +734,12 @@ public class ShopOneController {
 		}
 		shopcates = shopCategService.getAll();
 		mode.put("shopCategories", shopcates);
-		mode.put("cate", cate);
+		mode.put("cate", cate);	
 		mode.put("page", page);
-		mode.put("id", id);
+		
 		mode.put("nvabar", strs.substring(0, strs.length() - 1));
-		List<ShopCommoidty> list = shopCommService.getAllByShopCategoryID(id,page);
 		List<Surcharges> surs = surchargesService.getAll();
 		mode.put("surs", surs);
-		mode.put("list", list);
-		
 		int position1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.innerPage, 1).getId(); 
     	List<Advertisement> advertisements = advertisementService.getAll();
     	ArrayList<Advertisement> advertisements1 = new ArrayList<Advertisement>();
@@ -736,14 +750,16 @@ public class ShopOneController {
     		} 
     	}
     	mode.put("advertisements1", advertisements1);
-    	
 		if (page.equals("page")) {
 			return new ModelAndView("reception/searchList", mode);
 		} else if (page.equals("brand")) {
 			return new ModelAndView("reception/searchList", mode);
 		} else if (page.equals("special")) {
 			return new ModelAndView("reception/searchList", mode);
-		}else{
+		}else if(page.equals("electronics")){
+			return new ModelAndView("reception/searchList", mode);
+		}
+		else{
 			return null;
 		}
 	}

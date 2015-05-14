@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -101,14 +102,12 @@
         
         <!---right_cen_1 start---->
         <div class="right_cen_1">
-        	<h1>POPULAR TABLETS</h1>
-            	<ul>           		
-            		<li><a href="gr_list.html"><img src="../content/static/images/logo/l_1.png" /></a></li>
-                    <li><a href="gr_list.html"><img src="../content/static/images/logo/l_2.png" /></a></li>
-                    <li><a href="gr_list.html"><img src="../content/static/images/logo/l_3.png" /></a></li>
-                    <li><a href="gr_list.html"><img src="../content/static/images/logo/l_4.png" /></a></li>
-                    <li><a href="gr_list.html"><img src="../content/static/images/logo/l_5.png" /></a></li>
-                    <li><a href="gr_list.html"><img src="../content/static/images/logo/l_6.png" /></a></li>
+        	<h1 style="color:orange;">品牌电子商品</h1>
+            	<ul>
+            	 <c:forEach items="${brands}" var="brand">
+                              <li><a href="../proscenium/shopCommItem?id=${brand.brandID}&page=brand&which=brand">${brand.brandName }</a></li>
+                   </c:forEach>
+<!--                 	<li><a href="gr_list.html"><img src="../content/static/images/logo/l_1.png" /></a></li> -->
                 </ul>
             <a class="more" href="#">VIEW ALL</a>
         </div>
@@ -438,23 +437,9 @@
         <div class="right_cen_1 right_cen_3">
         	<h1>流行电子产品</h1>
             	<ul>
-                	<li><a href="#"><img src="../content/static/images/dq/img_12.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_13.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_14.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_15.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_12.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_13.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_12.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_13.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_12.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_13.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_14.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_15.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_12.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_13.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_12.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_13.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    
+            	      <c:forEach items="${shopcommlist}" var="shopcomm">
+            	             	<li><a href="../proscenium/shopItem?commID=${shopcomm.commCode }&category=${shopcomm.shopCategory.categoryID }&shopID=${shopcomm.belongTo.id }&commoName=${shopcomm.commoidtyName }"><img src="..${shopcomm.shopCommImages[0].imagePath}" /></a><span><h3>${shopcomm.brand.brandName}</h3><p>${shopcomm.commoidtyName}</p></span></li>
+            	      </c:forEach>           
                 </ul>
         </div>
         </div>

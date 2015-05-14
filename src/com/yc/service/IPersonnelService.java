@@ -6,6 +6,7 @@ import java.util.Map;
 import com.yc.entity.user.DepartAndPositions;
 import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
+import com.yc.model.PersonnelStatistics;
 
 public interface IPersonnelService  extends IGenericService<Personnel>{
 
@@ -20,5 +21,7 @@ public interface IPersonnelService  extends IGenericService<Personnel>{
 	List<Personnel> getAllByParametersForManage(Map<String, Object> map);
 
 	List<Personnel> getAllByDepAndPos(DepartAndPositions depAndPos);
+
+	List<PersonnelStatistics> getOrtherByParam(String days, Personnel personnel);
 
 }
