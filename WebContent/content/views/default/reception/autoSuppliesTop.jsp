@@ -8,14 +8,14 @@
     	<div class="cont_head_left">
         	<dl>
             	<dt>汽车配件</dt>
-                <dd><img src="../content/static/images/small/s_1.png" /><a href="gr_list.html">汽车电子产品</a></dd>
-                <dd><img src="../content/static/images/small/s_2.png" /><a href="gr_list.html">汽车照明</a></dd>
-                <dd><img src="../content/static/images/small/s_3.png" /><a href="gr_list.html">GPS导航<br />DVD播放器</a></dd>
-                <dd><img src="../content/static/images/small/s_4.png" /><a href="gr_list.html">汽车保养<br />自动吸尘器</a> </dd>
-                <dd><img src="../content/static/images/small/s_5.png" /><a href="gr_list.html">汽配 <br /> 油 </a></dd>
-                <dd><img src="../content/static/images/small/s_6.png" /><a href="gr_list.html">工具 <br />  车库用品</a></dd>
-                <dd><img src="../content/static/images/small/s_7.png" /><a href="gr_list.html">汽车配件</a></dd>
-                <dd style="border-bottom:none;"><img src="../content/static/images/small/s_8.png" /><a href="gr_list.html">摩托车用品</a></dd>
+                <dd><img src="../content/static/images/small/s_1.png" /><a href="23"  onclick="categoryClick('shopCommItems?id=33');">汽车电子产品</a></dd>
+                <dd><img src="../content/static/images/small/s_2.png" /><a href="63"  onclick="categoryClick('shopCommItems?id=33');">汽车照明</a></dd>
+                <dd><img src="../content/static/images/small/s_3.png" /><a href="24"  onclick="categoryClick('shopCommItems?id=33');">GPS导航<br /></a></dd>
+                <dd><img src="../content/static/images/small/s_4.png" /><a href="64"  onclick="categoryClick('shopCommItems?id=33');">汽车保养<br /></a> </dd>
+                <dd><img src="../content/static/images/small/s_5.png" /><a href="65"  onclick="categoryClick('shopCommItems?id=33');">汽配 <br /></a></dd>
+                <dd><img src="../content/static/images/small/s_6.png" /><a href="66"  onclick="categoryClick('shopCommItems?id=33');">工具 <br /></a></dd>
+                <dd><img src="../content/static/images/small/s_7.png" /><a href="67"  onclick="categoryClick('shopCommItems?id=33');">汽车配件</a></dd>
+                <dd style="border-bottom:none;"><img src="../content/static/images/small/s_8.png" /><a href="68" onclick="categoryClick('shopCommItems?id=33');">摩托车用品</a></dd>
             </dl>
         </div>
         <div class="cont_head_center">
@@ -83,6 +83,39 @@
                     //$("#focus .btn span").removeClass("on").eq(index).addClass("on"); //为当前的按钮切换到选中的效果
                     $(".banner .btn span").stop(true,false).animate({"opacity":"0.4"},300).eq(index).stop(true,false).animate({"opacity":"1"},300); //为当前的按钮切换到选中的效果
                 }
+                //局部刷新
+                function categoryClick(paramUrl){
+                	$("#fl1").html("");
+                	$("#img5").html("");
+            		jQuery.ajax({
+            			type : 'GET',
+            			contentType : 'application/json',
+            			url : paramUrl,
+            			dataType : 'json',
+            			success : function(data) {
+            				if( data.success == "true" ){ 
+            					
+            					var coteid = data.categoryId;
+            					var $cote = "";
+            					var $para = "";
+            					if (data.success == 'true') {
+            						$.each(data.list, function(i, item) {
+            							$cote = $cote +"<a href='#' onclick='Search("+item.categoryID+");'><span class='f1' >"+item.category+"</span></a>";		
+            				        });
+            						
+            						$.each(data.lists, function(i, item) {
+            							$para = $para +"<li><a href='proscenium/shopItem?commID="+item.transNumForTaobao+"&category="+item.shopcategory+"&shopID="+item.seller+"&commoName="
+            									+item.nameOfGoods+"'><img src="+item.path+" alt="+item.nameOfGoods+"/></a></li>";
+            				        });
+            					}
+            					$('#fl1').html($cote);
+            					$('#img5').html($para);
+            					$('#img5').append("<li><div><p><a href='proscenium/shopCommItem?id="+coteid+"&page=page'>更多</a></p></div><>");
+            				}       
+            			}
+            		});	
+            	}
+                
             });
             
             </script>

@@ -25,4 +25,10 @@ public interface IShopCommoidtyService extends IGenericService<ShopCommoidty> {
 	
 	ShopCommoidty IsShopCommByNumber(int i);
 
+	List<ShopCommoidty> getShopCommByCateAndIsspecial(Integer CateId, Boolean flag);
+
+	List<ShopCommoidty> getShopCommByCateAndBrand(Integer id);
+
+	List<ShopCommoidty> getShopCommByBrandId(Integer id);
+
 }

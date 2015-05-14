@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,108 +32,33 @@
 		<jsp:include page="specialTop.jsp"></jsp:include>
 		<div class="red_cont">
 			<ul>
-				<li style="margin-left: 0;"><a href="yl_list_detail.html">
-						<img src="../content/static/images/dz/img01.jpg" />
+			       <c:choose>
+		        <c:when test="${ not empty shopcomlist}">
+		             <c:forEach items="${shopcomlist }" var="shopcom">
+		             			<li><a href="../proscenium/shopItem?commID=${shopcom.commCode }&category=${shopcom.shopCategory.categoryID }&shopID=${shopcom.belongTo.id }&commoName=${shopcom.commoidtyName }"> <img
+						src="..${shopcom.shopCommImages[0].imagePath}" />
 						<div class="tit_3">
-							AMULET,PALEFF:2222
+							     ${shopcom.commoidtyName}
 							<p>
-								AMULET,PALEFF:<span class="red">14:59:12</span>
+								  限时打折:<span class="red">14:59:12</span>
 							</p>
-							<span class="bfb">70%</span>
-						</div>
-				</a></li>
-				<li><a href="yl_list_detail.html"> <img
-						src="../content/static/images/dz/img02.jpg" />
-						<div class="tit_3">
-							AMULET,PALEFF:2222
-							<p>
-								AMULET,PALEFF:<span class="red">14:59:12</span>
-							</p>
-							<span class="bfb">70%</span>
-						</div>
-				</a></li>
-				<li><a href="yl_list_detail.html"> <img
-						src="../content/static/images/dz/img03.jpg" />
-						<div class="tit_3">
-							AMULET,PALEFF:2222
-							<p>
-								AMULET,PALEFF:<span class="red">14:59:12</span>
-							</p>
-							<span class="bfb">70%</span>
-						</div>
-				</a></li>
-
-				<li style="margin-left: 0;"><a href="yl_list_detail.html">
-						<img src="../content/static/images/dz/img04.jpg" />
-						<div class="tit_3">
-							AMULET,PALEFF:2222
-							<p>
-								AMULET,PALEFF:<span class="red">14:59:12</span>
-							</p>
-							<span class="bfb">70%</span><span class="bfc"><img
-								src="../content/static/images/small/s_15.png" /></span>
-						</div>
-				</a></li>
-				<li><a href="yl_list_detail.html"> <img
-						src="../content/static/images/dz/img05.jpg" />
-						<div class="tit_3">
-							AMULET,PALEFF:2222
-							<p>
-								AMULET,PALEFF:<span class="red">14:59:12</span>
-							</p>
-							<span class="bfb">70%</span><span class="bfc"><img
-								src="../content/static/images/small/s_15.png" /></span>
-						</div>
-				</a></li>
-				<li><a href="yl_list_detail.html"> <img
-						src="../content/static/images/dz/img06.jpg" />
-						<div class="tit_3">
-							AMULET,PALEFF:2222
-							<p>
-								AMULET,PALEFF:<span class="red">14:59:12</span>
-							</p>
-							<span class="bfb">70%</span><span class="bfc"><img
-								src="../content/static/images/small/s_15.png" /></span>
-						</div>
-				</a></li>
-				<li style="margin-left: 0;"><a href="yl_list_detail.html">
-						<img src="../content/static/images/dz/img01.jpg" />
-						<div class="tit_3">
-							AMULET,PALEFF:2222
-							<p>
-								AMULET,PALEFF:<span class="red">14:59:12</span>
-							</p>
-							<span class="bfb">70%</span><span class="bfc"><img
-								src="../content/static/images/small/s_15.png" /></span>
-						</div>
-				</a></li>
-				<li><a href="yl_list_detail.html"> <img
-						src="../content/static/images/dz/img02.jpg" />
-						<div class="tit_3">
-							AMULET,PALEFF:2222
-							<p>
-								AMULET,PALEFF:<span class="red">14:59:12</span>
-							</p>
-							<span class="bfb">70%</span><span class="bfc"><img
-								src="../content/static/images/small/s_15.png" /></span>
-						</div>
-				</a></li>
-				<li><a href="yl_list_detail.html"> <img
-						src="../content/static/images/dz/img03.jpg" />
-						<div class="tit_3">
-							AMULET,PALEFF:2222
-							<p>
-								AMULET,PALEFF:<span class="red">14:59:12</span>
-							</p>
-							<span class="bfb">70%</span><span class="bfc"><img
-								src="../content/static/images/small/s_15.png" /></span>
-						</div>
-				</a></li>
+                     <!-- 							     将折扣转化为百分比 -->
+							<span class="bfb"><fmt:formatNumber type="percent" >${shopcom.special}</fmt:formatNumber></span>
+						 </div>
+				           </a></li>
+		             </c:forEach>
+		        </c:when>
+		        <c:otherwise>
+		                  <span style="color:red">此类商品暂无打折</span>
+		        </c:otherwise>
+		     </c:choose>
+				
+			
 			</ul>
 		</div>
 	</div>
 	<div class="clear"></div>
 	<jsp:include page="../common/foot.jsp"></jsp:include>
-	</div>
+</div>
 </body>
 </html>

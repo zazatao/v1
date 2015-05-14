@@ -12,6 +12,14 @@ import org.springframework.stereotype.Component;
 import com.yc.dao.orm.commons.GenericDao;
 import com.yc.entity.ShopCommoidty;
 import com.yc.service.IShopCommoidtyService;
+/**
+ * @author Administrator
+ *
+ */
+/**
+ * @author Administrator
+ *
+ */
 @Component
 public class ShopCommoidtyService extends GenericService<ShopCommoidty> implements IShopCommoidtyService {
 
@@ -146,4 +154,56 @@ public class ShopCommoidtyService extends GenericService<ShopCommoidty> implemen
 	public ShopCommoidty IsShopCommByNumber(int number) {
 		return shopCommoidtyDao.findById(number);
 	}
+    
+	/* (non-Javadoc)
+	 * @see com.yc.service.IShopCommoidtyService#getShopCommByCateAndIsspecial()
+	 * 根據類型和是否折扣展示商品
+	 */
+	@Override
+	public List<ShopCommoidty> getShopCommByCateAndIsspecial(Integer CateId, Boolean flag) {
+		StringBuffer hql=new StringBuffer("SELECT * FROM shopcommoidty WHERE shopcommoidty.isSpecial="+flag);
+		if(CateId<=1){
+			hql.append("  AND shopcommoidty.shopCategory_id IS NOT NULL");
+		}else{
+			hql.append("  AND shopcommoidty.shopCategory_id="+CateId);
+		}
+		Query query = shopCommoidtyDao.getEntityManager().createNativeQuery(hql.toString(), ShopCommoidty.class);
+		@SuppressWarnings("unchecked")
+		List<ShopCommoidty> list = query.getResultList();
+		return list;
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.yc.service.IShopCommoidtyService#getShopCommByCateAndBrand(java.lang.Integer)
+	 * 根据商品类型和品牌查找商品
+	 */
+	@Override
+	public List<ShopCommoidty> getShopCommByCateAndBrand(Integer id) {
+		StringBuffer hql=new StringBuffer("SELECT * FROM shopcommoidty WHERE shopcommoidty.`brand_id` IS NOT NULL");
+		if(id<=1){
+			hql.append("  AND shopcommoidty.shopCategory_id IS NOT NULL");
+		}else{
+			hql.append("  AND shopcommoidty.shopCategory_id="+id);
+		}
+		Query query = shopCommoidtyDao.getEntityManager().createNativeQuery(hql.toString(), ShopCommoidty.class);
+		@SuppressWarnings("unchecked")
+		List<ShopCommoidty> list = query.getResultList();
+		return list;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.yc.service.IShopCommoidtyService#getShopCommByBrandId(java.lang.Integer)
+	 * 根据品牌Id查找对应商品
+	 */
+	@Override
+	public List<ShopCommoidty> getShopCommByBrandId(Integer id) {
+		StringBuffer hql=new StringBuffer("SELECT * FROM shopcommoidty WHERE shopcommoidty.`brand_id`="+id);
+		Query query = shopCommoidtyDao.getEntityManager().createNativeQuery(hql.toString(), ShopCommoidty.class);
+		@SuppressWarnings("unchecked")
+		List<ShopCommoidty> list = query.getResultList();
+		return list;
+	}
+    
+
 }
