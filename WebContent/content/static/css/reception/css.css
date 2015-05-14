@@ -227,7 +227,7 @@ img{ border:none;}
 .flcd .fenlei {
 	float: left;
 	margin-left: 110px;
-	display: none;
+	display: block;
 }
 
 .flcd .fenlei span {
@@ -282,7 +282,7 @@ img{ border:none;}
 }
 
 .fltplas, .fltps, .fltpf {
-	display: none;
+	display: bolck;
 }
 
 .tj {
@@ -414,6 +414,18 @@ img{ border:none;}
 	padding-top: 6px;
 	padding-left: 20px;
 	border: 2px solid #ccc;
+}
+
+.flen {
+	float: right;
+	width: 800px;
+	height: 340px;
+	padding-top: 6px;
+	padding-right: 20px;
+}
+
+.flen li{
+	display:block;
 }
 
 .flan li {

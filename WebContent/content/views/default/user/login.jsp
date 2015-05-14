@@ -88,8 +88,11 @@
 				<div class="catalog_img">
 					<DIV class="LeftBotton" id="LeftArr"></DIV>
 					<DIV class="Cont" id="ISL_Cont_1">
+						<c:forEach var="advertisement" items="${advertisements5 }" varStatus="pool">
+    						<DIV class="box"><a class=imgBorder href="${advertisement.link }" ><img src="..${advertisement.imagePath }" /></a></DIV>
+    					</c:forEach>
 						<!-- 图片列表 begin -->
-						<DIV class="box">
+						<!-- <DIV class="box">
 							<A class=imgBorder href="yl_list_detail.html"><img
 								src="../content/static/images/lb.jpg" /></A>
 						</DIV>
@@ -120,7 +123,7 @@
 						<DIV class="box">
 							<A class=imgBorder href="yl_list_detail.html"><img
 								src="../content/static/images/lb.jpg" /></A>
-						</DIV>
+						</DIV> -->
 						<!-- 图片列表 end -->
 					</DIV>
 

@@ -205,7 +205,7 @@
 				var receiveDate = getDate($('#receiveDate'+i).val());
 				receiveDate = receiveDate.valueOf();
 				receiveDate = new Date(receiveDate);
-				var a =(sendDate-receiveDate)
+				var a =(sendDate-receiveDate);
 				var b = 24 * 60 * 60 * 1000;
 				$('#reduce'+i).html(Math.ceil(a/b)+"天");
 			}

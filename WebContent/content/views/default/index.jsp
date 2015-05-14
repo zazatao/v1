@@ -1,5 +1,8 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+﻿<%@ page import="java.util.Date"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -13,6 +16,7 @@
 <script type="text/javascript" src="content/static/js/reception/js.js"></script>
 </head>
 <script type="text/javascript">
+    //点击上边文字的链接
 	function Search(num){
 		$('#img5').html('');
 		jQuery.ajax({
@@ -25,8 +29,9 @@
 				var $para = "";
 				if (data.success == 'true') {
 					$.each(data.pr, function(i, item) {
-						coteid = item.shopcategory
-						$para = $para +"<li><a href='proscenium/shopItem?commID="+item.transNumForTaobao+"&category="+item.shopcategory+"&shopID="+item.seller+"&commoName="+item.nameOfGoods+"'><img src="+item.path+" alt="+item.nameOfGoods+"/></a></li>";
+						coteid = item.shopcategory;
+						$para = $para +"<li><a href='proscenium/shopItem?commID="+item.transNumForTaobao+"&category="+item.shopcategory+"&shopID="+item.seller+"&commoName="
+								+item.nameOfGoods+"'><img src="+item.path+" alt="+item.nameOfGoods+"/></a></li>";
 			        });
 				}
 				$('#img5').html($para);
@@ -35,7 +40,6 @@
 		});
 	}
 	function imageFor(cate,commid,seller,name){
-		alert(11);
 		location.href = "/proscenium/shopItem?commID="+commid+"&category="+cate+"&shopID="+seller+"&commoName="+name;
 	}
 </script>
@@ -45,9 +49,14 @@
     <div class="con"><!---------------   内容主体   ----------------------->
     	<div class="ban">
     		<div class="banner">
-            <a href="index.jsp"><img src="content/static/images/banner.jpg" width="818" height="400" /></a>
-            <a href="index.jsp" style="display:none;"><img src="content/static/images/banner_2.jpg" width="818" height="400" /></a>
-            <a href="index.jsp" style="display:none;"><img src="content/static/images/banner_3.jpg" width="818" height="400" /></a>
+    		<c:forEach var="advertisement" items="${advertisements1 }" varStatus="pool">
+    			<c:if test="${pool.index == 0 }">
+    				<a href="${advertisement.link }" ><img src="..${advertisement.imagePath }" width="818" height="400" /></a>
+    			</c:if>
+    			<c:if test="${pool.index != 0 }">
+    				<a href="${advertisement.link }" style="display:none;"><img src="..${advertisement.imagePath }" width="818" height="400" /></a>
+    			</c:if>    			
+    		</c:forEach>
             <div class="bannerli">
                 <ul>
                   <li class="bannerlio"></li>
@@ -62,766 +71,84 @@
                 <div class="kdan" style="background:url(content/static/images/ksdp.jpg) no-repeat;"><a href="./proscenium/setUpShop">我要开店</a></div>
 
                 <div class="clear"></div>
-            </div>
+       		</div>
         </div>
         <div class="flxx">
         	<div class="flcd">
             <h1>热销商品</h1>
             <div class="fenlei" id="fl1">
             	 <c:forEach items="${list}" var="Comm">
-            	 	<a href="#"  onclick='Search(${Comm.categoryID});'><span class="f1" ><div style="background:#fbd70c;"></div>${fn:substring(Comm.category, 0, 4)}</span></a>
+            	 	<a href="#"  onclick='Search(${Comm.categoryID});'>
+            	 	<span class="f1" >${fn:substring(Comm.category, 0, 4)}</span></a>
               	</c:forEach> 
              </div>
-            <div class="fenlei">
-                <span class="f4"><div style="background:#c20102;"></div><a href="#">家用电器</a></span>
-                <span class="f5"><div style="background:#ffffff;"></div><a href="#">冰箱</a></span>
-            </div>
-            <div class="fenlei">
-            	<span class="f1"><div style="background:#fbd70c;"></div><a href="#">女包</a></span>
-            </div>
-            <div class="fenlei">
-            	<span class="f1"><div style="background:#fbd70c;"></div><a href="#">平板电脑</a></span>
-                <span class="f2"><div style="background:#116d0f;"></div><a href="#">照相机/摄录机</a></span>
-                <span class="f3"><div style="background:#000000;"></div><a href="#">笔记本</a></span>
-                <span class="f4"><div style="background:#c20102;"></div><a href="#">家用电器</a></span>
-                <span class="f5"><div style="background:#ffffff;"></div><a href="#">冰箱</a></span>
-            </div>
-            <div class="fenlei">
-            	<span class="f1"><div style="background:#fbd70c;"></div><a href="#">平板电脑</a></span>
-                <span class="f2"><div style="background:#116d0f;"></div><a href="#">照相机/摄录机</a></span>
-                <span class="f3"><div style="background:#000000;"></div><a href="#">笔记本</a></span>
-                <span class="f4"><div style="background:#c20102;"></div><a href="#">家用电器</a></span>
-                <span class="f5"><div style="background:#ffffff;"></div><a href="#">冰箱</a></span>
-            </div>
             <div class="tj"><a class="gray" href="red.html">推荐商品</a><a class="red" href="red_2.html">打折促销</a></div>
             </div>
             <div class="flzs">
             	<div class="flan">
                 	<ul>
-                    	<li><a href="shopCommItems?id=5"><img src="content/static/images/at/zxj.jpg" big="content/static/images/zxj.jpg" mid="content/static/images/at/zxj.jpg" width="67" height="64" /></a></li>
-                        <li><a href="#"><img src="content/static/images/cf.jpg" big="content/static/images/cf.jpg" mid="content/static/images/at/cf.jpg" width="67" height="64" /></a></li>
-                        <li><a href="#"><img src="content/static/images/gwb.jpg" big="content/static/images/gwb.jpg" mid="content/static/images/at/gwb.jpg" width="67" height="64" /></a></li>
-                        <li><a href="#"><img src="content/static/images/dj.jpg" big="content/static/images/dj.jpg" mid="content/static/images/at/dj.jpg" width="67" height="64" /></a></li>
-                        <li><a href="#"><img src="content/static/images/ggx.jpg" big="content/static/images/ggx.jpg" mid="content/static/images/at/ggx.jpg" width="67" height="64" /></a></li>
-                        <li><a href="#"><img src="content/static/images/etwj.jpg" big="content/static/images/etwj.jpg" mid="content/static/images/at/etwj.jpg" width="67" height="64" /></a></li>
-                        <li><a href="#"><img src="content/static/images/txs.jpg" big="content/static/images/txs.jpg" mid="content/static/images/at/txs.jpg" width="67" height="64" /></a></li>
-                        <li><a href="#"><img src="content/static/images/yd.jpg" big="content/static/images/yd.jpg" mid="content/static/images/at/yd.jpg" width="67" height="64" /></a></li>
-                        <li><a href="#"><img src="content/static/images/hlyp.jpg" big="content/static/images/hlyp.jpg" mid="content/static/images/at/hlyp.jpg" width="67" height="64" /></a></li>
-                        <li><a href="#"><img src="content/static/images/sb.jpg" big="content/static/images/sb.jpg" mid="content/static/images/at/sb.jpg" width="67" height="64" /></a></li>
-                    	
+                    	<li><a href="#" onclick="categoryClick('shopCommItems?id=33');"><img src="content/static/images/at/zxj.jpg" big="content/static/images/zxj.jpg" mid="content/static/images/at/zxj.jpg" width="67" height="64" /></a></li>
+                        <li><a href="#" onclick="categoryClick('shopCommItems?id=60');"><img src="content/static/images/cf.jpg" big="content/static/images/cf.jpg" mid="content/static/images/at/cf.jpg" width="67" height="64" /></a></li>
+                        <li><a href="#" onclick="categoryClick('shopCommItems?id=7');"><img src="content/static/images/gwb.jpg" big="content/static/images/gwb.jpg" mid="content/static/images/at/gwb.jpg" width="67" height="64" /></a></li>
+                        <li><a href="#" onclick="categoryClick('shopCommItems?id=22');"><img src="content/static/images/dj.jpg" big="content/static/images/dj.jpg" mid="content/static/images/at/dj.jpg" width="67" height="64" /></a></li>
+                        <li><a href="#" onclick="categoryClick('shopCommItems?id=66');"><img src="content/static/images/ggx.jpg" big="content/static/images/ggx.jpg" mid="content/static/images/at/ggx.jpg" width="67" height="64" /></a></li>
+                        <li><a href="#" onclick="categoryClick('shopCommItems?id=58');"><img src="content/static/images/etwj.jpg" big="content/static/images/etwj.jpg" mid="content/static/images/at/etwj.jpg" width="67" height="64" /></a></li>
+                        <li><a href="#" onclick="categoryClick('shopCommItems?id=6');"><img src="content/static/images/txs.jpg" big="content/static/images/txs.jpg" mid="content/static/images/at/txs.jpg" width="67" height="64" /></a></li>
+                        <li><a href="#" onclick="categoryClick('shopCommItems?id=62');"><img src="content/static/images/yd.jpg" big="content/static/images/yd.jpg" mid="content/static/images/at/yd.jpg" width="67" height="64" /></a></li>
+                        <li><a href="#" onclick="categoryClick('shopCommItems?id=64');"><img src="content/static/images/hlyp.jpg" big="content/static/images/hlyp.jpg" mid="content/static/images/at/hlyp.jpg" width="67" height="64" /></a></li>
+                        <li><a href="#" onclick="categoryClick('shopCommItems?id=65');"><img src="content/static/images/sb.jpg" big="content/static/images/sb.jpg" mid="content/static/images/at/sb.jpg" width="67" height="64" /></a></li>                  	
                     </ul>
                 </div>
-                
                 <div class="fltp">
                 	<div class="fltplas">
-                        <div class="fltps">
-                            <ul>                           
-<!--                                 <li><div><p> -->
-<%--                                 <c:forEach items="${list}" var="Comm"> --%>
-<%--                                 <a href='shopCommItemone?id=${Comm.categoryID}&page=page'>更多</a> --%>
-<%--                                 </c:forEach></p></div></li>  --%>
-                            </ul>
-                        </div>
-                        <div class="fltpf" id="buyCatNum">
-                            <ul id="img5">
-<!--                             		<li><a href="#"></a></li> -->
-                            	<li>
-                            	 <div>
-                            	    <p>
-                            		<a href='shopCommItemone?id=${Comm.categoryID}&page=page'>更多</a>
-                            		</p>
-                            	</div>
-                            	</li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-<!--                                 <li><div><p><a href="#">更多</a></p></div></li> -->
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                    </div>
-                	<div class="fltplas">
-                        <div class="fltps">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                    </div>
-                	<div class="fltplas">
-                        <div class="fltps">
-                            <ul>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/xb_1.jpg" /></a></li>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/xb_2.jpg" /></a></li>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/xb_3.jpg" /></a></li>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/xb_4.jpg" /></a></li>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/xb_5.jpg" /></a></li>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/xb_6.jpg" /></a></li>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/xb_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/xb_1.jpg" /></a></li>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/xb_2.jpg" /></a></li>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/xb_3.jpg" /></a></li>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/xb_4.jpg" /></a></li>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/xb_5.jpg" /></a></li>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/xb_6.jpg" /></a></li>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/xb_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                    </div>
-                	<div class="fltplas">
-                        <div class="fltps">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/yg_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/yg_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/yg_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/yg_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/yg_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/yg_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/yg_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/yg_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/yg_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/yg_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/yg_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/yg_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/yg_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/yg_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                    </div>
-                	<div class="fltplas">
-                        <div class="fltps">
-                            <ul>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/px_1.jpg" /></a></li>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/px_2.jpg" /></a></li>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/px_3.jpg" /></a></li>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/px_4.jpg" /></a></li>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/px_5.jpg" /></a></li>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/px_6.jpg" /></a></li>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/px_7.jpg" /></a></li>
-                                <li><div><p><a href="yl_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                    </div>
-                	<div class="fltplas">
-                        <div class="fltps">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/wj_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/wj_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/wj_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/wj_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/wj_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/wj_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/wj_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                    </div>
-                	<div class="fltplas">
-                        <div class="fltps">
-                            <ul>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/nz_1.jpg" /></a></li>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/nz_2.jpg" /></a></li>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/nz_3.jpg" /></a></li>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/nz_4.jpg" /></a></li>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/nz_5.jpg" /></a></li>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/nz_6.jpg" /></a></li>
-                                <li><a href="yl_list_detail.html"><img src="content/static/images/at/nz_7.jpg" /></a></li>
-                                <li><div><p><a href="yl_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                    </div>
-                	<div class="fltplas">
-                        <div class="fltps">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/lq_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/lq_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/lq_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/lq_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/lq_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/lq_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/lq_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                    </div>
-                	<div class="fltplas">
-                        <div class="fltps">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/jz_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/jz_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/jz_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/jz_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/jz_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/jz_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/jz_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                    </div>
-                	<div class="fltplas">                    
-                        <div class="fltps">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/sb_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/sb_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/sb_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/sb_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/sb_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/sb_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/sb_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dn_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/zxj_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bj_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/dq_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                        <div class="fltpf">
-                            <ul>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_1.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_2.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_3.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_4.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_5.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_6.jpg" /></a></li>
-                                <li><a href="gr_list_detail.html"><img src="content/static/images/at/bx_7.jpg" /></a></li>
-                                <li><div><p><a href="gr_list.html">更多</a></p></div></li>
-                            </ul>
-                        </div>
-                    </div>
+                		<div class="fltpf" id="buyCatNum">
+                			<ul id="img5">
+                				<c:forEach items="${lists}" var="category" varStatus="loop">
+                        			<c:if test="${loop.index < 7 }">
+            	 						<li><a href="proscenium/shopItem?commID="+${category.transNumForTaobao}+"&category="+${category.shopcategory}+"&shopID="+${category.seller}+"&commoName="+${category.nameOfGoods}"><img src="..${category.path }" alt="${category.nameOfGoods }"/></a></li>
+              						</c:if>
+              					</c:forEach> 
+                        		<li><div><p><a href="shopCommItemone?id=${category.shopcategory}&page=page">更多</a></p></div></li>
+                    		</ul>
+                		</div>
+                	</div>
                 </div>
+
                 <script type="text/javascript">
-					function tabSlider(obj,objs,objlas,objsn,objsno){
-						$(function(){
-							hookThumb();
-						})
-						 var i=-1;//第i+1个tab开始
-							
-						function autoroll(){
-							nca = $(obj).length-1;
-							i++;
-							if(i > nca){
-							i = 0;
-							}
-							slide(i);
-						}
-						
-						function slide(i){
-							$(obj).eq(i).addClass(objs).siblings().removeClass(objs);
-							$(objlas + ":visible " + objsn).eq(i).css('display','block').siblings(objsn).css('display','none');
-							$(objsno).css('display','none');
-						}
-						
-						function hookThumb(){    
-							$(obj).hover(
-							function(){
-									i = $(this).prevAll().length;
-									slide(i); 
-							},function(){
-								this.blur();            
-								return false;
-							}); 
-						}
-					}
-					function tabSliderck(obj,objs,objlas,objsn,objfl,objsno){
-						$(function(){
-							hookThumb();
-							$(objfl + ':first').css('display','block');
-							$(objlas + ':first').css('display','block');
-							$(objsn + ':first').css('display','block');
-						})
-						 var i=-1;//第i+1个tab开始
-							
-						function autoroll(){
-							nca = $(obj).length-1;
-							i++;
-							if(i > nca){
-							i = 0;
-							}
-							slide(i);
-						}
-						
-						function slide(i){
-							$(obj).eq(i).addClass(objs).siblings().removeClass(objs);
-							$(objlas).eq(i).css('display','block').siblings(objlas).css('display','none');
-							$(objfl).eq(i).css('display','block').siblings(objfl).css('display','none');
-							
-							$(objsn).css('display','block');
-							$(objsno).css('display','none');
-						}
-						
-						function hookThumb(){    
-							$(obj).click(
-							function(){
-									i = $(this).prevAll().length;
-									slide(i); 
-									$(this).find("img").attr('src',$(this).find("img").attr("mid"));
-									$(obj).not(this).each(function(){ 
-										$(this).find("img").attr('src',$(this).find("img").attr("big"));
-									  });
-							},function(){
-								this.blur();            
-								return false;
-							}); 
-						}
-					}
-					
-					$(document).ready(function(){
-						tabSliderck(".flan li","sd01",".fltplas",".fltps",".fenlei",".fltpf");
-						tabSlider(".fenlei span","sd01",".fltplas",".fltpf",".fltps");
-					})
+              	//点击左边图片的链接
+                function categoryClick(paramUrl){
+                	$("#fl1").html("");
+                	$("#img5").html("");
+            		jQuery.ajax({
+            			type : 'GET',
+            			contentType : 'application/json',
+            			url : paramUrl,
+            			dataType : 'json',
+            			success : function(data) {
+            				if( data.success == "true" ){ 
+            					
+            					var coteid = data.categoryId;
+            					var $cote = "";
+            					var $para = "";
+            					if (data.success == 'true') {
+            						$.each(data.list, function(i, item) {
+            							$cote = $cote +"<a href='#' onclick='Search("+item.categoryID+");'><span class='f1' >"+item.category+"</span></a>";		
+            				        });
+            						
+            						$.each(data.lists, function(i, item) {
+            							if ( i < 7 ) {
+            								$para = $para +"<li><a href='proscenium/shopItem?commID="+item.transNumForTaobao+"&category="+item.shopcategory+"&shopID="+item.seller+"&commoName="
+        									+item.nameOfGoods+"'><img src="+item.path+" alt="+item.nameOfGoods+"/></a></li>";
+            							}            							
+            				        });
+            					}
+            					$('#fl1').html($cote);
+            					$('#img5').html($para);
+            					$('#img5').append("<li><div><p><a href='proscenium/shopCommItem?id="+coteid+"&page=page'>更多</a></p></div></li>");
+            				}       
+            			}
+            		});	
+            	}
 				</script>
                 <div class="clear"></div>
             </div>
@@ -829,7 +156,7 @@
         <div class="fldh2">
         	<div class="shfl">——————————— &nbsp;&nbsp;&nbsp;&nbsp; 在我们的商店你们可以选择你们要的产品 &nbsp;&nbsp;&nbsp;&nbsp; ———————————</div>
             <div class="fltpzs">
-                <div class="fltpzs1">
+                <!-- <div class="fltpzs1">
                     <ul>
                         <li><a href="yl_list.html"><img src="content/static/images/sp.jpg" /></a></li>
                         <li><a href="yl_list.html"><img src="content/static/images/ny.jpg" /></a></li>
@@ -844,14 +171,21 @@
                         <li><a href="yl_list.html"><img src="content/static/images/lyq.jpg" /></a></li>
                         <li><a href="yl_list.html"><img src="content/static/images/hzp.jpg" /></a></li>
                     </ul>
+                </div> -->
+                <div class="fltpzs2">
+                	<ul>
+                	<c:forEach var="advertisement" items="${advertisements2 }" varStatus="pool">
+    					<li><a href="${advertisement.link }" ><img src="..${advertisement.imagePath }" height="304"  /></a></li>
+    				</c:forEach>
+    				</ul>
                 </div>
                 <div class="clear"></div>
 			</div>
         </div>
         <div class="fldh3">
-        	<div class="shfl">——————————— &nbsp;&nbsp;&nbsp;&nbsp; 订单2天做好， 20天这内全世界发货。 &nbsp;&nbsp;&nbsp;&nbsp; ———————————</div>
+        	<div class="shfl">——————————— &nbsp;&nbsp;&nbsp;&nbsp; 订单2天做好， 20天之内全世界发货。 &nbsp;&nbsp;&nbsp;&nbsp; ———————————</div>
             <div class="fltpz3">
-                <div style="height:300px;">
+                <!-- <div style="height:300px;">
                     <ul>
                         <li><a href="yl_list.html"><img src="content/static/images/sy.jpg" height="300" /></a></li>
                         <li><a href="yl_list.html"><img src="content/static/images/nz.jpg" /></a></li>
@@ -865,12 +199,19 @@
                         <li><a href="yl_list.html"><img src="content/static/images/top_100.jpg" width="512" /></a></li>
                     </ul>
                     <div class="clear"></div>
+                </div> -->
+                <div style="margin-top:5px; height:311px;">
+                	<ul>
+                	<c:forEach var="advertisement" items="${advertisements3 }" varStatus="pool">
+    					<li><a href="${advertisement.link }" ><img src="..${advertisement.imagePath }" height="311" width="512" /></a></li>
+    				</c:forEach>
+    				</ul>
                 </div>
 			</div>
         </div>
         <div class="ppjq">
         	<ul>
-            	<li class="n01">
+            	<!-- <li class="n01">
                     <a href="yl_list.html"><img src="content/static/images/logo/ppj_02_01.jpg" /></a>
                     <a href="yl_list.html"><img src="content/static/images/logo/ppj_03_01.jpg" /></a>
                     <a href="yl_list.html"><img src="content/static/images/logo/ppj_04_01.jpg" /></a>
@@ -904,7 +245,10 @@
                     <a href="yl_list.html"><img src="content/static/images/logo/ppj_04_05.jpg" /></a>
                     <a href="yl_list.html"><img src="content/static/images/logo/ppj_05_06.jpg" /></a>
                     <a href="yl_list.html"><img src="content/static/images/logo/ppj_06_05.jpg" /></a>
-                </li>
+                </li> -->
+                <c:forEach var="advertisement" items="${advertisements4 }" varStatus="pool">
+    					<li><a href="${advertisement.link }" ><img src="..${advertisement.imagePath }" /></a></li>
+    			</c:forEach>
             </ul>
             <div class="jrppj"><a href="gr_3.html">名牌街 进去名牌街 ></a></div>
             <div class="clear"></div>
@@ -926,16 +270,21 @@
             <div class="spcon">
             <div class="catalog_img">          
             <DIV class="LeftBotton" id="LeftArr"></DIV>
-            <DIV class="Cont" id="ISL_Cont_1"><!-- 图片列表 begin -->
-            <DIV class="box"><A class=imgBorder href="video.html"><img src="content/static/images/lb.jpg"/></A> </DIV>
-            <DIV class="box"><A class=imgBorder href="video.html"><img src="content/static/images/lb.jpg"/></A> </DIV>
-            <DIV class="box"><A class=imgBorder href="video.html"><img src="content/static/images/lb.jpg"/></A> </DIV>
-            <DIV class="box"><A class=imgBorder href="video.html"><img src="content/static/images/lb.jpg"/></A> </DIV>
-            <DIV class="box"><A class=imgBorder href="video.html"><img src="content/static/images/lb.jpg"/></A> </DIV>
-            <DIV class="box"><A class=imgBorder href="video.html"><img src="content/static/images/lb.jpg"/></A> </DIV>
-            <DIV class="box"><A class=imgBorder href="video.html"><img src="content/static/images/lb.jpg"/></A> </DIV>
-            <DIV class="box"><A class=imgBorder href="video.html"><img src="content/static/images/lb.jpg"/></A> </DIV><!-- 图片列表 end --></DIV>
-            
+            <DIV class="Cont" id="ISL_Cont_1">
+            <!-- 图片列表 begin -->
+            	<c:forEach var="advertisement" items="${advertisements5 }" varStatus="pool">
+    					<DIV class="box"><a class=imgBorder href="${advertisement.link }" ><img src="..${advertisement.imagePath }" /></a></DIV>
+    			</c:forEach>
+<!--              <DIV class="box"><A class=imgBorder href="video.html"><img src="content/static/images/lb.jpg"/></A> </DIV> -->
+<!--             <DIV class="box"><A class=imgBorder href="video.html"><img src="content/static/images/lb.jpg"/></A> </DIV> -->
+<!--             <DIV class="box"><A class=imgBorder href="video.html"><img src="content/static/images/lb.jpg"/></A> </DIV> -->
+<!--             <DIV class="box"><A class=imgBorder href="video.html"><img src="content/static/images/lb.jpg"/></A> </DIV> -->
+<!--             <DIV class="box"><A class=imgBorder href="video.html"><img src="content/static/images/lb.jpg"/></A> </DIV> -->
+<!--             <DIV class="box"><A class=imgBorder href="video.html"><img src="content/static/images/lb.jpg"/></A> </DIV> -->
+<!--             <DIV class="box"><A class=imgBorder href="video.html"><img src="content/static/images/lb.jpg"/></A> </DIV> -->
+<!--             <DIV class="box"><A class=imgBorder href="video.html"><img src="content/static/images/lb.jpg"/></A> </DIV> -->
+            <!-- 图片列表 end -->
+            </DIV>
             <DIV class="RightBotton" id="RightArr"></DIV></DIV>
             
             <SCRIPT language=javascript type=text/javascript>

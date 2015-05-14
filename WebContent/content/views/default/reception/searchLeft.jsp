@@ -40,9 +40,15 @@
 		</div>
 
 	<div class="leftzs">
-		<div class="nletop">Рекомендуемые</div>
+		<div class="nletop">人气爆款</div>
 		<ul>
-			<li><a href="yl_list_detail.html"><img
+			<c:forEach var="advertisement" items="${advertisements1 }" varStatus="pool">
+    			<li><a href="${advertisement.link }"><img src="..${advertisement.imagePath }" /></a>
+				<h>【<span class="red">人气爆款</span>】</h>
+				<a class="bold" href="yl_list_detail.html">￥123</a>
+				</li>
+    		</c:forEach>
+			<!-- <li><a href="yl_list_detail.html"><img
 					src="../content/static/images/dz/img_1.jpg" /></a>
 			<h>【<span class="red">人气爆款</span>】测试信息测试信息测试信息</h><a class="bold"
 				href="yl_list_detail.html">￥123</a></li>
@@ -61,7 +67,7 @@
 			<li><a href="yl_list_detail.html"><img
 					src="../content/static/images/dz/img_1.jpg" /></a>
 			<h>【<span class="red">人气爆款</span>】测试信息测试信息测试信息</h><a class="bold"
-				href="yl_list_detail.html">￥123</a></li>
+				href="yl_list_detail.html">￥123</a></li> -->
 		</ul>
 	</div>
 </div>

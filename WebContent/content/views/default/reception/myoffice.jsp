@@ -112,7 +112,17 @@
                     <div class="odtpaglsa">
                     	<div class="odtplas">
                     	  <ul>
-                    	    <li>
+                    	  	<c:forEach var="advertisement" items="${advertisements1 }" varStatus="pool">
+                    	  		<c:if test="${advertisement.language == 'China' }">
+                    	  		<li>
+    							<p><img src="..${advertisement.imagePath }"/></p>
+                    	        <p class="odtplasti blon">pession ieos moserfd</p>
+                    	        <p class="odtplasta"><b>FOB Price:</b><b class="red">US $130-180</b></p>
+                    	        <p class="odtplastp"><b>Port:</b>shanghai</p>
+                    	        </li>
+                    	        </c:if>
+    						</c:forEach>
+                    	    <!-- <li>
                     	        <p><img src="../content/static/images/img/odtplas01.jpg"/></p>
                     	        <p class="odtplasti blon">pession ieos moserfd</p>
                     	        <p class="odtplasta"><b>FOB Price:</b><b class="red">US $130-180</b></p>
@@ -139,7 +149,7 @@
                     	        <p class="odtplasta"><b>FOB Price:</b><b class="red">US $130-180</b></p>
                     	        <p class="odtplastp"><b>Port:</b>shanghai</p>
                     	        <p class="odtplasnu"><b>Min Order:</b>1 Set/Sers</p>
-                    	    </li>
+                    	    </li> -->
                     	  </ul>
                     	</div>
                     </div>
@@ -148,7 +158,14 @@
                 </div>
                 <div class="cl"></div>
           </div>
-    	  <div><img src="../content/static/images/ordresd.jpg"/></div>
+    	  <div>
+    	  <c:forEach var="advertisement" items="${advertisements2 }" varStatus="pool">
+    	  		<c:if test="${advertisement.language == 'China' }">
+    	  		<img src="..${advertisement.imagePath }"/>
+    	  		</c:if>
+		  </c:forEach>
+    	  <!-- <img src="../content/static/images/ordresd.jpg"/> -->
+    	  </div>
     	</div>
       <div class="cl"></div>
     </div>

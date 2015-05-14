@@ -157,14 +157,9 @@
 	</div>
 	<div class="banner_gr">
 		<ul>
-			<li><a href="gr_list.html"><img
-					src="../content/static/images/dz/banner_gr_1.jpg" /></a></li>
-			<li><a href="gr_list.html"><img
-					src="../content/static/images/dz/banner_gr_1_1.jpg" /></a></li>
-			<li><a href="gr_list.html"><img
-					src="../content/static/images/dz/banner_gr_1_2.jpg" /></a></li>
-			<li><a href="gr_list.html"><img
-					src="../content/static/images/dz/banner_gr_1_3.jpg" /></a></li>
+			<c:forEach var="advertisement" items="${advertisements1 }" varStatus="pool">
+    			<li><a href="${advertisement.link }" ><img src="..${advertisement.imagePath }" /></a></li>
+    		</c:forEach>
 		</ul>
 	</div>
 </div>

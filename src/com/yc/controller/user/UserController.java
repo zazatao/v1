@@ -1,6 +1,7 @@
 package com.yc.controller.user;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,6 +22,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.yc.entity.Address;
+import com.yc.entity.Advertisement;
+import com.yc.entity.AdvertisementPage;
 import com.yc.entity.Collection;
 import com.yc.entity.OrderForm;
 import com.yc.entity.ShopCategory;
@@ -28,6 +31,8 @@ import com.yc.entity.Transit;
 import com.yc.entity.user.Sex;
 import com.yc.entity.user.User;
 import com.yc.service.IAddressService;
+import com.yc.service.IAdvertisementDistributionService;
+import com.yc.service.IAdvertisementService;
 import com.yc.service.ICollectionService;
 import com.yc.service.IOrderFormService;
 import com.yc.service.IShopCategoryService;
@@ -54,6 +59,12 @@ public class UserController {
 		
 	@Autowired
 	ICollectionService collectionService;
+	
+	@Autowired
+	IAdvertisementService advertisementService;
+	
+	@Autowired
+	IAdvertisementDistributionService adverDistributionService;
 	
 	@RequestMapping(value = "introductions", method = RequestMethod.GET)
 	public ModelAndView user(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -138,11 +149,41 @@ public class UserController {
 		ModelMap map = new ModelMap();
 		map.put("shopCategories", list);
 		if (user == null) {
+			int position5 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.homePage, 5).getId();
+	    	
+	    	List<Advertisement> advertisements = advertisementService.getAll();
+	    	ArrayList<Advertisement> advertisements5 = new ArrayList<Advertisement>();
+	    	
+	    	for ( int i = 0; i < advertisements.size(); i++ ) {
+	    		if ( advertisements.get(i).getAdverDistribution().getId() == position5 ) {
+	    			advertisements5.add(advertisements.get(i));
+	    		}
+	    	}
+	    	map.put("advertisements5", advertisements5);
+	    	
 			return new ModelAndView("user/login", map);
 		}
 		List<ShopCategory> shopCates = ShopCategoryService.getAllByLevel(2);
 		map.put("shopCates", shopCates);
 		map.put("user", user);
+		
+		int position1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.myOfficePage, 1).getId();
+		int position2 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.myOfficePage, 2).getId();
+    	
+    	List<Advertisement> advertisements = advertisementService.getAll();
+    	ArrayList<Advertisement> advertisements1 = new ArrayList<Advertisement>();
+    	ArrayList<Advertisement> advertisements2 = new ArrayList<Advertisement>();
+    	
+    	for ( int i = 0; i < advertisements.size(); i++ ) {
+    		if ( advertisements.get(i).getAdverDistribution().getId() == position1 ) {
+    			advertisements1.add(advertisements.get(i));
+    		} else if ( advertisements.get(i).getAdverDistribution().getId() == position2 ){
+    			advertisements2.add(advertisements.get(i));
+    		}
+    	}
+    	map.put("advertisements1", advertisements1);
+    	map.put("advertisements2", advertisements2);
+		
 		return new ModelAndView("reception/myoffice", map);
 	}
 

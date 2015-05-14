@@ -6,7 +6,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -31,6 +30,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yc.entity.Advertisement;
+import com.yc.entity.AdvertisementPage;
 import com.yc.entity.Brand;
 import com.yc.entity.BuyCat;
 import com.yc.entity.CommoidityStatus;
@@ -48,6 +49,8 @@ import com.yc.entity.ShopType;
 import com.yc.entity.Specifications;
 import com.yc.entity.Surcharges;
 import com.yc.entity.user.User;
+import com.yc.service.IAdvertisementDistributionService;
+import com.yc.service.IAdvertisementService;
 import com.yc.service.IBrandService;
 import com.yc.service.IBuyCatService;
 import com.yc.service.ICommodityService;
@@ -113,6 +116,12 @@ public class ShopOneController {
 	@Autowired
 	IOrderFormService orderFormService;
 	
+	@Autowired
+	IAdvertisementService advertisementService;
+	
+	@Autowired
+	IAdvertisementDistributionService adverDistributionService;
+	
 	//开店信息填写
 	@RequestMapping(value = "setUpShop", method = RequestMethod.GET)
 	public ModelAndView setUpShop(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -146,20 +155,9 @@ public class ShopOneController {
 						}
 						Date curDate = new Date();
 						long betweenDays = (curDate.getTime() - payDate.getTime()) / (3600 * 24 * 1000);
-						/*Calendar c1 = Calendar.getInstance();
-						Calendar c2 = Calendar.getInstance();
-						c1.setTime(payDate);
-						c2.setTime(curDate);
-						
-						int betweenYears = c2.get(Calendar.YEAR)-c1.get(Calendar.YEAR);
-						int betweenDays = c2.get(Calendar.DAY_OF_YEAR)-c1.get(Calendar.DAY_OF_YEAR);
-						for(int j=0; j<betweenYears; j++) {
-							c1.set(Calendar.YEAR,(c1.get(Calendar.YEAR)+1));
-							betweenDays += c1.getMaximum(Calendar.DAY_OF_YEAR);
-						 }*/
 
 						System.out.println("相隔多久======="+betweenDays);
-						if ( betweenDays > 15 ) {
+						if ( betweenDays < 30 ) {
 							count++;
 						}
 					}
@@ -727,6 +725,18 @@ public class ShopOneController {
 		List<Surcharges> surs = surchargesService.getAll();
 		mode.put("surs", surs);
 		mode.put("list", list);
+		
+		int position1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.innerPage, 1).getId(); 
+    	List<Advertisement> advertisements = advertisementService.getAll();
+    	ArrayList<Advertisement> advertisements1 = new ArrayList<Advertisement>();
+    	
+    	for ( int i = 0; i < advertisements.size(); i++ ) {
+    		if ( advertisements.get(i).getAdverDistribution().getId() == position1 ) {
+    			advertisements1.add(advertisements.get(i));
+    		} 
+    	}
+    	mode.put("advertisements1", advertisements1);
+    	
 		if (page.equals("page")) {
 			return new ModelAndView("reception/searchList", mode);
 		} else if (page.equals("brand")) {
@@ -817,6 +827,18 @@ public class ShopOneController {
 		mode.put("list", list);
 		List<Surcharges> surs = surchargesService.getAll();
 		mode.put("surs", surs);
+		
+		int position1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.innerPage, 1).getId(); 
+    	List<Advertisement> advertisements = advertisementService.getAll();
+    	ArrayList<Advertisement> advertisements1 = new ArrayList<Advertisement>();
+    	
+    	for ( int i = 0; i < advertisements.size(); i++ ) {
+    		if ( advertisements.get(i).getAdverDistribution().getId() == position1 ) {
+    			advertisements1.add(advertisements.get(i));
+    		} 
+    	}
+    	mode.put("advertisements1", advertisements1);
+    	
 		if (page.equals("page")) {
 			return new ModelAndView("reception/searchList", mode);
 		} else if (page.equals("brand")) {
@@ -883,6 +905,29 @@ public class ShopOneController {
 		mode.put("map", map);
 		User user = (User)request.getSession().getAttribute("loginUser");
 		mode.put("user", user);
+		
+		int position1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.detailPage, 1).getId(); 
+    	int position2 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.detailPage, 2).getId();
+    	int position3 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.detailPage, 3).getId();
+
+    	List<Advertisement> advertisements = advertisementService.getAll();
+    	ArrayList<Advertisement> advertisements1 = new ArrayList<Advertisement>();
+    	ArrayList<Advertisement> advertisements2 = new ArrayList<Advertisement>();
+    	ArrayList<Advertisement> advertisements3 = new ArrayList<Advertisement>();
+
+    	for ( int i = 0; i < advertisements.size(); i++ ) {
+    		if ( advertisements.get(i).getAdverDistribution().getId() == position1 ) {
+    			advertisements1.add(advertisements.get(i));
+    		} else if ( advertisements.get(i).getAdverDistribution().getId() == position2 ) {
+    			advertisements2.add(advertisements.get(i));
+    		} else if ( advertisements.get(i).getAdverDistribution().getId() == position3 ) {
+    			advertisements3.add(advertisements.get(i));
+    		} 
+    	}
+    	mode.put("advertisements1", advertisements1);
+    	mode.put("advertisements2", advertisements2);
+    	mode.put("advertisements3", advertisements3);
+    	
 		return new ModelAndView("reception/shopItem", mode);
 	}
 	

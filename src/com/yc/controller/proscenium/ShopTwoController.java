@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Address;
+import com.yc.entity.Advertisement;
+import com.yc.entity.AdvertisementPage;
 import com.yc.entity.BuyCat;
 import com.yc.entity.CarCommoidty;
 import com.yc.entity.Commodity;
@@ -42,6 +44,8 @@ import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
 import com.yc.model.BuyCatSession;
 import com.yc.service.IAddressService;
+import com.yc.service.IAdvertisementDistributionService;
+import com.yc.service.IAdvertisementService;
 import com.yc.service.IBrandService;
 import com.yc.service.IBuyCatService;
 import com.yc.service.ICarCommoidtyService;
@@ -118,6 +122,12 @@ public class ShopTwoController {
 	@Autowired
 	IPersonnelService personnelService;
 	
+	@Autowired
+	IAdvertisementService advertisementService;
+	
+	@Autowired
+	IAdvertisementDistributionService adverDistributionService;
+	
 	//类别查找
 	@RequestMapping(value = "categoryOne", method = RequestMethod.GET)
 	public ModelAndView categoryOne(Integer id ,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -142,12 +152,72 @@ public class ShopTwoController {
 			mode.put("shopCategories", list);
 			mode.put("cate", cate);
 			if (page != null && page.equals("electronics")) {
+				int position1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.elecProductionPage, 1).getId(); 
+		    	int position2 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.elecProductionPage, 2).getId();
+		    	int position3 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.elecProductionPage, 3).getId();
+		    	int position4 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.elecProductionPage, 4).getId();
+
+		    	List<Advertisement> advertisements = advertisementService.getAll();
+		    	ArrayList<Advertisement> advertisements1 = new ArrayList<Advertisement>();
+		    	ArrayList<Advertisement> advertisements2 = new ArrayList<Advertisement>();
+		    	ArrayList<Advertisement> advertisements3 = new ArrayList<Advertisement>();
+		    	ArrayList<Advertisement> advertisements4 = new ArrayList<Advertisement>();
+		    	
+		    	for ( int i = 0; i < advertisements.size(); i++ ) {
+		    		if ( advertisements.get(i).getAdverDistribution().getId() == position1 ) {
+		    			advertisements1.add(advertisements.get(i));
+		    		} else if ( advertisements.get(i).getAdverDistribution().getId() == position2 ) {
+		    			advertisements2.add(advertisements.get(i));
+		    		} else if ( advertisements.get(i).getAdverDistribution().getId() == position3 ) {
+		    			advertisements3.add(advertisements.get(i));
+		    		} else if ( advertisements.get(i).getAdverDistribution().getId() == position4 ) {
+		    			advertisements4.add(advertisements.get(i));
+		    		}
+		    	}
+		    	mode.put("advertisements1", advertisements1);
+		    	mode.put("advertisements2", advertisements2);
+		    	mode.put("advertisements3", advertisements3);
+		    	mode.put("advertisements4", advertisements4);
+		    	
 				return new ModelAndView("reception/electronics",mode);
 			}else if(page.equals("autoSupplies")){
+				int position1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.carPage, 1).getId(); 
+		    	int position2 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.carPage, 2).getId();
+		    	int position3 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.carPage, 3).getId();
+		    	
+		    	List<Advertisement> advertisements = advertisementService.getAll();
+		    	ArrayList<Advertisement> advertisements1 = new ArrayList<Advertisement>();
+		    	ArrayList<Advertisement> advertisements2 = new ArrayList<Advertisement>();
+		    	ArrayList<Advertisement> advertisements3 = new ArrayList<Advertisement>();
+		    	
+		    	for ( int i = 0; i < advertisements.size(); i++ ) {
+		    		if ( advertisements.get(i).getAdverDistribution().getId() == position1 ) {
+		    			advertisements1.add(advertisements.get(i));
+		    		} else if ( advertisements.get(i).getAdverDistribution().getId() == position2 ) {
+		    			advertisements2.add(advertisements.get(i));
+		    		} else if ( advertisements.get(i).getAdverDistribution().getId() == position3 ) {
+		    			advertisements3.add(advertisements.get(i));
+		    		}
+		    	}
+		    	mode.put("advertisements1", advertisements1);
+		    	mode.put("advertisements2", advertisements2);
+		    	mode.put("advertisements3", advertisements3);
+		    	
 				return new ModelAndView("reception/autoSupplies",mode);
 			}
 		}
 		if (page != null && page.equals("brand")) {
+			int position1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.brandPage, 1).getId(); 
+			
+	    	List<Advertisement> advertisements = advertisementService.getAll();
+	    	ArrayList<Advertisement> advertisements1 = new ArrayList<Advertisement>();
+	    	
+	    	for ( int i = 0; i < advertisements.size(); i++ ) {
+	    		if ( advertisements.get(i).getAdverDistribution().getId() == position1 ) {
+	    			advertisements1.add(advertisements.get(i));
+	    		}
+	    	}
+	    	mode.put("advertisements1", advertisements1);
 			mode.put("shopCategories", list);
 			return new ModelAndView("reception/brand",mode);
 		}else if (page != null && page.equals("special")) {

@@ -636,7 +636,10 @@
 				</div>
 				<div class="scall">
 					<ul>
-						<li><a href="yl_list_detail.html"><img
+						<c:forEach var="advertisement" items="${advertisements1 }" varStatus="pool">
+    						<li><a href="${advertisement.link }" ><img src="..${advertisement.imagePath }"/><span>$889</span></a></li>
+    					</c:forEach>
+						<!-- <li><a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/img051.jpg" /><span>$889</span></a></li>
 						<li><a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/img051.jpg" /><span>$889</span></a></li>
@@ -647,7 +650,7 @@
 						<li><a href="yl_list_detail.html"><img
 								src="../content/static/images/dz/img051.jpg" /><span>$889</span></a></li>
 						<li><a href="yl_list_detail.html"><img
-								src="../content/static/images/dz/img051.jpg" /><span>$889</span></a></li>
+								src="../content/static/images/dz/img051.jpg" /><span>$889</span></a></li> -->
 					</ul>
 				</div>
 				<div class="scdn">
@@ -676,12 +679,15 @@
 				</div>
 				<div class="sc2all">
 					<ul>
-						<li><a href="#"><img
+						<c:forEach var="advertisement" items="${advertisements2 }" varStatus="pool">
+    						<li><a href="${advertisement.link }" ><img src="..${advertisement.imagePath }"/></a></li>
+    					</c:forEach>
+						<!-- <li><a href="#"><img
 								src="../content/static/images/dz/img051.jpg" /></a><a href="#"><img
 								src="../content/static/images/dz/img051.jpg" /></a></li>
 						<li><a href="#"><img
 								src="../content/static/images/dz/img051.jpg" /></a><a href="#"><img
-								src="../content/static/images/dz/img051.jpg" /></a></li>
+								src="../content/static/images/dz/img051.jpg" /></a></li> -->
 					</ul>
 				</div>
 				<div class="rightpg">
@@ -707,12 +713,15 @@
 				</div>
 				<div class="sc2all">
 					<ul>
-						<li><a href="#"><img
+						<c:forEach var="advertisement" items="${advertisements3 }" varStatus="pool">
+    						<li><a href="${advertisement.link }" ><img src="..${advertisement.imagePath }"/></a></li>
+    					</c:forEach>
+						<!-- <li><a href="#"><img
 								src="../content/static/images/dz/img051.jpg" /></a><a href="#"><img
 								src="../content/static/images/dz/img051.jpg" /></a></li>
 						<li><a href="#"><img
 								src="../content/static/images/dz/img051.jpg" /></a><a href="#"><img
-								src="../content/static/images/dz/img051.jpg" /></a></li>
+								src="../content/static/images/dz/img051.jpg" /></a></li> -->
 					</ul>
 				</div>
 				<div class="rightpg">
