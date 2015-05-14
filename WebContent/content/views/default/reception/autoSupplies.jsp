@@ -35,7 +35,7 @@
             <h1>汽车装饰<br /><a href="gr_list.html">内饰\</a><a href="gr_list.html">外饰\</a><a href="gr_list.html">坐垫\</a><a href="gr_list.html">座套【内外兼修】</a>
             </h1>
         </div>
-        <div class="cont_cent_left cont_cent_left1">
+        <div class="cont_cent_left cont_cent_left1" id="img5">
                <c:forEach items="${shopcommlist}" var="shopcomm">
                        <img src="..${shopcomm.shopCommImages[0].imagePath}">${shopcomm.commoidtyName}
                </c:forEach>
