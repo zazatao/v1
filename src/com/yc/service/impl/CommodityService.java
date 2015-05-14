@@ -208,8 +208,7 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 	// 分类查询
 	@Override
 	public List<CommdityModel> getAllByShopCategoryID(Integer id) {
-		StringBuffer hql = new StringBuffer("select SUM(quantity) sums,s.categoryID categoryID,s.category category from commodity c right join shopcategory s on s.categoryID = c.shopcategory where  c.shopcategory in (select sc.categoryID from shopcategory sc where sc.parentLevel in (select cat.categoryID from shopcategory cat where cat.parentLevel = " + id
-				+ "))group by s.parentLevel order by sums desc limit 7");
+		StringBuffer hql = new StringBuffer("SELECT DISTINCT s.categoryID,s.category FROM commodity c RIGHT JOIN shopcategory s ON s.categoryID = c.shopcategory WHERE  s.parent_ID =" + id + " limit 7");
 		Query query = commodityDao.getEntityManager().createNativeQuery(hql.toString());
 		@SuppressWarnings("rawtypes")
 		List objecArraytList = query.getResultList();
@@ -219,9 +218,8 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 			for (int i = 0; i < objecArraytList.size(); i++) {
 				mode = new CommdityModel();
 				Object[] obj = (Object[]) objecArraytList.get(i);
-				mode.setSums(Integer.parseInt(obj[0].toString()));
-				mode.setCategoryID(Integer.parseInt(obj[1].toString()));
-				mode.setCategory(obj[2].toString());
+				mode.setCategoryID(Integer.parseInt(obj[0].toString()));
+				mode.setCategory(obj[1].toString());
 				list.add(mode);
 			}
 		}
@@ -230,8 +228,8 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 
 	// 热销商品查询
 	@Override
-	public List<Products> getAllByCommdityID(Integer id) {
-		StringBuffer hql = new StringBuffer("SELECT SUM(quantity) sums,c.transNumForTaobao,s.categoryID,c.seller_name,c.nameOfGoods,i.path FROM commodity c RIGHT JOIN shopcategory s ON s.categoryID = c.shopcategory LEFT JOIN  ImagePath i  on c.commodityID = i.from_commodity WHERE  c.shopcategory = " + id + " GROUP BY c.shopcategory ORDER BY sums DESC LIMIT 7");
+	public List<Products> getAllByCommdityID(Integer id) {	
+		StringBuffer hql = new StringBuffer("SELECT c.transNumForTaobao,s.categoryID,c.seller_name,c.nameOfGoods,i.path FROM commodity c RIGHT JOIN shopcategory s ON s.categoryID = c.shopcategory LEFT JOIN  ImagePath i  on c.commodityID = i.from_commodity WHERE  c.shopcategory = " + id + " LIMIT 7");
 		Query query = commodityDao.getEntityManager().createNativeQuery(hql.toString());
 		@SuppressWarnings("rawtypes")
 		List objecArraytList = query.getResultList();
@@ -241,11 +239,11 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 			for (int i = 0; i < objecArraytList.size(); i++) {
 				mode = new Products();
 				Object[] obj = (Object[]) objecArraytList.get(i);
-				mode.setTransNumForTaobao(Integer.parseInt(obj[1].toString()));
-				mode.setShopcategory(Integer.parseInt(obj[2].toString()));
-				mode.setSeller(obj[3].toString());
-				mode.setNameOfGoods(obj[4].toString());
-				mode.setPath(obj[5].toString());
+				mode.setTransNumForTaobao(Integer.parseInt(obj[0].toString()));
+				mode.setShopcategory(Integer.parseInt(obj[1].toString()));
+				mode.setSeller(obj[2].toString());
+				mode.setNameOfGoods(obj[3].toString());
+				mode.setPath(obj[4].toString());
 				pr.add(mode);
 			}
 		}

@@ -73,7 +73,6 @@ public class ShopThreeController {
 	@Autowired
 	IBrandService brandService;// 品牌
 	
-	
 	@Autowired
 	IShopCommImageService shopCommImageService;
 

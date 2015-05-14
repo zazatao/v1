@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yc.entity.AdvertiseDistribution;
+import com.yc.entity.AdvertisementPage;
 import com.yc.entity.BuyCat;
 import com.yc.entity.CarCommoidty;
 import com.yc.entity.Collection;
@@ -30,6 +32,8 @@ import com.yc.entity.user.Positions;
 import com.yc.entity.user.User;
 import com.yc.model.BrandCategory;
 import com.yc.model.BuyCatSession;
+import com.yc.service.IAdvertisementDistributionService;
+import com.yc.service.IAdvertisementService;
 import com.yc.service.IBuyCatService;
 import com.yc.service.ICarCommoidtyService;
 import com.yc.service.ICollectionService;
@@ -65,6 +69,12 @@ public class GetShopCategory {
 	
 	@Autowired
 	ICollectionService collectionService;
+	
+	@Autowired
+	IAdvertisementService advertisementService;
+	
+	@Autowired
+	IAdvertisementDistributionService adverDistributionService;
 	
 	@RequestMapping(value = "shopCategoryAll", method = RequestMethod.GET)
 	@ResponseBody
@@ -300,4 +310,28 @@ public class GetShopCategory {
 		}
   		return mode;
   	}
+  	
+  	//获得所选页面的广告位
+  	@RequestMapping(value = "getAdverPositions", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getAdverPositions(AdvertisementPage whichPage, HttpServletRequest request) throws ServletException, IOException {
+  		ModelMap mode = new ModelMap();
+    	List<AdvertiseDistribution> adverDistributions = adverDistributionService.getAdvertiseDistributionsByWhichPage(whichPage);
+        List<Integer> positions = new ArrayList<Integer>();
+        for ( int i = 0; i < adverDistributions.size(); i++ ) {
+        	int position = adverDistributions.get(i).getPosition();
+        	Integer size = advertisementService.getAdvertiseBywhichPageAndPostion(whichPage, position);
+        	if ( adverDistributions.get(i).getNum() == -1 ) {
+        		positions.add(position);
+        	}
+        	
+        	else if ( size < adverDistributions.get(i).getNum() ) {
+        		positions.add(position);
+        	}       	
+		}
+
+        mode.put("success", "true");
+        mode.put("list", positions);
+    	return mode;
+    }
 }

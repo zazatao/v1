@@ -121,7 +121,10 @@
             </script>
         	<div class="banner">
               <ul>
-                <li>
+              	<c:forEach var="advertisement" items="${advertisements1 }" varStatus="pool">
+    				<li><a href="${advertisement.link }" ><img src="..${advertisement.imagePath }"/></a></li>
+    			</c:forEach>
+                <!-- <li>
                    <a href="gr_list.html"><img src="../content/static/images/dq/banner01.jpg" /></a>
                 </li>
                 <li>
@@ -132,18 +135,29 @@
                 </li>
                 <li>
                    <a href="gr_list.html"><img src="../content/static/images/dq/banner01.jpg" /></a>
-                </li>
+                </li> -->
               </ul>
             </div>
             <div class="smallbox_2">
-            	<a href="gr_list.html"><img src="../content/static/images/dq/img_16.jpg" /></a>
+            	<c:forEach var="advertisement" items="${advertisements2 }" varStatus="pool">
+    				<a href="${advertisement.link }" ><img src="..${advertisement.imagePath }"/></a>
+    			</c:forEach>
+            	<!-- <a href="gr_list.html"><img src="../content/static/images/dq/img_16.jpg" /></a>
                 <a href="gr_list.html"><img src="../content/static/images/dq/img_17.jpg" /></a>
-                <a href="gr_list.html"><img src="../content/static/images/dq/img_18.jpg" /></a>
+                <a href="gr_list.html"><img src="../content/static/images/dq/img_18.jpg" /></a> -->
             </div>
         </div>
         <div class="cont_head_right">
-        	<span class="sp_top"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_19.jpg" /></a></span>	
-            <span><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_20.jpg" /></a></span>		
+        	<c:forEach var="advertisement" items="${advertisements3 }" varStatus="pool">
+    			<c:if test="${pool.index == 0 }">
+    				<span class="sp_top"><a href="${advertisement.link }" ><img src="..${advertisement.imagePath }"/></a></span>
+    			</c:if>
+    			<c:if test="${pool.index != 0 }">
+    				<span><a href="${advertisement.link }"><img src="..${advertisement.imagePath }"/></a></span>
+    			</c:if>    			
+    		</c:forEach>
+        	<!-- <span class="sp_top"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_19.jpg" /></a></span>	
+            <span><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_20.jpg" /></a></span>	 -->	
         </div>
     </div>
     <!------cont_head over-------->

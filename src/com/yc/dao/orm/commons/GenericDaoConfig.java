@@ -173,8 +173,19 @@ public class GenericDaoConfig {
 	public GenericDao<AccomplishMetric> getAccomplishMetricDao() {
 		return new GenericDaoSupport<AccomplishMetric>(AccomplishMetric.class);	
 	}
+	
 	@Bean
 	public GenericDao<ShopReviews> getShopReviewsDao() {
 		return new GenericDaoSupport<ShopReviews>(ShopReviews.class);	
+	}
+	
+	@Bean
+	public GenericDao<Advertisement> getAdvertisementDao() {
+		return new GenericDaoSupport<Advertisement>(Advertisement.class);	
+	}
+	
+	@Bean
+	public GenericDao<AdvertiseDistribution> getAdvertiseDistributionDao() {
+		return new GenericDaoSupport<AdvertiseDistribution>(AdvertiseDistribution.class);	
 	}
 }
