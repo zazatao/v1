@@ -24,8 +24,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.Address;
-import com.yc.entity.Advertisement;
-import com.yc.entity.AdvertisementPage;
 import com.yc.entity.Brand;
 import com.yc.entity.BuyCat;
 import com.yc.entity.CarCommoidty;
@@ -184,10 +182,12 @@ public class ShopTwoController {
 			mode.put("shopCategories", list);
 			mode.put("cate", cate);
 			if (page != null && page.equals("electronics")) {
-				mode.putAll(AdvertisementManager.getInstace().getElecProductionPageAdvertisements());	
+				AdvertisementManager advertisementManager = new AdvertisementManager();
+		 		mode.putAll(advertisementManager.getElecProductionPageAdvertisements(adverDistributionService, advertisementService));	
 				return new ModelAndView("reception/electronics",mode);
 			}else if (page.equals("autoSupplies")) {
-				mode.putAll(AdvertisementManager.getInstace().getCarPageAdvertisements());
+				AdvertisementManager advertisementManager = new AdvertisementManager();
+		 		mode.putAll(advertisementManager.getCarPageAdvertisements(adverDistributionService, advertisementService));
 				List<ShopCommoidty> shopcommlist = new ArrayList<ShopCommoidty>();
 				lists.clear();
 				List<ShopCategory> cateList = getNodeForShopCategory(cate);
@@ -203,7 +203,8 @@ public class ShopTwoController {
 		}
 
 		if (page != null && page.equals("brand")) {
-			mode.putAll(AdvertisementManager.getInstace().getBrandPageAdvertisements());
+			AdvertisementManager advertisementManager = new AdvertisementManager();
+	 		mode.putAll(advertisementManager.getBrandPageAdvertisements(adverDistributionService, advertisementService));
 			List<Brand> brandlist = brandService.getAll();
 			mode.put("brands", brandlist);
 			System.out.print("brands==========" + brandlist.size());
@@ -391,6 +392,8 @@ public class ShopTwoController {
 		List<ShopCategory> shopCategories = shopCategService.getAll();
 		mode.put("shopCategories", shopCategories);
 		if (user == null) {
+			AdvertisementManager advertisementManager = new AdvertisementManager();
+	 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 			return new ModelAndView("user/login", mode);
 		} else {
 			@SuppressWarnings("unchecked")
@@ -478,6 +481,8 @@ public class ShopTwoController {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("loginUser");
 		if (user == null) {
+			AdvertisementManager advertisementManager = new AdvertisementManager();
+	 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 			return new ModelAndView("user/login", mode);
 		} else {
 			@SuppressWarnings("unchecked")
@@ -554,6 +559,8 @@ public class ShopTwoController {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("loginUser");
 		if (user == null) {
+			AdvertisementManager advertisementManager = new AdvertisementManager();
+	 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 			return new ModelAndView("user/login", mode);
 		} else {
 			@SuppressWarnings("unchecked")

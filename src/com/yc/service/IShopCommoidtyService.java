@@ -30,5 +30,7 @@ public interface IShopCommoidtyService extends IGenericService<ShopCommoidty> {
 	List<ShopCommoidty> getShopCommByCateAndBrand(Integer id);
 
 	List<ShopCommoidty> getShopCommByBrandId(Integer id);
+	
+	List<ShopCommoidty> searchShopComm(String content);
 
 }
