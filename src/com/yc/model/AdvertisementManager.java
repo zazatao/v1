@@ -3,7 +3,6 @@ package com.yc.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 
 import com.yc.entity.AdvertiseDistribution;
@@ -14,29 +13,11 @@ import com.yc.service.IAdvertisementService;
 
 //广告
 public class AdvertisementManager {
-
-	@Autowired
-	IAdvertisementService advertisementService;
 	
-	@Autowired
-	IAdvertisementDistributionService adverDistributionService;
+	public AdvertisementManager(){}
 	
-	private static AdvertisementManager instance;
-	
-	private AdvertisementManager(){}
-	
-	public static AdvertisementManager getInstace()
-	{
-		if ( null == instance )
-		{
-			instance = new AdvertisementManager();
-		}
-		return instance;
-	}
-	
-	public ModelMap getHomePageAdvertisements() {
+	public ModelMap getHomePageAdvertisements(IAdvertisementDistributionService adverDistributionService,IAdvertisementService advertisementService) {
 		ModelMap mode = new ModelMap();
-		
 		AdvertiseDistribution adverDistribution1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.homePage, 1);
 		AdvertiseDistribution adverDistribution2 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.homePage, 2);
 		AdvertiseDistribution adverDistribution3 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.homePage, 3);
@@ -99,7 +80,7 @@ public class AdvertisementManager {
 		return mode;
 	}
 	
-	public ModelMap getInnerPageAdvertisements() {
+	public ModelMap getInnerPageAdvertisements(IAdvertisementDistributionService adverDistributionService,IAdvertisementService advertisementService) {
 		ModelMap mode = new ModelMap();	
 		AdvertiseDistribution adverDistribution1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.innerPage, 1);
 		
@@ -123,7 +104,7 @@ public class AdvertisementManager {
 		return mode;
 	}
 	
-	public ModelMap getDetailPageAdvertisements() {
+	public ModelMap getDetailPageAdvertisements(IAdvertisementDistributionService adverDistributionService,IAdvertisementService advertisementService) {
 		ModelMap mode = new ModelMap();
 		
 		AdvertiseDistribution adverDistribution1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.detailPage, 1);
@@ -168,7 +149,7 @@ public class AdvertisementManager {
 		return mode;
 	}
 	
-	public ModelMap getCarPageAdvertisements() {
+	public ModelMap getCarPageAdvertisements(IAdvertisementDistributionService adverDistributionService,IAdvertisementService advertisementService) {
 		ModelMap mode = new ModelMap();
 		
 		AdvertiseDistribution adverDistribution1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.carPage, 1);
@@ -214,7 +195,7 @@ public class AdvertisementManager {
 		return mode;
 	}
 	
-	public ModelMap getElecProductionPageAdvertisements() {
+	public ModelMap getElecProductionPageAdvertisements(IAdvertisementDistributionService adverDistributionService,IAdvertisementService advertisementService) {
 		ModelMap mode = new ModelMap();
 		
 		AdvertiseDistribution adverDistribution1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.elecProductionPage, 1);
@@ -270,7 +251,7 @@ public class AdvertisementManager {
 		return mode;
 	}
 	
-	public ModelMap getMyOfficePageAdvertisements() {
+	public ModelMap getMyOfficePageAdvertisements(IAdvertisementDistributionService adverDistributionService,IAdvertisementService advertisementService) {
 		ModelMap mode = new ModelMap();
 		
 		AdvertiseDistribution adverDistribution1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.myOfficePage, 1);
@@ -306,10 +287,10 @@ public class AdvertisementManager {
 		return mode;
 	}
 	
-	public ModelMap getLoginPageAdvertisements() {
+	public ModelMap getLoginPageAdvertisements(IAdvertisementDistributionService adverDistributionService,IAdvertisementService advertisementService) {
 		ModelMap mode = new ModelMap();
 		
-		AdvertiseDistribution adverDistribution1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.homePage, 1);
+		AdvertiseDistribution adverDistribution1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.homePage, 5);
 		
 		int position1 = 0;
 		if ( adverDistribution1 != null ) {
@@ -324,12 +305,12 @@ public class AdvertisementManager {
     			advertisements1.add(advertisements.get(i));
     		}
     	}
-    	mode.put("advertisements1", advertisements1);
-    	
+    	mode.put("advertisements5", advertisements1);
+
 		return mode;
 	}
 	
-	public ModelMap getBrandPageAdvertisements() {
+	public ModelMap getBrandPageAdvertisements(IAdvertisementDistributionService adverDistributionService,IAdvertisementService advertisementService) {
 		ModelMap mode = new ModelMap();	
 		AdvertiseDistribution adverDistribution1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.brandPage, 1);
 		

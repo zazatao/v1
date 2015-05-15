@@ -230,8 +230,8 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 
 // 热销商品查询
 	@Override
-	public List<Products> getAllByCommdityID(Integer id) {
-		StringBuffer hql = new StringBuffer("SELECT DISTINCT c.transNumForTaobao,s.categoryID,c.seller_name,c.nameOfGoods,i.path,SUM(quantity) ss FROM commodity c RIGHT JOIN shopcategory s ON s.categoryID = c.shopcategory LEFT JOIN  ImagePath i  ON c.commodityID = i.from_commodity WHERE s.categoryID ="+id+"  GROUP BY c.transNumForTaobao  ORDER BY ss DESC,c.transNumForTaobao LIMIT 7");
+	public List<Products> getAllByCommdityID(Integer id) {	
+		StringBuffer hql = new StringBuffer("SELECT DISTINCT c.transNumForTaobao,s.categoryID,c.seller_name,c.nameOfGoods,i.path,SUM(quantity) ss FROM commodity c RIGHT JOIN shopcategory s ON s.categoryID = c.shopcategory LEFT JOIN  ImagePath i  ON c.commodityID = i.from_commodity WHERE s.categoryID = "+id+" GROUP BY c.transNumForTaobao  ORDER BY ss DESC,c.transNumForTaobao LIMIT 7");
 		Query query = commodityDao.getEntityManager().createNativeQuery(hql.toString());
 		@SuppressWarnings("rawtypes")
 		List objecArraytList = query.getResultList();
@@ -241,13 +241,14 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 			for (int i = 0; i < objecArraytList.size(); i++) {
 				mode = new Products();
 				Object[] obj = (Object[]) objecArraytList.get(i);
-				mode.setTransNumForTaobao(Integer.parseInt(obj[0].toString()));
-				mode.setShopcategory(Integer.parseInt(obj[1].toString()));
-				mode.setSeller(obj[2].toString());
-				mode.setNameOfGoods(obj[3].toString());
-				mode.setPath(obj[4].toString());
-				mode.setQuantity(obj[5].toString());
-				pr.add(mode);
+				if (obj[i] != null) {
+					mode.setTransNumForTaobao(Integer.parseInt(obj[0].toString()));
+					mode.setShopcategory(Integer.parseInt(obj[1].toString()));
+					mode.setSeller(obj[2].toString());
+					mode.setNameOfGoods(obj[3].toString());
+					mode.setPath(obj[4].toString());
+					pr.add(mode);
+				}
 			}
 		}
 		return pr;

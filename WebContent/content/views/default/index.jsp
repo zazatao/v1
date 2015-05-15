@@ -25,11 +25,10 @@
 			url : "shopComm?id="+num,
 			dataType : 'json',
 			success : function(data) {
-				var coteid = "";
+				var coteid = num;
 				var $para = "";
 				if (data.success == 'true') {
 					$.each(data.pr, function(i, item) {
-						coteid = item.shopcategory;
 						$para = $para +"<li><a href='proscenium/shopItem?commID="+item.transNumForTaobao+"&category="+item.shopcategory+"&shopID="+item.seller+"&commoName="
 								+item.nameOfGoods+"'><img src="+item.path+" alt="+item.nameOfGoods+"/></a></li>";
 			        });
@@ -78,7 +77,7 @@
             <h1>热销商品</h1>
             <div class="fenlei" id="fl1">
             	 <c:forEach items="${list}" var="Comm">
-            	 	<a href="#"  onclick='Search(${Comm.categoryID});'>
+            	 	<a href="#"  onmouseover='Search(${Comm.categoryID});'>
             	 	<span class="f1" >${fn:substring(Comm.category, 0, 4)}</span></a>
               	</c:forEach> 
              </div>
@@ -87,13 +86,13 @@
             <div class="flzs">
             	<div class="flan">
                 	<ul>
+                        <li><a href="#" onclick="categoryClick('shopCommItems?id=6');"><img src="content/static/images/txs.jpg" big="content/static/images/txs.jpg" mid="content/static/images/at/txs.jpg" width="67" height="64" /></a></li>
                     	<li><a href="#" onclick="categoryClick('shopCommItems?id=33');"><img src="content/static/images/at/zxj.jpg" big="content/static/images/zxj.jpg" mid="content/static/images/at/zxj.jpg" width="67" height="64" /></a></li>
                         <li><a href="#" onclick="categoryClick('shopCommItems?id=60');"><img src="content/static/images/cf.jpg" big="content/static/images/cf.jpg" mid="content/static/images/at/cf.jpg" width="67" height="64" /></a></li>
                         <li><a href="#" onclick="categoryClick('shopCommItems?id=7');"><img src="content/static/images/gwb.jpg" big="content/static/images/gwb.jpg" mid="content/static/images/at/gwb.jpg" width="67" height="64" /></a></li>
                         <li><a href="#" onclick="categoryClick('shopCommItems?id=22');"><img src="content/static/images/dj.jpg" big="content/static/images/dj.jpg" mid="content/static/images/at/dj.jpg" width="67" height="64" /></a></li>
                         <li><a href="#" onclick="categoryClick('shopCommItems?id=66');"><img src="content/static/images/ggx.jpg" big="content/static/images/ggx.jpg" mid="content/static/images/at/ggx.jpg" width="67" height="64" /></a></li>
                         <li><a href="#" onclick="categoryClick('shopCommItems?id=58');"><img src="content/static/images/etwj.jpg" big="content/static/images/etwj.jpg" mid="content/static/images/at/etwj.jpg" width="67" height="64" /></a></li>
-                        <li><a href="#" onclick="categoryClick('shopCommItems?id=6');"><img src="content/static/images/txs.jpg" big="content/static/images/txs.jpg" mid="content/static/images/at/txs.jpg" width="67" height="64" /></a></li>
                         <li><a href="#" onclick="categoryClick('shopCommItems?id=62');"><img src="content/static/images/yd.jpg" big="content/static/images/yd.jpg" mid="content/static/images/at/yd.jpg" width="67" height="64" /></a></li>
                         <li><a href="#" onclick="categoryClick('shopCommItems?id=64');"><img src="content/static/images/hlyp.jpg" big="content/static/images/hlyp.jpg" mid="content/static/images/at/hlyp.jpg" width="67" height="64" /></a></li>
                         <li><a href="#" onclick="categoryClick('shopCommItems?id=65');"><img src="content/static/images/sb.jpg" big="content/static/images/sb.jpg" mid="content/static/images/at/sb.jpg" width="67" height="64" /></a></li>                  	
@@ -132,7 +131,7 @@
             					var $para = "";
 
             					$.each(data.list, function(i, item) {
-            						$cote = $cote +"<a href='#' onclick='Search("+item.categoryID+");'><span class='f1' >"+item.category+"</span></a>";		
+            						$cote = $cote +"<a href='#'  onmouseover='Search("+item.categoryID+");'><span class='f1' >"+item.category+"</span></a>";		
             				    });
             						
             					$.each(data.lists, function(i, item) {
@@ -200,7 +199,7 @@
         </div>
         <!-------------图片轮播----------------->
         <div class="spzx">
-        	<div class="sptop"><img src="content/static/images/tbfh.jpg" width="14" height="14" />&nbsp; 电影射频用途网站</div>
+        	<div class="sptop"><img src="content/static/images/tbfh.jpg" width="14" height="14" />&nbsp; 时尚站点</div>
             <div class="spcon">
             <div class="catalog_img">          
             <DIV class="LeftBotton" id="LeftArr"></DIV>

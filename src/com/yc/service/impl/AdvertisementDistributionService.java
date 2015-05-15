@@ -38,6 +38,7 @@ public class AdvertisementDistributionService extends GenericService<AdvertiseDi
 		List<Object> values = new ArrayList<Object>();
 		values.add(whichPage);
 		values.add(position);
+
 		return  advertiseDistributionDao.getFirstRecord(keys, values);
 	}
 

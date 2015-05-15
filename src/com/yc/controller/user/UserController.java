@@ -30,6 +30,7 @@ import com.yc.entity.ShopCategory;
 import com.yc.entity.Transit;
 import com.yc.entity.user.Sex;
 import com.yc.entity.user.User;
+import com.yc.model.AdvertisementManager;
 import com.yc.service.IAddressService;
 import com.yc.service.IAdvertisementDistributionService;
 import com.yc.service.IAdvertisementService;
@@ -81,6 +82,8 @@ public class UserController {
 		ModelMap mode = new ModelMap();
 		List<ShopCategory> list = ShopCategoryService.getAll();
 		mode.put("shopCategories", list);
+		AdvertisementManager advertisementManager = new AdvertisementManager();
+ 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 		return new ModelAndView("user/login", mode);
 	}
 
@@ -139,7 +142,9 @@ public class UserController {
 		ModelMap mode = new ModelMap();
 		List<ShopCategory> list = ShopCategoryService.getAll();
 		mode.put("shopCategories", list);
-		return new ModelAndView("user/register", mode);
+		AdvertisementManager advertisementManager = new AdvertisementManager();
+ 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));		
+ 		return new ModelAndView("user/register", mode);
 	}
 
 	@RequestMapping(value = "myoffice", method = RequestMethod.GET)
@@ -161,28 +166,16 @@ public class UserController {
 	    	}
 	    	map.put("advertisements5", advertisements5);
 	    	
+	    	AdvertisementManager advertisementManager = new AdvertisementManager();
+	 		map.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 			return new ModelAndView("user/login", map);
 		}
 		List<ShopCategory> shopCates = ShopCategoryService.getAllByLevel(2);
 		map.put("shopCates", shopCates);
 		map.put("user", user);
 		
-		int position1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.myOfficePage, 1).getId();
-		int position2 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.myOfficePage, 2).getId();
-    	
-    	List<Advertisement> advertisements = advertisementService.getAll();
-    	ArrayList<Advertisement> advertisements1 = new ArrayList<Advertisement>();
-    	ArrayList<Advertisement> advertisements2 = new ArrayList<Advertisement>();
-    	
-    	for ( int i = 0; i < advertisements.size(); i++ ) {
-    		if ( advertisements.get(i).getAdverDistribution().getId() == position1 ) {
-    			advertisements1.add(advertisements.get(i));
-    		} else if ( advertisements.get(i).getAdverDistribution().getId() == position2 ){
-    			advertisements2.add(advertisements.get(i));
-    		}
-    	}
-    	map.put("advertisements1", advertisements1);
-    	map.put("advertisements2", advertisements2);
+    	AdvertisementManager advertisementManager = new AdvertisementManager();
+    	map.putAll(advertisementManager.getMyOfficePageAdvertisements(adverDistributionService,advertisementService));
 		
 		return new ModelAndView("reception/myoffice", map);
 	}
@@ -304,7 +297,6 @@ public class UserController {
 	// 修改地址
 	@RequestMapping(value = "editaddress", method = RequestMethod.POST)
 	public String editaddress(Integer id,Integer num,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Boolean theDefault = false;
 		Address ad = addressService.findById(id);
 		String toName = request.getParameter("toNamea");
 		ad.setToName(toName);
@@ -326,7 +318,7 @@ public class UserController {
 		ad.setHandedAddress(Transit.valueOf(handedAddress));
 		String indexNum = request.getParameter("indexNuma");
 		ad.setIndexNum(indexNum);
-		if(num == 0){ theDefault = false; } else { theDefault = true; }
+		if(num == 0){ } else { }
 		addressService.update(ad);
 		return "redirect:/user/introduction";
 	}
@@ -365,6 +357,8 @@ public class UserController {
 		mode.put("shopCategories", list);
 	    User user =	(User)request.getSession().getAttribute("loginUser");
 	    if (user == null ) {
+	    	AdvertisementManager advertisementManager = new AdvertisementManager();
+	 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 			return new ModelAndView("user/login", mode);
 		}else{
 			Map<String, Object> map = new HashMap<String, Object>();

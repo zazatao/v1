@@ -3,7 +3,6 @@ package com.yc.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -78,7 +77,7 @@ public class IndexController {
     public ModelAndView index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     	List<ShopCategory> list = shopCategService.getAll();  	
-    	List<CommdityModel> list1 =  commodityService.getAllByShopCategoryID(33);
+    	List<CommdityModel> list1 =  commodityService.getAllByShopCategoryID(6);
 
     	lists.clear();
  		lists = getNodeForShopCategory(shopCategService.findById(6));
@@ -88,7 +87,8 @@ public class IndexController {
  		}
  		
  		ModelMap mode = new ModelMap();
- 		//mode = AdvertisementManager.getInstace().getHomePageAdvertisements();
+ 		AdvertisementManager advertisementManager = new AdvertisementManager();
+ 		mode.putAll(advertisementManager.getHomePageAdvertisements(adverDistributionService,advertisementService));
  		mode .put("list", list1);
     	mode.put("shopCategories", list);
     	mode.put("lists", allCommodity);
@@ -151,7 +151,8 @@ public class IndexController {
   	@RequestMapping(value = "shopCommItemone", method = RequestMethod.GET)
   	public ModelAndView shopCommItemsone(Integer id,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
   		ModelMap mode = new ModelMap();
-  		mode = AdvertisementManager.getInstace().getInnerPageAdvertisements();
+  		AdvertisementManager advertisementManager = new AdvertisementManager();
+ 		mode.putAll(advertisementManager.getInnerPageAdvertisements(adverDistributionService,advertisementService));
 		ShopCategory cate = shopCategService.findById(id);
 		List<ShopCategory> shopcates = new ArrayList<ShopCategory>();
 		mode.put("brands", cate.getBrands());
@@ -209,11 +210,12 @@ public class IndexController {
         return new ModelAndView("personnel", null);
     }
     
- // 产品展示
+    // 产品展示
    	@RequestMapping(value = "CommItem", method = RequestMethod.GET)
    	public ModelAndView CommItem(Integer id,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
    		ModelMap mode = new ModelMap();
-   		mode = AdvertisementManager.getInstace().getInnerPageAdvertisements();
+   		AdvertisementManager advertisementManager = new AdvertisementManager();
+ 		mode.putAll(advertisementManager.getInnerPageAdvertisements(adverDistributionService,advertisementService));
  		ShopCategory cate = shopCategService.findById(id);
  		List<ShopCategory> shopcates = new ArrayList<ShopCategory>();
  		mode.put("brands", cate.getBrands());
@@ -256,18 +258,11 @@ public class IndexController {
    	
    	@RequestMapping(value = "searchComm", method = RequestMethod.POST)
    	public ModelAndView SeachComm(String content,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("enter search commoidty__________");
 		ModelMap mode = new ModelMap();
-		mode = AdvertisementManager.getInstace().getInnerPageAdvertisements();
-		List<ShopCommoidty> shopComms = shopCommService.getAll();
-		LinkedList<ShopCommoidty> searchComms = new LinkedList<ShopCommoidty>();
-		for ( int i = 0; i< shopComms.size(); i++ )
-		{
-			if ( shopComms.get(i).getCommoidtyName().contains(content) || shopComms.get(i).getShopCategory().getCategory().contains(content)
-					|| shopComms.get(i).getBrand().getBrandName().contains(content) ) {
-				searchComms.add(shopComms.get(i));
-			}
-		}
+		AdvertisementManager advertisementManager = new AdvertisementManager();
+ 		mode.putAll(advertisementManager.getInnerPageAdvertisements(adverDistributionService,advertisementService));
+		
+		List<ShopCommoidty> searchComms = shopCommService.searchShopComm(content );		
 		List<ShopCategory> shopcates = shopCategService.getAll();
 		List<Surcharges> surs = surchargesService.getAll();
 		List<Specifications> specifications = specificationService.getAll();
