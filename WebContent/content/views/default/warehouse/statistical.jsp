@@ -117,7 +117,7 @@
 		myChart = ec.init(document.getElementById('main'));
 		var option = {
 			title : {
-				text : "订单采购处理统计",
+				text : "库房人员工作情况统计",
 				subtext : '折线与饼图'
 			},
 			tooltip : {

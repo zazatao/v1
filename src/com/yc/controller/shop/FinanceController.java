@@ -1,7 +1,10 @@
 package com.yc.controller.shop;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -25,10 +28,13 @@ import com.yc.entity.Currency;
 import com.yc.entity.PackageGenre;
 import com.yc.entity.PackageSize;
 import com.yc.entity.Surcharges;
+import com.yc.entity.user.Personnel;
+import com.yc.model.PersonnelStatistics;
 import com.yc.service.ICommodityService;
 import com.yc.service.ICurrencyService;
 import com.yc.service.IPackageGenreService;
 import com.yc.service.IPackageSizeService;
+import com.yc.service.IPersonnelService;
 import com.yc.service.ISurchargesService;
 
 //商店财务
@@ -38,7 +44,7 @@ public class FinanceController {
 
 	@SuppressWarnings("unused")
 	private static final Logger LOG = Logger.getLogger(FinanceController.class);
-
+	private static final int FIRST_DAY = Calendar.MONDAY;
 	@Autowired
 	ICommodityService commodityService;
 	
@@ -53,6 +59,9 @@ public class FinanceController {
 	
 	@Autowired
 	ISurchargesService surchargesService;
+	
+	@Autowired
+	IPersonnelService personnelService;
 
 	// 付账
 	@RequestMapping(value = "billPay", method = RequestMethod.GET)
@@ -368,4 +377,54 @@ public class FinanceController {
 		return "redirect:/shop/surcharges";
 	}
 	
+	@RequestMapping(value = "accounting", method = RequestMethod.GET)
+	public ModelAndView accounting(String startDate, String endDate,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
+		ModelMap mode = new ModelMap();
+		String days = "";
+		if (startDate!= null && !startDate.equals("") && endDate!= null && !endDate.equals("")) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			days = printMonths(sdf.parse(startDate),sdf.parse(endDate));
+		}else{
+			days = printWeekdays("week",7);
+		}
+		List<PersonnelStatistics> arryList = personnelService.getAccounting(days);
+		mode.put("statistics", arryList);
+		return new ModelAndView("shop/finance/accounting",mode);
+	}
+	private static String printWeekdays(String week,Integer days) {
+    	StringBuffer sb = new StringBuffer();
+        Calendar calendar = Calendar.getInstance();
+        setToFirstDay(calendar);
+        for (int i = 0; i < days; i++) {
+        	sb.append("'"+printDay(calendar)+"',");
+            calendar.add(Calendar.DATE, 1);
+        }
+        return sb.substring(0, sb.length()-1);
+    }
+	private static void setToFirstDay(Calendar calendar) {
+        while (calendar.get(Calendar.DAY_OF_WEEK) != FIRST_DAY) {
+            calendar.add(Calendar.DATE, -1);
+        }
+    }
+	 private static String printDay(Calendar calendar) {
+	        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	        return dateFormat.format(calendar.getTime());
+	    }
+	public static String printMonths(Date dBegin, Date dEnd) {  
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        StringBuffer sb = new StringBuffer("'"+dateFormat.format(dBegin)+"',");
+        Calendar calBegin = Calendar.getInstance();  
+        // 使用给定的 Date 设置此 Calendar 的时间    
+        calBegin.setTime(dBegin);  
+        Calendar calEnd = Calendar.getInstance();  
+        // 使用给定的 Date 设置此 Calendar 的时间    
+        calEnd.setTime(dEnd);  
+        // 测试此日期是否在指定日期之后    
+        while (dEnd.after(calBegin.getTime())) {  
+            // 根据日历的规则，为给定的日历字段添加或减去指定的时间量    
+            calBegin.add(Calendar.DAY_OF_MONTH, 1);  
+            sb.append("'"+dateFormat.format(calBegin.getTime())+"',");  
+        }  
+        return  sb.substring(0, sb.length()-1);
+    }
 }

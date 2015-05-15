@@ -104,7 +104,7 @@ public class PersonnelService extends GenericService<Personnel> implements IPers
 
 	@Override
 	public List<PersonnelStatistics> getOrtherByParam(String days, Personnel personnel) {
-		StringBuffer hql = new StringBuffer("SELECT acc.accomplishNum,per.userName,acc.accomplishDate,dap.rules,dap.wage,dap.saleCut FROM personnel "
+		StringBuffer hql = new StringBuffer("SELECT distinct acc.accomplishNum,per.userName,acc.accomplishDate,dap.rules,dap.wage,dap.saleCut FROM personnel "
 						+ "per LEFT JOIN accomplishmetric acc ON acc.personnel_id  = per.id LEFT JOIN departandpositions dap "
 						+ "ON dap.id = per.depAndPos_id  WHERE per.id = "+personnel.getId()+" AND acc.accomplishDate IN ("+days+") "
 						+ "GROUP BY per.id,acc.accomplishDate");
@@ -129,5 +129,43 @@ public class PersonnelService extends GenericService<Personnel> implements IPers
 		return list;
 	}
 	
-	
+	@Override
+	public List<PersonnelStatistics> getAccounting(String days) {
+		StringBuffer hql = new StringBuffer("SELECT DISTINCT SUM(acc.accomplishNum),per.userName,dap.rules,dap.wage,dap.saleCut,"
+				+ "pos.positionname,parment.departmentname FROM personnel per  LEFT JOIN departandpositions dap ON dap.id = per.depAndPos_id  "
+				+ "LEFT JOIN department parment ON parment.departmentID = dap.departments_id LEFT JOIN positions pos ON pos.positionid = "
+				+ "dap.positions_id  LEFT  JOIN accomplishmetric acc ON acc.personnel_id  = per.id WHERE acc.accomplishDate IN ("+days+")  GROUP BY per.id");
+		Query query = personnelDao.getEntityManager().createNativeQuery(hql.toString());
+		@SuppressWarnings("rawtypes")
+		List objecArraytList = query.getResultList();
+		List<PersonnelStatistics> list = new ArrayList<PersonnelStatistics>();
+		PersonnelStatistics statistics = null;
+		if (objecArraytList != null && objecArraytList.size() > 0) {
+			for (int i = 0; i < objecArraytList.size(); i++) {
+				statistics = new PersonnelStatistics();
+				Object[] obj = (Object[]) objecArraytList.get(i);
+				statistics.setAccomplishNum(Integer.parseInt(obj[0].toString()));
+				statistics.setUserName(obj[1].toString());
+				if (obj[2] != null) {
+					statistics.setRules(Integer.parseInt(obj[2].toString()));
+				}else{
+					statistics.setRules(null);
+				}
+				if (obj[3] != null) {
+					statistics.setWage(Double.parseDouble(obj[3].toString()));
+				}else{
+					statistics.setWage(null);
+				}
+				if (obj[4] != null) {
+					statistics.setSaleCut(Double.parseDouble(obj[4].toString()));
+				}else{
+					statistics.setSaleCut(null);
+				}
+				statistics.setPos(obj[5].toString());
+				statistics.setDepart(obj[6].toString());
+				list.add(statistics);
+			}
+		}
+		return list;
+	}
 }

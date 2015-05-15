@@ -183,8 +183,8 @@ public class IndexController {
 		LinkedList<ShopCommoidty> searchComms = new LinkedList<ShopCommoidty>();
 		for ( int i = 0; i< shopComms.size(); i++ )
 		{
-			if ( shopComms.get(i).getCommoidtyName().contains(content) || shopComms.get(i).getShopCategory().getCategory().contains(content)
-					|| shopComms.get(i).getBrand().getBrandName().contains(content) ) {
+			if ((shopComms.get(i).getCommoidtyName() != null && shopComms.get(i).getCommoidtyName().contains(content)) || (shopComms.get(i).getShopCategory().getCategory() != null && shopComms.get(i).getShopCategory().getCategory().contains(content))
+					|| shopComms.get(i).getBrand().getBrandName() != null || shopComms.get(i).getBrand().getBrandName().contains(content) ) {
 				searchComms.add(shopComms.get(i));
 			}
 		}

@@ -24,4 +24,6 @@ public interface IPersonnelService  extends IGenericService<Personnel>{
 
 	List<PersonnelStatistics> getOrtherByParam(String days, Personnel personnel);
 
+	List<PersonnelStatistics> getAccounting(String days);
+
 }
