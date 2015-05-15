@@ -334,4 +334,27 @@ public class GetShopCategory {
         mode.put("list", positions);
     	return mode;
     }
+  	private List<ShopCategory> lists = new ArrayList<ShopCategory>();
+	// 类别子节点
+	private List<ShopCategory> getNodeForShopCategory(ShopCategory shopCate) {
+		List<ShopCategory> list = shopCate.getChildren();
+		if (list != null && list.size() > 0) {
+			for (int i = 0; i < list.size(); i++) {
+				getNodeForShopCategory(list.get(i));
+			}
+		} else {
+			lists.add(shopCate);
+		}
+		return lists;
+	}
+  	//汽车页面局部刷新
+  	@RequestMapping(value = "getCarShopCommByCate", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getCarShopCommByCate(Integer id,HttpServletRequest request, HttpServletResponse response )throws ServletException, IOException{
+  		ShopCategory   cate = shopCategService.findById(id);
+  		ModelMap mode = new ModelMap();
+			List<ShopCommoidty> comms =cate.getShopCommoidties();
+		   mode.put("comms", comms);
+		   return mode;
+  	}
 }

@@ -49,6 +49,7 @@ import com.yc.entity.ShopType;
 import com.yc.entity.Specifications;
 import com.yc.entity.Surcharges;
 import com.yc.entity.user.User;
+import com.yc.model.AdvertisementManager;
 import com.yc.service.IAdvertisementDistributionService;
 import com.yc.service.IAdvertisementService;
 import com.yc.service.IBrandService;
@@ -65,7 +66,6 @@ import com.yc.service.IShopService;
 import com.yc.service.ISpecificationsService;
 import com.yc.service.ISurchargesService;
 import com.yc.service.IUserService;
-import com.yc.service.impl.BrandService;
 
 //前台
 @Controller
@@ -698,9 +698,8 @@ public class ShopOneController {
 	@RequestMapping(value = "shopCommItem", method = RequestMethod.GET)
 	public ModelAndView shopCommItem(Integer id, String page,String which,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ModelMap mode = new ModelMap();
+		mode = AdvertisementManager.getInstace().getInnerPageAdvertisements();
 		ShopCategory cate=null;
-		System.out.print("which========="+which);
-		System.out.print("page========="+page);
 		if ( which != null  && which.equals("brand") ) {
 			         Brand brand=brandService.findById(id);
 			         cate=brand.getShopCateg();
@@ -740,16 +739,7 @@ public class ShopOneController {
 		mode.put("nvabar", strs.substring(0, strs.length() - 1));
 		List<Surcharges> surs = surchargesService.getAll();
 		mode.put("surs", surs);
-		int position1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.innerPage, 1).getId(); 
-    	List<Advertisement> advertisements = advertisementService.getAll();
-    	ArrayList<Advertisement> advertisements1 = new ArrayList<Advertisement>();
-    	
-    	for ( int i = 0; i < advertisements.size(); i++ ) {
-    		if ( advertisements.get(i).getAdverDistribution().getId() == position1 ) {
-    			advertisements1.add(advertisements.get(i));
-    		} 
-    	}
-    	mode.put("advertisements1", advertisements1);
+		
 		if (page.equals("page")) {
 			return new ModelAndView("reception/searchList", mode);
 		} else if (page.equals("brand")) {
@@ -758,19 +748,19 @@ public class ShopOneController {
 			return new ModelAndView("reception/searchList", mode);
 		}else if(page.equals("electronics")){
 			return new ModelAndView("reception/searchList", mode);
-		}
-		else{
+		}else{
 			return null;
 		}
 	}
 	//规则搜寻商品
 	@RequestMapping(value = "searchShopComm", method = RequestMethod.POST)
 	public ModelAndView searchShopComm(Integer id, String page, String params, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(id + "page =" + page + " param  " + params);
+
 		ShopCategory cate = shopCategService.findById(id);
 		List<ShopCategory> shopcates = new ArrayList<ShopCategory>();
 		shopcates.add(cate);
 		ModelMap mode = new ModelMap();
+		mode = AdvertisementManager.getInstace().getInnerPageAdvertisements();
 		mode.put("brands", cate.getBrands());
 		mode.put("specifications", cate.getSpecifications());
 		mode.put("page", page);
@@ -843,17 +833,6 @@ public class ShopOneController {
 		mode.put("list", list);
 		List<Surcharges> surs = surchargesService.getAll();
 		mode.put("surs", surs);
-		
-		int position1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.innerPage, 1).getId(); 
-    	List<Advertisement> advertisements = advertisementService.getAll();
-    	ArrayList<Advertisement> advertisements1 = new ArrayList<Advertisement>();
-    	
-    	for ( int i = 0; i < advertisements.size(); i++ ) {
-    		if ( advertisements.get(i).getAdverDistribution().getId() == position1 ) {
-    			advertisements1.add(advertisements.get(i));
-    		} 
-    	}
-    	mode.put("advertisements1", advertisements1);
     	
 		if (page.equals("page")) {
 			return new ModelAndView("reception/searchList", mode);
@@ -870,6 +849,7 @@ public class ShopOneController {
 	@RequestMapping(value = "shopItem", method = RequestMethod.GET)
 	public ModelAndView shopItem(Integer commID,Integer category,Integer shopID,String commoName,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ModelMap mode = new ModelMap();
+		mode = AdvertisementManager.getInstace().getDetailPageAdvertisements();
 		ShopCategory cate = shopCategService.findById(category);
 		List<ShopReviews> reviewslist=shopReviewsService.getAllBycommCode(commID);
 		mode.put("reviewslist", reviewslist);
@@ -921,28 +901,6 @@ public class ShopOneController {
 		mode.put("map", map);
 		User user = (User)request.getSession().getAttribute("loginUser");
 		mode.put("user", user);
-		
-		int position1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.detailPage, 1).getId(); 
-    	int position2 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.detailPage, 2).getId();
-    	int position3 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.detailPage, 3).getId();
-
-    	List<Advertisement> advertisements = advertisementService.getAll();
-    	ArrayList<Advertisement> advertisements1 = new ArrayList<Advertisement>();
-    	ArrayList<Advertisement> advertisements2 = new ArrayList<Advertisement>();
-    	ArrayList<Advertisement> advertisements3 = new ArrayList<Advertisement>();
-
-    	for ( int i = 0; i < advertisements.size(); i++ ) {
-    		if ( advertisements.get(i).getAdverDistribution().getId() == position1 ) {
-    			advertisements1.add(advertisements.get(i));
-    		} else if ( advertisements.get(i).getAdverDistribution().getId() == position2 ) {
-    			advertisements2.add(advertisements.get(i));
-    		} else if ( advertisements.get(i).getAdverDistribution().getId() == position3 ) {
-    			advertisements3.add(advertisements.get(i));
-    		} 
-    	}
-    	mode.put("advertisements1", advertisements1);
-    	mode.put("advertisements2", advertisements2);
-    	mode.put("advertisements3", advertisements3);
     	
 		return new ModelAndView("reception/shopItem", mode);
 	}

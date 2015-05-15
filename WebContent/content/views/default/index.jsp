@@ -130,18 +130,18 @@
             					var coteid = data.categoryId;
             					var $cote = "";
             					var $para = "";
-            					if (data.success == 'true') {
-            						$.each(data.list, function(i, item) {
-            							$cote = $cote +"<a href='#' onclick='Search("+item.categoryID+");'><span class='f1' >"+item.category+"</span></a>";		
-            				        });
+
+            					$.each(data.list, function(i, item) {
+            						$cote = $cote +"<a href='#' onclick='Search("+item.categoryID+");'><span class='f1' >"+item.category+"</span></a>";		
+            				    });
             						
-            						$.each(data.lists, function(i, item) {
-            							if ( i < 7 ) {
-            								$para = $para +"<li><a href='proscenium/shopItem?commID="+item.transNumForTaobao+"&category="+item.shopcategory+"&shopID="+item.seller+"&commoName="
+            					$.each(data.lists, function(i, item) {
+            						if ( i < 7 ) {
+            							$para = $para +"<li><a href='proscenium/shopItem?commID="+item.transNumForTaobao+"&category="+item.shopcategory+"&shopID="+item.seller+"&commoName="
         									+item.nameOfGoods+"'><img src="+item.path+" alt="+item.nameOfGoods+"/></a></li>";
-            							}            							
-            				        });
-            					}
+            						}            							
+            				    });
+            					
             					$('#fl1').html($cote);
             					$('#img5').html($para);
             					$('#img5').append("<li><div><p><a href='proscenium/shopCommItem?id="+coteid+"&page=page'>更多</a></p></div></li>");
@@ -156,22 +156,6 @@
         <div class="fldh2">
         	<div class="shfl">——————————— &nbsp;&nbsp;&nbsp;&nbsp; 在我们的商店你们可以选择你们要的产品 &nbsp;&nbsp;&nbsp;&nbsp; ———————————</div>
             <div class="fltpzs">
-                <!-- <div class="fltpzs1">
-                    <ul>
-                        <li><a href="yl_list.html"><img src="content/static/images/sp.jpg" /></a></li>
-                        <li><a href="yl_list.html"><img src="content/static/images/ny.jpg" /></a></li>
-                        <li><a href="yl_list.html"><img src="content/static/images/kx.jpg" /></a></li>
-                        <li><a href="yl_list.html"><img src="content/static/images/wscd.jpg"/></a></li>
-                        <li><a href="yl_list.html"><img src="content/static/images/jsqc.jpg" /></a></li>
-                    </ul>
-                </div>
-                <div class="fltpzs2">
-                    <ul>
-                        <li><a href="yl_list.html"><img src="content/static/images/nwd.jpg" height="304" /></a></li>
-                        <li><a href="yl_list.html"><img src="content/static/images/lyq.jpg" /></a></li>
-                        <li><a href="yl_list.html"><img src="content/static/images/hzp.jpg" /></a></li>
-                    </ul>
-                </div> -->
                 <div class="fltpzs2">
                 	<ul>
                 	<c:forEach var="advertisement" items="${advertisements2 }" varStatus="pool">
@@ -185,21 +169,6 @@
         <div class="fldh3">
         	<div class="shfl">——————————— &nbsp;&nbsp;&nbsp;&nbsp; 订单2天做好， 20天之内全世界发货。 &nbsp;&nbsp;&nbsp;&nbsp; ———————————</div>
             <div class="fltpz3">
-                <!-- <div style="height:300px;">
-                    <ul>
-                        <li><a href="yl_list.html"><img src="content/static/images/sy.jpg" height="300" /></a></li>
-                        <li><a href="yl_list.html"><img src="content/static/images/nz.jpg" /></a></li>
-                        <li><a href="yl_list.html"><img src="content/static/images/et.jpg" /></a></li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-                <div style="margin-top:5px; height:311px;">
-                    <ul>
-                        <li><a href="yl_list.html"><img src="content/static/images/tea.jpg" height="311" /></a></li>
-                        <li><a href="yl_list.html"><img src="content/static/images/top_100.jpg" width="512" /></a></li>
-                    </ul>
-                    <div class="clear"></div>
-                </div> -->
                 <div style="margin-top:5px; height:311px;">
                 	<ul>
                 	<c:forEach var="advertisement" items="${advertisements3 }" varStatus="pool">
@@ -211,41 +180,6 @@
         </div>
         <div class="ppjq">
         	<ul>
-            	<!-- <li class="n01">
-                    <a href="yl_list.html"><img src="content/static/images/logo/ppj_02_01.jpg" /></a>
-                    <a href="yl_list.html"><img src="content/static/images/logo/ppj_03_01.jpg" /></a>
-                    <a href="yl_list.html"><img src="content/static/images/logo/ppj_04_01.jpg" /></a>
-                    <a href="yl_list.html"><img src="content/static/images/logo/ppj_05_01.jpg" /></a>
-                    <a href="yl_list.html"><img src="content/static/images/logo/ppj_06_01.jpg" /></a>
-                </li>
-                <li  class="n02">
-                    <a href="yl_list.html"><img src="content/static/images/logo/ppj_02_02.jpg" /></a>
-                    <a href="yl_list.html"><img src="content/static/images/logo/ppj_03_02.jpg" /></a>
-                    <a href="yl_list.html"><img src="content/static/images/logo/ppj_04_02.jpg" /></a>
-                    <a href="yl_list.html"><img src="content/static/images/logo/ppj_05_02.jpg" /></a>
-                    <a href="yl_list.html"><img src="content/static/images/logo/ppj_06_02.jpg" /></a>
-                </li>
-                <li class="n03">
-                    <a href="yl_list.html"><img src="content/static/images/logo/ppj_02_03.jpg" /></a>
-                    <a href="yl_list.html"><img src="content/static/images/logo/ppj_03_03.jpg" /></a>
-                    <a href="yl_list.html"><img src="content/static/images/logo/ppj_04_03.jpg" /></a>
-                    <a href="yl_list.html"><img src="content/static/images/logo/ppj_05_04.jpg" /></a>
-                    <a href="yl_list.html"><img src="content/static/images/logo/ppj_06_03.jpg" /></a>
-                </li>
-                <li class="n04">
-                    <a href="yl_list.html"><img src="content/static/images/logo/ppj_02_04.jpg" /></a>
-                    <a href="yl_list.html"><img src="content/static/images/logo/ppj_03_04.jpg" /></a>
-                    <a href="yl_list.html"><img src="content/static/images/logo/ppj_04_04.jpg" /></a>
-                    <a href="yl_list.html"><img src="content/static/images/logo/ppj_05_05.jpg" /></a>
-                    <a href="yl_list.html"><img src="content/static/images/logo/ppj_06_04.jpg" /></a>
-                </li>
-                <li class="n05">
-                    <a href="yl_list.html"><img src="content/static/images/logo/ppj_02_05.jpg" /></a>
-                    <a href="yl_list.html"><img src="content/static/images/logo/ppj_03_05.jpg" /></a>
-                    <a href="yl_list.html"><img src="content/static/images/logo/ppj_04_05.jpg" /></a>
-                    <a href="yl_list.html"><img src="content/static/images/logo/ppj_05_06.jpg" /></a>
-                    <a href="yl_list.html"><img src="content/static/images/logo/ppj_06_05.jpg" /></a>
-                </li> -->
                 <c:forEach var="advertisement" items="${advertisements4 }" varStatus="pool">
     					<li><a href="${advertisement.link }" ><img src="..${advertisement.imagePath }" /></a></li>
     			</c:forEach>
@@ -275,15 +209,6 @@
             	<c:forEach var="advertisement" items="${advertisements5 }" varStatus="pool">
     					<DIV class="box"><a class=imgBorder href="${advertisement.link }" ><img src="..${advertisement.imagePath }" /></a></DIV>
     			</c:forEach>
-<!--              <DIV class="box"><A class=imgBorder href="video.html"><img src="content/static/images/lb.jpg"/></A> </DIV> -->
-<!--             <DIV class="box"><A class=imgBorder href="video.html"><img src="content/static/images/lb.jpg"/></A> </DIV> -->
-<!--             <DIV class="box"><A class=imgBorder href="video.html"><img src="content/static/images/lb.jpg"/></A> </DIV> -->
-<!--             <DIV class="box"><A class=imgBorder href="video.html"><img src="content/static/images/lb.jpg"/></A> </DIV> -->
-<!--             <DIV class="box"><A class=imgBorder href="video.html"><img src="content/static/images/lb.jpg"/></A> </DIV> -->
-<!--             <DIV class="box"><A class=imgBorder href="video.html"><img src="content/static/images/lb.jpg"/></A> </DIV> -->
-<!--             <DIV class="box"><A class=imgBorder href="video.html"><img src="content/static/images/lb.jpg"/></A> </DIV> -->
-<!--             <DIV class="box"><A class=imgBorder href="video.html"><img src="content/static/images/lb.jpg"/></A> </DIV> -->
-            <!-- 图片列表 end -->
             </DIV>
             <DIV class="RightBotton" id="RightArr"></DIV></DIV>
             
