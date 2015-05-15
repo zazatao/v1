@@ -5,11 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -44,9 +41,9 @@ import com.yc.entity.ShopCommImage;
 import com.yc.entity.ShopCommoidty;
 import com.yc.entity.ShopCommoidtySpecs;
 import com.yc.entity.StoreRoom;
-import com.yc.entity.user.Department;
 import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
+import com.yc.model.AdvertisementManager;
 import com.yc.model.BuyCatSession;
 import com.yc.service.IAddressService;
 import com.yc.service.IAdvertisementDistributionService;
@@ -178,7 +175,7 @@ public class ShopTwoController {
 	public ModelAndView categoryLei(Integer id, String page,
 			HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("page===========" + page);
+
 		ModelMap mode = new ModelMap();
 		ShopCategory cate = null;
 		List<ShopCategory> list = shopCategService.getAll();
@@ -187,73 +184,10 @@ public class ShopTwoController {
 			mode.put("shopCategories", list);
 			mode.put("cate", cate);
 			if (page != null && page.equals("electronics")) {
-				int position1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.elecProductionPage, 1).getId(); 
-		    	int position2 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.elecProductionPage, 2).getId();
-		    	int position3 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.elecProductionPage, 3).getId();
-		    	int position4 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.elecProductionPage, 4).getId();
-
-		    	List<Advertisement> advertisements = advertisementService.getAll();
-		    	ArrayList<Advertisement> advertisements1 = new ArrayList<Advertisement>();
-		    	ArrayList<Advertisement> advertisements2 = new ArrayList<Advertisement>();
-		    	ArrayList<Advertisement> advertisements3 = new ArrayList<Advertisement>();
-		    	ArrayList<Advertisement> advertisements4 = new ArrayList<Advertisement>();
-		    	
-		    	for ( int i = 0; i < advertisements.size(); i++ ) {
-		    		if ( advertisements.get(i).getAdverDistribution().getId() == position1 ) {
-		    			advertisements1.add(advertisements.get(i));
-		    		} else if ( advertisements.get(i).getAdverDistribution().getId() == position2 ) {
-		    			advertisements2.add(advertisements.get(i));
-		    		} else if ( advertisements.get(i).getAdverDistribution().getId() == position3 ) {
-		    			advertisements3.add(advertisements.get(i));
-		    		} else if ( advertisements.get(i).getAdverDistribution().getId() == position4 ) {
-		    			advertisements4.add(advertisements.get(i));
-		    		}
-		    	}
-		    	mode.put("advertisements1", advertisements1);
-		    	mode.put("advertisements2", advertisements2);
-		    	mode.put("advertisements3", advertisements3);
-		    	mode.put("advertisements4", advertisements4);
-		    	
+				mode.putAll(AdvertisementManager.getInstace().getElecProductionPageAdvertisements());	
 				return new ModelAndView("reception/electronics",mode);
-			}else if(page.equals("autoSupplies")){
-				int position1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.carPage, 1).getId(); 
-		    	int position2 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.carPage, 2).getId();
-		    	int position3 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.carPage, 3).getId();
-		    	
-		    	List<Advertisement> advertisements = advertisementService.getAll();
-		    	ArrayList<Advertisement> advertisements1 = new ArrayList<Advertisement>();
-		    	ArrayList<Advertisement> advertisements2 = new ArrayList<Advertisement>();
-		    	ArrayList<Advertisement> advertisements3 = new ArrayList<Advertisement>();
-		    	
-		    	for ( int i = 0; i < advertisements.size(); i++ ) {
-		    		if ( advertisements.get(i).getAdverDistribution().getId() == position1 ) {
-		    			advertisements1.add(advertisements.get(i));
-		    		} else if ( advertisements.get(i).getAdverDistribution().getId() == position2 ) {
-		    			advertisements2.add(advertisements.get(i));
-		    		} else if ( advertisements.get(i).getAdverDistribution().getId() == position3 ) {
-		    			advertisements3.add(advertisements.get(i));
-		    		}
-		    	}
-		    	mode.put("advertisements1", advertisements1);
-		    	mode.put("advertisements2", advertisements2);
-		    	mode.put("advertisements3", advertisements3);
-		    	
-				List<ShopCommoidty> shopcommlist = new ArrayList<ShopCommoidty>();
-				List<Brand> brandlist = new ArrayList<Brand>();
-				lists.clear();
-				List<ShopCategory> cateList = getNodeForShopCategory(cate);
-				for (int i = 0; i < cateList.size(); i++) {
-					List<ShopCommoidty> comms = cateList.get(i)
-							.getShopCommoidties();
-					List<Brand> brands = cateList.get(i).getBrands();
-					shopcommlist.addAll(comms);
-					brandlist.addAll(brands);
-				}
-				System.out.print("brandlist===" + brandlist.size());
-				mode.put("brands", brandlist);
-				mode.put("shopcommlist", shopcommlist);
-				return new ModelAndView("reception/electronics", mode);
-			} else if (page.equals("autoSupplies")) {
+			}else if (page.equals("autoSupplies")) {
+				mode.putAll(AdvertisementManager.getInstace().getCarPageAdvertisements());
 				List<ShopCommoidty> shopcommlist = new ArrayList<ShopCommoidty>();
 				lists.clear();
 				List<ShopCategory> cateList = getNodeForShopCategory(cate);
@@ -267,18 +201,9 @@ public class ShopTwoController {
 				return new ModelAndView("reception/autoSupplies", mode);
 			}
 		}
+
 		if (page != null && page.equals("brand")) {
-			int position1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.brandPage, 1).getId(); 
-			
-	    	List<Advertisement> advertisements = advertisementService.getAll();
-	    	ArrayList<Advertisement> advertisements1 = new ArrayList<Advertisement>();
-	    	
-	    	for ( int i = 0; i < advertisements.size(); i++ ) {
-	    		if ( advertisements.get(i).getAdverDistribution().getId() == position1 ) {
-	    			advertisements1.add(advertisements.get(i));
-	    		}
-	    	}
-	    	mode.put("advertisements1", advertisements1);
+			mode.putAll(AdvertisementManager.getInstace().getBrandPageAdvertisements());
 			List<Brand> brandlist = brandService.getAll();
 			mode.put("brands", brandlist);
 			System.out.print("brands==========" + brandlist.size());
