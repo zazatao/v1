@@ -175,6 +175,7 @@ public class ShopTwoController {
 	}
 
 	@RequestMapping(value = "categoryLei", method = RequestMethod.GET)
+	@ResponseBody
 	public ModelAndView categoryLei(Integer id, String page,
 			HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -206,7 +207,7 @@ public class ShopTwoController {
 		    		} else if ( advertisements.get(i).getAdverDistribution().getId() == position3 ) {
 		    			advertisements3.add(advertisements.get(i));
 		    		} else if ( advertisements.get(i).getAdverDistribution().getId() == position4 ) {
-		    			advertisements4.add(advertisements.get(i));
+		    			advertisements4.add(advertisements.get(i));	
 		    		}
 		    	}
 		    	mode.put("advertisements1", advertisements1);
@@ -215,44 +216,6 @@ public class ShopTwoController {
 		    	mode.put("advertisements4", advertisements4);
 		    	
 				return new ModelAndView("reception/electronics",mode);
-			}else if(page.equals("autoSupplies")){
-				int position1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.carPage, 1).getId(); 
-		    	int position2 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.carPage, 2).getId();
-		    	int position3 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.carPage, 3).getId();
-		    	
-		    	List<Advertisement> advertisements = advertisementService.getAll();
-		    	ArrayList<Advertisement> advertisements1 = new ArrayList<Advertisement>();
-		    	ArrayList<Advertisement> advertisements2 = new ArrayList<Advertisement>();
-		    	ArrayList<Advertisement> advertisements3 = new ArrayList<Advertisement>();
-		    	
-		    	for ( int i = 0; i < advertisements.size(); i++ ) {
-		    		if ( advertisements.get(i).getAdverDistribution().getId() == position1 ) {
-		    			advertisements1.add(advertisements.get(i));
-		    		} else if ( advertisements.get(i).getAdverDistribution().getId() == position2 ) {
-		    			advertisements2.add(advertisements.get(i));
-		    		} else if ( advertisements.get(i).getAdverDistribution().getId() == position3 ) {
-		    			advertisements3.add(advertisements.get(i));
-		    		}
-		    	}
-		    	mode.put("advertisements1", advertisements1);
-		    	mode.put("advertisements2", advertisements2);
-		    	mode.put("advertisements3", advertisements3);
-		    	
-				List<ShopCommoidty> shopcommlist = new ArrayList<ShopCommoidty>();
-				List<Brand> brandlist = new ArrayList<Brand>();
-				lists.clear();
-				List<ShopCategory> cateList = getNodeForShopCategory(cate);
-				for (int i = 0; i < cateList.size(); i++) {
-					List<ShopCommoidty> comms = cateList.get(i)
-							.getShopCommoidties();
-					List<Brand> brands = cateList.get(i).getBrands();
-					shopcommlist.addAll(comms);
-					brandlist.addAll(brands);
-				}
-				System.out.print("brandlist===" + brandlist.size());
-				mode.put("brands", brandlist);
-				mode.put("shopcommlist", shopcommlist);
-				return new ModelAndView("reception/electronics", mode);
 			} else if (page.equals("autoSupplies")) {
 				List<ShopCommoidty> shopcommlist = new ArrayList<ShopCommoidty>();
 				lists.clear();
@@ -325,6 +288,7 @@ public class ShopTwoController {
 		}
 	}
 
+	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "buyCat", method = RequestMethod.GET)
 	@ResponseBody

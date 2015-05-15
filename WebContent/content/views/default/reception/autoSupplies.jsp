@@ -37,7 +37,8 @@
         </div>
         <div class="cont_cent_left cont_cent_left1" id="img5">
                <c:forEach items="${shopcommlist}" var="shopcomm">
-                       <img src="..${shopcomm.shopCommImages[0].imagePath}">${shopcomm.commoidtyName}
+                       <span><a href="../proscenium/shopItem?commID=${shopcomm.commCode }&category=${shopcomm.shopCategory.categoryID }&shopID=${shopcomm.belongTo.id }&commoName=${shopcomm.commoidtyName }"><img src="..${shopcomm.shopCommImages[0].imagePath}"></a></span>
+<%--                        <img src="..${shopcomm.shopCommImages[0].imagePath}">${shopcomm.commoidtyName} --%>
                </c:forEach>
 <!--         	<span><a href="gr_list.html"><img src="../content/static/images/dq/img_21.jpg" /></a></span> -->
 <!--             <span class="n06"><a href="gr_list.html"><img src="../content/static/images/dq/img_22.jpg" width="437" height="166" /></a><a href="gr_list.html"><img src="../content/static/images/dq/img_23.jpg" width="157" height="167" /></a></span> -->
