@@ -156,8 +156,8 @@ public class ShopTwoController {
 		return new ModelAndView("reception/categoryOne", mode);
 	}
 
-	// 类别子节点
-	 List<ShopCategory> getNodeForShopCategory(ShopCategory shopCate) {
+	 // 类别子节点
+	  List<ShopCategory> getNodeForShopCategory(ShopCategory shopCate) {
 		List<ShopCategory> list = shopCate.getChildren();
 
 		if (list != null && list.size() > 0) {
