@@ -30,8 +30,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.yc.entity.Advertisement;
-import com.yc.entity.AdvertisementPage;
 import com.yc.entity.Brand;
 import com.yc.entity.BuyCat;
 import com.yc.entity.CommoidityStatus;
@@ -131,6 +129,8 @@ public class ShopOneController {
 		mode = getShopCategory(mode);
 		String shopName = request.getParameter("shopName");
 		if (user == null) {
+			AdvertisementManager advertisementManager = new AdvertisementManager();
+	 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 			return new ModelAndView("user/login", mode);
 		} else {
 			mode.put("user", user);
@@ -155,9 +155,8 @@ public class ShopOneController {
 							e.printStackTrace();
 						}
 						Date curDate = new Date();
-						long betweenDays = (curDate.getTime() - payDate.getTime()) / (3600 * 24 * 1000);
+						double betweenDays = Math.ceil((curDate.getTime() - payDate.getTime()) / (3600 * 24 * 1000));
 
-						System.out.println("相隔多久======="+betweenDays);
 						if ( betweenDays < 30 ) {
 							count++;
 						}
@@ -186,6 +185,8 @@ public class ShopOneController {
 					mode.put("shop", shop);					
 					return new ModelAndView("reception/myShop", mode);
 				}
+				AdvertisementManager advertisementManager = new AdvertisementManager();
+		 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 				return new ModelAndView("reception/setUpShop", mode);
 			} else {
 				if (null != shopName && !shopName.equals("")) {
@@ -202,6 +203,8 @@ public class ShopOneController {
 					user.setShop(shop);
 					userService.update(user);
 				}
+				AdvertisementManager advertisementManager = new AdvertisementManager();
+		 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 				return new ModelAndView("reception/setUpShop", mode);
 			}
 		}
@@ -213,6 +216,8 @@ public class ShopOneController {
 		mode = getShopCategory(mode);
 		User user = (User)request.getSession().getAttribute("loginUser");
 		if (user == null) {
+			AdvertisementManager advertisementManager = new AdvertisementManager();
+	 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 			return new ModelAndView("user/login", mode);
 		}else{
 			mode.put("user", user);
@@ -250,6 +255,8 @@ public class ShopOneController {
 						shop.setCreateDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 						shopService.save(shop);
 					}
+					AdvertisementManager advertisementManager = new AdvertisementManager();
+			 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 					return new ModelAndView("reception/setUpShop", mode);
 				} else {
 					session.setAttribute("msg", "必填字段输入不正确");
@@ -260,6 +267,8 @@ public class ShopOneController {
 				return new ModelAndView("reception/authentication", mode);
 			}
 		} else {
+			AdvertisementManager advertisementManager = new AdvertisementManager();
+	 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 			return new ModelAndView("user/login", mode);
 		}
 	}
@@ -317,6 +326,8 @@ public class ShopOneController {
 				return setUpShop(request, response);
 			}
 		} else {
+			AdvertisementManager advertisementManager = new AdvertisementManager();
+	 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 			return new ModelAndView("user/login", mode);
 		}
 	}
@@ -359,6 +370,7 @@ public class ShopOneController {
 	// 新商品添加保存
 	@RequestMapping(value = "saveCommoidty", method = RequestMethod.POST)
 	public String saveCommoidty(ShopCommoidty shopCommoidty, int currency_id,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ModelMap mode = new ModelMap();
 		User user = (User) request.getSession().getAttribute("loginUser");
 		Currency currency = currencyService.findById(currency_id);
 		shopCommoidty.setCurrency(currency);
@@ -520,6 +532,8 @@ public class ShopOneController {
 					return "redirect:/proscenium/releaseCommoidty";
 				}
 			} else {
+				AdvertisementManager advertisementManager = new AdvertisementManager();
+		 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 				return "redirect:/proscenium/setUpShop";
 			}
 		} else {
@@ -604,6 +618,8 @@ public class ShopOneController {
 				return setUpShop(request, response);
 			}
 		} else {
+			AdvertisementManager advertisementManager = new AdvertisementManager();
+	 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 			return new ModelAndView("user/login", mode);
 		}
 	}
@@ -611,6 +627,7 @@ public class ShopOneController {
 	// 更改商品状态上架，下架，折扣。。
 	@RequestMapping(value = "updateState", method = RequestMethod.GET)
 	public String updateState(Integer id, String page, String param, boolean isTrue, Float num, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ModelMap mode = new ModelMap();
 		User user = (User) request.getSession().getAttribute("loginUser");
 		if (user != null) {
 			Shop shop = shopService.getShopByUser(user.getId());
@@ -639,6 +656,8 @@ public class ShopOneController {
 				}
 				return "redirect:/proscenium/" + page;
 			} else {
+				AdvertisementManager advertisementManager = new AdvertisementManager();
+		 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 				return "redirect:/proscenium/setUpShop";
 			}
 		} else {
@@ -660,9 +679,13 @@ public class ShopOneController {
 				mode.put("shop", shop);
 				return new ModelAndView("reception/soldShopComm", mode);
 			} else {
+				AdvertisementManager advertisementManager = new AdvertisementManager();
+		 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 				return setUpShop(request, response);
 			}
 		} else {
+			AdvertisementManager advertisementManager = new AdvertisementManager();
+	 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 			return new ModelAndView("user/login", mode);
 		}
 	}
@@ -684,6 +707,8 @@ public class ShopOneController {
 				return setUpShop(request, response);
 			}
 		} else {
+			AdvertisementManager advertisementManager = new AdvertisementManager();
+	 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 			return new ModelAndView("user/login", mode);
 		}
 	}
@@ -698,7 +723,8 @@ public class ShopOneController {
 	@RequestMapping(value = "shopCommItem", method = RequestMethod.GET)
 	public ModelAndView shopCommItem(Integer id, String page,String which,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ModelMap mode = new ModelMap();
-		mode = AdvertisementManager.getInstace().getInnerPageAdvertisements();
+		AdvertisementManager advertisementManager = new AdvertisementManager();
+ 		mode.putAll(advertisementManager.getInnerPageAdvertisements(adverDistributionService, advertisementService));
 		ShopCategory cate=null;
 		if ( which != null  && which.equals("brand") ) {
 			         Brand brand=brandService.findById(id);
@@ -760,7 +786,8 @@ public class ShopOneController {
 		List<ShopCategory> shopcates = new ArrayList<ShopCategory>();
 		shopcates.add(cate);
 		ModelMap mode = new ModelMap();
-		mode = AdvertisementManager.getInstace().getInnerPageAdvertisements();
+		AdvertisementManager advertisementManager = new AdvertisementManager();
+ 		mode.putAll(advertisementManager.getInnerPageAdvertisements(adverDistributionService, advertisementService));
 		mode.put("brands", cate.getBrands());
 		mode.put("specifications", cate.getSpecifications());
 		mode.put("page", page);
@@ -849,7 +876,8 @@ public class ShopOneController {
 	@RequestMapping(value = "shopItem", method = RequestMethod.GET)
 	public ModelAndView shopItem(Integer commID,Integer category,Integer shopID,String commoName,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ModelMap mode = new ModelMap();
-		mode = AdvertisementManager.getInstace().getDetailPageAdvertisements();
+		AdvertisementManager advertisementManager = new AdvertisementManager();
+ 		mode.putAll(advertisementManager.getDetailPageAdvertisements(adverDistributionService, advertisementService));
 		ShopCategory cate = shopCategService.findById(category);
 		List<ShopReviews> reviewslist=shopReviewsService.getAllBycommCode(commID);
 		mode.put("reviewslist", reviewslist);
