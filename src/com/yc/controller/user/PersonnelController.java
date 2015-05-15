@@ -88,8 +88,6 @@ public class PersonnelController {
     
     @RequestMapping(value="editPersonnle",method = RequestMethod.POST)
     public String Personnle(Integer id,HttpServletRequest reqeust,HttpServletResponse response){
-    	Personnel Personnle = personnelService.findById(id);
-    	
     	return "redirect:/introduction";
     }
 

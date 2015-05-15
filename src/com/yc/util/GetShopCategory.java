@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yc.entity.AdvertiseDistribution;
+import com.yc.entity.AdvertisementPage;
 import com.yc.entity.BuyCat;
 import com.yc.entity.CarCommoidty;
 import com.yc.entity.Collection;
@@ -30,6 +32,8 @@ import com.yc.entity.user.Positions;
 import com.yc.entity.user.User;
 import com.yc.model.BrandCategory;
 import com.yc.model.BuyCatSession;
+import com.yc.service.IAdvertisementDistributionService;
+import com.yc.service.IAdvertisementService;
 import com.yc.service.IBuyCatService;
 import com.yc.service.ICarCommoidtyService;
 import com.yc.service.ICollectionService;
@@ -65,6 +69,12 @@ public class GetShopCategory {
 	
 	@Autowired
 	ICollectionService collectionService;
+	
+	@Autowired
+	IAdvertisementService advertisementService;
+	
+	@Autowired
+	IAdvertisementDistributionService adverDistributionService;
 	
 	@RequestMapping(value = "shopCategoryAll", method = RequestMethod.GET)
 	@ResponseBody
@@ -118,7 +128,12 @@ public class GetShopCategory {
 			for (ShopCategory shopCategory : list) {
 				String cateName = "";
 				if (shopCategory !=null) {
-					ShopCategory cate = shopCategService.findById(shopCategory.getParentLevel().getCategoryID());
+					ShopCategory cate=new ShopCategory();
+					if(shopCategory.getParentLevel()!=null){
+						  cate = shopCategService.findById(shopCategory.getParentLevel().getCategoryID());
+					}else{
+					      cate = shopCategService.findById(shopCategory.getCategoryID());
+					}
 					if (map.containsKey(cate.getCategory())) {
 						cateName = map.get(cate.getCategory()) + shopCategory.getCategoryID()+"-"+shopCategory.getCategory()+"|";
 						map.put(cate.getCategory(), cateName);
@@ -294,5 +309,52 @@ public class GetShopCategory {
 			}
 		}
   		return mode;
+  	}
+  	
+  	//获得所选页面的广告位
+  	@RequestMapping(value = "getAdverPositions", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getAdverPositions(AdvertisementPage whichPage, HttpServletRequest request) throws ServletException, IOException {
+  		ModelMap mode = new ModelMap();
+    	List<AdvertiseDistribution> adverDistributions = adverDistributionService.getAdvertiseDistributionsByWhichPage(whichPage);
+        List<Integer> positions = new ArrayList<Integer>();
+        for ( int i = 0; i < adverDistributions.size(); i++ ) {
+        	int position = adverDistributions.get(i).getPosition();
+        	Integer size = advertisementService.getAdvertiseBywhichPageAndPostion(whichPage, position);
+        	if ( adverDistributions.get(i).getNum() == -1 ) {
+        		positions.add(position);
+        	}
+        	
+        	else if ( size < adverDistributions.get(i).getNum() ) {
+        		positions.add(position);
+        	}       	
+		}
+
+        mode.put("success", "true");
+        mode.put("list", positions);
+    	return mode;
+    }
+  	private List<ShopCategory> lists = new ArrayList<ShopCategory>();
+	// 类别子节点
+	private List<ShopCategory> getNodeForShopCategory(ShopCategory shopCate) {
+		List<ShopCategory> list = shopCate.getChildren();
+		if (list != null && list.size() > 0) {
+			for (int i = 0; i < list.size(); i++) {
+				getNodeForShopCategory(list.get(i));
+			}
+		} else {
+			lists.add(shopCate);
+		}
+		return lists;
+	}
+  	//汽车页面局部刷新
+  	@RequestMapping(value = "getCarShopCommByCate", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getCarShopCommByCate(Integer id,HttpServletRequest request, HttpServletResponse response )throws ServletException, IOException{
+  		ShopCategory   cate = shopCategService.findById(id);
+  		ModelMap mode = new ModelMap();
+			List<ShopCommoidty> comms =cate.getShopCommoidties();
+		   mode.put("comms", comms);
+		   return mode;
   	}
 }

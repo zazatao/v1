@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>汽车用具</title>
 <link href="../content/static/css/reception/css.css" rel="stylesheet"
 	type="text/css" />
 <link href="../content/static/css/reception/gr.css" rel="stylesheet" type="text/css" />
@@ -30,48 +31,38 @@
 	<div class="clear"></div>
 	  <div class="cont_cent_1">
      	<div class="tit">
-        	<img src="../content/static/images/small/1_lou.png" />
-            <h1>汽车装饰<br /><a href="gr_list.html">内饰\</a><a href="gr_list.html">外饰\</a><a href="gr_list.html">坐垫\</a><a href="gr_list.html">座套【内外兼修】</a>
+<!--         	<img src="../content/static/images/small/1_lou.png" /> -->
+            <h1>${cate.category}<br />
+                <c:choose>
+                     <c:when test="${not empty cateList}">
+                             <c:forEach items="${cateList}" var="cate">
+                                 <a href="../proscenium/shopItem?id=${cate.categoryID}&page=autoSupplies" >${cate.category}</a>
+                            </c:forEach>
+                     </c:when>
+                     <c:otherwise>
+                               <br/>
+                     </c:otherwise>
+                </c:choose>
             </h1>
-            <span><a href="gr_list.html">坐垫 | </a><a href="gr_list.html">脚垫 | </a><a href="gr_list.html">儿童安全座椅 | </a><a href="gr_list.html">座垫</a></span>
         </div>
-        <div class="cont_cent_left cont_cent_left1">
-        	<span><a href="gr_list.html"><img src="../content/static/images/dq/img_21.jpg" /></a></span>
-            <span class="n06"><a href="gr_list.html"><img src="../content/static/images/dq/img_22.jpg" width="437" height="166" /></a><a href="gr_list.html"><img src="../content/static/images/dq/img_23.jpg" width="157" height="167" /></a></span>
-            <span class="n06"><a href="gr_list.html"><img src="../content/static/images/dq/img_24.jpg" width="158" height="166" /></a><a href="gr_list.html"><img src="../content/static/images/dq/img_25.jpg" width="436" height="166" /></a></span>
+        <div class="cont_cent_left cont_cent_left1" id="img5">
+               <c:forEach items="${shopcommlist}" var="shopcomm">
+                      <span><a href="../proscenium/shopItem?commID=${shopcomm.commCode }&category=${shopcomm.shopCategory.categoryID }&shopID=${shopcomm.belongTo.id }&commoName=${shopcomm.commoidtyName }"><img src="..${shopcomm.shopCommImages[0].imagePath}"></a></span> 
+               </c:forEach>
         </div>
         <div class="cont_cent_right">
         	<h1>推荐排行榜</h1>
-            <dl>
-            	<dt><img src="../content/static/images/dq/img_26.jpg" /></dt>
-                <dd>牛牛工艺汽车坐垫</dd>
-                <dd><span class="red">￥：1180</span></dd>
-            </dl>
-            <dl>
-            	<dt><img src="../content/static/images/dq/img_26.jpg" /></dt>
-                <dd>牛牛工艺汽车坐垫</dd>
-                <dd><span class="red">￥：1180</span></dd>
-            </dl>
-            <dl>
-            	<dt><img src="../content/static/images/dq/img_26.jpg" /></dt>
-                <dd>牛牛工艺汽车坐垫</dd>
-                <dd><span class="red">￥：1180</span></dd>
-            </dl>
-            <dl>
-            	<dt><img src="../content/static/images/dq/img_26.jpg" /></dt>
-                <dd>牛牛工艺汽车坐垫</dd>
-                <dd><span class="red">￥：1180</span></dd>
-            </dl>
-            <dl>
-            	<dt><img src="../content/static/images/dq/img_26.jpg" /></dt>
-                <dd>牛牛工艺汽车坐垫</dd>
-                <dd><span class="red">￥：1180</span></dd>
-            </dl>
+        	       <c:forEach items="${topshopcommlist}" var="topshopcomm">
+                           <dl>
+            	          <dt><img src="..${topshopcomm.path}" /></dt>
+                          <dd>${topshopcomm.nameOfGoods}</dd>
+                          <dd><span class="red">销售量：</span>${topshopcomm.quantity}</dd>
+                           </dl>        	               
+        	       </c:forEach>
         </div>
         </div>
      </div>
      <div class="clear"></div>
 	<jsp:include page="../common/foot.jsp"></jsp:include>
-</div>
 </body>
 </html>

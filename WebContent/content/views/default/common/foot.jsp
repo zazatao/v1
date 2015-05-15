@@ -57,7 +57,7 @@
         	分享好友 
             <a href="#"><img style="vertical-align:middle; margin-left:30px;" src="../content/static/images/sj07.jpg" width="316" height="45" /></a>
 		</div>
-		<div class="fotcd">
+		<div id="contactus" name="contactus" class="fotcd">
             <div class="dbcd">
                 <ul>
                     <li><a href="file02.html">尺寸表</a></li>
@@ -89,12 +89,6 @@
                     <li><a href="file12.html">卖家合作</a></li>
                 </ul>
             </div>
-<!-- 			<div class="fotshdz"> -->
-<!--             	<div class="shtx">运输到</div> -->
-<!--                 <div class="shin"><input name="" type="text" /></div> -->
-<!--                 <div class="shan"><input name="" type="button" /></div> -->
-<!--                 <div class="clear"></div> -->
-<!--             </div> -->
     	</div>
 		<div class="fkfs"><a href="#"><img src="../content/static/images/fkfs.jpg" width="1200" height="110" /></a></div>
         <div class="bqsy"><a href="#"><img src="../content/static/images/bqsy.jpg" width="192" height="31" /></a></div>

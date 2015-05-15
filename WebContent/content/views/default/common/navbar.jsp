@@ -140,18 +140,8 @@
 								</ul></li>
 							<li class="dropdown-submenu"><a href="#">内容</a>
 								<ul class="dropdown-menu">
-									<li><a href="#">新闻</a></li>
-									<li><a href="#">邮寄</a></li>
-									<li><a href="#">翻译</a></li>
-									<li><a href="#">邮件模版</a></li>
-									<li><a href="#">页面</a></li>
-									<li><a href="#">论坛</a></li>
-									<li><a href="#">视频</a></li>
-									<li><a href="#">网站地图</a></li>
-									<li><a href="#">网站电子地图类型</a></li>
-									<li><a href="#">滚动广告</a></li>
-									<li><a href="#">照片</a></li>
-									<li><a href="#">帮助</a></li>
+									<li><a href="#">语言</a></li>
+									<li><a href="../management/advertisement">广告</a></li>
 								</ul></li>
 							<li class="dropdown-submenu"><a href="#">折扣</a>
 								<ul class="dropdown-menu">

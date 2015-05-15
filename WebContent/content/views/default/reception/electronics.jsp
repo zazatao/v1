@@ -1,8 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>电子产品</title>
 <link href="../content/static/css/reception/css.css" rel="stylesheet"
 	type="text/css" />
 <link href="../content/static/css/reception/gr.css" rel="stylesheet" type="text/css" />
@@ -22,17 +28,25 @@
 	type=text/javascript></SCRIPT>
 </head>
 <body>
-<jsp:include page="../common/prosceniumNav.jsp"></jsp:include>
+	<jsp:include page="../common/prosceniumNav.jsp"></jsp:include>
 <div class="con">
 <jsp:include page="electronicsLeft.jsp"></jsp:include>
 <div class="nyright">
 		<div class="bannerbox fl">
         	<div class="bannerpic">
             <ul>
-              <li><a href="gr_list.html"><img src="../content/static/images/header_banner_1.jpg" /></a></li>
-              <li><a href="gr_list.html"><img src="../content/static/images/header_banner_2.jpg" /></a></li>
-              <li><a href="gr_list.html"><img src="../content/static/images/header_banner_3.jpg" /></a></li>
-              <li><a href="gr_list.html"><img src="../content/static/images/header_banner_1.jpg" /></a></li>
+            	<c:forEach var="advertisement" items="${advertisements1 }" varStatus="pool">
+            	<c:if test="${pool.index == 0 }">
+    				<li><a href="${advertisement.link }" ><img src="..${advertisement.imagePath }"/></a></li>
+    			</c:if>
+    			<c:if test="${pool.index != 0 }">
+    				<li><a href="${advertisement.link }"><img src="..${advertisement.imagePath }"/></a></li>
+    			</c:if>      				
+    			</c:forEach>
+              <!-- <li><a href="a.html"><img src="../content/static/images/header_banner_1.jpg" /></a></li>
+              <li><a href="b.html"><img src="../content/static/images/header_banner_2.jpg" /></a></li>
+              <li><a href="c.html"><img src="../content/static/images/header_banner_3.jpg" /></a></li>
+              <li><a href="d.html"><img src="../content/static/images/header_banner_1.jpg" /></a></li> -->
             </ul>
             </div>
             <div class="smallbox">
@@ -45,11 +59,14 @@
         <div class="right_lb_1 fr">
         	<div class="lb_pic1 lb_pic">
                 <ul>
-                    <li><a href="gr_list.html"><img src="../content/static/images/09.jpg" /></a></li>
-                    <li><a href="gr_list.html"><img src="../content/static/images/08.jpg" /></a></li>
-                    <li><a href="gr_list.html"><img src="../content/static/images/07.jpg" /></a></li>
-                    <li><a href="gr_list.html"><img src="../content/static/images/05.jpg" /></a></li>
-                    <li><a href="gr_list.html"><img src="../content/static/images/03.jpg" /></a></li>
+                	<c:forEach var="advertisement" items="${advertisements2 }" varStatus="pool">
+    					<li><a href="${advertisement.link }" ><img src="..${advertisement.imagePath }"/></a></li>
+    				</c:forEach>
+                    <!-- <li><a href="a.html"><img src="../content/static/images/09.jpg" /></a></li>
+                    <li><a href="b.html"><img src="../content/static/images/08.jpg" /></a></li>
+                    <li><a href="c.html"><img src="../content/static/images/07.jpg" /></a></li>
+                    <li><a href="d.html"><img src="../content/static/images/05.jpg" /></a></li>
+                    <li><a href="e.html"><img src="../content/static/images/03.jpg" /></a></li> -->
                 </ul>
             </div>
             <ul class="lb_piconcs lb_piconcs1">
@@ -63,11 +80,14 @@
         <div class="right_lb_2 right_lb_1 fr">
         	<div class="lb_pic lb_pic2">
                 <ul>
-                    <li><a href="gr_list.html"><img src="../content/static/images/07.jpg" /></a></li>
-                    <li><a href="gr_list.html"><img src="../content/static/images/09.jpg" /></a></li>
+                	<c:forEach var="advertisement" items="${advertisements3 }" varStatus="pool">
+    					<li><a href="${advertisement.link }" ><img src="..${advertisement.imagePath }"/></a></li>
+    				</c:forEach>
+                    <!-- <li><a href="a.html"><img src="../content/static/images/07.jpg" /></a></li>
+                    <li><a href="b.html"><img src="../content/static/images/09.jpg" /></a></li>
                     <li><a href="gr_list.html"><img src="../content/static/images/05.jpg" /></a></li>
                     <li><a href="gr_list.html"><img src="../content/static/images/06.jpg" /></a></li>
-                    <li><a href="gr_list.html"><img src="../content/static/images/09.jpg" /></a></li>
+                    <li><a href="gr_list.html"><img src="../content/static/images/09.jpg" /></a></li> -->
                 </ul>
             </div>
             <ul class="lb_piconcs lb_piconcs2">
@@ -82,14 +102,12 @@
         
         <!---right_cen_1 start---->
         <div class="right_cen_1">
-        	<h1>POPULAR TABLETS</h1>
+        	<h1 style="color:orange;">品牌电子商品</h1>
             	<ul>
-                	<li><a href="gr_list.html"><img src="../content/static/images/logo/l_1.png" /></a></li>
-                    <li><a href="gr_list.html"><img src="../content/static/images/logo/l_2.png" /></a></li>
-                    <li><a href="gr_list.html"><img src="../content/static/images/logo/l_3.png" /></a></li>
-                    <li><a href="gr_list.html"><img src="../content/static/images/logo/l_4.png" /></a></li>
-                    <li><a href="gr_list.html"><img src="../content/static/images/logo/l_5.png" /></a></li>
-                    <li><a href="gr_list.html"><img src="../content/static/images/logo/l_6.png" /></a></li>
+            	 <c:forEach items="${brands}" var="brand">
+                              <li><a href="../proscenium/shopCommItem?id=${brand.brandID}&page=brand&which=brand">${brand.brandName }</a></li>
+                   </c:forEach>
+<!--                 	<li><a href="gr_list.html"><img src="../content/static/images/logo/l_1.png" /></a></li> -->
                 </ul>
             <a class="more" href="#">VIEW ALL</a>
         </div>
@@ -419,23 +437,9 @@
         <div class="right_cen_1 right_cen_3">
         	<h1>流行电子产品</h1>
             	<ul>
-                	<li><a href="#"><img src="../content/static/images/dq/img_12.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_13.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_14.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_15.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_12.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_13.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_12.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_13.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_12.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_13.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_14.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_15.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_12.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_13.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_12.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    <li><a href="#"><img src="../content/static/images/dq/img_13.jpg" /></a><span><h3>fdsaec</h3><p>fdsuevb zmxeuivgh fjdksah fsjd kagsf jdagf hdsa</p></span></li>
-                    
+            	      <c:forEach items="${shopcommlist}" var="shopcomm">
+            	             	<li><a href="../proscenium/shopItem?commID=${shopcomm.commCode }&category=${shopcomm.shopCategory.categoryID }&shopID=${shopcomm.belongTo.id }&commoName=${shopcomm.commoidtyName }"><img src="..${shopcomm.shopCommImages[0].imagePath}" /></a><span><h3>${shopcomm.brand.brandName}</h3><p>${shopcomm.commoidtyName}</p></span></li>
+            	      </c:forEach>           
                 </ul>
         </div>
         </div>

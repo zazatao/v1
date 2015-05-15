@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
 @DiscriminatorValue("shopCommoidty")//商品表
 public class ShopCommoidty {
@@ -93,7 +96,7 @@ public class ShopCommoidty {
 	@OneToMany(mappedBy = "shopscommodity")
 	private List<ShopReviews> shopreviews;
 	
-
+   
 	public List<ShopReviews> getShopreviews() {
 		return shopreviews;
 	}
@@ -129,15 +132,13 @@ public class ShopCommoidty {
 	public List<ShopCommoidtySpecs> getCommsPecs() {
 		return commsPecs;
 	}
-
+  
 	public void setCommsPecs(List<ShopCommoidtySpecs> commsPecs) {
 		this.commsPecs = commsPecs;
 	}
-
 	public Currency getCurrency() {
 		return currency;
 	}
-
 	public void setCurrency(Currency currency) {
 		this.currency = currency;
 	}
@@ -165,23 +166,23 @@ public class ShopCommoidty {
 	public void setShopCommImages(List<ShopCommImage> shopCommImages) {
 		this.shopCommImages = shopCommImages;
 	}
-
+	
 	public ShopCategory getShopCategory() {
 		return shopCategory;
 	}
-
+	
 	public void setShopCategory(ShopCategory shopCategory) {
 		this.shopCategory = shopCategory;
 	}
-
+	
 	public Brand getBrand() {
 		return brand;
 	}
-
+	
 	public void setBrand(Brand brand) {
 		this.brand = brand;
 	}
-
+   
 	public Integer getCommCode() {
 		return commCode;
 	}
@@ -209,7 +210,7 @@ public class ShopCommoidty {
 	public Shop getBelongTo() {
 		return belongTo;
 	}
-
+  
 	public void setBelongTo(Shop belongTo) {
 		this.belongTo = belongTo;
 	}

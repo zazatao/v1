@@ -6,13 +6,13 @@
     <!---------------   red_nav start   ----------------------->
     <div class="red_nav">
     	<ul>
-        	<li class="redli_1"><a href="red.html">所有分类</a></li>
-            <li class="redli_2"><a href="red2.html">女士</a></li>
-            <li class="redli_3"><a href="red3.html">男士</a></li>
-            <li class="redli_4"><a href="red4.html">鞋子和包</a></li>
-            <li class="redli_5"><a href="red5.html">孩子</a></li>
-            <li class="redli_6"><a href="red6.html">家</a></li>
-        </ul>
+        	<li class="redli_1"><a href="../proscenium/categoryLei?id=-1&page=special">所有分类</a></li>
+            <li class="redli_2"><a href="../proscenium/categoryLei?id=5&page=special">女士</a></li>
+            <li class="redli_3"><a href="../proscenium/categoryLei?id=1&page=special">男士</a></li>
+            <li class="redli_4"><a href="../proscenium/categoryLei?id=59&page=special"">时尚</a></li>
+            <li class="redli_5"><a href="../proscenium/categoryLei?id=58&page=special">儿童</a></li>
+            <li class="redli_6"><a href="../proscenium/categoryLei?id=60&page=special">家居</a></li>
+        </ul>	
     </div>
     <!---------------   red_nav over    ----------------------->
 			<script>
@@ -24,6 +24,10 @@
                     }, function() {
                         $(this).removeClass('red_cont_clk');
                     });
+                    $(".redli_2").click(function(){
+                    	     //alert("女士");
+                    });
+                    
                 });
             </script>
     <!---------------   red_cont over    ----------------------->

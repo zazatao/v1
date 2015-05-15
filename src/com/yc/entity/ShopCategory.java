@@ -16,7 +16,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.junit.Ignore;
 
 @Entity
 @DiscriminatorValue("shopCategory")//商品类别表
@@ -97,23 +99,22 @@ public class ShopCategory {
 	public void setShops(List<Shop> shops) {
 		this.shops = shops;
 	}
-
+	
 	public List<ShopCommoidty> getShopCommoidties() {
 		return shopCommoidties;
 	}
-
+	
 	public void setShopCommoidties(List<ShopCommoidty> shopCommoidties) {
 		this.shopCommoidties = shopCommoidties;
 	}
-
+	
 	public List<Brand> getBrands() {
 		return brands;
 	}
-
 	public void setBrands(List<Brand> brands) {
 		this.brands = brands;
 	}
-
+   
 	public Integer getCategoryID() {
 		return categoryID;
 	}

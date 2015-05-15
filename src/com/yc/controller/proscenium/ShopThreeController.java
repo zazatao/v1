@@ -32,11 +32,13 @@ import com.yc.entity.ShopCommoidty;
 import com.yc.entity.ShopReviews;
 import com.yc.entity.ReviewsRank;
 import com.yc.entity.user.User;
+import com.yc.model.AdvertisementManager;
 import com.yc.model.ShopOrderSearch;
 import com.yc.service.IAddressService;
+import com.yc.service.IAdvertisementDistributionService;
+import com.yc.service.IAdvertisementService;
 import com.yc.service.IBrandService;
 import com.yc.service.IBuyCatService;
-import com.yc.service.ICollectionService;
 import com.yc.service.ICommodityService;
 import com.yc.service.IImagePathService;
 import com.yc.service.IOrderFormService;
@@ -73,7 +75,6 @@ public class ShopThreeController {
 	@Autowired
 	IBrandService brandService;// 品牌
 	
-	
 	@Autowired
 	IShopCommImageService shopCommImageService;
 
@@ -92,6 +93,12 @@ public class ShopThreeController {
 	@Autowired
 	IImagePathService imagePathService;
 	
+	@Autowired
+	IAdvertisementService advertisementService;
+	
+	@Autowired
+	IAdvertisementDistributionService adverDistributionService;
+	
 	//后台交易管理
 	@RequestMapping(value = "shopTransaction", method = RequestMethod.GET)
 	public ModelAndView shopTransaction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -107,9 +114,13 @@ public class ShopThreeController {
 				mode.put("list", orders);
 				return new ModelAndView("reception/shopTransaction", mode);
 			} else {
-				return new ModelAndView("proscenium/setUpShop",null);
+				AdvertisementManager advertisementManager = new AdvertisementManager();
+		 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
+				return new ModelAndView("proscenium/setUpShop",mode);
 			}
 		} else {
+			AdvertisementManager advertisementManager = new AdvertisementManager();
+	 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 			return new ModelAndView("user/login", mode);
 		}
 	}
@@ -127,7 +138,9 @@ public class ShopThreeController {
 				mode.put("list", list);
 				return new ModelAndView("reception/userEvaluate", mode);
 			} else {
-				return new ModelAndView("user/login", null);
+				AdvertisementManager advertisementManager = new AdvertisementManager();
+		 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
+				return new ModelAndView("user/login", mode);
 			}
 		}
 		
@@ -146,7 +159,9 @@ public class ShopThreeController {
 				  return new ModelAndView("reception/unableAssess", null);
 				}
 			} else {
-				return new ModelAndView("user/login", null);
+				AdvertisementManager advertisementManager = new AdvertisementManager();
+		 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
+				return new ModelAndView("user/login", mode);
 			}
 		} 
 		
@@ -183,7 +198,10 @@ public class ShopThreeController {
 				       return new ModelAndView("reception/fail", null);
 				   }
 			}else{
-				return new ModelAndView("user/login", null);
+		 		ModelMap mode = new ModelMap();
+		 		AdvertisementManager advertisementManager = new AdvertisementManager();
+		 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
+				return new ModelAndView("user/login", mode);
 			}
 		
 		}
@@ -204,9 +222,13 @@ public class ShopThreeController {
 					mode.put("shop", shop);
 					return new ModelAndView("reception/shopEvaluation", mode);
 				} else {
-					return new ModelAndView("proscenium/setUpShop", null);
+					AdvertisementManager advertisementManager = new AdvertisementManager();
+			 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
+					return new ModelAndView("proscenium/setUpShop", mode);
 				}
 			} else {
+				AdvertisementManager advertisementManager = new AdvertisementManager();
+		 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 				return new ModelAndView("user/login", mode);
 			}
 		}
@@ -222,7 +244,9 @@ public class ShopThreeController {
 			if(user!=null&&shopreviews!=null){
 				return new ModelAndView("reception/sellerReply", mode);
 			}else{
-			    return new ModelAndView("user/login", mode);
+				AdvertisementManager advertisementManager = new AdvertisementManager();
+		 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
+				return new ModelAndView("user/login", mode);
 			}
 		};
 	     
@@ -234,7 +258,6 @@ public class ShopThreeController {
 			ModelMap mode = new ModelMap();
 			if(user!=null){
 				String  replycontent=request.getParameter("replycontent");
-				ShopReviews reviews = shopReviewsService.findById(id);
 				boolean flag=shopReviewsService.updateById(replycontent,id);
 				 if(flag){
 					 return new ModelAndView("reception/success", mode);
@@ -242,6 +265,8 @@ public class ShopThreeController {
 					 return new ModelAndView("reception/fail", mode);
 				 }
 			}else{
+				AdvertisementManager advertisementManager = new AdvertisementManager();
+		 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 				return new ModelAndView("user/login", mode);
 			}
 		};
@@ -269,9 +294,13 @@ public class ShopThreeController {
 				mode.put("list", orders);
 				return new ModelAndView("reception/shopTransaction", mode);
 			} else {
-				return new ModelAndView("proscenium/setUpShop",null);
+				AdvertisementManager advertisementManager = new AdvertisementManager();
+		 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
+				return new ModelAndView("proscenium/setUpShop",mode);
 			}
 		} else {
+			AdvertisementManager advertisementManager = new AdvertisementManager();
+	 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 			return new ModelAndView("user/login", mode);
 		}
 	}
@@ -302,9 +331,13 @@ public class ShopThreeController {
 				mode.put("list", orders);
 				return new ModelAndView("reception/shopTransaction", mode);
 			} else {
-				return new ModelAndView("proscenium/setUpShop",null);
+				AdvertisementManager advertisementManager = new AdvertisementManager();
+		 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
+				return new ModelAndView("proscenium/setUpShop",mode);
 			}
 		} else {
+			AdvertisementManager advertisementManager = new AdvertisementManager();
+	 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 			return new ModelAndView("user/login", mode);
 		}
 	}
@@ -355,9 +388,13 @@ public class ShopThreeController {
 				mode.put("shopOrderSearch", "true");
 				return new ModelAndView("reception/shopTransaction", mode);
 			} else {
-				return new ModelAndView("proscenium/setUpShop",null);
+				AdvertisementManager advertisementManager = new AdvertisementManager();
+		 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
+				return new ModelAndView("proscenium/setUpShop",mode);
 			}
 		} else {
+			AdvertisementManager advertisementManager = new AdvertisementManager();
+	 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 			return new ModelAndView("user/login", mode);
 		}
 	}
@@ -377,9 +414,13 @@ public class ShopThreeController {
 				mode.put("list", orders);
 				return new ModelAndView("reception/returnGoods", mode);
 			} else {
-				return new ModelAndView("proscenium/setUpShop",null);
+				AdvertisementManager advertisementManager = new AdvertisementManager();
+		 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
+				return new ModelAndView("proscenium/setUpShop",mode);
 			}
 		} else {
+			AdvertisementManager advertisementManager = new AdvertisementManager();
+	 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 			return new ModelAndView("user/login", mode);
 		}
 	}
@@ -402,9 +443,13 @@ public class ShopThreeController {
 				mode.put("list", orders);
 				return new ModelAndView("reception/returnGoods", mode);
 			} else {
-				return new ModelAndView("proscenium/setUpShop",null);
+				AdvertisementManager advertisementManager = new AdvertisementManager();
+		 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
+				return new ModelAndView("proscenium/setUpShop",mode);
 			}
 		} else {
+			AdvertisementManager advertisementManager = new AdvertisementManager();
+	 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 			return new ModelAndView("user/login", mode);
 		}
 	}
@@ -423,9 +468,13 @@ public class ShopThreeController {
 				mode.put("shop", shop);
 				return new ModelAndView("reception/specialShopComm", mode);
 			} else {
-				return new ModelAndView("reception/setUpShop", mode);
+				AdvertisementManager advertisementManager = new AdvertisementManager();
+		 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
+				return new ModelAndView("proscenium/setUpShop",mode);
 			}
 		} else {
+			AdvertisementManager advertisementManager = new AdvertisementManager();
+	 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 			return new ModelAndView("user/login", mode);
 		}
 	}

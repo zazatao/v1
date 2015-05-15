@@ -19,11 +19,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.AdvState;
+import com.yc.entity.AdvertiseDistribution;
+import com.yc.entity.Advertisement;
+import com.yc.entity.AdvertisementPage;
 import com.yc.entity.MissionPlan;
 import com.yc.entity.Period;
 import com.yc.entity.user.DepartAndPositions;
 import com.yc.entity.user.Department;
 import com.yc.entity.user.Personnel;
+import com.yc.service.IAdvertisementDistributionService;
+import com.yc.service.IAdvertisementService;
 import com.yc.service.IDepartAndPositionsService;
 import com.yc.service.IDepartmentService;
 import com.yc.service.IMissionPlanService;
@@ -51,6 +56,12 @@ public class ManagementThreeController {
 
 	@Autowired
 	IPersonnelService personnelService;
+	
+	@Autowired
+	IAdvertisementService advertisementService;
+	
+	@Autowired
+	IAdvertisementDistributionService adverDistributionService;
 
 	@RequestMapping(value = "missionPlan", method = RequestMethod.GET)
 	public ModelAndView missionPlan(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
@@ -172,5 +183,92 @@ public class ManagementThreeController {
 		mode.put("missionPlan", miss);
 		return new ModelAndView("management/addMissionPlan", mode);
 	}
+	
+	@RequestMapping(value = "advertisement", method = RequestMethod.GET)
+	public ModelAndView advertisement(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ModelMap mode = new ModelMap();
+		List<Advertisement> advertisements = advertisementService.getAll();
+		mode.put("adverlist", advertisements);
+		return new ModelAndView("management/advertisement", mode);
+	}
 
+	@RequestMapping(value = "deleteAdvertisement", method = RequestMethod.GET)
+	public String deleteAdvertisement(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		advertisementService.delete(id);
+		return "redirect:/management/advertisement";
+	}
+	
+	@RequestMapping(value = "showAddAdvertisement", method = RequestMethod.GET)
+	public ModelAndView showAddAdvertisement(HttpServletResponse response) throws ServletException, IOException {
+		ModelMap mode = new ModelMap();		
+		List<AdvertisementPage> list = adverDistributionService.getDistinctWhichPage();	
+		mode.put("list", list);
+		mode.put("method", "add");
+		
+		return new ModelAndView("management/addAdvertisement", mode);
+	}
+	
+	@RequestMapping(value = "showUpdateAdvertisement", method = RequestMethod.GET)
+	public ModelAndView showUpdateAdvertisement(Integer id, HttpServletResponse response) throws ServletException, IOException {
+		ModelMap mode = new ModelMap();		
+		Advertisement advertisement = advertisementService.findById(id);
+		List<AdvertisementPage> list = adverDistributionService.getDistinctWhichPage();
+		mode.put("list", list);
+		mode.put("method", "update");
+		mode.put("advertisement", advertisement);
+		
+		return new ModelAndView("management/addAdvertisement", mode);
+	}
+	
+	@RequestMapping(value = "addAdvertisement", method = RequestMethod.POST)
+	public String addAdvertisement(String imagePath, String language, String link, Integer expenditure, Integer income, 
+			String startDate, Integer during, AdvertisementPage whichPage, Integer position, HttpServletResponse response) throws ServletException, IOException {
+		AdvertiseDistribution advertiseDistribution = adverDistributionService.findByWhichPageAndPosition(whichPage,position);		
+		Advertisement advertisement = new Advertisement();
+
+		if ( expenditure != null ) {
+			advertisement.setExpenditure(expenditure);
+		}
+		
+		if ( income != null ) {
+			advertisement.setIncome(income);
+		}
+		
+		if ( during != null ) {
+			advertisement.setDuring(during);
+		}
+		advertisement.setImagePath(imagePath);
+		advertisement.setLink(link);		
+		advertisement.setStartDate(startDate);		
+		advertisement.setAdverDistribution(advertiseDistribution);
+		advertisementService.save(advertisement);
+
+		return "redirect:/management/advertisement";
+	}
+	
+	@RequestMapping(value = "updateAdvertisement", method = RequestMethod.POST)
+	public String updateAdvertisement(Integer id, String imagePath, String language, String link, Integer expenditure, 
+			Integer income, Integer during, AdvertisementPage whichPage, Integer position, HttpServletResponse response) throws ServletException, IOException {
+		AdvertiseDistribution advertiseDistribution = adverDistributionService.findByWhichPageAndPosition(whichPage,position);	
+		Advertisement advertisement = advertisementService.findById(id);	
+		
+		if ( expenditure != null ) {
+			advertisement.setExpenditure(expenditure);
+		}
+		
+		if ( income != null ) {
+			advertisement.setIncome(income);
+		}
+		
+		if ( during != null ) {
+			advertisement.setDuring(during);
+		}
+		advertisement.setImagePath(imagePath);
+		advertisement.setLink(link);
+		advertisement.setAdverDistribution(advertiseDistribution);
+		advertisementService.update(advertisement);
+		
+		return "redirect:/management/advertisement";
+
+	}
 }

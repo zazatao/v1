@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -236,50 +237,18 @@
 		<div class="spzx">
 			<div class="sptop">
 				<img src="../content/static/images/tbfh.jpg" width="14" height="14" />&nbsp;
-				ВИДЕО ПОМОЩЬ ПОЛЬЗОВАНИИ САЙТОМ
+				时尚盛典
 			</div>
 			<div class="spcon">
 				<div class="catalog_img">
-					<DIV class="LeftBotton" id="LeftArr"></DIV>
-					<DIV class="Cont" id="ISL_Cont_1">
-						<!-- 图片列表 begin -->
-						<DIV class="box">
-							<A class=imgBorder href="#"><img
-								src="../content/static/images/lb.jpg" /></A>
-						</DIV>
-						<DIV class="box">
-							<A class=imgBorder href="#"><img
-								src="../content/static/images/lb.jpg" /></A>
-						</DIV>
-						<DIV class="box">
-							<A class=imgBorder href="#"><img
-								src="../content/static/images/lb.jpg" /></A>
-						</DIV>
-						<DIV class="box">
-							<A class=imgBorder href="#"><img
-								src="../content/static/images/lb.jpg" /></A>
-						</DIV>
-						<DIV class="box">
-							<A class=imgBorder href="#"><img
-								src="../content/static/images/lb.jpg" /></A>
-						</DIV>
-						<DIV class="box">
-							<A class=imgBorder href="#"><img
-								src="../content/static/images/lb.jpg" /></A>
-						</DIV>
-						<DIV class="box">
-							<A class=imgBorder href="#"><img
-								src="../content/static/images/lb.jpg" /></A>
-						</DIV>
-						<DIV class="box">
-							<A class=imgBorder href="#"><img
-								src="../content/static/images/lb.jpg" /></A>
-						</DIV>
-						<!-- 图片列表 end -->
-					</DIV>
-
-					<DIV class="RightBotton" id="RightArr"></DIV>
-				</DIV>
+					<div class="LeftBotton" id="LeftArr"></div>
+					<div class="Cont" id="ISL_Cont_1">
+						<c:forEach var="advertisement" items="${advertisements5 }" varStatus="pool">
+    						<div class="box"><a class=imgBorder href="${advertisement.link }" ><img src="..${advertisement.imagePath }" /></a></div>
+    					</c:forEach>
+					</div>
+					<div class="RightBotton" id="RightArr"></div>
+				</div>
 
 				<SCRIPT language=javascript type=text/javascript>
 				<!--//--><![CDATA[//><!--

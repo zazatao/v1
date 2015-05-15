@@ -12,6 +12,14 @@ import org.springframework.stereotype.Component;
 import com.yc.dao.orm.commons.GenericDao;
 import com.yc.entity.ShopCommoidty;
 import com.yc.service.IShopCommoidtyService;
+/**
+ * @author Administrator
+ *
+ */
+/**
+ * @author Administrator
+ *
+ */
 @Component
 public class ShopCommoidtyService extends GenericService<ShopCommoidty> implements IShopCommoidtyService {
 
@@ -39,6 +47,7 @@ public class ShopCommoidtyService extends GenericService<ShopCommoidty> implemen
 		return shopCommoidtyDao.getBy(keys,values );
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<ShopCommoidty> getAllByShopCategoryID(Integer id,String page) {
 		StringBuffer hql = new StringBuffer("SELECT shc.* FROM ShopCommoidty shc JOIN Shop shop ON shop.id = shc.shop_id WHERE (shc.blacklist_id IS NULL AND shop.blacklist_id IS NULL AND shc.shelves = 1 ) AND shc.shop_id IS NOT NULL AND shc.shopCategory_id ="+id);
@@ -55,6 +64,7 @@ public class ShopCommoidtyService extends GenericService<ShopCommoidty> implemen
 	}
 
 	//Integer id, String brand, String specs, String money
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<ShopCommoidty> getAllByParams(Map<String, Object> map,String page ) {
 		StringBuffer hql = new StringBuffer("select shc.* from ShopCommoidty shc JOIN Shop shop ON shop.id = shc.shop_id right join ShopCommoidtySpecs sp on shc.commCode = sp.shopComm_id where (shc.blacklist_id IS NULL AND shop.blacklist_id IS NULL AND shc.shelves = 1 ) and shc.shelves = 1 ");
@@ -145,5 +155,63 @@ public class ShopCommoidtyService extends GenericService<ShopCommoidty> implemen
 	@Override
 	public ShopCommoidty IsShopCommByNumber(int number) {
 		return shopCommoidtyDao.findById(number);
+	}
+    
+	/* (non-Javadoc)
+	 * @see com.yc.service.IShopCommoidtyService#getShopCommByCateAndIsspecial()
+	 * 根據類型和是否折扣展示商品
+	 */
+	@Override
+	public List<ShopCommoidty> getShopCommByCateAndIsspecial(Integer CateId, Boolean flag) {
+		StringBuffer hql=new StringBuffer("SELECT * FROM shopcommoidty WHERE shopcommoidty.isSpecial="+flag);
+		if(CateId<=1){
+			hql.append("  AND shopcommoidty.shopCategory_id IS NOT NULL");
+		}else{
+			hql.append("  AND shopcommoidty.shopCategory_id="+CateId);
+		}
+		Query query = shopCommoidtyDao.getEntityManager().createNativeQuery(hql.toString(), ShopCommoidty.class);
+		@SuppressWarnings("unchecked")
+		List<ShopCommoidty> list = query.getResultList();
+		return list;
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.yc.service.IShopCommoidtyService#getShopCommByCateAndBrand(java.lang.Integer)
+	 * 根据商品类型和品牌查找商品
+	 */
+	@Override
+	public List<ShopCommoidty> getShopCommByCateAndBrand(Integer id) {
+		StringBuffer hql=new StringBuffer("SELECT * FROM shopcommoidty WHERE shopcommoidty.`brand_id` IS NOT NULL");
+		if(id<=1){
+			hql.append("  AND shopcommoidty.shopCategory_id IS NOT NULL");
+		}else{
+			hql.append("  AND shopcommoidty.shopCategory_id="+id);
+		}
+		Query query = shopCommoidtyDao.getEntityManager().createNativeQuery(hql.toString(), ShopCommoidty.class);
+		@SuppressWarnings("unchecked")
+		List<ShopCommoidty> list = query.getResultList();
+		return list;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.yc.service.IShopCommoidtyService#getShopCommByBrandId(java.lang.Integer)
+	 * 根据品牌Id查找对应商品
+	 */
+	@Override
+	public List<ShopCommoidty> getShopCommByBrandId(Integer id) {
+		StringBuffer hql=new StringBuffer("SELECT * FROM shopcommoidty WHERE shopcommoidty.`brand_id`="+id);
+		Query query = shopCommoidtyDao.getEntityManager().createNativeQuery(hql.toString(), ShopCommoidty.class);
+		@SuppressWarnings("unchecked")
+		List<ShopCommoidty> list = query.getResultList();
+		return list;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ShopCommoidty> searchShopComm(String content) {
+		StringBuffer hql = new StringBuffer(" select * from ShopCommoidty comm left join ShopCategory c ON comm.shopcategory_id = c.categoryID left join Brand b on b.brandID = comm.brand_id where comm.commoidtyName like '%"+content+"%' or c.category like '%"+content+"%' or b.brandName like '%"+content+"%'");
+		Query query = shopCommoidtyDao.getEntityManager().createNativeQuery(hql.toString(), ShopCommoidty.class);
+		return query.getResultList();		
 	}
 }

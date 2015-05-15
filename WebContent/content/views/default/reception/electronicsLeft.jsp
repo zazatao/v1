@@ -33,10 +33,9 @@
         </div>
         <div class="leftzs">
             <ul>
-            	<li><a href="yl_list_detail.html"><img src="../content/static/images/dz/016.jpg" /></a><h>【<span class="red">人气爆款</span>】测试信息测试信息测试信息</h><a class="bold" href="#">￥123</a></li>
-                <li><a href="yl_list_detail.html"><img src="../content/static/images/dz/017.jpg" /></a><h>【<span class="red">人气爆款</span>】测试信息测试信息测试信息</h><a class="bold" href="#">￥123</a></li>
-                <li><a href="yl_list_detail.html"><img src="../content/static/images/dz/018.jpg" /></a><h>【<span class="red">人气爆款</span>】测试信息测试信息测试信息</h><a class="bold" href="#">￥123</a></li>
-                <li><a href="yl_list_detail.html"><img src="../content/static/images/dz/016.jpg" /></a><h>【<span class="red">人气爆款</span>】测试信息测试信息测试信息</h><a class="bold" href="#">￥123</a></li>
+            	<c:forEach var="advertisement" items="${advertisements4 }" varStatus="pool">
+    					<li><a href="${advertisement.link }" ><img src="..${advertisement.imagePath }"/><h>【<span class="red">人气爆款</span>】测试信息测试信息测试信息</h><a class="bold" href="#">￥123</a></li>
+    			</c:forEach>
             </ul>
 		</div>
     </div>

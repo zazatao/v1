@@ -1,6 +1,7 @@
 package com.yc.controller.user;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,13 +22,18 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.yc.entity.Address;
+import com.yc.entity.Advertisement;
+import com.yc.entity.AdvertisementPage;
 import com.yc.entity.Collection;
 import com.yc.entity.OrderForm;
 import com.yc.entity.ShopCategory;
 import com.yc.entity.Transit;
 import com.yc.entity.user.Sex;
 import com.yc.entity.user.User;
+import com.yc.model.AdvertisementManager;
 import com.yc.service.IAddressService;
+import com.yc.service.IAdvertisementDistributionService;
+import com.yc.service.IAdvertisementService;
 import com.yc.service.ICollectionService;
 import com.yc.service.IOrderFormService;
 import com.yc.service.IShopCategoryService;
@@ -55,6 +61,12 @@ public class UserController {
 	@Autowired
 	ICollectionService collectionService;
 	
+	@Autowired
+	IAdvertisementService advertisementService;
+	
+	@Autowired
+	IAdvertisementDistributionService adverDistributionService;
+	
 	@RequestMapping(value = "introductions", method = RequestMethod.GET)
 	public ModelAndView user(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<User> list = userService.getAll();
@@ -70,6 +82,8 @@ public class UserController {
 		ModelMap mode = new ModelMap();
 		List<ShopCategory> list = ShopCategoryService.getAll();
 		mode.put("shopCategories", list);
+		AdvertisementManager advertisementManager = new AdvertisementManager();
+ 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 		return new ModelAndView("user/login", mode);
 	}
 
@@ -128,7 +142,9 @@ public class UserController {
 		ModelMap mode = new ModelMap();
 		List<ShopCategory> list = ShopCategoryService.getAll();
 		mode.put("shopCategories", list);
-		return new ModelAndView("user/register", mode);
+		AdvertisementManager advertisementManager = new AdvertisementManager();
+ 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));		
+ 		return new ModelAndView("user/register", mode);
 	}
 
 	@RequestMapping(value = "myoffice", method = RequestMethod.GET)
@@ -138,11 +154,29 @@ public class UserController {
 		ModelMap map = new ModelMap();
 		map.put("shopCategories", list);
 		if (user == null) {
+			int position5 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.homePage, 5).getId();
+	    	
+	    	List<Advertisement> advertisements = advertisementService.getAll();
+	    	ArrayList<Advertisement> advertisements5 = new ArrayList<Advertisement>();
+	    	
+	    	for ( int i = 0; i < advertisements.size(); i++ ) {
+	    		if ( advertisements.get(i).getAdverDistribution().getId() == position5 ) {
+	    			advertisements5.add(advertisements.get(i));
+	    		}
+	    	}
+	    	map.put("advertisements5", advertisements5);
+	    	
+	    	AdvertisementManager advertisementManager = new AdvertisementManager();
+	 		map.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 			return new ModelAndView("user/login", map);
 		}
 		List<ShopCategory> shopCates = ShopCategoryService.getAllByLevel(2);
 		map.put("shopCates", shopCates);
 		map.put("user", user);
+		
+    	AdvertisementManager advertisementManager = new AdvertisementManager();
+    	map.putAll(advertisementManager.getMyOfficePageAdvertisements(adverDistributionService,advertisementService));
+		
 		return new ModelAndView("reception/myoffice", map);
 	}
 
@@ -263,7 +297,6 @@ public class UserController {
 	// 修改地址
 	@RequestMapping(value = "editaddress", method = RequestMethod.POST)
 	public String editaddress(Integer id,Integer num,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Boolean theDefault = false;
 		Address ad = addressService.findById(id);
 		String toName = request.getParameter("toNamea");
 		ad.setToName(toName);
@@ -285,7 +318,7 @@ public class UserController {
 		ad.setHandedAddress(Transit.valueOf(handedAddress));
 		String indexNum = request.getParameter("indexNuma");
 		ad.setIndexNum(indexNum);
-		if(num == 0){ theDefault = false; } else { theDefault = true; }
+		if(num == 0){ } else { }
 		addressService.update(ad);
 		return "redirect:/user/introduction";
 	}
@@ -324,6 +357,8 @@ public class UserController {
 		mode.put("shopCategories", list);
 	    User user =	(User)request.getSession().getAttribute("loginUser");
 	    if (user == null ) {
+	    	AdvertisementManager advertisementManager = new AdvertisementManager();
+	 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 			return new ModelAndView("user/login", mode);
 		}else{
 			Map<String, Object> map = new HashMap<String, Object>();
