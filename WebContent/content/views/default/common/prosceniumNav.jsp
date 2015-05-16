@@ -55,7 +55,7 @@
 				<li><a href="../user/myoffice">我的办公室</a></li>
 				<li><a href="../user/login">请登记</a></li>
 				<li class="zc"><a href="../user/regist">免费注册</a></li>
-				<li><a href="file_index.jsp">客户服务</a>
+				<li><a href="#">客户服务</a>
 					<div class="filexlcd">
 						<ul>
 							<li><a href="#" onclick="ib_wopen();"><span><img

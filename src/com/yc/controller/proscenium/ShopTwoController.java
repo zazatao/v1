@@ -181,13 +181,13 @@ public class ShopTwoController {
 			cate = shopCategService.findById(id);
 			mode.put("shopCategories", list);
 			mode.put("cate", cate);
+			List<ShopCategory> cateList = getNodeForShopCategory(cate);
 			if (page != null && page.equals("electronics")) {
 				AdvertisementManager advertisementManager = new AdvertisementManager();
 		 		mode.putAll(advertisementManager.getElecProductionPageAdvertisements(adverDistributionService, advertisementService));	
 		 		List<ShopCommoidty> shopcommlist = new ArrayList<ShopCommoidty>();
 				List<Brand> brandlist = new ArrayList<Brand>();
 				lists.clear();
-				List<ShopCategory> cateList = getNodeForShopCategory(cate);
 				for (int i = 0; i < cateList.size(); i++) {
 					List<ShopCommoidty> comms = cateList.get(i)
 							.getShopCommoidties();
@@ -205,7 +205,6 @@ public class ShopTwoController {
 				List<ShopCommoidty> shopcommlist = new ArrayList<ShopCommoidty>();
 				List<Products> topshopcommlist = new ArrayList<Products>();
 				lists.clear();
-				List<ShopCategory> cateList = getNodeForShopCategory(cate);
 				for (int i = 0; i < cateList.size(); i++) {
 					List<ShopCommoidty> comms = cateList.get(i).getShopCommoidties();
 					List<Products> topcomms=commodityService.getAllByCommdityID(cateList.get(i).getCategoryID());
@@ -214,11 +213,9 @@ public class ShopTwoController {
 				}
 				mode.put("shopcommlist", shopcommlist);
 				mode.put("topshopcommlist", topshopcommlist);
-				mode.put("cateList", cateList);
 				return new ModelAndView("reception/autoSupplies", mode);
 			}
 		}
-
 		if (page != null && page.equals("brand")) {
 			AdvertisementManager advertisementManager = new AdvertisementManager();
 	 		mode.putAll(advertisementManager.getBrandPageAdvertisements(adverDistributionService, advertisementService));
