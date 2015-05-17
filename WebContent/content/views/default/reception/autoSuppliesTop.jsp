@@ -158,44 +158,6 @@
 						"opacity" : "1"
 					}, 300); //为当前的按钮切换到选中的效果
 				}
-				//局部刷新
-				function categoryClick(paramUrl) {
-					alert(paramUrl);
-					$("#img5").html("");
-					jQuery
-							.ajax({
-								type : 'GET',
-								contentType : 'application/json',
-								url : paramUrl,
-								dataType : 'json',
-								success : function(data) {
-//									alert(data);
-// 									if (data.shopcommlist != null
-// 											&& data.shopcommlist.size() > 0) {
-// 										var $para = "";
-// 										$
-// 												.each(
-// 														data.shopcommlist,
-// 														function(i, shopcom) {
-// 															$para = $para
-// 																	+ "<span><a href='../proscenium/shopItem?commID="
-// 																	+ shopcom.commCode
-// 																	+ "&category="
-// 																	+ shopcom.shopCategory.categoryID
-// 																	+ "&shopID="
-// 																	+ shopcom.belongTo.id
-// 																	+ "&commoName="
-// 																	+ shopcom.commoidtyName
-// 																	+ "'><img src='.."+shopcom.shopCommImages[0].imagePath+"'></a></span>";
-// 														});
-// 										$('#img5').html($para);
-										//$('#img5').append("<li><div><p><a href='proscenium/shopCommItem?id="+coteid+"&page=page'>更多</a></p></div><>");
-//									}
-								}
-							});
-				}
-               
-				
 			});
 		</script>
 		<div class="banner">
@@ -205,18 +167,6 @@
 					<li><a href="${advertisement.link }"><img
 							src="..${advertisement.imagePath }" /></a></li>
 				</c:forEach>
-				<!-- <li>
-                   <a href="gr_list.html"><img src="../content/static/images/dq/banner01.jpg" /></a>
-                </li>
-                <li>
-                   <a href="gr_list.html"><img src="../content/static/images/dq/banner02.jpg" /></a>
-                </li>
-                <li>
-                  <a href="gr_list.html"><img src="../content/static/images/dq/banner03.jpg" /></a>
-                </li>
-                <li>
-                   <a href="gr_list.html"><img src="../content/static/images/dq/banner01.jpg" /></a>
-                </li> -->
 			</ul>
 		</div>
 		<div class="smallbox_2">
@@ -225,9 +175,6 @@
 				<a href="${advertisement.link }"><img
 					src="..${advertisement.imagePath }" /></a>
 			</c:forEach>
-			<!-- <a href="gr_list.html"><img src="../content/static/images/dq/img_16.jpg" /></a>
-                <a href="gr_list.html"><img src="../content/static/images/dq/img_17.jpg" /></a>
-                <a href="gr_list.html"><img src="../content/static/images/dq/img_18.jpg" /></a> -->
 		</div>
 	</div>
 	<div class="cont_head_right">
@@ -242,8 +189,5 @@
 						src="..${advertisement.imagePath }" /></a></span>
 			</c:if>
 		</c:forEach>
-		<!-- <span class="sp_top"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_19.jpg" /></a></span>	
-            <span><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_20.jpg" /></a></span>	 -->
 	</div>
-</div>
 <!------cont_head over-------->

@@ -43,7 +43,7 @@ import com.yc.entity.user.Personnel;
 import com.yc.entity.user.User;
 import com.yc.model.AdvertisementManager;
 import com.yc.model.BuyCatSession;
-import com.yc.model.Products;
+import com.yc.model.CommdityModel;
 import com.yc.service.IAddressService;
 import com.yc.service.IAdvertisementDistributionService;
 import com.yc.service.IAdvertisementService;
@@ -199,15 +199,15 @@ public class ShopTwoController {
 				mode.put("brands", brandlist);
 				mode.put("shopcommlist", shopcommlist);
 				return new ModelAndView("reception/electronics", mode);
-			}else  if (page.equals("autoSupplies")) {
+			}else if (page.equals("autoSupplies")) {
 				AdvertisementManager advertisementManager = new AdvertisementManager();
 		 		mode.putAll(advertisementManager.getCarPageAdvertisements(adverDistributionService, advertisementService));
 				List<ShopCommoidty> shopcommlist = new ArrayList<ShopCommoidty>();
-				List<Products> topshopcommlist = new ArrayList<Products>();
+				List<CommdityModel> topshopcommlist = new ArrayList<CommdityModel>();
 				lists.clear();
 				for (int i = 0; i < cateList.size(); i++) {
 					List<ShopCommoidty> comms = cateList.get(i).getShopCommoidties();
-					List<Products> topcomms=commodityService.getAllByCommdityID(cateList.get(i).getCategoryID());
+					List<CommdityModel> topcomms=commodityService.getAllByCommdityID(cateList.get(i).getCategoryID());
 					shopcommlist.addAll(comms);
 					topshopcommlist.addAll(topcomms);
 				}

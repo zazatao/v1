@@ -36,7 +36,10 @@
 	<div class="con">
 		<!---------------   页面主体   ----------------------->
 		<div class="dqwz" id="navbar">
-			<a href="../index">首页</a>
+			<a href="../index">
+			<c:if test="${sessionScope.language == 'chinese' }">首页</c:if>
+			<c:if test="${sessionScope.language == 'russina' }">我是俄语首页</c:if>
+			</a>
 		</div>
 		<script type="text/javascript">
 			$(document)
@@ -95,7 +98,10 @@
 							src="../content/static/images/small/con_8.png" /></a>
 					</p>
 					<p>
-						卖家:${shopCommoidty.belongTo.shopName }
+						卖家:
+						<c:if test="${sessionScope.language == 'chinese' }">${shopCommoidty.belongTo.shopName }</c:if>
+						<c:if test="${sessionScope.language == 'russina' }">${shopCommoidty.belongTo.russinaShopName }</c:if>
+						
 						<c:if test="${user != null && user.shop.isPermit == true && user.shop.id != shopCommoidty.belongTo.id}">
 							<span onclick="addSupplier();">添加</span>
 						</c:if>
@@ -165,7 +171,10 @@
 				</script>
 				<!-----------lb_detail start-------------->
 				<div class="lb_detail">
-					<h1>${shopCommoidty.commoidtyName }<p></p>
+					<h1>
+					<c:if test="${sessionScope.language == 'chinese' }">${shopCommoidty.commoidtyName }</c:if>
+					<c:if test="${sessionScope.language == 'russina' }">${shopCommoidty.russinaCommoidtyName }</c:if>
+					<p></p>
 					</h1>
 					<h2>
 						现价：
@@ -516,7 +525,10 @@
 						    <ul class="ordersall">
 						    <li style="margin-left: 45px;"><img style="border-width: 0px;" src="..${reviews.rankImagesPath}" /></li>
 							<li class="ordersli2" style="margin-left: 50px;"><div class="midl">${reviews.user.loginName}</div></li>
-							<li class="ordersli3"><div class="midl">${reviews.shopscommodity.commoidtyName}</div></li>
+							<li class="ordersli3"><div class="midl">
+							<c:if test="${sessionScope.language == 'chinese' }">${reviews.shopscommodity.commoidtyName}</c:if>
+							<c:if test="${sessionScope.language == 'russina' }">${reviews.shopscommodity.russinaCommoidtyName}</c:if>
+							</div></li>
 							<li class="ordersli4"><div class="midl">${reviews.reviewsdate}</div></li>
 							<li class="ordersli5"><div class="midl">${reviews.reviews}</div></li>
 							</ul>

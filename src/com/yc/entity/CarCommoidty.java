@@ -77,6 +77,28 @@ public class CarCommoidty {
 	
 	@Column
 	private String describes;//描述
+	
+	@Column
+	private String russinaCommoidtyName;
+	
+	@Column
+	private String russinaDescribes;
+
+	public String getRussinaCommoidtyName() {
+		return russinaCommoidtyName;
+	}
+
+	public void setRussinaCommoidtyName(String russinaCommoidtyName) {
+		this.russinaCommoidtyName = russinaCommoidtyName;
+	}
+
+	public String getRussinaDescribes() {
+		return russinaDescribes;
+	}
+
+	public void setRussinaDescribes(String russinaDescribes) {
+		this.russinaDescribes = russinaDescribes;
+	}
 
 	public Float getFare() {
 		return fare;

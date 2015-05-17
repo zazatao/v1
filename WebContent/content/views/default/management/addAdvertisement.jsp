@@ -146,6 +146,8 @@
 										<c:if test="${AdvertisementPage == 'carPage'}">汽车用具页</c:if>
 										<c:if test="${AdvertisementPage == 'detailPage'}">详情页</c:if>
 										<c:if test="${AdvertisementPage == 'elecProductionPage'}">电子产品页</c:if>
+										<c:if test="${AdvertisementPage == 'myOfficePage'}">我的办公室</c:if>
+										<c:if test="${AdvertisementPage == 'brandPage'}">品牌页</c:if>
 									</option>
 								</c:forEach>
 							</select>

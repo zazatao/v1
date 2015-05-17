@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <div class="perterl">
 	<div class="perterles">
 		<div>
@@ -48,7 +50,10 @@
                 <div>
                     <dl>
                       <dt><img src="../content/static/images/kx.jpg"/></dt>
-                      <dd><b>${shop.shopName }</b><br><img src="../content/static/images/user.jpg"/></dd>
+                      <dd><b>
+                      <c:if test="${sessionScope.language == 'chinese'}">${shop.shopName }</c:if>
+					  <c:if test="${sessionScope.language == 'russina'}">${shop.russinaShopName }</c:if>
+                      </b><br><img src="../content/static/images/user.jpg"/></dd>
                       <dd>${shop.createDate }</dd>
                     </dl>
                     <p>${shop.email }</p>

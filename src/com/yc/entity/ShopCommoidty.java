@@ -13,9 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import org.codehaus.jackson.annotate.JsonBackReference;
-import org.codehaus.jackson.annotate.JsonIgnore;
-
 @Entity
 @DiscriminatorValue("shopCommoidty")//商品表
 public class ShopCommoidty {
@@ -96,6 +93,27 @@ public class ShopCommoidty {
 	@OneToMany(mappedBy = "shopscommodity")
 	private List<ShopReviews> shopreviews;
 	
+	@Column
+	private String russinaCommoidtyName;
+	
+	@Column
+	private String russinaDescribes;
+	
+	public String getRussinaCommoidtyName() {
+		return russinaCommoidtyName;
+	}
+
+	public void setRussinaCommoidtyName(String russinaCommoidtyName) {
+		this.russinaCommoidtyName = russinaCommoidtyName;
+	}
+
+	public String getRussinaDescribes() {
+		return russinaDescribes;
+	}
+	
+	public void setRussinaDescribes(String russinaDescribes) {
+		this.russinaDescribes = russinaDescribes;
+	}
    
 	public List<ShopReviews> getShopreviews() {
 		return shopreviews;

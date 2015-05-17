@@ -12,7 +12,6 @@ import java.util.Map;
 import com.yc.entity.StoreRoom;
 import com.yc.entity.user.User;
 import com.yc.model.CommdityModel;
-import com.yc.model.Products;
 
 public interface ICommodityService extends IGenericService<Commodity> {
 
@@ -28,7 +27,7 @@ public interface ICommodityService extends IGenericService<Commodity> {
 	
 	List<CommdityModel> getAllByShopCategoryID(Integer id);
 	
-	List<Products> getAllByCommdityID(Integer id);
+	List<CommdityModel> getAllByCommdityID(Integer id);
 	//订单处理
 	List<Commodity> getDisposeByParameters(Map<String, Object> map);
 	
@@ -62,5 +61,4 @@ public interface ICommodityService extends IGenericService<Commodity> {
 	public Integer getCommodityByStatusAndShop(String status, Integer shop_id);
 	
 	List<Commodity> getAllByUserAndStatus(User user);
-
 }

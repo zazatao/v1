@@ -34,7 +34,7 @@
 			        });
 				}
 				$('#img5').html($para);
-				$('#img5').append("<li><div><p><a href='proscenium/shopCommItem?id="+coteid+"&page=page'>更多</a></p></div></li>");
+				$('#img5').append("<li><div><p><a href='shopCommItemone?id="+coteid+"'>更多</a></p></div></li>");
 			}
 		});
 	}
@@ -77,7 +77,7 @@
             <h1>热销商品</h1>
             <div class="fenlei" id="fl1">
             	 <c:forEach items="${list}" var="Comm">
-            	 	<a href="#"  onmouseover='Search(${Comm.categoryID});'>
+            	 	<a href="#"  onmouseover='Search(${Comm.categoryID});'>       	 	
             	 	<span class="f1" >${fn:substring(Comm.category, 0, 4)}</span></a>
               	</c:forEach> 
              </div>
@@ -104,10 +104,10 @@
                 			<ul id="img5">
                 				<c:forEach items="${lists}" var="category" varStatus="loop">
                         			<c:if test="${loop.index < 7 }">
-            	 						<li><a href="proscenium/shopItem?commID="+${category.transNumForTaobao}+"&category="+${category.shopcategory}+"&shopID="+${category.seller}+"&commoName="+${category.nameOfGoods}"><img src="..${category.path }" alt="${category.nameOfGoods }"/></a></li>
+            	 						<li><a href="proscenium/shopItem?commID=${category.transNumForTaobao}&category=${category.shopcategory}&shopID=${category.seller}&commoName=${category.nameOfGoods}"><img src="..${category.path }" alt="${category.nameOfGoods }"/></a></li>
               						</c:if>
               					</c:forEach> 
-                        		<li><div><p><a href="shopCommItemone?id=${category.shopcategory}&page=page">更多</a></p></div></li>
+                        		<li><div><p><a href="shopCommItemone?id=6">更多</a></p></div></li>
                     		</ul>
                 		</div>
                 	</div>
@@ -143,7 +143,7 @@
             					
             					$('#fl1').html($cote);
             					$('#img5').html($para);
-            					$('#img5').append("<li><div><p><a href='proscenium/shopCommItem?id="+coteid+"&page=page'>更多</a></p></div></li>");
+            					$('#img5').append("<li><div><p><a href='shopCommItemone?id="+coteid+"&page=page'>更多</a></p></div></li>");
             				}       
             			}
             		});	

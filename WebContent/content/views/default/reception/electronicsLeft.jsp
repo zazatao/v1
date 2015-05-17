@@ -20,7 +20,10 @@
 						<span>${category.category }</span>
 							<div>
 								<c:forEach items="${category.children }" var="one">
-									<a href="../proscenium/shopCommItem?id=${one.categoryID }&page=page">${one.category }</a>
+									<a href="../proscenium/shopCommItem?id=${one.categoryID }&page=page">
+									<c:if test="${sessionScope.language == 'chinese' }">${one.category }</c:if>
+									<c:if test="${sessionScope.language == 'russina' }">${one.russinaCategory }</c:if>
+									</a>
 								</c:forEach>
 							</div>
 					</div>

@@ -109,6 +109,28 @@ public class Commodity {
 	@Column
 	private String notes;
 	
+	@Column
+	private String russinaNameOfGoods;
+	
+	@Column
+	private String russinaDescribes;
+	
+	public String getRussinaNameOfGoods() {
+		return russinaNameOfGoods;
+	}
+
+	public void setRussinaNameOfGoods(String russinaNameOfGoods) {
+		this.russinaNameOfGoods = russinaNameOfGoods;
+	}
+
+	public String getRussinaDescribes() {
+		return russinaDescribes;
+	}
+	
+	public void setRussinaDescribes(String russinaDescribes) {
+		this.russinaDescribes = russinaDescribes;
+	}
+	
 	public Float getFare() {
 		return fare;
 	}

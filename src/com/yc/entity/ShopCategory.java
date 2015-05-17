@@ -57,6 +57,17 @@ public class ShopCategory {
 	
 	@ManyToMany(mappedBy = "shopCategories")
 	private List<Specifications> specifications;//规格
+	
+	@Column
+	private String russinaCategory;//商品类名;
+
+	public String getRussinaCategory() {
+		return russinaCategory;
+	}
+
+	public void setRussinaCategory(String russinaCategory) {
+		this.russinaCategory = russinaCategory;
+	}
 
 	public List<CarCommoidty> getCarCommoidties() {
 		return carCommoidties;

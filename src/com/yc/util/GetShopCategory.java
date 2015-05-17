@@ -110,8 +110,11 @@ public class GetShopCategory {
 			brand = new BrandCategory();
 			brand.setCategory(key);
 			brand.setBrandStr(map.get(key).substring(0,map.get(key).length()-1));
+			brand.setRussinaCategory(key);
+			brand.setRussinaBrandStr(map.get(key).substring(0,map.get(key).length()-1));
 			shopCategories.add(brand);
 		}
+		
 		mode.put("shopCategories", shopCategories);
 		mode.put("success", "true");
 		return mode;
@@ -334,19 +337,6 @@ public class GetShopCategory {
         mode.put("list", positions);
     	return mode;
     }
-  	private List<ShopCategory> lists = new ArrayList<ShopCategory>();
-	// 类别子节点
-	private List<ShopCategory> getNodeForShopCategory(ShopCategory shopCate) {
-		List<ShopCategory> list = shopCate.getChildren();
-		if (list != null && list.size() > 0) {
-			for (int i = 0; i < list.size(); i++) {
-				getNodeForShopCategory(list.get(i));
-			}
-		} else {
-			lists.add(shopCate);
-		}
-		return lists;
-	}
   	//汽车页面局部刷新
   	@RequestMapping(value = "getCarShopCommByCate", method = RequestMethod.GET)
 	@ResponseBody
