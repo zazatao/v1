@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>折扣</title>
 <link href="../content/static/css/reception/css.css" rel="stylesheet"
 	type="text/css" />
 <link href="../content/static/css/reception/gr.css" rel="stylesheet"
@@ -35,8 +35,8 @@
 			       <c:choose>
 		        <c:when test="${ not empty shopcomlist}">
 		             <c:forEach items="${shopcomlist }" var="shopcom">
-		             			<li><a href="../proscenium/shopItem?commID=${shopcom.commCode }&category=${shopcom.shopCategory.categoryID }&shopID=${shopcom.belongTo.id }&commoName=${shopcom.commoidtyName }"> <img
-						src="..${shopcom.shopCommImages[0].imagePath}" />
+		             			<li><a href="../proscenium/shopItem?commID=${shopcom.commCode }&category=${shopcom.shopCategory.categoryID }&shopID=${shopcom.belongTo.id }&commoName=${shopcom.commoidtyName }"> 
+		             			<img src="..${shopcom.shopCommImages[0].imagePath}" />
 						<div class="tit_3">
 						<c:if test="${sessionScope.language == 'chinese' }">${shopcom.commoidtyName}</c:if>
 						<c:if test="${sessionScope.language == 'russina' }">${shopcom.russinaCommoidtyName}</c:if>

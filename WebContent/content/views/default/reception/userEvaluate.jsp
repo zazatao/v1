@@ -97,12 +97,17 @@
 					<c:forEach items="${list }"  var="commodity">
 						<ul class="ordersall">
 							<li class="ordersli1"><div class="midl">
-									<img src="..${commodity.imagePaths[0].path }" /><br />${commodity.nameOfGoods }
+									<img src="..${commodity.imagePaths[0].path }" /><br />
+									<c:if test="${sessionScope.language == 'chinese' }">${commodity.nameOfGoods }</c:if>
+									<c:if test="${sessionScope.language == 'russina' }">${commodity.russinaNameOfGoods }</c:if>
 								</div></li>
 							<li class="ordersli2"><div class="midl">
 									${commodity.orderNumber.orderDate}<br /> ${commodity.orderNumber.orderTime }
 								</div></li>
-							<li class="ordersli3"><div class="midl">${commodity.seller.shopName }</div></li>
+							<li class="ordersli3"><div class="midl">
+								<c:if test="${sessionScope.language == 'chinese' }">${commodity.seller.shopName }</c:if>
+								<c:if test="${sessionScope.language == 'russina' }">${commodity.seller.russinaShopName }</c:if>
+							</div></li>
 							<li class="ordersli4"><div class="midl">
 									<span class="octdw">${commodity.quantity }</span>
 								</div></li>

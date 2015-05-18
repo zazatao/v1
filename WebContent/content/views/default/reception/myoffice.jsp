@@ -27,7 +27,7 @@
           		<p class="ord_basye">Free Member<sup>st</sup> year</p>
           		<dl>
             	  <dt><img src="../content/static/images/kx.jpg"/></dt>
-            	  <dd><b>Пополнить счет  счет</b><img src="../content/static/images/user.jpg"/></dd>
+            	  <dd><b>${sessionScope.loginUser.userName}</b><img src="../content/static/images/user.jpg"/></dd>
             	</dl>
                 <div class="cl"></div>
                 <div class="ordjd"><div class="ordjs"></div><p class="ordjts">33%</p></div>
@@ -113,7 +113,15 @@
                     	<div class="odtplas">
                     	  <ul>
                     	  	<c:forEach var="advertisement" items="${advertisements1 }" varStatus="pool">
-                    	  		<c:if test="${advertisement.language == 'China' }">
+                    	  		<c:if test="${sessionScope.language == 'chinese'}">
+                    	  		<li>
+    							<p><img src="..${advertisement.imagePath }"/></p>
+                    	        <p class="odtplasti blon">啦啦啦啦啦</p>
+                    	        <p class="odtplasta"><b>价钱:</b><b class="red">US $130-180</b></p>
+                    	        <p class="odtplastp"><b>地点:</b>上海</p>
+                    	        </li>
+                    	        </c:if>
+                    	  		<c:if test="${sessionScope.language == 'russina'}">
                     	  		<li>
     							<p><img src="..${advertisement.imagePath }"/></p>
                     	        <p class="odtplasti blon">pession ieos moserfd</p>
@@ -122,34 +130,6 @@
                     	        </li>
                     	        </c:if>
     						</c:forEach>
-                    	    <!-- <li>
-                    	        <p><img src="../content/static/images/img/odtplas01.jpg"/></p>
-                    	        <p class="odtplasti blon">pession ieos moserfd</p>
-                    	        <p class="odtplasta"><b>FOB Price:</b><b class="red">US $130-180</b></p>
-                    	        <p class="odtplastp"><b>Port:</b>shanghai</p>
-                    	        <p class="odtplasnu"><b>Min Order:</b>1 Set/Sers</p>
-                    	    </li>
-                    	    <li>
-                    	        <p><img src="../content/static/images/img/odtplas01.jpg"/></p>
-                    	        <p class="odtplasti blon">pession ieos moserfd</p>
-                    	        <p class="odtplasta"><b>FOB Price:</b><b class="red">US $130-180</b></p>
-                    	        <p class="odtplastp"><b>Port:</b>shanghai</p>
-                    	        <p class="odtplasnu"><b>Min Order:</b>1 Set/Sers</p>
-                    	    </li>
-                    	    <li>
-                    	        <p><img src="../content/static/images/img/odtplas01.jpg"/></p>
-                    	        <p class="odtplasti blon">pession ieos moserfd</p>
-                    	        <p class="odtplasta"><b>FOB Price:</b><b class="red">US $130-180</b></p>
-                    	        <p class="odtplastp"><b>Port:</b>shanghai</p>
-                    	        <p class="odtplasnu"><b>Min Order:</b>1 Set/Sers</p>
-                    	    </li>
-                    	    <li>
-                    	        <p><img src="../content/static/images/img/odtplas01.jpg"/></p>
-                    	        <p class="odtplasti blon">pession ieos moserfd</p>
-                    	        <p class="odtplasta"><b>FOB Price:</b><b class="red">US $130-180</b></p>
-                    	        <p class="odtplastp"><b>Port:</b>shanghai</p>
-                    	        <p class="odtplasnu"><b>Min Order:</b>1 Set/Sers</p>
-                    	    </li> -->
                     	  </ul>
                     	</div>
                     </div>
@@ -160,11 +140,8 @@
           </div>
     	  <div>
     	  <c:forEach var="advertisement" items="${advertisements2 }" varStatus="pool">
-    	  		<c:if test="${advertisement.language == 'China' }">
-    	  		<img src="..${advertisement.imagePath }"/>
-    	  		</c:if>
+    	  	<img src="..${advertisement.imagePath }"/>
 		  </c:forEach>
-    	  <!-- <img src="../content/static/images/ordresd.jpg"/> -->
     	  </div>
     	</div>
       <div class="cl"></div>

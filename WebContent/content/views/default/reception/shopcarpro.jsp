@@ -98,7 +98,8 @@
 												</c:if>
 											</c:forEach>
 										</dt>
-										<dd>${shopCar.shopCommoidty.commoidtyName }</dd>
+										<dd><c:if test="${sessionScope.language == 'chinese'}">${shopCar.shopCommoidty.commoidtyName }</c:if>
+										<c:if test="${sessionScope.language == 'russina'}">${shopCar.shopCommoidty.russinaCommoidtyName }</c:if></dd>
 										<dd class="shcabtlbtn">
 											<a href="#">详细 </a>
 											<div class="shcabtca">
@@ -137,10 +138,14 @@
 												</div>
 											</div>
 										</dd>
-										<dd>
-										<fmt:formatNumber value="${shopCar.shopCommoidty.currency.symbol }${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount }" type="currency" pattern="#,###.00#"/>
+										<dd>${shopCar.shopCommoidty.currency.symbol }
+										<c:set var="symbol" value="${shopCar.shopCommoidty.currency.symbol }"></c:set>
+										<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount }" type="currency" pattern="#,###.00#"/>
 										</dd>
-										<c:set var="sum" value="${shopCar.shopCommoidty.currency.symbol }${sum + shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount}"></c:set>
+										<dd>
+										${shopCar.shopCommoidty.currency.symbol }${sum + shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount}
+										</dd>
+										<c:set var="sum" value="${sum + shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount}"></c:set>
 									</dl>
 								</li>
 								</c:forEach>
@@ -149,14 +154,14 @@
 						<div class="shcabr">
 							<ul>
 								<li>在我购物车里的商品</li>
-								<li>订单总额 <span><fmt:formatNumber value="${shopCar.shopCommoidty.currency.symbol }${sum }" type="currency" pattern="#,###.00#"/></span></li>
+								<li>订单总额 <span>${symbol }<fmt:formatNumber value="${sum }" type="currency" pattern="#,###.00#"/></span></li>
 								<li>额外包装</li>
 								<li>礼品包装“自己手工”<span></span></li>
 								<li>运输方式</li>
-                    	  		<li>${deliveryComm }<span><fmt:formatNumber value="${shopCar.shopCommoidty.currency.symbol }${deliveryMoney }" type="currency" pattern="#,###.00#"/></span></li>
+                    	  		<li>${deliveryComm }<span>${symbol }<fmt:formatNumber value="${deliveryMoney }" type="currency" pattern="#,###.00#"/></span></li>
 							</ul>
 							<p class="shcabra">
-								总金额<span><fmt:formatNumber value="${shopCar.shopCommoidty.currency.symbol }${shopCar.shopCommoidty.currency.symbol }${sum +deliveryMoney }" type="currency" pattern="#,###.00#"/></span>
+								总金额<span>${symbol }<fmt:formatNumber value="${shopCar.shopCommoidty.currency.symbol }${sum +deliveryMoney }" type="currency" pattern="#,###.00#"/></span>
 							</p>
 
 						</div>

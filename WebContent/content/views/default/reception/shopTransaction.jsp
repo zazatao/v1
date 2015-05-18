@@ -127,21 +127,10 @@
 											</select>
 										</div></td>
 								</tr>
-								<!-- 						<tr> -->
-								<!-- 							<td height="30"><div align="left"> -->
-								<!-- 									交易类型： <select name="select3" id="select3" style="width: 150px"> -->
-								<!-- 										<option>所有类型</option> -->
-								<!-- 									</select> -->
-								<!-- 								</div></td> -->
-								<!-- 							<td><div align="left"></div></td> -->
-								<!-- 							<td><div align="left"></div></td> -->
-								<!-- 						</tr> -->
 								<tr>
 									<td height="30"><div align="left">
 											<input type="submit" name="button" id="button" value="搜索"
 												style="width: 50px; color: #36C" />
-											<!-- 									<input type="submit" name="button" id="button" value="批量导出" -->
-											<!-- 										style="width: 100px; color: #36C" /> -->
 										</div></td>
 									<td><div align="left"></div></td>
 									<td><div align="left"></div></td>
@@ -262,7 +251,10 @@
 															<c:if test="${comm == null }">
 																<td height="30" colspan="5">没有符合条件的商品，请尝试其他搜索条件。</td>
 															</c:if>
-															<td height="30"><div align="center">${comm.nameOfGoods }</div></td>
+															<td height="30"><div align="center">
+															<c:if test="${sessionScope == 'chinese' }">${comm.nameOfGoods }</c:if>
+															<c:if test="${sessionScope == 'russina' }">${comm.russinaNameOfGoods }</c:if>
+															</div></td>
 															<td><div align="center">${comm.currency.symbol }${comm.price }</div></td>
 															<td><div align="center">${comm.quantity }</div></td>
 															<td><div align="center"></div></td>
@@ -411,7 +403,10 @@
 														</tr>
 														<c:forEach items="${order.commodities }" var="comm">
 															<tr>
-																<td height="30"><div align="center">${comm.nameOfGoods }</div></td>
+																<td height="30"><div align="center">
+																	<c:if test="${sessionScope == 'chinese' }">${comm.nameOfGoods }</c:if>
+																	<c:if test="${sessionScope == 'russina' }">${comm.russinaNameOfGoods }</c:if>
+																</div></td>
 																<td><div align="center">${comm.currency.symbol }${comm.price }</div></td>
 																<td><div align="center">${comm.quantity }</div></td>
 																<td><div align="center"></div></td>
@@ -514,7 +509,10 @@
 														</tr>
 														<c:forEach items="${order.commodities }" var="comm">
 															<tr>
-																<td height="30"><div align="center">${comm.nameOfGoods }</div></td>
+																<td height="30"><div align="center">
+																	<c:if test="${sessionScope == 'chinese' }">${comm.nameOfGoods }</c:if>
+																	<c:if test="${sessionScope == 'russina' }">${comm.russinaNameOfGoods }</c:if>
+																</div></td>
 																<td><div align="center">${comm.currency.symbol }${comm.price }</div></td>
 																<td><div align="center">${comm.quantity }</div></td>
 																<td><div align="center"></div></td>
@@ -617,7 +615,10 @@
 														</tr>
 														<c:forEach items="${order.commodities }" var="comm">
 															<tr>
-																<td height="30"><div align="center">${comm.nameOfGoods }</div></td>
+																<td height="30"><div align="center">
+																	<c:if test="${sessionScope == 'chinese' }">${comm.nameOfGoods }</c:if>
+																	<c:if test="${sessionScope == 'russina' }">${comm.russinaNameOfGoods }</c:if>
+																</div></td>
 																<td><div align="center">${comm.currency.symbol }${comm.price }</div></td>
 																<td><div align="center">${comm.quantity }</div></td>
 																<td><div align="center"></div></td>
@@ -704,7 +705,10 @@
 														</tr>
 														<c:forEach items="${order.commodities }" var="comm">
 															<tr>
-																<td height="30"><div align="center">${comm.nameOfGoods }</div></td>
+																<td height="30"><div align="center">
+																	<c:if test="${sessionScope == 'chinese' }">${comm.nameOfGoods }</c:if>
+																	<c:if test="${sessionScope == 'russina' }">${comm.russinaNameOfGoods }</c:if>
+																</div></td>
 																<td><div align="center">${comm.currency.symbol }${comm.price }</div></td>
 																<td><div align="center">${comm.quantity }</div></td>
 																<td><div align="center"></div></td>
@@ -768,7 +772,10 @@
 														</tr>
 														<c:forEach items="${order.commodities }" var="comm">
 															<tr>
-																<td height="30"><div align="center">${comm.nameOfGoods }</div></td>
+																<td height="30"><div align="center">
+																	<c:if test="${sessionScope == 'chinese' }">${comm.nameOfGoods }</c:if>
+																	<c:if test="${sessionScope == 'russina' }">${comm.russinaNameOfGoods }</c:if>
+																</div></td>
 																<td><div align="center">${comm.currency.symbol }${comm.price }</div></td>
 																<td><div align="center">${comm.quantity }</div></td>
 																<td><div align="center"></div></td>

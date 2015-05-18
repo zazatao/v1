@@ -12,13 +12,13 @@
 							<img src="../content/static/images/kx.jpg" />
 						</dt>
 						<dd>
-							<b>Пополнить счет счет</b><img
+							<b>${sessionScope.loginUser.userName}</b><img
 								src="../content/static/images/user.jpg" />
 						</dd>
 						<dd>06.07.1992</dd>
 					</dl>
-					<p>marat004@163.com</p>
-					<p>您的账号码:456789123</p>
+					<p>${sessionScope.loginUser.email}</p>
+					<p>您的账号:${sessionScope.loginUser.userName}</p>
 				</div>
 				<div>
 					<p>可以资金</p>
@@ -67,7 +67,8 @@
 						</p>
 						<div class="t2sall">
 							<c:forEach items="${shopCates }" var="shopcate" varStatus="loop">
-								<p>${shopcate.category }</p>
+								<p><c:if test="${sessionScope.language == 'chinese' }">${shopcate.category }</c:if>
+									<c:if test="${sessionScope.language == 'chinese' }">${shopcate.russinaCategory }</c:if></p>
 							</c:forEach>
 						</div>
 					</div>
