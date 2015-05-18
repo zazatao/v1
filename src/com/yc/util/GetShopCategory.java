@@ -37,6 +37,7 @@ import com.yc.service.IAdvertisementService;
 import com.yc.service.IBuyCatService;
 import com.yc.service.ICarCommoidtyService;
 import com.yc.service.ICollectionService;
+import com.yc.service.ICommodityService;
 import com.yc.service.IDepartAndPositionsService;
 import com.yc.service.IMissionPlanService;
 import com.yc.service.IPersonnelService;
@@ -74,6 +75,9 @@ public class GetShopCategory {
 	IAdvertisementService advertisementService;
 	
 	@Autowired
+    ICommodityService commodityService;
+	
+	@Autowired
 	IAdvertisementDistributionService adverDistributionService;
 	
 	@RequestMapping(value = "shopCategoryAll", method = RequestMethod.GET)
@@ -86,8 +90,9 @@ public class GetShopCategory {
 	
 	@RequestMapping(value = "shopCategoryBrand", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> getShopCategoryBrand() throws ServletException, IOException {
+	public Map<String, Object> getShopCategoryBrand(HttpServletRequest request) throws ServletException, IOException {
 		ModelMap mode = new ModelMap();
+		String language =(String) request.getSession().getAttribute("language");
 		List<ShopCategory> list = shopCategService.getAllForBrand();
 		List<BrandCategory> shopCategories = new ArrayList<BrandCategory>();
 		Map<String, String> map = new HashMap<String, String>();
@@ -96,11 +101,24 @@ public class GetShopCategory {
 				String cateName = "";
 				if (shopCategory !=null) {
 					ShopCategory cate = shopCategService.findById(shopCategory.getParentLevel().getCategoryID());
-					if (map.containsKey(cate.getCategory())) {
-						cateName = map.get(cate.getCategory()) + shopCategory.getCategoryID()+"-"+shopCategory.getCategory()+"|";
-						map.put(cate.getCategory(), cateName);
+					if (language.equals("chinese")) {
+						if (map.containsKey(cate.getCategory()) && cate.getCategory() != null) {
+							cateName = map.get(cate.getCategory()) + shopCategory.getCategoryID()+"-"+shopCategory.getCategory()+"|";
+							map.put(cate.getCategory(), cateName);
+						}else{
+							if (cate.getCategory() != null) {
+								map.put(cate.getCategory(), shopCategory.getCategoryID()+"-"+shopCategory.getCategory()+"|");
+							}
+						}
 					}else{
-						map.put(cate.getCategory(), shopCategory.getCategoryID()+"-"+shopCategory.getCategory()+"|");
+						if (map.containsKey(cate.getRussinaCategory()) && cate.getRussinaCategory() != null) {
+							cateName = map.get(cate.getRussinaCategory()) + shopCategory.getCategoryID()+"-"+shopCategory.getRussinaCategory()+"|";
+							map.put(cate.getRussinaCategory(), cateName);
+						}else{
+							if (cate.getRussinaCategory() != null) {
+								map.put(cate.getRussinaCategory(), shopCategory.getCategoryID()+"-"+shopCategory.getRussinaCategory()+"|");
+							}
+						}
 					}
 				}
 			}
@@ -122,11 +140,12 @@ public class GetShopCategory {
 	
 	@RequestMapping(value = "shopCategoryIsSpecial", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> shopCategoryIsSpecial() throws ServletException, IOException {
+	public Map<String, Object> shopCategoryIsSpecial(HttpServletRequest request) throws ServletException, IOException {
 		ModelMap mode = new ModelMap();
 		List<ShopCategory> list = shopCategService.getAllForSpecial();
 		List<BrandCategory> shopCategories = new ArrayList<BrandCategory>();
 		Map<String, String> map = new HashMap<String, String>();
+		String language =(String) request.getSession().getAttribute("language");
 		if (list.size()>0) {
 			for (ShopCategory shopCategory : list) {
 				String cateName = "";
@@ -137,11 +156,22 @@ public class GetShopCategory {
 					}else{
 					      cate = shopCategService.findById(shopCategory.getCategoryID());
 					}
-					if (map.containsKey(cate.getCategory())) {
-						cateName = map.get(cate.getCategory()) + shopCategory.getCategoryID()+"-"+shopCategory.getCategory()+"|";
-						map.put(cate.getCategory(), cateName);
+					if (language.equals("chinese")) {
+						if (map.containsKey(cate.getCategory())) {
+							cateName = map.get(cate.getCategory()) + shopCategory.getCategoryID()+"-"+shopCategory.getCategory()+"|";
+							map.put(cate.getCategory(), cateName);
+						}else{
+							map.put(cate.getCategory(), shopCategory.getCategoryID()+"-"+shopCategory.getCategory()+"|");
+						}
 					}else{
-						map.put(cate.getCategory(), shopCategory.getCategoryID()+"-"+shopCategory.getCategory()+"|");
+						if (map.containsKey(cate.getRussinaCategory()) && cate.getRussinaCategory() != null) {
+							cateName = map.get(cate.getRussinaCategory()) + shopCategory.getCategoryID()+"-"+shopCategory.getRussinaCategory()+"|";
+							map.put(cate.getRussinaCategory(), cateName);
+						}else{
+							if (cate.getRussinaCategory() != null) {
+								map.put(cate.getRussinaCategory(), shopCategory.getCategoryID()+"-"+shopCategory.getRussinaCategory()+"|");
+							}
+						}
 					}
 				}
 			}

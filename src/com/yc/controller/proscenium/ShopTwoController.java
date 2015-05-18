@@ -171,7 +171,7 @@ public class ShopTwoController {
 	}
 
 	@RequestMapping(value = "categoryLei", method = RequestMethod.GET)
-	public ModelAndView categoryLei(Integer id, String page,
+	public ModelAndView categoryLei(Integer id, String page,Integer towID,
 			HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ModelMap mode = new ModelMap();
@@ -179,6 +179,9 @@ public class ShopTwoController {
 		List<ShopCategory> list = shopCategService.getAll();
 		if (id != null && id > 0) {
 			cate = shopCategService.findById(id);
+			if (towID !=null && !towID.equals("")) {
+				cate  = shopCategService.findById(towID);
+			}
 			mode.put("shopCategories", list);
 			mode.put("cate", cate);
 			List<ShopCategory> cateList = getNodeForShopCategory(cate);
@@ -204,15 +207,25 @@ public class ShopTwoController {
 		 		mode.putAll(advertisementManager.getCarPageAdvertisements(adverDistributionService, advertisementService));
 				List<ShopCommoidty> shopcommlist = new ArrayList<ShopCommoidty>();
 				List<CommdityModel> topshopcommlist = new ArrayList<CommdityModel>();
-				lists.clear();
-				for (int i = 0; i < cateList.size(); i++) {
-					List<ShopCommoidty> comms = cateList.get(i).getShopCommoidties();
-					List<CommdityModel> topcomms=commodityService.getAllByCommdityID(cateList.get(i).getCategoryID());
-					shopcommlist.addAll(comms);
+				if(cate.getLevel()!=null&&cate.getLevel()==3){
+					           List<ShopCommoidty> comms=cate.getShopCommoidties();
+					           List<CommdityModel> topcomms=commodityService.getRankByCommdityID(cate.getCategoryID());
+					           shopcommlist.addAll(comms);
+							   topshopcommlist.addAll(topcomms);
+							  mode.put("shopcommlist", shopcommlist);
+							  mode.put("topshopcommlist", topshopcommlist);
+				}else if(cate.getLevel()!=null&&cate.getLevel()==2){
+					lists.clear();
+					List<CommdityModel> topcomms=commodityService.getRankTwoByCommdityID(cate.getCategoryID());
+					for (int i = 0; i < cateList.size(); i++) {
+						List<ShopCommoidty> comms = cateList.get(i).getShopCommoidties();
+						shopcommlist.addAll(comms);		
+					}	
 					topshopcommlist.addAll(topcomms);
+					mode.put("shopcommlist", shopcommlist);
+					mode.put("topshopcommlist", topshopcommlist);
+					mode.put("cateList", cateList);
 				}
-				mode.put("shopcommlist", shopcommlist);
-				mode.put("topshopcommlist", topshopcommlist);
 				return new ModelAndView("reception/autoSupplies", mode);
 			}
 		}
@@ -263,6 +276,12 @@ public class ShopTwoController {
 		} else {
 			return null;
 		}
+	}
+	
+	public void swap( int a, int b) {
+		int temp = a;
+		a = b;
+		b = temp;
 	}
 
 	

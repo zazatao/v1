@@ -252,6 +252,60 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 		return pr;
 	}
 
+	
+	// 汽车三级节点推荐排行
+		@Override
+		public List<CommdityModel> getRankByCommdityID(Integer id) {	
+			StringBuffer hql = new StringBuffer("SELECT DISTINCT c.transNumForTaobao,s.categoryID,c.seller_name,c.nameOfGoods,i.path,SUM(quantity) ss FROM commodity c RIGHT JOIN shopcategory s ON s.categoryID = c.shopcategory LEFT JOIN  ImagePath i  ON c.commodityID = i.from_commodity WHERE s.categoryID = "+id+" GROUP BY c.transNumForTaobao  ORDER BY ss DESC,c.transNumForTaobao LIMIT 5");
+			Query query = commodityDao.getEntityManager().createNativeQuery(hql.toString());
+			@SuppressWarnings("rawtypes")
+			List objecArraytList = query.getResultList();
+			List<CommdityModel> cms = new ArrayList<CommdityModel>();
+			CommdityModel mode = null;
+			if (objecArraytList != null && objecArraytList.size() > 0) {
+				for (int i = 0; i < objecArraytList.size(); i++) {
+					mode = new CommdityModel();
+					Object[] obj = (Object[]) objecArraytList.get(i);
+					if (obj[i] != null) {
+						mode.setTransNumForTaobao(Integer.parseInt(obj[0].toString()));
+						mode.setShopcategory(Integer.parseInt(obj[1].toString()));
+						mode.setSeller(obj[2].toString());
+						mode.setNameOfGoods(obj[3].toString());
+						mode.setPath(obj[4].toString());
+						mode.setSums(Integer.parseInt(obj[5].toString()));
+						cms.add(mode);
+					}
+				}
+			}
+			return cms;
+		}
+
+		// 汽车二级节点推荐排行
+		@Override
+		public List<CommdityModel> getRankTwoByCommdityID(Integer id) {	
+			StringBuffer hql = new StringBuffer("SELECT DISTINCT c.transNumForTaobao,s.categoryID,c.seller_name,c.nameOfGoods,i.path,SUM(quantity) ss FROM commodity c RIGHT JOIN shopcategory s ON s.categoryID = c.shopcategory  LEFT JOIN  ImagePath i  ON c.commodityID = i.from_commodity  RIGHT JOIN shopcategory cate ON cate.categoryID = s.parentLevel WHERE cate.categoryID = "+id+" GROUP BY c.transNumForTaobao  ORDER BY ss DESC,c.transNumForTaobao LIMIT 5");
+			Query query = commodityDao.getEntityManager().createNativeQuery(hql.toString());
+			@SuppressWarnings("rawtypes")
+			List objecArraytList = query.getResultList();
+			List<CommdityModel> cms = new ArrayList<CommdityModel>();
+			CommdityModel mode = null;
+			if (objecArraytList != null && objecArraytList.size() > 0) {
+				for (int i = 0; i < objecArraytList.size(); i++) {
+					mode = new CommdityModel();
+					Object[] obj = (Object[]) objecArraytList.get(i);
+					if (obj[i] != null) {
+						mode.setTransNumForTaobao(Integer.parseInt(obj[0].toString()));
+						mode.setShopcategory(Integer.parseInt(obj[1].toString()));
+						mode.setSeller(obj[2].toString());
+						mode.setNameOfGoods(obj[3].toString());
+						mode.setPath(obj[4].toString());
+						mode.setSums(Integer.parseInt(obj[5].toString()));
+						cms.add(mode);
+					}
+				}
+			}
+			return cms;
+		}
 
 	@SuppressWarnings("unchecked")
 	@Override

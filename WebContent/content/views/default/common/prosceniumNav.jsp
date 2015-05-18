@@ -133,8 +133,7 @@
 								</a>
 							</c:if>
 							<c:if test="${shopCategory.category == '汽车用具' }">
-								<a href="../proscenium/categoryLei?id=23&page=autoSupplies">
-								<c:if test="${sessionScope.language == 'chinese'}">${shopCategory.category }</c:if>
+								<a href="../proscenium/categoryLei?id=${shopCategory.categoryID}&page=autoSupplies&towID=23"><c:if test="${sessionScope.language == 'chinese'}">${shopCategory.category }</c:if>
 								<c:if test="${sessionScope.language == 'russina'}">${shopCategory.russinaCategory }</c:if></a>
 							</c:if>	
 							<div>

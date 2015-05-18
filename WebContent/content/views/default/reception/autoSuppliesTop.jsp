@@ -4,42 +4,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!------cont_head start-------->
-<script type="text/javascript">
-         function categoryClick(paramUrl) {
-				alert(paramUrl);
-				$("#img5").html("");
-				jQuery
-						.ajax({
-							type : 'GET',
-							contentType : 'application/json',
-							url : paramUrl,
-							dataType : 'json',
-							success : function(data) {
-								alert(data.shopcommlist.size());
-								if (data.shopcommlist != null
-										&& data.shopcommlist.size() > 0) {
-									var $para = "";
-									$.each(
-													data.shopcommlist,
-													function(i, shopcom) {
-														$para = $para
-																+ "<span><a href='../proscenium/shopItem?commID="
-																+ shopcom.commCode
-																+ "&category="
-																+ shopcom.shopCategory.categoryID
-																+ "&shopID="
-																+ shopcom.belongTo.id
-																+ "&commoName="
-																+ shopcom.commoidtyName
-																+ "'><img src='.."+shopcom.shopCommImages[0].imagePath+"'></a></span>";
-													});
-									$('#img5').html($para);
-									//$('#img5').append("<li><div><p><a href='proscenium/shopCommItem?id="+coteid+"&page=page'>更多</a></p></div><>");
-								}
-							}
-						});
-			}
-</script>
 <div class="cont_head">
 	<div class="cont_head_left">
 		<dl>
@@ -158,6 +122,7 @@
 						"opacity" : "1"
 					}, 300); //为当前的按钮切换到选中的效果
 				}
+
 			});
 		</script>
 		<div class="banner">

@@ -946,7 +946,6 @@ public class ShopOneController {
 		mode.put("map", map);
 		User user = (User)request.getSession().getAttribute("loginUser");
 		mode.put("user", user);
-    	
 		return new ModelAndView("reception/shopItem", mode);
 	}
 	

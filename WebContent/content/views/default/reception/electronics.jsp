@@ -171,245 +171,93 @@
 		});
 		
 		</script>  
-        	<div class="cont_lb cont_lb_2">
-             <ul>
-             	<li>
-                	<dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_1.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-                        <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd class="hg_2"><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_1.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-                        <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd class="hg_2"><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_3.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-						<dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd class="hg_2"><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_4.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-                        <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd class="hg_2"><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_4.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-                        <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd class="hg_2"><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                </li>
-                <li>
-                	<dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_1.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-                        <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd class="hg_2"><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_1.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-                        <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd class="hg_2"><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_3.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-						<dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd class="hg_2"><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_4.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-                        <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd class="hg_2"><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_4.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-                        <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd class="hg_2"><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                </li>
-                <li>
-                	<dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_1.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-                        <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd class="hg_2"><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_1.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-                        <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd class="hg_2"><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_3.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-						<dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd class="hg_2"><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_4.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-                        <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd class="hg_2"><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_4.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-                        <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd class="hg_2"><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                </li>
-                <li>
-                	<dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_1.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-                        <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd class="hg_2"><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_1.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-                        <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd class="hg_2"><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_3.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-						<dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd class="hg_2"><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_4.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-                        <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd class="hg_2"><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_4.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-                        <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd class="hg_2"><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                </li>
-             </ul>
-            </div>
-        <!---right_cen_2 over---->
         
-         <!---right_cen_2 start---->
-        <div class="right_cen_1 right_cen_2">
-        	<h1>推荐产品<a class="more" href="#">VIEW ALL</a></h1>
-                <div class="cont_lb">
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_5.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-                        <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_6.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-                        <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_7.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-						<dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_7.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-                        <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_7.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-                        <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                </div>
-        </div>
-        <!---right_cen_2 over---->
         
-         <!---right_cen_2 start---->
-        <div class="right_cen_1 right_cen_2">
-        	<h1>推荐产品<a class="more" href="#">VIEW ALL</a></h1>
-                <div class="cont_lb">
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_8.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-                        <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_9.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-                        <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_10.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-						<dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_10.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-                        <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                    <dl>
-                        <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_11.jpg" /></a></dd>
-                        <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd>
-                        <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd>
-                        <dd>Digifilip:<span class="red">Tamll</span></dd>
-                        <dd><img src="../content/static/images/con_12.png" /></dd>
-                    </dl>
-                </div>
-        </div>
-        <!---right_cen_2 over---->
+<!--          -right_cen_2 start-- -->
+<!--         <div class="right_cen_1 right_cen_2"> -->
+<!--         	<h1>推荐产品<a class="more" href="#">VIEW ALL</a></h1> -->
+<!--                 <div class="cont_lb"> -->
+<!--                     <dl> -->
+<!--                         <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_5.jpg" /></a></dd> -->
+<!--                         <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd> -->
+<!--                         <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd> -->
+<!--                         <dd>Digifilip:<span class="red">Tamll</span></dd> -->
+<!--                         <dd><img src="../content/static/images/con_12.png" /></dd> -->
+<!--                     </dl> -->
+<!--                     <dl> -->
+<!--                         <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_6.jpg" /></a></dd> -->
+<!--                         <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd> -->
+<!--                         <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd> -->
+<!--                         <dd>Digifilip:<span class="red">Tamll</span></dd> -->
+<!--                         <dd><img src="../content/static/images/con_12.png" /></dd> -->
+<!--                     </dl> -->
+<!--                     <dl> -->
+<!--                         <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_7.jpg" /></a></dd> -->
+<!--                         <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd> -->
+<!-- 						<dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd> -->
+<!--                         <dd>Digifilip:<span class="red">Tamll</span></dd> -->
+<!--                         <dd><img src="../content/static/images/con_12.png" /></dd> -->
+<!--                     </dl> -->
+<!--                     <dl> -->
+<!--                         <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_7.jpg" /></a></dd> -->
+<!--                         <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd> -->
+<!--                         <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd> -->
+<!--                         <dd>Digifilip:<span class="red">Tamll</span></dd> -->
+<!--                         <dd><img src="../content/static/images/con_12.png" /></dd> -->
+<!--                     </dl> -->
+<!--                     <dl> -->
+<!--                         <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_7.jpg" /></a></dd> -->
+<!--                         <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd> -->
+<!--                         <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd> -->
+<!--                         <dd>Digifilip:<span class="red">Tamll</span></dd> -->
+<!--                         <dd><img src="../content/static/images/con_12.png" /></dd> -->
+<!--                     </dl> -->
+<!--                 </div> -->
+<!--         </div> -->
+<!--         -right_cen_2 over-- -->
+        
+<!--          -right_cen_2 start-- -->
+<!--         <div class="right_cen_1 right_cen_2"> -->
+<!--         	<h1>推荐产品<a class="more" href="#">VIEW ALL</a></h1> -->
+<!--                 <div class="cont_lb"> -->
+<!--                     <dl> -->
+<!--                         <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_8.jpg" /></a></dd> -->
+<!--                         <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd> -->
+<!--                         <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd> -->
+<!--                         <dd>Digifilip:<span class="red">Tamll</span></dd> -->
+<!--                         <dd><img src="../content/static/images/con_12.png" /></dd> -->
+<!--                     </dl> -->
+<!--                     <dl> -->
+<!--                         <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_9.jpg" /></a></dd> -->
+<!--                         <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd> -->
+<!--                         <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd> -->
+<!--                         <dd>Digifilip:<span class="red">Tamll</span></dd> -->
+<!--                         <dd><img src="../content/static/images/con_12.png" /></dd> -->
+<!--                     </dl> -->
+<!--                     <dl> -->
+<!--                         <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_10.jpg" /></a></dd> -->
+<!--                         <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd> -->
+<!-- 						<dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd> -->
+<!--                         <dd>Digifilip:<span class="red">Tamll</span></dd> -->
+<!--                         <dd><img src="../content/static/images/con_12.png" /></dd> -->
+<!--                     </dl> -->
+<!--                     <dl> -->
+<!--                         <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_10.jpg" /></a></dd> -->
+<!--                         <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd> -->
+<!--                         <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd> -->
+<!--                         <dd>Digifilip:<span class="red">Tamll</span></dd> -->
+<!--                         <dd><img src="../content/static/images/con_12.png" /></dd> -->
+<!--                     </dl> -->
+<!--                     <dl> -->
+<!--                         <dd class="lb_pic"><a href="yl_list_detail.html"><img src="../content/static/images/dq/img_11.jpg" /></a></dd> -->
+<!--                         <dd>Digifilip Pro XT911 Tablet(Wihite,16GB,2G,3G,Wi-Fi)</dd> -->
+<!--                         <dd><span class="red">$79:00</span><span class="p1"><a href="#"><img src="../content/static/images/con_10.png"/></a></span><span class="p2"><a href="#"><img src="../content/static/images/con_11.png"/></a></span></dd> -->
+<!--                         <dd>Digifilip:<span class="red">Tamll</span></dd> -->
+<!--                         <dd><img src="../content/static/images/con_12.png" /></dd> -->
+<!--                     </dl> -->
+<!--                 </div> -->
+<!--         </div> -->
+<!--         -right_cen_2 over-- -->
         
         <script>
         
