@@ -44,10 +44,6 @@ import com.yc.entity.user.User;
 import com.yc.model.AdvertisementManager;
 import com.yc.model.BuyCatSession;
 import com.yc.model.CommdityModel;
-<<<<<<< HEAD
-import com.yc.model.Products;
-=======
->>>>>>> branch 'master' of https://github.com/zazatao/v1.git
 import com.yc.service.IAddressService;
 import com.yc.service.IAdvertisementDistributionService;
 import com.yc.service.IAdvertisementService;
@@ -81,7 +77,7 @@ public class ShopTwoController {
 
 	@Autowired
 	IShopCommoidtyService shopCommService;// 商品
-	
+
 	@Autowired
 	IShopCategoryService shopCategService;// 类别
 
@@ -126,15 +122,16 @@ public class ShopTwoController {
 
 	@Autowired
 	IPersonnelService personnelService;
-	
+
 	@Autowired
 	IAdvertisementService advertisementService;
-	
+
 	@Autowired
 	IAdvertisementDistributionService adverDistributionService;
-	
-	//类别查找
+
+	// 类别查找
 	List<ShopCategory> lists = new ArrayList<ShopCategory>();
+
 	@RequestMapping(value = "categoryOne", method = RequestMethod.GET)
 	public ModelAndView categoryOne(Integer id, HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -160,8 +157,8 @@ public class ShopTwoController {
 		return new ModelAndView("reception/categoryOne", mode);
 	}
 
-	 // 类别子节点
-	  List<ShopCategory> getNodeForShopCategory(ShopCategory shopCate) {
+	// 类别子节点
+	List<ShopCategory> getNodeForShopCategory(ShopCategory shopCate) {
 		List<ShopCategory> list = shopCate.getChildren();
 
 		if (list != null && list.size() > 0) {
@@ -188,13 +185,13 @@ public class ShopTwoController {
 			}
 			mode.put("shopCategories", list);
 			mode.put("cate", cate);
-			List<ShopCategory> cateList = getNodeForShopCategory(cate);
 			if (page != null && page.equals("electronics")) {
 				AdvertisementManager advertisementManager = new AdvertisementManager();
 		 		mode.putAll(advertisementManager.getElecProductionPageAdvertisements(adverDistributionService, advertisementService));	
 		 		List<ShopCommoidty> shopcommlist = new ArrayList<ShopCommoidty>();
 				List<Brand> brandlist = new ArrayList<Brand>();
 				lists.clear();
+				List<ShopCategory> cateList = getNodeForShopCategory(cate);
 				for (int i = 0; i < cateList.size(); i++) {
 					List<ShopCommoidty> comms = cateList.get(i)
 							.getShopCommoidties();
@@ -211,7 +208,6 @@ public class ShopTwoController {
 		 		mode.putAll(advertisementManager.getCarPageAdvertisements(adverDistributionService, advertisementService));
 				List<ShopCommoidty> shopcommlist = new ArrayList<ShopCommoidty>();
 				List<CommdityModel> topshopcommlist = new ArrayList<CommdityModel>();
-<<<<<<< HEAD
 				if(cate.getLevel()!=null&&cate.getLevel()==3){
 					           List<ShopCommoidty> comms=cate.getShopCommoidties();
 					           List<CommdityModel> topcomms=commodityService.getRankByCommdityID(cate.getCategoryID());
@@ -227,23 +223,11 @@ public class ShopTwoController {
 						List<ShopCommoidty> comms = cateList.get(i).getShopCommoidties();
 						shopcommlist.addAll(comms);		
 					}	
-=======
-				lists.clear();
-				for (int i = 0; i < cateList.size(); i++) {
-					List<ShopCommoidty> comms = cateList.get(i).getShopCommoidties();
-					List<CommdityModel> topcomms=commodityService.getAllByCommdityID(cateList.get(i).getCategoryID());
-					shopcommlist.addAll(comms);
->>>>>>> branch 'master' of https://github.com/zazatao/v1.git
 					topshopcommlist.addAll(topcomms);
 					mode.put("shopcommlist", shopcommlist);
 					mode.put("topshopcommlist", topshopcommlist);
 					mode.put("cateList", cateList);
 				}
-<<<<<<< HEAD
-=======
-				mode.put("shopcommlist", shopcommlist);
-				mode.put("topshopcommlist", topshopcommlist);
->>>>>>> branch 'master' of https://github.com/zazatao/v1.git
 				return new ModelAndView("reception/autoSupplies", mode);
 			}
 		}
@@ -295,14 +279,7 @@ public class ShopTwoController {
 			return null;
 		}
 	}
-	
-	public void swap( int a, int b) {
-		int temp = a;
-		a = b;
-		b = temp;
-	}
 
-	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "buyCat", method = RequestMethod.GET)
 	@ResponseBody
@@ -445,7 +422,8 @@ public class ShopTwoController {
 		mode.put("shopCategories", shopCategories);
 		if (user == null) {
 			AdvertisementManager advertisementManager = new AdvertisementManager();
-	 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
+			mode.putAll(advertisementManager.getLoginPageAdvertisements(
+					adverDistributionService, advertisementService));
 			return new ModelAndView("user/login", mode);
 		} else {
 			@SuppressWarnings("unchecked")
@@ -534,7 +512,8 @@ public class ShopTwoController {
 		User user = (User) session.getAttribute("loginUser");
 		if (user == null) {
 			AdvertisementManager advertisementManager = new AdvertisementManager();
-	 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
+			mode.putAll(advertisementManager.getLoginPageAdvertisements(
+					adverDistributionService, advertisementService));
 			return new ModelAndView("user/login", mode);
 		} else {
 			@SuppressWarnings("unchecked")
@@ -612,7 +591,8 @@ public class ShopTwoController {
 		User user = (User) session.getAttribute("loginUser");
 		if (user == null) {
 			AdvertisementManager advertisementManager = new AdvertisementManager();
-	 		mode.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
+			mode.putAll(advertisementManager.getLoginPageAdvertisements(
+					adverDistributionService, advertisementService));
 			return new ModelAndView("user/login", mode);
 		} else {
 			@SuppressWarnings("unchecked")
