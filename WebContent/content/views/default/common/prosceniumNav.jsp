@@ -115,7 +115,7 @@
 								<a href="../proscenium/categoryLei?id=${shopCategory.categoryID}&page=electronics">${shopCategory.category }</a>
 							</c:if>
 							<c:if test="${shopCategory.category == '汽车用具' }">
-								<a href="../proscenium/categoryLei?id=${shopCategory.categoryID}&page=autoSupplies">${shopCategory.category }</a>
+								<a href="../proscenium/categoryLei?id=${shopCategory.categoryID}&page=autoSupplies&towID=23">${shopCategory.category }</a>
 							</c:if>	
 							<div>
 								<c:forEach items="${shopCategory.children }" var="shopCategory2">

@@ -63,4 +63,8 @@ public interface ICommodityService extends IGenericService<Commodity> {
 	
 	List<Commodity> getAllByUserAndStatus(User user);
 
+	List<CommdityModel> getRankByCommdityID(Integer id);
+
+	List<CommdityModel> getRankTwoByCommdityID(Integer id);
+
 }

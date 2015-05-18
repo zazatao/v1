@@ -12,17 +12,6 @@ public class Products {
 	
 	private String path;
 	
-	private String quantity;
-	
-
-	public String getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(String quantity) {
-		this.quantity = quantity;
-	}
-
 	public int getTransNumForTaobao() {
 		return transNumForTaobao;
 	}

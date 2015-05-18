@@ -32,11 +32,13 @@ import com.yc.entity.user.Positions;
 import com.yc.entity.user.User;
 import com.yc.model.BrandCategory;
 import com.yc.model.BuyCatSession;
+import com.yc.model.CommdityModel;
 import com.yc.service.IAdvertisementDistributionService;
 import com.yc.service.IAdvertisementService;
 import com.yc.service.IBuyCatService;
 import com.yc.service.ICarCommoidtyService;
 import com.yc.service.ICollectionService;
+import com.yc.service.ICommodityService;
 import com.yc.service.IDepartAndPositionsService;
 import com.yc.service.IMissionPlanService;
 import com.yc.service.IPersonnelService;
@@ -72,6 +74,9 @@ public class GetShopCategory {
 	
 	@Autowired
 	IAdvertisementService advertisementService;
+	
+	@Autowired
+    ICommodityService commodityService;
 	
 	@Autowired
 	IAdvertisementDistributionService adverDistributionService;
@@ -334,27 +339,6 @@ public class GetShopCategory {
         mode.put("list", positions);
     	return mode;
     }
-  	private List<ShopCategory> lists = new ArrayList<ShopCategory>();
-	// 类别子节点
-	private List<ShopCategory> getNodeForShopCategory(ShopCategory shopCate) {
-		List<ShopCategory> list = shopCate.getChildren();
-		if (list != null && list.size() > 0) {
-			for (int i = 0; i < list.size(); i++) {
-				getNodeForShopCategory(list.get(i));
-			}
-		} else {
-			lists.add(shopCate);
-		}
-		return lists;
-	}
-  	//汽车页面局部刷新
-  	@RequestMapping(value = "getCarShopCommByCate", method = RequestMethod.GET)
-	@ResponseBody
-	public Map<String, Object> getCarShopCommByCate(Integer id,HttpServletRequest request, HttpServletResponse response )throws ServletException, IOException{
-  		ShopCategory   cate = shopCategService.findById(id);
-  		ModelMap mode = new ModelMap();
-			List<ShopCommoidty> comms =cate.getShopCommoidties();
-		   mode.put("comms", comms);
-		   return mode;
-  	}
+
+
 }
