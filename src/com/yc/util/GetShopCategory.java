@@ -342,10 +342,6 @@ public class GetShopCategory {
         mode.put("list", positions);
     	return mode;
     }
-<<<<<<< HEAD
-
-
-=======
   	//汽车页面局部刷新
   	@RequestMapping(value = "getCarShopCommByCate", method = RequestMethod.GET)
 	@ResponseBody
@@ -356,5 +352,4 @@ public class GetShopCategory {
 		   mode.put("comms", comms);
 		   return mode;
   	}
->>>>>>> branch 'master' of https://github.com/zazatao/v1.git
 }

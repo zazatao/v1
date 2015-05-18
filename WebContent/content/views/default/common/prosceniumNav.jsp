@@ -133,13 +133,8 @@
 								</a>
 							</c:if>
 							<c:if test="${shopCategory.category == '汽车用具' }">
-<<<<<<< HEAD
-								<a href="../proscenium/categoryLei?id=${shopCategory.categoryID}&page=autoSupplies&towID=23">${shopCategory.category }</a>
-=======
-								<a href="../proscenium/categoryLei?id=23&page=autoSupplies">
-								<c:if test="${sessionScope.language == 'chinese'}">${shopCategory.category }</c:if>
+								<a href="../proscenium/categoryLei?id=${shopCategory.categoryID}&page=autoSupplies&towID=23"><c:if test="${sessionScope.language == 'chinese'}">${shopCategory.category }</c:if>
 								<c:if test="${sessionScope.language == 'russina'}">${shopCategory.russinaCategory }</c:if></a>
->>>>>>> branch 'master' of https://github.com/zazatao/v1.git
 							</c:if>	
 							<div>
 								<c:forEach items="${shopCategory.children }" var="shopCategory2">
