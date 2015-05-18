@@ -53,58 +53,31 @@ public class Statistics {
 
 	@RequestMapping(value = "removecauses", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> removecauses(String param,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Personnel personnel = (Personnel) request.getSession().getAttribute("loginPersonnle");
+	public Map<String, Object> removecauses(String param,Integer personnelID, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ModelMap mode = new ModelMap();
-		List<PersonnelStatistics> map  = new ArrayList<PersonnelStatistics>();
-		if (personnel.getDepartAndPositions() != null) {
-			List<Personnel> personnels = new ArrayList<Personnel>();
-			if (personnel.getDepartAndPositions().getDepartment().getDepartmentID() == 2) {
-				if (personnel.getDepartAndPositions().getPositions() != null) {
-					Positions posit = personnel.getDepartAndPositions().getPositions();
-					Set<Positions> positions = posit.getChildren();
-					List<DepartAndPositions> depAndPos = depAndPositionsService.findDepAndPosByDep(personnel.getDepartAndPositions().getDepartment());
-					for (DepartAndPositions dep : depAndPos) {
-						Positions post = dep.getPositions();
-						Iterator<Positions> iter = positions.iterator();
-						while (iter.hasNext()) {
-							Positions pon = iter.next();
-							if (post.getPositionid() == pon.getPositionid()) {
-								List<Personnel> personne = personnelService.getAllByDepAndPos(dep);
-								personnels.addAll(personne);
-							}
-						}
-					}
-					personnels.add(personnel);
+		if (personnelID != null && !personnelID.equals("")) {
+			List<PersonnelStatistics> map  = new ArrayList<PersonnelStatistics>();
+			Personnel personnel = personnelService.findById(personnelID);
+			if (personnel != null) {
+				String days = "";
+				if (param!= null && param.equals("week")) {
+					days = printWeekdays("week",7);
+				}else if (param!= null && param.equals("months")) {
+					days = printMonths(getFirstDayOfMonth(new Date()),new Date());
+				}else{
+					days = printMonths(getFirstDayOfYear(new Date()),new Date());
 				}
-			} else {
-				Department department = departmentService.findById(2);
-				List<DepartAndPositions> depAndPoss = depAndPositionsService.findDepAndPosByDep(department);
-				for (DepartAndPositions dep : depAndPoss) {
-					List<Personnel> personne = personnelService.getAllByDepAndPos(dep);
-					personnels.addAll(personne);
-				}
-			}
-			String days = "";
-			if (param!= null && param.equals("week")) {
-				days = printWeekdays("week",7);
-			}else if (param!= null && param.equals("months")) {
-				days = printMonths(getFirstDayOfMonth(new Date()),new Date());
-			}else{
-				days = printMonths(getFirstDayOfYear(new Date()),new Date());
-			}
-			List<String> keys = new ArrayList<String>();
-			List<PersonnelStatistics> arryList = null;
-			for (int i = 0; i < personnels.size(); i++) {
-				keys.add(personnels.get(i).getUserName());
-				arryList = personnelService.getOrtherByParam(days,personnels.get(i));
+				List<String> keys = new ArrayList<String>();
+				List<PersonnelStatistics> arryList = personnelService.getOrtherByParam(days,personnel);
+				keys.add(personnel.getUserName());
 				map.addAll(arryList);
+				mode.put("userKeys", keys);
+				mode.put("statistics", map);
+				days = days.replace("'", "");
+				mode.put("days", days);
 			}
-			mode.put("userKeys", keys);
-			mode.put("statistics", map);
-			days = days.replace("'", "");
-			mode.put("days", days);
 		}
+		
 		return mode;
 	}
 	 

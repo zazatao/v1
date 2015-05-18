@@ -13,12 +13,6 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">总览<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<c:if
-							test="${personnel.departAndPositions.department.departmentID == 27 || personnel.departAndPositions.department.departmentID == 1}">
-							<li><a href="#">客户沟通</a></li>
-							<li><a href="#">聊天</a></li>
-							<li><a href="#">聊天中心</a></li>
-						</c:if>
 						<li><a href="#">不明订单</a></li>
 						<li><a href="../overall/unfinishedOrder">未完成订单</a></li>
 						<li><a href="#">订单问题</a></li>
@@ -71,7 +65,7 @@
 							<li><a href="../forwarding/question">问题</a></li>
 							<c:if
 								test="${personnel.departAndPositions.positions.positionid != 33 }">
-								<li><a href="#">运期统计</a></li>
+								<li><a href="../forwarding/forStatistical">计算统计</a></li>
 							</c:if>
 						</ul></li>
 				</c:if>
@@ -86,20 +80,11 @@
 								<ul class="dropdown-menu">
 									<li><a href="../shop/accountBook">zazatao账本</a></li>
 									<li><a href="../shop/billPay">账单支付</a></li>
-									<li><a href="#">用户结算</a></li>
-									<li><a href="#">资金冻结</a></li>
-									<li><a href="#">调整</a></li>
-									<li><a href="#">会计</a></li>
+									<li><a href="./shop/accounting">会计</a></li>
 								</ul></li>
 							<li class="dropdown-submenu"><a href="#">经济核算</a>
 								<ul class="dropdown-menu">
-									<li><a href="#">操作</a></li>
-									<li><a href="#">账单计划</a></li>
-									<li><a href="#">操作计划</a></li>
-									<li><a href="#">账户计算</a></li>
 									<li><a href="../shop/material">材料</a></li>
-									<li><a href="#">基础操作</a></li>
-									<li><a href="#">保存地</a></li>
 									<li><a href="#">承包商</a></li>
 								</ul></li>
 							<li class="dropdown-submenu"><a href="#">设置</a>
@@ -107,9 +92,6 @@
 									<li><a href="../shop/currency">币种</a></li>
 									<!-- 								<li><a href="#">币种汇率</a></li> -->
 									<li><a href="../shop/surcharges">附加费</a></li>
-									<li><a href="#">操作员工作完成情况</a></li>
-									<li><a href="#">栏目类型</a></li>
-									<li><a href="#">调整原因</a></li>
 								</ul></li>
 						</ul></li>
 				</c:if>
@@ -137,7 +119,6 @@
 									<li><a href="#">运输方式</a></li>
 									<li><a href="#">关税</a></li>
 									<li><a href="#">部门格子</a></li>
-									<li><a href="#">包装盒</a></li>
 								</ul></li>
 							<li class="dropdown-submenu"><a href="#">管理</a>
 								<ul class="dropdown-menu">
@@ -200,15 +181,8 @@
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">统计 <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">表格报表</a></li>
-							<li><a href="#">折线报表</a></li>
-							<li><a href="#">订单</a></li>
-							<li><a href="#">技术支持</a></li>
+							<li><a href="../management/orderAccount">订单</a></li>
 							<li><a href="#">财务</a></li>
-							<li><a href="#">员工</a></li>
-							<li><a href="#">积极员工</a></li>
-							<li><a href="#">发现者</a></li>
-							<li><a href="#">促销码</a></li>
 						</ul></li>
 				</c:if>
 			</ul>

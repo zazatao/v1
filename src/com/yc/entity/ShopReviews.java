@@ -46,9 +46,7 @@ public class ShopReviews {
 	
 	@Column
 	private String rankImagesPath;//评论等级路径
-	
-	
-	
+
 	public ReviewsRank getReviewsRank() {
 		return reviewsRank;
 	}

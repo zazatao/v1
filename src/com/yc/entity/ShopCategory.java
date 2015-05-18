@@ -16,9 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.junit.Ignore;
 
 @Entity
 @DiscriminatorValue("shopCategory")//商品类别表
@@ -59,6 +57,17 @@ public class ShopCategory {
 	
 	@ManyToMany(mappedBy = "shopCategories")
 	private List<Specifications> specifications;//规格
+	
+	@Column
+	private String russinaCategory;//商品类名;
+
+	public String getRussinaCategory() {
+		return russinaCategory;
+	}
+
+	public void setRussinaCategory(String russinaCategory) {
+		this.russinaCategory = russinaCategory;
+	}
 
 	public List<CarCommoidty> getCarCommoidties() {
 		return carCommoidties;

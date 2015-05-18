@@ -3,12 +3,14 @@ package com.yc.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +30,6 @@ import com.yc.entity.Surcharges;
 import com.yc.entity.user.Personnel;
 import com.yc.model.AdvertisementManager;
 import com.yc.model.CommdityModel;
-import com.yc.model.Products;
 import com.yc.service.IAdvertisementDistributionService;
 import com.yc.service.IAdvertisementService;
 import com.yc.service.IBrandService;
@@ -74,16 +75,48 @@ public class IndexController {
 	private List<ShopCategory> lists = new ArrayList<ShopCategory>();
 	
     @RequestMapping(value = "index", method = RequestMethod.GET)
-    public ModelAndView index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    public ModelAndView index(String language, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	HttpSession session = request.getSession();
+    	if ( language != null ) {
+    		if ( language.equals("chinese") ) {
+    			session.setAttribute("language", "chinese");
+    		} else if ( language.equals("russina") ) {
+    			session.setAttribute("language", "russina");
+    		}
+    	} else {   
+    		if ( session.getAttribute("language") == null ) {
+    			session.setAttribute("language", "chinese");
+    		}	
+    	}
+ 
     	List<ShopCategory> list = shopCategService.getAll();  	
     	List<CommdityModel> list1 =  commodityService.getAllByShopCategoryID(6);
+    	String language2 = (String) request.getSession().getAttribute("language");
+ 		if ( language2.equals("russina") ) {
+ 			for ( int i = 0; i < list1.size(); i++ ) {
+ 				list1.get(i).setCategory(shopCategService.findById(list1.get(i).getCategoryID()).getRussinaCategory());
+ 			}
+ 		}
 
     	lists.clear();
  		lists = getNodeForShopCategory(shopCategService.findById(6));
- 		List<Products> allCommodity = new ArrayList<Products>();
+ 		List<CommdityModel> allCommodity = new ArrayList<CommdityModel>();
+ 		List<CommdityModel> topCommodity = new ArrayList<CommdityModel>();
  		for ( int i = 0; i < lists.size(); i++ ) {
  			allCommodity.addAll(commodityService.getAllByCommdityID(lists.get(i).getCategoryID()));
+ 		}
+ 		allCommodity.sort(new Comparator<CommdityModel>(){   
+            public int compare(CommdityModel object1, CommdityModel object2) {   
+                return object1.getSums() - object2.getSums();   
+             }   
+         }); 
+ 		
+ 		for ( int i = 0;i < allCommodity.size(); i++ ) {
+ 			if ( i < 7 ) {
+ 				topCommodity.add(allCommodity.get(i));
+ 			} else {
+ 				break;
+ 			}				
  		}
  		
  		ModelMap mode = new ModelMap();
@@ -100,18 +133,40 @@ public class IndexController {
  	@RequestMapping(value = "shopCommItems", method = RequestMethod.GET)
  	@ResponseBody
  	public Map<String, Object> shopCommItems(Integer id,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
- 		ModelMap mode = new ModelMap(); 		
+ 		ModelMap mode = new ModelMap(); 	
  		List<CommdityModel> list1 =  commodityService.getAllByShopCategoryID(id);
+ 		String language = (String) request.getSession().getAttribute("language");
+ 		if ( language.equals("russina") ) {
+ 			for ( int i = 0; i < list1.size(); i++ ) {
+ 				list1.get(i).setCategory(shopCategService.findById(list1.get(i).getCategoryID()).getRussinaCategory());
+ 			}
+ 		}
     	mode.put("list", list1);
     	mode.put("categoryId", id);
 
  		lists.clear();
  		lists = getNodeForShopCategory(shopCategService.findById(id));
- 		List<Products> allCommodity = new ArrayList<Products>();
+ 		List<CommdityModel> allCommodity = new ArrayList<CommdityModel>();
+ 		List<CommdityModel> topCommodity = new ArrayList<CommdityModel>();
  		for ( int i = 0; i < lists.size(); i++ ) { 			
  			allCommodity.addAll(commodityService.getAllByCommdityID(lists.get(i).getCategoryID()));
  		}
- 		mode.put("lists", allCommodity);
+ 		
+ 		allCommodity.sort(new Comparator<CommdityModel>(){   
+            public int compare(CommdityModel object1, CommdityModel object2) {   
+                return object1.getSums() - object2.getSums();   
+             }   
+         }); 
+ 		
+ 		for ( int i = 0;i < allCommodity.size(); i++ ) {
+ 			if ( i < 7 ) {
+ 				topCommodity.add(allCommodity.get(i));
+ 			} else {
+ 				break;
+ 			}				
+ 		}
+ 		
+ 		mode.put("lists", topCommodity);
  		mode.put("success", "true");
  		
  		return mode;
@@ -138,19 +193,36 @@ public class IndexController {
   		
   		lists.clear();
  		lists = getNodeForShopCategory(shopCategService.findById(id));
- 		List<Products> allCommodity = new ArrayList<Products>();
+ 		List<CommdityModel> allCommodity = new ArrayList<CommdityModel>();
+ 		List<CommdityModel> topCommodity = new ArrayList<CommdityModel>();
  		for ( int i = 0; i < lists.size(); i++ ) {			
  			allCommodity.addAll(commodityService.getAllByCommdityID(lists.get(i).getCategoryID()));
  		}
- 		mode.put("pr", allCommodity);
+ 		
+ 		allCommodity.sort(new Comparator<CommdityModel>(){   
+            public int compare(CommdityModel object1, CommdityModel object2) {   
+                return object1.getSums() - object2.getSums();   
+             }   
+         }); 
+ 		
+ 		for ( int i = 0;i < allCommodity.size(); i++ ) {
+ 			if ( i < 7 ) {
+ 				topCommodity.add(allCommodity.get(i));
+ 			} else {
+ 				break;
+ 			}				
+ 		}
+ 		
+ 		mode.put("pr", topCommodity);
  		mode.put("success", "true");
   		return mode;
   	}
   	
   	// 更多内容
   	@RequestMapping(value = "shopCommItemone", method = RequestMethod.GET)
-  	public ModelAndView shopCommItemsone(Integer id,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  	public ModelAndView shopCommItemsone(Integer id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
   		ModelMap mode = new ModelMap();
+  		String language = (String) request.getSession().getAttribute("language");
   		AdvertisementManager advertisementManager = new AdvertisementManager();
  		mode.putAll(advertisementManager.getInnerPageAdvertisements(adverDistributionService,advertisementService));
 		ShopCategory cate = shopCategService.findById(id);
@@ -169,19 +241,12 @@ public class IndexController {
 			if (i == shopcates.size() - 1) {
 				cate = shopcates.get(i);
 			}
-			strs = strs + shopcates.get(i).getCategoryID() + "-" + shopcates.get(i).getCategory() + "|";
+			if ( language.equals("chinese") ) {
+				strs = strs + shopcates.get(i).getCategoryID() + "-" + shopcates.get(i).getCategory() + "|";
+			} else if ( language.equals("russina") ) {
+				strs = strs + shopcates.get(i).getCategoryID() + "-" + shopcates.get(i).getRussinaCategory() + "|";
+			}
 		}
-		
-		int position1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.innerPage, 1).getId(); 
-    	List<Advertisement> advertisements = advertisementService.getAll();
-    	ArrayList<Advertisement> advertisements1 = new ArrayList<Advertisement>();
-    	
-    	for ( int i = 0; i < advertisements.size(); i++ ) {
-    		if ( advertisements.get(i).getAdverDistribution().getId() == position1 ) {
-    			advertisements1.add(advertisements.get(i));
-    		} 
-    	}
-    	mode.put("advertisements1", advertisements1);
 		
 		shopcates = shopCategService.getAll();
 		mode.put("shopCategories", shopcates);
@@ -189,8 +254,14 @@ public class IndexController {
 		mode.put("page", "page");
 		mode.put("id", id);
 		mode.put("nvabar", strs.substring(0, strs.length() - 1));
-		List<Products> list = commodityService.getAllByCommdityID(id);
-		mode.put("list", list);
+		
+		lists.clear();
+ 		lists = getNodeForShopCategory(shopCategService.findById(id));
+ 		List<ShopCommoidty> allCommodity = new ArrayList<ShopCommoidty>();
+ 		for ( int i = 0; i < lists.size(); i++ ) {
+ 			allCommodity.addAll(shopCommService.getAllByShopCategoryID(lists.get(i).getCategoryID(), "page"));
+ 		}
+		mode.put("list", allCommodity);
   		return new ModelAndView("reception/searchList", mode);
   	}
   	
@@ -214,6 +285,7 @@ public class IndexController {
    	@RequestMapping(value = "CommItem", method = RequestMethod.GET)
    	public ModelAndView CommItem(Integer id,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
    		ModelMap mode = new ModelMap();
+   		String language = (String) request.getSession().getAttribute("language");
    		AdvertisementManager advertisementManager = new AdvertisementManager();
  		mode.putAll(advertisementManager.getInnerPageAdvertisements(adverDistributionService,advertisementService));
  		ShopCategory cate = shopCategService.findById(id);
@@ -232,14 +304,19 @@ public class IndexController {
  			if (i == shopcates.size() - 1) {
  				cate = shopcates.get(i);
  			}
- 			strs = strs + shopcates.get(i).getCategoryID() + "-" + shopcates.get(i).getCategory() + "|";
+ 			
+ 			if ( language.equals("chinese") ) {
+				strs = strs + shopcates.get(i).getCategoryID() + "-" + shopcates.get(i).getCategory() + "|";
+			} else if ( language.equals("russina") ) {
+				strs = strs + shopcates.get(i).getCategoryID() + "-" + shopcates.get(i).getRussinaCategory() + "|";
+			}
  		}
  		shopcates = shopCategService.getAll();
  		mode.put("shopCategories", shopcates);
  		mode.put("cate", cate);
  		mode.put("id", id);
  		mode.put("nvabar", strs.substring(0, strs.length() - 1));
- 		List<Products> list = commodityService.getAllByCommdityID(id);
+ 		List<CommdityModel> list = commodityService.getAllByCommdityID(id);
  		mode.put("list", list);
  		
  		int position1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.innerPage, 1).getId(); 

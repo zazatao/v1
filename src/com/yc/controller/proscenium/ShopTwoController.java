@@ -44,7 +44,10 @@ import com.yc.entity.user.User;
 import com.yc.model.AdvertisementManager;
 import com.yc.model.BuyCatSession;
 import com.yc.model.CommdityModel;
+<<<<<<< HEAD
 import com.yc.model.Products;
+=======
+>>>>>>> branch 'master' of https://github.com/zazatao/v1.git
 import com.yc.service.IAddressService;
 import com.yc.service.IAdvertisementDistributionService;
 import com.yc.service.IAdvertisementService;
@@ -157,8 +160,8 @@ public class ShopTwoController {
 		return new ModelAndView("reception/categoryOne", mode);
 	}
 
-	// 类别子节点
-	 List<ShopCategory> getNodeForShopCategory(ShopCategory shopCate) {
+	 // 类别子节点
+	  List<ShopCategory> getNodeForShopCategory(ShopCategory shopCate) {
 		List<ShopCategory> list = shopCate.getChildren();
 
 		if (list != null && list.size() > 0) {
@@ -185,13 +188,13 @@ public class ShopTwoController {
 			}
 			mode.put("shopCategories", list);
 			mode.put("cate", cate);
+			List<ShopCategory> cateList = getNodeForShopCategory(cate);
 			if (page != null && page.equals("electronics")) {
 				AdvertisementManager advertisementManager = new AdvertisementManager();
 		 		mode.putAll(advertisementManager.getElecProductionPageAdvertisements(adverDistributionService, advertisementService));	
 		 		List<ShopCommoidty> shopcommlist = new ArrayList<ShopCommoidty>();
 				List<Brand> brandlist = new ArrayList<Brand>();
 				lists.clear();
-				List<ShopCategory> cateList = getNodeForShopCategory(cate);
 				for (int i = 0; i < cateList.size(); i++) {
 					List<ShopCommoidty> comms = cateList.get(i)
 							.getShopCommoidties();
@@ -203,11 +206,12 @@ public class ShopTwoController {
 				mode.put("brands", brandlist);
 				mode.put("shopcommlist", shopcommlist);
 				return new ModelAndView("reception/electronics", mode);
-			}else  if (page.equals("autoSupplies")) {
+			}else if (page.equals("autoSupplies")) {
 				AdvertisementManager advertisementManager = new AdvertisementManager();
 		 		mode.putAll(advertisementManager.getCarPageAdvertisements(adverDistributionService, advertisementService));
 				List<ShopCommoidty> shopcommlist = new ArrayList<ShopCommoidty>();
 				List<CommdityModel> topshopcommlist = new ArrayList<CommdityModel>();
+<<<<<<< HEAD
 				if(cate.getLevel()!=null&&cate.getLevel()==3){
 					           List<ShopCommoidty> comms=cate.getShopCommoidties();
 					           List<CommdityModel> topcomms=commodityService.getRankByCommdityID(cate.getCategoryID());
@@ -223,15 +227,26 @@ public class ShopTwoController {
 						List<ShopCommoidty> comms = cateList.get(i).getShopCommoidties();
 						shopcommlist.addAll(comms);		
 					}	
+=======
+				lists.clear();
+				for (int i = 0; i < cateList.size(); i++) {
+					List<ShopCommoidty> comms = cateList.get(i).getShopCommoidties();
+					List<CommdityModel> topcomms=commodityService.getAllByCommdityID(cateList.get(i).getCategoryID());
+					shopcommlist.addAll(comms);
+>>>>>>> branch 'master' of https://github.com/zazatao/v1.git
 					topshopcommlist.addAll(topcomms);
 					mode.put("shopcommlist", shopcommlist);
 					mode.put("topshopcommlist", topshopcommlist);
 					mode.put("cateList", cateList);
 				}
+<<<<<<< HEAD
+=======
+				mode.put("shopcommlist", shopcommlist);
+				mode.put("topshopcommlist", topshopcommlist);
+>>>>>>> branch 'master' of https://github.com/zazatao/v1.git
 				return new ModelAndView("reception/autoSupplies", mode);
 			}
 		}
-
 		if (page != null && page.equals("brand")) {
 			AdvertisementManager advertisementManager = new AdvertisementManager();
 	 		mode.putAll(advertisementManager.getBrandPageAdvertisements(adverDistributionService, advertisementService));

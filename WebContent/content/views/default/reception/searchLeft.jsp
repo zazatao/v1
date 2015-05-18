@@ -6,16 +6,24 @@
 <div class="nyleft">
 		<div class="zdqwz">
 			<c:if test="${page != 'brand' && page != 'special' && page != 'search'}">
-				<img src="../content/static/images/zy.png" /> > ${cate.category }
+				<img src="../content/static/images/zy.png" /> >
+				<c:if test="${sessionScope.language == 'chinese'}">${cate.category }</c:if>
+				<c:if test="${sessionScope.language == 'russina'}">${cate.russinaCategory }</c:if> 
 			</c:if>
 			<c:if test="${page == 'brand'}">
-				<img src="../content/static/images/zy.png" /> > 名品街
+				<img src="../content/static/images/zy.png" /> >
+				<c:if test="${sessionScope.language == 'chinese'}">名品街</c:if>
+				<c:if test="${sessionScope.language == 'russina'}">我是俄文名品街</c:if>
 			</c:if>
 			<c:if test="${page == 'special'}">
-				<img src="../content/static/images/zy.png" /> > 打折热卖产品 
+				<img src="../content/static/images/zy.png" /> >
+				<c:if test="${sessionScope.language == 'chinese'}">打折热卖产品 </c:if>
+				<c:if test="${sessionScope.language == 'russina'}">我是俄文打折热卖产品 </c:if> 
 			</c:if>
 			<c:if test="${page == 'search'}">
-				<img src="../content/static/images/zy.png" /> > 搜索结果
+				<img src="../content/static/images/zy.png" /> >
+				<c:if test="${sessionScope.language == 'chinese'}">搜索结果</c:if>
+				<c:if test="${sessionScope.language == 'russina'}">我是俄文搜索结果</c:if>
 			</c:if>
 						
 		</div>
@@ -24,7 +32,11 @@
 				<c:forEach items="${shopCategories }" var="category" varStatus="loop">
 					<c:if test="${category.parentLevel == cate }">
 						<div class="collapsed">
-							<span>${category.category }</span>
+							<span>
+							<c:if test="${sessionScope.language == 'chinese'}">${category.category }</c:if>
+							<c:if test="${sessionScope.language == 'russina'}">${category.russinaCategory }</c:if>
+							
+							</span>
 							<div>
 								<c:forEach items="${shopCategories }" var="one">
 									<c:if test="${one.parentLevel == category }">

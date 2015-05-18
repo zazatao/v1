@@ -102,8 +102,9 @@
 									<c:if test="${advertisement.adverDistribution.whichPage == 'innerPage'}">内页</c:if>
 									<c:if test="${advertisement.adverDistribution.whichPage == 'detailPage'}">详情页</c:if>
 									<c:if test="${advertisement.adverDistribution.whichPage == 'carPage'}">汽车用具</c:if>
-									<c:if test="${advertisement.adverDistribution.whichPage == 'elecProductionPage'}">电子产品</c:if>
+									<c:if test="${advertisement.adverDistribution.whichPage == 'elecProductionPage'}">电子产品页</c:if>
 									<c:if test="${advertisement.adverDistribution.whichPage == 'myOfficePage'}">我的办公室</c:if>
+									<c:if test="${advertisement.adverDistribution.whichPage == 'brandPage'}">品牌页</c:if>
 									</td>
 									<td>${advertisement.adverDistribution.position}</td>
 									<td>${advertisement.imagePath}</td>

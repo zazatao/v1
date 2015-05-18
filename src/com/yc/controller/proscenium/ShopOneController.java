@@ -731,7 +731,7 @@ public class ShopOneController {
 			         cate=brand.getShopCateg();
 			         List<Brand> brands=new ArrayList<Brand>();
 			         brands.add(brand);
-			         mode.put("brands", brands);
+			         mode.put("brands", brands);			         
 			         List<ShopCommoidty> list = shopCommService.getShopCommByBrandId(id);
 				     mode.put("list", list);
 		}else{
@@ -745,6 +745,7 @@ public class ShopOneController {
 		mode.put("specifications", cate.getSpecifications());
 		String strs = "";
 		shopcates.add(cate);
+		String language = (String) request.getSession().getAttribute("language");
 		while (cate.getParentLevel() != null) {
 			cate = shopCategService.findById(cate.getParentLevel().getCategoryID());
 			if (cate != null) {
@@ -755,7 +756,13 @@ public class ShopOneController {
 			if (i == shopcates.size() - 1) {
 				cate = shopcates.get(i);
 			}
-			strs = strs + shopcates.get(i).getCategoryID() + "-" + shopcates.get(i).getCategory() + "|";
+			
+			if ( language.equals("chinese") ) {
+				strs = strs + shopcates.get(i).getCategoryID() + "-" + shopcates.get(i).getCategory() + "|";
+			} else if ( language.equals("russina") ) {
+				strs = strs + shopcates.get(i).getCategoryID() + "-" + shopcates.get(i).getRussinaCategory() + "|";
+			}
+			
 		}
 		shopcates = shopCategService.getAll();
 		mode.put("shopCategories", shopcates);
@@ -781,7 +788,7 @@ public class ShopOneController {
 	//规则搜寻商品
 	@RequestMapping(value = "searchShopComm", method = RequestMethod.POST)
 	public ModelAndView searchShopComm(Integer id, String page, String params, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		String language = (String) request.getSession().getAttribute("language");
 		ShopCategory cate = shopCategService.findById(id);
 		List<ShopCategory> shopcates = new ArrayList<ShopCategory>();
 		shopcates.add(cate);
@@ -805,7 +812,12 @@ public class ShopOneController {
 			if (i == shopcates.size() - 1) {
 				cate = shopcates.get(i);
 			}
-			strs = strs + shopcates.get(i).getCategoryID() + "-" + shopcates.get(i).getCategory() + "|";
+			
+			if ( language.equals("chinese") ) {
+				strs = strs + shopcates.get(i).getCategoryID() + "-" + shopcates.get(i).getCategory() + "|";
+			} else if ( language.equals("russina") ) {
+				strs = strs + shopcates.get(i).getCategoryID() + "-" + shopcates.get(i).getRussinaCategory() + "|";
+			}
 		}
 		mode.put("cate", cate);
 		shopcates = shopCategService.getAll();
@@ -876,6 +888,7 @@ public class ShopOneController {
 	@RequestMapping(value = "shopItem", method = RequestMethod.GET)
 	public ModelAndView shopItem(Integer commID,Integer category,Integer shopID,String commoName,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ModelMap mode = new ModelMap();
+		String language = (String) request.getSession().getAttribute("language");
 		AdvertisementManager advertisementManager = new AdvertisementManager();
  		mode.putAll(advertisementManager.getDetailPageAdvertisements(adverDistributionService, advertisementService));
 		ShopCategory cate = shopCategService.findById(category);
@@ -892,7 +905,11 @@ public class ShopOneController {
 			}
 		}
 		for (int i = shopcates.size() - 1; i >= 0; i--) {
-			strs = strs + shopcates.get(i).getCategoryID() + "-" + shopcates.get(i).getCategory() + "|";
+			if ( language.equals("chinese") ) {
+				strs = strs + shopcates.get(i).getCategoryID() + "-" + shopcates.get(i).getCategory() + "|";
+			} else if ( language.equals("russina") ) {
+				strs = strs + shopcates.get(i).getCategoryID() + "-" + shopcates.get(i).getRussinaCategory() + "|";
+			}
 		}
 		List<ShopCategory> shopcategories = shopCategService.getAll();
 		mode.put("shopCategories", shopcategories);

@@ -1,4 +1,3 @@
-
 package com.yc.controller.orderprocess;
 
 import java.io.IOException;
@@ -39,16 +38,16 @@ import com.yc.service.IPersonnelService;
 @Controller
 @RequestMapping("/orderprocessing")
 public class StatisticsController {
-	
+
 	@SuppressWarnings("unused")
 	private static final Logger LOG = Logger.getLogger(StatisticsController.class);
-	
+
 	@Autowired
 	IOrderGroupService orderGroupService;
-	
+
 	@Autowired
 	IOrderFormService orderFormService;
-	
+
 	@Autowired
 	IDepartAndPositionsService depAndPositionsService;
 
@@ -57,10 +56,54 @@ public class StatisticsController {
 
 	@Autowired
 	IDepartmentService departmentService;
-	
-    @RequestMapping(value = "statistics", method = RequestMethod.GET)
-    public ModelAndView statistics(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        return new ModelAndView("orderprocessing/statistics");
-    }
-    
+
+	@RequestMapping(value = "statistics", method = RequestMethod.GET)
+	public ModelAndView statistics(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Personnel personnel = (Personnel) request.getSession().getAttribute("loginPersonnle");
+		ModelMap mode = new ModelMap();
+		if (personnel.getDepartAndPositions() != null) {
+			List<Personnel> personnels = new ArrayList<Personnel>();
+			if (personnel.getDepartAndPositions().getDepartment().getDepartmentID() == 2) {
+				if (personnel.getDepartAndPositions().getPositions() != null) {
+					Positions posit = personnel.getDepartAndPositions().getPositions();
+					Set<Positions> positions = posit.getChildren();
+					List<DepartAndPositions> depAndPos = depAndPositionsService.findDepAndPosByDep(personnel.getDepartAndPositions().getDepartment());
+					for (DepartAndPositions dep : depAndPos) {
+						Positions post = dep.getPositions();
+						Iterator<Positions> iter = positions.iterator();
+						while (iter.hasNext()) {
+							Positions pon = iter.next();
+							if (post.getPositionid() == pon.getPositionid()) {
+								List<Personnel> personne = personnelService.getAllByDepAndPos(dep);
+								personnels.addAll(personne);
+							}
+						}
+					}
+					personnels.add(personnel);
+				}
+			} else {
+				Department department = departmentService.findById(2);
+				List<DepartAndPositions> depAndPoss23 = depAndPositionsService.findDepAndPosByDep(department);
+				for (DepartAndPositions dep : depAndPoss23) {
+					List<Personnel> personne = personnelService.getAllByDepAndPos(dep);
+					personnels.addAll(personne);
+				}
+				Set<Department> set = department.getChildren();
+				if (set != null && set.size()>0) {
+					Iterator<Department> iterator =  set.iterator();
+					while (iterator.hasNext()) {
+						Department depart = iterator.next();
+						List<DepartAndPositions> depAndPoss = depAndPositionsService.findDepAndPosByDep(depart);
+						for (DepartAndPositions dep : depAndPoss) {
+							List<Personnel> personne = personnelService.getAllByDepAndPos(dep);
+							personnels.addAll(personne);
+						}
+					}
+				}
+			}
+			mode.put("personnels", personnels);
+		}
+		return new ModelAndView("orderprocessing/statistics",mode);
+	}
+
 }

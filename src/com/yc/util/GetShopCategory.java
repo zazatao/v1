@@ -115,8 +115,11 @@ public class GetShopCategory {
 			brand = new BrandCategory();
 			brand.setCategory(key);
 			brand.setBrandStr(map.get(key).substring(0,map.get(key).length()-1));
+			brand.setRussinaCategory(key);
+			brand.setRussinaBrandStr(map.get(key).substring(0,map.get(key).length()-1));
 			shopCategories.add(brand);
 		}
+		
 		mode.put("shopCategories", shopCategories);
 		mode.put("success", "true");
 		return mode;
@@ -339,6 +342,19 @@ public class GetShopCategory {
         mode.put("list", positions);
     	return mode;
     }
+<<<<<<< HEAD
 
 
+=======
+  	//汽车页面局部刷新
+  	@RequestMapping(value = "getCarShopCommByCate", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getCarShopCommByCate(Integer id,HttpServletRequest request, HttpServletResponse response )throws ServletException, IOException{
+  		ShopCategory   cate = shopCategService.findById(id);
+  		ModelMap mode = new ModelMap();
+			List<ShopCommoidty> comms =cate.getShopCommoidties();
+		   mode.put("comms", comms);
+		   return mode;
+  	}
+>>>>>>> branch 'master' of https://github.com/zazatao/v1.git
 }

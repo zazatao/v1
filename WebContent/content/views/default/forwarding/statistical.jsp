@@ -61,59 +61,6 @@ th {
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="span12">
-				<form class="form-horizontal" action="./searchPackage"
-					method="POST">
-					<div class="form-group">
-						<div class="col-sm-1">
-							<input type="text" name="transNumForTaobao" placeholder="货号"
-								class="form-control" id="transNumForTaobao" onblur="checkvalue(this);">
-						</div>
-						<div class="col-sm-1">
-							<input type="text" name="userName" placeholder="买方"
-								class="form-control" id="userName">
-						</div>
-						<div class="col-sm-1">
-							<input type="text" name="packageCode" placeholder="包裹"
-								class="form-control" id="packageCode">
-						</div>
-						<div class="col-sm-1">
-							<input type="text" name="operatorPurchase" placeholder="操作员"
-								class="form-control" id="operatorPurchase">
-						</div>
-						<div class="col-sm-1">
-							<input type="text" name="orderDate" placeholder="创建日期"
-								class="form-control" id="orderDate"
-								onclick="dateInfoxxx('orderDate')">
-						</div>
-						<div class="col-sm-1">
-							<input type="text" name="paymentDate" placeholder="付款日期"
-								class="form-control" id="paymentDate"
-								onclick="dateInfoxxx('paymentDate')">
-						</div>
-						<div class="col-sm-1">
-							<input type="text" name="tpek" placeholder="追踪"
-								class="form-control" id="tpek">
-						</div>
-<!-- 						<div class="col-sm-1"> -->
-<!-- 							<select class="form-control" name="orderstatus" id="orderstatus" -->
-<!-- 								placeholder="状态"> -->
-<!-- 								<option value="">-----状态----- -->
-<!-- 								<option value="waitAcceptance" name = "waitAcceptance">等待验收 -->
-<!-- 								<option value="waitPayment" name = "waitPayment">等待支付 -->
-<!-- 								<option value="inForwarding" name = "inForwarding">在线转发 -->
-<!-- 								<option value="waitDelivery" name = "waitDelivery">等待发货 -->
-<!-- 								<option value="transitGoods" name = "transitGoods">在途货物 -->
-<!-- 								<option value="consigneeSigning" name = "consigneeSigning">收货人签单 -->
-<!-- 								<option value="completionTransaction" name = "completionTransaction">完成交易 -->
-<!-- 								<option value="closeTransaction" name = "closeTransaction">关闭交易 -->
-<!-- 								<option value="autoCloseTransaction" name = "autoCloseTransaction">自动关闭交易 -->
-<!-- 							</select> -->
-<!-- 						</div> -->
-						<div class="col-sm-1">
-							<input type="submit" value="搜索" class="btn btn-default">
-						</div>
-					</div>
-				</form>
 				<table class="table table-bordered table-hover table-condensed">
 					<thead>
 						<tr>
@@ -133,7 +80,7 @@ th {
 							<th></th>
 						</tr>
 					</thead>
-					<c:forEach var="package" items="${list }" varStatus="loop">
+					<c:forEach var="package" items="${packages }" varStatus="loop">
 						<tbody>
 							<c:forEach items="${package.orderForms }" var="order" varStatus="ll" >
 									<c:choose>

@@ -86,7 +86,9 @@
 									</p>
 								</c:forEach>
 									<div class="sctbldscr">
-										<p>${shopCar.shopCommoidty.commoidtyName }</p>
+										<p><c:if test="${sessionScope.language == 'chinese'}">${shopCar.shopCommoidty.commoidtyName }</c:if>
+										<c:if test="${sessionScope.language == 'russina'}">${shopCar.shopCommoidty.russinaCommoidtyName }</c:if></p>
+										
 										<ul>
 											<c:forEach items="${spec }" var="sp">
 													<c:if test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '颜色'}">

@@ -3,12 +3,29 @@ package com.yc.model;
 public class PersonnelStatistics {
 
 	private String userName;
-
+	private String depart;
+	private String pos;
 	private Integer accomplishNum;
 	private String accomplishDate;
 	private Integer rules;
 	private Double wage;
 	private Double saleCut;
+
+	public String getDepart() {
+		return depart;
+	}
+
+	public void setDepart(String depart) {
+		this.depart = depart;
+	}
+
+	public String getPos() {
+		return pos;
+	}
+
+	public void setPos(String pos) {
+		this.pos = pos;
+	}
 
 	public String getUserName() {
 		return userName;

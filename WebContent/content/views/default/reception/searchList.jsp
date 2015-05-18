@@ -25,8 +25,11 @@
 	<jsp:include page="../common/prosceniumNav.jsp"></jsp:include>
 	<div class="con">
 		<!---------------   页面主体   ----------------------->
-		<div class="dqwz" id="navbar">
-			<a href="../index">首页</a>
+		<div class="dqwz" id="navbar">			
+			<a href="../index">
+			<c:if test="${sessionScope.language == 'chinese' }">首页</c:if>
+			<c:if test="${sessionScope.language == 'russina' }">我是俄语首页</c:if>
+			</a>	
 		</div>
 		<div class="nybtl" id="title"></div>
 		<script type="text/javascript">
@@ -37,17 +40,31 @@
 								var str = strs.split("|");
 								var $guige = "";
 								var $guige1 = "";
+								var language = $("#language").val();
+								var special = "";
+								if ( language == 'chinese') {
+									special = "折扣";
+								} else if ( language == 'russina') {
+									special = "我是俄文折扣";
+								}
+								var brand = "";
+								if ( language == 'chinese') {
+									brand = "名品街";
+								} else if ( language == 'russina') {
+									brand = "我是俄文名品街";
+								}
 								for (var j = 0; j < str.length; j++) {
 									if (j == 0) {
+										
 										if('${page}'=='brand'){
 											$guige = $guige
 											+ "> <a href='..proscenium/categoryLei?id=-1&page=brand'>"
-											+ '品牌街'
+											+ brand
 											+ "</a> ";
 										}else if('${page}'=='special'){
 											$guige = $guige
 											+ "> <a href='..proscenium/categoryLei?id=-1&page=special'>"
-											+ '打折热卖产品'
+											+ special
 											+ "</a> ";
 										}else{
 											$guige = $guige
@@ -69,8 +86,14 @@
 								}
 								
 								if ( '${page}'=='search') {
-									$('#navbar').append("搜索结果");
-									$('#title').append("搜索结果");
+									if ( language == 'chinese') {
+										$('#navbar').append("搜索结果");
+										$('#title').append("搜索结果");
+									} else if ( language == 'russina') {
+										$('#navbar').append("我是俄文搜索结果");
+										$('#title').append("我是俄文搜索结果");
+									}
+									
 								} else {
 									$('#navbar').append($guige);
 									$('#title').append($guige1);
@@ -81,6 +104,7 @@
 		<div class="nyright">
 			<div class="nytjsx">
 				<div class="nytjsxt">您的选择器</div>
+				<input id="language" type="hidden" value="${sessionScope.language}" />
 				<div class="nytjsxn">
 					<div class="tjsr">
 						<ul>
@@ -430,7 +454,10 @@
 										</span>
 									</dd>
 									<dd>
-										店铺:<span class="red">${commShop.belongTo.shopName }</span>
+										店铺:<span class="red">
+										<c:if test="${sessionScope.language == 'chinese' }">${commShop.belongTo.shopName }</c:if>
+										<c:if test="${sessionScope.language == 'russina' }">${commShop.belongTo.russinaShopName }</c:if>
+										</span>
 									</dd>
 									<dd class="hg">
 										<img src="../content/static/images/con_12.png" width="85"

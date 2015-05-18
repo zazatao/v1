@@ -62,11 +62,6 @@
                 	<c:forEach var="advertisement" items="${advertisements2 }" varStatus="pool">
     					<li><a href="${advertisement.link }" ><img src="..${advertisement.imagePath }"/></a></li>
     				</c:forEach>
-                    <!-- <li><a href="a.html"><img src="../content/static/images/09.jpg" /></a></li>
-                    <li><a href="b.html"><img src="../content/static/images/08.jpg" /></a></li>
-                    <li><a href="c.html"><img src="../content/static/images/07.jpg" /></a></li>
-                    <li><a href="d.html"><img src="../content/static/images/05.jpg" /></a></li>
-                    <li><a href="e.html"><img src="../content/static/images/03.jpg" /></a></li> -->
                 </ul>
             </div>
             <ul class="lb_piconcs lb_piconcs1">
@@ -83,12 +78,7 @@
                 	<c:forEach var="advertisement" items="${advertisements3 }" varStatus="pool">
     					<li><a href="${advertisement.link }" ><img src="..${advertisement.imagePath }"/></a></li>
     				</c:forEach>
-                    <!-- <li><a href="a.html"><img src="../content/static/images/07.jpg" /></a></li>
-                    <li><a href="b.html"><img src="../content/static/images/09.jpg" /></a></li>
-                    <li><a href="gr_list.html"><img src="../content/static/images/05.jpg" /></a></li>
-                    <li><a href="gr_list.html"><img src="../content/static/images/06.jpg" /></a></li>
-                    <li><a href="gr_list.html"><img src="../content/static/images/09.jpg" /></a></li> -->
-                </ul>
+                    </ul>
             </div>
             <ul class="lb_piconcs lb_piconcs2">
             	<li></li>

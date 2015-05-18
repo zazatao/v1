@@ -86,6 +86,17 @@ public class Shop {
 	@JoinColumn(name = "blacklist_id")
 	private Blacklist blacklist;
 	
+	@Column
+	private String russinaShopName ;
+	
+	public String getRussinaShopName() {
+		return russinaShopName;
+	}
+
+	public void setRussinaShopName(String russinaShopName) {
+		this.russinaShopName = russinaShopName;
+	}
+
 	public Blacklist getBlacklist() {
 		return blacklist;
 	}

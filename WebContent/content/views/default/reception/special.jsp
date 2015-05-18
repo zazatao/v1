@@ -38,7 +38,9 @@
 		             			<li><a href="../proscenium/shopItem?commID=${shopcom.commCode }&category=${shopcom.shopCategory.categoryID }&shopID=${shopcom.belongTo.id }&commoName=${shopcom.commoidtyName }"> <img
 						src="..${shopcom.shopCommImages[0].imagePath}" />
 						<div class="tit_3">
-							     ${shopcom.commoidtyName}
+						<c:if test="${sessionScope.language == 'chinese' }">${shopcom.commoidtyName}</c:if>
+						<c:if test="${sessionScope.language == 'russina' }">${shopcom.russinaCommoidtyName}</c:if>
+						
 							<p>
 								  限时打折:<span class="red">14:59:12</span>
 							</p>
