@@ -77,9 +77,6 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<ShopReviews> shopReviews;//用户评论
 	
-	
-
-	
 	public List<ShopReviews> getShopReviews() {
 		return shopReviews;
 	}

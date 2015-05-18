@@ -93,7 +93,7 @@
 		<div class="fkfs"><a href="#"><img src="../content/static/images/fkfs.jpg" width="1200" height="110" /></a></div>
         <div class="bqsy"><a href="#"><img src="../content/static/images/bqsy.jpg" width="192" height="31" /></a></div>
     </div>
-   <div class="zxzx"  onmousemove="show()"><a href="#"><img src="../content/static/images/zxzx.png" /></a></div><!---------------   右侧浮动   ----------------------->
+   <div class="zxzx"  onmouseover="show()"><a href="#"><img src="../content/static/images/zxzx.png" /></a></div><!---------------   右侧浮动   ----------------------->
      <div class="fdan">
      	<ul>
          	<li><a href="#"><img src="../content/static/images/mfsh.png" width="109" height="55" /></a></li>

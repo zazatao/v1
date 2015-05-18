@@ -29,7 +29,13 @@
                   			<a href="../proscenium/shopItem?commID=${collection.shopCommoidty.commCode }&category=${collection.shopCommoidty.shopCategory.categoryID }&shopID=${collection.shopCommoidty.belongTo.id }&commoName=${collection.shopCommoidty.commoidtyName }">
                     		<p class="dreamlimg"><img src="..${collection.shopCommoidty.shopCommImages[0].imagePath }"/></p></a>
 							<!-- <p class="dreamlimg"><img src="../content/static/images/nz.jpg"/></p></a> -->
-                    		<p>${collection.shopCommoidty.commoidtyName }</p>
+                    		<c:if test="${sessionScope.language == 'chinese'}">
+								<p>${collection.shopCommoidty.commoidtyName }</p>
+							</c:if>
+							<c:if test="${sessionScope.language == 'russina'}">
+								<p>${collection.shopCommoidty.russinaCommoidtyName }</p>
+							</c:if>
+                    		
                     		<p>до<span class="red">78% cdse</span></p>
                     		<p><img src="../content/static/images/dreatime.png" width="17" height="16" />1day 12:21:15</p>                   
                     		<p class="dreamllike">

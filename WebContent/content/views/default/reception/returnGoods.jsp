@@ -80,7 +80,10 @@
 								<c:if
 									test="${comm.status == 'refuse' || comm.status == 'cancel' || comm.status == 'delete' || comm.status == 'marriage'}">
 									<tr>
-										<td height="30"><div align="center">${comm.nameOfGoods }</div></td>
+										<td height="30"><div align="center">
+										<c:if test="${sessionScope.language == 'chinese' }">${comm.nameOfGoods }</c:if>
+										<c:if test="${sessionScope.language == 'russina' }">${comm.russinaNameOfGoods }</c:if>
+										</div></td>
 										<td><div align="center">${comm.price }</div></td>
 										<td><div align="center">${comm.quantity }</div></td>
 										<td><div align="center">${comm.weight }</div></td>

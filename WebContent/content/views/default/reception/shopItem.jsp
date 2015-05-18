@@ -261,9 +261,9 @@
 						<p>Bcero B Ha..:765.</p>
 					</div>
 					<div class="anniu">
-						<a onclick="buyCat();"><img src="../content/static/images/bt_2.png" /></a><a
-							href="#"><img src="../content/static/images/bt_3.png" /></a><img
-							src="../content/static/images/xx.png" />
+						<a onclick="buyCat();"><img src="../content/static/images/bt_2.png" /></a>
+						<a href="#"><img src="../content/static/images/bt_3.png" /></a>
+						<img src="../content/static/images/xx.png" />
 					</div>
 					<input id="params" type="hidden">
 					<input id="commID" type="hidden" value="${shopCommoidty.commCode }">
@@ -318,13 +318,6 @@
 														}
 											 		}
 												);
-// 											$(element).parent('div').siblings().filter('.choice_cm').children('a').each(
-// 												function(){  
-// 													if (sss.contains($(this).attr("title"))) {
-// 														$(this).css("display", "none");		
-// 													}	
-// 												 }
-// 											);
 											}
 										}
 									});
@@ -417,7 +410,7 @@
 						});
 					</script>
 					<div class="gucjm">
-						<div class="gucjnone">X</div>
+						<div class="gucjnone">111111111</div>
 						<div class="gucjonckl">
 							<span><img src="../content/static/images/small/kd_2.png" />添加成功！</span>
 							<p>

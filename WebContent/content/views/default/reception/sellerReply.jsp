@@ -46,7 +46,10 @@
 		       	<div class="ordconpic">
 					  <form method="post"  action="/proscenium/replyManage?id=${shopreviews.id}">
 						<ul class="ordersall">
-					        <li class="ordersli1"><div class="midl">${shopreviews.shopscommodity.commoidtyName }</div></li> 
+					        <li class="ordersli1"><div class="midl">
+					        <c:if test="${sessionScope.language == 'chinese' }">${shopreviews.shopscommodity.commoidtyName }</c:if>
+					        <c:if test="${sessionScope.language == 'russina' }">${shopreviews.shopscommodity.commoidtyName }</c:if>
+					        </div></li> 
 							<li class="ordersli1"><div class="midl">${shopreviews.user.loginName }</div></li>
 							<li class="ordersli3"><div class="midl"><img src="..${shopreviews.rankImagesPath}"/></div></li>
 							<li class="ordersli4"><div class="midl">${shopreviews.reviews }</div></li>

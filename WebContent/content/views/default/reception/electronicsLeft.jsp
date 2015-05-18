@@ -17,7 +17,10 @@
         	<div id="my_menu" class="sdmenu">
 				<c:forEach items="${cate.children }" var="category" varStatus="loop">
 					<div class="collapsed">
-						<span>${category.category }</span>
+						<span>
+						<c:if test="${sessionScope.language == 'chinese' }">${category.category }</c:if>
+						<c:if test="${sessionScope.language == 'russina' }">${category.russinaCategory }</c:if>
+						</span>
 							<div>
 								<c:forEach items="${category.children }" var="one">
 									<a href="../proscenium/shopCommItem?id=${one.categoryID }&page=page">
