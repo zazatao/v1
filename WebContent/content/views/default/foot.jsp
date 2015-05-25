@@ -87,21 +87,21 @@
 	<div class="fotcd">
 		<div class="dbcd">
 			<ul>
-				<li><a href="file02.html">尺寸表</a></li>
+				<li><a href="../user/skipmysize">我的尺寸</a></li>
 				<li><a href="file06.html">运输方式</a></li>
 				<li><a href="file_index.jsp">付款方式和客户保密保证</a></li>
 				<li><a href="file.html">订单流程</a></li>
-				<li><a href="file14.html">退款</a></li>
+				<li><a href="../user/perscentBonuses?orderDate=&orderStatus=weiwanjie">退款</a></li>
 				<li><a href="file07.html">帮忙</a></li>
 				<li><a href="file14.html">保证</a></li>
 			</ul>
 			<ul>
-				<li><a href="file05.html">登记/注册</a></li>
-				<li><a href="index.jsp">主页</a></li>
-				<li><a href="file05.html">我的办公室</a></li>
-				<li><a href="file.html">我的订单</a></li>
-				<li><a href="file.html">个人信息</a></li>
-				<li><a href="file.html">购物车</a></li>
+				<li><a href="../user/login">登记/</a><a href="../user/regist">注册</a></li>
+				<li><a href="../index">主页</a></li>
+				<li><a href="../user/myoffice">我的办公室</a></li>
+				<li><a href="../user/perscentBonuses?orderDate=volvo&orderStatus=-1">我的订单</a></li>
+				<li><a href="../user/introduction">个人信息</a></li>
+				<li><a href="../proscenium/shopcar">购物车</a></li>
 				<li><a href="file14.html">安全策略</a></li>
 			</ul>
 			<ul>
@@ -116,12 +116,6 @@
 				<li><a href="file12.html">卖家合作</a></li>
 			</ul>
 		</div>
-		<!-- 			<div class="fotshdz"> -->
-		<!--             	<div class="shtx">运输到</div> -->
-		<!--                 <div class="shin"><input name="" type="text" /></div> -->
-		<!--                 <div class="shan"><input name="" type="button" /></div> -->
-		<!--                 <div class="clear"></div> -->
-		<!--             </div> -->
 	</div>
 	<div class="fkfs">
 		<a href="#"><img src="content/static/images/fkfs.jpg" width="1200"

@@ -180,6 +180,11 @@ public class GenericDaoConfig {
 	}
 	
 	@Bean
+	public GenericDao<UserSize> getUserSizeDao() {
+		return new GenericDaoSupport<UserSize>(UserSize.class);	
+	}
+	
+	@Bean
 	public GenericDao<Advertisement> getAdvertisementDao() {
 		return new GenericDaoSupport<Advertisement>(Advertisement.class);	
 	}

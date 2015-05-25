@@ -33,7 +33,7 @@ public class Package {
 	private Delivery delivery;
 	
 	@Column(unique=true)
-	private String packAgeTpek;
+	private String packAgeTpek;//货物编号
 	
 	@Column
 	private Double totalWeight;//总重量

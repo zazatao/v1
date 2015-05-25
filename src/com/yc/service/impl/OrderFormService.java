@@ -97,7 +97,7 @@ public class OrderFormService extends GenericService<OrderForm> implements IOrde
 			if (map.get("orderStatus").equals("wanjie")) {
 				hql.append(" and o.orderstatus in('"+OrderStatus.completionTransaction+"','"+OrderStatus.consigneeSigning+"')");
 			}else{
-				hql.append(" and o.orderstatus not in ('"+OrderStatus.completionTransaction+"','"+OrderStatus.consigneeSigning+"')");
+				hql.append(" and o.orderstatus not in ('"+OrderStatus.completionTransaction+"','"+OrderStatus.consigneeSigning+"','"+OrderStatus.refundOrderForm+"')");
 			}
 		}
 		if (map.get("orderDate") != null) {
@@ -304,4 +304,6 @@ public class OrderFormService extends GenericService<OrderForm> implements IOrde
 		List<OrderForm> list =  query.getResultList();
 		return list;
 	}
+
+
 }

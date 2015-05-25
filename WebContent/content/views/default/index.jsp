@@ -125,7 +125,6 @@
             			dataType : 'json',
             			success : function(data) {
             				if( data.success == "true" ){ 
-            					
             					var coteid = data.categoryId;
             					var $cote = "";
             					var $para = "";

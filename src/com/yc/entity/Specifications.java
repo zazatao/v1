@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.junit.Ignore;
 
 @Entity
 @DiscriminatorValue("Specifications")//货品规格属性类
@@ -31,10 +32,11 @@ public class Specifications {
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<ShopCategory> shopCategories;
 
+	@Ignore
 	public List<ShopCategory> getShopCategories() {
 		return shopCategories;
 	}
-
+	@Ignore
 	public void setShopCategories(List<ShopCategory> shopCategories) {
 		this.shopCategories = shopCategories;
 	}

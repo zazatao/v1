@@ -20,7 +20,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.OrderForm;
 import com.yc.entity.OrderStatus;
+import com.yc.entity.Package;
+import com.yc.entity.UnKnownCommodity;
 import com.yc.service.IOrderFormService;
+import com.yc.service.IPackageService;
+import com.yc.service.IUnKnownCommodityService;
 
 //总览
 @Controller
@@ -33,12 +37,47 @@ public class OverallIndexController {
 	@Autowired
 	IOrderFormService orderFormService;
 	
+	@Autowired
+	IPackageService packageservice ;
+	
+	@Autowired
+	IUnKnownCommodityService unknowncommodityservice;
+	
     @RequestMapping(value = "unfinishedOrder", method = RequestMethod.GET)
     public ModelAndView unfinishedOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	List<OrderForm> list = orderFormService.getAllByStatus();
     	ModelMap mode = new ModelMap();
     	mode.put("list", list);
     	return new ModelAndView("overall/unfinishedOrder", mode);
+    }
+    //订单问题
+    @RequestMapping(value = "questionOrder", method = RequestMethod.GET)
+    public ModelAndView questionOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	List<Package> packages=packageservice.getPackByProblem();
+    	ModelMap mode = new ModelMap();
+    	mode.put("packages", packages);
+    	return new ModelAndView("overall/orderqusetion", mode);
+    }
+    //问题订单查询
+    @RequestMapping(value = "searchQuestionOrder", method = RequestMethod.POST)
+    public ModelAndView searchQuestionOrder(String phone, String userName,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	Map<String, Object> map = new HashMap<String, Object>();
+		map.put("phone", phone);
+		map.put("userName", userName);
+		List<Package> packages=packageservice.searchPackProblem(map);
+		System.out.println("packages===="+packages.size());
+		ModelMap mode = new ModelMap();
+    	mode.put("packages", packages);
+    	return new ModelAndView("overall/orderqusetion", mode);
+        
+    }
+    //不明货品
+    @RequestMapping(value = "unknownCommList", method = RequestMethod.GET)
+    public ModelAndView unknownCommList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	List<UnKnownCommodity> uncommlist=unknowncommodityservice.getAll();
+    	ModelMap mode = new ModelMap();
+    	mode.put("uncommlist", uncommlist);
+    	return new ModelAndView("overall/unknowncomm", mode);
     }
 
     @RequestMapping(value = "searchShopOrder", method = RequestMethod.POST)

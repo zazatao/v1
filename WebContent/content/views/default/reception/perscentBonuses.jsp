@@ -68,7 +68,7 @@
 						location.href = "perscentBonuses?orderDate=&orderStatus="+value;
 					}
 					function shopAssess(){
-						location.href="/proscenium/shopAssess";
+						 location.href="/proscenium/shopAssess";
 					}
 				</script>
 				<div class="orderstil">
@@ -79,7 +79,7 @@
 						<li class="ordersli3">数量</li>
 						<li class="ordersli5">单价</li>
 						<li class="ordersli6">价格</li>
-						<li class="ordersli7">目前状态</li>
+						<li class="ordersli7">操作</li>
 					</ul>
 				</div>
 				<div class="orderscont">
@@ -88,18 +88,20 @@
 							<p>${orderForm.orderFormID }</p>
 							<div class="octd">
 								<span class="octdw" style="margin-left: 520px;">运费：${orderForm.deliveryMoney }</span>
-								<span class="octdw" style="margin-left: 200px;"><c:choose>
-										<c:when test="${orderForm.orderstatus =='waitAcceptance'}">等待验收</c:when>
-										<c:when test="${orderForm.orderstatus =='waitPayment'}">等待支付</c:when>
-										<c:when test="${orderForm.orderstatus =='inForwarding'}">在线转发</c:when>
-										<c:when test="${orderForm.orderstatus =='waitDelivery'}">等待发货</c:when>
-										<c:when test="${orderForm.orderstatus =='transitGoods'}">在途货物</c:when>
-										<c:when test="${orderForm.orderstatus =='consigneeSigning'}">收货人签单</c:when>
-										<c:when test="${orderForm.orderstatus =='completionTransaction'}">完成交易</c:when>
-										<c:when test="${orderForm.orderstatus =='closeTransaction'}">关闭交易</c:when>
-										<c:when
-											test="${orderform.orderstatus =='autoCloseTransaction'}">自动关闭交易</c:when>
-									</c:choose></span>
+								<span class="octdw" style="margin-left: 200px;">
+<%-- 								     <c:choose> --%>
+<%-- 										<c:when test="${orderForm.orderstatus =='waitAcceptance'}">等待验收</c:when> --%>
+<%-- 										<c:when test="${orderForm.orderstatus =='waitPayment'}">等待支付</c:when> --%>
+<%-- 										<c:when test="${orderForm.orderstatus =='inForwarding'}">在线转发</c:when> --%>
+<%-- 										<c:when test="${orderForm.orderstatus =='waitDelivery'}">等待发货</c:when> --%>
+<%-- 										<c:when test="${orderForm.orderstatus =='transitGoods'}">在途货物</c:when> --%>
+<%-- 										<c:when test="${orderForm.orderstatus =='consigneeSigning'}">收货人签单</c:when> --%>
+<%-- 										<c:when test="${orderForm.orderstatus =='completionTransaction'}">完成交易</c:when> --%>
+<%-- 										<c:when test="${orderForm.orderstatus =='closeTransaction'}">关闭交易</c:when> --%>
+<%-- 										<c:when test="${orderform.orderstatus =='autoCloseTransaction'}">自动关闭交易</c:when> --%>
+<%-- 									</c:choose> --%>
+                                          <a href="../user/updatRefund?id=${orderForm.orderFormID }&status=refundOrderForm"  onclick="return(confirm('確定退款?'))">退款</a>
+						     </span>
 							</div>
 							
 						</div>
@@ -131,8 +133,7 @@
 										</div></li>
 									<li class="ordersli5"><div class="midl">${commodity.price }</div></li>
 									<li class="ordersli6"><div class="midl">${commodity.money }</div></li>
-									<li class="ordersli7"><div class="midl">
-										</div></li>
+									<li class="ordersli7"><div class="midl"></div></li>
 								</ul>
 							</c:forEach>
 						</div>
