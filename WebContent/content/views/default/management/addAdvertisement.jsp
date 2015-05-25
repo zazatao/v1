@@ -214,7 +214,51 @@
 						var objOption = new Option("选择所在页面的广告位", "0");
 						pos.options[pos.options.length] = objOption;
 						$.each(data.list, function(i, position) {
-							var objOption = new Option(position ,
+							var description = position;
+							if ( whichPage.value == 'homePage') {
+								if( position == 1) {
+									description = description + "(818*398)";
+								} else if( position == 2) {
+									description = description + "(335*304)";
+								} else if( position == 3) {
+									description = description + "(511*311)"; 
+								} else if( position == 4) {
+									description = description + "(205*73)";
+								} else if( position == 5) {
+									description = description + "(189*142)";
+								}
+							} else if ( whichPage.value == 'innerPage') {
+								description = description + "(223*210)";
+							} else if ( whichPage.value == 'detailPage') {
+								description = description + "(118*146)";
+							} else if ( whichPage.value == 'elecProductionPage') {
+								if( position == 1) {
+									description = description + "(604*245)";
+								} else if( position == 2) {
+									description = description + "(191*164)";
+								} else if( position == 3) {
+									description = description + "(118*135)";
+								} else if( position == 4) {
+									description = description + "(174*224)";
+								}
+							} else if ( whichPage.value == 'carPage') {
+								if( position == 1) {
+									description = description + "(660*308)";
+								} else if( position == 2) {
+									description = description + "(218*147)";
+								} else if( position == 3) {
+									description = description + "(146*196)";
+								}
+							} else if ( whichPage.value == 'myOfficePage') {
+								if( position == 1) {
+									description = description + "(142*109)";
+								} else if( position == 2) {
+									description = description + "(786*106)";
+								}
+							} else if ( whichPage.value == 'brandPage') {
+								description = description + "(771*272)";
+							}
+							var objOption = new Option(description ,
 									position);
 							pos.options[pos.options.length] = objOption;
 						});
