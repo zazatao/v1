@@ -104,18 +104,6 @@
 							<li><a href="./management/missionPlan">任务计划</a></li>
 							<c:if
 								test="${personnel.departAndPositions.department.departmentID == 26 || personnel.departAndPositions.department.departmentID == 1 }">
-								<!-- 						<li class="dropdown-submenu"><a href="#">诊断</a> -->
-								<!-- 							<ul class="dropdown-menu"> -->
-								<!-- 								<li><a href="#">状态</a></li> -->
-								<!-- 								<li><a href="#">高峰期</a></li> -->
-								<!-- 								<li><a href="#">PHP信息</a></li> -->
-								<!-- 								<li><a href="#">Apache错误</a></li> -->
-								<!-- 								<li><a href="#">Apache状态</a></li> -->
-								<!-- 								<li><a href="#">统计AWStats软件</a></li> -->
-								<!-- 								<li><a href="#">Cacti柱状图</a></li> -->
-								<!-- 								<li><a href="#">计数器</a></li> -->
-								<!-- 								<li><a href="#">测试</a></li> -->
-								<!-- 							</ul></li> -->
 								<li class="dropdown-submenu"><a href="#">运输</a>
 									<ul class="dropdown-menu">
 										<li><a href="#">运输方式</a></li>
@@ -131,13 +119,8 @@
 									</ul></li>
 								<li class="dropdown-submenu"><a href="#">其它</a>
 									<ul class="dropdown-menu">
-										<!-- 								<li><a href="#">设置</a></li> -->
 										<li><a href="#">淘宝账户</a></li>
-										<!-- 								<li><a href="#">语言</a></li> -->
-										<!-- 								<li><a href="#">国家</a></li> -->
-										<!-- 								<li><a href="#">时区</a></li> -->
 										<li><a href="./management/ticket">票的类型</a></li>
-										<!-- 								<li><a href="#">票的状态</a></li> -->
 										<li><a href="./management/posAndTicket">职位与票</a></li>
 									</ul></li>
 								<li class="dropdown-submenu"><a href="#">内容</a>

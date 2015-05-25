@@ -36,6 +36,7 @@
 		<jsp:include page="left.jsp"></jsp:include>
 		<!---------------   right   ------------->
 		<div class="perterrtab perterrtab_2">
+			<input id="language" type="hidden" value="${sessionScope.language}" />
 			<h3>
 				商品新增：
 			</h3>
@@ -44,7 +45,28 @@
 					method="post">
 					<dl>
 						<dd>
-							<span>商品名称</span><input type="text" value="" name="commoidtyName" />
+						<c:if test="${sessionScope.language == 'chinese' }">
+							<span></span><input type="checkbox" style="width: 15px; height: 15px;" value="true" name="shelves" id="shelvesTrue" onclick="addLanguage(this)"/>添加俄文
+						</c:if>
+						<c:if test="${sessionScope.language == 'russina' }">
+							<span></span><input type="checkbox" style="width: 15px; height: 15px;" value="true" name="shelves" id="shelvesTrue" onclick="addLanguage(this)"/>添加中文
+						</c:if>
+						</dd>
+						<dd id="new" style="display:none;">
+							<c:if test="${sessionScope.language == 'chinese' }">
+								<span>商品名称(俄文)</span><input type="text" value="" name="russinaCommoidtyName" />
+							</c:if>
+							<c:if test="${sessionScope.language == 'russina' }">
+								<span>商品名称(中文)</span><input type="text" value="" name="commoidtyName" />
+							</c:if>
+						</dd>
+						<dd>
+							<c:if test="${sessionScope.language == 'chinese' }">
+								<span>商品名称</span><input type="text" value="" name="commoidtyName" />
+							</c:if>
+							<c:if test="${sessionScope.language == 'russina' }">
+								<span id="pre">商品名称</span><input type="text" value="" name="russinaCommoidtyName" />
+							</c:if>
 						</dd>
 						<dd>
 							<span>货号</span><input type="text" value="" name="commItem" />
@@ -56,7 +78,14 @@
 								<c:forEach items="${shopCategory }" var="shopcate"
 									varStatus="loop">
 									<c:if test="${shopcate.level == 1 }">
-										<option value="${shopcate.categoryID }">${shopcate.category }</option>
+										<option value="${shopcate.categoryID }">
+										<c:if test="${sessionScope.language == 'chinese'}">
+											${shopcate.category }
+										</c:if>
+										<c:if test="${sessionScope.language == 'russina'}">
+											${shopcate.russinaCategory }
+										</c:if>
+										</option>
 									</c:if>
 								</c:forEach>
 							</select>
@@ -181,7 +210,18 @@
 			});
 			
 		});
+		
+		function addLanguage(obj) {		
+			var dd=document.getElementById("new"); 
+			if(obj.checked){				 
+				dd.style.display='block'; 
+			}else{
+				dd.style.display='none';
+			}
+		}
+		
 		function shopcateOne(obj) {
+			var language = $("#language").val();
 			var Code = obj.value;
 			var shopcateTwo = document.getElementById('shopcateTwo');
 			var num = shopcateTwo.options.length;
@@ -200,14 +240,21 @@
 			<c:forEach items="${shopCategory }" var="leiBieTwo">
 			if ('${leiBieTwo.parentLevel.categoryID }' == Code
 					&& '${leiBieTwo.level}' == 2) {
-				var objOption = new Option("${leiBieTwo.category }",
-						'${leiBieTwo.categoryID}');
+				if ( language == "chinese" ) {
+					var objOption = new Option("${leiBieTwo.category }",
+					'${leiBieTwo.categoryID}');
+				} else if ( language == "russina" ) {
+					var objOption = new Option("${leiBieTwo.russinaCategory }",
+					'${leiBieTwo.categoryID}');
+				}
+				
 				shopcateTwo.options[shopcateTwo.options.length] = objOption;
 			}
 			</c:forEach>
 
 		}
 		function shopcate(obj) {
+			var language = $("#language").val();
 			var Code = obj.value;
 			var shopcateThree = document.getElementById('shopcateThree');
 			var num = shopcateThree.options.length;
@@ -219,8 +266,13 @@
 			<c:forEach items="${shopCategory }" var="leiBieThree">
 			if ('${leiBieThree.parentLevel.categoryID }' == Code
 					&& '${leiBieThree.level}' == 3) {
-				var objOption = new Option("${leiBieThree.category }",
-						'${leiBieThree.categoryID}');
+				if ( language == "chinese" ) {
+					var objOption = new Option("${leiBieThree.category }",
+					'${leiBieThree.categoryID}');
+				} else if ( language == "russina" ) {
+					var objOption = new Option("${leiBieThree.russinaCategory }",
+					'${leiBieThree.categoryID}');
+				}				
 				shopcateThree.options[shopcateThree.options.length] = objOption;
 			}
 			</c:forEach>
@@ -266,6 +318,7 @@
 			for (i = num - 1; i >= 0; i--) {
 				brand.remove(i);
 			}
+			var language = $("#language").val();
 			var objOptionB = new Option("----请选择----", -1);
 			brand.options[brand.options.length] = objOptionB;
 			<c:forEach items="${shopCategory }" var="brands">

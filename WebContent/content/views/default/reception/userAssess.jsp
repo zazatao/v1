@@ -48,10 +48,14 @@
 						<ul class="ordersall">
 					           <li class="ordersli1"><div class="midl"><img src="..${shopcommoidty.shopCommImages[0].imagePath }"></img></div></li>
 							<li class="ordersli1"><div class="midl">
-									${shopcommoidty.commoidtyName }
-									<input type="hidden" name="id" value="${shopcommoidty.commCode}"/>
+								<c:if test="${sessionScope.language == 'chinese' }">${shopcommoidty.commoidtyName }</c:if>
+								<c:if test="${sessionScope.language == 'russina' }">${shopcommoidty.russinaCommoidtyName }</c:if>
+								<input type="hidden" name="id" value="${shopcommoidty.commCode}"/>
 								</div></li>
-							<li class="ordersli3"><div class="midl">${shopcommoidty.belongTo.shopName }</div></li>
+							<li class="ordersli3"><div class="midl">
+								<c:if test="${sessionScope.language == 'chinese' }">${shopcommoidty.belongTo.shopName }</c:if>
+								<c:if test="${sessionScope.language == 'russina' }">${shopcommoidty.belongTo.russinaShopName }</c:if>
+							</div></li>
 							<li class="ordersli4"><div class="midl">${shopcommoidty.unitPrice }</div></li>
 			                </ul>
 			                <br/>

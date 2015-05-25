@@ -110,7 +110,8 @@
 													</c:forEach>
 												</p>
 												<div class="sctbldscr">
-													<p>${shopCar.shopCommoidty.commoidtyName }</p>
+													<p><c:if test="${sessionScope.language == 'chinese'}">${shopCar.shopCommoidty.commoidtyName }</c:if>
+													<c:if test="${sessionScope.language == 'russina'}">${shopCar.shopCommoidty.russinaCommoidtyName }</c:if></p>
 													<ul>
 													<c:forEach items="${spec }" var="sp">
 														<c:if test="${fn:substring(sp,0,fn:indexOf(sp, '-')) == '颜色'}">
@@ -129,13 +130,12 @@
 															</li>
 														</c:if>
 													</c:forEach>
-														<li class="sctbldscrlb"><span>原价</span><fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice }" type="currency" pattern="#,###.00#"/></li>
+														<li class="sctbldscrlb"><span>原价</span>${shopCar.shopCommoidty.currency.symbol }<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice }" type="currency" pattern="#,###.00#"/></li>
 														<li class="sctbldscrlb"><span>现价</span>
 														<c:if test="${shopCar.shopCommoidty.isSpecial }">
-															<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special}" type="currency" pattern="#,###.00#"/> 
+															${shopCar.shopCommoidty.currency.symbol }<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special}" type="currency" pattern="#,###.00#"/> 
 														</c:if>
-														<c:if test="${!shopCar.shopCommoidty.isSpecial }">
-															<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice }" type="currency" pattern="#,###.00#"/> 
+														<c:if test="${!shopCar.shopCommoidty.isSpecial }">${shopCar.shopCommoidty.currency.symbol }<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice }" type="currency" pattern="#,###.00#"/> 
 														</c:if>
 														</li>
 														<li class="sctbldscrlb"><span>购买数量</span>${shopCar.buyAmount }</li>
@@ -144,20 +144,25 @@
 												</div>
 											</div>
 										</dd>
-										<dd>
+										<dd>${shopCar.shopCommoidty.currency.symbol }
 										<c:if test="${shopCar.shopCommoidty.isSpecial }">
-											<fmt:formatNumber value="${shopCar.shopCommoidty.currency.symbol }${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount }" type="currency" pattern="#,###.00#"/>
+											<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount }" type="currency" pattern="#,###.00#"/>
 										</c:if>
 										<c:if test="${!shopCar.shopCommoidty.isSpecial }">
-											<fmt:formatNumber value="${shopCar.shopCommoidty.currency.symbol }${shopCar.shopCommoidty.unitPrice * shopCar.buyAmount }" type="currency" pattern="#,###.00#"/>
+											<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice * shopCar.buyAmount }" type="currency" pattern="#,###.00#"/>
 										</c:if>
 										</dd>
-										<c:if test="${shopCar.shopCommoidty.isSpecial }">
-											<c:set var="sum" value="${shopCar.shopCommoidty.currency.symbol }${sum + shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount}"></c:set>
+										
+										<dd>${shopCar.shopCommoidty.currency.symbol }
+										<c:set var="symbol" value="${shopCar.shopCommoidty.currency.symbol }"></c:set>
+										<c:if test="${shopCar.shopCommoidty.isSpecial }">${sum + shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount}
+											<c:set var="sum" value="${sum + shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount}"></c:set>
 										</c:if>
-										<c:if test="${!shopCar.shopCommoidty.isSpecial }">
-											<c:set var="sum" value="${shopCar.shopCommoidty.currency.symbol }${sum + shopCar.shopCommoidty.unitPrice * shopCar.buyAmount}"></c:set>
+										<c:if test="${!shopCar.shopCommoidty.isSpecial}">
+											${sum + shopCar.shopCommoidty.unitPrice * shopCar.buyAmount}
+											<c:set var="sum" value="${sum + shopCar.shopCommoidty.unitPrice * shopCar.buyAmount}"></c:set>
 										</c:if>
+										</dd>
 									</dl>
 								</li>
 								</c:forEach>
@@ -166,12 +171,12 @@
 						<div class="shcabr">
 							<ul>
 								<li>在我购物车里的商品</li>
-								<li>订单总额 <span><fmt:formatNumber value="${sum }" type="currency" pattern="#,###.00#"/></span></li>
+								<li>订单总额 <span>${symbol }<fmt:formatNumber value="${sum }" type="currency" pattern="#,###.00#"/></span></li>
 								<li>额外包装</li>
 								<li>礼品包装“自己手工”<span></span></li>
 							</ul>
 							<p class="shcabra">
-								总金额<span><fmt:formatNumber value="${sum }" type="currency" pattern="#,###.00#"/></span>
+								总金额<span>${symbol }<fmt:formatNumber value="${sum }" type="currency" pattern="#,###.00#"/></span>
 							</p>
 
 						</div>
@@ -255,12 +260,6 @@
 							</ul>
 						</div>
 					</div>
-<!-- 					<p class="shcachomcr"> -->
-<!-- 						<span><b>保险</b></span> <span class="shcachomcrock">为什么需要保险？ -->
-<!-- 						</span> <span><label><input name="" type="checkbox" -->
-<!-- 								value="" /><b>保证我的订单</b></label></span> <span class="shcachomany">£ -->
-<!-- 							230.00</span> -->
-<!-- 					</p> -->
 					<div class="shcks">
 						<div class="shcrocbg"></div>
 						<div class="shcrockal">
@@ -273,7 +272,7 @@
 			</div>
 			<div class="shopcarbtns">
 				<p>
-					总金额 <span class="gray"><b><font style="color: red;font-size: 20px;"><fmt:formatNumber value="${sum+230 }" type="currency" pattern="#,###.00#"/></font></b></span>
+					总金额 <span class="gray"><b><font style="color: red;font-size: 20px;">${symbol }<fmt:formatNumber value="${sum+230 }" type="currency" pattern="#,###.00#"/></font></b></span>
 				</p>
 				<p>
 					<a href="#" onclick="focusTT();" class="scbtonc">继续购物>></a>

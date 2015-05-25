@@ -98,63 +98,6 @@ function popupwindow(url) {
 					好评率：<span style="color: #F60">100%</span>
 				</h4>
 			</div>
-			<div class="nei">
-				<div class="nei02">
-					<table width="550" border="0" align="left" cellpadding="0"
-						cellspacing="1" bgcolor="#CCCCCC">
-						<tr>
-							<td bgcolor="#F0F0F0"><div align="center"></div></td>
-							<td bgcolor="#F0F0F0"><div align="center">最近一周</div></td>
-							<td bgcolor="#F0F0F0"><div align="center">最近一个月</div></td>
-							<td bgcolor="#F0F0F0"><div align="center">最近六个月</div></td>
-							<td bgcolor="#F0F0F0"><div align="center">六个月前</div></td>
-							<td bgcolor="#F0F0F0"><div align="center">总 计</div></td>
-						</tr>
-						<tr>
-							<td height="26" bgcolor="#FFFFFF"><div align="center">
-									<img src="../content/static/images/pingjia/gold_icon.png" width="16" height="16" />好评
-								</div></td>
-							<td bgcolor="#FFFFFF"><div align="center">1</div></td>
-							<td bgcolor="#FFFFFF"><div align="center">0</div></td>
-							<td bgcolor="#FFFFFF"><div align="center">20</div></td>
-							<td bgcolor="#FFFFFF"><div align="center">50</div></td>
-							<td bgcolor="#FFFFFF"><div align="center">81</div></td>
-						</tr>
-						<tr>
-							<td height="26" bgcolor="#FFFFFF"><div align="center">
-									<img src="../content/static/images/pingjia/silver_icon.png" width="16"
-										height="16" />中评
-								</div></td>
-							<td bgcolor="#FFFFFF"><div align="center">0</div></td>
-							<td bgcolor="#FFFFFF"><div align="center">2</div></td>
-							<td bgcolor="#FFFFFF"><div align="center">0</div></td>
-							<td bgcolor="#FFFFFF"><div align="center">0</div></td>
-							<td bgcolor="#FFFFFF"><div align="center">2</div></td>
-						</tr>
-						<tr>
-							<td height="26" bgcolor="#FFFFFF"><div align="center">
-									<img src="../content/static/images/pingjia/ash_icon.png" width="16" height="16" />差评
-								</div></td>
-							<td bgcolor="#FFFFFF"><div align="center">0</div></td>
-							<td bgcolor="#FFFFFF"><div align="center">0</div></td>
-							<td bgcolor="#FFFFFF"><div align="center">0</div></td>
-							<td bgcolor="#FFFFFF"><div align="center">0</div></td>
-							<td bgcolor="#FFFFFF"><div align="center">0</div></td>
-						</tr>
-						<tr>
-							<td height="26" bgcolor="#FFFFFF"><div align="center">总
-									计</div></td>
-							<td bgcolor="#FFFFFF"><div align="center">1</div></td>
-							<td bgcolor="#FFFFFF"><div align="center">2</div></td>
-							<td bgcolor="#FFFFFF"><div align="center">20</div></td>
-							<td bgcolor="#FFFFFF"><div align="center">50</div></td>
-							<td bgcolor="#FFFFFF"><div align="center">83</div></td>
-						</tr>
-					</table>
-				</div>
-
-			</div>
-
 		</div>
 		<div class="quanbu_dan autoh">
 			<div class="tab-title" style="width: 780px;">
@@ -196,8 +139,10 @@ function popupwindow(url) {
 											             <div class="t2">好评<br/>${reviews.reviewsdate }</div>
 											             <div class="t3">${reviews.user.loginName }</div>
 											             <div class="t4">
-											                   ${reviews.shopscommodity.commoidtyName}<br/>
-											                   <span style="color: orange">${reviews.shopscommodity.unitPrice}元</span>
+											             	<c:if test="${sessionScope.language == 'chinese' }">${reviews.shopscommodity.commoidtyName}</c:if>
+											             	<c:if test="${sessionScope.language == 'russina' }">${reviews.shopscommodity.russinaCommoidtyName}</c:if>
+											                   <br/>
+											                   <span style="color: orange">${reviews.shopscommodity.currency.symbol }${reviews.shopscommodity.unitPrice}</span>
 											             </div>
 											             <div class="t5">
 											                  <input type="button" name="reply" value="回复 " onclick="popupwindow('/proscenium/sellerReply?id=${reviews.id}')"/>

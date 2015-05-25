@@ -95,11 +95,11 @@
         	<h1 style="color:orange;">品牌电子商品</h1>
             	<ul>
             	 <c:forEach items="${brands}" var="brand">
-                              <li><a href="../proscenium/shopCommItem?id=${brand.brandID}&page=brand&which=brand">${brand.brandName }</a></li>
+                              <li><a href="../proscenium/shopCommItem?id=${brand.brandID}&page=brand&which=brand"><img src="..${brand.logo }" /></a></li>
                    </c:forEach>
 <!--                 	<li><a href="gr_list.html"><img src="../content/static/images/logo/l_1.png" /></a></li> -->
                 </ul>
-            <a class="more" href="#">VIEW ALL</a>
+<!--             <a class="more" href="#">VIEW ALL</a> -->
         </div>
         <!---right_cen_1 over---->
         

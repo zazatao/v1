@@ -138,11 +138,12 @@
 							</c:if>
 						</div>
 						<div class="shctlink"></div>
-						<div class="sctblapw">${shopCar.shopCommoidty.currency.symbol }
+						<div class="sctblapw">
 							<fmt:formatNumber value="${shopCar.buyAmount * shopCar.shopCommoidty.probablyWeight}" type="currency" pattern="#,###.00#"/> 
 						</div>
 						<div class="shctlink"></div>
 						<div class="sctblamt">${shopCar.shopCommoidty.currency.symbol }
+						<c:set var="symbol" value="${shopCar.shopCommoidty.currency.symbol }"></c:set>
 							<c:if test="${shopCar.shopCommoidty.isSpecial }">
 								<fmt:formatNumber value="${shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount + shopCar.shopCommoidty.fare * shopCar.buyAmount}" type="currency" pattern="#,###.00#"/>
 							 	<c:set var="sum" value="${sum + shopCar.shopCommoidty.unitPrice * shopCar.shopCommoidty.special * shopCar.buyAmount + shopCar.shopCommoidty.fare * shopCar.buyAmount}"></c:set>
@@ -314,7 +315,7 @@
 			<div class="shopcarbtns">
 				<p>
 					总支付<span class="gray"><b>
-					<font style="font-size: 18px; color: green;"><fmt:formatNumber value="${sum }" type="currency" pattern="#,###.00#"/></font></b></span>
+					<font style="font-size: 18px; color: green;">${symbol }<fmt:formatNumber value="${sum }" type="currency" pattern="#,###.00#"/></font></b></span>
 				</p>
 				<p>
 					<a href="./shopcardelv" class="scbtonc">继续订购>></a>

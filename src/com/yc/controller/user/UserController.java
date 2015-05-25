@@ -154,18 +154,6 @@ public class UserController {
 		ModelMap map = new ModelMap();
 		map.put("shopCategories", list);
 		if (user == null) {
-			int position5 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.homePage, 5).getId();
-	    	
-	    	List<Advertisement> advertisements = advertisementService.getAll();
-	    	ArrayList<Advertisement> advertisements5 = new ArrayList<Advertisement>();
-	    	
-	    	for ( int i = 0; i < advertisements.size(); i++ ) {
-	    		if ( advertisements.get(i).getAdverDistribution().getId() == position5 ) {
-	    			advertisements5.add(advertisements.get(i));
-	    		}
-	    	}
-	    	map.put("advertisements5", advertisements5);
-	    	
 	    	AdvertisementManager advertisementManager = new AdvertisementManager();
 	 		map.putAll(advertisementManager.getLoginPageAdvertisements(adverDistributionService,advertisementService));
 			return new ModelAndView("user/login", map);

@@ -105,6 +105,7 @@ public class IndexController {
  		for ( int i = 0; i < lists.size(); i++ ) {
  			allCommodity.addAll(commodityService.getAllByCommdityID(lists.get(i).getCategoryID()));
  		}
+ 		
  		allCommodity.sort(new Comparator<CommdityModel>(){   
             public int compare(CommdityModel object1, CommdityModel object2) {   
                 return object1.getSums() - object2.getSums();   

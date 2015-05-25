@@ -8,7 +8,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>zazatao</title>
+<title>商品列表</title>
 <link href="../content/static/css/reception/css.css" rel="stylesheet"
 	type="text/css" />
 <link href="../content/static/css/reception/qt.css" rel="stylesheet"
@@ -46,7 +46,8 @@
 					<tr class="tit_tr">
 						<td width="97">商品编号</td>
 						<td width="119">商品分类</td>
-						<td width="220">商品名称</td>
+						<td width="120">商品名称(中文)</td>
+						<td width="120">商品名称(俄文)</td>
 						<td width="122">商品图片</td>
 						<td width="58">商品价格</td>
 						<td width="51">加入拍卖</td>
@@ -56,8 +57,10 @@
 					<c:forEach var="shopComm" items="${shopComms }" varStatus="loop">
 						<tr>
 							<td>${shopComm.commCode }</td>
-							<td>${shopComm.shopCategory.category }</td>
+							<c:if test="${sessionScope.language == 'chinese' }"><td>${shopComm.shopCategory.category }</td></c:if>
+							<c:if test="${sessionScope.language == 'russina' }"><td>${shopComm.shopCategory.russinaCategory }</td></c:if>
 							<td>${shopComm.commoidtyName }</td>
+							<td>${shopComm.russinaCommoidtyName }</td>
 							<td><img src="..${shopComm.shopCommImages[0].imagePath }" /></td>
 							<td>${shopComm.currency.symbol}${shopComm.unitPrice}</td>
 							<td><button onclick="zhekou1(${shopComm.auction},${shopComm.commCode },${shopComm.shelves });"><c:if test="${shopComm.auction}">拍卖中</c:if><c:if test="${!shopComm.auction}">下拍</c:if></button></td>

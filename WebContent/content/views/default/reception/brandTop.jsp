@@ -142,41 +142,22 @@
 		});
 	</script>
 	<div class="banner_grlist">
-		<ul >
-		  <c:choose>
-		      <c:when test="${not empty brands}">
-		             <c:forEach items="${brands}"  var="brand">
-<%-- 		             <img src="..${brand.logo }"/> --%>
-		            <li style="float: left ;margin-left: 20px;"><a href="../proscenium/shopCommItem?id=${brand.brandID }&page=brand&which=brand">${brand.brandName }</a></li> 
-		     </c:forEach>
-		      </c:when>
-		      <c:otherwise>
-		            
-		      </c:otherwise>
-		  </c:choose>
-<!-- 			<li><a href="gr_list.html"><img -->
-<!-- 					src="../content/static/images/dz/banner_gr_2.jpg" /></a></li> -->
-<!-- 			<li><a href="gr_list.html"><img -->
-<!-- 					src="../content/static/images/dz/banner_gr_4.jpg" /></a></li> -->
-<!-- 			<li><a href="gr_list.html"><img -->
-<!-- 					src="../content/static/images/dz/banner_gr_5.jpg" /></a></li> -->
-		</ul>
-		<div class="banner_grlistbt">
-			<span> <a class="options pre" href="javascript:;"
-				data-drec="pre"><img
-					src="../content/static/images/dz/banner_gr_2_03.png" width="14"
-					height="26" /></a>
-			</span>
-			<ul>
-				<li></li>
-				<li></li>
-				<li></li>
-			</ul>
-			<span><a class="options next" href="javascript:;"
-				data-drex="next"><img
-					src="../content/static/images/dz/banner_gr_2_05.png" width="14"
-					height="26" /></a></span>
-		</div>
+<!-- 		<div class="banner_grlistbt"> -->
+<!-- 			<span> <a class="options pre" href="javascript:;" -->
+<!-- 				data-drec="pre"><img -->
+<!-- 					src="../content/static/images/dz/banner_gr_2_03.png" width="14" -->
+<!-- 					height="26" /></a> -->
+<!-- 			</span> -->
+<!-- 			<ul> -->
+<!-- 				<li></li> -->
+<!-- 				<li></li> -->
+<!-- 				<li></li> -->
+<!-- 			</ul> -->
+<!-- 			<span><a class="options next" href="javascript:;" -->
+<!-- 				data-drex="next"><img -->
+<!-- 					src="../content/static/images/dz/banner_gr_2_05.png" width="14" -->
+<!-- 					height="26" /></a></span> -->
+<!-- 		</div> -->
 	</div>
 	<div class="banner_gr">
 		<ul>
