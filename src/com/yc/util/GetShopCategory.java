@@ -366,15 +366,7 @@ public class GetShopCategory {
         mode.put("success", "true");
         mode.put("list", positions);
     	return mode;
+
     }
-  	//汽车页面局部刷新
-  	@RequestMapping(value = "getCarShopCommByCate", method = RequestMethod.GET)
-	@ResponseBody
-	public Map<String, Object> getCarShopCommByCate(Integer id,HttpServletRequest request, HttpServletResponse response )throws ServletException, IOException{
-  		ShopCategory   cate = shopCategService.findById(id);
-  		ModelMap mode = new ModelMap();
-			List<ShopCommoidty> comms =cate.getShopCommoidties();
-		   mode.put("comms", comms);
-		   return mode;
-  	}
+
 }
