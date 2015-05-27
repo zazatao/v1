@@ -7,29 +7,32 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>部门角色分配</title>
-<link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
-<link href="../content/static/css/bootstrap/bootstrap.min.css"
+<% String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; %>
+<base href="<%=basePath%>">
+<link href="content/static/css/bootstrap/navbar.css" rel="stylesheet">
+<link href="content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
-<script src="../content/static/js/echart/ie-emulation-modes-warning.js"></script>
+<script src="content/static/js/echart/ie-emulation-modes-warning.js"></script>
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="../content/static/img/apple-touch-icon-144-precomposed.png">
+	href="content/static/img/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="../content/static/img/apple-touch-icon-114-precomposed.png">
+	href="content/static/img/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="../content/static/img/apple-touch-icon-72-precomposed.png">
+	href="content/static/img/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
-	href="../content/static/img/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon" href="../content/static/img/favicon.png">
+	href="content/static/img/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="content/static/img/favicon.png">
 
 <script type="text/javascript"
-	src="../content/static/js/lib/jquery.min.js"></script>
+	src="content/static/js/lib/jquery.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/lib/bootstrap.min.js"></script>
-<script type="text/javascript" src="./content/static/js/lib/scripts.js"></script>
+	src="content/static/js/lib/bootstrap.min.js"></script>
+<script type="text/javascript" src="content/static/js/lib/scripts.js"></script>
 
 <script type="text/javascript"
-	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
-<link href="../content/static/css/bootstrap/bootstrap-tree.css"
+	src="content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
+<link href="content/static/css/bootstrap/bootstrap-tree.css"
 	rel="stylesheet">
 </head>
 <body>
@@ -46,7 +49,7 @@
 			</div>
 		</div>
 	</div>
-	<form action="./posRoleDivide" method="post">
+	<form action="management/posRoleDivide" method="post">
 	<div class="col-md-5 column">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -151,11 +154,11 @@
 			var userName = $('#userName').val();
 			var departmentName = $('#departmentName').val();
 			var positions = $('#positions').val();
-			location.href = './searchPersonnel?userName=' + userName
+			location.href = 'management/searchPersonnel?userName=' + userName
 			+ "&departmentName="+departmentName + "&positions="+positions;
 		}
 		function onclickID(id) {
-			location.href = './getDepartment?departmentId=' + id
+			location.href = 'management/getDepartment?departmentId=' + id
 					+ "&page=posDivide";
 		}
 		$(function() {

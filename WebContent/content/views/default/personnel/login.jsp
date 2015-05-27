@@ -4,7 +4,9 @@
 <html>
 <head>
 <title>zazatao</title>
-
+<% String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; %>
+<base href="<%=basePath%>">
 <link href="content/static/css/bootstrap/bootstrap.css" rel="stylesheet">
 
 <link rel="apple-touch-icon-precomposed" sizes="144x144"

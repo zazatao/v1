@@ -9,36 +9,38 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>促销码</title>
-
-<link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
-<link href="../content/static/css/bootstrap/bootstrap.min.css"
+<% String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; %>
+<base href="<%=basePath%>">
+<link href="content/static/css/bootstrap/navbar.css" rel="stylesheet">
+<link href="content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
-<script src="../content/static/js/echart/ie-emulation-modes-warning.js"></script>
+<script src="content/static/js/echart/ie-emulation-modes-warning.js"></script>
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="../content/static/img/apple-touch-icon-144-precomposed.png"/>
+	href="content/static/img/apple-touch-icon-144-precomposed.png"/>
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="../content/static/img/apple-touch-icon-114-precomposed.png"/>
+	href="content/static/img/apple-touch-icon-114-precomposed.png"/>
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="../content/static/img/apple-touch-icon-72-precomposed.png"/>
+	href="content/static/img/apple-touch-icon-72-precomposed.png"/>
 <link rel="apple-touch-icon-precomposed"
-	href="../content/static/img/apple-touch-icon-57-precomposed.png"/>
-<link rel="shortcut icon" href="../content/static/img/favicon.png"/>
+	href="content/static/img/apple-touch-icon-57-precomposed.png"/>
+<link rel="shortcut icon" href="content/static/img/favicon.png"/>
 <script type="text/javascript"
-	src="../content/static/js/lib/jquery.min.js"></script>
+	src="content/static/js/lib/jquery.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/lib/bootstrap.min.js"></script>
+	src="content/static/js/lib/bootstrap.min.js"></script>
 
 <script type="text/javascript"
-	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
+	src="content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
 
-<link href="../content/static/css/datetime/jquery-clockpicker.min.css"
+<link href="content/static/css/datetime/jquery-clockpicker.min.css"
 	rel="stylesheet"/>
-<link href="../content/static/css/datetime/jquery.datetimepicker.css"
+<link href="content/static/css/datetime/jquery.datetimepicker.css"
 	rel="stylesheet"/>
 <script type="text/javascript"
-	src="../content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
+	src="content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
+	src="content/static/js/datetime/jquery.datetimepicker.js"></script>
 </head>
 <body >
 	<!-- Static navbar -->
@@ -48,9 +50,9 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<ul class="breadcrumb">
-					<li><a href="#" style="font-size: 18px;">管理</a></li>
+					<li><a href="javascript:void(0);" style="font-size: 18px;">管理</a></li>
 					<span class="divider"><font style="font-size: 18px;">/</font></span>
-					<li><a href="#"><font style="font-size: 18px;">折扣</font></a></li>
+					<li><a href="javascript:void(0);"><font style="font-size: 18px;">折扣</font></a></li>
 					<span class="divider"><font style="font-size: 18px;">/</font></span>
 					<li><font style="font-size: 18px;">促销码</font></li>
 				</ul>
@@ -61,7 +63,7 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="col-md-12 column">
-			<form class="form-horizontal" action="./searchPromotionCodeResult" method="POST">
+			<form class="form-horizontal" action="management/searchPromotionCodeResult" method="POST">
 			<div class="form-group">
 				<div class="col-sm-2">
 					<input type="text" name="code" class="form-control"
@@ -92,7 +94,7 @@
 					<div class="panel-heading">
 						<h3 class="panel-title">
 							促销码列表
-							<a href="#" onclick="popupwindow('./addPromotionCode?mathed=add');">
+							<a href="javascript:void(0);" onclick="popupwindow('management/addPromotionCode?mathed=add');">
 							<span class="badge navbar-right" id="add"><font size="3px;">添加&nbsp;&nbsp;+</font></span></a>
 						</h3>
 					</div>
@@ -123,7 +125,7 @@
 									<c:if test="${promotioncode.user == null}"></c:if>
 									<c:if test="${promotioncode.user != null}">已使用</c:if>
 									</td>	
-									<td><button class="btn btn-default" onclick="popupwindow('addPromotionCode?id=${promotioncode.id}&mathed=update');">修改描述</button>
+									<td><button class="btn btn-default" onclick="popupwindow('management/addPromotionCode?id=${promotioncode.id}&mathed=update');">修改描述</button>
 										<button class="btn btn-default" onclick="deletePromotionCodeById('${promotioncode.id}');" >删除</button>
 									</td>
 								</c:forEach>
@@ -136,11 +138,11 @@
 	</div>
 	<script type="text/javascript">
 		function deletePromotionCodeById(obj){
- 			location.href = "deletePromotionCode?id="+obj;
+ 			location.href = "management/deletePromotionCode?id="+obj;
 		}
 		
 		 function addPromotionCode(obj){
-			document.form.action="./addPromotionCode?mathed="+obj;
+			document.form.action="management/addPromotionCode?mathed="+obj;
 			document.form.submit();
 			return closeAndRefresh(); 
 		 }

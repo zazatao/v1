@@ -8,27 +8,30 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>发送包裹</title>
-<link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
-<link href="../content/static/css/bootstrap/bootstrap.min.css"
+<% String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; %>
+<base href="<%=basePath%>">
+<link href="content/static/css/bootstrap/navbar.css" rel="stylesheet">
+<link href="content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
-<script src="../content/static/js/echart/ie-emulation-modes-warning.js"></script>
+<script src="content/static/js/echart/ie-emulation-modes-warning.js"></script>
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="../content/static/img/apple-touch-icon-144-precomposed.png">
+	href="content/static/img/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="../content/static/img/apple-touch-icon-114-precomposed.png">
+	href="content/static/img/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="../content/static/img/apple-touch-icon-72-precomposed.png">
+	href="content/static/img/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
-	href="../content/static/img/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon" href="../content/static/img/favicon.png">
+	href="content/static/img/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="content/static/img/favicon.png">
 <script type="text/javascript"
-	src="../content/static/js/lib/jquery.min.js"></script>
+	src="content/static/js/lib/jquery.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/lib/bootstrap.min.js"></script>
+	src="content/static/js/lib/bootstrap.min.js"></script>
 <script type="text/javascript" src="./content/static/js/lib/scripts.js"></script>
 
 <script type="text/javascript"
-	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
+	src="content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
 </head>
 
 <body>
@@ -50,7 +53,7 @@
 		<div class="row-fluid">
 			<div class="col-md-12 column">
 				<form class="form-horizontal"
-					action="./searchWeighing?page=sendTheParcel" method="POST">
+					action="warehouse/searchWeighing?page=sendTheParcel" method="POST">
 					<div class="form-group">
 						<div class="col-sm-1">
 							<input type="text" name="packageCode" placeholder="包裹编号"
@@ -98,7 +101,7 @@
 										<tr class="success">
 									</c:otherwise>
 								</c:choose>
-								<td><a href="#" onclick="packNum(${pack.packageID});">${pack.packageCode }</a></td>
+								<td><a href="javascript:void(0);" onclick="packNum(${pack.packageID});">${pack.packageCode }</a></td>
 								<td>${pack.orderForms[0].orderUser.userName}</td>
 								<td>${pack.totalWeight}</td>
 								<td>${pack.grossWeight}</td>
@@ -113,7 +116,7 @@
 			</div>
 			<script type="text/javascript">
 				function packNum(num){
-					location.href ='./getOrder?page=sendTheParcel&id='+num;
+					location.href ='warehouse/getOrder?page=sendTheParcel&id='+num;
 				}
 			</script>
 			<div class="col-md-8 column" style="height: 100%">
@@ -125,7 +128,7 @@
 						<div class="container-fluid">
 							<div class="row-fluid">
 								<div class="span12">
-									<form class="form-horizontal" action="./addHospital"
+									<form class="form-horizontal" action="warehouse/addHospital"
 										method="POST">
 										<div class="form-group">
 											<label for="inputEmail3" class="col-sm-2 control-label">追踪号</label>
@@ -218,8 +221,7 @@
 	<script type="text/javascript">
 		$('#money').val('${fee}');
 		function sendPackwww(obj){
-			alert(11);
-			location.href ='./sendPack?&id='+obj;
+			location.href ='warehouse/sendPack?&id='+obj;
 		}
 		function checkvalue(obj) {
 			if (!/^[+|-]?\d+\.?\d*$/.test(obj.value) && obj.value != '') {

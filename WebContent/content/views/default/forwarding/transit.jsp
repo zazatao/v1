@@ -7,36 +7,38 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>中转</title>
-
-<link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
-<link href="../content/static/css/bootstrap/bootstrap.min.css"
+<% String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; %>
+<base href="<%=basePath%>">
+<link href="content/static/css/bootstrap/navbar.css" rel="stylesheet">
+<link href="content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
-<script src="../content/static/js/echart/ie-emulation-modes-warning.js"></script>
+<script src="content/static/js/echart/ie-emulation-modes-warning.js"></script>
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="../content/static/img/apple-touch-icon-144-precomposed.png">
+	href="content/static/img/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="../content/static/img/apple-touch-icon-114-precomposed.png">
+	href="content/static/img/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="../content/static/img/apple-touch-icon-72-precomposed.png">
+	href="content/static/img/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
-	href="../content/static/img/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon" href="../content/static/img/favicon.png">
+	href="content/static/img/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="content/static/img/favicon.png">
 <script type="text/javascript"
-	src="../content/static/js/lib/jquery.min.js"></script>
+	src="content/static/js/lib/jquery.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/lib/bootstrap.min.js"></script>
+	src="content/static/js/lib/bootstrap.min.js"></script>
 
 <script type="text/javascript"
-	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
+	src="content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
 
-<link href="../content/static/css/datetime/jquery-clockpicker.min.css"
+<link href="content/static/css/datetime/jquery-clockpicker.min.css"
 	rel="stylesheet">
-<link href="../content/static/css/datetime/jquery.datetimepicker.css"
+<link href="content/static/css/datetime/jquery.datetimepicker.css"
 	rel="stylesheet">
 <script type="text/javascript"
-	src="../content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
+	src="content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
+	src="content/static/js/datetime/jquery.datetimepicker.js"></script>
 </head>
 <body>
 	<!-- Static navbar -->
@@ -55,7 +57,7 @@
 	</div>
 
 	<div class="col-md-6 column" style="height: 100%">
-		<form class="form-horizontal" action="./searchTransit" method="POST">
+		<form class="form-horizontal" action="forwarding/searchTransit" method="POST">
 			<div class="form-group">
 				<div class="col-sm-2">
 					<input type="text" name="tpekCargoGroup" class="form-control"
@@ -106,7 +108,7 @@
 									<tr class="success">
 								</c:otherwise>
 							</c:choose>
-							<td><a href="#"
+							<td><a href="javascript:void(0);"
 								onclick="packNum('${cargoGroup.cargoGroupID }');">${cargoGroup.cargoGroupID }</a></td>
 							<td>${cargoGroup.totalWeight}</td>
 							<td>${cargoGroup.tpekCargoGroup}</td>
@@ -143,7 +145,7 @@
 						<c:forEach items="${cargoGroup.packAges }" var="pack">
 							<c:if test="${pack.problemPack == null }">
 								<tr class="warning">
-									<td><a href="#"
+									<td><a href="javascript:void(0);"
 										onclick="packOrder('${cargoGroup.cargoGroupID}','${pack.packageID}');">${pack.packageCode }</a></td>
 									<td>${pack.packAgeTpek}</td>
 									<td>${pack.totalWeight}</td>
@@ -166,7 +168,7 @@
 										<tr class="success">
 									</c:otherwise>
 								</c:choose>
-								<td><a href="#"
+								<td><a href="javascript:void(0);"
 									onclick="packOrder('${pack.cargoGroup.cargoGroupID}','${pack.packageID}');">${pack.packageCode }</a></td>
 								<td>${pack.packAgeTpek}</td>
 								<td>${pack.totalWeight}</td>
@@ -191,13 +193,13 @@
 		<div class="row-fluid">
 			<script type="text/javascript">
 			function continuess(id){
-				location.href ='./sendCargoGroup?transitID='+id;
+				location.href ='forwarding/sendCargoGroup?transitID='+id;
 			}
 			function problem(id){
-				location.href ='./problemPack?packID='+id;
+				location.href ='forwarding/problemPack?packID='+id;
 			}
 			function packOrder(cargoGroupID,packageID){
-				location.href ='./packOrder?cargoGroupID='+cargoGroupID+'&packageID='+packageID;
+				location.href ='forwarding/packOrder?cargoGroupID='+cargoGroupID+'&packageID='+packageID;
 			}
 			function dateInfoxxx(obj) {
 				var date = obj;
@@ -209,7 +211,7 @@
 				});
 			}
 			function packNum(num){
-				location.href ='./getPackAge?id='+num;
+				location.href ='forwarding/getPackAge?id='+num;
 			}
 			function checkvalue(obj) {
 				if (!/^[+|-]?\d+\.?\d*$/.test(obj.value) && obj.value != '') {
@@ -218,7 +220,7 @@
 				}
 			}
 			function distributed(packid){
-				location.href ='./distributedPackAge?id='+packid;
+				location.href ='forwarding/distributedPackAge?id='+packid;
 			}
 			</script>
 			<div class="col-md-6 column" style="height: 100%">
