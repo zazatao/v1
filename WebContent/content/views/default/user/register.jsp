@@ -22,11 +22,11 @@
 	type=text/javascript></SCRIPT>
 <script type="text/javascript">
 	$(function() {
-		$("#btn").click(function(){
+		 $("#btn").click(function(){
 			 var value=$(this).is(":checked");
 			// alert(value);
 			 if(value){
-				 $("input[name='password']").attr("type","text");
+				$("input[name='password']").attr("type","text");
 			 }else{
 				 $("input[name='password']").attr("type","password");
 			 }
