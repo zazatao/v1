@@ -8,35 +8,38 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>订单处理</title>
-<link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
-<link href="../content/static/css/bootstrap/bootstrap.min.css"
+<% String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; %>
+<base href="<%=basePath%>">
+<link href="content/static/css/bootstrap/navbar.css" rel="stylesheet">
+<link href="content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
-<script src="../content/static/js/echart/ie-emulation-modes-warning.js"></script>
+<script src="content/static/js/echart/ie-emulation-modes-warning.js"></script>
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="../content/static/img/apple-touch-icon-144-precomposed.png">
+	href="content/static/img/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="../content/static/img/apple-touch-icon-114-precomposed.png">
+	href="content/static/img/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="../content/static/img/apple-touch-icon-72-precomposed.png">
+	href="content/static/img/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
-	href="../content/static/img/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon" href="../content/static/img/favicon.png">
+	href="content/static/img/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="content/static/img/favicon.png">
 <script type="text/javascript"
-	src="../content/static/js/lib/jquery.min.js"></script>
+	src="content/static/js/lib/jquery.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/lib/bootstrap.min.js"></script>
+	src="content/static/js/lib/bootstrap.min.js"></script>
 <script type="text/javascript" src="./content/static/js/lib/scripts.js"></script>
 
 <script type="text/javascript"
-	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
-<link href="../content/static/css/datetime/jquery-clockpicker.min.css"
+	src="content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
+<link href="content/static/css/datetime/jquery-clockpicker.min.css"
 	rel="stylesheet">
-<link href="../content/static/css/datetime/jquery.datetimepicker.css"
+<link href="content/static/css/datetime/jquery.datetimepicker.css"
 	rel="stylesheet">
 <script type="text/javascript"
-	src="../content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
+	src="content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
+	src="content/static/js/datetime/jquery.datetimepicker.js"></script>
 </head>
 <body>
 	<!-- Static navbar -->
@@ -54,40 +57,40 @@
 	</div>
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<div class="col-md-12 column">
-				<form class="form-horizontal"
-					action="./searchOrderPool" method="POST">
-					<div class="form-group">
-						<div class="col-sm-1">
-							<input type="text" name="transNumForTaobao" placeholder="货品编号"
-								class="form-control" id="transNumForTaobao" onblur="checkvalue(this)">
-						</div>
-						<div class="col-sm-1">
-							<input type="text" name="orderUserName" placeholder="买家"
-								class="form-control" id="orderUserName">
-						</div>
-						<div class="col-sm-1">
-							<input type="text" name="paymentDate" placeholder="付款日期"
-								class="form-control" id="paymentDate"
-								onclick="dateInfoxxx('paymentDate')">
-						</div>
-						<div class="col-sm-2">
-							<select class="form-control" name="disposeStatus" id="disposeStatus"
-								placeholder="状态">
-								<option value="">--------买家界面显示状态--------
-								<option value="process">正在处理
-								<option value="shortage">商品现货不足
-								<option value="commodityAds">产品广告
-								<option value="waiting">等候
-								<option value="manualProcessing">手动处理
-							</select>
-						</div>
-						<div class="col-sm-1">
-							<input type="submit" value="搜索" class="btn btn-default">
-						</div>
-					</div>
-				</form>
-			</div>
+<!-- 			<div class="col-md-12 column"> -->
+<!-- 				<form class="form-horizontal" -->
+<!-- 					action="orderprocessing/searchOrderPool" method="POST"> -->
+<!-- 					<div class="form-group"> -->
+<!-- 						<div class="col-sm-1"> -->
+<!-- 							<input type="text" name="transNumForTaobao" placeholder="货品编号" -->
+<!-- 								class="form-control" id="transNumForTaobao" onblur="checkvalue(this)"> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-sm-1"> -->
+<!-- 							<input type="text" name="orderUserName" placeholder="买家" -->
+<!-- 								class="form-control" id="orderUserName"> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-sm-1"> -->
+<!-- 							<input type="text" name="paymentDate" placeholder="付款日期" -->
+<!-- 								class="form-control" id="paymentDate" -->
+<!-- 								onclick="dateInfoxxx('paymentDate')"> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-sm-2"> -->
+<!-- 							<select class="form-control" name="disposeStatus" id="disposeStatus" -->
+<!-- 								placeholder="状态"> -->
+<!-- 								<option value="">--------买家界面显示状态-------- -->
+<!-- 								<option value="process">正在处理 -->
+<!-- 								<option value="shortage">商品现货不足 -->
+<!-- 								<option value="commodityAds">产品广告 -->
+<!-- 								<option value="waiting">等候 -->
+<!-- 								<option value="manualProcessing">手动处理 -->
+<!-- 							</select> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-sm-1"> -->
+<!-- 							<input type="submit" value="搜索" class="btn btn-default"> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</form> -->
+<!-- 			</div> -->
 			<div class="col-md-4 column">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -112,7 +115,7 @@
 										<tr class="success">
 									</c:otherwise>
 								</c:choose>				  
-								<td><a href="./orderPoolItem?orderid=${commodity.orderNumber.orderFormID }&commCode=${commodity.commodityID}" >${commodity.orderNumber.orderFormID }</a></td>
+								<td><a href="orderprocessing/orderPoolItem?orderid=${commodity.orderNumber.orderFormID }&commCode=${commodity.commodityID}" >${commodity.orderNumber.orderFormID }</a></td>
 								<td>${commodity.transNumForTaobao }</td>
 								<td>${commodity.orderNumber.orderUser.userName}</td>
 								<td>${commodity.orderNumber.paymentDate}</td>
@@ -141,7 +144,7 @@
 				});
 			}
 			function packNum(num){
-					location.href ='./getOrder?page=weighing&id='+num;
+					location.href ='orderprocessing/getOrder?page=weighing&id='+num;
 			}
 			</script>
 			

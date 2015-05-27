@@ -8,35 +8,38 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>订单处理</title>
-<link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
-<link href="../content/static/css/bootstrap/bootstrap.min.css"
+<% String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; %>
+<base href="<%=basePath%>">
+<link href="content/static/css/bootstrap/navbar.css" rel="stylesheet">
+<link href="content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
-<script src="../content/static/js/echart/ie-emulation-modes-warning.js"></script>
+<script src="content/static/js/echart/ie-emulation-modes-warning.js"></script>
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="../content/static/img/apple-touch-icon-144-precomposed.png">
+	href="content/static/img/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="../content/static/img/apple-touch-icon-114-precomposed.png">
+	href="content/static/img/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="../content/static/img/apple-touch-icon-72-precomposed.png">
+	href="content/static/img/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
-	href="../content/static/img/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon" href="../content/static/img/favicon.png">
+	href="content/static/img/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="content/static/img/favicon.png">
 <script TYPE="text/javascript"
-	src="../content/static/js/lib/jquery.min.js"></script>
+	src="content/static/js/lib/jquery.min.js"></script>
 <script TYPE="text/javascript"
-	src="../content/static/js/lib/bootstrap.min.js"></script>
+	src="content/static/js/lib/bootstrap.min.js"></script>
 <script TYPE="text/javascript" src="./content/static/js/lib/scripts.js"></script>
 
 <script TYPE="text/javascript"
-	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
-<link href="../content/static/css/datetime/jquery-clockpicker.min.css"
+	src="content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
+<link href="content/static/css/datetime/jquery-clockpicker.min.css"
 	rel="stylesheet">
-<link href="../content/static/css/datetime/jquery.datetimepicker.css"
+<link href="content/static/css/datetime/jquery.datetimepicker.css"
 	rel="stylesheet">
 <script TYPE="text/javascript"
-	src="../content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
+	src="content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
 <script TYPE="text/javascript"
-	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
+	src="content/static/js/datetime/jquery.datetimepicker.js"></script>
 </head>
 <body>
 	<!-- Static navbar -->
@@ -56,7 +59,7 @@
 		<DIV class="row-fluid">
 			<DIV class="col-md-12 column">
 				<form class="form-horizontal"
-					ACTION="./searchWeighing" method="POST">
+					ACTION="orderprocessing/searchWeighing" method="POST">
 					<DIV class="form-group">
 						<DIV class="col-sm-1">
 							<input TYPE="text" NAME="transNumForTaobao" placeholder="货品编号"
@@ -112,7 +115,7 @@
 										<tr class="success">
 									</c:otherwise>
 								</c:choose>				  
-								<td><a href="./orderItem?id=${commodity.commodityID }&orderid=${commodity.orderNumber.orderFormID }" >${commodity.orderNumber.orderFormID }</a></td>
+								<td><a href="orderprocessing/orderItem?id=${commodity.commodityID }&orderid=${commodity.orderNumber.orderFormID }" >${commodity.orderNumber.orderFormID }</a></td>
 								<td>${commodity.transNumForTaobao }</td>
 								<td>${commodity.orderNumber.orderUser.userName}</td>
 								<td>${commodity.orderNumber.paymentDate}</td>
@@ -141,7 +144,7 @@
 				});
 			}
 			function packNum(num){
-					location.href ='./getOrder?page=weighing&id='+num;
+					location.href ='orderprocessing/getOrder?page=weighing&id='+num;
 			}
 			</script>
 			
@@ -290,7 +293,7 @@
 											function onProcessing(orderID,commID){
 												var num = $('#quantity').val();
 												var dispoce = $('input[name="dispose"]:checked').val();
-												location.href ='./onProcessing?dispose='+dispoce+'&num='+num+'&orderID='+orderID +'&commID='+commID;			
+												location.href ='orderprocessing/onProcessing?dispose='+dispoce+'&num='+num+'&orderID='+orderID +'&commID='+commID;			
 											}
 											</script>
 											<!-- /表格 -->

@@ -8,37 +8,40 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>订单</title>
-<link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
-<link href="../content/static/css/bootstrap/bootstrap.min.css"
+<% String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; %>
+<base href="<%=basePath%>">
+<link href="content/static/css/bootstrap/navbar.css" rel="stylesheet">
+<link href="content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet"> 
-<link href="../content/static/css/datetime/jquery-clockpicker.min.css"
+<link href="content/static/css/datetime/jquery-clockpicker.min.css"
 	rel="stylesheet">
-<link href="../content/static/css/datetime/jquery.datetimepicker.css"
+<link href="content/static/css/datetime/jquery.datetimepicker.css"
 	rel="stylesheet">
-<link href="../content/static/css/reception/lanrenzhijia.css"
+<link href="content/static/css/reception/lanrenzhijia.css"
 	rel="stylesheet">
-<script src="../content/static/js/echart/ie-emulation-modes-warning.js"></script>
+<script src="content/static/js/echart/ie-emulation-modes-warning.js"></script>
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="../content/static/img/apple-touch-icon-144-precomposed.png">
+	href="content/static/img/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="../content/static/img/apple-touch-icon-114-precomposed.png">
+	href="content/static/img/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="../content/static/img/apple-touch-icon-72-precomposed.png">
+	href="content/static/img/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
-	href="../content/static/img/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon" href="../content/static/img/favicon.png">
+	href="content/static/img/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="content/static/img/favicon.png">
 <script type="text/javascript"
-	src="../content/static/js/lib/jquery.min.js"></script>
+	src="content/static/js/lib/jquery.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/lib/bootstrap.min.js"></script>
+	src="content/static/js/lib/bootstrap.min.js"></script>
 
 <script type="text/javascript"
-	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
+	src="content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
+	src="content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
-<script type="text/javascript" src="../content/static/js/lib/scripts.js"></script>
+	src="content/static/js/datetime/jquery.datetimepicker.js"></script>
+<script type="text/javascript" src="content/static/js/lib/scripts.js"></script>
 </head>
 <style type="text/css">
 th {
@@ -62,7 +65,7 @@ th {
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="span12">
-				<form class="form-horizontal" action="./searchAccountBook"
+				<form class="form-horizontal" action="shop/searchAccountBook"
 					method="POST">
 					<div class="form-group">
 						<div class="col-sm-1">
@@ -190,7 +193,7 @@ jQuery(document).ready(function($) {
           <a href="javascript:;" title="关闭" class="close">×</a>
           <h3>修改备注</h3>
      </div>
-      <form name="loginform" action="./updateNotes" method="post">
+      <form name="loginform" action="shop/updateNotes" method="post">
           <input type="hidden" id="commID" name="commID">
                 <textarea rows="16" cols="88" name="notes" id="notes"></textarea>
            <input class="btn btn-primary" type="submit" name="submit" value=" 确认 " />

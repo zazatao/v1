@@ -9,6 +9,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>zazatao</title>
+<% String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; %>
+<base href="<%=basePath%>">
 <link href="content/static/css/reception/css.css" rel="stylesheet" type="text/css" />
 <script src="content/static/js/reception/png.js" type="text/javascript" ></script>
 <script src="content/static/js/reception/ScrollPic.js" type="text/javascript" ></script>

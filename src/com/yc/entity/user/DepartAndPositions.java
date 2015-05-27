@@ -35,22 +35,22 @@ public class DepartAndPositions {
 	@JoinColumn(name = "positions_id")
 	private Positions positions;
 	
+	@OneToMany(mappedBy = "departAndPositions")
+	private List<Personnel> personnels;
+
 	@OneToOne
 	@JoinColumn(name = "ticket_id")
 	private Ticket ticket;
 	
 	@Column
-	private Double wage;// 工资
+	private Double wage;
 	
 	@Column
-	private Integer rules;// 规则
+	private Integer rules;
 	
 	@Column
-	private Double saleCut;// 提成
+	private Double saleCut;
 	
-	@OneToMany(mappedBy = "departAndPositions")
-	private List<Personnel> personnels;
-
 	public Double getWage() {
 		return wage;
 	}
@@ -75,6 +75,14 @@ public class DepartAndPositions {
 		this.saleCut = saleCut;
 	}
 
+	public Ticket getTicket() {
+		return ticket;
+	}
+
+	public void setTicket(Ticket ticket) {
+		this.ticket = ticket;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -97,14 +105,6 @@ public class DepartAndPositions {
 
 	public void setPositions(Positions positions) {
 		this.positions = positions;
-	}
-
-	public Ticket getTicket() {
-		return ticket;
-	}
-
-	public void setTicket(Ticket ticket) {
-		this.ticket = ticket;
 	}
 	@JsonIgnore
 	public List<Personnel> getPersonnels() {
