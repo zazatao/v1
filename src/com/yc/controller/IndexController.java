@@ -99,8 +99,11 @@ public class IndexController {
  		}
 
     	lists.clear();
- 		lists = getNodeForShopCategory(shopCategService.findById(6));
- 		List<CommdityModel> allCommodity = new ArrayList<CommdityModel>();
+    	if ( shopCategService.findById(6) != null) {
+    		lists = getNodeForShopCategory(shopCategService.findById(6));  		
+    	}
+    	
+    	List<CommdityModel> allCommodity = new ArrayList<CommdityModel>();
  		List<CommdityModel> topCommodity = new ArrayList<CommdityModel>();
  		for ( int i = 0; i < lists.size(); i++ ) {
  			allCommodity.addAll(commodityService.getAllByCommdityID(lists.get(i).getCategoryID()));
@@ -119,7 +122,7 @@ public class IndexController {
  				break;
  			}				
  		}
- 		
+
  		ModelMap mode = new ModelMap();
  		AdvertisementManager advertisementManager = new AdvertisementManager();
  		mode.putAll(advertisementManager.getHomePageAdvertisements(adverDistributionService,advertisementService));

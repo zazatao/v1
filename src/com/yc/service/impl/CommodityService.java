@@ -207,7 +207,7 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 	// 分类查询
 	@Override
 	public List<CommdityModel> getAllByShopCategoryID(Integer id) {
-		StringBuffer hql = new StringBuffer("SELECT DISTINCT s.categoryID,s.category FROM commodity c RIGHT JOIN shopcategory s ON s.categoryID = c.shopcategory WHERE  s.parent_ID =" + id + " limit 7");
+		StringBuffer hql = new StringBuffer("SELECT DISTINCT s.categoryID,s.category FROM commodity c RIGHT JOIN shopcategory s ON s.categoryID = c.shopcategory WHERE  s.parentLevel =" + id + " limit 7");
 		Query query = commodityDao.getEntityManager().createNativeQuery(hql.toString());
 		@SuppressWarnings("rawtypes")
 		List objecArraytList = query.getResultList();

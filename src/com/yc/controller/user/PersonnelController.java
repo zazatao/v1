@@ -93,6 +93,9 @@ public class PersonnelController {
 
     @RequestMapping(value = "regist", method = RequestMethod.POST)
     public String registing(Personnel personnel,HttpServletRequest request, HttpServletResponse response) throws Exception {
+    	if(personnel.getLoginName()!="administrator"){
+    		personnel.setForbidden("已禁用");
+    	}
     	personnelService.save(personnel);
         return "redirect:/homePage";
     }
