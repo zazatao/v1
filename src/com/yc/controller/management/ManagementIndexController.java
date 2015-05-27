@@ -413,9 +413,12 @@ public class ManagementIndexController {
 						}
 					}else{
 						DepartAndPositions dep = depAndPosService.getAllByDepAndPos(department.getDepartmentID(),positions.getPositionid());
+						System.out.println("dep===="+dep);
 						personnel.setDepartAndPositions(dep);
 						personnel = personnelService.update(personnel);
+						System.out.println("personnel==="+personnel);
 						dep.getPersonnels().add(personnel);
+						System.out.println("dep.getPersonnels()===="+dep.getPersonnels());
 						depAndPosService.update(dep);
 					}
 				}

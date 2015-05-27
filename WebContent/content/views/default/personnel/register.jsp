@@ -63,7 +63,7 @@
 				<div class="row clearfix">
 					<div class="col-md-3 column"></div>
 					<div class="col-md-6 column">
-						<form class="form-horizontal" action="../personnel/regist"
+						<form class="form-horizontal" id="form"
 							method="POST">
 							<div class="form-group" style="text-align: center;">
 								<label><font style="font-size: 40px;">用户注册</font> </label> <br>
@@ -97,17 +97,35 @@
 								</div>
 							</div>
 							<div class="form-group">
-									<label for="inputPhone" class="col-sm-2 control-label">姓名</label>
+									<label for="inputPatientName" class="col-sm-2 control-label">姓名</label>
 									<div class="col-sm-10">
-										<input type="tel" id="inputPatientName" name="userName"
+										<input type="text" id="inputPatientName" name="userName"
 											class="form-control">
 									</div>
 								</div>
-							<div class="form-group">
+								<div class="form-group">
+									<label for="inputEmail" class="col-sm-2 control-label">Email</label>
+									<div class="col-sm-10">
+										<input type="email" id="inputEmail" name="email"
+											class="form-control">
+									</div>
+								</div>
+								<div class="form-group">
+								     <label for="inputPatientName" class="col-sm-2 control-label">性别</label>
+								     <label style="margin-left: 20px;"><input type="radio"  name="sex"  value="Male" checked="checked"/>男</label>
+								     <label style="margin-left: 10px;"><input type="radio"  name="sex"  value="Female"/>女</label>
+								</div>
+								<div class="form-group">
+									<label for="inputPhone" class="col-sm-2 control-label">手机号</label>
+									<div class="col-sm-10">
+										<input type="tel" id="inputPhone" name="phone"
+											class="form-control">
+									</div>
+								</div>
+							 <div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10"
 									style="text-align: center;">
-									<button type="submit" class="btn btn-default"
-										onClick="return closeAndRefresh();">注册</button>
+									<button type="button" class="btn btn-default" onClick="return gotoSubmit();">注册</button>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									<button type="button" class="btn btn-default"
 										onclick="cancel()">取消</button>
@@ -121,7 +139,11 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-
+        function gotoSubmit(){
+        	if(checkformname() == true&&checkpwd()==true&&rcheckpwd()==true){
+        		document.getElementById("form").submit();
+        	}
+        }
 		function cancel() {
 			window.location.href = "../homePage";
 		}
@@ -129,13 +151,15 @@
 			var fname = document.getElementById("inputEmail3");
 			var ftname = document.getElementById("sname");
 			if (fname.value == ""
-					|| fname.value.length<2||fname.value.length>10) {
+					|| fname.value.length<2||fname.value.length>15) {
 				ftname.className = "frred";
 				fname.focus();
-				ftname.innerHTML = "× 请输入2-10位用户名，可包含数字、字母、下划线";
+				ftname.innerHTML = "× 请输入2-15位用户名，可包含数字、字母、下划线";
+				return false;
 			} else {
 				ftname.className = "fgren";
 				ftname.innerHTML = "√用户名可用!";
+				return true;
 			}
 		}
 		function checkpwd() {
@@ -148,8 +172,10 @@
 			} else {
 				ftpwd.className = "fgren";
 				ftpwd.innerHTML = "√密码可用！"
+				return true;
 			}
 		}
+		
 		function rcheckpwd() {
 			var fpwd = document.getElementById("inputPassword3");
 			var frpwd = document.getElementById("inputPassword4");
@@ -158,14 +184,17 @@
 				ftrpwd.className = "frred";
 				frpwd.focus();
 				ftrpwd.innerHTML = "× 请输入您的重复密码！"
+				return false;
 			} else {
 				if (frpwd.value != fpwd.value) {
 					ftrpwd.className = "frred";
 					fpwd.focus();
 					ftrpwd.innerHTML = "× 俩次密码输入不一致，请重新输入！";
+					return false;
 				} else {
 					ftrpwd.className = "fgren";
 					ftrpwd.innerHTML = " √ 密码输入正确"
+					return true;
 				}
 			}
 		}

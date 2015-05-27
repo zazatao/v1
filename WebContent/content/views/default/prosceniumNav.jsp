@@ -21,7 +21,7 @@
 					<form action="/searchComm" method="post">
 						<input value="搜索" name="content" type="text" onfocus="this.value=''"
 							onblur="if(this.value==''){this.value='搜索';}" />
-						<button type="submit">搜索</button>
+						<button type="submit" style="margin-left: 400px">搜索</button>
 					</form>
 				</div>					
 			</div>
@@ -81,13 +81,13 @@
 		<div class="menu">
 			<!---------------   菜单   ----------------------->
 			<div class="menu1">
-				<ul class="navf" id="navShopCaegory1">
+				<ul class="navf" id="navShopCaegory1" >
 					<li class="bg_none"><a href="./index"><img
 							src="content/static/images/fzan.jpg" width="16" height="17" /></a></li>
 					<c:forEach items="${shopCategories }" var="shopCategory">
 						<c:if test="${shopCategory.level == 1 && shopCategory.category != '汽车用具' && shopCategory.category != '电子产品' }">
-							<li>
-							<a href="./proscenium/categoryOne?id=${shopCategory.categoryID}">
+							<li >
+							<a href="./proscenium/categoryOne?id=${shopCategory.categoryID}" >
 							<c:if test="${sessionScope.language == 'chinese'}">${shopCategory.category }</c:if>
 							<c:if test="${sessionScope.language == 'russina'}">${shopCategory.russinaCategory }</c:if>
 							</a>
@@ -95,12 +95,12 @@
 									<c:forEach items="${shopCategory.children }" var="shopCategory2">
 										<c:if test="${shopCategory2.level == 2  }">
 											<c:if test="${sessionScope.language == 'chinese'}">
-												<div class="nav-column"><h3>${shopCategory2.category }</h3>
+												<div class="nav-column" ><h3>${shopCategory2.category }</h3>
 											</c:if>
 											<c:if test="${sessionScope.language == 'russina'}">
 												<div class="nav-column"><h3>${shopCategory2.russinaCategory }</h3>
 											</c:if>
-											<ul>
+											<ul style="border:1px solid #fdd922;  margin-left:0px; width:60px; margin-right:0px;">
 												<c:forEach  items="${shopCategory2.children }" var="shopCategory3">
 													<c:if test="${shopCategory3.level == 3 }">
 														<c:if test="${sessionScope.language == 'chinese'}">
@@ -165,7 +165,7 @@
 				</ul>
 			</div>
 			<div class="menu3">
-				<ul class="navf nav_3" id="navShopCaegory3">
+				<ul class="navf nav_3"  id="navShopCaegory3">
 				</ul>
 			</div>
 			<div class="clear"></div>
