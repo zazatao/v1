@@ -122,7 +122,7 @@
 					<li><a href="./collection">我喜欢的产品</a></li>
 					<li><a href="perscent_sup.html">引起支持呼吁</a></li>
 					<li><a href="./introduction">设置简介</a></li>
-					<li class="mr_n"><a href="perscent_size.html">我的尺寸</a></li>
+					<li class="mr_n"><a href="./skipmysize">我的尺寸</a></li>
 				</ul>
 			</div>
 			<div class="cl"></div>

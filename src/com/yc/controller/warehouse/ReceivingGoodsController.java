@@ -94,7 +94,7 @@ public class ReceivingGoodsController {
 		if (session.getAttribute("code") != null) {
 			UnKnownCommodity unKnown = unKnownCommService.findById(Integer.parseInt(session.getAttribute("code").toString()));
 			if (unKnown !=null) {
-				unknownComm.setOperator((User) session.getAttribute("loginUser"));
+				unknownComm.setOperator((Personnel) session.getAttribute("loginUser"));
 				BeanUtils.copyProperties(unknownComm, unKnown);
 				unKnownCommService.update(unKnown);
 				session.removeAttribute("code");
@@ -102,7 +102,7 @@ public class ReceivingGoodsController {
 			return new ModelAndView("warehouse/jobAction", null);
 		} else {
 			if (unknownComm.getAmountNum() !=null && !unknownComm.getCategory().equals("") && !unknownComm.getComment().equals("")) {
-				unknownComm.setOperator((User) session.getAttribute("loginUser"));
+				unknownComm.setOperator( (Personnel) session.getAttribute("loginUser"));
 				unKnownCommService.save(unknownComm);
 			}
 			return new ModelAndView("warehouse/jobAction", null);

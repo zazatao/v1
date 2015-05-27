@@ -128,7 +128,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             			dataType : 'json',
             			success : function(data) {
             				if( data.success == "true" ){ 
-            					
             					var coteid = data.categoryId;
             					var $cote = "";
             					var $para = "";

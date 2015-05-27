@@ -50,7 +50,7 @@
 			</div>
 			<h3 class="shopcarles">
 				<img src="../content/static/images/brand/shcanumc_1.png" width="16"
-					height="16" />购物车里的商品<span><a href="#">回去继续采购</a></span>
+					height="16" />购物车里的商品<span><a href="../proscenium/categoryLei?id=-1&page=special">回去继续采购</a></span>
 			</h3>
 			<c:if test="${fn:length(list) == 0 }"><font style="color: red;font-size: 18px;">您的购物车还没有商品呢！！！去购物吧！！！</font></c:if>
 			<c:if test="${fn:length(list)>0 }">

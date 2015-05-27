@@ -129,7 +129,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											</div>
 											<div class="form-group">
 												<label for="inputEmail3" class="col-sm-2 control-label">
-													评论</label>
+													原因</label>
 												<div class="col-sm-10">
 													<textarea rows="2" cols="10" name="comment" class="form-control">${unKnownComm.comment }</textarea>
 												</div>
