@@ -89,8 +89,8 @@ th {
 											<tr class="success">
 										</c:otherwise>
 									</c:choose>
-									<td align="center">${user.id }</td>
-									<td>${user.userName }</td>
+									<td align="center">${user.loginName }</td>
+									<td>${user.shop.juridicalPerson }</td>
 									<td>${user.email }</td>
 									<td>${user.sex }</td>
 									<td>${user.phone }</td>

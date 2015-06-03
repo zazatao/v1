@@ -74,10 +74,9 @@
 								</td>
 								<td>${shopComm.commoidtyName }</td>
 								<td>${shopComm.russinaCommoidtyName }</td>
-								<td><img src="..${shopComm.shopCommImages[0].imagePath }" /></td>
+								<td><img src="..${shopComm.shopCommImages[0].imagePath  }"  style="width:110px;height:110px;"/></td>
 								<td>￥${shopComm.unitPrice }</td>
-								<td><button
-										onclick="zhekou(${shopComm.auction},${shopComm.commCode },${shopComm.shelves });">
+								<td><button onclick="zhekou(${shopComm.auction},${shopComm.commCode },${shopComm.shelves });">
 										<c:if test="${shopComm.auction}">拍卖中</c:if>
 										<c:if test="${!shopComm.auction}">下拍</c:if>
 									</button></td>

@@ -343,10 +343,12 @@ public class ShopOneController {
 			return new ModelAndView("user/login", mode);
 		} else {
 			Shop shop = shopService.getShopByUser(user.getId());
+			List<Brand> brands=brandService.getAll();
 			List<Currency> currencyList = currencyService.getAll();
 			if (shop != null && shop.getIsPermit()) {
 				mode.put("shopCategory", list);
 				mode.put("shop", shop);
+				mode.put("brands", brands);
 				mode.put("currencylist", currencyList);
 				return new ModelAndView("reception/releaseCommoidty", mode);
 			} else {
@@ -356,16 +358,7 @@ public class ShopOneController {
 
 	}
 
-	@RequestMapping(value = "getSpecific", method = RequestMethod.GET)
-	@ResponseBody
-	public Map<String, Object> getSpecific(@RequestParam(value = "ids", required = true) Integer ids) throws ServletException, IOException {
-		//ShopCategory shopCate = shopCategService.findById(ids);
-		List<Specifications> spec = specificationService.getAllByShopCateg(ids);
-		ModelMap mode = new ModelMap();
-		mode.put("spec", spec);
-		mode.put("success", "true");
-		return mode;
-	}
+	
 
 	// 新商品添加保存
 	@RequestMapping(value = "saveCommoidty", method = RequestMethod.POST)
@@ -374,18 +367,20 @@ public class ShopOneController {
 		User user = (User) request.getSession().getAttribute("loginUser");
 		Currency currency = currencyService.findById(currency_id);
 		shopCommoidty.setCurrency(currency);
-		shopCommoidty = shopCommService.update(shopCommoidty);
 		if (user != null) {
 			Shop shop = shopService.getShopByUser(user.getId());
 			if (shop != null && shop.getIsPermit()) {
 				String fenlei = request.getParameter("fenlei");
+				System.out.println("fenlei====="+fenlei);
 				if (fenlei != null && !fenlei.equals("-1")) {
 					CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
 					ShopCommoidty shopCom = shopCommService.getAllByCommItemAndShop(shopCommoidty.getCommItem(), shop.getId());
 					String guige = request.getParameter("guige");// 规格
+					System.out.println("guige====="+guige);
 					if (shopCom != null) {
 						ShopCommoidtySpecs specs = commoidtySpecsService.getSpecsByParam(shopCom.getCommCode(),guige);
 						Integer stock = Integer.parseInt(request.getParameter("stock"));
+						System.out.println("stock====="+stock);
 						if (specs == null) {
 							if (multipartResolver.isMultipart(request)) {
 								String pathDir = "";
@@ -431,8 +426,9 @@ public class ShopOneController {
 													specs.setStock(stock);
 													specs.setUnitPrice(shopCommoidty.getUnitPrice());
 													specs.setShopCommSpecs(shopCom);
-													commoidtySpecsService.save(specs);
+												    specs = commoidtySpecsService.save(specs);
 													shopCom.setStock(shopCom.getStock() + stock);
+													shopCom.getCommsPecs().add(specs);
 												}
 											}
 										}
@@ -505,12 +501,14 @@ public class ShopOneController {
 													}
 												}
 												ShopCommoidtySpecs spec = new ShopCommoidtySpecs();
+												System.out.println("str=========="+str);
 												spec.setCommSpec(str);
 												Integer stock = Integer.parseInt(request.getParameter("stock"));
 												spec.setStock(stock);
 												spec.setUnitPrice(shopCommoidty.getUnitPrice());
 												spec.setShopCommSpecs(shopcomm);
-												commoidtySpecsService.save(spec);
+												spec = commoidtySpecsService.save(spec);
+												shopcomm.getCommsPecs().add(spec);
 											}
 										}
 										ShopCommImage image = new ShopCommImage();

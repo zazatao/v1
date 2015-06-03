@@ -42,7 +42,7 @@ public class Address {
 	@Column
 	private String indexNum ;// 指数
 	@Column
-	private Boolean theDefault;// 是否默认
+	private Boolean theDefault=false;// 是否默认
 	@ManyToOne
 	@JoinColumn(name = "user_id")
     private User user;

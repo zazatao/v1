@@ -51,7 +51,7 @@ public class PersonnelService extends GenericService<Personnel> implements IPers
 
 	@Override
 	public List<Personnel> getPurchaseByUser(User user) {
-		StringBuffer hql = new StringBuffer("SELECT DISTINCT per.* FROM Commodity comm LEFT JOIN OrderForm orders ON orders.orderFormID = comm.orderform_id LEFT JOIN Personnel per ON per.id = orders.purchase_user WHERE comm.status = 'support' AND orders.orderstatus = 'waitDelivery' AND comm.seller_name = 1 AND orders.purchase_user IS NOT NULL AND orders.user_id = "+user.getId());
+		StringBuffer hql = new StringBuffer("SELECT DISTINCT per.* FROM Commodity comm LEFT JOIN OrderForm orders ON orders.orderFormID = comm.orderform_id LEFT JOIN Personnel per ON per.id = comm.purchase_user WHERE comm.status = 'support' AND orders.orderstatus = 'waitDelivery' AND comm.seller_name = 1 AND comm.purchase_user IS NOT NULL AND orders.user_id = "+user.getId());
 		Query query = personnelDao.getEntityManager().createNativeQuery(hql.toString(),Personnel.class);
 		@SuppressWarnings("unchecked")
 		List<Personnel> list =  query.getResultList();

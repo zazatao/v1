@@ -131,7 +131,7 @@ public class ReceivingGoodsController {
 			}
 			if (code != null) {
 				String fileName = imageFile.getOriginalFilename();
-				String pathDir = "/content/static/img/" + code + "/";
+				String pathDir = "content/static/img/" + code + "/";
 				String logoRealPathDir = request.getSession().getServletContext().getRealPath(pathDir);
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 				String suffix = fileName.substring(fileName.lastIndexOf("."));

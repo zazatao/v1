@@ -9,7 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.junit.Ignore;
@@ -24,7 +26,7 @@ public class Specifications {
 	private Integer id;
 	
 	@Column
-	private String specificatName;//类别名
+	private String specificatName;//规格名
 	
 	@Column
 	private String attribute;//属性名

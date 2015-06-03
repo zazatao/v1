@@ -9,34 +9,34 @@
 		<dl>
 			<dt>汽车相关产品</dt>
 			<dd>
-				<img src="../content/static/images/small/s_1.png" /><a href="../proscenium/categoryLei?id=23&page=autoSupplies" >汽车电子产品</a>
+				<img src="../content/static/images/small/s_1.png" /><a href="../proscenium/categoryLei?id=47&page=autoSupplies" >品质车饰</a>
 			</dd>
 			<dd>
-				<img src="../content/static/images/small/s_2.png" /><a href="../proscenium/categoryLei?id=63&page=autoSupplies"
-					>汽车照明</a>
+				<img src="../content/static/images/small/s_2.png" /><a href="../proscenium/categoryLei?id=48&page=autoSupplies"
+					>汽车配件</a>
 			</dd>
 			<dd>
-				<img src="../content/static/images/small/s_3.png" /><a href="../proscenium/categoryLei?id=24&page=autoSupplies"
-					>GPS导航<br /></a>
+				<img src="../content/static/images/small/s_3.png" /><a href="../proscenium/categoryLei?id=49&page=autoSupplies"
+					>电子影音<br /></a>
 			</dd>
 			<dd>
-				<img src="../content/static/images/small/s_4.png" /><a href="../proscenium/categoryLei?id=64&page=autoSupplies"
-					>汽车保养<br /></a>
+				<img src="../content/static/images/small/s_4.png" /><a href="../proscenium/categoryLei?id=50&page=autoSupplies"
+					>汽车用品<br /></a>
 			</dd>
 			<dd>
-				<img src="../content/static/images/small/s_5.png" /><a href="../proscenium/categoryLei?id=65&page=autoSupplies"
-				>汽配
+				<img src="../content/static/images/small/s_5.png" /><a href="../proscenium/categoryLei?id=&page=autoSupplies"
+				>系统配件
 					<br />
 				</a>
 			</dd>
 			<dd>
-				<img src="../content/static/images/small/s_6.png" /><a href="../proscenium/categoryLei?id=66&page=autoSupplies">工具<br /></a>
+				<img src="../content/static/images/small/s_6.png" /><a href="../proscenium/categoryLei?id=&page=autoSupplies">保养清洗<br /></a>
 			</dd>
 			<dd>
-				<img src="../content/static/images/small/s_7.png" /><a href="../proscenium/categoryLei?id=67&page=autoSupplies">汽车配件</a>
+				<img src="../content/static/images/small/s_7.png" /><a href="../proscenium/categoryLei?id=&page=autoSupplies">汽车服务</a>
 			</dd>
 			<dd style="border-bottom: none;">
-				<img src="../content/static/images/small/s_8.png" /><a href="../proscenium/categoryLei?id=68&page=autoSupplies">摩托车用品</a>
+				<img src="../content/static/images/small/s_8.png" /><a href="../proscenium/categoryLei?id=&page=autoSupplies">摩托摩配</a>
 			</dd>
 		</dl>
 	</div>

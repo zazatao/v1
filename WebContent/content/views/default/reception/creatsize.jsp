@@ -14,9 +14,9 @@
     	    var value=$(this).val();
     	    var filename=$("input[name='filename").val();
     	    if(value!=null&&value=="Female"){
-    	    	location.href="/user/chooseCate?id=5&sex=Female&fname="+filename;    
+    	    	location.href="/user/chooseCate?id=1&sex=Female&fname="+filename;    
     	    }else if(value!=null&&value=="Male"){
-    	    	location.href="/user/chooseCate?id=1&sex=Male&fname="+filename;    
+    	    	location.href="/user/chooseCate?id=2&sex=Male&fname="+filename;    
     	    }
     	});
     	$("#cate").change(function(){
@@ -26,7 +26,7 @@
     			for (i = numd - 1; i >= 0; i--) {
     				districtSelect.remove(i);
     			}
-    			var objOption = new Option("----尺寸----", -1);
+    			var objOption = new Option("----尺码----", -1);
     			districtSelect.options[districtSelect.options.length] = objOption;
     			jQuery.ajax({
 					type : 'GET',
@@ -85,7 +85,7 @@
                           <select id="cate"  name="cates" style="float: left">
                             <option value='0'>----类型----</option>
                             <c:forEach items="${catelist}" var="cate">
-                                       <option value=12 >${cate.category}</option>
+                                       <option value=${cate.categoryID} >${cate.category}</option>
                             </c:forEach>
                           </select> 
                   </div>

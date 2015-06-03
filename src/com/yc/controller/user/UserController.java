@@ -21,10 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.sun.javafx.sg.prism.NGShape.Mode;
 import com.yc.entity.Address;
-import com.yc.entity.Advertisement;
-import com.yc.entity.AdvertisementPage;
 import com.yc.entity.Collection;
 import com.yc.entity.OrderForm;
 import com.yc.entity.OrderStatus;
@@ -171,7 +168,6 @@ public class UserController {
 		
     	AdvertisementManager advertisementManager = new AdvertisementManager();
     	map.putAll(advertisementManager.getMyOfficePageAdvertisements(adverDistributionService,advertisementService));
-		
 		return new ModelAndView("reception/myoffice", map);
 	}
 
@@ -288,7 +284,14 @@ public class UserController {
 		userService.update(user);
 		return "redirect:/user/introduction";
 	}
-
+    //保存地址
+	@RequestMapping(value = "saveNewAddress", method = RequestMethod.POST)
+	public String saveNewAddress(Address address,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		User user =(User)request.getSession().getAttribute("loginUser");
+		address.setUser(user);
+		addressService.save(address);
+		return "redirect:/proscenium/shopcardelv";
+	}
 	// 修改地址
 	@RequestMapping(value = "editaddress", method = RequestMethod.POST)
 	public String editaddress(Integer id,Integer num,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -343,7 +346,6 @@ public class UserController {
 		mode.put("shopCategories", list);
 		return new ModelAndView("reception/toNewAddress",mode);
 	}
-	 
 	//查询我的尺寸
 	@RequestMapping(value = "skipmysize", method =  RequestMethod.GET)
 	public ModelAndView skipmysize(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -457,17 +459,26 @@ public class UserController {
 			}else{	
 				map.put("orderStatus", orderStatus);
 			}
+			System.out.println("111111111");
 			List<OrderForm> orders = orderFormService.getAllByParams(map,user);
-			mode.put("orderForms", orders);
-			mode.put("orderDate", orderDate);
-			mode.put("orderStatus", orderStatus);
-			return new ModelAndView("reception/perscentBonuses",mode);
+//			mode.put("orderForms", orders);
+//			mode.put("orderDate", orderDate);
+//			mode.put("orderStatus", orderStatus);
+		    for (int i = 0; i < orders.size(); i++) {
+		    	OrderForm form =  orders.get(i);
+		    	for (int j = 0; j < form.getCommodities().size(); j++) {
+					//System.out.println(j+"        form.getCommodities()===="+form.getCommodities().get(j).getCommodityID());
+		    		System.out.println(j+"        form.getCommodities()====");
+				}
+		    }
+		   // new ModelAndView("reception/perscentBonuses",mode)
+			return null;
 		}
 	}
 	//退款订单
 	@RequestMapping(value = "updatRefund", method =  RequestMethod.GET)
 	public ModelAndView updatRefund(Integer id,String status,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 ModelMap mode = new ModelMap();
+		// ModelMap mode = new ModelMap();
 	    User user =	(User)request.getSession().getAttribute("loginUser");
 	    if (user!= null ) {
 	    	  OrderForm orderform=orderFormService.findById(id);

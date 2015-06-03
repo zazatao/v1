@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -374,7 +375,7 @@ public class GetShopCategory {
     	return mode;
 
     }
-  	
+  	//添加我的尺寸
   	@RequestMapping(value = "getSpacesByCateID", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> getSpacesByCateID(Integer id, HttpServletRequest request) throws ServletException, IOException {
@@ -384,4 +385,15 @@ public class GetShopCategory {
   		System.out.println("size==========="+list.size());
   		return mode;
   	}
+  	
+  	@RequestMapping(value = "getSpecific", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getSpecific(@RequestParam(value = "ids", required = true) Integer ids) throws ServletException, IOException {
+		//ShopCategory shopCate = shopCategService.findById(ids);
+		List<Specifications> spec = specificationsService.getAllByShopCateg(ids);
+		ModelMap mode = new ModelMap();
+		mode.put("spec", spec);
+		mode.put("success", "true");
+		return mode;
+	}
 }

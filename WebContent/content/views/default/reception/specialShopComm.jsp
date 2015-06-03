@@ -73,7 +73,7 @@
 								</td>
 								<td>${shopComm.commoidtyName }</td>
 								<td>${shopComm.russinaCommoidtyName }</td>
-								<td><img src="..${shopComm.shopCommImages[0].imagePath }" /></td>
+								<td><img src="..${shopComm.shopCommImages[0].imagePath }"  style="width:110px;height:110px;"/></td>
 								<td>${shopComm.currency.symbol }${shopComm.unitPrice }</td>
 								<td><button
 										onclick="zhekou(${shopComm.isSpecial},${shopComm.commCode },${shopComm.shelves });">

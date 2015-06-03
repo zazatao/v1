@@ -24,12 +24,12 @@
 	$(function() {
 		 $("#btn").click(function(){
 			 var value=$(this).is(":checked");
-			// alert(value);
-			 if(value){
-				$("input[name='password']").attr("type","text");
-			 }else{
-				 $("input[name='password']").attr("type","password");
-			 }
+// 			// alert(value);
+// 			 if(value){
+// 				$("input[name='password']").attr("type","text");
+// 			 }else{
+// 				 $("input[name='password']").attr("type","password");
+// 			 }
 		});
 	});
 </script>

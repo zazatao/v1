@@ -23,7 +23,7 @@ public class ShopCommoidty {
 	@Column
 	private String commoidtyName;//商品名称
 	
-	@Column(unique=true)
+	@Column
 	private String commItem;// 货号
 	
 	@Column
@@ -31,7 +31,7 @@ public class ShopCommoidty {
 	
 	@OneToMany(mappedBy = "shopCommSpecs")
 	private List<ShopCommoidtySpecs> commsPecs;
-	
+
 	@Column
 	private Integer proportion = 1;//显示比例
 	
@@ -99,6 +99,7 @@ public class ShopCommoidty {
 	@Column
 	private String russinaDescribes;
 	
+
 	public String getRussinaCommoidtyName() {
 		return russinaCommoidtyName;
 	}

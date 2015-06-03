@@ -138,8 +138,11 @@
 								<li class="dropdown-submenu"><a href="#">商品</a>
 									<ul class="dropdown-menu">
 										<li><a href="./management/shopCategory">商品分类</a></li>
-										<li><a href="#">成批商品</a></li>
-										<li><a href="#">首页商品</a></li>
+										<li><a href="./management/specification">商品类型规格</a></li>
+										<li><a href="./management/brand">商品品牌</a></li>
+										<li><a href="./management/shopcateAndbrand">商品品牌分配</a></li>
+										<li><a href="javascript:void(0);">成批商品</a></li>
+										<li><a href="javascript:void(0);">首页商品</a></li>
 									</ul></li>
 								<li class="dropdown-submenu"><a href="#">翻译</a>
 									<ul class="dropdown-menu">
