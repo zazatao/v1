@@ -182,13 +182,13 @@
 		}
 		
 		function addAdvertisemnt(){
-			document.form.action="./addAdvertisement";
+			document.form.action="../management/addAdvertisement";
 			document.form.submit();
 			return closeAndRefresh();
 		}
 		
 		function updateAdvertisement(){
-			document.form.action="./updateAdvertisement?id=${advertisement.id}";
+			document.form.action="../management/updateAdvertisement?id=${advertisement.id}";
 			document.form.submit();
 			return closeAndRefresh();
 		}

@@ -81,7 +81,7 @@
             	 	<span class="f1" >${fn:substring(Comm.category, 0, 4)}</span></a>
               	</c:forEach> 
              </div>
-            <div class="tj"><a class="gray" href="red.html">推荐商品</a><a class="red" href="red_2.html">打折促销</a></div>
+            <div  id="test" class="tj"><a class="gray" href="red.html">推荐商品</a><a class="red" href="red_2.html">打折促销</a></div>
             </div>
             <div class="flzs">
             	<div class="flan">
@@ -125,7 +125,6 @@
             			dataType : 'json',
             			success : function(data) {
             				if( data.success == "true" ){ 
-            					
             					var coteid = data.categoryId;
             					var $cote = "";
             					var $para = "";

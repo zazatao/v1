@@ -123,7 +123,7 @@ public class IndexController {
  		ModelMap mode = new ModelMap();
  		AdvertisementManager advertisementManager = new AdvertisementManager();
  		mode.putAll(advertisementManager.getHomePageAdvertisements(adverDistributionService,advertisementService));
- 		mode .put("list", list1);
+ 		mode.put("list", list1);
     	mode.put("shopCategories", list);
     	mode.put("lists", allCommodity);
     	
