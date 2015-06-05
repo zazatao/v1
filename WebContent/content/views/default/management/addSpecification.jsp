@@ -57,16 +57,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<h3 class="panel-title">
 					商品类型规格
 				</h3>
-				       <ul style="list-style: none;margin-top: 20px;">
+				  <ul style="list-style: none;margin-top: 20px;">
 				    <li style="float: left;margin-right: 120px;font-size:20px;font-weight: bold;">规格名</li>
 				    <li style="float: left;margin-right: 200px;font-size:20px;font-weight: bold;">属性名</li>
 				 </ul>
 				 <br/>
-				  <ul style="list-style: none;margin-top: 20px;">
+				  <ul style="list-style: none;margin-top: 20px; border:1px solid #ccc;">
 				         <c:forEach items="${specifications}" var="specification">
 			                   <li style="float: left;margin-right: 120px;font-size:20px;">${specification.specificatName}</li>
- 				              <li style="float: left;margin-right: 120px;font-size:20px;">${specification.attribute}</li>
-                              <br/>                     
+ 				               <li style="margin-right: 120px;font-size:20px;">${specification.attribute}</li>
+ 				               <br/>
 				         </c:forEach>
 				 </ul>
 			</div>

@@ -159,19 +159,22 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 	}
 
 	public List<Commodity> getAllByParameters(Map<String, Object> map) {
-		StringBuffer hql = new StringBuffer(" from Commodity c where c.orderNumber.orderstatus = 'transitGoods' and (? is null or c.transNumForTaobao = ?) " + " and (? is null or c.tpek = ?) and (? is null or c.status = ?) " + "  and  (? is null or c.orderNumber.orderUser.userName like ?) and (? is null or c.orderNumber.orderDate = ?) " + "  and  (? is null or c.orderNumber.paymentDate = ?) and  (? is null or c.orderNumber.orderFormID = ?)"
+		StringBuffer hql = new StringBuffer(" from Commodity c where c.orderNumber.orderstatus = 'transitGoods' and (? is null or c.transNumForTaobao = ?) " 
+				+ " and (? is null or c.tpek = ?) and c.status in ('paid','sendOut')" 
+				+ "  and  (? is null or c.orderNumber.orderUser.userName like ?) and (? is null or c.orderNumber.orderDate = ?) " 
+				+ "  and  (? is null or c.orderNumber.paymentDate = ?) and  (? is null or c.orderNumber.orderFormID = ?)"
 				+ " and  (? is null or c.commItem = ?) and c.orderNumber.orderUser.storeRoom.isInCell = 1 ");
 		Object[] paramete = null;
 		if (map.get("packageCode") == null) {
-			paramete = new Object[16];
+			paramete = new Object[14];
 			paramete = getParamete(paramete, map);
 
 		} else {
 			hql.append(" and (? is null or c.orderNumber.packAge.packageCode = ?)");
-			paramete = new Object[18];
+			paramete = new Object[16];
 			paramete = getParamete(paramete, map);
-			paramete[16] = map.get("packageCode");
-			paramete[17] = map.get("packageCode");
+			paramete[14] = map.get("packageCode");
+			paramete[15] = map.get("packageCode");
 		}
 		return commodityDao.find(hql.toString(), paramete, -1, -1);
 	}
@@ -183,18 +186,16 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 		// paramete[3] = "%" + map.get("operatorPurchase") + "%";
 		paramete[2] = map.get("tpek");
 		paramete[3] = map.get("tpek");
-		paramete[4] = map.get("formStatus");
-		paramete[5] = map.get("formStatus");
-		paramete[6] = map.get("userName");
-		paramete[7] = "%" + map.get("userName") + "%";
-		paramete[8] = map.get("orderDate");
-		paramete[9] = map.get("orderDate");
-		paramete[10] = map.get("paymentDate");
-		paramete[11] = map.get("paymentDate");
-		paramete[12] = map.get("orderNum");
-		paramete[13] = map.get("orderNum");
-		paramete[14] = map.get("commItem");
-		paramete[15] = map.get("commItem");
+		paramete[4] = map.get("userName");
+		paramete[5] = "%" + map.get("userName") + "%";
+		paramete[6] = map.get("orderDate");
+		paramete[7] = map.get("orderDate");
+		paramete[8] = map.get("paymentDate");
+		paramete[9] = map.get("paymentDate");
+		paramete[10] = map.get("orderNum");
+		paramete[11] = map.get("orderNum");
+		paramete[12] = map.get("commItem");
+		paramete[13] = map.get("commItem");
 		return paramete;
 	}
 
@@ -439,6 +440,15 @@ public class CommodityService extends GenericService<Commodity> implements IComm
 		StringBuffer hql = new StringBuffer("select COUNT(DISTINCT commodityID) from Commodity c where c.status in(" + status + ") and c.seller_name = " + shop_id);
 		Query query =  commodityDao.getEntityManager().createNativeQuery(hql.toString());
 		return Integer.parseInt(query.getSingleResult().toString());
+	}
+
+	@Override
+	public List<Commodity> getCommByOrderId(Integer orderFormID) {
+	     StringBuffer hql=new StringBuffer("SELECT * FROM commodity WHERE commodity.orderform_id="+orderFormID);
+	     Query query = commodityDao.getEntityManager().createNativeQuery(hql.toString(), Commodity.class);
+		 @SuppressWarnings("unchecked")
+	     List<Commodity> list = query.getResultList();
+	     return list;
 	}
 
 }

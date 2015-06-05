@@ -7,6 +7,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,7 +29,7 @@ public class OrderForm {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer orderFormID;
 
-	@OneToMany(mappedBy = "orderNumber")
+	@OneToMany(mappedBy = "orderNumber",fetch=FetchType.LAZY)
 	private List<Commodity> commodities;
 
 	@ManyToOne

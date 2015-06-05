@@ -342,12 +342,19 @@ public class IndexController {
 		ModelMap mode = new ModelMap();
 		AdvertisementManager advertisementManager = new AdvertisementManager();
  		mode.putAll(advertisementManager.getInnerPageAdvertisements(adverDistributionService,advertisementService));
-		
 		List<ShopCommoidty> searchComms = shopCommService.searchShopComm(content );		
 		List<ShopCategory> shopcates = shopCategService.getAll();
 		List<Surcharges> surs = surchargesService.getAll();
 		List<Specifications> specifications = specificationService.getAll();
 		List<Brand> brands = brandService.getAll();
+		for (int k = 0; k < brands.size() - 1; k++) {
+			for (int j = brands.size() - 1; j > k; j--) {
+				if (brands.get(j).getBrandName()	
+						.equals(brands.get(k).getBrandName())) {
+					brands.remove(j);
+				}
+			}
+		}
 		mode.put("brands", brands);
 		mode.put("specifications", specifications);
 		mode.put("surs", surs);
@@ -355,17 +362,6 @@ public class IndexController {
 		mode.put("page", "search");
 		mode.put("nvabar","搜索结果");
 		mode.put("list", searchComms);
-		
-		int position1 = adverDistributionService.findByWhichPageAndPosition(AdvertisementPage.innerPage, 1).getId(); 
-    	List<Advertisement> advertisements = advertisementService.getAll();
-    	ArrayList<Advertisement> advertisements1 = new ArrayList<Advertisement>();
-    	
-    	for ( int i = 0; i < advertisements.size(); i++ ) {
-    		if ( advertisements.get(i).getAdverDistribution().getId() == position1 ) {
-    			advertisements1.add(advertisements.get(i));
-    		} 
-    	}
-    	mode.put("advertisements1", advertisements1);
     	
    		return new ModelAndView("reception/searchList",mode);
    	}

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>购物车交付</title>
+<title>zazatao</title>
 <link href="../content/static/css/reception/css.css" rel="stylesheet"
 	type="text/css" />
 <link href="../content/static/css/reception/qt.css" rel="stylesheet"
@@ -76,7 +76,7 @@
 			</div>
 			<h3 class="shopcarles">
 				<img src="../content/static/images/brand/shcanumc_1.png" width="16"
-					height="16" />购物车里的商品<span><a href="../proscenium/categoryLei?id=-1&page=special">回去继续采购</a></span>
+					height="16" />购物车里的商品<span><a href="#">回去继续采购</a></span>
 			</h3>
 			<div class="shopcartab">
 				<div class="shopcartabt1">

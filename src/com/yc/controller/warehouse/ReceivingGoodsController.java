@@ -27,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.yc.entity.Commodity;
 import com.yc.entity.CommoidityStatus;
 import com.yc.entity.ImagePath;
+import com.yc.entity.StoreRoom;
 import com.yc.entity.UnKnownCommodity;
 import com.yc.entity.user.AccomplishMetric;
 import com.yc.entity.user.Personnel;
@@ -71,6 +72,25 @@ public class ReceivingGoodsController {
 	public ModelAndView receiving(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		return new ModelAndView("warehouse/beginwork", null);
 	}
+	//库房
+	@RequestMapping(value = "storeroom", method = RequestMethod.GET)
+	public ModelAndView storeroom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<StoreRoom> storerooms=storeRoomService.getAll();
+		ModelMap mode=new ModelMap();
+		mode.put("storerooms", storerooms);
+		return new ModelAndView("warehouse/storeroom", mode);
+	}
+	//跳转添加库房页面
+	@RequestMapping(value = "addStoreroom", method = RequestMethod.GET)
+	public ModelAndView addStoreroom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		return new ModelAndView("warehouse/addStoreroom", null);
+	}
+	@RequestMapping(value = "saveStoreroom", method = RequestMethod.POST)
+	public String saveStoreroom(StoreRoom storeR,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		storeRoomService.save(storeR);
+		return "redirect:/warehouse/storeroom";
+	}
+
 
 	@RequestMapping(value = "jobAction", method = RequestMethod.GET)
 	public ModelAndView jobAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -180,7 +200,6 @@ public class ReceivingGoodsController {
 			isok = true;
 			map.put("commItem", request.getParameter("commItem").trim());
 		}
-		map.put("formStatus", CommoidityStatus.valueOf("paid"));
 		List<Commodity> commods = null;
 		if (isok) {
 			commods = commodityService.getAllByParameters(map);

@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.yc.dao.orm.commons.GenericDao;
+import com.yc.entity.Commodity;
 import com.yc.entity.OrderForm;
 import com.yc.entity.OrderStatus;
 import com.yc.entity.Shop;
@@ -61,7 +62,7 @@ public class OrderFormService extends GenericService<OrderForm> implements IOrde
 	@Override
 	public List<OrderForm> getOrderFormByParameters(Map<String, Object> map) {
 		StringBuffer hql = new StringBuffer("select DISTINCT o.* from OrderForm o left join User u on o.user_id = u.id left join Commodity com on o.orderFormID = com.orderform_id"
-				+ " left join Personnel per on o.store_user = per.id OR per.id = o.purchase_user left join Shop shop on shop.id = com.seller_name where 1=1 ");
+				+ " left join Personnel per on com.store_user = per.id OR per.id = com.purchase_user left join Shop shop on shop.id = com.seller_name where 1=1 ");
 		if (map.get("orderstatus") !=null) {
 			hql.append(" and o.orderstatus = '"+map.get("orderstatus")+"'");
 		}
@@ -90,9 +91,10 @@ public class OrderFormService extends GenericService<OrderForm> implements IOrde
 		return orderFormDao.getEntityManager().createNativeQuery(hql.toString(), OrderForm.class).getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<OrderForm> getAllByParams(Map<String, Object> map, User user) {
-		StringBuffer hql = new StringBuffer("select DISTINCT o.* from OrderForm o  LEFT JOIN commodity comm ON comm.orderform_id = o.orderFormID where o.user_id = "+user.getId());
+		StringBuffer hql = new StringBuffer("select DISTINCT o.*  from OrderForm o  LEFT JOIN commodity comm ON comm.orderform_id = o.orderFormID where o.user_id = "+user.getId());
 		if (map.get("orderStatus") != null) {
 			if (map.get("orderStatus").equals("wanjie")) {
 				hql.append(" and o.orderstatus in('"+OrderStatus.completionTransaction+"','"+OrderStatus.consigneeSigning+"')");
@@ -156,7 +158,6 @@ public class OrderFormService extends GenericService<OrderForm> implements IOrde
 		orderFormDao.getEntityManager().clear();
 		System.out.println("hql===="+hql);
 		Query query = orderFormDao.getEntityManager().createNativeQuery(hql.toString(), OrderForm.class);
-		@SuppressWarnings("unchecked")
 		List<OrderForm> list =  query.getResultList();
 		return list;
 	}
