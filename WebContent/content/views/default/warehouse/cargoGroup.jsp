@@ -11,35 +11,38 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>货物组</title>
-<link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
-<link href="../content/static/css/bootstrap/bootstrap.min.css"
+<% String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; %>
+<base href="<%=basePath%>">
+<link href="content/static/css/bootstrap/navbar.css" rel="stylesheet">
+<link href="content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
-<script src="../content/static/js/echart/ie-emulation-modes-warning.js"></script>
+<script src="content/static/js/echart/ie-emulation-modes-warning.js"></script>
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="../content/static/img/apple-touch-icon-144-precomposed.png">
+	href="content/static/img/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="../content/static/img/apple-touch-icon-114-precomposed.png">
+	href="content/static/img/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="../content/static/img/apple-touch-icon-72-precomposed.png">
+	href="content/static/img/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
-	href="../content/static/img/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon" href="../content/static/img/favicon.png">
+	href="content/static/img/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="content/static/img/favicon.png">
 <script type="text/javascript"
-	src="../content/static/js/lib/jquery.min.js"></script>
+	src="content/static/js/lib/jquery.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/lib/bootstrap.min.js"></script>
+	src="content/static/js/lib/bootstrap.min.js"></script>
 <script type="text/javascript" src="./content/static/js/lib/scripts.js"></script>
 
 <script type="text/javascript"
-	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
-<link href="../content/static/css/datetime/jquery-clockpicker.min.css"
+	src="content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
+<link href="content/static/css/datetime/jquery-clockpicker.min.css"
 	rel="stylesheet">
-<link href="../content/static/css/datetime/jquery.datetimepicker.css"
+<link href="content/static/css/datetime/jquery.datetimepicker.css"
 	rel="stylesheet">
 <script type="text/javascript"
-	src="../content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
+	src="content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
+	src="content/static/js/datetime/jquery.datetimepicker.js"></script>
 </head>
 
 <body>
@@ -82,7 +85,7 @@
 			<br>
 			<hr>
 			<div class="col-md-5 column">
-				<form class="form-horizontal" action="./searchCargoGroup"
+				<form class="form-horizontal" action="warehouse/searchCargoGroup"
 					method="POST">
 					<div class="form-group">
 						<div class="col-sm-2">
@@ -132,7 +135,7 @@
 										<tr class="success">
 									</c:otherwise>
 								</c:choose>
-								<td><a href="#"
+								<td><a href="javascript:void(0);"
 									onclick="packNum(${cargoGroup.cargoGroupID },${cargoGroup.totalWeight});">${cargoGroup.cargoGroupID }</a></td>
 								<td>${cargoGroup.totalWeight}</td>
 								<td>${cargoGroup.tpekCargoGroup}</td>
@@ -178,10 +181,10 @@
 					}
 				}
 				function packNum(num,totalWeight){
-						location.href ='./getPackAge?id='+num;
+						location.href ='warehouse/getPackAge?id='+num;
 				}
 				function packOrder(groupID,num){
-					location.href ='./getOrderByPackID?groupID='+groupID+'&id='+num;
+					location.href ='warehouse/getOrderByPackID?groupID='+groupID+'&id='+num;
 				}
 				$(document).ready(function(){
 					$('#transit').change(function(){
@@ -193,7 +196,7 @@
 				})
 				function formSubmit(){
 					if (!$('#transitInput').val()=='' && !$('#deliveryInput').val()=='') {
-						location.href = './getCargoGroup?transit='+$('#transitInput').val()+'&delivery='+$('#deliveryInput').val();
+						location.href = 'warehouse/getCargoGroup?transit='+$('#transitInput').val()+'&delivery='+$('#deliveryInput').val();
 					}
 				}
 			</script>
@@ -206,7 +209,7 @@
 						<div class="container-fluid">
 							<div class="row-fluid">
 								<div class="span12">
-									<form class="form-horizontal" action="./sendCargoGroup"
+									<form class="form-horizontal" action="warehouse/sendCargoGroup"
 										method="POST">
 										<div class="form-group">
 											<label for="inputEmail3" class="col-sm-2 control-label">总重量</label>
@@ -279,7 +282,7 @@
 												<tr class="success">
 											</c:otherwise>
 										</c:choose>
-										<td><a href="#"
+										<td><a href="javascript:void(0);"
 											onclick="packOrder('${cargoGroup.cargoGroupID}','${pack.packageID}');">${pack.packageCode }</a></td>
 										<td>${pack.packAgeTpek}</td>
 										<td>${pack.totalWeight}</td>

@@ -21,6 +21,7 @@ public class ImagePath {
 	private Integer imageId;
 	
 	@ManyToOne
+	@JoinColumn(name = "unKnownComm_code")
 	private UnKnownCommodity unKnownComm;
 	
 	@ManyToOne

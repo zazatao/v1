@@ -74,15 +74,15 @@
 								</td>
 								<td>${shopComm.commoidtyName }</td>
 								<td>${shopComm.russinaCommoidtyName }</td>
-								<td><img src="..${shopComm.shopCommImages[0].imagePath }" /></td>
+								<td><img src="..${shopComm.shopCommImages[0].imagePath }"  style="width:110px;height: 110px;"/></td>
 								<td>${shopComm.currency.symbol }${shopComm.unitPrice }</td>
 								<td><button
-										onclick="zhekou(${shopComm.shelves},${shopComm.commCode });">
+		                                onclick="zhekou(${shopComm.shelves},${shopComm.commCode });">
 										<c:if test="${shopComm.shelves}">已上架</c:if>
 										<c:if test="${!shopComm.shelves}">下架</c:if>
 									</button></td>
 								<td><button
-										onclick="zhekou1(${shopComm.isSpecial},${shopComm.commCode },${shopComm.shelves });">
+                                        onclick="zhekou1(${shopComm.isSpecial},${shopComm.commCode },${shopComm.shelves });">
 										<c:if test="${shopComm.isSpecial}">已加入</c:if>
 										<c:if test="${!shopComm.isSpecial}">不加入</c:if>
 									</button></td>

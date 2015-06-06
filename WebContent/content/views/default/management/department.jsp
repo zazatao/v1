@@ -7,29 +7,32 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>部门管理</title>
-<link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
-<link href="../content/static/css/bootstrap/bootstrap.min.css"
+<% String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; %>
+<base href="<%=basePath%>">
+<link href="content/static/css/bootstrap/navbar.css" rel="stylesheet">
+<link href="content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
-<script src="../content/static/js/echart/ie-emulation-modes-warning.js"></script>
+<script src="content/static/js/echart/ie-emulation-modes-warning.js"></script>
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="../content/static/img/apple-touch-icon-144-precomposed.png">
+	href="content/static/img/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="../content/static/img/apple-touch-icon-114-precomposed.png">
+	href="content/static/img/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="../content/static/img/apple-touch-icon-72-precomposed.png">
+	href="content/static/img/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
-	href="../content/static/img/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon" href="../content/static/img/favicon.png">
+	href="content/static/img/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="content/static/img/favicon.png">
 
 <script type="text/javascript"
-	src="../content/static/js/lib/jquery.min.js"></script>
+	src="content/static/js/lib/jquery.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/lib/bootstrap.min.js"></script>
+	src="content/static/js/lib/bootstrap.min.js"></script>
 <script type="text/javascript" src="./content/static/js/lib/scripts.js"></script>
 
 <script type="text/javascript"
-	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
-<link href="../content/static/css/bootstrap/bootstrap-tree.css"
+	src="content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
+<link href="content/static/css/bootstrap/bootstrap-tree.css"
 	rel="stylesheet">
 </head>
 <body>
@@ -70,7 +73,7 @@
 			<div class="list-group-item">
 				<p class="list-group-item-text">
 					<br>
-					<form class="form-horizontal" action="./addOrUpdateDep"  id="form" name="form" 
+					<form class="form-horizontal" action="management/addOrUpdateDep"  id="form" name="form" 
 						method="POST">
 						<div class="form-group">
 							<label class="col-sm-2 control-label">上级部门:</label>
@@ -112,14 +115,14 @@
 	</div>
 	<script type="text/javascript">
 		function onclickID(id) {
-			location.href = './getDepartment?departmentId=' + id+"&page=department";
+			location.href = 'management/getDepartment?departmentId=' + id+"&page=department";
 		}
 		function updateDepartmen(){
-			document.form.action="./updateDepartmen?departmentId="+$('#departmentID').val();
+			document.form.action="management/updateDepartmen?departmentId="+$('#departmentID').val();
 			document.form.submit();
 		}
 		function deleteDepartmen(){
-			document.form.action="./deleteDepartmen?departmentId="+$('#departmentID').val();
+			document.form.action="management/deleteDepartmen?departmentId="+$('#departmentID').val();
 			document.form.submit();
 		}
 		$(function() {

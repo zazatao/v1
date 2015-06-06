@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import com.yc.dao.orm.commons.GenericDao;
 import com.yc.entity.Package;
 import com.yc.entity.user.Personnel;
+import com.yc.entity.user.User;
 import com.yc.service.IPackageService;
 
 @Component
@@ -112,5 +113,30 @@ public class PackageService extends GenericService<Package> implements IPackageS
 	public List<Package> getPackAgesForTransit(Personnel personnel) {
 		StringBuffer hql = new StringBuffer(" from Package pack where pack.transitSte.personnel.id = "+personnel.getId()+" and pack.transitSte.sendDate is null ");
 		return packAgeDao.find(hql.toString(), null, null);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Package> getPackByProblem() {
+		StringBuffer hql=new StringBuffer("SELECT * FROM package RIGHT JOIN problempack ON problempack.package_id=package.packageID");
+		return packAgeDao.getEntityManager().createNativeQuery(hql.toString(), Package.class).getResultList();
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.yc.service.IPackageService#searchPackProblem(java.util.Map)
+	 * 问题订单查询
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Package> searchPackProblem(Map<String, Object> map) {
+		StringBuffer hql = new StringBuffer("SELECT * FROM package RIGHT JOIN problempack ON problempack.package_id=package.packageID RIGHT JOIN `user` u  ON problempack.`user_id`=u.`id`  where 1=1 ");
+		if (map.get("userName") !=null) {
+			hql.append(" and u.userName like '%"+map.get("userName") +"%'");
+		}
+		if (map.get("phone") !=null) {
+			hql.append(" and u.phone = '"+map.get("phone") +"'");
+		}
+		return packAgeDao.getEntityManager().createNativeQuery(hql.toString(), Package.class).getResultList();
 	}
 }

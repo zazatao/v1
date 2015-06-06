@@ -8,48 +8,51 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>验货入库</title>
-<link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
-<link href="../content/static/css/bootstrap/bootstrap.min.css"
+<% String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; %>
+<base href="<%=basePath%>">
+<link href="content/static/css/bootstrap/navbar.css" rel="stylesheet">
+<link href="content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
-<link href="../content/static/css/bootstrap/bootstrap-switch.css"
+<link href="content/static/css/bootstrap/bootstrap-switch.css"
 	rel="stylesheet">
-<script src="../content/static/js/echart/ie-emulation-modes-warning.js"></script>
+<script src="content/static/js/echart/ie-emulation-modes-warning.js"></script>
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="../content/static/img/apple-touch-icon-144-precomposed.png">
+	href="content/static/img/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="../content/static/img/apple-touch-icon-114-precomposed.png">
+	href="content/static/img/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="../content/static/img/apple-touch-icon-72-precomposed.png">
+	href="content/static/img/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
-	href="../content/static/img/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon" href="../content/static/img/favicon.png">
+	href="content/static/img/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="content/static/img/favicon.png">
 
 <script type="text/javascript"
-	src="../content/static/js/lib/jquery.min.js"></script>
+	src="content/static/js/lib/jquery.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/lib/strophe-custom-1.0.0.js"></script>
-<script type="text/javascript" src="../content/static/js/lib/json2.js"></script>
+	src="content/static/js/lib/strophe-custom-1.0.0.js"></script>
+<script type="text/javascript" src="content/static/js/lib/json2.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/lib/easemob.im-1.0.4.js"></script>
+	src="content/static/js/lib/easemob.im-1.0.4.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/lib/bootstrap.min.js"></script>
-<script type="text/javascript" src="../content/static/js/lib/scripts.js"></script>
+	src="content/static/js/lib/bootstrap.min.js"></script>
+<script type="text/javascript" src="content/static/js/lib/scripts.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/lib/bootstrap-switch.js"></script>
+	src="content/static/js/lib/bootstrap-switch.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/lib/highlight.js"></script>
-<script type="text/javascript" src="../content/static/js/lib/main.js"></script>
+	src="content/static/js/lib/highlight.js"></script>
+<script type="text/javascript" src="content/static/js/lib/main.js"></script>
 
 <script type="text/javascript"
-	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
-<link href="../content/static/css/datetime/jquery-clockpicker.min.css"
+	src="content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
+<link href="content/static/css/datetime/jquery-clockpicker.min.css"
 	rel="stylesheet">
-<link href="../content/static/css/datetime/jquery.datetimepicker.css"
+<link href="content/static/css/datetime/jquery.datetimepicker.css"
 	rel="stylesheet">
 <script type="text/javascript"
-	src="../content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
+	src="content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
+	src="content/static/js/datetime/jquery.datetimepicker.js"></script>
 
 </head>
 <style type="text/css">
@@ -69,7 +72,7 @@ th {
 							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									货物： <a href="../warehouse/jobAction"><span
+									货物： <a href="warehouse/jobAction"><span
 										class="badge navbar-right">返回</span></a>
 								</div>
 								<table class="table table-bordered table-hover table-condensed">
@@ -186,7 +189,7 @@ th {
 		function checkData(obj,id){
 			if (obj.value != '') {
 				if(confirm('您确定要如此操作么？') ){
-					location.href ='../warehouse/working?commodityID='+id+'&status='+obj.value;
+					location.href ='warehouse/working?commodityID='+id+'&status='+obj.value;
 				}
 			}
 		}

@@ -61,7 +61,7 @@
 							<c:if test="${sessionScope.language == 'russina' }"><td>${shopComm.shopCategory.russinaCategory }</td></c:if>
 							<td>${shopComm.commoidtyName }</td>
 							<td>${shopComm.russinaCommoidtyName }</td>
-							<td><img src="..${shopComm.shopCommImages[0].imagePath }" /></td>
+							<td><img src="..${shopComm.shopCommImages[0].imagePath }"  style="width:110px;height: 110px;"/></td>
 							<td>${shopComm.currency.symbol}${shopComm.unitPrice}</td>
 							<td><button onclick="zhekou1(${shopComm.auction},${shopComm.commCode },${shopComm.shelves });"><c:if test="${shopComm.auction}">拍卖中</c:if><c:if test="${!shopComm.auction}">下拍</c:if></button></td>
 							<td><button onclick="zhekou(${shopComm.isSpecial},${shopComm.commCode },${shopComm.shelves });"><c:if test="${shopComm.isSpecial}">已加入</c:if><c:if test="${!shopComm.isSpecial}">不加入</c:if></button></td>

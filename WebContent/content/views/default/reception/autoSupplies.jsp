@@ -37,7 +37,6 @@
 					<c:choose>
 						<c:when test="${not empty cateList}">
 							<c:forEach items="${cateList}" var="cate">
-<%-- 							       categoryClick('../getShopCategory/getCarShopCommByCate?id=${cate.categoryID}'); --%>
 								<a href="../proscenium/categoryLei?id=${cate.categoryID}&page=autoSupplies" >${cate.category}</a>
 							</c:forEach>
 						</c:when>
@@ -48,11 +47,18 @@
 				</h1>
 			</div>
 			<div class="cont_cent_left cont_cent_left1">
+			 <c:choose>
+			   <c:when test="${not empty shopcommlist}">
 				<c:forEach items="${shopcommlist}" var="shopcomm">
 					<span><a
 						href="../proscenium/shopItem?commID=${shopcomm.commCode }&category=${shopcomm.shopCategory.categoryID }&shopID=${shopcomm.belongTo.id }&commoName=${shopcomm.commoidtyName }"><img
 							src="..${shopcomm.shopCommImages[0].imagePath}"></a></span>
 				</c:forEach>
+				</c:when>
+				<c:otherwise>
+				         <span style="color:red">请等待上架</span>
+				</c:otherwise>
+			</c:choose>	
 			</div>
 			<div class="cont_cent_right">
 				<h1>推荐排行榜</h1>

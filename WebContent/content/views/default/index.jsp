@@ -9,6 +9,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>zazatao</title>
+<% String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; %>
+<base href="<%=basePath%>">
 <link href="content/static/css/reception/css.css" rel="stylesheet" type="text/css" />
 <script src="content/static/js/reception/png.js" type="text/javascript" ></script>
 <script src="content/static/js/reception/ScrollPic.js" type="text/javascript" ></script>
@@ -86,16 +89,16 @@
             <div class="flzs">
             	<div class="flan">
                 	<ul>
-                        <li><a href="#" onclick="categoryClick('shopCommItems?id=6');"><img src="content/static/images/txs.jpg" big="content/static/images/txs.jpg" mid="content/static/images/at/txs.jpg" width="67" height="64" /></a></li>
-                    	<li><a href="#" onclick="categoryClick('shopCommItems?id=33');"><img src="content/static/images/at/zxj.jpg" big="content/static/images/zxj.jpg" mid="content/static/images/at/zxj.jpg" width="67" height="64" /></a></li>
-                        <li><a href="#" onclick="categoryClick('shopCommItems?id=60');"><img src="content/static/images/cf.jpg" big="content/static/images/cf.jpg" mid="content/static/images/at/cf.jpg" width="67" height="64" /></a></li>
-                        <li><a href="#" onclick="categoryClick('shopCommItems?id=7');"><img src="content/static/images/gwb.jpg" big="content/static/images/gwb.jpg" mid="content/static/images/at/gwb.jpg" width="67" height="64" /></a></li>
-                        <li><a href="#" onclick="categoryClick('shopCommItems?id=22');"><img src="content/static/images/dj.jpg" big="content/static/images/dj.jpg" mid="content/static/images/at/dj.jpg" width="67" height="64" /></a></li>
-                        <li><a href="#" onclick="categoryClick('shopCommItems?id=66');"><img src="content/static/images/ggx.jpg" big="content/static/images/ggx.jpg" mid="content/static/images/at/ggx.jpg" width="67" height="64" /></a></li>
-                        <li><a href="#" onclick="categoryClick('shopCommItems?id=58');"><img src="content/static/images/etwj.jpg" big="content/static/images/etwj.jpg" mid="content/static/images/at/etwj.jpg" width="67" height="64" /></a></li>
-                        <li><a href="#" onclick="categoryClick('shopCommItems?id=62');"><img src="content/static/images/yd.jpg" big="content/static/images/yd.jpg" mid="content/static/images/at/yd.jpg" width="67" height="64" /></a></li>
-                        <li><a href="#" onclick="categoryClick('shopCommItems?id=64');"><img src="content/static/images/hlyp.jpg" big="content/static/images/hlyp.jpg" mid="content/static/images/at/hlyp.jpg" width="67" height="64" /></a></li>
-                        <li><a href="#" onclick="categoryClick('shopCommItems?id=65');"><img src="content/static/images/sb.jpg" big="content/static/images/sb.jpg" mid="content/static/images/at/sb.jpg" width="67" height="64" /></a></li>                  	
+                        <li><a href="#" onclick="categoryClick('shopCommItems?id=9');"><img src="content/static/images/txs.jpg" big="content/static/images/txs.jpg" mid="content/static/images/at/txs.jpg" width="67" height="64" /></a></li>
+                    	<li><a href="#" onclick="categoryClick('shopCommItems?id=45');"><img src="content/static/images/at/zxj.jpg" big="content/static/images/zxj.jpg" mid="content/static/images/at/zxj.jpg" width="67" height="64" /></a></li>
+                        <li><a href="#" onclick="categoryClick('shopCommItems?id=33');"><img src="content/static/images/cf.jpg" big="content/static/images/cf.jpg" mid="content/static/images/at/cf.jpg" width="67" height="64" /></a></li>
+                        <li><a href="#" onclick="categoryClick('shopCommItems?id=14');"><img src="content/static/images/gwb.jpg" big="content/static/images/gwb.jpg" mid="content/static/images/at/gwb.jpg" width="67" height="64" /></a></li>
+                        <li><a href="#" onclick="categoryClick('shopCommItems?id=40');"><img src="content/static/images/dj.jpg" big="content/static/images/dj.jpg" mid="content/static/images/at/dj.jpg" width="67" height="64" /></a></li>
+                        <li><a href="#" onclick="categoryClick('shopCommItems?id=11');"><img src="content/static/images/ggx.jpg" big="content/static/images/ggx.jpg" mid="content/static/images/at/ggx.jpg" width="67" height="64" /></a></li>
+                        <li><a href="#" onclick="categoryClick('shopCommItems?id=27');"><img src="content/static/images/etwj.jpg" big="content/static/images/etwj.jpg" mid="content/static/images/at/etwj.jpg" width="67" height="64" /></a></li>
+                        <li><a href="#" onclick="categoryClick('shopCommItems?id=41');"><img src="content/static/images/yd.jpg" big="content/static/images/yd.jpg" mid="content/static/images/at/yd.jpg" width="67" height="64" /></a></li>
+                        <li><a href="#" onclick="categoryClick('shopCommItems?id=16');"><img src="content/static/images/hlyp.jpg" big="content/static/images/hlyp.jpg" mid="content/static/images/at/hlyp.jpg" width="67" height="64" /></a></li>
+                        <li><a href="#" onclick="categoryClick('shopCommItems?id=30');"><img src="content/static/images/sb.jpg" big="content/static/images/sb.jpg" mid="content/static/images/at/sb.jpg" width="67" height="64" /></a></li>                  	
                     </ul>
                 </div>
                 <div class="fltp">

@@ -22,6 +22,7 @@ import com.yc.entity.ProblemPack;
 import com.yc.entity.Shop;
 import com.yc.entity.ShopReviews;
 import com.yc.entity.StoreRoom;
+import com.yc.entity.UserSize;
 
 @Entity
 @DiscriminatorValue("user")//用户
@@ -77,6 +78,19 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<ShopReviews> shopReviews;//用户评论
 	
+	@OneToMany(mappedBy = "user")
+	private List<UserSize> userSize;//用户尺寸
+	
+	
+	
+	public List<UserSize> getUserSize() {
+		return userSize;
+	}
+
+	public void setUserSize(List<UserSize> userSize) {
+		this.userSize = userSize;
+	}
+
 	public List<ShopReviews> getShopReviews() {
 		return shopReviews;
 	}

@@ -7,5 +7,4 @@ import com.yc.entity.Specifications;
 public interface ISpecificationsService extends IGenericService<Specifications> {
 
 	List<Specifications> getAllByShopCateg(Integer ids);
-
 }

@@ -9,36 +9,38 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>添加广告</title>
-
-<link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
-<link href="../content/static/css/bootstrap/bootstrap.min.css"
+<% String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; %>
+<base href="<%=basePath%>">
+<link href="content/static/css/bootstrap/navbar.css" rel="stylesheet">
+<link href="content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
-<script src="../content/static/js/echart/ie-emulation-modes-warning.js"></script>
+<script src="content/static/js/echart/ie-emulation-modes-warning.js"></script>
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="../content/static/img/apple-touch-icon-144-precomposed.png"/>
+	href="content/static/img/apple-touch-icon-144-precomposed.png"/>
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="../content/static/img/apple-touch-icon-114-precomposed.png"/>
+	href="content/static/img/apple-touch-icon-114-precomposed.png"/>
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="../content/static/img/apple-touch-icon-72-precomposed.png"/>
+	href="content/static/img/apple-touch-icon-72-precomposed.png"/>
 <link rel="apple-touch-icon-precomposed"
-	href="../content/static/img/apple-touch-icon-57-precomposed.png"/>
-<link rel="shortcut icon" href="../content/static/img/favicon.png"/>
+	href="content/static/img/apple-touch-icon-57-precomposed.png"/>
+<link rel="shortcut icon" href="content/static/img/favicon.png"/>
 <script type="text/javascript"
-	src="../content/static/js/lib/jquery.min.js"></script>
+	src="content/static/js/lib/jquery.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/lib/bootstrap.min.js"></script>
+	src="content/static/js/lib/bootstrap.min.js"></script>
 
 <script type="text/javascript"
-	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
+	src="content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
 
-<link href="../content/static/css/datetime/jquery-clockpicker.min.css"
+<link href="content/static/css/datetime/jquery-clockpicker.min.css"
 	rel="stylesheet"/>
-<link href="../content/static/css/datetime/jquery.datetimepicker.css"
+<link href="content/static/css/datetime/jquery.datetimepicker.css"
 	rel="stylesheet"/>
 <script type="text/javascript"
-	src="../content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
+	src="content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
+	src="content/static/js/datetime/jquery.datetimepicker.js"></script>
 </head>
 <body>
 	<div class="container-fluid">
@@ -198,19 +200,74 @@
 			self.close();
 			return true;
 		}
+
 		function depChange(obj){
-			jQuery.ajax({
-				type : 'GET',
-				contentType : 'application/json',
-				url : '../getShopCategory/getAdverPositions?whichPage='+whichPage.value,
-				dataType : 'json',
-				success : function(data) {
-					if(data.success == 'true'){
-						var pos = document.getElementById('position');
-						var numd = pos.options.length;
-						for (i = numd - 1; i >= 0; i--) {
-							pos.remove(i);
-						}
+					jQuery.ajax({
+						type : 'GET',
+						contentType : 'application/json',
+						url : '../getShopCategory/getAdverPositions?whichPage='+whichPage.value,
+						dataType : 'json',
+						success : function(data) {
+							if(data.success == 'true'){
+								var pos = document.getElementById('position');
+								var numd = pos.options.length;
+								for (i = numd - 1; i >= 0; i--) {
+									pos.remove(i);
+								}
+								var objOption = new Option("选择所在页面的广告位", "0");
+								pos.options[pos.options.length] = objOption;
+								$.each(data.list, function(i, position) {
+									var description = position;
+									if ( whichPage.value == 'homePage') {
+										if( position == 1) {
+											description = description + "(818*398)";
+										} else if( position == 2) {
+											description = description + "(335*304)";
+										} else if( position == 3) {
+											description = description + "(511*311)"; 
+										} else if( position == 4) {
+											description = description + "(205*73)";
+										} else if( position == 5) {
+											description = description + "(189*142)";
+										}
+									} else if ( whichPage.value == 'innerPage') {
+										description = description + "(223*210)";
+									} else if ( whichPage.value == 'detailPage') {
+										description = description + "(118*146)";
+									} else if ( whichPage.value == 'elecProductionPage') {
+										if( position == 1) {
+											description = description + "(604*245)";
+										} else if( position == 2) {
+											description = description + "(191*164)";
+										} else if( position == 3) {
+											description = description + "(118*135)";
+										} else if( position == 4) {
+											description = description + "(174*224)";
+										}
+									} else if ( whichPage.value == 'carPage') {
+										if( position == 1) {
+											description = description + "(660*308)";
+										} else if( position == 2) {
+											description = description + "(218*147)";
+										} else if( position == 3) {
+											description = description + "(146*196)";
+										}
+									} else if ( whichPage.value == 'myOfficePage') {
+										if( position == 1) {
+											description = description + "(142*109)";
+										} else if( position == 2) {
+											description = description + "(786*106)";
+										}
+									} else if ( whichPage.value == 'brandPage') {
+										description = description + "(771*272)";
+									}
+									var objOption = new Option(description ,
+											position);
+									pos.options[pos.options.length] = objOption;
+								});
+							}
+				
+					
 						var objOption = new Option("选择所在页面的广告位", "0");
 						pos.options[pos.options.length] = objOption;
 						$.each(data.list, function(i, position) {
@@ -263,9 +320,9 @@
 							pos.options[pos.options.length] = objOption;
 						});
 					}
-				}
-			});
-		}
+				});
+			}
+
 		
 		function popupwindow(url) {
 			var w = 700;

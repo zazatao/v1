@@ -8,36 +8,39 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>订单</title>
-<link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
-<link href="../content/static/css/bootstrap/bootstrap.min.css"
+<% String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; %>
+<base href="<%=basePath%>">
+<link href="content/static/css/bootstrap/navbar.css" rel="stylesheet">
+<link href="content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
-<link href="../content/static/css/datetime/jquery-clockpicker.min.css"
+<link href="content/static/css/datetime/jquery-clockpicker.min.css"
 	rel="stylesheet">
-<link href="../content/static/css/datetime/jquery.datetimepicker.css"
+<link href="content/static/css/datetime/jquery.datetimepicker.css"
 	rel="stylesheet">
-<script src="../content/static/js/echart/ie-emulation-modes-warning.js"></script>
+<script src="content/static/js/echart/ie-emulation-modes-warning.js"></script>
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="../content/static/img/apple-touch-icon-144-precomposed.png">
+	href="content/static/img/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="../content/static/img/apple-touch-icon-114-precomposed.png">
+	href="content/static/img/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="../content/static/img/apple-touch-icon-72-precomposed.png">
+	href="content/static/img/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
-	href="../content/static/img/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon" href="../content/static/img/favicon.png">
+	href="content/static/img/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="content/static/img/favicon.png">
 
 <script type="text/javascript"
-	src="../content/static/js/lib/jquery.min.js"></script>
+	src="content/static/js/lib/jquery.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/lib/bootstrap.min.js"></script>
+	src="content/static/js/lib/bootstrap.min.js"></script>
 
 <script type="text/javascript"
-	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
+	src="content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
+	src="content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
-<script type="text/javascript" src="../content/static/js/lib/scripts.js"></script>
+	src="content/static/js/datetime/jquery.datetimepicker.js"></script>
+<script type="text/javascript" src="content/static/js/lib/scripts.js"></script>
 </head>
 <style type="text/css">
 th {
@@ -53,7 +56,7 @@ th {
 			<h3 class="panel-title">
 				<a href="#" style="font-size: 18px;">商品</a> <span class="divider"><font
 					style="font-size: 18px;">/</font></span> <font style="font-size: 18px;">订单</font>
-					<a href="./toAddShopOrder" style="font-size: 18px;">
+					<a href="shop/toAddShopOrder" style="font-size: 18px;">
 					<span class="badge navbar-right">添加&nbsp;+</span></a>
 			</h3>
 		</div>
@@ -63,7 +66,7 @@ th {
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="span12">
-				<form class="form-horizontal" action="./searchShopOrder"
+				<form class="form-horizontal" action="shop/searchShopOrder"
 					method="POST">
 					<div class="form-group">
 						<div class="col-sm-1">
@@ -241,10 +244,10 @@ th {
 
 	<script type="text/javascript">
 		function updateShopOrder(num){
-			location.href =	'./updateShopOrder?id='+num;
+			location.href =	'shop/updateShopOrder?id='+num;
 		}
 		function deleteShopOrder(num){
-			location.href =	'./deleteShopOrder?id='+num;
+			location.href =	'shop/deleteShopOrder?id='+num;
 		}
 		function dateInfoxxx(obj) {
 			var date = obj;

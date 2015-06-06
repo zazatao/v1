@@ -92,12 +92,12 @@ public class OrderFormService extends GenericService<OrderForm> implements IOrde
 
 	@Override
 	public List<OrderForm> getAllByParams(Map<String, Object> map, User user) {
-		StringBuffer hql = new StringBuffer("select DISTINCT o.* from OrderForm o where o.user_id = "+user.getId());
+		StringBuffer hql = new StringBuffer("select DISTINCT o.* from OrderForm o  LEFT JOIN commodity comm ON comm.orderform_id = o.orderFormID where o.user_id = "+user.getId());
 		if (map.get("orderStatus") != null) {
 			if (map.get("orderStatus").equals("wanjie")) {
 				hql.append(" and o.orderstatus in('"+OrderStatus.completionTransaction+"','"+OrderStatus.consigneeSigning+"')");
 			}else{
-				hql.append(" and o.orderstatus not in ('"+OrderStatus.completionTransaction+"','"+OrderStatus.consigneeSigning+"')");
+				hql.append(" and o.orderstatus not in ('"+OrderStatus.completionTransaction+"','"+OrderStatus.consigneeSigning+"','"+OrderStatus.refundOrderForm+"')");
 			}
 		}
 		if (map.get("orderDate") != null) {
@@ -154,6 +154,7 @@ public class OrderFormService extends GenericService<OrderForm> implements IOrde
 			}
 		}
 		orderFormDao.getEntityManager().clear();
+		System.out.println("hql===="+hql);
 		Query query = orderFormDao.getEntityManager().createNativeQuery(hql.toString(), OrderForm.class);
 		@SuppressWarnings("unchecked")
 		List<OrderForm> list =  query.getResultList();
@@ -304,4 +305,6 @@ public class OrderFormService extends GenericService<OrderForm> implements IOrde
 		List<OrderForm> list =  query.getResultList();
 		return list;
 	}
+
+
 }

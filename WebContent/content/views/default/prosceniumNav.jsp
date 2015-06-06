@@ -117,12 +117,12 @@
 									<c:forEach items="${shopCategory.children }" var="shopCategory2">
 										<c:if test="${shopCategory2.level == 2  }">
 											<c:if test="${sessionScope.language == 'chinese'}">
-												<div class="nav-column"><h3>${shopCategory2.category }</h3>
+												<div class="nav-column" ><h3>${shopCategory2.category }</h3>
 											</c:if>
 											<c:if test="${sessionScope.language == 'russina'}">
 												<div class="nav-column"><h3>${shopCategory2.russinaCategory }</h3>
 											</c:if>
-											<ul>
+											<ul style="border:1px solid #fdd922;  margin-left:0px; width:60px; margin-right:0px;">
 												<c:forEach  items="${shopCategory2.children }" var="shopCategory3">
 													<c:if test="${shopCategory3.level == 3 }">
 														<c:if test="${sessionScope.language == 'chinese'}">
@@ -156,7 +156,7 @@
 							</c:if>
 							<c:if test="${shopCategory.category == '汽车用具' }">
 
-								<a href="./proscenium/categoryLei?id=${shopCategory.categoryID}&page=autoSupplies&towID=23">
+								<a href="./proscenium/categoryLei?id=${shopCategory.categoryID}&page=autoSupplies&towID=47">
 								<c:if test="${sessionScope.language == 'chinese'}">${shopCategory.category }</c:if>
 								<c:if test="${sessionScope.language == 'russina'}">${shopCategory.russinaCategory }</c:if></a>
 							</c:if>	
@@ -187,7 +187,7 @@
 				</ul>
 			</div>
 			<div class="menu3">
-				<ul class="navf nav_3" id="navShopCaegory3">
+				<ul class="navf nav_3"  id="navShopCaegory3">
 				</ul>
 			</div>
 			<div class="clear"></div>

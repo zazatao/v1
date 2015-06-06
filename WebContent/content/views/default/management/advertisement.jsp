@@ -9,36 +9,38 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>广告</title>
-
-<link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
-<link href="../content/static/css/bootstrap/bootstrap.min.css"
+<% String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; %>
+<base href="<%=basePath%>">
+<link href="content/static/css/bootstrap/navbar.css" rel="stylesheet">
+<link href="content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
-<script src="../content/static/js/echart/ie-emulation-modes-warning.js"></script>
+<script src="content/static/js/echart/ie-emulation-modes-warning.js"></script>
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="../content/static/img/apple-touch-icon-144-precomposed.png"/>
+	href="content/static/img/apple-touch-icon-144-precomposed.png"/>
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="../content/static/img/apple-touch-icon-114-precomposed.png"/>
+	href="content/static/img/apple-touch-icon-114-precomposed.png"/>
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="../content/static/img/apple-touch-icon-72-precomposed.png"/>
+	href="content/static/img/apple-touch-icon-72-precomposed.png"/>
 <link rel="apple-touch-icon-precomposed"
-	href="../content/static/img/apple-touch-icon-57-precomposed.png"/>
-<link rel="shortcut icon" href="../content/static/img/favicon.png"/>
+	href="content/static/img/apple-touch-icon-57-precomposed.png"/>
+<link rel="shortcut icon" href="content/static/img/favicon.png"/>
 <script type="text/javascript"
-	src="../content/static/js/lib/jquery.min.js"></script>
+	src="content/static/js/lib/jquery.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/lib/bootstrap.min.js"></script>
+	src="content/static/js/lib/bootstrap.min.js"></script>
 
 <script type="text/javascript"
-	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
+	src="content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
 
-<link href="../content/static/css/datetime/jquery-clockpicker.min.css"
+<link href="content/static/css/datetime/jquery-clockpicker.min.css"
 	rel="stylesheet"/>
-<link href="../content/static/css/datetime/jquery.datetimepicker.css"
+<link href="content/static/css/datetime/jquery.datetimepicker.css"
 	rel="stylesheet"/>
 <script type="text/javascript"
-	src="../content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
+	src="content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
+	src="content/static/js/datetime/jquery.datetimepicker.js"></script>
 </head>
 <body >
 	<!-- Static navbar -->
@@ -48,9 +50,9 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<ul class="breadcrumb">
-					<li><a href="#" style="font-size: 18px;">管理</a></li>
+					<li><a href="javascript:void(0);" style="font-size: 18px;">管理</a></li>
 					<span class="divider"><font style="font-size: 18px;">/</font></span>
-					<li><a href="#"><font style="font-size: 18px;">内容</font></a></li>
+					<li><a href="javascript:void(0);"><font style="font-size: 18px;">内容</font></a></li>
 					<span class="divider"><font style="font-size: 18px;">/</font></span>
 					<li><font style="font-size: 18px;">广告</font></li>
 				</ul>
@@ -65,7 +67,7 @@
 					<div class="panel-heading">
 						<h3 class="panel-title">
 							广告列表
-							<a href="#" onclick="popupwindow('./showAddAdvertisement');">
+							<a href="javascript:void(0);" onclick="popupwindow('management/showAddAdvertisement');">
 							<span class="badge navbar-right" id="add"><font size="3px;">添加&nbsp;&nbsp;+</font></span></a>
 						</h3>
 					</div>
@@ -120,7 +122,7 @@
 									<td id="between${loop.index }" >																		  
 									</td>
 									<td>
-									<button class="btn btn-default" onclick="popupwindow('showUpdateAdvertisement?id=${advertisement.id}');">修改</button>
+									<button class="btn btn-default" onclick="popupwindow('management/showUpdateAdvertisement?id=${advertisement.id}');">修改</button>
 									<button type="button" class="btn btn-default" onclick="deleteAdvertisementById('${advertisement.id}');">删除</button>
 									</td>
 								</c:forEach>
@@ -159,14 +161,14 @@
 	}
     	
 		function deleteAdvertisementById(obj){
-			location.href = "deleteAdvertisement?id="+obj;
+			location.href = "management/deleteAdvertisement?id="+obj;
 		}
 		
 		 function depChange(obj){
 			jQuery.ajax({
 				type : 'GET',
 				contentType : 'application/json',
-				url : '../getShopCategory/getPositions?depID='+obj.value,
+				url : 'getShopCategory/getPositions?depID='+obj.value,
 				dataType : 'json',
 				success : function(data) {
 					if(data.success == 'true'){

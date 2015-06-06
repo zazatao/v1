@@ -26,4 +26,8 @@ public interface IPackageService extends IGenericService<Package> {
 
 	List<Package> getPackAgesForTransit(Personnel personnel);
 
+	List<Package> getPackByProblem();
+
+	List<Package> searchPackProblem(Map<String, Object> map);
+
 }

@@ -90,7 +90,7 @@ public class IndexController {
     	}
  
     	List<ShopCategory> list = shopCategService.getAll();  	
-    	List<CommdityModel> list1 =  commodityService.getAllByShopCategoryID(6);
+    	List<CommdityModel> list1 =  commodityService.getAllByShopCategoryID(9);
     	String language2 = (String) request.getSession().getAttribute("language");
  		if ( language2.equals("russina") ) {
  			for ( int i = 0; i < list1.size(); i++ ) {
@@ -99,8 +99,11 @@ public class IndexController {
  		}
 
     	lists.clear();
- 		lists = getNodeForShopCategory(shopCategService.findById(6));
- 		List<CommdityModel> allCommodity = new ArrayList<CommdityModel>();
+    	if ( shopCategService.findById(6) != null) {
+    		lists = getNodeForShopCategory(shopCategService.findById(6));  		
+    	}
+    	
+    	List<CommdityModel> allCommodity = new ArrayList<CommdityModel>();
  		List<CommdityModel> topCommodity = new ArrayList<CommdityModel>();
  		for ( int i = 0; i < lists.size(); i++ ) {
  			allCommodity.addAll(commodityService.getAllByCommdityID(lists.get(i).getCategoryID()));
@@ -119,7 +122,7 @@ public class IndexController {
  				break;
  			}				
  		}
- 		
+
  		ModelMap mode = new ModelMap();
  		AdvertisementManager advertisementManager = new AdvertisementManager();
  		mode.putAll(advertisementManager.getHomePageAdvertisements(adverDistributionService,advertisementService));
@@ -136,6 +139,7 @@ public class IndexController {
  	public Map<String, Object> shopCommItems(Integer id,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
  		ModelMap mode = new ModelMap(); 	
  		List<CommdityModel> list1 =  commodityService.getAllByShopCategoryID(id);
+ 		System.out.println("list1=="+list1.size());
  		String language = (String) request.getSession().getAttribute("language");
  		if ( language.equals("russina") ) {
  			for ( int i = 0; i < list1.size(); i++ ) {
@@ -144,7 +148,7 @@ public class IndexController {
  		}
     	mode.put("list", list1);
     	mode.put("categoryId", id);
-
+    	
  		lists.clear();
  		lists = getNodeForShopCategory(shopCategService.findById(id));
  		List<CommdityModel> allCommodity = new ArrayList<CommdityModel>();
@@ -166,10 +170,9 @@ public class IndexController {
  				break;
  			}				
  		}
- 		
+ 		System.out.println("topCommodity"+topCommodity.size());
  		mode.put("lists", topCommodity);
  		mode.put("success", "true");
- 		
  		return mode;
  	}
  	

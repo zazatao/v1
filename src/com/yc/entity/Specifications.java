@@ -9,9 +9,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.junit.Ignore;
 
 @Entity
 @DiscriminatorValue("Specifications")//货品规格属性类
@@ -23,7 +26,7 @@ public class Specifications {
 	private Integer id;
 	
 	@Column
-	private String specificatName;//类别名
+	private String specificatName;//规格名
 	
 	@Column
 	private String attribute;//属性名
@@ -31,10 +34,11 @@ public class Specifications {
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<ShopCategory> shopCategories;
 
+	@Ignore
 	public List<ShopCategory> getShopCategories() {
 		return shopCategories;
 	}
-
+	@Ignore
 	public void setShopCategories(List<ShopCategory> shopCategories) {
 		this.shopCategories = shopCategories;
 	}

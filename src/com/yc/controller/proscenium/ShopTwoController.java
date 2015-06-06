@@ -3,8 +3,10 @@ package com.yc.controller.proscenium;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -146,7 +148,9 @@ public class ShopTwoController {
 		for (int i = 0; i < cateList.size(); i++) {
 			List<ShopCommoidty> comms = cateList.get(i).getShopCommoidties();
 			System.out.println("comms========" + cateList.get(i).getCategory());
-			shopcommlist.addAll(comms);
+			if(comms!=null){
+				shopcommlist.addAll(comms);
+			}
 		}
 		mode.put("shopcommlist", shopcommlist);
 		mode.put("shopCategories", list);
@@ -196,11 +200,18 @@ public class ShopTwoController {
 					List<ShopCommoidty> comms = cateList.get(i)
 							.getShopCommoidties();
 					List<Brand> brands = cateList.get(i).getBrands();
+						    brandlist.addAll(brands);
 					shopcommlist.addAll(comms);
-					brandlist.addAll(brands);
 				}
-				System.out.print("brandlist===" + brandlist.size());
-				mode.put("brands", brandlist);
+				//去除重复数据
+				 for ( int k = 0 ; k< brandlist.size() - 1 ;k ++ ) {  
+				     for ( int j = brandlist.size() - 1 ; j > k; j -- ) {  
+				       if (brandlist.get(j).getBrandName().equals(brandlist.get(k).getBrandName())) {  
+				    	   brandlist.remove(j);  
+				       }   
+				      }   
+				    } 
+				mode.put("brands",brandlist);
 				mode.put("shopcommlist", shopcommlist);
 				return new ModelAndView("reception/electronics", mode);
 			}else if (page.equals("autoSupplies")) {
@@ -234,7 +245,7 @@ public class ShopTwoController {
 		if (page != null && page.equals("brand")) {
 			AdvertisementManager advertisementManager = new AdvertisementManager();
 	 		mode.putAll(advertisementManager.getBrandPageAdvertisements(adverDistributionService, advertisementService));
-			List<Brand> brandlist = brandService.getAll();
+			List<Brand> brandlist = brandService.getAllunlike();
 			mode.put("brands", brandlist);
 			System.out.print("brands==========" + brandlist.size());
 			if (id != null && id > 0) {
@@ -596,8 +607,7 @@ public class ShopTwoController {
 			return new ModelAndView("user/login", mode);
 		} else {
 			@SuppressWarnings("unchecked")
-			List<BuyCatSession> buycats = (List<BuyCatSession>) session
-					.getAttribute("buyCates");
+			List<BuyCatSession> buycats = (List<BuyCatSession>) session.getAttribute("buyCates");
 			if (buycats != null && buycats.size() > 0) {
 				List<BuyCat> list = buyCatService.getBuyCatByUser(user.getId());
 				for (BuyCatSession buyCatSession : buycats) {
@@ -688,14 +698,14 @@ public class ShopTwoController {
 		User user = (User) session.getAttribute("loginUser");
 		Address address = addressService.findById(addID);
 		List<BuyCat> list = buyCatService.getBuyCatByUser(user.getId());
+		System.out.println("list==="+list.size());
 		Map<Integer, List<BuyCat>> map = new HashMap<Integer, List<BuyCat>>();
 		List<BuyCat> buycates = null;
 		for (int i = 0; i < list.size(); i++) {
 			if (i == 0) {
 				buycates = new ArrayList<BuyCat>();
 				buycates.add(list.get(i));
-				map.put(list.get(i).getShopCommoidty().getCarbelongTo().getId(),
-						buycates);
+				map.put(list.get(i).getShopCommoidty().getCarbelongTo().getId(),buycates);
 			} else {
 				boolean isok = true;
 				for (Integer key : map.keySet()) {

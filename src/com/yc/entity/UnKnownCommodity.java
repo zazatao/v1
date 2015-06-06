@@ -1,5 +1,7 @@
 package com.yc.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -8,10 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-import com.yc.entity.user.User;
+import com.yc.entity.user.Personnel;
 
 @Entity
 @DiscriminatorValue("unknowncommodity")
@@ -24,16 +27,29 @@ public class UnKnownCommodity {
 
 	@ManyToOne
 	@JoinColumn(name = "from_personnel")
-	private User operator;
+	private Personnel operator;
 
 	@Column
-	private Integer amountNum;
+	private Integer amountNum;//数量
 
 	@Column
-	private String category;
+	private String category;//类型
 
 	@Column(length = 255)
-	private String comment;
+	private String comment;//原因
+	
+	@OneToMany(mappedBy = "unKnownComm")
+	private List<ImagePath> imagePaths;//图片路径
+	
+	
+
+	public List<ImagePath> getImagePaths() {
+		return imagePaths;
+	}
+
+	public void setImagePaths(List<ImagePath> imagePaths) {
+		this.imagePaths = imagePaths;
+	}
 
 	public Integer getCode() {
 		return code;
@@ -43,11 +59,11 @@ public class UnKnownCommodity {
 		this.code = code;
 	}
 
-	public User getOperator() {
+	public Personnel getOperator() {
 		return operator;
 	}
 
-	public void setOperator(User operator) {
+	public void setOperator(Personnel operator) {
 		this.operator = operator;
 	}
 
@@ -74,5 +90,6 @@ public class UnKnownCommodity {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+
 
 }

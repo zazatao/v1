@@ -40,8 +40,8 @@
                     		<p><img src="../content/static/images/dreatime.png" width="17" height="16" />1day 12:21:15</p>                   
                     		<p class="dreamllike">
                     		<a href="../user/deleteCollection?collectionID=${collection.id }">
-                    		<img src="../content/static/images/con_11.png"/></a>
-                    		<img src="../content/static/images/con_10.png"/></p>
+<!--                     		<img src="../content/static/images/con_11.png"/></a> -->
+<!--                     		<img src="../content/static/images/con_10.png"/></p> -->
                   		</li>     
                  	</c:forEach>
                  </ul>   

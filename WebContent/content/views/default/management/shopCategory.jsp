@@ -7,29 +7,32 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>商品类别管理</title>
-<link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
-<link href="../content/static/css/bootstrap/bootstrap.min.css"
+<% String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; %>
+<base href="<%=basePath%>">
+<link href="content/static/css/bootstrap/navbar.css" rel="stylesheet">
+<link href="content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
-<script src="../content/static/js/echart/ie-emulation-modes-warning.js"></script>
+<script src="content/static/js/echart/ie-emulation-modes-warning.js"></script>
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="../content/static/img/apple-touch-icon-144-precomposed.png">
+	href="content/static/img/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="../content/static/img/apple-touch-icon-114-precomposed.png">
+	href="content/static/img/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="../content/static/img/apple-touch-icon-72-precomposed.png">
+	href="content/static/img/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
-	href="../content/static/img/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon" href="../content/static/img/favicon.png">
+	href="content/static/img/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="content/static/img/favicon.png">
 
 <script type="text/javascript"
-	src="../content/static/js/lib/jquery.min.js"></script>
+	src="content/static/js/lib/jquery.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/lib/bootstrap.min.js"></script>
+	src="content/static/js/lib/bootstrap.min.js"></script>
 <script type="text/javascript" src="./content/static/js/lib/scripts.js"></script>
 
 <script type="text/javascript"
-	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
-<link href="../content/static/css/bootstrap/bootstrap-tree.css"
+	src="content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
+<link href="content/static/css/bootstrap/bootstrap-tree.css"
 	rel="stylesheet">
 </head>
 <body>
@@ -39,9 +42,9 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<ul class="breadcrumb">
-					<li><a href="#" style="font-size: 18px;">管理</a></li>
+					<li><a href="javascript:void(0);" style="font-size: 18px;">管理</a></li>
 					<span class="divider"><font style="font-size: 18px;">/</font></span>
-					<li><a href="#" style="font-size: 18px;"><font style="font-size: 18px;">商品</font></a></li>
+					<li><a href="javascript:void(0);" style="font-size: 18px;"><font style="font-size: 18px;">商品</font></a></li>
 					<span class="divider"><font style="font-size: 18px;">/</font></span>
 					<li><font style="font-size: 18px;">商品分类</font></li>
 				</ul>
@@ -67,12 +70,12 @@
 	<div class="col-md-7 column">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">操作&nbsp;>&nbsp;<a href="#">${category.category }</a></h3>
+				<h3 class="panel-title">操作&nbsp;>&nbsp;<a href="javascript:void(0);">${category.category }</a></h3>
 			</div>
 			<div class="list-group-item">
 				<p class="list-group-item-text">
 					<br>
-					<form class="form-horizontal" action="./addOrUpdateCate"  id="form" name="form" 
+					<form class="form-horizontal" action="management/addOrUpdateCate"  id="form" name="form" 
 						method="POST">
 						<div class="form-group">
 							<label class="col-sm-2 control-label">上级商品类别:</label>
@@ -105,14 +108,14 @@
 	</div>
 	<script type="text/javascript">
 		function onclickID(id) {
-			location.href = './getShopCategory?categoryID=' + id;
+			location.href = 'management/getShopCategory?categoryID=' + id;
 		}
 		function updateDepartmen(){
-			document.form.action="./updateShopCategory?categoryID="+$('#categoryID').val();
+			document.form.action="management/updateShopCategory?categoryID="+$('#categoryID').val();
 			document.form.submit();
 		}
 		function deleteDepartmen(){
-			document.form.action="./deleteShopCategory?categoryID="+$('#categoryID').val();
+			document.form.action="management/deleteShopCategory?categoryID="+$('#categoryID').val();
 			document.form.submit();
 		}
 		$(function() {

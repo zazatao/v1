@@ -22,12 +22,12 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.yc.entity.Address;
-import com.yc.entity.Advertisement;
-import com.yc.entity.AdvertisementPage;
 import com.yc.entity.Collection;
 import com.yc.entity.OrderForm;
+import com.yc.entity.OrderStatus;
 import com.yc.entity.ShopCategory;
 import com.yc.entity.Transit;
+import com.yc.entity.UserSize;
 import com.yc.entity.user.Sex;
 import com.yc.entity.user.User;
 import com.yc.model.AdvertisementManager;
@@ -38,6 +38,7 @@ import com.yc.service.ICollectionService;
 import com.yc.service.IOrderFormService;
 import com.yc.service.IShopCategoryService;
 import com.yc.service.IUserService;
+import com.yc.service.IUserSizeService;
 
 @Controller
 @RequestMapping("/user")
@@ -48,6 +49,9 @@ public class UserController {
 
 	@Autowired
 	IUserService userService;
+	
+	@Autowired
+	IUserSizeService userSizeService;
 
 	@Autowired
 	IShopCategoryService ShopCategoryService;
@@ -164,7 +168,6 @@ public class UserController {
 		
     	AdvertisementManager advertisementManager = new AdvertisementManager();
     	map.putAll(advertisementManager.getMyOfficePageAdvertisements(adverDistributionService,advertisementService));
-		
 		return new ModelAndView("reception/myoffice", map);
 	}
 
@@ -281,7 +284,14 @@ public class UserController {
 		userService.update(user);
 		return "redirect:/user/introduction";
 	}
-
+    //保存地址
+	@RequestMapping(value = "saveNewAddress", method = RequestMethod.POST)
+	public String saveNewAddress(Address address,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		User user =(User)request.getSession().getAttribute("loginUser");
+		address.setUser(user);
+		addressService.save(address);
+		return "redirect:/proscenium/shopcardelv";
+	}
 	// 修改地址
 	@RequestMapping(value = "editaddress", method = RequestMethod.POST)
 	public String editaddress(Integer id,Integer num,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -336,7 +346,96 @@ public class UserController {
 		mode.put("shopCategories", list);
 		return new ModelAndView("reception/toNewAddress",mode);
 	}
-	
+	//查询我的尺寸
+	@RequestMapping(value = "skipmysize", method =  RequestMethod.GET)
+	public ModelAndView skipmysize(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    User user = (User) request.getSession().getAttribute("loginUser");
+	    ModelMap mode = new ModelMap();
+		if(user!=null){
+			 List<UserSize> sizelist=userSizeService.findByUserID(user.getId());
+			 mode.put("sizelist", sizelist);
+			 System.out.println("sizelist==="+sizelist.size());
+		}
+		List<ShopCategory> list = ShopCategoryService.getAll();
+		mode.put("shopCategories", list);
+		return new ModelAndView("reception/mysize",mode);
+	}
+	 // 类别查找
+ 	List<ShopCategory> lists = new ArrayList<ShopCategory>();
+ 	// 类别子节点
+ 		List<ShopCategory> getNodeForShopCategory(ShopCategory shopCate) {
+ 			List<ShopCategory> list = shopCate.getChildren();
+
+ 			if (list != null && list.size() > 0) {
+ 				for (int i = 0; i < list.size(); i++) {
+ 					getNodeForShopCategory(list.get(i));
+ 				}
+ 			} else {
+ 				lists.add(shopCate);
+ 			}
+ 			return lists;
+ 		}
+ 	//查询当前类型
+ 	@RequestMapping(value = "chooseCate", method =  RequestMethod.GET)
+ 	public ModelAndView chooseCate(Integer id,String sex,String fname,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+ 	    User user = (User) request.getSession().getAttribute("loginUser");
+ 	    ModelMap mode = new ModelMap();
+ 	    ShopCategory cate=ShopCategoryService.findById(id);
+ 		if(user!=null){
+ 	        lists.clear();
+ 			List<ShopCategory> catelist=getNodeForShopCategory(cate);
+ 			mode.put("catelist", catelist);
+ 			mode.put("sex", sex);
+ 			mode.put("fname", fname);
+ 			System.out.println("fname==="+fname);
+ 		}
+ 		return new ModelAndView("reception/creatsize",mode);
+ 	}
+	//删除我的尺寸
+	@RequestMapping(value = "deletemysize", method =  RequestMethod.GET)
+	public String deletemysize(Integer code,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("code==="+code);
+		System.out.println("userSizeService==="+userSizeService);
+		boolean flag=userSizeService.delete(code);
+		System.out.println("flag===="+flag);
+		return "redirect:/user/skipmysize";
+	}
+	//添加我的尺寸
+	@RequestMapping(value = "addsize", method =  RequestMethod.GET)
+	public ModelAndView addsize(String filename,String size,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		return new ModelAndView("reception/creatsize",null);
+	}
+	//添加我的尺寸
+	@RequestMapping(value = "mysize", method =  RequestMethod.POST)
+	public String mysize(String filename,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	     User user = (User) request.getSession().getAttribute("loginUser");
+	 if(user!=null){
+		 UserSize usersize=new UserSize();
+		 usersize.setUser(user);
+		String sex=request.getParameter("zise");
+		String cates=request.getParameter("cates");
+		String sizes=request.getParameter("sizes");
+		if(sex!=null){
+			usersize.setSex(Sex.valueOf(sex));
+		}
+		String [] isorno=request.getParameterValues("isdefault");
+		if(isorno!=null&&isorno.length>0){
+			usersize.setIsdefault(true);
+		}else{
+			usersize.setIsdefault(false);
+		}
+		usersize.setCategory(cates);
+		usersize.setFilename(filename);
+		usersize.setSize(sizes);
+		userSizeService.saveSizes(usersize);
+		ModelMap mode = new ModelMap();
+		List<ShopCategory> list = ShopCategoryService.getAll();
+		mode.put("shopCategories", list);
+		return "redirect:/user/skipmysize";
+	  }else{
+		return "redirect:/user/login";
+	  }
+	}
 	//订单
 	@RequestMapping(value = "perscentBonuses", method =  RequestMethod.GET)
 	public ModelAndView perscentBonuses(String orderDate,String orderStatus, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -357,17 +456,32 @@ public class UserController {
 			}
 			if (orderStatus.equals("") || orderStatus.equals("-1")) {
 				map.put("orderStatus", null);
-			}else{
+			}else{	
 				map.put("orderStatus", orderStatus);
 			}
+			System.out.println("111111111");
 			List<OrderForm> orders = orderFormService.getAllByParams(map,user);
 			mode.put("orderForms", orders);
 			mode.put("orderDate", orderDate);
 			mode.put("orderStatus", orderStatus);
+		    System.out.println("size===="+orders.get(0).getCommodities().size());
 			return new ModelAndView("reception/perscentBonuses",mode);
 		}
 	}
-	
+	//退款订单
+	@RequestMapping(value = "updatRefund", method =  RequestMethod.GET)
+	public ModelAndView updatRefund(Integer id,String status,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// ModelMap mode = new ModelMap();
+	    User user =	(User)request.getSession().getAttribute("loginUser");
+	    if (user!= null ) {
+	    	  OrderForm orderform=orderFormService.findById(id);
+	    	  orderform.setOrderstatus(OrderStatus.valueOf(status));
+	    	  orderFormService.save(orderform);
+	    	  return new ModelAndView("reception/refundsuccess", null);
+	    }else{
+	    	return new ModelAndView("reception/login", null);
+	    }
+	}
 	//所有收藏
 	@RequestMapping(value = "collection", method = RequestMethod.GET)
 	public ModelAndView getAllCollection(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		

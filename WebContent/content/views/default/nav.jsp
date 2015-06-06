@@ -13,13 +13,13 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">总览<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">不明订单</a></li>
+						<li><a href="./overall/unknownCommList">不明订单</a></li>
 						<li><a href="./overall/unfinishedOrder">未完成订单</a></li>
-						<li><a href="#">订单问题</a></li>
+						<li><a href="./overall/questionOrder">问题订单</a></li>
 					</ul></li>
 
 				<c:if
-					test="${personnel.departAndPositions.department.departmentID == 2 || personnel.departAndPositions.department.departmentID == 1}">
+					test="${personnel.departAndPositions.department.departmentID == 2 || personnel.departAndPositions.department.departmentID == 1 || personnel.loginName== 'administrator'  }">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">订单处理 <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
@@ -30,22 +30,22 @@
 						</ul></li>
 				</c:if>
 				<c:if
-					test="${personnel.departAndPositions.department.departmentID == 22 || personnel.departAndPositions.department.departmentID == 23  || personnel.departAndPositions.department.departmentID == 24 || personnel.departAndPositions.department.departmentID == 1 }">
+					test="${personnel.departAndPositions.department.departmentID == 22 || personnel.departAndPositions.department.departmentID == 23  || personnel.departAndPositions.department.departmentID == 24 || personnel.departAndPositions.department.departmentID == 1 || personnel.loginName== 'administrator' }">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">仓库 <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<c:if
-								test="${personnel.departAndPositions.department.departmentID == 22 || personnel.departAndPositions.department.departmentID == 23  || personnel.departAndPositions.department.departmentID == 1}">
+								test="${personnel.departAndPositions.department.departmentID == 22 || personnel.departAndPositions.department.departmentID == 23  || personnel.departAndPositions.department.departmentID == 1 || personnel.loginName== 'administrator'}">
 								<li><a href="./warehouse/receiving">收货</a></li>
 								<li><a href="./warehouse/inspection">验货入库</a></li>
 								<li><a href="./warehouse/reclaimStation">回收站</a></li>
 							</c:if>
 							<c:if
-								test="${personnel.departAndPositions.department.departmentID == 22 || personnel.departAndPositions.department.departmentID == 23 || personnel.departAndPositions.department.departmentID == 24 || personnel.departAndPositions.department.departmentID == 1 }">
+								test="${personnel.departAndPositions.department.departmentID == 22 || personnel.departAndPositions.department.departmentID == 23 || personnel.departAndPositions.department.departmentID == 24 || personnel.departAndPositions.department.departmentID == 1 || personnel.loginName== 'administrator' }">
 								<li><a href="./warehouse/orderOfWay">在途订单</a></li>
 							</c:if>
 							<c:if
-								test="${personnel.departAndPositions.department.departmentID == 22 || personnel.departAndPositions.department.departmentID == 24  || personnel.departAndPositions.department.departmentID == 1}">
+								test="${personnel.departAndPositions.department.departmentID == 22 || personnel.departAndPositions.department.departmentID == 24  || personnel.departAndPositions.department.departmentID == 1 || personnel.loginName== 'administrator'}">
 								<li><a href="./warehouse/weighing">称量打包</a></li>
 								<li><a href="./warehouse/freight">运费</a></li>
 								<li><a href="./warehouse/sendTheParcel">发送包裹</a></li>
@@ -56,7 +56,7 @@
 						</ul></li>
 				</c:if>
 				<c:if
-					test="${personnel.departAndPositions.department.departmentID == 4 || personnel.departAndPositions.department.departmentID == 1}">
+					test="${personnel.departAndPositions.department.departmentID == 4 || personnel.departAndPositions.department.departmentID == 1 || personnel.loginName== 'administrator'}">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">中转<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
@@ -65,13 +65,13 @@
 							<li><a href="./forwarding/transportLate">运期</a></li>
 							<li><a href="./forwarding/question">问题</a></li>
 							<c:if
-								test="${personnel.departAndPositions.positions.positionid != 33 }">
+								test="${personnel.departAndPositions.positions.positionid != 33 || personnel.loginName== 'administrator'}">
 								<li><a href="./forwarding/forStatistical">计算统计</a></li>
 							</c:if>
 						</ul></li>
 				</c:if>
 				<c:if
-					test="${personnel.departAndPositions.department.departmentID == 25 || personnel.departAndPositions.department.departmentID == 1}">
+					test="${personnel.departAndPositions.department.departmentID == 25 || personnel.departAndPositions.department.departmentID == 1 || personnel.loginName== 'administrator'}">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">商店 <span class="caret"></span></a>
 						<ul class="dropdown-menu menu-top" role="menu">
@@ -96,26 +96,26 @@
 								</ul></li>
 						</ul></li>
 				</c:if>
-				<c:if
-					test="${personnel.departAndPositions.department.departmentID != null }">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">管理 <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="./management/missionPlan">任务计划</a></li>
-							<c:if
-								test="${personnel.departAndPositions.department.departmentID == 26 || personnel.departAndPositions.department.departmentID == 1 }">
-								<li class="dropdown-submenu"><a href="#">运输</a>
-									<ul class="dropdown-menu">
-										<li><a href="#">运输方式</a></li>
-										<li><a href="#">关税</a></li>
-										<li><a href="#">部门格子</a></li>
-									</ul></li>
-								<li class="dropdown-submenu"><a href="#">管理</a>
+							
+							<li class="dropdown-submenu"><a href="#">管理</a>
 									<ul class="dropdown-menu">
 										<li><a href="./management/department">组织机构</a></li>
 										<li><a href="./management/position">职位角色</a></li>
 										<li><a href="./management/deparDivide">机构角色分配</a></li>
 										<li><a href="./management/posDivide">角色员工分配</a></li>
+									</ul></li>
+									
+							<c:if
+								test="${personnel.departAndPositions.department.departmentID == 26 || personnel.departAndPositions.department.departmentID == 1|| personnel.loginName== 'administrator' }">
+								<li class="dropdown-submenu"><a href="#">运输</a>
+									<ul class="dropdown-menu">
+										<li><a href="#">运输方式</a></li>
+										<li><a href="#">关税</a></li>
+										<li><a href="#">部门格子</a></li>
 									</ul></li>
 								<li class="dropdown-submenu"><a href="#">其它</a>
 									<ul class="dropdown-menu">
@@ -138,8 +138,11 @@
 								<li class="dropdown-submenu"><a href="#">商品</a>
 									<ul class="dropdown-menu">
 										<li><a href="./management/shopCategory">商品分类</a></li>
-										<li><a href="#">成批商品</a></li>
-										<li><a href="#">首页商品</a></li>
+										<li><a href="./management/specification">商品类型规格</a></li>
+										<li><a href="./management/brand">商品品牌</a></li>
+										<li><a href="./management/shopcateAndbrand">商品品牌分配</a></li>
+										<li><a href="javascript:void(0);">成批商品</a></li>
+										<li><a href="javascript:void(0);">首页商品</a></li>
 									</ul></li>
 								<li class="dropdown-submenu"><a href="#">翻译</a>
 									<ul class="dropdown-menu">
@@ -159,9 +162,8 @@
 								<li><a href="./management/user">用户</a></li>
 							</c:if>
 						</ul></li>
-				</c:if>
 				<c:if
-					test="${personnel.departAndPositions.department.departmentID == 1 }">
+					test="${personnel.departAndPositions.department.departmentID == 1|| personnel.loginName== 'administrator' }">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">统计 <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">

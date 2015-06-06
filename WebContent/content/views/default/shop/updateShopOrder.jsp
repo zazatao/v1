@@ -8,36 +8,39 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>订单</title>
-<link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
-<link href="../content/static/css/bootstrap/bootstrap.min.css"
+<% String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; %>
+<base href="<%=basePath%>">
+<link href="content/static/css/bootstrap/navbar.css" rel="stylesheet">
+<link href="content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
-<script src="../content/static/js/echart/ie-emulation-modes-warning.js"></script>
+<script src="content/static/js/echart/ie-emulation-modes-warning.js"></script>
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="../content/static/img/apple-touch-icon-144-precomposed.png">
+	href="content/static/img/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="../content/static/img/apple-touch-icon-114-precomposed.png">
+	href="content/static/img/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="../content/static/img/apple-touch-icon-72-precomposed.png">
+	href="content/static/img/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
-	href="../content/static/img/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon" href="../content/static/img/favicon.png">
+	href="content/static/img/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="content/static/img/favicon.png">
 
 <script type="text/javascript"
-	src="../content/static/js/lib/jquery.min.js"></script>
+	src="content/static/js/lib/jquery.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/lib/bootstrap.min.js"></script>
+	src="content/static/js/lib/bootstrap.min.js"></script>
 <script type="text/javascript" src="./content/static/js/lib/scripts.js"></script>
 
 <script type="text/javascript"
-	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
-<link href="../content/static/css/datetime/jquery-clockpicker.min.css"
+	src="content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
+<link href="content/static/css/datetime/jquery-clockpicker.min.css"
 	rel="stylesheet">
-<link href="../content/static/css/datetime/jquery.datetimepicker.css"
+<link href="content/static/css/datetime/jquery.datetimepicker.css"
 	rel="stylesheet">
 <script type="text/javascript"
-	src="../content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
+	src="content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
+	src="content/static/js/datetime/jquery.datetimepicker.js"></script>
 </head>
 <style type="text/css">
 th {
@@ -51,7 +54,7 @@ th {
 	<br>
 	<br>
 	<br>
-	<form class="form-horizontal" action="./editShopOrder?id=${orderform.orderFormID}" method="POST">
+	<form class="form-horizontal" action="shop/editShopOrder?id=${orderform.orderFormID}" method="POST">
 		<div class="form-group" style="text-align: center;">
 			<label><font style="font-size: 40px;">订单修改</font> </label> <br>
 			<br>
@@ -122,13 +125,13 @@ th {
 
 	<script type="text/javascript">
 		function updateShopOrder(num) {
-			location.href = './updateShopOrder?id=' + num;
+			location.href = 'shop/updateShopOrder?id=' + num;
 		}
 		function deleteShopOrder(num) {
-			location.href = './deleteShopOrder?id=' + num;
+			location.href = 'shop/deleteShopOrder?id=' + num;
 		}
 		function cancel(num) {
-			location.href = './shopOrder?id=' + num;
+			location.href = 'shop/shopOrder?id=' + num;
 		}
 		function dateInfoxxx(obj) {
 			var date = obj;

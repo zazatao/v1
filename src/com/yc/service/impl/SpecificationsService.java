@@ -28,4 +28,5 @@ public class SpecificationsService extends GenericService<Specifications> implem
         return specificationsDao.find(hql, para, -1, -1);
 	}
 
+
 }

@@ -36,7 +36,7 @@
 		        <c:when test="${ not empty shopcomlist}">
 		             <c:forEach items="${shopcomlist }" var="shopcom">
 		             			<li><a href="../proscenium/shopItem?commID=${shopcom.commCode }&category=${shopcom.shopCategory.categoryID }&shopID=${shopcom.belongTo.id }&commoName=${shopcom.commoidtyName }"> 
-		             			<img src="..${shopcom.shopCommImages[0].imagePath}" />
+		             			<img src="..${shopcom.shopCommImages[0].imagePath}"  style="width:335px;height:320px;"/>
 						<div class="tit_3">
 						<c:if test="${sessionScope.language == 'chinese' }">${shopcom.commoidtyName}</c:if>
 						<c:if test="${sessionScope.language == 'russina' }">${shopcom.russinaCommoidtyName}</c:if>

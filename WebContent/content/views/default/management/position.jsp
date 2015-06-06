@@ -7,29 +7,32 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>职位员工分配</title>
-<link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
-<link href="../content/static/css/bootstrap/bootstrap.min.css"
+<% String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; %>
+<base href="<%=basePath%>">
+<link href="content/static/css/bootstrap/navbar.css" rel="stylesheet">
+<link href="content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
-<script src="../content/static/js/echart/ie-emulation-modes-warning.js"></script>
+<script src="content/static/js/echart/ie-emulation-modes-warning.js"></script>
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="../content/static/img/apple-touch-icon-144-precomposed.png">
+	href="content/static/img/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="../content/static/img/apple-touch-icon-114-precomposed.png">
+	href="content/static/img/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="../content/static/img/apple-touch-icon-72-precomposed.png">
+	href="content/static/img/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
-	href="../content/static/img/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon" href="../content/static/img/favicon.png">
+	href="content/static/img/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="content/static/img/favicon.png">
 
 <script type="text/javascript"
-	src="../content/static/js/lib/jquery.min.js"></script>
+	src="content/static/js/lib/jquery.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/lib/bootstrap.min.js"></script>
+	src="content/static/js/lib/bootstrap.min.js"></script>
 <script type="text/javascript" src="./content/static/js/lib/scripts.js"></script>
 
 <script type="text/javascript"
-	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
-<link href="../content/static/css/bootstrap/bootstrap-tree.css"
+	src="content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
+<link href="content/static/css/bootstrap/bootstrap-tree.css"
 	rel="stylesheet">
 </head>
 <body>
@@ -39,7 +42,7 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<ul class="breadcrumb">
-					<li><a href="#" style="font-size: 18px;">管理</a></li>
+					<li><a href="javascript:void(0);" style="font-size: 18px;">管理</a></li>
 					<span class="divider"><font style="font-size: 18px;">/</font></span>
 					<li><font style="font-size: 18px;">角色管理</font>
 				</ul>
@@ -71,7 +74,7 @@
 				<p class="list-group-item-text">
 					<br>
 				<center>
-					<form class="form-horizontal" action="./addPosition"  id="form" name="form" 
+					<form class="form-horizontal" action="management/addPosition"  id="form" name="form" 
 						method="POST">
 						<div class="form-group">
 							<label class="col-sm-2 control-label">上级角色:</label>
@@ -114,14 +117,14 @@
 	</div>
 	<script type="text/javascript">
 		function onclickID(id) {
-			location.href = './getPosition?positionID=' + id+"&page=position";
+			location.href = 'management/getPosition?positionID=' + id+"&page=position";
 		}
 		function updateDepartmen(){
-			document.form.action="./updatePosition?positionID="+$('#positionID').val();
+			document.form.action="management/updatePosition?positionID="+$('#positionID').val();
 			document.form.submit();
 		}
 		function deleteDepartmen(){
-			location.href = "./deletePosition?positionID="+$('#positionID').val();
+			location.href = "management/deletePosition?positionID="+$('#positionID').val();
 		}
 		$(function() {
 			$('.tree li:has(ul)').addClass('parent_li').find(' > span').attr(

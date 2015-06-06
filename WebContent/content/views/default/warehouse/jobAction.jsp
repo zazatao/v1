@@ -7,28 +7,31 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
-<link href="../content/static/css/bootstrap/bootstrap.min.css"
+<% String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; %>
+<base href="<%=basePath%>">
+<link href="content/static/css/bootstrap/navbar.css" rel="stylesheet">
+<link href="content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
-<script src="../content/static/js/echart/ie-emulation-modes-warning.js"></script>
+<script src="content/static/js/echart/ie-emulation-modes-warning.js"></script>
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="../content/static/img/apple-touch-icon-144-precomposed.png">
+	href="content/static/img/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="../content/static/img/apple-touch-icon-114-precomposed.png">
+	href="content/static/img/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="../content/static/img/apple-touch-icon-72-precomposed.png">
+	href="content/static/img/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
-	href="../content/static/img/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon" href="../content/static/img/favicon.png">
+	href="content/static/img/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="content/static/img/favicon.png">
 
 <script type="text/javascript"
-	src="../content/static/js/lib/jquery.min.js"></script>
+	src="content/static/js/lib/jquery.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/lib/bootstrap.min.js"></script>
+	src="content/static/js/lib/bootstrap.min.js"></script>
 <script type="text/javascript" src="./content/static/js/lib/scripts.js"></script>
 
 <script type="text/javascript"
-	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
+	src="content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
 <title>开始工作</title>
 </head>
 <body>
@@ -50,7 +53,7 @@
 								<div class="tab-pane active" id="panel-707179">
 									<div class="col-md-12 column">
 									<br>
-										<form action="enterStoreRoom" method="POST">
+										<form action="warehouse/enterStoreRoom" method="POST">
 											<div class="form-group">
 												<label for="inputEmail3" class="col-sm-2 control-label">条形码</label>
 												<div class="col-sm-10">
@@ -97,7 +100,7 @@
 								<div class="tab-pane" id="panel-181560">
 									<div class="col-md-12 column">
 									<br>
-										<form action="saveUnKnownCommodity" method="POST">
+										<form action="warehouse/saveUnKnownCommodity" method="POST">
 											<div class="form-group">
 												<label for="inputEmail3" class="col-sm-2 control-label">代码</label>
 												<div class="col-sm-10">
@@ -126,7 +129,7 @@
 											</div>
 											<div class="form-group">
 												<label for="inputEmail3" class="col-sm-2 control-label">
-													评论</label>
+													原因</label>
 												<div class="col-sm-10">
 													<textarea rows="2" cols="10" name="comment" class="form-control">${unKnownComm.comment }</textarea>
 												</div>
@@ -145,7 +148,7 @@
 													style="text-align: center;">
 													<button type="button" class="btn btn-default" onclick="saveUnknow();">创建</button>
 													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													<button type="button" class="btn btn-default" onclick="popupwindow('../warehouse/imageUplode');">照片上传</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<button type="button" class="btn btn-default" onclick="popupwindow('warehouse/imageUplode');">照片上传</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 													<button type="button" class="btn btn-default" >删除</button>
 												</div>
 											</div>

@@ -9,36 +9,38 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>商品黑名单</title>
-
-<link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
-<link href="../content/static/css/bootstrap/bootstrap.min.css"
+<% String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; %>
+<base href="<%=basePath%>">
+<link href="content/static/css/bootstrap/navbar.css" rel="stylesheet">
+<link href="content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
-<script src="../content/static/js/echart/ie-emulation-modes-warning.js"></script>
+<script src="content/static/js/echart/ie-emulation-modes-warning.js"></script>
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="../content/static/img/apple-touch-icon-144-precomposed.png">
+	href="content/static/img/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="../content/static/img/apple-touch-icon-114-precomposed.png">
+	href="content/static/img/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="../content/static/img/apple-touch-icon-72-precomposed.png">
+	href="content/static/img/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
-	href="../content/static/img/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon" href="../content/static/img/favicon.png">
+	href="content/static/img/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="content/static/img/favicon.png">
 <script type="text/javascript"
-	src="../content/static/js/lib/jquery.min.js"></script>
+	src="content/static/js/lib/jquery.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/lib/bootstrap.min.js"></script>
+	src="content/static/js/lib/bootstrap.min.js"></script>
 
 <script type="text/javascript"
-	src="../content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
+	src="content/static/js/echart/ie10-viewport-bug-workaround.js"></script>
 
-<link href="../content/static/css/datetime/jquery-clockpicker.min.css"
+<link href="content/static/css/datetime/jquery-clockpicker.min.css"
 	rel="stylesheet">
-<link href="../content/static/css/datetime/jquery.datetimepicker.css"
+<link href="content/static/css/datetime/jquery.datetimepicker.css"
 	rel="stylesheet">
 <script type="text/javascript"
-	src="../content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
+	src="content/static/js/datetime/bootstrap-clockpicker.min.js"></script>
 <script type="text/javascript"
-	src="../content/static/js/datetime/jquery.datetimepicker.js"></script>
+	src="content/static/js/datetime/jquery.datetimepicker.js"></script>
 </head>
 <body >
 	<!-- Static navbar -->
@@ -48,9 +50,9 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<ul class="breadcrumb">
-					<li><a href="#" style="font-size: 18px;">管理</a></li>
+					<li><a href="javascript:void(0);" style="font-size: 18px;">管理</a></li>
 					<span class="divider"><font style="font-size: 18px;">/</font></span>
-					<li><a href="#"><font style="font-size: 18px;">黑名单</font></a></li>
+					<li><a href="javascript:void(0);"><font style="font-size: 18px;">黑名单</font></a></li>
 					<span class="divider"><font style="font-size: 18px;">/</font></span>
 					<li><font style="font-size: 18px;">店家黑名单</font></li>
 				</ul>
@@ -63,7 +65,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">
-							商品黑名单<a href="#" onclick="popupwindow('./addGoodsBlackList');"><span class="badge navbar-right" id="yunfei"><font size="3px;">添加&nbsp;&nbsp;+</font></span></a>
+							商品黑名单<a href="javascript:void(0);" onclick="popupwindow('management/addGoodsBlackList');"><span class="badge navbar-right" id="yunfei"><font size="3px;">添加&nbsp;&nbsp;+</font></span></a>
 						</h3>
 					</div>
 					<div class="list-group-item">
@@ -90,7 +92,7 @@
 									<td>${blacklist.commoidty.commoidtyName}</td>
 									<td>${blacklist.reasons}</td>
 									<td>${blacklist.addDate}</td>
-									<td><button class="btn btn-default" onclick="popupwindow('addBlackForGoods?id=${blacklist.id}&mathed=update');">修改原因</button>
+									<td><button class="btn btn-default" onclick="popupwindow('management/addBlackForGoods?id=${blacklist.id}&mathed=update');">修改原因</button>
 										<button class="btn btn-default" onclick="deleteBlack('${blacklist.id}');" >删除</button></td>
 									</tr>
 								</c:forEach>
@@ -103,7 +105,7 @@
 	</div>
 	<script type="text/javascript">
 		function deleteBlack(obj){
-			location.href = "deleteBlack?id="+obj;
+			location.href = "management/deleteBlack?id="+obj;
 		}
 		window.onunload = refreshParent;
 		function refreshParent() {

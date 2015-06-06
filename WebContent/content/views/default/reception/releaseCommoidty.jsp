@@ -146,9 +146,13 @@
 								value="" name="special" id="special" onblur="checkvalue(this);"/>
 						</dd>
 						<dd>
-							<span>所属品牌</span> <select name="brandid" id="brand"
+							<span>所属品牌</span>
+							 <select name="brandid" id="brand"
 								style="height: 35px; width: 303px; border: 1px solid #ccc; margin-left: 7px">
 								<option value="-1">----请选择----</option>
+								<c:forEach items="${brands}"  var="brand">
+								   <option value="${brand.brandID}">${brand.brandName}</option>
+								</c:forEach>
 							</select>
 						</dd>
 						<dd>
@@ -283,7 +287,7 @@
 			.ajax({
 				type : 'GET',
 				contentType : 'application/json',
-				url : './getSpecific?ids=' + Code,
+				url : '../getShopCategory/getSpecific?ids=' + Code,
 				dataType : 'json',
 				success : function(data) {
 					$('#guige').empty();

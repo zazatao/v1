@@ -16,7 +16,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.yc.entity.AdvertiseDistribution;
 import com.yc.entity.AdvertisementPage;
@@ -26,6 +28,7 @@ import com.yc.entity.Collection;
 import com.yc.entity.MissionPlan;
 import com.yc.entity.ShopCategory;
 import com.yc.entity.ShopCommoidty;
+import com.yc.entity.Specifications;
 import com.yc.entity.user.DepartAndPositions;
 import com.yc.entity.user.Personnel;
 import com.yc.entity.user.Positions;
@@ -43,6 +46,7 @@ import com.yc.service.IMissionPlanService;
 import com.yc.service.IPersonnelService;
 import com.yc.service.IShopCategoryService;
 import com.yc.service.IShopCommoidtyService;
+import com.yc.service.ISpecificationsService;
 
 @Controller
 @RequestMapping("/getShopCategory")
@@ -79,6 +83,9 @@ public class GetShopCategory {
 	
 	@Autowired
 	IAdvertisementDistributionService adverDistributionService;
+	
+	@Autowired
+	ISpecificationsService specificationsService;
 	
 	@RequestMapping(value = "shopCategoryAll", method = RequestMethod.GET)
 	@ResponseBody
@@ -343,7 +350,7 @@ public class GetShopCategory {
 		}
   		return mode;
   	}
-  	
+
   	//获得所选页面的广告位
   	@RequestMapping(value = "getAdverPositions", method = RequestMethod.GET)
 	@ResponseBody
@@ -368,5 +375,25 @@ public class GetShopCategory {
     	return mode;
 
     }
-
+  	//添加我的尺寸
+  	@RequestMapping(value = "getSpacesByCateID", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getSpacesByCateID(Integer id, HttpServletRequest request) throws ServletException, IOException {
+  		ModelMap mode = new ModelMap();
+  		List<Specifications> list =  specificationsService.getAllByShopCateg(id);
+  		mode.put("spec", list);
+  		System.out.println("size==========="+list.size());
+  		return mode;
+  	}
+  	
+  	@RequestMapping(value = "getSpecific", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getSpecific(@RequestParam(value = "ids", required = true) Integer ids) throws ServletException, IOException {
+		//ShopCategory shopCate = shopCategService.findById(ids);
+		List<Specifications> spec = specificationsService.getAllByShopCateg(ids);
+		ModelMap mode = new ModelMap();
+		mode.put("spec", spec);
+		mode.put("success", "true");
+		return mode;
+	}
 }

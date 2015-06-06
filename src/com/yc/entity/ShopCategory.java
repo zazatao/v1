@@ -55,7 +55,7 @@ public class ShopCategory {
 	@OneToMany(mappedBy = "shopcategory")
 	private List<Commodity> commodity;//
 	
-	@ManyToMany(mappedBy = "shopCategories")
+    @ManyToMany(mappedBy = "shopCategories")
 	private List<Specifications> specifications;//规格
 	
 	@Column
