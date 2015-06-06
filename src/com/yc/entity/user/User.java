@@ -67,7 +67,7 @@ public class User {
 
 	@OneToOne
 	@JoinColumn(name = "storeRoom_id")
-	private StoreRoom storeRoom;
+	private StoreRoom storeRoom;//库房
 
 	@OneToMany(mappedBy = "user")
 	private List<ProblemPack> problemPacks; 

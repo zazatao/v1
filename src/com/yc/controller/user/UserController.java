@@ -23,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.yc.entity.Address;
 import com.yc.entity.Collection;
+import com.yc.entity.Commodity;
 import com.yc.entity.OrderForm;
 import com.yc.entity.OrderStatus;
 import com.yc.entity.ShopCategory;
@@ -35,6 +36,7 @@ import com.yc.service.IAddressService;
 import com.yc.service.IAdvertisementDistributionService;
 import com.yc.service.IAdvertisementService;
 import com.yc.service.ICollectionService;
+import com.yc.service.ICommodityService;
 import com.yc.service.IOrderFormService;
 import com.yc.service.IShopCategoryService;
 import com.yc.service.IUserService;
@@ -70,6 +72,9 @@ public class UserController {
 	
 	@Autowired
 	IAdvertisementDistributionService adverDistributionService;
+	
+	@Autowired
+	ICommodityService  commodityService;
 	
 	@RequestMapping(value = "introductions", method = RequestMethod.GET)
 	public ModelAndView user(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -459,14 +464,18 @@ public class UserController {
 			}else{	
 				map.put("orderStatus", orderStatus);
 			}
-			System.out.println("111111111");
 			List<OrderForm> orders = orderFormService.getAllByParams(map,user);
+			List<Commodity> comms=new ArrayList<Commodity>();
+			for (int i = 0; i < orders.size(); i++) {
+				 List<Commodity> cms = commodityService.getCommByOrderId(orders.get(i).getOrderFormID()) ;
+				 comms.addAll(cms);
+			}
+			mode.put("comms",comms);
 			mode.put("orderForms", orders);
-			mode.put("orderDate", orderDate);
+			mode.put("orderDate", orderDate);	
 			mode.put("orderStatus", orderStatus);
-		    System.out.println("size===="+orders.get(0).getCommodities().size());
-			return new ModelAndView("reception/perscentBonuses",mode);
-		}
+			return new ModelAndView("reception/perscentBonuses",mode);	
+		}	
 	}
 	//退款订单
 	@RequestMapping(value = "updatRefund", method =  RequestMethod.GET)

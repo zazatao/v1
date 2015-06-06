@@ -105,10 +105,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							        <br/>
 							         <label id="specification"  style="margin-left: 60px;">规格选择：</label>
 							           <c:forEach items="${specifications}" var="specification">
-							           ${specification.specificatName }<br>
 							                    <c:set var="isok1" value="false"></c:set>
 							                    <c:forEach items="${category.specifications }" var="cs">
-							                    ${cs.specificatName }
 							                        <c:if test="${cs.id==specification.id}">
 							        			        <c:set var="isok1" value="true"></c:set>
 							        		         </c:if>	
@@ -126,14 +124,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript">
 		function onclickID(id) {
 			location.href = 'management/getCate?categoryID=' + id;
-		}
-		function updateDepartmen(){
-			document.form.action="management/updateShopCategory?categoryID="+$('#categoryID').val();
-			document.form.submit();
-		}
-		function deleteDepartmen(){
-			document.form.action="management/deleteShopCategory?categoryID="+$('#categoryID').val();
-			document.form.submit();
 		}
 		$(function() {
 			$('.tree li:has(ul)').addClass('parent_li').find(' > span').attr(

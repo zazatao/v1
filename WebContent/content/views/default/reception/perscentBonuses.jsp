@@ -84,7 +84,6 @@
 				</div>
 				<div class="orderscont">
 					<c:forEach items="${orderForms }" var="orderForm">
-					          <c:out value="0000"></c:out>
 						<div class="ordcontil">
 							<p>${orderForm.orderFormID }</p>
 							<div class="octd">
@@ -96,9 +95,9 @@
 							
 						</div>
 						<div class="ordconpic">
-							<c:forEach items="${orderForm.commodities }" var="commodity">
-							      <c:out value="${orderForm.commodities}"></c:out>
+							<c:forEach items="${comms}" var="commodity">
 								<ul class="ordersall">
+								       <c:if test="${orderForm.orderFormID==commodity.orderNumber.orderFormID}">
 									<li class="ordersli1"><div class="midl">
 											<img src="..${commodity.imagePaths[0].path }" /><br />
 											<c:if test="${sessionScope.language == 'chinese'}">
@@ -125,6 +124,7 @@
 									<li class="ordersli5"><div class="midl">${commodity.price }</div></li>
 									<li class="ordersli6"><div class="midl">${commodity.money }</div></li>
 									<li class="ordersli7"><div class="midl"></div></li>
+									</c:if>
 								</ul>
 							</c:forEach>
 						</div>

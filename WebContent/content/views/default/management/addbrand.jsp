@@ -65,11 +65,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    <li style="float: left;margin-right: 0px;font-size:20px;font-weight: bold;">品牌Logo</li>
 				 </ul>
 				 <br/>
-				  <ul style="list-style: none;margin-top: 20px;">
+				  <ul style="list-style: none;margin-top: 20px;''">
 				         <c:forEach items="${brands}" var="brand">
-				             <li style="float: left;margin-right: 120px;font-size:20px;">${brand.brandName }</li>
-				              <li style="float: left;margin-right: 120px;font-size:20px;"><a href="${brand.website }">${brand.website }</a></li>
-                              <li style="float: left;margin-right: 0px;font-size:20px;"><img alt="" src="${brand.logo }"/></li>
+				              <li style="margin-right: 120px;font-size:20px;">${brand.brandName }</li>
+				              <li style="margin-right: 110px;font-size:20px;"><a href="${brand.website }">${brand.website }</a></li>
+                              <li style="margin-right: 0px;font-size:20px;"><img alt="" src="${brand.logo }"/></li>
                               <br/>                     
 				         </c:forEach>
 				 </ul>

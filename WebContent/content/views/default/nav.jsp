@@ -36,6 +36,7 @@
 						<ul class="dropdown-menu" role="menu">
 							<c:if
 								test="${personnel.departAndPositions.department.departmentID == 22 || personnel.departAndPositions.department.departmentID == 23  || personnel.departAndPositions.department.departmentID == 1 || personnel.loginName== 'administrator'}">
+								<li><a href=".warehouse/storeroom">库房</a></li>
 								<li><a href="./warehouse/receiving">收货</a></li>
 								<li><a href="./warehouse/inspection">验货入库</a></li>
 								<li><a href="./warehouse/reclaimStation">回收站</a></li>
@@ -45,7 +46,7 @@
 								<li><a href="./warehouse/orderOfWay">在途订单</a></li>
 							</c:if>
 							<c:if
-								test="${personnel.departAndPositions.department.departmentID == 22 || personnel.departAndPositions.department.departmentID == 24  || personnel.departAndPositions.department.departmentID == 1 || personnel.loginName== 'administrator'}">
+								test="${personnel.departAndPositions.department.departmentID == 3 || personnel.departAndPositions.department.departmentID == 24  || personnel.departAndPositions.department.departmentID == 1 || personnel.loginName== 'administrator'}">
 								<li><a href="./warehouse/weighing">称量打包</a></li>
 								<li><a href="./warehouse/freight">运费</a></li>
 								<li><a href="./warehouse/sendTheParcel">发送包裹</a></li>
@@ -56,7 +57,7 @@
 						</ul></li>
 				</c:if>
 				<c:if
-					test="${personnel.departAndPositions.department.departmentID == 4 || personnel.departAndPositions.department.departmentID == 1 || personnel.loginName== 'administrator'}">
+					test="${personnel.departAndPositions.department.departmentID == 3 || personnel.departAndPositions.department.departmentID == 1 || personnel.loginName== 'administrator'}">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">中转<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
@@ -140,7 +141,7 @@
 										<li><a href="./management/shopCategory">商品分类</a></li>
 										<li><a href="./management/specification">商品类型规格</a></li>
 										<li><a href="./management/brand">商品品牌</a></li>
-										<li><a href="./management/shopcateAndbrand">商品品牌分配</a></li>
+										<li><a href="./management/getCate">商品品牌分配</a></li>
 										<li><a href="javascript:void(0);">成批商品</a></li>
 										<li><a href="javascript:void(0);">首页商品</a></li>
 									</ul></li>

@@ -463,6 +463,14 @@ public class ManagementIndexController {
 	public ModelAndView brand(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		List<Brand> brands = brandService.getAll();
+		for (int k = 0; k < brands.size() - 1; k++) {
+			for (int j = brands.size() - 1; j > k; j--) {
+				if (brands.get(j).getBrandName()
+						.equals(brands.get(k).getBrandName())) {
+					brands.remove(j);
+				}
+			}
+		}
 		ModelMap mode = new ModelMap();
 		mode.put("brands", brands);
 		return new ModelAndView("management/addbrand", mode);
@@ -624,118 +632,139 @@ public class ManagementIndexController {
 		return new ModelAndView("management/cateAndbrand", mode);
 	}
 
-	// 商品类别品牌分配
-	@RequestMapping(value = "shopcateAndbrand", method = RequestMethod.GET)
-	public ModelAndView shopcateAndbrand(Integer categoryID,
-			HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		List<ShopCategory> list = shopCategoryService.getAllByLevel(1);
-		ModelMap mode = new ModelMap();
-		mode.put("list", list);
-		ShopCategory category = shopCategoryService.findById(categoryID);
-		mode.put("category", category);
-		List<Brand> brands = brandService.getAllunlike();
-		mode.put("brands", brands);
-		List<Specifications> specifications = specificationsService.getAll();
-		mode.put("specifications", specifications);
-		return new ModelAndView("management/cateAndbrand", mode);
-	}
 
 	// 商品类型品牌分配保存
 	@RequestMapping(value = "saveBrandAndCate", method = RequestMethod.POST)
 	public String saveBrandAndCate(Integer categoryID,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		    String[] brands=request.getParameterValues("brand");
-		    String[] specifications=request.getParameterValues("specification");
-		    ShopCategory shopCateg = shopCategoryService.findById(categoryID);
-		    System.out.println("shopCateg========"+shopCateg.getCategory());
-		    List<Specifications> spec=null;
+		    String[] specs =request.getParameterValues("specification");
+		    ShopCategory cate  = shopCategoryService.findById(categoryID);
+		    List<Specifications> cateSpec = cate.getSpecifications();
+			if (cateSpec == null || cateSpec.size() == 0) {
+				notCateAdd(cate, specs);
+			}else{
+				List<Specifications> specss = specificationsService.getAll();
+				if(specs != null && specs.length >0){
+					haveCateOrther(cate, cateSpec, specs, specss);
+				}else{
+					haveCateDel(cate, specss);
+				}
+			}
+			
 //		    if(brands!=null&&brands.length>0){
 //		    	 for (int i = 0; i < brands.length; i++) {
 //				    	Brand brand = brandService.findById(Integer.parseInt(brands[i]));
 //				    	if(brand.getShopCateg()==null){
-//				    		brand.setShopCateg(shopCateg);		
+//				    		brand.setShopCateg(cate);		
 //					        brandService.update(brand);
 //				    	}else{
 //				    		Brand nBrand=new Brand();
 //				    		nBrand.setBrandName(brand.getBrandName());
 //				    		nBrand.setLogo(brand.getLogo());
 //				    		nBrand.setWebsite(brand.getWebsite());
-//				    		nBrand.setShopCateg(shopCateg);
+//				    		nBrand.setShopCateg(cate);
 //				    		brandService.save(nBrand);
 //				    	}
 //					}
 //		    }
-		    System.out.println("shopCateg222222222========"+shopCateg.getCategory());
-		    //给类别分配规格
-		   if(shopCateg!=null ){
-			       System.out.println("1=====");
-			        spec=new ArrayList<Specifications>();
-			    	 List<Specifications> spcs=shopCateg.getSpecifications();
-			    	 System.out.println("spcs==="+spcs.size());
-			    	 if(spcs!=null&&spcs.size()>0){
-			    		 System.out.println("2=====");
-			    		 //第一遍循环
-			    		 for (int i = 0; i < spcs.size(); i++) {
-			    			 System.out.println("3=====");
-			                  boolean flag=false;
-			    			  Specifications  spcan=spcs.get(i);
-			    			  if(specifications!=null&&specifications.length>0){
-			    				  for (String sid : specifications) {
-				    					 System.out.println("4====="+(spcan.getId() == Integer.parseInt(sid)));
-										if (spcan.getId() == Integer.parseInt(sid)) {
-											 System.out.println("5=====");
-											flag = true;
-								         }
-							        }//内循环
-			    				  if(flag==false){
-					    				System.out.println("6=====");	
-					    				spcan.getShopCategories().remove(shopCateg);
-					    				specificationsService.update(spcan);
-					    				shopCateg.getSpecifications().remove(spcan);
-					    				shopCategoryService.update(shopCateg);
-					    			}
-			    			  }else{
-			    				    spcan.getShopCategories().remove(shopCateg);	
-				    				specificationsService.update(spcan);
-				    				shopCateg.getSpecifications().remove(spcan);
-				    				shopCategoryService.update(shopCateg);
-			    			  }
-			    	     }//外循环
-//			      第二遍循环
-			    		 System.out.println("shopCateg========"+shopCateg.getCategory());
-			    		 if(specifications != null && specifications.length>0){
-			    			 for (int i = 0; i < specifications.length; i++) {
-				         		  boolean flag=false;
-								  for (Specifications specifications2 : spcs) {
-									    if(Integer.parseInt(specifications[i])!=specifications2.getId()){
-									    	  flag=true;
-									    }
-								  }//内循环2
-								 if(flag==true){
-									 Specifications nes=specificationsService.findById(Integer.parseInt(specifications[i]));
-									 System.out.println("nes========="+shopCateg.getCategory());
-									 nes.getShopCategories().add(shopCateg);
-									  specificationsService.update(nes);
-									  shopCateg.getSpecifications().add(nes);
-									  shopCategoryService.update(shopCateg);
-								 } 
-							}//外循环2
-			    		 }
-		        }else{
-		        	   //如果当前类别没有规格  redirect:/management/shopcateAndbrand
-		        	  for (int i = 0; i < specifications.length; i++) {
-		        		  Specifications  nadds=specificationsService.findById(Integer.parseInt(specifications[i]));
-		        		  nadds.getShopCategories().add(shopCateg);
-						  specificationsService.update(nadds);
-						  shopCateg.getSpecifications().add(nadds);
-						  shopCategoryService.update(shopCateg);
+	
+			    	 return "redirect:/management/getCate?categoryID="+categoryID; 
+	}
+	
+	private void haveCateDel(ShopCategory cate, List<Specifications> specss) {
+		boolean isok = specss.removeAll(cate.getSpecifications());
+		for (int i = 0; i < specss.size(); i++) {
+			Specifications spe = specss.get(i);
+			List<ShopCategory> cates = spe.getShopCategories();
+			for (int j = 0; j < cates.size(); j++) {
+				if(cates.get(j).getCategoryID() == cate.getCategoryID()){
+					cates.remove(cates.get(j));
+				}
+			}
+			specificationsService.update(spe);
+		}
+		cate.setSpecifications(null);
+		cate = shopCategoryService.update(cate);
+	}
+
+	private void haveCateOrther(ShopCategory cate, List<Specifications> cateSpec, String[] specs, List<Specifications> specss) {
+		List<Specifications> cateSpec2 = new ArrayList<Specifications>();
+		for ( int m = 0; m<cateSpec.size(); m++){
+			   cateSpec2.add(cateSpec.get(m));
+		}
+		for (int i = 0; i < cateSpec2.size(); i++) {
+			boolean isok = true;
+			for (int j = 0; j < specs.length; j++) {
+				Specifications spec = specificationsService.findById(Integer.parseInt(specs[j]));
+				if (spec != null) {
+					if(cateSpec2.get(i).getId() == spec.getId()){
+						isok = false;
 					}
-		        }
-		   }    	 
-		   System.out.println("nes========="+shopCateg.getCategory());
-		   System.out.println( "redirect:/management/shopcateAndbrand?categoryID="+categoryID);
-		      return null;
-//			    	 return "redirect:/management/shopcateAndbrand?categoryID="+categoryID; 
+				}
+			}
+			if (isok) {
+				for (int j = 0; j < specss.size(); j++) {
+					if(specss.get(j).getId() == cateSpec2.get(i).getId()){
+						Specifications spe = specss.get(j);
+						List<ShopCategory> specate = spe.getShopCategories();
+						for (int k = 0; k < specate.size(); k++) {
+							if(specate.get(k).getCategoryID() == cate.getCategoryID()){
+								specate.remove(specate.get(k));
+							}
+						}  
+						specificationsService.update(spe);
+					}
+				}
+				cate.getSpecifications().remove(cateSpec2.get(i)); 
+				cate = shopCategoryService.update(cate);
+			}
+		}
+		for (int j = 0; j < specs.length; j++) {
+			Specifications spec = specificationsService.findById(Integer.parseInt(specs[j]));
+			if (spec != null) {
+				boolean isok = true;
+				for (int i = 0; i < cateSpec.size(); i++) {
+					if(spec.getId() == cateSpec.get(i).getId()){
+						isok = false;
+					}
+				}
+				if (isok) {
+					List<ShopCategory> catespe = spec.getShopCategories();
+					if (catespe !=null && catespe.size()>0) {
+						catespe.add(cate);
+					}else{
+						catespe = new ArrayList<ShopCategory>();
+						catespe.add(cate);
+						spec.setShopCategories(catespe);
+					}
+					specificationsService.update(spec);
+					cate.getSpecifications().add(spec);
+					shopCategoryService.update(cate);
+				}
+			}
+		}
+	}
+   //类型规格为空
+	private void notCateAdd(ShopCategory cate, String[] specs) {
+		List<Specifications> specList;
+		List<ShopCategory> cateList;
+		if (specs != null && specs.length >0) {
+			specList = new ArrayList<Specifications>();
+			for (int i = 0; i < specs.length; i++) {
+				 Specifications spec = specificationsService.findById(Integer.parseInt(specs[i]));//尺码
+				 if (spec.getShopCategories().size()>0) {
+					 cateList = spec.getShopCategories();//尺码的类型
+				 }else{
+					 cateList = new ArrayList<ShopCategory>();
+				 }
+				 cateList.add(cate);
+				 spec.setShopCategories(cateList);
+				 spec = specificationsService.update(spec);//报错
+				 specList.add(spec); 
+			}
+			cate.setSpecifications(specList);
+			cate = shopCategoryService.update(cate);
+		}
 	}
 
 	@RequestMapping(value = "addOrUpdateCate", method = RequestMethod.POST)

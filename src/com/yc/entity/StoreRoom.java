@@ -15,13 +15,13 @@ import com.yc.entity.user.User;
 public class StoreRoom {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer cellID;
+	private Integer cellID;//库房ID
+	@Column(unique=true)
+	private String cellStr;//库房编号
 	@Column
-	private String cellStr;
-	@Column
-	private String packageNum;
+	private String packageNum;//
 	@OneToOne(mappedBy = "storeRoom")
-	private User user;
+	private User user;//用户
 
 	private Boolean isInCell; //单元格已经被用了
 	
