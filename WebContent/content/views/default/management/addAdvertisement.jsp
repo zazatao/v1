@@ -201,8 +201,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			return true;
 		}
 
-		18:22:25
-		双 2015/5/27 18:22:25
 		function depChange(obj){
 					jQuery.ajax({
 						type : 'GET',

@@ -12,4 +12,6 @@ public interface IStoreRoomService extends IGenericService<StoreRoom>{
 
 	StoreRoom getStoreRoomByIsInCell(boolean b);
 
+	List<StoreRoom> getRoomByCondition(String cellStr, String user,Boolean isInCell);
+
 }

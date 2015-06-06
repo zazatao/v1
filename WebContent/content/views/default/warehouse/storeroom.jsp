@@ -65,7 +65,7 @@ th {
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="span12">
-				<form class="form-horizontal" action=""
+				<form class="form-horizontal" action="warehouse/searchStoreroom"
 					method="POST">
 					<div class="form-group">
 						<div class="col-sm-1">
@@ -74,14 +74,14 @@ th {
 						</div>
 						<div class="col-sm-1">
 							<input type="text" name="user" placeholder="用户"
-								class="form-control" id="user">
+								class="form-control" id="user" >
 						</div>
 						<div class="col-sm-1">
 							<select class="form-control" name="isInCell" id="isInCell"
 								placeholder="状态">
-								<option value="">-----状态-----
-							    <option value="false" name = "false">未被使用
-					            <option value="true" name = "true">已被使用
+								<option value="">-----状态-----</option>
+							    <option value="false"  >未被使用</option>
+					            <option value="true"  >已被使用</option>
 							</select>															
 						</div>
 						<div class="col-sm-1">
@@ -117,8 +117,21 @@ th {
 	</div>
 
 	<jsp:include page="../common/delModelBox.jsp"></jsp:include>
-
 	<script type="text/javascript">
+	    $("#user").blur(function(){
+	    	  var value=$(this).val();
+	    	  if(value!=''){
+	    		    var sta="已被使用";
+	    		     $('#isInCell option:contains(' + sta + ')').each(function(){
+	    		    	 if ($(this).text() == sta) {
+                                $(this).attr('selected', true);
+                                $("#isInCell").attr("disabled",true);
+	    		    	 }
+	    		     })
+	    	 }else{
+	    		 $("#isInCell").attr("disabled",false);
+	    	 }
+	    });
 		function popupwindow(url) {
 			var w = 700;
 			var h = 800;

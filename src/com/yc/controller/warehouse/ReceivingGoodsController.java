@@ -72,9 +72,18 @@ public class ReceivingGoodsController {
 	public ModelAndView receiving(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		return new ModelAndView("warehouse/beginwork", null);
 	}
+	//库房查询
+	@RequestMapping(value = "searchStoreroom", method = RequestMethod.POST)
+	public ModelAndView searchStoreroom(String cellStr,String user,Boolean isInCell,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("cellStr=="+cellStr+"userName"+user+"isInCell=="+isInCell);
+		List<StoreRoom> storerooms=storeRoomService.getRoomByCondition(cellStr,user,isInCell);
+		ModelMap mode=new ModelMap();
+		mode.put("storerooms", storerooms);
+		return new ModelAndView("warehouse/storeroom", mode);
+	}
 	//库房
 	@RequestMapping(value = "storeroom", method = RequestMethod.GET)
-	public ModelAndView storeroom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ModelAndView storeroom(String cellStr,String userName,Boolean isInCell,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<StoreRoom> storerooms=storeRoomService.getAll();
 		ModelMap mode=new ModelMap();
 		mode.put("storerooms", storerooms);
