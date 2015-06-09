@@ -50,7 +50,7 @@ public class StatisticalController {
 		ModelMap mode = new ModelMap();
 		if (personnel.getDepartAndPositions() != null) {
 			List<Personnel> personnels = new ArrayList<Personnel>();
-			if (personnel.getDepartAndPositions().getDepartment().getDepartmentID() == 22 || personnel.getDepartAndPositions().getDepartment().getDepartmentID() == 23 || personnel.getDepartAndPositions().getDepartment().getDepartmentID() == 24) {
+			if (personnel.getDepartAndPositions().getDepartment().getDepartmentID() == 4 || personnel.getDepartAndPositions().getDepartment().getDepartmentID() == 8 || personnel.getDepartAndPositions().getDepartment().getDepartmentID() == 9) {
 				if (personnel.getDepartAndPositions().getPositions() != null) {
 					Positions posit = personnel.getDepartAndPositions().getPositions();
 					Set<Positions> positions = posit.getChildren();
@@ -69,7 +69,7 @@ public class StatisticalController {
 					personnels.add(personnel);
 				}
 			} else {
-				Department department = departmentService.findById(22);
+				Department department = departmentService.findById(4);
 				List<DepartAndPositions> depAndPoss23 = depAndPositionsService.findDepAndPosByDep(department);
 				for (DepartAndPositions dep : depAndPoss23) {
 					List<Personnel> personne = personnelService.getAllByDepAndPos(dep);

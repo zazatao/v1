@@ -199,7 +199,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<td>${commo.commodityID }</td>
 											<td>${commo.nameOfGoods }</td>
 											<td>${commo.quantity }</td>
-											<td>${commo.weight }</td>
+											<td>${commo.weight }</td> 
 											<td>${commo.money }</td>
 											<c:set var="fee" value="${fee + commo.money }"></c:set>
 											<td>

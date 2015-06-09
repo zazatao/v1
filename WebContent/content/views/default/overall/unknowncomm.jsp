@@ -7,7 +7,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>不明货品</title>
-
+<% String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; %>
+<base href="<%=basePath%>">
 <link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
 <link href="../content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
@@ -85,14 +87,14 @@
 														</c:choose>
 														<td>
 														       <c:forEach items="${uncomm.imagePaths}" var="image" >
-														                <img src="${image.path}">
+														                <img src="${image.path}" style="width:100px;heigh:100px;">
 														       </c:forEach>
 														</td>
-														<td>${uncomm.code }</td>
-														<td>${uncomm.operator.userName}</td>
-														<td>${uncomm.amountNum}</td>
-														<td>${uncomm.category}</td>
-														<td>${uncomm.comment}</td>
+														<td style="line-height: 100px;">${uncomm.code}</td>
+														<td style="line-height: 100px;">${uncomm.operator.userName}</td>
+														<td style="line-height: 100px;">${uncomm.amountNum}</td>
+														<td style="line-height: 100px;">${uncomm.category}</td>
+														<td style="line-height: 100px;">${uncomm.comment}</td>
 														</tr>
 												
 											</c:forEach>

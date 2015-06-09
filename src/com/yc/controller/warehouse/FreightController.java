@@ -81,7 +81,7 @@ public class FreightController {
 		Package pack = packageService.getPackAgeByTpek(packAgeTpek);
 		pack.setTransportFee(transportFee);
 		if (pack.getIsFee()==null) {
-			pack.setIsFee(false);
+			pack.setIsFee(false);	
 		}
 		pack.setIsClearing(true);
 		packageService.update(pack);

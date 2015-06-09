@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>商品类别管理</title>
+<title>材料类别管理</title>
 <% String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; %>
 <base href="<%=basePath%>">
@@ -42,11 +42,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="row-fluid">
 			<div class="span12">
 				<ul class="breadcrumb">
-					<li><a href="javascript:void(0);" style="font-size: 18px;">管理</a></li>
+					<li><a href="javascript:void(0);" style="font-size: 18px;">商店</a></li>
 					<span class="divider"><font style="font-size: 18px;">/</font></span>
-					<li><a href="javascript:void(0);" style="font-size: 18px;"><font style="font-size: 18px;">商品</font></a></li>
+					<li><a href="javascript:void(0);" style="font-size: 18px;"><font style="font-size: 18px;">经济核算</font></a></li>
 					<span class="divider"><font style="font-size: 18px;">/</font></span>
-					<li><font style="font-size: 18px;">商品品牌</font></li>
+					<li><font style="font-size: 18px;">材料类型</font></li>
 				</ul>
 			</div>
 		</div>
@@ -55,21 +55,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">
-					商品品牌
+					材料类型
 				</h3>
 				
 			</div>
 			     <ul style="list-style: none;margin-top: 20px;">
-				    <li style="float: left;margin-right: 120px;font-size:20px;font-weight: bold;">品牌名称</li>
-				    <li style="float: left;margin-right: 200px;font-size:20px;font-weight: bold;">官网地址</li>
-				    <li style="float: left;margin-right: 0px;font-size:20px;font-weight: bold;">品牌Logo</li>
+				    <li style="float: left;margin-right: 120px;font-size:20px;font-weight: bold;">材料编号</li>
+				    <li style="float: left;margin-right: 200px;font-size:20px;font-weight: bold;">材料类型</li>
 				 </ul>
 				 <br/>
 				  <ul style="list-style: none;margin-top: 20px;''">
-				         <c:forEach items="${brands}" var="brand">
-				              <li style="float: left;margin-right: 120px;font-size:20px;">${brand.brandName }</li>
-				              <li style="float: left;margin-right: 110px;font-size:20px;"><a href="${brand.website }">${brand.website }</a></li>
-                              <li style="margin-right: 0px;font-size:20px;"><img alt=""  src="${brand.logo}"/> ${brand.logo}</li>
+				         <c:forEach items="${genrelist}" var="genre">
+				              <li style="float: left;margin-right: 170px;margin-left:30px;font-size:20px;">${genre.sizeID }</li>
+				              <li style="float: left;margin-right: 110px;font-size:20px;">${genre.genre}</li>
+				              <li style="margin-right: 110px;font-size:20px;"><a href="javaScript:void(0)" onclick="deleteGenreById('${genre.sizeID }');" >删除</a></li>
                               <br/>                     
 				         </c:forEach>
 				 </ul>
@@ -84,22 +83,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="list-group-item">
 				<p class="list-group-item-text">
 					<br>
-					  <form id="brandform" action="management/addBrand" method="post" enctype="multipart/form-data">
-                          <label  for="bName">品牌名称</label>
-                          <input type="text" id="bName" name="brandName"/>
+					  <form id="brandform" action="shop/saveGenre" method="post" >
+                          <label  for="bName">材料类型</label>
+                          <input type="text" id="genre" name="genre"/>
                           <br/><br/>
-                          <label for="website">官网地址</label>
-                          <input type="text" id="website" name="website"/>
-                          <br/><br/>
-                          <label for="website">LOGO</label>
-                          <input type="file" id="imageFile" name="imageFile"/>
-                          <br/><br/>
-                          <input type="submit" name="submit" value="品牌添加"/>
+                          <input type="submit" name="submit" value="材料添加"/>
                         </form>  
-				</P>
 			</div>
 		</div>
 	</div>
-
+    <script type="text/javascript">
+		function deleteGenreById(obj){
+ 			location.href = "shop/deleteGenreById?id="+obj;
+		}
+    </script>
 </body>
 </html>

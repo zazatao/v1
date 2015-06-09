@@ -20,19 +20,6 @@
 	src="../content/static/js/reception/js.js"></script>
 <SCRIPT src="../content/static/js/reception/ScrollPic.js"
 	type=text/javascript></SCRIPT>
-<script type="text/javascript">
-	$(function() {
-		 $("#btn").click(function(){
-			 var value=$(this).is(":checked");
-// 			// alert(value);
-// 			 if(value){
-// 				$("input[name='password']").attr("type","text");
-// 			 }else{
-// 				 $("input[name='password']").attr("type","password");
-// 			 }
-		});
-	});
-</script>
 </head>
 
 <body>
@@ -94,7 +81,7 @@
 							<li>短信代码<input class="zc_input_2" type="text" value="" /><input
 								class="sub_3" type="submit" value="发送代码" /></li>
 							<li><p>您的性别</p></li>
-							<li><a class="green" name="Male" id="Male" value="Male"
+							<li><a class="green" name="Male" id="Male"  value="Male"
 								type="radio">男士 </a> <a class="red" name="Female" id="Female"
 								type="radio" value="Female">女士</a></li>
 							<li>我有代码可以邀请朋友<input class="zc_input_2" type="text" value="" /></li>

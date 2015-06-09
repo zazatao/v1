@@ -97,7 +97,7 @@ th {
 								</td>
 								<td>${shop.phone }</td>
 								<td>${shop.createDate }</td>	
-								<td><button onclick="popupwindow('addBlack?id=${shop.id}&mathed=add&page=shop');">加入黑名单</button></td>	
+								<td><button onclick="popupwindow('management/addBlack?id=${shop.id}&mathed=add&page=shop');">加入黑名单</button></td>	
 							</tr>
 						</tbody>
 					</c:forEach>

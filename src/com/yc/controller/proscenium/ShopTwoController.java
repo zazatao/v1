@@ -147,7 +147,6 @@ public class ShopTwoController {
 		System.out.println("cateList.size=====" + cateList.size());
 		for (int i = 0; i < cateList.size(); i++) {
 			List<ShopCommoidty> comms = cateList.get(i).getShopCommoidties();
-			System.out.println("comms========" + cateList.get(i).getCategory());
 			if (comms != null) {
 				shopcommlist.addAll(comms);
 			}

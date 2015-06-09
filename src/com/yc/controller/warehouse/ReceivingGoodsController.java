@@ -75,7 +75,6 @@ public class ReceivingGoodsController {
 	//库房查询
 	@RequestMapping(value = "searchStoreroom", method = RequestMethod.POST)
 	public ModelAndView searchStoreroom(String cellStr,String user,Boolean isInCell,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("cellStr=="+cellStr+"userName"+user+"isInCell=="+isInCell);
 		List<StoreRoom> storerooms=storeRoomService.getRoomByCondition(cellStr,user,isInCell);
 		ModelMap mode=new ModelMap();
 		mode.put("storerooms", storerooms);

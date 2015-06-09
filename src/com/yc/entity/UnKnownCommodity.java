@@ -26,7 +26,7 @@ public class UnKnownCommodity {
 	private Integer code;
 
 	@ManyToOne
-	@JoinColumn(name = "from_personnel")
+	@JoinColumn(name = "from_personnel")//操作员
 	private Personnel operator;
 
 	@Column

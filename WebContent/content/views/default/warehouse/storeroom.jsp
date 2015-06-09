@@ -132,6 +132,14 @@ th {
 	    		 $("#isInCell").attr("disabled",false);
 	    	 }
 	    });
+	    $("#isInCell").change(function(){
+	    	 var text=$(this).find("option:selected").text(); 
+	    	 if(text=="未被使用"){
+	    		   $("#user").attr("disabled",true);
+	    	 }else{
+	    		  $("#user").attr("disabled",false);
+	    	 }
+        });
 		function popupwindow(url) {
 			var w = 700;
 			var h = 800;

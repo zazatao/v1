@@ -67,7 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="panel-heading">
 						<h3 class="panel-title">
 							材料列表
-							<a href="#" onclick="popupwindow('shop/addMaterial?mathed=add');">
+							<a href="javascript:void(0);"  onclick="popupwindow('shop/addMaterial?mathed=add');">
 							<span class="badge navbar-right" id="add"><font size="3px;">添加&nbsp;&nbsp;+</font></span></a>
 						</h3>
 					</div>
@@ -113,62 +113,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  			location.href = "shop/deleteMaterial?id="+obj;
 		}
 		
-		 function addMaterial(obj){
-			document.form.action="shop/addMaterial?mathed="+obj;
-			document.form.submit();
-			return closeAndRefresh(); 
-		 }
-		
-		window.onunload = refreshParent;
-		function refreshParent() {
-			window.opener.location.reload();
-		}
-		function reloadData() {
-			setTimeout(function() {
-				window.location.reload();
-			}, 1000);
-		}
-		function dateInfoxxx(obj) {
-			var date = obj;
-			$('#' + date).datetimepicker({
-				lang : 'ch',
-				timepicker : false,
-				format : 'Y-m-d',
-				formatDate : 'Y-m-d',
-			});
-		}
-		$(document).ready(function() {
-			var len = "${count}" + "${count1}";
-			for (var i = 0; i < len; i++) {
-				var sendDate = "";
-				if ($('#sendDate' + i).val() == '') {
-					sendDate = new Date();
-				} else {
-					sendDate = getDate($('#sendDate' + i).val());
-					sendDate = sendDate.valueOf();
-					sendDate = new Date(sendDate);
-				}
-				var receiveDate = getDate($('#receiveDate' + i).val());
-				receiveDate = receiveDate.valueOf();
-				receiveDate = new Date(receiveDate);
-				var a = (sendDate - receiveDate)
-				var b = 24 * 60 * 60 * 1000;
-				$('#reduce' + i).html(Math.ceil(a / b) + "天");
-			}
-		})
-		function getDate(strDate) {
-			var date = eval('new Date('
-					+ strDate.replace(/\d+(?=-[^-]+$)/, function(a) {
-						return parseInt(a, 10) - 1;
-					}).match(/\d+/g) + ')');
-			return date;
-		}
-		function checkvalue(obj) {
-			if (!/^[+|-]?\d+\.?\d*$/.test(obj.value) && obj.value != '') {
-				alert('你输入的不是数字，或关闭输入法后再输入');
-				obj.select();
-			}
-		}
 		function popupwindow(url) {
 			var w = 1200;
 			var h = 800;
@@ -187,6 +131,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									+ top
 									+ ', left=' + left);
 		}
-	</script>
+  </script>
 </body>
 </html>

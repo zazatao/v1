@@ -65,7 +65,6 @@ public class OverallIndexController {
 		map.put("phone", phone);
 		map.put("userName", userName);
 		List<Package> packages=packageservice.searchPackProblem(map);
-		System.out.println("packages===="+packages.size());
 		ModelMap mode = new ModelMap();
     	mode.put("packages", packages);
     	return new ModelAndView("overall/orderqusetion", mode);

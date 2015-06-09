@@ -30,23 +30,23 @@
 						</ul></li>
 				</c:if>
 				<c:if
-					test="${personnel.departAndPositions.department.departmentID == 22 || personnel.departAndPositions.department.departmentID == 23  || personnel.departAndPositions.department.departmentID == 24 || personnel.departAndPositions.department.departmentID == 1 || personnel.loginName== 'administrator' }">
+					test="${personnel.departAndPositions.department.departmentID == 4 || personnel.departAndPositions.department.departmentID == 8  || personnel.departAndPositions.department.departmentID == 9 || personnel.departAndPositions.department.departmentID == 1 || personnel.loginName== 'administrator' }">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">仓库 <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<c:if
-								test="${personnel.departAndPositions.department.departmentID == 22 || personnel.departAndPositions.department.departmentID == 23  || personnel.departAndPositions.department.departmentID == 1 || personnel.loginName== 'administrator'}">
+								test="${personnel.departAndPositions.department.departmentID == 4 || personnel.departAndPositions.department.departmentID == 8  || personnel.departAndPositions.department.departmentID == 1 || personnel.loginName== 'administrator'}">
 								<li><a href=".warehouse/storeroom">库房</a></li>
 								<li><a href="./warehouse/receiving">收货</a></li>
 								<li><a href="./warehouse/inspection">验货入库</a></li>
 								<li><a href="./warehouse/reclaimStation">回收站</a></li>
 							</c:if>
 							<c:if
-								test="${personnel.departAndPositions.department.departmentID == 22 || personnel.departAndPositions.department.departmentID == 23 || personnel.departAndPositions.department.departmentID == 24 || personnel.departAndPositions.department.departmentID == 1 || personnel.loginName== 'administrator' }">
+								test="${personnel.departAndPositions.department.departmentID == 4 || personnel.departAndPositions.department.departmentID == 8 || personnel.departAndPositions.department.departmentID == 9 || personnel.departAndPositions.department.departmentID == 1 || personnel.loginName== 'administrator' }">
 								<li><a href="./warehouse/orderOfWay">在途订单</a></li>
 							</c:if>
 							<c:if
-								test="${personnel.departAndPositions.department.departmentID == 3 || personnel.departAndPositions.department.departmentID == 24  || personnel.departAndPositions.department.departmentID == 1 || personnel.loginName== 'administrator'}">
+								test="${personnel.departAndPositions.department.departmentID == 3 || personnel.departAndPositions.department.departmentID == 9  || personnel.departAndPositions.department.departmentID == 1 || personnel.loginName== 'administrator'}">
 								<li><a href="./warehouse/weighing">称量打包</a></li>
 								<li><a href="./warehouse/freight">运费</a></li>
 								<li><a href="./warehouse/sendTheParcel">发送包裹</a></li>
@@ -66,13 +66,13 @@
 							<li><a href="./forwarding/transportLate">运期</a></li>
 							<li><a href="./forwarding/question">问题</a></li>
 							<c:if
-								test="${personnel.departAndPositions.positions.positionid != 33 || personnel.loginName== 'administrator'}">
+								test="${personnel.departAndPositions.positions.positionid != 4 || personnel.loginName== 'administrator'}">
 								<li><a href="./forwarding/forStatistical">计算统计</a></li>
 							</c:if>
 						</ul></li>
 				</c:if>
 				<c:if
-					test="${personnel.departAndPositions.department.departmentID == 25 || personnel.departAndPositions.department.departmentID == 1 || personnel.loginName== 'administrator'}">
+					test="${personnel.departAndPositions.department.departmentID == 5 || personnel.departAndPositions.department.departmentID == 1 || personnel.loginName== 'administrator'}">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">商店 <span class="caret"></span></a>
 						<ul class="dropdown-menu menu-top" role="menu">
@@ -86,8 +86,9 @@
 								</ul></li>
 							<li class="dropdown-submenu"><a href="#">经济核算</a>
 								<ul class="dropdown-menu">
+								     <li><a href="./shop/addGenre">材料类型</a></li>
 									<li><a href="./shop/material">材料</a></li>
-									<li><a href="#">承包商</a></li>
+									<li><a href="javascript:void(0);">承包商</a></li>
 								</ul></li>
 							<li class="dropdown-submenu"><a href="#">设置</a>
 								<ul class="dropdown-menu">
@@ -111,7 +112,7 @@
 									</ul></li>
 									
 							<c:if
-								test="${personnel.departAndPositions.department.departmentID == 26 || personnel.departAndPositions.department.departmentID == 1|| personnel.loginName== 'administrator' }">
+								test="${personnel.departAndPositions.department.departmentID == 6 || personnel.departAndPositions.department.departmentID == 1|| personnel.loginName== 'administrator' }">
 								<li class="dropdown-submenu"><a href="#">运输</a>
 									<ul class="dropdown-menu">
 										<li><a href="#">运输方式</a></li>
@@ -147,11 +148,11 @@
 									</ul></li>
 								<li class="dropdown-submenu"><a href="#">翻译</a>
 									<ul class="dropdown-menu">
-										<li><a href="#">翻译产品名称</a></li>
-										<li><a href="#">翻译选项名称</a></li>
-										<li><a href="#">翻译选项内容</a></li>
-										<li><a href="#">翻译搜索短语</a></li>
-										<li><a href="#">产品名称</a></li>
+										<li><a href="javascript:void(0);">翻译产品名称</a></li>
+										<li><a href="javascript:void(0);">翻译选项名称</a></li>
+										<li><a href="javascript:void(0);">翻译选项内容</a></li>
+										<li><a href="javascript:void(0);">翻译搜索短语</a></li>
+										<li><a href="javascript:void(0);">产品名称</a></li>
 									</ul></li>
 								<li class="dropdown-submenu"><a href="#">黑名单</a>
 									<ul class="dropdown-menu">
@@ -168,8 +169,8 @@
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">统计 <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="./management/orderAccount">订单</a></li>
-							<li><a href="#">财务</a></li>
+							<li><a href="javascript:void(0);">订单</a></li>
+							<li><a href="javascript:void(0);">财务</a></li>
 						</ul></li>
 				</c:if>
 			</ul>

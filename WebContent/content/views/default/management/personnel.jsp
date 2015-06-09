@@ -109,7 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="panel-heading">
 						<h3 class="panel-title">
 							员工列表
-							<a href="#" onclick="popupwindow('management/addPersonnel?mathed=add');">
+							<a href="javascript:void(0)" onclick="popupwindow('management/addPersonnel?mathed=add');">
 							<span class="badge navbar-right" id="add"><font size="3px;">添加&nbsp;&nbsp;+</font></span></a>
 						</h3>
 					</div>
@@ -126,7 +126,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<th>部门</th>
 									<th>电话</th>
 									<th>邮件</th>
-									<th>完成订单数</th>
+									<th>完成订单总数</th>
 									<th>是否禁用</th>
 									<th></th>
 								</tr>
@@ -141,7 +141,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<tr class="success">
 										</c:otherwise>
 									</c:choose>
-									<td>${personnel.loginName}</td>
+									<td id="lname">${personnel.loginName}</td>
 									<td>${personnel.password}</td>
 									<td>${personnel.userName}</td>	
 									<td>
@@ -152,17 +152,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<td>${personnel.departAndPositions.department.departmentname}</td>	
 									<td>${personnel.phone}</td>
 									<td>${personnel.email}</td>	
-									<td>${personnel.accomplishNum}</td>
-									<td>${personnel.forbidden}</td>
-									<td>
-									
-									<button class="btn btn-default" onclick="popupwindow('management/addPersonnel?id=${personnel.id}&mathed=update');">修改</button>
-									<button type="button" class="btn btn-default" onclick="forbiddenPersonnelById('${personnel.id}');">
-										<c:if test="${personnel.forbidden == null}">禁用</c:if>
-										<c:if test="${personnel.forbidden != null}">恢复</c:if>
-									</button>
-									<%-- <button class="btn btn-default" onclick="forbiddenPersonnelById('${personnel.id}');" >禁用</button> --%>
-									</td>
+									<c:set var="total"  value="${0 }"></c:set>
+									<c:forEach items="${personnel.accomplishNum}"  var="anum">
+									      <c:set var="total" value="${total + (anum.accomplishNum)}"/>
+									</c:forEach>
+									<td><c:out value="${total}"/></td>
+									<c:choose>
+									      <c:when test="${personnel.loginName=='administrator'}">
+									          <td>
+									         <button type="button" class="btn btn-default"  disabled="disabled">
+										     <c:if test="${personnel.forbidden == null}">禁用</c:if>
+										     <c:if test="${personnel.forbidden != null}">恢复</c:if>
+									         </button>
+									         </td>
+									         <td>
+									         <button class="btn btn-default"  disabled="disabled">修改</button>
+								             </td>
+									      </c:when>
+									      <c:otherwise>
+									         <td>
+									         <button type="button" class="btn btn-default" onclick="forbiddenPersonnelById('${personnel.id}');">
+										     <c:if test="${personnel.forbidden == null}">禁用</c:if>
+										     <c:if test="${personnel.forbidden != null}">恢复</c:if>
+									         </button>
+									         </td>
+									         <td>
+									         <button class="btn btn-default" onclick="popupwindow('management/addPersonnel?id=${personnel.id}&mathed=update');">修改</button>
+								             </td>
+									      </c:otherwise>
+									</c:choose>
 								</c:forEach>
 							</tbody>
 						</table>

@@ -58,7 +58,7 @@ public class Personnel {
 	private List<AccomplishMetric> accomplishNum;//完成订单数
 	
 	@Column
-	private String forbidden;
+	private String forbidden;//
 
 	@OneToMany(mappedBy = "storeOperator")
     private List<Commodity> commOperators ;//仓库接收订单
