@@ -7,7 +7,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>问题订单</title>
-
+<% String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; %>
+<base href="<%=basePath%>">	
 <link href="../content/static/css/bootstrap/navbar.css" rel="stylesheet">
 <link href="../content/static/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">

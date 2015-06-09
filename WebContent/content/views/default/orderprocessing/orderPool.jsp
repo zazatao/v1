@@ -304,7 +304,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		function onProcessing(orderID,commID){
 			var num = $('#quantity').val();
 			var dispoce = $('input[name="dispose"]:checked').val();
-			location.href ='./processing?dispose='+dispoce+'&num='+num+'&orderID='+orderID +'&commID='+commID;			
+			location.href ='/orderprocessing/processing?dispose='+dispoce+'&num='+num+'&orderID='+orderID +'&commID='+commID;			
 		}
 		function checkvalue(obj) {
 			if (!/^[+|-]?\d+\.?\d*$/.test(obj.value) && obj.value != '') {

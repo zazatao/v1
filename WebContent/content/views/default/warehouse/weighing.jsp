@@ -192,7 +192,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<div class="col-sm-1">
 												<input type="text" name="h"
 													class="form-control" id="h"
-													value="" placeholder="高" style="font-size: 12px;">
+													value="" 	="高" style="font-size: 12px;">
 											</div>
 										</div>
 										<hr>
@@ -369,23 +369,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			location.href ='warehouse/updatePacke?id='+id+"&genre="+genre+"&weight="+weight+"&grossWeight="+grossWeight;
 		}
 	}
-	function getVolumn(){
-		alert(1111);
-		/* var item = obj.split(",");
-		for (i=0;i<item.length ;i++ )   
-		 {   
-			 if( item[i].indexOf("体积") > 0 )
-			 {
-				 break;
-			 }
-		 } 		 
-		 var volume = item[i].split("-");
-		 document.getElementById("genre").o
-		 alert(volumn); */
-	}
 	
 	function packageGenre(obj){
-		 var item = obj.options[obj.selectedIndex].text.split("x");
+		 var item = obj.options[obj.selectedIndex].text.split("*");
 		 for (i=0;i<item.length ;i++ )   
 		 {   
 			 $('#l').val(item[0]+"cm");

@@ -42,7 +42,7 @@ public class StoreRoomService extends GenericService<StoreRoom> implements IStor
 	public List<StoreRoom> getRoomByCondition(String cellStr, String user,Boolean  isInCell) {
 		StringBuffer hql=new StringBuffer("SELECT sr.* FROM storeroom sr LEFT JOIN USER u ON u.storeRoom_id=sr.cellID WHERE 1=1");
 	    if(cellStr!=null&&!cellStr.equals("")){
-	    	hql.append(" AND sr.cellStr="+cellStr);
+	    	hql.append(" AND sr.cellStr='"+cellStr+"'");
 	    }
 	    if(user!=null&&!user.equals("")){
 	    	hql.append(" AND u.userName='"+user+"'");

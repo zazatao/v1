@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span class="divider"><font style="font-size: 18px;">/</font></span>
 					<li><a href="javascript:void(0);"><font style="font-size: 18px;">黑名单</font></a></li>
 					<span class="divider"><font style="font-size: 18px;">/</font></span>
-					<li><font style="font-size: 18px;">店家黑名单</font></li>
+					<li><font style="font-size: 18px;">商品黑名单</font></li>
 				</ul>
 			</div>
 		</div>

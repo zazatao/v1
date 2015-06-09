@@ -56,7 +56,8 @@ public class WeighingController {
 	public ModelAndView weighing(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.getSession().removeAttribute("packageMap");
 		List<Package> list = packageService.getWeighing();
-		PackageSize size = packageSizeService.findById(1);
+		PackageSize sizeName=packageSizeService.findByName();
+		PackageSize size = packageSizeService.findById(sizeName.getSizeID());
 		ModelMap map = new ModelMap();
 		map.put("list", list);
 		map.put("size", size);
@@ -82,7 +83,8 @@ public class WeighingController {
 			}
 		}
 		Package pack = packageService.findById(id);
-		PackageSize size = packageSizeService.findById(1);
+		PackageSize sizeName=packageSizeService.findByName();
+		PackageSize size = packageSizeService.findById(sizeName.getSizeID());
 		ModelMap mode = new ModelMap();
 		mode.put("list", list);
 		mode.put("packs", pack);
@@ -100,7 +102,8 @@ public class WeighingController {
 	public ModelAndView searchWeighing(String page, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		ModelMap mode = new ModelMap();
-		PackageSize size = packageSizeService.findById(1);
+		PackageSize sizeName=packageSizeService.findByName();
+		PackageSize size = packageSizeService.findById(sizeName.getSizeID());
 		mode.put("size", size);
 		if (request.getParameter("packageCode").trim().equals("")) {
 			map.put("packageCode", null);

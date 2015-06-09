@@ -19,10 +19,10 @@ public class PackageSize {
 	private Integer sizeID;
 	
 	@Column
-	private String genre;
+	private String genre;//类型
 	
 	@OneToMany(mappedBy = "packageSize")
-	private List<PackageGenre> packageGenres;
+	private List<PackageGenre> packageGenres;//材料
 	
 	public List<PackageGenre> getPackageGenres() {
 		return packageGenres;

@@ -201,7 +201,25 @@ public class FinanceController {
 		mode.put("list", list);
 		return  new ModelAndView("shop/finance/accountBook", mode);
 	}
-	
+	//材料类型
+	@RequestMapping(value = "addGenre", method = RequestMethod.GET)
+	public ModelAndView addGenre(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<PackageSize> genrelist = packageSizeService.getAll();
+		ModelMap mode = new ModelMap();
+		mode.put("genrelist", genrelist);
+		return new ModelAndView("shop/addGenre", mode);
+	}
+	//材料类型的添加
+	@RequestMapping(value = "saveGenre", method = RequestMethod.POST)
+	public String saveGenre(PackageSize packagesize,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		packageSizeService.save(packagesize);
+		return "redirect:/shop/addGenre";
+	}
+	@RequestMapping(value = "deleteGenreById", method = RequestMethod.GET)
+	public String deleteGenreById(Integer id,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		packageSizeService.delete(id);
+		return "redirect:/shop/addGenre";
+	}
 	//获得所有材料
 	@RequestMapping(value = "material", method = RequestMethod.GET)
 	public ModelAndView getAllMaterial(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

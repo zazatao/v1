@@ -89,14 +89,14 @@ th {
 											<tr class="success">
 										</c:otherwise>
 									</c:choose>
-									<td align="center">${user.loginName }</td>
-									<td>${user.shop.juridicalPerson }</td>
-									<td>${user.email }</td>
-									<td>${user.sex }</td>
-									<td>${user.phone }</td>
-									<td>${user.shop.shopName }</td>
-									<td>${user.shop.createDate }</td>
-									<td><c:if test="${user.shop.isPermit == true }">已经开店</c:if>
+									<td style="text-align:center;">${user.loginName }</td>
+									<td style="text-align:center">${user.shop.juridicalPerson }</td>
+									<td style="text-align:center">${user.email }</td>
+									<td style="text-align:center">${user.sex }</td>
+									<td style="text-align:center">${user.phone }</td>
+									<td style="text-align:center">${user.shop.shopName }</td>
+									<td style="text-align:center">${user.shop.createDate }</td>
+									<td style="text-align:center"><c:if test="${user.shop.isPermit == true }">已经开店</c:if>
 										<c:if test="${user.shop.isPermit == false }">
 											<select id="code" name="plugin" class="form-control"
 												style="width: 200px;"

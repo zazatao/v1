@@ -121,7 +121,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<label for="inputEmail3" class="col-sm-2 control-label">修改完成订单数</label>
 							<input type="hidden" name="id" value="${personnel.id }">							
 						<div class="col-sm-8">
-							<input id="accomplishNum"  class="form-control" name="accomplishNum" value="${personnel.accomplishNum}">
+						              <c:set var="total"  value="${0 }"></c:set>
+									   <c:forEach items="${personnel.accomplishNum}"  var="anum">
+									      <c:set var="total" value="${total + (anum.accomplishNum)}"/>
+							           </c:forEach>
+							<input id="accomplishNum"  class="form-control" name="accomplishNum" value="${total}">
 						</div>
 						</c:if>
 					</div>	

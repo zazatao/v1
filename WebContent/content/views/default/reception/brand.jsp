@@ -37,13 +37,12 @@
 			<div>
 				 <ul> 
 					<c:forEach items="${brands}" var="brand">
-						<li style="float: right;margin-left: 15px;margin-top: 10px;"><a
-							href="../proscenium/shopCommItem?id=${brand.brandID }&page=brand&which=brand"><img
-								src="..${brand.logo }" /></a></li>
+						<li style="float: left;margin-left: 15px;margin-top: 10px;"><a
+							href="../proscenium/shopCommItem?id=${brand.brandID }&page=brand&which=brand"><img src="..${brand.logo }" /></a></li>
 					</c:forEach>
 				</ul>
 			</div>
-			<hr style="border: 2px solid red;width: 100%"/>
+			<hr style="border: 2px solid red;width: 100%;margin-top: 50px;"/>
 			<p class="cont_gr3_sort">
 				<a href="../proscenium/categoryLei?id=-1&page=brand">所有分类*</a><a
 					href="../proscenium/categoryLei?id=5&page=brand">女士*</a><a

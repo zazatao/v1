@@ -40,7 +40,6 @@ import com.yc.service.IShopService;
 import com.yc.service.ITicketService;
 import com.yc.service.IUserService;
 
-//绠＄悊
 @Controller
 @RequestMapping("/management")
 public class ManagementTwoController {
@@ -167,7 +166,6 @@ public class ManagementTwoController {
 					commoidtyService.update(commoidty);
 				}
 			}
-		} else {
 			Blacklist blacks = blacklistService.findById(id);
 			blacks.setReasons(reasons);
 			blacklistService.update(blacks);
