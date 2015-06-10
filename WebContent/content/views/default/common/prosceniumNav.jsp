@@ -19,9 +19,16 @@
 			<div class="znss">
 				<div class="ssk">
 					<form action="/searchComm" method="post">
-						<input value="搜索" name="content" type="text" onfocus="this.value=''"
-							onblur="if(this.value==''){this.value='搜索';}" />
-						<button type="submit">搜索</button>
+						<c:if test="${sessionScope.language == 'chinese'}">
+							<input value="搜索" name="content" type="text" onfocus="this.value=''"
+								onblur="if(this.value==''){this.value='搜索';}" />
+							<button type="submit">搜索</button>
+						</c:if>
+						<c:if test="${sessionScope.language == 'russina'}">
+							<input value="Поиск" name="content" type="text" onfocus="this.value=''"
+								onblur="if(this.value==''){this.value='Поиск';}" />
+							<button type="submit">Поиск</button>
+						</c:if>
 					</form>
 				</div>
 			</div>
@@ -29,7 +36,8 @@
 			<div class="top_tel">
 				<img src="../content/static/images/top_sj.png" />
 				<p>
-					全球统一客服电话<br />
+					<c:if test="${sessionScope.language == 'chinese'}">全球统一客服电话<br /></c:if>
+					<c:if test="${sessionScope.language == 'russina'}">全球统一客服电话<br /></c:if>
 					<span class="red">152386895258</span>
 				</p>
 			</div>
@@ -51,10 +59,21 @@
 		<div style="height: 78px;"></div>
 		<div class="dlzc">
 			<ul>
-				<li><a href="../user/myoffice">我的办公室</a></li>
-				<li><a href="../user/login">请登记</a></li>
-				<li class="zc"><a href="../user/regist">免费注册</a></li>
-				<li><a href="#">客户服务</a>
+				<li><a href="../user/myoffice">
+					<c:if test="${sessionScope.language == 'chinese' }">我的办公室</c:if>
+					<c:if test="${sessionScope.language == 'russina' }">МОЙ&nbsp;КАБИНЕТ</c:if>				
+				</a></li>
+				<li><a href="../user/login">
+					<c:if test="${sessionScope.language == 'chinese' }">请登记</c:if>
+					<c:if test="${sessionScope.language == 'russina' }">ВХОД</c:if>	
+				</a></li>
+				<li class="zc"><a href="../user/regist">
+					<c:if test="${sessionScope.language == 'chinese' }">免费注册</c:if>
+					<c:if test="${sessionScope.language == 'russina' }">РЕГИСТРАЦИЯ</c:if>	
+				</a></li>
+				<li><a href="#">
+					<c:if test="${sessionScope.language == 'chinese' }">客户服务</c:if>
+					<c:if test="${sessionScope.language == 'russina' }">КЛИЕНТСКАЯ СЛУЖБА</c:if></a>
 					<div class="filexlcd">
 						<ul>
 							<li><a href="#" onclick="ib_wopen();"><span><img
@@ -195,7 +214,7 @@
 								if ( language == 'chinese') {
 									brand = "名品街";
 								} else if ( language == 'russina') {
-									brand = "我是俄文名品街";
+									brand = "Брендов";
 								}
 								
 								if (data && data.success == "true") {
@@ -232,7 +251,7 @@
 								if ( language == 'chinese') {
 									special = "折扣";
 								} else if ( language == 'russina') {
-									special = "我是俄文折扣";
+									special = "Акции и Скидки";
 								}
 								if (data && data.success == "true") {
 									$guige2 = $guige2 + "<li><a href='../proscenium/categoryLei?id=-1&page=special'>"+special+"</a><div>";
