@@ -10,7 +10,7 @@
 	<div class="container-fluid">
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
+				<li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle"
 					data-toggle="dropdown">总览<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="./overall/unknownCommList">不明订单</a></li>
