@@ -34,6 +34,7 @@ import com.yc.entity.CommoidityStatus;
 import com.yc.entity.Delivery;
 import com.yc.entity.DeliveryAddress;
 import com.yc.entity.DisposeStatus;
+import com.yc.entity.ImagePath;
 import com.yc.entity.OrderForm;
 import com.yc.entity.OrderStatus;
 import com.yc.entity.ShopCategory;
@@ -329,6 +330,8 @@ public class ShopTwoController {
 			carcomm.setCarbelongTo(comm.getBelongTo());
 			carcomm.setDescribes(comm.getDescribes());
 			carcomm.setFare(fare);
+			System.out.println("=========="+comm.getShopCommImages().get(0).getImagePath());
+			carcomm.setImagePath(comm.getShopCommImages().get(0).getImagePath());
 			carcomm = carCommoidtyService.save(carcomm);
 			if (user == null) {
 				BuyCatSession buyCat = new BuyCatSession();
@@ -805,6 +808,11 @@ public class ShopTwoController {
 							commodity.setDescribes(buyCat.getShopCommoidty()
 									.getDescribes());
 							commodity =commodityService.save(commodity);
+							ImagePath ipath=new ImagePath();
+							ipath.setCommodity(commodity);
+							ipath.setOrderform(orderform);
+							ipath.setPath(buyCat.getShopCommoidty().getImagePath());
+							imagePathService.save(ipath);
 							if (buyCat.getShopCommoidty() != null) {
 								buyCatService.delete(buyCat.getCatID());
 								carCommoidtyService.delete(buyCat

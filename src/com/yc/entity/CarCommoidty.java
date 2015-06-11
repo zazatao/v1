@@ -82,7 +82,20 @@ public class CarCommoidty {
 	private String russinaCommoidtyName;
 	
 	@Column
+	private String imagePath;
+	
+	@Column
 	private String russinaDescribes;
+	
+	
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
 
 	public String getRussinaCommoidtyName() {
 		return russinaCommoidtyName;

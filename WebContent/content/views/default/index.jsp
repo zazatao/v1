@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				if (data.success == 'true') {
 					$.each(data.pr, function(i, item) {
 						$para = $para +"<li><a href='proscenium/shopItem?commID="+item.transNumForTaobao+"&category="+item.shopcategory+"&shopID="+item.seller+"&commoName="
-								+item.nameOfGoods+"'><img src="+item.path+" alt="+item.nameOfGoods+"/></a></li>";
+								+item.nameOfGoods+"'><img src="+item.path+" alt="+item.nameOfGoods+" /></a></li>";
 			        });
 				}
 				$('#img5').html($para);
@@ -107,7 +107,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 			<ul id="img5">
                 				<c:forEach items="${lists}" var="category" varStatus="loop">
                         			<c:if test="${loop.index < 7 }">
-            	 						<li><a href="proscenium/shopItem?commID=${category.transNumForTaobao}&category=${category.shopcategory}&shopID=${category.seller}&commoName=${category.nameOfGoods}"><img src="..${category.path }" alt="${category.nameOfGoods }"/></a></li>
+            	 						<li><a href="proscenium/shopItem?commID=${category.transNumForTaobao}&category=${category.shopcategory}&shopID=${category.seller}&commoName=${category.nameOfGoods}"><img src="..${category.path }"  alt="${category.nameOfGoods}"/></a></li>
               						</c:if>
               					</c:forEach> 
                         		<li><div><p><a href="shopCommItemone?id=6">更多</a></p></div></li>
@@ -139,7 +139,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             					$.each(data.lists, function(i, item) {
             						if ( i < 7 ) {
             							$para = $para +"<li><a href='proscenium/shopItem?commID="+item.transNumForTaobao+"&category="+item.shopcategory+"&shopID="+item.seller+"&commoName="
-        									+item.nameOfGoods+"'><img src="+item.path+" alt="+item.nameOfGoods+"/></a></li>";
+        									+item.nameOfGoods+"'><img src="+item.path+" alt="+item.nameOfGoods+" /></a></li>";
             						}            							
             				    });
             					
